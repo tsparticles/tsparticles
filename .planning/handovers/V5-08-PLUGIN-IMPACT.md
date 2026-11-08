@@ -56,19 +56,19 @@ issues. An unchanged package is a valid result with verification evidence.
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
-## Valutazioni architetturali
+## Architecture evaluations
 
-Chiudere [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md) sulla base
-dei contratti definiti in 03 e verificati in 04–07. Valutare registrazione/lifecycle
-comuni con capacità tipizzate, mantenendo pipeline specializzate. Integrare
-nell'audit i consumer di [ARCH-01](architecture/V5-ARCH-01-PARTICLE-MODEL.md) e
-[ARCH-03](architecture/V5-ARCH-03-OPTIONS.md): campi/metodi Particle, eventuale
-snapshot e codec, classi option, precedenze e mutabilità. Non imporre serializzazione
-o una riscrittura universale a tutte le estensioni senza una decisione motivata.
+Close [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) using
+the contracts from 03 and verification in 04–07. Evaluate common registration
+and lifecycle with typed capabilities while preserving specialized pipelines.
+Audit [ARCH-01](architecture/V5-ARCH-01-PARTICLE-MODEL.md) and
+[ARCH-03](architecture/V5-ARCH-03-OPTIONS.md) consumers for Particle fields
+and methods, optional snapshots and codecs, option classes, precedence,
+and mutability. Require evidence before adopting serialization or broad rewrites.
 
-## Migrazione colore obbligatoria
+## Required color migration
 
-Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
-Completare C4 per tutti i manager e consumer della matrice colore, inclusi links,
-bubble, gradient, split, trail coordinates, emitters, immagini/SVG e background.
-La compilazione non sostituisce le prove di accuratezza, alpha e wide gamut.
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C4 for all managers and
+consumers in the color matrix, including links, bubble, gradient, split,
+trail coordinates, emitters, images/SVG, and backgrounds. Verify accuracy,
+alpha, and wide gamut beyond compilation.

@@ -1,96 +1,93 @@
-# V5-ARCH-04 — Architettura comune per le estensioni
+# V5-ARCH-04 — Common extension architecture
 
-Stato: da valutare. Owner: 03 per contratto, 08 per audit/migrazione;
-integrazione in 04–07 e verifica bundle/browser in 09.
-Definire il contratto prima dei refactor dei lifecycle; 08 ne chiude la verifica.
+Status pending evaluation. Owner 03 for contracts and 08 for audit/migration,
+with integration in 04–07 and browser/bundle verification in 09.
+Define the contract before lifecycle refactors and complete verification in 08.
 
-## Evidenze e problema
+## Evidence and problem
 
-`PluginManager` centralizza già plugin, initializer shape/effect/updater, preset,
-palette, easing e color manager. `GenericInitializer<T>` fornisce già una factory
-async per Container a shape/effect/updater. Non serve aggiungere un secondo
-registro che duplichi queste responsabilità.
+`PluginManager` already centralizes plugins, shape/effect/updater initializers,
+presets, palettes, easing, and color managers. `GenericInitializer<T>` supplies
+an async Container factory for shapes, effects, and updaters. Reuse those
+responsibilities when evaluating a common registry.
 
-I contratti sono però diversi: `IPlugin` seleziona e crea un `IContainerPlugin`
-e carica options; `IParticleUpdater` ha init/update/reset e hook di disegno;
-`IShapeDrawer` ha draw/loadShape/particleDestroy; `IEffectDrawer` usa drawBefore/
-drawAfter e non espone lo stesso insieme di hook. Modifier, interazioni e path
-hanno altre semantiche; preset e palette sono soprattutto contributi di dati.
-Unificare i nomi non garantisce equivalenza di lifecycle o ordine.
+Contracts differ. `IPlugin` selects and creates an `IContainerPlugin` and
+loads options. `IParticleUpdater` has init/update/reset and drawing hooks.
+`IShapeDrawer` has draw/loadShape/particleDestroy, and `IEffectDrawer` uses
+drawBefore/drawAfter. Modifiers, interactions, and paths have other semantics.
+Presets and palettes mostly contribute data. Verify lifecycle and order before
+unifying APIs.
 
-## Alternative e direzione iniziale
+## Alternatives and initial direction
 
-| Modello                                               | Beneficio                                       | Rischio                                                                     |
-| ----------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
-| Registri attuali con utility comuni                   | Migrazione minima e pipeline già specializzate  | Differenze di policy e lifecycle rimangono da documentare                   |
-| Descrittore comune con capacità tipizzate             | Policy coerenti, composizione e scope espliciti | Va progettato senza duplicare registri o caricare capacità inutili          |
-| Unica interfaccia/classe con tutti gli hook opzionali | Un solo tipo nominale                           | Combinazioni invalide, perdita di tipi, branch e dispatch superflui         |
-| ECS/general scheduler per tutte le estensioni         | Possibili sistemi batch                         | Riscrittura ampia, ordine e stato plugin da migrare; non richiesta dalla v5 |
+| Model                                       | Benefit                                            | Risk                                                                      |
+| ------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| Current registries with shared utilities    | Minimal migration and specialized pipelines        | Policy and lifecycle differences still need documentation                 |
+| Common descriptor with typed capabilities   | Consistent policy, composition, and explicit scope | May duplicate registries or load unused capabilities                      |
+| One interface/class with all hooks optional | One nominal type                                   | Invalid combinations, type loss, and unnecessary dispatch                 |
+| ECS/general scheduler for all extensions    | Possible batch systems                             | Broad rewrite and plugin order/state migration, outside required v5 scope |
 
-Direzione iniziale: valutare un descrittore di registrazione comune e capacità
-specializzate. Un'estensione può contribuire a più capacità; non deve implementare
-hook vuoti per sembrare un updater o una shape. Distinguere il termine generale
-“estensione” dall'attuale contratto specifico `IPlugin`.
+Evaluate a common registration descriptor and specialized capabilities. Allow
+extensions to contribute multiple capabilities without empty hooks.
+Distinguish the general term “extension” from the existing `IPlugin` contract.
 
-## Contratto comune da progettare
+## Common contract to design
 
-- Identità: id stabile dell'estensione e chiavi delle singole capacità. Definire
-  namespace, alias e conflitti senza confondere un nome shape con un id plugin.
-- Composizione: factory/registrazione per engine, eventuali requisiti e contributi
-  di options, factory di istanze per container e capacità runtime tipizzate.
-  Il descrittore non deve importare tutte le implementazioni opzionali.
-- Scope: definizioni immutabili condivisibili; registrazione e servizi per engine;
-  istanze e risorse per container; stato per particella e reset espliciti.
-- Policy: duplicati, idempotenza, concorrenza, retry dopo errore e comportamento
-  prima/dopo init. Il manager attuale rifiuta diverse aggiunte dopo init: conservare
-  o migrare intenzionalmente il vincolo; non introdurre hot unload come requisito.
-- Lifecycle: init async, attivazione, refresh/reset e dispose con ownership delle
-  risorse; cleanup anche dopo init parziale. Non equiparare reset al destroy.
-- Ordine: fasi nominate e ordine stabile all'interno di ciascuna. Valutare priorità
-  e dipendenze solo dove servono; se introdotte, diagnosticare cicli e requisiti
-  mancanti all'init. Non cambiare implicitamente l'ordine oggi dato dai loader.
+- Identity. Use a stable extension ID and individual capability keys. Define
+  namespaces, aliases, and conflicts, distinguishing shape names from plugin IDs.
+- Composition. Define per-engine factory/registration, requirements, option
+  contributions, per-container factories, and typed runtime capabilities.
+  Keep optional implementations out of the descriptor's mandatory imports.
+- Scope. Share immutable definitions. Scope registration and services to
+  engines, instances/resources to containers, and state and reset to particles.
+- Policy. Define duplicates, idempotence, concurrency, retry, and behavior before
+  and after init. Keep the current post-init restrictions or migrate them
+  intentionally. Hot unload is outside required scope.
+- Lifecycle. Define async init, activation, refresh/reset, and disposal with
+  explicit resource ownership and cleanup after partial init. Keep reset and
+  destroy semantics distinct.
+- Order. Name phases and preserve stable order within them. Introduce priorities
+  and dependencies only where needed, and diagnose cycles and missing
+  dependencies at init. Preserve loader ordering unless explicitly migrated.
 
-La proposta di API va resa concreta in 03 con un prototipo tipizzato: un updater,
-una shape, un effetto e un'estensione che contribuisce options e più capacità.
-Confrontarla con l'API attuale anche dal punto di vista di un autore di plugin.
-Evitare un dizionario `unknown` in cui ogni consumer deve ricostruire i tipi.
+In 03, build a typed prototype covering an updater, a shape, an effect, and an
+extension contributing options and several capabilities. Compare author
+experience with the current API. Keep types available to consumers.
 
-## Capacità specializzate e percorsi caldi
+## Specialized capabilities and hot paths
 
-Produrre una matrice per Plugin/Updater/Shape/Effect/Interactor/Path/Modifier e
-contributi preset/palette/easing/color manager: registrazione, attivazione, init,
-options, hook per particella/frame, risorse e teardown. Verificare anche move e
-interactivity, che estendono le API tramite plugin, senza saltarli nell'audit.
+Build a matrix for Plugin/Updater/Shape/Effect/Interactor/Path/Modifier and
+preset/palette/easing/color manager contributions. Record registration,
+activation, init, options, frame and particle hooks, resources, and teardown.
+Include move and interactivity, which extend APIs through plugins.
 
-Definire mapping espliciti, inclusi gli hook che non hanno un equivalente e i
-tempi differenti di init. La somiglianza fra draw e drawBefore/drawAfter non ne
-autorizza la fusione; conservare layer, stato canvas e hook di bounds/HDR.
-Collegare i contributi options ad ARCH-03 e gli eventuali codec di stato ad ARCH-01.
-Codec/snapshot restano opt-in rispetto al contratto di serializzazione scelto.
+Map hooks and init timing explicitly, including hooks without equivalents.
+Preserve layers, canvas state, and bounds/HDR hooks when comparing draw with
+drawBefore/drawAfter. Link options to ARCH-03 and state codecs to ARCH-01.
+Codecs and snapshots remain opt-in within the chosen serialization contract.
 
-Il registro comune opera nel caricamento e nell'init. Durante il frame mantenere
-o costruire liste tipizzate per capacità/fase e istanze riusabili: niente scansione
-di tutte le estensioni, type switch universale, lookup di stringhe o nuove
-allocazioni per ogni hook/particella se evitabili. Registrare quanto costa la
-compilazione delle pipeline e quando devono essere ricostruite.
+The common registry operates during loading and init. Keep typed lists and
+reusable instances per capability/phase in the frame. Avoid global scans,
+universal type switches, string lookups, and extra hook or particle allocations
+where possible. Record pipeline compilation costs and rebuild points.
 
-## Piano di migrazione e accettazione
+## Migration and acceptance
 
-1. Completare la matrice con consumer reali e test caratterizzanti dell'ordine.
-   Confrontare utility comuni e descrittore senza cambiare subito tutte le famiglie.
-2. Selezionare il modello in 03; migrare i lifecycle rilevanti in 04–07. Valutare
-   adapter selettivi per i loader esistenti, senza supporto doppio permanente che
-   registri o esegua due volte gli hook. Breaking change e API sostitutive esplicite.
-3. In 08 aggiornare la matrice pacchetto per pacchetto: nessuna famiglia esclusa,
-   custom extension esterna compilabile e stessa estensione su due engine con
-   servizi distinti, ordine di caricamento invertito e caricamenti concorrenti.
-4. Testare conflitti/alias, duplicati, errori async, cleanup parziale, refresh,
-   riuso pool, destroy una volta e risorse condivise ancora in uso. Se supportati,
-   testare dipendenze mancanti/cicliche e codec assenti o incompatibili.
-5. Confrontare init e frame su scena minima, molte estensioni registrate ma poche
-   attive e slim/full. Misurare allocazioni e payload con capacità non importate:
-   il registro comune non deve trattenere tutto l'ecosistema nel bundle minimo.
+1. Complete the matrix with real consumers and tests characterizing order.
+   Compare shared utilities and descriptors on representative families first.
+2. Select the model in 03 and migrate affected lifecycles in 04–07. Evaluate
+   selective loader adapters without permanent duplication of registration or
+   hook execution. Document breaking changes and replacement APIs.
+3. In 08, update the matrix for every package. Compile a custom external
+   extension and test the same extension on two engines with different
+   services, reversed order, and concurrent loading.
+4. Test conflicts/aliases, duplicates, async failures, partial cleanup, refresh,
+   pool reuse, one-time destroy, and shared resources still in use. If supported,
+   test missing/cyclic dependencies and missing/incompatible codecs.
+5. Compare init and frame costs for a minimal scene, many registered but few
+   active extensions, and slim/full. Measure allocations and payload with
+   unused capabilities omitted. Keep the minimal bundle selective.
 
-Consegna: decisione ARCH-04, matrice di equivalenza dei lifecycle, API/prototipo,
-misure e migrazione per famiglia. Un'architettura comune è utile se rende coerenti
-composizione e policy preservando le differenze necessarie nel runtime.
+Record the ARCH-04 decision, lifecycle equivalence matrix, typed API/prototype,
+measurements, and migration per family. Require consistent composition and
+policy while preserving runtime differences.

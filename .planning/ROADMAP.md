@@ -10,9 +10,11 @@
 
 ## Current execution — v5 major
 
-**Status:** planned on dedicated branch `v5`; packages remain at `4.5.1`.
-The first runtime change removes the singleton. Measurement of the unmodified
-baseline precedes that change. Follow [handover index](handovers/README.md).
+**Status.** Planned on branch `v5`, with package version `4.5.3` after the v4
+merge. Capture a clean baseline from the actual starting commit before the
+first major runtime change, which removes the singleton. Follow the
+[handover index](handovers/README.md). The [v4 review](v4-review/README.md)
+retains its original evidence and patch scope.
 
 | Step | Scope                                                               | Handover                                        |
 | ---- | ------------------------------------------------------------------- | ----------------------------------------------- |

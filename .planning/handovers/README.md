@@ -1,7 +1,10 @@
 # tsParticles v5 execution plan
 
-Dated 2026-11-03. Use the dedicated branch `v5` and source baseline `4.5.1`.
-Status **planned, with runtime implementation pending**.
+Initial plan dated 2026-11-03. Use the dedicated branch `v5`. The
+2026-11-08 merge `e9c7a7378d` includes v4 tip `5aba15652a` and carries
+package version `4.5.3`. Status **planned, with major runtime implementation
+and a clean measurement baseline pending**. The original `4.5.1`
+reconnaissance and later `4.5.2` architecture and color review are historical.
 
 ## Goals and sequence
 
@@ -24,7 +27,7 @@ Document intentional breaking changes and provide migration paths for this major
 | 6     | [ParticlesManager](V5-06-PARTICLES-MANAGER.md)                    | 05                                          | Collection, pool, update, and grid review                   |
 | 7     | [Particle](V5-07-PARTICLE.md)                                     | 06                                          | Particle state, initialization, and Retina review           |
 | 8     | [Plugin impact](V5-08-PLUGIN-IMPACT.md)                           | Initial audit in 01/02, completion after 07 | Verified compatibility for each package                     |
-| 9     | [Browser and CDN bundles](V5-09-BROWSER-BUNDLES.md)               | Initial contract in 01, completion after 08 | Bootstrap and composition without a singleton               |
+| 9     | [Browser, CDN, and legacy support](V5-09-BROWSER-BUNDLES.md)      | Initial contract in 01, completion after 08 | Bootstrap and composition without a singleton               |
 | 10    | [v5 release gates](V5-10-SIZE-MIGRATION-RELEASE.md)               | 01–09                                       | Budgets, integration, and migration                         |
 
 Follow the sequence because the first three handovers change shared contracts and
@@ -147,38 +150,45 @@ indexing, per-particle state, and rendering/lifecycle. Each defines ownership,
 options, constraints, scenarios, and acceptance criteria. The main handovers
 link to the relevant plans. Gate 10 also verifies the decision log and outcomes.
 
+## Architecture evaluations
+
+The [architecture plan](V5-ARCHITECTURE.md), added on 2026-11-06, requires
+four evaluations: Particle state and serialization, engine package boundaries,
+options resolution, and common extension architecture. It records starting
+recommendations, alternatives, and evidence requirements. Implement rewrites
+only where evidence supports them.
+
+Draft contracts in 03 before refactoring in 04–07. Verify state and
+responsibilities in 06/07, extension migration in 08, packaging in 09, and
+the decision log in 10. Share measurements with the IMP plans.
+
+## Required OKLCH migration
+
+The [V5-COLOR plan](V5-COLORS-OKLCH.md), added on 2026-11-06, adopts
+canonical OKLCH and h/c/l animation while preserving color manager inputs.
+It defines floating-point conversion, alpha, interpolation, gamut mapping,
+P3/HDR separation, and explicit HSL animation migration. Complete C0–C5
+within 03/05/07/08/09/10. Set contracts before rendering, integrate an
+end-to-end path in 05, review Particle in 07, complete consumers in 08,
+verify distribution in 09, and close the gate in 10.
+
+## Legacy support and v4 carryover
+
+[V5-LEG](../REQUIREMENTS.md) covers Vue 2, Nuxt 2, and Nuxt 3 integrations,
+deprecated APIs with documented replacements, and browser support under the
+agreed age and usage policy. Define and verify the scope in 09 and close it
+in 10. Preserve fallbacks needed by supported browsers.
+
+The [v4 review](../v4-review/README.md) is a separate patch-first plan.
+Reuse relevant regression fixtures as they become available. Recheck each
+finding on the implementation commit and preserve the v4 review's provenance.
+
 ## Plan status
 
 - [x] Review the critical areas and update planning documentation.
 - [x] Prepare handovers 01–10.
 - [ ] Capture the bundle baseline and numeric budgets.
 - [ ] Implement and verify 01–10, covering the full engine and the plugin and browser audits.
-
-## Valutazioni architetturali aggiunte il 2026-11-06
-
-Il [piano architetturale](V5-ARCHITECTURE.md) raccoglie quattro valutazioni
-obbligatorie e i relativi piani dedicati: modello/serializzabilità di Particle,
-eventuale divisione di engine in pacchetti, pipeline delle options e architettura
-comune delle estensioni. Contiene raccomandazioni iniziali, alternative e prove;
-le riscritture restano subordinate alle evidenze.
-
-I contratti si discutono in 03 prima dei refactor di 04–07; 06/07 verificano stato
-e responsabilità, 08 chiude la migrazione delle estensioni, 09 il packaging e 10
-il registro delle decisioni. Gli ARCH si affiancano agli IMP senza duplicarne
-misure e ottimizzazioni. Il checkout analizzato per queste valutazioni è `4.5.2`;
-la baseline `4.5.1` riportata sopra documenta la ricognizione originale.
-
-## Migrazione colori OKLCH aggiunta il 2026-11-06
-
-[V5-COLOR — piano dettagliato](V5-COLORS-OKLCH.md) rende OKLCH il modello
-canonico delle particelle e delle animazioni h/c/l, preservando i formati di input
-dei color manager. Definisce conversioni float, alpha, interpolazione, mapping
-del gamut e separazione P3/HDR, con migrazione esplicita delle animazioni HSL.
-Le fasi C0–C5 entrano in 03/05/07/08/09/10: contratti prima del rendering,
-integrazione verticale in 05, revisione Particle in 07, chiusura consumer in 08,
-distribuzione in 09 e gate in 10. Non è un esperimento opzionale degli IMP.
-
-## Stato di questo piano
 
 Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in
 `codebase/` and `research/` that have yet to be fully rechecked as historical

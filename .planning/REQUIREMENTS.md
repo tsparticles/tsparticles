@@ -7,22 +7,25 @@
 
 These requirements supersede the auto-initialized backlog for current execution.
 See [handover index](handovers/README.md) for dependencies and acceptance checks.
-No v5 implementation or bundle baseline has been validated yet.
+The post-merge checkout carries package version `4.5.3`. Major implementation
+and clean bundle baseline validation are pending.
 
-| ID      | Requirement                                                                                                            | Handover                | Status  |
-| ------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------- | ------- |
-| V5-ENG  | Explicit engine factory; no singleton; independent registries and lifecycle; consumers migrated                        | 01                      | Planned |
-| V5-SVC  | Per-engine random/logger, helper/plugin chains and async errors; shared-state audit                                    | 02                      | Planned |
-| V5-MOD  | Full engine/src review inventory; selective facades, boundaries and public plugin types                                | 03; closure 10          | Planned |
-| V5-CTR  | Complete Container/events lifecycle review, deterministic tests and measured costs                                     | 04                      | Planned |
-| V5-CAN  | Complete CanvasManager/RenderManager review with OffscreenCanvas/HDR preserved                                         | 05                      | Planned |
-| V5-PMG  | Complete ParticlesManager/SpatialHashGrid review: collection, pool, groups, density, limits, buckets and update phases | 06                      | Planned |
-| V5-PAR  | Complete Particle/Retina review: init, options, state, modifiers, lifecycle and per-particle costs                     | 07                      | Planned |
-| V5-PLG  | Per-package impact audit of all extension families; multi-engine registration/runtime compatibility                    | 01/02 initial; 08 final | Planned |
-| V5-BRW  | Browser/CDN bootstrap, namespaces, externals, lazy and multiple bundles without singleton                              | 01 initial; 09 final    | Planned |
-| V5-LEG  | Retire obsolete framework integrations, deprecated compatibility APIs and browser support with negligible usage        | 09; closure 10          | Planned |
-| V5-SIZE | Reproducible baseline/budgets, smaller minimal scene/slim in gzip/Brotli, total chunks accounted for                   | 01 baseline; 04–10      | Planned |
-| V5-MIG  | Built-package, wrappers, CLI/MCP, demos, migration docs, translations and full validation                              | 01–10                   | Planned |
+| ID       | Requirement                                                                                                            | Handover                | Status  |
+| -------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------- | ------- |
+| V5-ENG   | Explicit engine factory; no singleton; independent registries and lifecycle; consumers migrated                        | 01                      | Planned |
+| V5-SVC   | Per-engine random/logger, helper/plugin chains and async errors; shared-state audit                                    | 02                      | Planned |
+| V5-MOD   | Full engine/src review inventory; selective facades, boundaries and public plugin types                                | 03; closure 10          | Planned |
+| V5-CTR   | Complete Container/events lifecycle review, deterministic tests and measured costs                                     | 04                      | Planned |
+| V5-CAN   | Complete CanvasManager/RenderManager review with OffscreenCanvas/HDR preserved                                         | 05                      | Planned |
+| V5-PMG   | Complete ParticlesManager/SpatialHashGrid review: collection, pool, groups, density, limits, buckets and update phases | 06                      | Planned |
+| V5-PAR   | Complete Particle/Retina review: init, options, state, modifiers, lifecycle and per-particle costs                     | 07                      | Planned |
+| V5-PLG   | Per-package impact audit of all extension families; multi-engine registration/runtime compatibility                    | 01/02 initial; 08 final | Planned |
+| V5-BRW   | Browser/CDN bootstrap, namespaces, externals, lazy and multiple bundles without singleton                              | 01 initial; 09 final    | Planned |
+| V5-LEG   | Retire obsolete framework integrations, deprecated compatibility APIs and browser support with negligible usage        | 09; closure 10          | Planned |
+| V5-SIZE  | Reproducible baseline/budgets, smaller minimal scene/slim in gzip/Brotli, total chunks accounted for                   | 01 baseline; 04–10      | Planned |
+| V5-ARCH  | Evaluate Particle state and serialization, engine packages, option resolution, and extension architecture              | 03/06–09, closure 10    | Planned |
+| V5-COLOR | Adopt canonical OKLCH and h/c/l animation, with verified input compatibility, gamut, alpha, and HDR                    | 03/05/07–10             | Planned |
+| V5-MIG   | Built-package, wrappers, CLI/MCP, demos, migration docs, translations and full validation                              | 01–10                   | Planned |
 
 **V5-LEG scope and acceptance:** remove the Vue 2, Nuxt 2 and Nuxt 3 wrappers from
 the v5 workspace and distribution, together with their demos, starter-template

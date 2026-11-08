@@ -57,6 +57,7 @@ for compatibility claims. Files or packages without an outcome keep the gate ope
       for affected CLI/generators/consumers, and `pnpm run build:ci`.
 - [ ] Real browser smoke tests pass and guides/demos/templates/generated code work.
 - [ ] Breaking-change changelog and migration guide are complete, with English and translations aligned.
+- [ ] V5-LEG retirement, V5-ARCH evaluations, and V5-COLOR migration gates pass.
 
 ## Deliverables
 
@@ -78,19 +79,26 @@ contract, scaffolding commands from the publishable package, and compilation of
 MCP snippets in consumer projects. Include an isolated install to catch
 undeclared direct imports and templates that build only in the workspace.
 
-## Valutazioni architetturali
+## Architecture evaluations
 
-Raccogliere anche `V5-ARCHITECTURE-DECISIONS.md`, previsto dal
-[piano architetturale](V5-ARCHITECTURE.md). Ogni voce ARCH-01–04 deve avere scelta,
-alternative, evidenze, impatto sui consumer ed esito; mantenere o rinviare una
-riscrittura richiede motivazione e non esenta dai requisiti v5. Verificare la guida
-di migrazione per stato/metodi Particle, pacchetti/subpath, options ed estensioni
-solo dove le decisioni hanno prodotto cambiamenti effettivi. L'analisi incompleta
-di uno dei quattro temi lascia aperto il gate.
+Collect `V5-ARCHITECTURE-DECISIONS.md` from the
+[architecture plan](V5-ARCHITECTURE.md). Each ARCH-01–04 item needs a decision,
+alternatives, evidence, consumer impact, and outcome. Explain retained
+implementations and deferred rewrites. Required v5 gates still apply.
+Verify migration guidance for actual changes to Particle state/methods,
+packages/subpaths, options, and extensions. Incomplete evaluation keeps this gate open.
 
-## Migrazione colore obbligatoria
+## Required color migration
 
-Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
-Richiedere chiusura C0–C5, V5-COLOR-DECISIONS.md e V5-COLOR-REPORT.md:
-matrice pacchetti, prove numeriche/browser, budget e guida breaking per manager,
-animazioni e offset. Gamut/HDR non verificati lasciano aperto il gate V5-COLOR.
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Require C0–C5 completion,
+`V5-COLOR-DECISIONS.md`, and `V5-COLOR-REPORT.md`. Verify the package matrix,
+numerical and browser tests, budgets, and breaking migration guidance for
+managers, animation, and offsets. Unverified gamut or HDR keeps V5-COLOR open.
+
+## Legacy support retirement
+
+Close [V5-LEG](../REQUIREMENTS.md) using the inventory and Browserslist evidence
+from 09. Verify that retired Vue 2, Nuxt 2, and Nuxt 3 integrations are absent
+from the workspace, distribution, demos, templates, installer, active docs,
+translations, and bundles. Check migration guidance for retired deprecated APIs
+and browser coverage. Confirm remaining supported fallback paths in built artifacts.

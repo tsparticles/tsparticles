@@ -30,11 +30,10 @@ Initial evidence comes from the reviewed 4.5.1 checkout. Recheck it against the
 current code. An earlier phase may have removed a cost or changed a contract.
 Reuse existing refactors and tests.
 
-## Collegamento alle scelte architetturali
+## Links to architecture decisions
 
-Le quattro [valutazioni architetturali](V5-ARCHITECTURE.md) usano le misure IMP
-per confrontare modelli alternativi. IMP-05 alimenta ARCH-01/03 (Particle e options),
-IMP-02 alimenta ARCH-02 (pacchetti) e IMP-06 alimenta ARCH-04 (lifecycle delle
-estensioni). I risultati architetturali confluiscono nel registro dedicato; non
-aggiungere una seconda implementazione o ripetere le stesse misure per chiudere
-entrambi i piani.
+The four [architecture evaluations](V5-ARCHITECTURE.md) use IMP evidence
+to compare alternatives. IMP-05 informs ARCH-01/03 (Particle and options),
+IMP-02 informs ARCH-02 (packages), and IMP-06 informs ARCH-04 (extension
+lifecycle). Record decisions in the architecture log and reuse implementations
+and measurements across plans.

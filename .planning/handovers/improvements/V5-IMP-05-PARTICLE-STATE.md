@@ -63,11 +63,10 @@ invalidation, affected API consumers, and bundle deltas. Test reset/pool,
 overrides, modifiers, Retina, HDR, and two engines. Close T1–T4 in 07 and
 verify extensions in 08.
 
-## Contratti architetturali collegati
+## Related architecture contracts
 
-Le alternative di modello sono definite in
-[ARCH-01 — Particle](../architecture/V5-ARCH-01-PARTICLE-MODEL.md) e
-[ARCH-03 — Options](../architecture/V5-ARCH-03-OPTIONS.md). Usare T1–T3 come evidenza
-per confrontare classe, snapshot e stato plain, pipeline di normalizzazione e
-template risolti. Serializzabilità e immutabilità richiedono contratti espliciti;
-non sono conseguenze automatiche dell'estrazione di helper o del riuso di options.
+See [ARCH-01 — Particle](../architecture/V5-ARCH-01-PARTICLE-MODEL.md) and
+[ARCH-03 — Options](../architecture/V5-ARCH-03-OPTIONS.md). Use T1–T3 to
+compare classes, snapshots, plain state, normalization pipelines, and
+resolved templates. Define serializability and immutability as explicit
+contracts before relying on them.

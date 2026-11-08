@@ -4,7 +4,24 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** v5 major planning on branch `v5`; 4.5.0/4.5.1 release history retained below.
+**Current focus.** v5 major planning on branch `v5`, with package version `4.5.3`.
+
+## Session status — 2026-11-08 — Post-merge documentation review
+
+- Merge `e9c7a7378d` brought v4 tip `5aba15652a` into `v5`. Both root and engine
+  manifests report `4.5.3`. The engine still exports the singleton, so the first
+  major runtime handover remains pending.
+- Aligned the current roadmap, requirements, handover sequence, and release gates.
+  The original `4.5.1` reconnaissance and `4.5.2` architecture/color review remain
+  historical. Capture a clean measurement baseline from the implementation
+  starting commit before any major runtime changes.
+- The [v4 review](v4-review/README.md) records evidence from `5d59d1dbbd`. The
+  reviewed implementation files linked there are unchanged at the merge. Treat
+  the findings as pending work and rerun the relevant regressions when taking
+  them on.
+- Translated the v5-only architecture and OKLCH plans and their handover
+  additions into English. This pass checked documentation and source references.
+  Runtime tests and measurements were not rerun.
 
 ## Session Status — 2026-11-06 — v5 OKLCH color planning
 
@@ -217,7 +234,7 @@ Fluid-in-collisions work moved to 4.5.0.
 9. ✅ **S9 Riot** — done (onUpdated/onUnmounted lifecycle hooks, theme support, loadId race guard, demo with config switch, README aligned)
 10. ✅ **S10 WebComponents** — done (`data-id`/`data-theme` added to `observedAttributes`, `attributeChangedCallback` handles both, `id` setter syncs to `data-id`, deprecated `particlesInit` event removed, README documented with observed attributes table and theme caveat, build passes)
 11. ✅ **S11 React docs** — README props table updated with `particlesLoaded`, demo/template check passed
-12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate senza refresh per solo-theme), demo (constructor init + conditional render — module-level init freeze Preact, tenuto pattern originale), README aligned
+12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate without refresh for theme-only changes), demo (constructor init + conditional render — the original pattern was retained because module-level initialization froze Preact), README aligned
 13. ✅ **S13 Svelte** — wrapper reactivity (`theme` prop, `afterUpdate` → reactive `$:` statements with `loadKey`, `loadTheme` on initial load + theme change), demo alignment (`particlesInit` → `initParticlesEngine`, Svelte 5 `mount()` API, SSR-safe dynamic imports), README with props table, reactive behavior docs, theme plugin docs. Svelte demo + SvelteKit demo both verified working by the user.
 14. ✅ **S14 Stencil** — done (`theme` prop + `particlesLoaded` event + `@Watch("theme")` + demo with theme toggle + `@tsparticles/plugin-themes` installed, build passes).
 15. ✅ **S15 Ember** — done (`theme` prop, `#container` instance tracking for memory leak fix, `registerDestructor` called once, `particlesLoaded` type fixed to `(container?: Container)`, template `particles.hbs` updated with `theme=@theme`, demo with config switch + theme toggle buttons, README with args table and optional plugin caveat, build passes).

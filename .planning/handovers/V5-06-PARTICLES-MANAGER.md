@@ -68,11 +68,10 @@ code with reasons. Report bundle/runtime results and contracts to verify in
 See [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md) and [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
-## Valutazioni architetturali
+## Architecture evaluations
 
-Consultare [ARCH-01 — Modello Particle](architecture/V5-ARCH-01-PARTICLE-MODEL.md)
-e [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md) prima di modificare
-le collection e la pipeline. Concordare con 07 i confini tra stato, helper e manager;
-ParticlesManager resta responsabile di collection/pool e coordinamento, senza
-assorbire automaticamente tutti i metodi Particle. Preparare invarianti per
-l'eventuale restore di snapshot solo se questa capacità viene adottata.
+Consult [ARCH-01 — Particle model](architecture/V5-ARCH-01-PARTICLE-MODEL.md)
+and [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) before
+changing collections and pipelines. Agree with 07 on state, helper, and
+manager boundaries. ParticlesManager owns collections, pools, and phase
+coordination. Define snapshot restore invariants only if the capability is adopted.

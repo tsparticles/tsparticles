@@ -107,18 +107,18 @@ new paths. References to original names identify ownership.
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
-## Valutazioni architetturali
+## Architecture evaluations
 
-Consultare tutti e quattro i [piani architetturali](V5-ARCHITECTURE.md).
-Prima di cambiare i contratti produrre una bozza coordinata di stato Particle,
-options e capacità di estensione; confrontare poi confini interni, subpath e split
-in pacchetti. Registrare le decisioni iniziali e i vincoli per 04–08, con alternative
-e consumer reali. La verifica nei successivi handover può richiedere revisioni
-esplicite del contratto, senza attendere 08 per scoprirne le incompatibilità.
+Consult all four [architecture plans](V5-ARCHITECTURE.md). Draft coordinated
+Particle state, option, and extension capability contracts before changing
+them. Compare internal boundaries, subpaths, and separate packages. Record
+initial decisions and constraints for 04–08 with alternatives and real
+consumers. Revisit contracts explicitly when later verification reveals
+incompatibilities.
 
-## Migrazione colore obbligatoria
+## Required color migration
 
-Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
-Definire in C0/C1 unità, alpha, contratto dei color manager, animazioni h/c/l,
-legacy input e confini delle conversioni prima di propagare i nuovi tipi.
-Coordinare ARCH-01/03/04 e rendere disponibili a 05 i contratti Particle necessari.
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In C0/C1, define units, alpha,
+color manager contracts, h/c/l animation, legacy input, and conversion boundaries
+before propagating types. Coordinate ARCH-01/03/04 and give 05 the necessary
+Particle contracts.

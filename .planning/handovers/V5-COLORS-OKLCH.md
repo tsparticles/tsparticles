@@ -1,321 +1,305 @@
-# V5-COLOR — OKLCH come modello colore standard
+# V5-COLOR — Adopt OKLCH as the canonical color model
 
-Data: 2026-11-06. Branch: `v5`. Ricognizione: sorgenti `4.5.2`.
-Stato: **piano dettagliato, implementazione e misure ancora da eseguire**.
+Initial plan dated 2026-11-06 on branch `v5`, based on `4.5.2` source.
+Implementation and measurements are pending. Use the current checkout and the
+clean measurement procedure in the [handover index](README.md) for execution.
 
-## Obiettivo vincolante
+## Required outcome
 
-OKLCH diventa la rappresentazione canonica del colore delle particelle e delle
-relative animazioni nella v5: `IOklch` sostituisce `IHsl` nei contratti runtime.
-Le opzioni continuano ad accettare i formati gestiti dai color manager, con array,
-range, selezione per indice, random e precedenze documentate. HSL/RGB restano
-formati di ingresso e conversione, non passaggi obbligatori della pipeline.
+Use OKLCH for canonical particle color and color animation in v5. `IOklch`
+replaces `IHsl` in runtime contracts. Options continue to accept color manager
+formats, including arrays, ranges, index selection, random values, and documented
+precedence. HSL and RGB remain available for input and conversion. The pipeline
+can resolve native OKLCH without an intermediate HSL or RGB conversion.
 
-Preservare il colore in floating point fino al confine di output. Un colore fuori
-dal gamut del dispositivo non può essere riprodotto identico: conservarne il valore
-canonico e applicare una trasformazione documentata solo alla destinazione.
-La migrazione deve evitare perdite aggiuntive dovute a clipping, quantizzazione,
-conversioni superflue o interpretazione di coordinate RGB nello spazio sbagliato.
+Preserve floating-point color until output. For colors outside a device's gamut,
+retain the canonical value and apply a documented transform at the destination.
+Avoid additional clipping, quantization, unnecessary conversions, and interpreting
+RGB coordinates in the wrong space.
 
-## Evidenze verificate nel checkout
+## Evidence from the original checkout
 
-| Area                                                              | Stato attuale                                                                                            | Conseguenza                                                                                            |
-| ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `engine/src/Core/Interfaces/IColorManager.ts`                     | `handleColor` / `handleRangeColor` restituiscono `IRgb`; `parseString` restituisce `IRgba`               | Tutti i manager confluiscono in RGB                                                                    |
-| `engine/src/Utils/ColorUtils.ts`                                  | `rangeColorToHsl` passa da `rangeColorToRgb` e `rgbToHsl`                                                | Anche OKLCH viene ricostruito da RGB                                                                   |
-| `plugins/colors/oklch/src/utils.ts`                               | `oklchToRgb` clampa e arrotonda a 0–255                                                                  | Perdita del gamut e della precisione all'ingresso                                                      |
-| `engine/src/Core/Interfaces/Colors.ts`                            | Esistono `IOklch`, `IOklcha`, `IRangeOklch`; manca `IRangeOklch` diretto nell'unione `IRangeColor.value` | Riutilizzare i tipi, correggere la copertura senza duplicazioni                                        |
-| `Particle.ts`, `IParticleHslAnimation.ts`, `IParticleModifier.ts` | Fill, stroke, back color, getter e modifier dipendono da HSL                                             | Cambiamento pubblico trasversale                                                                       |
-| `AnimatableColor.ts`, `HslAnimation.ts`, `updaters/paint`         | Canali `h/s/l`, limiti e velocità numeriche HSL                                                          | Rinominare `s` in `c` non conserva la semantica                                                        |
-| `CanvasManager.ts`                                                | Richiesta P3/float16 subordinata anche a HDR; flag `hdr` aggiornato dal solo spazio P3 effettivo         | Wide gamut SDR e HDR sono confusi                                                                      |
-| `ColorUtils.ts`                                                   | Ramo HDR produce `color(display-p3 ...)` da una pipeline RGB/tone mapping                                | Audit necessario di primarie, transfer function e unità; cambiare etichetta non converte le coordinate |
-| Links, connect, bubble e gradient                                 | Mix/conversioni e output dipendono da RGB/HSL                                                            | Migrare anche interpolazione e cache                                                                   |
+| Area                                                              | Observed behavior                                                                                      | Implication                                                                                        |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `engine/src/Core/Interfaces/IColorManager.ts`                     | `handleColor` and `handleRangeColor` return `IRgb`, and `parseString` returns `IRgba`                  | All managers converge on RGB                                                                       |
+| `engine/src/Utils/ColorUtils.ts`                                  | `rangeColorToHsl` uses `rangeColorToRgb` and `rgbToHsl`                                                | OKLCH is reconstructed from RGB                                                                    |
+| `plugins/colors/oklch/src/utils.ts`                               | `oklchToRgb` clamps and rounds to 0–255                                                                | Gamut and precision are lost at input                                                              |
+| `engine/src/Core/Interfaces/Colors.ts`                            | `IOklch`, `IOklcha`, and `IRangeOklch` exist. `IRangeColor.value` lacks a direct `IRangeOklch` member. | Reuse types and fill the coverage gap                                                              |
+| `Particle.ts`, `IParticleHslAnimation.ts`, `IParticleModifier.ts` | Fill, stroke, back color, getters, and modifiers depend on HSL                                         | Cross-cutting public change                                                                        |
+| `AnimatableColor.ts`, `HslAnimation.ts`, `updaters/paint`         | HSL h/s/l channels, bounds, and numeric speeds                                                         | Renaming `s` to `c` changes semantics                                                              |
+| `CanvasManager.ts`                                                | The P3/float16 request is also gated by HDR, and effective P3 alone sets the `hdr` flag                | Wide-gamut SDR and HDR are conflated                                                               |
+| `ColorUtils.ts`                                                   | The HDR path produces `color(display-p3 ...)` from an RGB/tone-mapping pipeline                        | Audit primaries, transfer functions, and units. A label change alone leaves coordinates unchanged. |
+| Links, connect, bubble, and gradient                              | Mixing, conversion, and output depend on RGB/HSL                                                       | Migrate interpolation and caches too                                                               |
 
-Prima di implementare riverificare le evidenze sul commit effettivo e produrre
-un inventario completo degli usi; questa tabella non sostituisce l'audit per file.
-La modifica locale preesistente a `pnpm-lock.yaml` non appartiene a questo piano.
+Recheck the evidence on the implementation commit and inventory uses per file.
+Keep unrelated working-tree changes out of color migration comparisons.
 
-## Contratto di destinazione
+## Target contract
 
 ```text
-Input supportato → color manager → OKLCH + alpha
+Supported input → color manager → OKLCH + alpha
                                       ↓
-                      stato e animazione h/c/l
+                           h/c/l state and animation
                                       ↓
-                   modifier / interpolazione / mix
+                       modifiers / interpolation / mixing
                                       ↓
-               adattatore della destinazione effettiva
+                            effective output adapter
                                       ↓
-          conversione / tone mapping / gamut mapping → output
+          conversion / tone mapping / gamut mapping → output
 ```
 
-### Tipi, unità e precisione
+### Types, units, and precision
 
-- Riutilizzare `IOklch` (`l`, `c`, `h`) e `IOklcha` (`a`), senza creare un secondo
-  tipo `IOKLCH`. Mantenere `l` in **0–100** per i valori SDR, coerente con l'API
-  OKLCH esistente; normalizzare a 0–1 soltanto negli helper matematici che lo
-  richiedono. CSS `oklch(0.7 …)` e `oklch(70% …)` devono risolvere allo stesso `l=70`.
-- `c` è chroma assoluta, non percentuale HSL; non limitarla al gamut sRGB né
-  fissare 0.4 come massimo fisico. Un eventuale massimo predefinito delle animazioni
-  è una scelta di UX documentata, distinta dalla validità del colore.
-- `h` in gradi, normalizzato modulo 360 anche per valori negativi e giri multipli;
-  `a` in 0–1, separato dall'opacità di paint/particella/stop. Definire esplicitamente
-  come si combinano, evitando di moltiplicare due volte lo stesso alpha.
-- Numeri JS in doppia precisione, nessun arrotondamento nel modello o durante le
-  conversioni. Precisione delle stringhe e quantizzazione dell'output hanno test
-  dedicati. Le coordinate RGB intermedie devono specificare primarie e codifica:
-  niente oggetti `IRgb` ambigui per P3 o RGB lineare.
-- Definire una soglia numerica per colori acromatici e una hue stabile quando `c`
-  è quasi zero; conservare la hue animabile, distinguendola dalla hue mancante
-  durante l'interpolazione. Vietare NaN/Infinity nello stato runtime.
-- Le coordinate estese fuori gamut non si clampano durante la conversione.
-  La normalizzazione degli input invalidi segue un contratto distinto e testato.
+- Reuse `IOklch` (`l`, `c`, `h`) and `IOklcha` (`a`). Keep SDR `l` in **0–100**
+  to match the existing API and normalize to 0–1 in math helpers that need it.
+  CSS `oklch(0.7 …)` and `oklch(70% …)` both resolve to `l=70`.
+- `c` is absolute chroma. Keep it independent of HSL percentages and avoid an
+  sRGB clamp or a physical maximum of 0.4. Document any default animation
+  maximum separately from color validity.
+- Normalize `h` in degrees modulo 360, including negative values and multiple
+  turns. Keep `a` in 0–1 separate from paint, particle, and stop opacity.
+  Define how they combine and apply each alpha once.
+- Use double-precision JS numbers and preserve precision through conversions.
+  Test string precision and output quantization separately. Specify primaries
+  and encoding for intermediate RGB, including P3 and linear RGB.
+- Define a numerical achromatic threshold and stable hue near zero chroma.
+  Keep animatable hue and distinguish missing hue during interpolation.
+  Runtime state must contain finite values.
+- Preserve extended out-of-gamut coordinates during conversion. Define and test
+  invalid-input normalization separately.
 
-### Color manager e compatibilità di ingresso
+### Color managers and input compatibility
 
-Contratto v5 proposto: mantenere i ruoli `accepts`, `handleColor`,
-`handleRangeColor`, `parseString`, cambiando i risultati rispettivamente in
-`IOklcha | undefined` per tutti i percorsi risolti. Alpha assente nell'input
-equivale a 1. Documentare il breaking change per manager di terze parti e fornire
-un esempio completo di migrazione. Nessun adattatore RGB implicito nel percorso
-nativo v5; un adattatore legacy esplicito può coprire manager sRGB esterni,
-dichiarando che non recupera precisione o gamut già persi.
+Keep the roles of `accepts`, `handleColor`, `handleRangeColor`, and `parseString`.
+Have all color resolution methods return `IOklcha | undefined`, with absent
+input alpha equivalent to 1. Document the breaking change for custom managers
+and give a full migration example. Use native conversion without implicit RGB
+adaptation. An explicit legacy sRGB adapter may support external managers and
+must document existing precision and gamut limitations.
 
-1. OKLCH passa direttamente al modello canonico; OKLab passa a OKLCH senza RGB.
-2. Lab/LCH usano conversioni con punto di bianco dichiarato e adattamento D50/D65;
-   hex/named/RGB/HSL/HSV/HWB usano il significato sRGB storico, senza rounding.
-3. Esporre `colorToOklch`, `rangeColorToOklch`, `stringToOklcha` e helper di stile
-   dal dominio colore selettivo. Separare conversioni pure, parsing e rendering;
-   il core non importa i plugin colore per ottenere il proprio modello canonico.
-4. Conservare i manager opzionali per i formati di ingresso; il modello runtime
-   OKLCH e il suo rendering non devono richiedere `loadOklchColorPlugin` dopo che
-   un altro manager ha già risolto un colore.
-5. Aggiungere input `color(display-p3 …)` almeno tramite manager opzionale; definire
-   tipo discriminato per oggetti RGB con spazio esplicito. Pianificare separatamente
-   gli ulteriori profili CSS (`srgb-linear`, Rec.2020, XYZ, ecc.) con elenco dei
-   formati effettivamente implementati, senza dichiarare supporto CSS universale.
-6. Preservare input wrapped (`{ oklch: … }`, `{ lch: … }`, ecc.) e bare storici.
-   OKLCH/LCH e OKLab/Lab condividono la forma: non inferire lo spazio dai soli
-   nomi dei campi. Verificare ordine dei manager e precedenze storiche; preferire
-   forme esplicite nei nuovi esempi e definire un discriminante per i nuovi spazi.
-7. Parser deterministici, utilizzabili senza DOM: testare percentuali per canale,
-   alpha, segni, decimali, unità angolari, whitespace e consumo dell'intera stringa.
-   Pubblicare il sottoinsieme CSS supportato; `none`, colori relativi, `var()` e
-   profili custom richiedono una decisione esplicita, non parsing parziale silenzioso.
-8. Risolvere range e random una volta con il servizio RNG dell'engine; preservare
-   `reduceDuplicates`, indice, array annidati supportati e isolamento tra engine.
+1. Resolve OKLCH directly and convert OKLab to OKLCH without RGB.
+2. Convert Lab/LCH with a declared white point and D50/D65 adaptation.
+   Preserve historical sRGB meaning for hex/named/RGB/HSL/HSV/HWB without rounding.
+3. Expose `colorToOklch`, `rangeColorToOklch`, `stringToOklcha`, and style helpers
+   through selective color exports. Separate pure conversion, parsing, and
+   rendering. Keep core canonical color independent of color plugins.
+4. Keep optional input managers. Rendering resolved OKLCH must work when
+   another manager supplies the color and `loadOklchColorPlugin` is absent.
+5. Add `color(display-p3 …)` input at least through an optional manager and
+   define a discriminated RGB object type with explicit space. Plan further
+   profiles (`srgb-linear`, Rec.2020, XYZ, and others) separately and list
+   implemented formats.
+6. Preserve wrapped inputs such as `{ oklch: … }` and `{ lch: … }` and legacy
+   bare inputs. OKLCH/LCH and OKLab/Lab share field names. Verify historical
+   manager order and precedence, prefer explicit forms in new examples, and
+   define a discriminator for new spaces.
+7. Keep parsing deterministic and DOM-independent. Test channel percentages,
+   alpha, signs, decimals, angle units, whitespace, and complete consumption.
+   Publish the supported CSS subset and decide explicitly on `none`, relative
+   colors, `var()`, and custom profiles.
+8. Resolve ranges and random values once with the owning engine's RNG.
+   Preserve `reduceDuplicates`, indices, supported nested arrays, and isolation.
 
-### Animazioni, interpolazione e mix
+### Animation, interpolation, and mixing
 
-- Introdurre `IOklchAnimation`, `OklchAnimation` e `IParticleOklchAnimation` con
-  canali `h/c/l`; migrare `AnimatableColor`, stato fill/stroke e gradient.
-  Rinominare gli helper HSL specifici, aggiornare export, firme e consumer insieme.
-- Definire velocità e offset in unità di canale per tempo, verificando il fattore
-  temporale esistente. Conservare delay, count, decay, sync, range e reduce factor;
-  misurare periodi reali con tick espliciti. Non applicare a `c` i fattori numerici
-  di saturazione HSL.
-- Hue ciclica con modulo corretto su `[min,max)`, anche con overshoot di più giri,
-  velocità negativa e min diverso da zero. `l` e `c` seguono limiti/bounce definiti;
-  validare min/max invertiti, uguali e valori iniziali fuori dai limiti animati.
-  Non abbassare un colore statico valido al massimo predefinito dell'animazione.
-- OKLCH è il default di interpolazione percettiva: hue path `shorter` predefinito,
-  con regole esplicite per 180°, achromatici, estremi identici e alpha zero.
-  Le altre direzioni di hue sono un'estensione tipizzata se esposte al consumer.
-- Le animazioni di canale sono distinte dall'interpolazione fra due colori.
-  Lavorare in OKLab per operazioni cartesiane può evitare hue spurie: eventuali
-  helper dedicati devono dichiararlo, restituendo poi il risultato canonico OKLCH.
-- Distinguere mix percettivo (bubble, transizioni, colore links) da compositing
-  fisico o luminoso: quest'ultimo usa RGB lineare nello spazio dichiarato.
-  Non cambiare blend mode del canvas per effetto di una sostituzione di utility.
-- Preservare i pesi del mix, incluso il peso basato sul raggio dei links; definire
-  comportamento per somma zero e alpha premoltiplicato. Nei metodi polari la hue
-  non si premoltiplica. Gradient del canvas e gradient calcolati dall'engine possono
-  interpolare diversamente: provare i pixel intermedi, non solo gli stop.
+- Introduce `IOklchAnimation`, `OklchAnimation`, and `IParticleOklchAnimation`
+  for h/c/l. Migrate `AnimatableColor`, fill/stroke state, and gradients.
+  Rename HSL-specific helpers and update exports, signatures, and consumers together.
+- Define speed and offsets in channel units per time and check the existing time
+  factor. Preserve delay, count, decay, sync, ranges, and reduce factor. Measure
+  periods with explicit ticks and use chroma-specific units and factors.
+- Wrap hue on `[min,max)`, including multiple-turn overshoot, negative speed, and
+  nonzero minimum. Define limits and bounce for `l` and `c`. Validate inverted or
+  equal bounds and initial values outside animation bounds. Preserve valid
+  static colors beyond the default animation maximum.
+- Default to perceptual OKLCH interpolation with the `shorter` hue path.
+  Define behavior at 180°, for achromatic colors, identical endpoints, and
+  zero alpha. If exposed, other hue paths need typed options.
+- Keep channel animation distinct from interpolation between colors. Cartesian
+  operations may use OKLab to avoid spurious hue. Document those helpers and
+  return canonical OKLCH.
+- Distinguish perceptual mixing for bubble, transitions, and links from physical
+  or luminous compositing in declared linear RGB. Preserve canvas blend modes.
+- Preserve mixing weights, including radius-weighted links. Define zero total
+  weight and premultiplied alpha. Keep hue unpremultiplied in polar methods.
+  Check intermediate pixels as canvas and engine gradients may interpolate differently.
 
-### Migrazione delle opzioni di animazione
+### Migration of animation options
 
-La compatibilità dei **valori colore** non implica equivalenza delle animazioni HSL.
-`s=50` non equivale a `c=0.2`; neppure hue/lightness HSL hanno lo stesso significato
-di hue/lightness OKLCH. Non introdurre un alias automatico `s → c`.
+Static color values and HSL animation have different compatibility requirements.
+`s=50` has no direct equivalent in `c=0.2`, and HSL and OKLCH hue/lightness
+have different meanings. Use explicit migration for saturation and other channels.
 
-Il nuovo schema canonico usa `animation.h/c/l`; la forma compatta di animazione
-resta shorthand della hue. Per uno schema storico `h/s/l`, scegliere e documentare
-in C0 un importatore legacy esplicito oppure una migrazione breaking con diagnostica
-chiara e guida. Raccomandazione: guida/manuale per i canali HSL e conversione esatta
-dei soli colori statici; nessun secondo stato HSL per particella nel core v5.
-Lo schema legacy non deve essere accettato con significato percettivo diverso
-senza segnalazione. Applicare la stessa regola a offset split e coordinate trail.
+Use canonical `animation.h/c/l` and keep compact animation as hue shorthand.
+In C0, choose an explicit importer for legacy h/s/l or a breaking migration with
+clear diagnostics and guidance. Prefer a manual migration guide for HSL channels,
+exact conversion of static colors, and a single canonical per-particle model.
+Report legacy input rather than silently changing its perceptual meaning.
+Apply the same rule to split offsets and trail coordinates.
 
-### Rendering, gamut e HDR
+### Rendering, gamut, and HDR
 
-- Capability separate per sintassi colore, spazio effettivo del canvas (`srgb` /
-  `display-p3`), precisione (`unorm8` / `float16`) e disponibilità HDR. P3 SDR deve
-  funzionare anche quando `(dynamic-range: high)` è falso. Leggere attributi
-  effettivi quando disponibili; media query e opzioni richieste non sono una prova.
-- Proporre selezione gamut `auto | srgb | display-p3`, distinta dalle opzioni HDR;
-  default raccomandato `auto` con fallback verificato. Definire comportamento su
-  canvas fornito dal consumer, OffscreenCanvas e contesti già creati. Una seconda
-  `getContext` non cambia le impostazioni: ricreazione/refresh richiede un percorso
-  di lifecycle esplicito, con ownership e teardown corretti.
-- Serializzare OKLCH direttamente dove supportato oppure convertire in coordinate
-  RGB della destinazione. Verificare il risultato di fill/stroke, shadow, gradient,
-  background CSS e mask, canvas intermedi, immagini/SVG ricolorate, export e cache.
-  Un canvas intermedio sRGB può perdere il gamut prima della composizione finale.
-- Per output riproducibile, scegliere un gamut mapping esplicito con riduzione
-  della chroma e controllo dell'errore percettivo, confrontato con gli algoritmi
-  CSS Color 4. Selezionare algoritmo e tolleranze in C0/C2 con vettori di riferimento;
-  vietato usare clipping per canale come strategia generale di fedeltà.
-- Eseguire mapping solo alla destinazione e non scriverlo nello stato animato.
-  Lo stesso colore deve poter essere ridisegnato in P3 dopo un output sRGB.
-  Per output nativo del browser dichiarare le eventuali differenze di mapping;
-  fallback engine e output nativo devono essere confrontati, non assunti identici.
-- Wide gamut non equivale a HDR. OKLCH non definisce da solo luminanza assoluta,
-  reference white, peak nits o tone mapping. In C0 fissare unità/reference white e
-  rappresentazione estesa per il ramo HDR, valutando metadati di luminanza separati
-  dal colore. Provare il percorso RGB lineare esteso ↔ OKLab/OKLCH senza clamp.
-  Se non conserva i valori HDR attuali, il contratto è da correggere prima del rollout.
-- Audit dei modi HDR esistenti: distinguere fedeltà da enhancement creativo,
-  saturation boost e tone mapping. Nessun boost automatico nel percorso di fedeltà.
-  Precisare ordine delle trasformazioni HDR e mapping finale per evitare doppio
-  tone mapping/clipping e interpretazione errata delle primarie.
+- Separate support for color syntax, effective canvas space (`srgb`/`display-p3`),
+  precision (`unorm8`/`float16`), and HDR. P3 SDR must work when
+  `(dynamic-range: high)` is false. Inspect actual attributes when available
+  and verify media queries and requested options against effective behavior.
+- Propose `auto | srgb | display-p3` gamut selection separately from HDR,
+  with `auto` and a tested fallback as the recommended default. Define behavior
+  for caller-supplied canvas, OffscreenCanvas, and existing contexts. A second
+  `getContext` retains settings. Recreating or refreshing a context requires
+  explicit lifecycle, ownership, and teardown.
+- Serialize OKLCH directly where supported or convert to the destination's RGB
+  coordinates. Verify fill/stroke, shadow, gradient, CSS backgrounds and masks,
+  intermediate canvases, recolored images/SVG, export, and caches. Intermediate
+  sRGB canvases can lose gamut before final composition.
+- For reproducible output, choose explicit chroma reduction and perceptual error
+  control and compare with CSS Color 4 algorithms. Select algorithm and
+  tolerances in C0/C2 using reference vectors. Reserve channel clipping for
+  cases where the output contract explicitly warrants it.
+- Apply mapping at the destination and keep animated state intact. A color
+  rendered in sRGB must still be drawable in P3. Document native browser
+  mapping differences and compare browser output with the engine fallback.
+- Treat wide gamut and HDR separately. Define absolute luminance, reference
+  white, peak nits, tone mapping, and extended HDR representation in C0.
+  Evaluate separate luminance metadata. Test extended linear RGB ↔ OKLab/OKLCH
+  without clamping and revise the contract before rollout if HDR values are lost.
+- Audit existing HDR modes for fidelity, creative enhancement, saturation boost,
+  and tone mapping. Keep boost out of the fidelity path. Define HDR transform
+  and final gamut mapping order to avoid repeated mapping/clipping or wrong primaries.
 
-## Inventario di migrazione e responsabilità
+## Migration inventory and ownership
 
-| Owner negli handover | File/famiglie da coprire                                                    | Risultato richiesto                                             |
-| -------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| 03 + 05              | `Colors`, `IColorManager`, `ColorUtils`, costanti, export/facciate          | Contratti canonici e conversioni pure                           |
-| 03 + 07              | `IAnimatableColor`, HSL animation class/interface, `Particle`, modifier     | Stato e schema h/c/l                                            |
-| 05                   | `CanvasManager`, `RenderManager`, utility canvas/HDR e superfici intermedie | Output e capability coerenti                                    |
-| 07 + 08              | `updaters/paint`, gradient, roll, orbit, twinkle, destroy                   | Animazioni, alterazione L, back color, eredità e offset split   |
-| 08                   | Tutti `plugins/colors/*` e relativi test                                    | Risoluzione nativa senza passaggio sRGB forzato                 |
-| 08                   | Bubble, connect, grab, links, external trail, light                         | Mix, cache, coordinate e colori ausiliari                       |
-| 08                   | Emitters, absorbers, trail, polygonMask, backgroundMask                     | Colori spawn, decorazioni e background senza perdita anticipata |
-| 08                   | `shapes/image`, cards, altri drawer/effects, palette e consumer custom      | SVG, raster e helper legacy verificati                          |
-| 09 + 10              | Bundle, wrapper, CLI/MCP/codegen, schema, demo, markdown, changelog         | API pubblicate, esempi e migrazione completi                    |
+| Handover | Files and families                                                            | Outcome                                                         |
+| -------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| 03 + 05  | `Colors`, `IColorManager`, `ColorUtils`, constants, exports and facades       | Canonical contracts and pure conversions                        |
+| 03 + 07  | `IAnimatableColor`, HSL animation class/interface, `Particle`, modifiers      | h/c/l state and schema                                          |
+| 05       | `CanvasManager`, `RenderManager`, canvas/HDR utilities, intermediate surfaces | Consistent outputs and capabilities                             |
+| 07 + 08  | `updaters/paint`, gradient, roll, orbit, twinkle, destroy                     | Animation, L adjustment, back color, inheritance, split offsets |
+| 08       | All `plugins/colors/*` and tests                                              | Native resolution without forced sRGB                           |
+| 08       | Bubble, connect, grab, links, external trail, light                           | Mixing, caches, coordinates, and auxiliary colors               |
+| 08       | Emitters, absorbers, trail, polygonMask, backgroundMask                       | Spawn colors, decoration, and backgrounds without early loss    |
+| 08       | `shapes/image`, cards, other drawers/effects, palettes, and custom consumers  | Verified SVG, raster, and legacy helpers                        |
+| 09 + 10  | Bundles, wrappers, CLI/MCP/codegen, schema, demos, Markdown, changelog        | Published APIs, examples, and migration                         |
 
-Inventariare anche `IRgb`, `IHsl`, `colorMix`, `rangeColorToRgb/Hsl`, helper style,
-accessi `.s`, `h/s/l`, min/max/offset colore e chiavi cache. Ogni uso residuo va
-classificato: input/conversione intenzionale, boundary di output o bug da migrare.
-Non eliminare convertitori HSL/RGB utili ai consumer: conservarli se semanticamente
-corretti, oppure documentarne esplicitamente rimozione e sostituzione nella major.
+Inventory `IRgb`, `IHsl`, `colorMix`, `rangeColorToRgb/Hsl`, style helpers,
+`.s` accesses, h/s/l, color min/max/offsets, and cache keys. Classify remaining
+uses as intentional input/conversion, output boundary, or migration work.
+Preserve semantically valid HSL/RGB converters or document removals and replacements.
 
-## Sequenza di implementazione con gate
+## Implementation sequence and gates
 
-Non aggiungere un undicesimo refactor dopo la release: inserire questa sequenza
-negli handover 03/05/07/08/09/10. I contratti Particle necessari a 05 si definiscono
-in 03; le integrazioni minime si consegnano con 05, la revisione integrale resta in 07.
+Run C0–C5 within 03/05/07/08/09/10. Define Particle contracts needed by 05 in 03,
+deliver minimum integration in 05, and keep the full Particle review in 07.
 
-1. **C0 — Baseline e decisioni (03, prima dei cambiamenti condivisi).** Catturare
-   commit/dirty diff, API/types, fixture colore e scene, immagini e benchmark v4.
-   Congelare unità, alpha, manager, input ambiguo, legacy animation, mix, algoritmo
-   gamut, gamut selection e contratto HDR. Produrre `V5-COLOR-DECISIONS.md` con
-   scelta, alternative, prove richieste ed eventuale questione aperta per ogni voce.
-   Una questione HDR non risolta blocca il relativo rollout, non autorizza perdite.
-2. **C1 — Matematica e tipi (03/05).** Implementare conversioni bidirezionali pure,
-   riusando matrici/coefficienti verificati, transfer function estese con segno e
-   adattamento del bianco. Centralizzare il minimo condiviso evitando cicli
-   engine → plugin. Aggiornare export e test di accuratezza prima dei consumer.
-3. **C2 — Manager e output verticale (05 con 08).** Migrare tutti i manager con
-   test, parsing e alpha; completare capability, gamut mapping e fallback.
-   Dimostrare una scena statica OKLCH/P3 attraverso l'intera pipeline fino ai pixel.
-   Non chiudere la fase se il rendering ricade ancora su HSL/RGB quantizzato.
-4. **C3 — Particelle e animazioni (05/07).** Migrare opzioni/runtime, fill/stroke,
-   getter, modifier, reset/pool, paint e gradient. Aggiungere test di tick e periodi,
-   achromatici, hue wrap, eredità colore e alpha. Nessun doppio modello persistente.
-5. **C4 — Ecosistema (08).** Chiudere la matrice per tutti i consumer sopra,
-   incluse superfici nascoste, links/gradient/cache e plugin esterni rappresentativi.
-   Aggiornare helper, schema e generatori insieme ai loro test. Un semplice build
-   non prova la correttezza percettiva.
-6. **C5 — Performance, distribuzione e rilascio (09/10).** Confrontare misure,
-   bundle reali e browser; completare guida, changelog e fixture di migrazione.
-   Chiudere `V5-COLOR-REPORT.md` con comandi, esiti, limiti e decisioni finali.
+1. **C0 — Baseline and decisions (03, before shared changes).** Capture the
+   commit and working-tree diff, APIs/types, color and scene fixtures, images,
+   and v4 benchmarks. Set units, alpha, manager contracts, ambiguous-input
+   handling, legacy animation, mixing, gamut algorithm and selection, and HDR.
+   Record alternatives, evidence requirements, and open questions in
+   `V5-COLOR-DECISIONS.md`. Block the affected rollout on unresolved HDR behavior.
+2. **C1 — Math and types (03/05).** Implement pure bidirectional conversion using
+   verified matrices and coefficients, signed extended transfer functions, and
+   white adaptation. Share the minimum code and avoid engine → plugin cycles.
+   Update exports and accuracy tests before consumers.
+3. **C2 — Managers and end-to-end output (05 with 08).** Migrate all managers
+   with parsing and alpha tests. Complete capability detection, gamut mapping,
+   and fallbacks. Demonstrate a static OKLCH/P3 scene through pixel output.
+   Require a path free of quantized HSL/RGB fallback before closing C2.
+4. **C3 — Particles and animation (05/07).** Migrate options/runtime,
+   fill/stroke, getters, modifiers, reset/pool, paint, and gradient. Test ticks
+   and periods, achromatic colors, hue wrapping, color inheritance, and alpha.
+   Keep one persistent color model.
+5. **C4 — Ecosystem (08).** Complete the consumer matrix, including hidden
+   surfaces, links/gradient/cache, and representative external plugins.
+   Update helpers, schema, generators, and tests. Verify perceptual behavior.
+6. **C5 — Performance, distribution, and release (09/10).** Compare measurements,
+   built bundles, and real browsers. Complete the guide, changelog, and migration
+   fixtures. Close `V5-COLOR-REPORT.md` with commands, outcomes, limitations,
+   and final decisions.
 
-## Test e prove di accettazione
+## Tests and acceptance
 
-### Numerici e di contratto
+### Numerical and contract tests
 
-- Vettori indipendenti da CSS Color 4/WPT e conversioni bidirezionali: nero,
-  bianco, grigi, primari sRGB/P3, colori P3 fuori sRGB e colori fuori entrambi.
-  Il round trip da solo non basta: due conversioni con lo stesso errore possono
-  annullarsi. Confrontare coordinate e deltaE OK con soglie fissate prima dei test.
-- Soglie iniziali proposte per il percorso float in gamut: errore assoluto <= 1e-6
-  su RGB normalizzato e deltaE OK <= 1e-5 (OKLab L in 0–1); confermarle contro
-  coefficienti/reference prima di congelarle. Non confrontare hue numericamente
-  quando la chroma è sotto la soglia acromatica. Output 8-bit: tolleranza separata.
-- Input OKLCH non deve attraversare convertitori RGB; nessuna riduzione di chroma
-  prima del rendering. Testare lo stesso valore prima e dopo output sRGB/P3.
-- Test di gamut mapping su bordi/cuspidi, luminosità estrema e hue blu/viola;
-  output finito nel gamut scelto e confronto con riferimento indipendente.
-- Parser e tipi per tutti i manager, alpha zero, alpha percentuale, range e array,
-  input invalidi/ambigui, manager custom e isolamento RNG su due engine.
-- Link `mid`: usare due colori distinti e raggi non nulli e disuguali; confrontare
-  il colore mixato con un riferimento calcolato indipendentemente, applicando i
-  pesi basati sui raggi e il metodo d'interpolazione deciso in C0. Non riusare
-  l'helper di produzione nel calcolo atteso.
-- Aggiornare `utils/tests/src/tests/ColorUtils.ts`, `EngineUtils.ts`, `HDROptions.ts`,
-  test Particle/Updaters/Emitters/Options/Configs/Exports e `conversion.spec.ts`
-  dei manager; aggiungere fixture di riferimento e test specifici mancanti.
+- Use independent CSS Color 4/WPT reference vectors and bidirectional conversion
+  for black, white, grays, sRGB/P3 primaries, P3 outside sRGB, and colors outside
+  both. Compare coordinates and deltaE OK against fixed tolerances. Round trips
+  alone can hide errors shared by both conversions.
+- Proposed in-gamut float tolerances are absolute error ≤ 1e-6 for normalized
+  RGB and deltaE OK ≤ 1e-5 with OKLab L in 0–1. Confirm against coefficients and
+  references before fixing them. Exclude numerical hue checks below the
+  achromatic threshold and define a separate 8-bit output tolerance.
+- Keep native OKLCH free of RGB converters and preserve chroma until rendering.
+  Compare the same canonical value before and after sRGB/P3 output.
+- Test mapping near boundaries and cusps, extreme lightness, and blue/purple
+  hues. Require finite output within the target gamut and an independent reference.
+- Test parsers and types for all managers, zero and percentage alpha, ranges and
+  arrays, invalid/ambiguous inputs, custom managers, and RNG isolation.
+- For link `mid`, use two colors and nonzero, unequal radii. Compare against an
+  independent calculation with the radius weights and C0 interpolation.
+- Update `utils/tests/src/tests/ColorUtils.ts`, `EngineUtils.ts`, `HDROptions.ts`,
+  Particle/Updaters/Emitters/Options/Configs/Exports tests, and manager
+  `conversion.spec.ts` files. Add missing reference fixtures and targeted tests.
 
-### Rendering reale
+### Real rendering
 
-- Matrice Chromium/Firefox/WebKit, versioni registrate: canvas HTML e Offscreen,
-  sRGB SDR, P3 SDR, HDR quando disponibile, attributi ignorati/fallback, contesto
-  preesistente e cambio display/capability. I mock jsdom non provano gamut o HDR.
-- Scene: statici equivalenti tra formati, P3 saturo, hue sweep a L/C costanti,
-  variazioni L/C, grigio ↔ colore, fill/stroke alpha, bubble, links/connect,
-  gradient, roll/twinkle, split, emitters/trail, background/mask, SVG ed export.
-- Pixel readback con spazio/formato espliciti dove supportati; screenshot e
-  metadati colore conservati. Un PNG sRGB o un display SDR non certificano P3/HDR.
-  Non richiedere pixel identici tra browser senza caratterizzarne il color management.
+- Record Chromium/Firefox/WebKit versions. Cover HTML canvas and OffscreenCanvas,
+  sRGB SDR, P3 SDR, HDR where available, ignored attributes/fallbacks, preexisting
+  contexts, and display/capability changes. Use real browsers for gamut and HDR.
+- Cover equivalent static colors across formats, saturated P3, hue sweeps at fixed
+  L/C, L/C changes, gray ↔ color, fill/stroke alpha, bubble, links/connect,
+  gradient, roll/twinkle, split, emitters/trail, background/mask, SVG, and export.
+- Read pixels with explicit space and format where supported. Retain screenshots
+  and color metadata. Verify P3/HDR separately from sRGB PNGs and SDR displays.
+  Characterize browser color management before requiring exact pixel matches.
 
-### Costi e verifica workspace
+### Performance and workspace verification
 
-- Benchmark deterministici di parse/init, update h/c/l, draw e mix dei links,
-  scenari statici e animati alla stessa densità; registrare tempo frame, allocazioni,
-  heap e cache hit rate. Evitare trigonometria/conversioni ripetute per colore statico.
-- Cache limitate con invalidazione per colore, alpha, capability, gamut, tone
-  mapping e precisione effettivi. Valutare cache per valore/versione della particella;
-  evitare `JSON.stringify` nel frame e quantizzazione della chroma che altera i colori.
-- Misure min/gzip/Brotli di helper puro, scena minima, basic/slim/full/all e lazy
-  con somma dei chunk. Confrontare con IMP-01/02; fissare budget dopo la baseline.
-  Non imporre dipendenze generiche pesanti senza misurarne il costo e la licenza.
-- Scoprire target con `pnpm nx show project <nome> --json`; eseguire test mirati
-  via Nx, suite completa e lint/format. Prima di proporre commit vale anche
-  `pnpm exec vitest` richiesto da AGENTS, con esecuzione finita se parte in watch.
-  Ricostruire tutti i downstream non CLI/non website/non palette come da AGENTS,
-  più ogni CLI/schema/generatore modificato; chiudere con `pnpm run build:ci`.
-  Su questo sandbox usare i workaround Nx documentati nell'indice se necessari.
+- Benchmark deterministic parse/init, h/c/l update, drawing, and link mixing in
+  static and animated scenes at the same density. Record frame time, allocations,
+  heap, and cache hit rate. Avoid repeated static-color trig and conversion.
+- Bound caches and invalidate for color, alpha, effective capabilities, gamut,
+  tone mapping, and precision. Evaluate per-value or per-particle-version caches.
+  Keep `JSON.stringify` out of the frame and preserve chroma precision.
+- Measure min/gzip/Brotli for a pure helper, minimal scene, basic/slim/full/all,
+  and lazy with total chunks. Use IMP-01/02 and set budgets after the baseline.
+  Measure cost and check license before adding general-purpose dependencies.
+- Discover targets with `pnpm nx show project <name> --json`. Run targeted Nx
+  tests, the full suite, and lint/format. Before proposing a commit, run
+  `pnpm exec vitest` as specified in AGENTS and finish a finite run if it watches.
+  Rebuild downstream packages outside CLI/website/palette and affected CLI,
+  schema, and generators. Finish with `pnpm run build:ci`. Use the local Nx
+  workarounds in the index if needed.
 
-## Documentazione e definizione di completamento
+## Documentation and completion
 
-- [ ] `IOklch` e animazione h/c/l sono l'unico modello canonico delle particelle;
-      ogni uso HSL/RGB residuo è intenzionale e classificato.
-- [ ] Tutti i formati storici di valore restano coperti dai manager; schema nuovo,
-      alpha e conversione/migrazione dei manager esterni sono documentati.
-- [ ] Wide gamut attraversa parsing, stato, modifier e output senza clipping
-      anticipato; P3 SDR verificato separatamente da HDR e float16.
-- [ ] Decisioni HDR e gamut mapping implementate e provate; nessuna equivalenza
-      presunta fra coordinate sRGB/P3 o fra wide gamut e luminanza assoluta.
-- [ ] Matrice di tutti i pacchetti coinvolti chiusa con esiti, non solo compilazione.
-- [ ] Test numerici/browser, benchmark e budget superati; eventuali verifiche
-      non eseguibili restano gate aperti con riproduzione e ambiente richiesto.
-- [ ] Aggiornati `markdown/Color.md`, opzioni paint/color e plugin colors, API docs,
-      schema, demo, preset, wrapper e generatori interessati, changelog breaking e
-      guida v4 → v5 con esempi prima/dopo per custom manager, animazioni e offset.
-- [ ] `V5-COLOR-DECISIONS.md` e `V5-COLOR-REPORT.md` raccolti dal gate 10.
+- [ ] `IOklch` and h/c/l animation are the sole canonical particle model.
+      Remaining HSL/RGB uses are intentional and classified.
+- [ ] Managers cover historical color value formats. Document the new schema,
+      alpha, and migration or conversion of external managers.
+- [ ] Preserve wide gamut through parsing, state, modifiers, and output.
+      Verify P3 SDR independently from HDR and float16.
+- [ ] Implement and verify HDR and gamut mapping decisions, including actual
+      coordinate conversions and absolute luminance.
+- [ ] Complete the package matrix with verification results beyond compilation.
+- [ ] Pass numerical and browser tests, benchmarks, and budgets. Record open
+      checks with reproduction and required environment.
+- [ ] Update `markdown/Color.md`, paint/color options, color plugin docs, API docs,
+      schema, affected demos, presets, wrappers, generators, breaking changelog,
+      and the v4 → v5 guide with before/after examples for managers, animation, and offsets.
+- [ ] Gate 10 collects `V5-COLOR-DECISIONS.md` and `V5-COLOR-REPORT.md`.
 
-Questo piano autorizza la preparazione del lavoro; non dichiara già disponibili
-le API proposte, né miglioramenti di fedeltà/prestazioni già misurati.
+The proposed APIs and improvements remain pending implementation and verification.
 
-## Riferimenti tecnici
+## Technical references
 
-Consultati il 2026-11-06; fissare la revisione usata nelle fixture di implementazione.
+Originally consulted on 2026-11-06. Pin the revision used for implementation fixtures.
 
 - [CSS Color 4 — Oklab/OKLCH](https://www.w3.org/TR/css-color-4/#ok-lab),
-  [conversioni](https://www.w3.org/TR/css-color-4/#color-conversion-code),
-  [interpolazione](https://www.w3.org/TR/css-color-4/#interpolation) e
+  [conversions](https://www.w3.org/TR/css-color-4/#color-conversion-code),
+  [interpolation](https://www.w3.org/TR/css-color-4/#interpolation), and
   [gamut mapping](https://www.w3.org/TR/css-color-4/#gamut-mapping).
 - [WHATWG HTML — Canvas color spaces](https://html.spec.whatwg.org/multipage/canvas.html#colour-spaces-and-colour-space-conversion)
-  e [impostazioni del contesto](https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-settings).
+  and [context settings](https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-settings).
 - [Web Platform Tests — CSS color](https://github.com/web-platform-tests/wpt/tree/master/css/css-color)
-  e [wide gamut canvas](https://github.com/web-platform-tests/wpt/tree/master/html/canvas/element/wide-gamut-canvas).
+  and [wide gamut canvas](https://github.com/web-platform-tests/wpt/tree/master/html/canvas/element/wide-gamut-canvas).

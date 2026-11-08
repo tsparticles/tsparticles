@@ -19,7 +19,8 @@ Provide a small, high-performance, and extensible particle engine that developer
 ### Active — v5 major (planned 2026-11-03)
 
 Execution source: [v5 handovers](handovers/README.md). Dedicated branch: `v5`.
-Runtime implementation has not started; current package baseline is `4.5.1`.
+The branch carries package version `4.5.3` after the v4 merge. Major runtime
+implementation and the clean bundle baseline are pending.
 
 - [ ] V5-ENG: Replace the exported singleton with explicit independent engine creation; migrate consumers.
 - [ ] V5-SVC: Scope custom random and logging to each engine, including transitive utility/plugin calls.
@@ -27,6 +28,7 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 - [ ] V5-SIZE: Review all engine sources and reduce shipped bytes, including Container, CanvasManager/RenderManager, ParticlesManager and Particle; compare consistent min/gzip/Brotli consumer scenarios.
 - [ ] V5-PLG: Audit all extension packages for singleton removal, per-engine services, registration and core API compatibility.
 - [ ] V5-BRW: Refine browser/CDN bundles, globals, externals, lazy chunks and multi-engine composition without a default engine.
+- [ ] V5-LEG: Retire Vue 2, Nuxt 2, and Nuxt 3 integrations, deprecated APIs with documented replacements, and obsolete browser support under the agreed usage policy.
 - [ ] V5-COLOR: Adopt OKLCH as the canonical particle/animation model, preserve color-manager inputs and wide-gamut fidelity, and separate gamut/HDR capabilities; follow the [color migration plan](handovers/V5-COLORS-OKLCH.md).
 - [ ] V5-MIG: Validate downstream packages, browser rendering and v4 → v5 migration/documentation.
 
@@ -68,4 +70,4 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 
 ---
 
-_Last updated: 2026-11-06 — v5 architecture and OKLCH color plans added; runtime changes pending_
+_Last updated 2026-11-08 after the v4 merge. Major implementation and measurements are pending._

@@ -56,19 +56,19 @@ every area.
 See [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
-## Valutazioni architetturali
+## Architecture evaluations
 
-Applicare [ARCH-01 — Modello Particle](architecture/V5-ARCH-01-PARTICLE-MODEL.md),
-[ARCH-03 — Options](architecture/V5-ARCH-03-OPTIONS.md) e
-[ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md).
-Confrontare classe, snapshot esplicito e stato plain, definendo quale livello di
-serializzazione è utile e supportato. Distinguere spostamento dei metodi da vera
-separazione delle dipendenze; coordinare stato mutabile, template options, codec
-opzionali e reset con 06/08. Registrare anche le alternative mantenute o scartate.
+Apply [ARCH-01 — Particle model](architecture/V5-ARCH-01-PARTICLE-MODEL.md),
+[ARCH-03 — Options](architecture/V5-ARCH-03-OPTIONS.md), and
+[ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md).
+Compare the class, explicit snapshots, and plain state. Specify useful,
+supported serialization and distinguish moving methods from separating
+dependencies. Coordinate mutable state, option templates, optional codecs,
+and reset with 06/08. Record the disposition of alternatives.
 
-## Migrazione colore obbligatoria
+## Required color migration
 
-Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
-Completare C3: IOklch e IParticleOklchAnimation, fill/stroke/back color e modifier,
-reset/pool, paint/gradient e animazioni h/c/l. Vietati alias s → c e doppio stato
-HSL persistente; applicare il contratto legacy e alpha definito in C0.
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C3 for `IOklch`,
+`IParticleOklchAnimation`, fill/stroke/back color, modifiers, reset/pool,
+paint/gradient, and h/c/l animation. Use explicit legacy animation migration
+and the C0 alpha contract, with one persistent particle color model.
