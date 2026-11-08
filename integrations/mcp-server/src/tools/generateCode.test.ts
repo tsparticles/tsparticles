@@ -134,12 +134,22 @@ describe("generateOptions", () => {
 
   it("reports a year-like value after fireworks with as ambiguous", () => {
     const result = generateCode({ description: "fireworks with 2026 written in the sky" }),
-      labeledResult = generateCode({ description: "fireworks with 2026 written in the sky, split count: 75" });
+      futureYearResult = generateCode({ description: "fireworks with 2100 written in the sky" }),
+      labeledResult = generateCode({ description: "fireworks with 2100 written in the sky, split count: 75" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(futureYearResult.options).toHaveProperty("splitCount", 50);
+    expect(futureYearResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
     expect(labeledResult.options).toHaveProperty("splitCount", 75);
     expect(labeledResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses explicitly labeled four-digit counts instead of treating them as years", () => {
+    const result = generateCode({ description: "count: 2100 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
   it("does not treat a bare number after fireworks as a splitCount request", () => {
@@ -188,7 +198,7 @@ describe("generateOptions", () => {
   });
 
   it("caps excessive fireworks splitCount requests and reports the cap", () => {
-    const result = generateCode({ description: "1000 fireworks" });
+    const result = generateCode({ description: "fireworks split count: 1000" });
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");

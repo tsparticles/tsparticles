@@ -1,8 +1,42 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+import { loadPolygonShape } from "../../../../shapes/polygon/src/index.js";
+import { loadSquareShape } from "../../../../shapes/square/src/index.js";
 import { suggestPlugins } from "./suggestPlugins.js";
+
+vi.mock("../../../../shapes/polygon/src/PolygonDrawer.js", () => ({ PolygonDrawer: vi.fn() }));
+vi.mock("../../../../shapes/polygon/src/TriangleDrawer.js", () => ({ TriangleDrawer: vi.fn() }));
+vi.mock("../../../../shapes/square/src/SquareDrawer.js", () => ({ SquareDrawer: vi.fn() }));
 
 const MIN_ABSORBER_IMPORTS = 1,
   MIN_RICH_MATCHES = 3;
+
+/**
+ *
+ * @param loader - Shape loader to run against the registration fixture.
+ */
+async function getRegisteredShapeNames(loader: (engine: never) => Promise<void>): Promise<string[]> {
+  vi.stubGlobal("__VERSION__", "test");
+
+  const registeredNames: string[] = [],
+    engine = {
+      checkVersion: vi.fn(),
+      pluginManager: {
+        addShape: (names: string[]): void => registeredNames.push(...names),
+        register: async (loader: (engine: typeof engine) => Promise<void> | void): Promise<void> => {
+          await loader(engine);
+        },
+      },
+    };
+
+  try {
+    await loader(engine as never);
+
+    return registeredNames;
+  } finally {
+    vi.unstubAllGlobals();
+  }
+}
 
 describe("suggestPlugins", () => {
   it("should return empty result for empty options", () => {
@@ -117,7 +151,7 @@ describe("suggestPlugins", () => {
     }
   });
 
-  it("should map shape aliases to their owning packages", () => {
+  it("should map shape aliases to their owning packages and loaders", async () => {
     const result = suggestPlugins({
       particles: {
         shape: {
@@ -132,6 +166,66 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/shape-text");
     expect(result.npmPackages).toContain("@tsparticles/shape-image");
     expect(result.npmPackages).not.toContain("@tsparticles/shape-triangle");
+
+    const polygonLoader = result.imports.find(
+        item => item.from === "@tsparticles/shape-polygon" && item.function === "loadPolygonShape",
+      ),
+      squareLoader = result.imports.find(
+        item => item.from === "@tsparticles/shape-square" && item.function === "loadSquareShape",
+      );
+
+    expect(polygonLoader).toBeDefined();
+    expect(squareLoader).toBeDefined();
+    expect(await getRegisteredShapeNames(loadPolygonShape)).toContain("triangle");
+    expect(await getRegisteredShapeNames(loadSquareShape)).toContain("edge");
+  });
+
+  it("should ignore inherited shape alias names", () => {
+    const result = suggestPlugins({
+      particles: {
+        move: { enable: true },
+        shape: {
+          type: ["constructor", "__proto__"],
+        },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+  });
+
+  it("should detect loaders required by emitter particle overrides", () => {
+    const result = suggestPlugins({
+      emitters: [
+        {
+          particles: {
+            effect: { type: "trail" },
+            move: { enable: true },
+            opacity: { value: 0.5 },
+            paint: { color: { value: "#fff" } },
+            shape: { type: "star" },
+          },
+        },
+        {
+          particles: [
+            {
+              effect: { type: "bubble" },
+              shape: { type: "triangle" },
+              size: { value: 3 },
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/shape-star");
+    expect(result.npmPackages).toContain("@tsparticles/shape-polygon");
+    expect(result.npmPackages).toContain("@tsparticles/effect-trail");
+    expect(result.npmPackages).toContain("@tsparticles/effect-bubble");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+    expect(result.npmPackages).toContain("@tsparticles/updater-opacity");
+    expect(result.npmPackages).toContain("@tsparticles/updater-paint");
+    expect(result.npmPackages).toContain("@tsparticles/updater-size");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
   });
 
   it("should detect background mask", () => {

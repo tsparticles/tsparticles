@@ -31,8 +31,6 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   },
   MAX_FIREWORKS_SPLIT_COUNT = 500,
   FIREWORKS_YEAR_LENGTH = 4,
-  FIRST_FIREWORKS_YEAR = 1900,
-  LAST_FIREWORKS_YEAR = 2099,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -621,11 +619,7 @@ function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSp
  * @param count - The candidate count.
  */
 function isAmbiguousFireworksYear(count: string): boolean {
-  return (
-    count.length === FIREWORKS_YEAR_LENGTH &&
-    Number(count) >= FIRST_FIREWORKS_YEAR &&
-    Number(count) <= LAST_FIREWORKS_YEAR
-  );
+  return count.length === FIREWORKS_YEAR_LENGTH;
 }
 
 /**
