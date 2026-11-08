@@ -216,6 +216,20 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
+  it("uses an unambiguous withCount before an ambiguous year value", () => {
+    const result = generateCode({ description: "fireworks with 120, for the new year 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses a bare fireworks count instead of an ambiguous withCount", () => {
+    const result = generateCode({ description: "200 fireworks, fireworks with 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it("preserves explicit particle-count parsing when the number follows with", () => {
     const result = generateCode({ description: "fireworks with 2026 sparks" });
 

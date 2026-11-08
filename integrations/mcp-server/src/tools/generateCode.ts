@@ -646,6 +646,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   }
 
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
+    unambiguousWithCount = withCounts.find(match => !isAmbiguousFireworksYear(match[1])),
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
       isAmbiguousFireworksYear(match[1]) && /\byear(?:\s*:\s*|\s+(?:of\s+)?)$/i.test(text.slice(0, match.index));
@@ -660,12 +661,12 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
         return { ambiguous: false, raw: laterSparkCount[1], value: Number(laterSparkCount[1]) };
       }
 
-      const laterWithCount = withCounts.find(
-        match => match.index > bareSparkCount.index && !isAmbiguousFireworksYear(match[1]),
-      );
-
-      if (laterWithCount) {
-        return { ambiguous: false, raw: laterWithCount[1], value: Number(laterWithCount[1]) };
+      if (unambiguousWithCount) {
+        return {
+          ambiguous: false,
+          raw: unambiguousWithCount[1],
+          value: Number(unambiguousWithCount[1]),
+        };
       }
     }
 
@@ -678,23 +679,27 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   const bareCount = /\b(\d+)\s+fireworks\b/i.exec(text);
 
-  if (withCounts.length > 0) {
-    const withCount = withCounts[0];
-
+  if (unambiguousWithCount) {
     return {
-      ambiguous: isAmbiguousFireworksYear(withCount[1]),
-      raw: withCount[1],
-      value: Number(withCount[1]),
+      ambiguous: false,
+      raw: unambiguousWithCount[1],
+      value: Number(unambiguousWithCount[1]),
     };
   }
 
   const count = bareCount?.[1];
 
-  if (count === undefined) {
-    return undefined;
+  if (count !== undefined) {
+    return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
   }
 
-  return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
+  if (withCounts.length > 0) {
+    const withCount = withCounts[0];
+
+    return { ambiguous: isAmbiguousFireworksYear(withCount[1]), raw: withCount[1], value: Number(withCount[1]) };
+  }
+
+  return undefined;
 }
 
 /**
