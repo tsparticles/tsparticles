@@ -645,10 +645,16 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
   }
 
-  const bareSparkCount = /\b(\d+)\s+(?:sparks|particles)\b/i.exec(text)?.[1];
+  const bareSparkCount = /\b(\d+)\s+(?:sparks|particles)\b/i.exec(text);
 
-  if (bareSparkCount !== undefined) {
-    return { ambiguous: false, raw: bareSparkCount, value: Number(bareSparkCount) };
+  if (bareSparkCount) {
+    const raw = bareSparkCount[1];
+
+    return {
+      ambiguous: isAmbiguousFireworksYear(raw) && /\byear\s+$/i.test(text.slice(0, bareSparkCount.index)),
+      raw,
+      value: Number(raw),
+    };
   }
 
   const withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),

@@ -179,6 +179,22 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 50);
   });
 
+  it("asks for clarification when a bare spark count is used as a year", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes).toContain(
+      'The fireworks value "2026" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: 2026".',
+    );
+  });
+
+  it("preserves explicit particle-count parsing when the number follows with", () => {
+    const result = generateCode({ description: "fireworks with 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it("prioritizes a spark count over a generic count but keeps split count labels highest", () => {
     const sparkCountResult = generateCode({ description: "count 4 fireworks with 200 sparks" }),
       splitCountResult = generateCode({ description: "count 4 fireworks with 200 sparks, split count: 300" });
