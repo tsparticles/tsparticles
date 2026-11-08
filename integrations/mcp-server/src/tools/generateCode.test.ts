@@ -209,6 +209,13 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
+  it("uses a later withCount after an ambiguous year value", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026 sparks and fireworks with 120" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it("preserves explicit particle-count parsing when the number follows with", () => {
     const result = generateCode({ description: "fireworks with 2026 sparks" });
 
