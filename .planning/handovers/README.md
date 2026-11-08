@@ -51,6 +51,10 @@ require separate authorization.
   and 1,178 for `Particle.ts`. Measure bundle size separately.
 - Migration also covers `wrappers/`, `templates/`, generators in
   `cli/commands/create-utils/`, and MCP-generated code.
+- In handover 01, carry forward the v4 Inferno wrapper's load generation check or
+  an equivalent guard. Test by changing the component ID during a pending load,
+  resolving the newer load first, and then resolving the older one. Verify that
+  the wrapper destroys the stale container and retains the newer reference.
 - The standard `tsparticles-build` uses Rollup. Webpack and Rolldown are opt-in
   (`cli/commands/build/src/build.ts`). Verify which configurations actually run.
 - `CanvasManager` uses a WeakMap for HTMLCanvas → OffscreenCanvas transfers.
@@ -104,13 +108,21 @@ Capture the baseline at the start of 01, before refactoring. In
 versions, build commands, formats, and measurements. Build fresh artifacts for
 the verified baseline. Use the same toolchain, minifier, and compression settings.
 
-| Scenario                    | Include                                                                               |
-| --------------------------- | ------------------------------------------------------------------------------------- |
-| Import a pure helper        | Consumer bundle for one function without engine or DOM                                |
-| Import and call the factory | Consumer bundle with explicit engine creation, with init and load measured separately |
-| Minimal scene               | Engine and only the required loaders, using identical options                         |
-| Basic / slim / full / all   | Supported minified distribution bundles                                               |
-| Lazy/CDN                    | Entry and every chunk needed to start the same scene                                  |
+| Scenario                  | Include                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                   |
+| Acquire an engine         | Consumer bundle that uses the exported `tsParticles` singleton in 4.5.1 and calls `createEngine()` in v5 |
+| Minimal scene             | Engine and only the required loaders, using identical options                                            |
+| Basic / slim / full / all | Supported minified distribution bundles                                                                  |
+| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                     |
+
+For engine acquisition, build an entry that exports the acquired engine so the
+bundler retains it. In 4.5.1, import and re-export `tsParticles` from
+`@tsparticles/engine`. The import creates or reuses the shared instance. In v5,
+import `createEngine` and export the result of one call, which creates a new
+instance. Measure explicit initialization and scene loading in separate
+consumer entries using `engine.init()` and `engine.load({ id, options })` on
+the acquired engine. Use the same ID, options, and required loaders for both versions.
 
 Record raw and minified bytes, gzip, Brotli, chunk count, and retained dependencies.
 For ESM, also compare browser consumer bundles using actual `exports` resolution.

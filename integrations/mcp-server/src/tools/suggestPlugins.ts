@@ -156,10 +156,15 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   /**
    *
-   * @param particleOptions - Particle options to inspect for required loaders.
+   * @param rawOptions - Particle options to inspect for required loaders.
    */
-  function addParticleOptionPlugins(particleOptions: Record<string, unknown>): void {
-    const particleRoot = { particles: particleOptions },
+  function addParticleOptionPlugins(rawOptions: unknown): void {
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
+    }
+
+    const particleOptions = rawOptions as Record<string, unknown>,
+      particleRoot = { particles: particleOptions },
       shapeSection = particleOptions.shape as Record<string, unknown> | undefined,
       shapeOptions = shapeSection?.options as Record<string, unknown> | undefined,
       effectSection = particleOptions.effect as Record<string, unknown> | undefined;
@@ -209,35 +214,36 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const topLevelParticles = options.particles;
+  addParticleOptionPlugins(options.particles);
 
-  if (topLevelParticles && typeof topLevelParticles === "object" && !Array.isArray(topLevelParticles)) {
-    addParticleOptionPlugins(topLevelParticles as Record<string, unknown>);
+  const particleGroups = getOptionValue(options, "particles.groups");
+
+  if (particleGroups && typeof particleGroups === "object" && !Array.isArray(particleGroups)) {
+    for (const groupOptions of Object.values(particleGroups)) {
+      addParticleOptionPlugins(groupOptions);
+    }
   }
 
   // -- Emitter Shape Detection --
   // `emitters` may be a single config object or an array of them — walk
   // every entry so array-form configs aren't silently skipped.
-  const emitterEntries = asArray<Record<string, unknown>>(options.emitters),
-    matchedEmitterShapePackages = new Set<string>();
+  const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
+
   for (const emitter of emitterEntries) {
-    const esTypeRaw = getOptionValue(emitter, "shape.type");
-    for (const name of getShapeNames(esTypeRaw)) {
+    const shapeType = getOptionValue(emitter, "shape.type");
+
+    for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
       const pkg = EMITTER_SHAPE_PACKAGES[name];
+
       if (pkg) {
         matched.add(pkg);
-        matchedEmitterShapePackages.add(pkg);
       }
     }
 
     const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
 
     for (const particleOptions of particleOverrides) {
-      if (particleOptions === null || typeof particleOptions !== "object" || Array.isArray(particleOptions)) {
-        continue;
-      }
-
-      addParticleOptionPlugins(particleOptions as Record<string, unknown>);
+      addParticleOptionPlugins(particleOptions);
     }
   }
 
@@ -255,14 +261,6 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   if (hasEmitter) {
     matched.add("@tsparticles/plugin-emitters");
-    // Only fall back to the default circle emitter shape if none of the
-    // configured emitters resolved to ANY known emitter-shape package
-    // (previously this only checked circle/square, so an emitter using
-    // e.g. "polygon" would incorrectly also get "circle" added).
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    if (matchedEmitterShapePackages.size === 0) {
-      matched.add("@tsparticles/plugin-emitters-shape-circle");
-    }
   }
 
   if (hasAbsorber) {

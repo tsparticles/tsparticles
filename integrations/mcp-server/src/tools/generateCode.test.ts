@@ -204,6 +204,16 @@ describe("generateOptions", () => {
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
   });
 
+  it.each(["10 fireworks, 1000 sparks each", "fireworks 1000 particles"])(
+    "caps explicit fireworks particle counts in %s",
+    description => {
+      const result = generateCode({ description });
+
+      expect(result.options).toHaveProperty("splitCount", 500);
+      expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+    },
+  );
+
   it("captures full fireworks counts before applying the cap", () => {
     const result = generateCode({ description: "10000 fireworks" });
 

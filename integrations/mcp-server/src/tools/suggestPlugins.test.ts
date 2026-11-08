@@ -134,6 +134,16 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
   });
 
+  it.each([
+    { emitters: { size: { width: 50, height: 50 } }, hasCircle: false },
+    { emitters: [{ shape: { type: "circle" } }, { shape: {} }], hasCircle: true },
+  ])("should resolve the default square shape for each emitter ($emitters)", ({ emitters, hasCircle }) => {
+    const result = suggestPlugins({ emitters });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-emitters-shape-square");
+    expect(result.npmPackages.includes("@tsparticles/plugin-emitters-shape-circle")).toBe(hasCircle);
+  });
+
   it("should load interactivity before emitter and absorber loaders", () => {
     const cases = [
       { options: { emitters: {} }, packageName: "@tsparticles/plugin-emitters" },
@@ -226,6 +236,23 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/updater-paint");
     expect(result.npmPackages).toContain("@tsparticles/updater-size");
     expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
+  });
+
+  it("should detect loaders required by particle group overrides", () => {
+    const result = suggestPlugins({
+      particles: {
+        groups: {
+          stars: { number: { value: 10 }, shape: { type: "star" } },
+          hearts: { number: { value: 10 }, shape: { type: "heart" }, effect: { type: "trail" } },
+        },
+        shape: { type: "circle" },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/shape-circle");
+    expect(result.npmPackages).toContain("@tsparticles/shape-star");
+    expect(result.npmPackages).toContain("@tsparticles/shape-heart");
+    expect(result.npmPackages).toContain("@tsparticles/effect-trail");
   });
 
   it("should detect background mask", () => {
