@@ -618,6 +618,18 @@ function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSp
 
 /**
  *
+ * @param count - The candidate count.
+ */
+function isAmbiguousFireworksYear(count: string): boolean {
+  return (
+    count.length === FIREWORKS_YEAR_LENGTH &&
+    Number(count) >= FIRST_FIREWORKS_YEAR &&
+    Number(count) <= LAST_FIREWORKS_YEAR
+  );
+}
+
+/**
+ *
  * @param text - The fireworks description.
  */
 function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
@@ -643,7 +655,11 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
 
   if (withCount) {
-    return { ambiguous: false, raw: withCount[1], value: Number(withCount[1]) };
+    return {
+      ambiguous: isAmbiguousFireworksYear(withCount[1]),
+      raw: withCount[1],
+      value: Number(withCount[1]),
+    };
   }
 
   const count = bareCount?.[1];
@@ -652,12 +668,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return undefined;
   }
 
-  const ambiguous =
-    count.length === FIREWORKS_YEAR_LENGTH &&
-    Number(count) >= FIRST_FIREWORKS_YEAR &&
-    Number(count) <= LAST_FIREWORKS_YEAR;
-
-  return { ambiguous, raw: count, value: Number(count) };
+  return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
 }
 
 /**

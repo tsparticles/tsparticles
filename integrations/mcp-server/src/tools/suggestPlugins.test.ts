@@ -100,6 +100,40 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
   });
 
+  it("should load interactivity before emitter and absorber loaders", () => {
+    const cases = [
+      { options: { emitters: {} }, packageName: "@tsparticles/plugin-emitters" },
+      { options: { absorbers: {} }, packageName: "@tsparticles/plugin-absorbers" },
+    ];
+
+    for (const { options, packageName } of cases) {
+      const result = suggestPlugins(options),
+        interactivityIndex = result.imports.findIndex(item => item.from === "@tsparticles/plugin-interactivity"),
+        pluginIndex = result.imports.findIndex(item => item.from === packageName);
+
+      expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+      expect(interactivityIndex).toBeGreaterThanOrEqual(0);
+      expect(interactivityIndex).toBeLessThan(pluginIndex);
+    }
+  });
+
+  it("should map shape aliases to their owning packages", () => {
+    const result = suggestPlugins({
+      particles: {
+        shape: {
+          type: ["triangle", "edge", "gifs", "character", "images"],
+        },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/shape-polygon");
+    expect(result.npmPackages).toContain("@tsparticles/shape-square");
+    expect(result.npmPackages).toContain("@tsparticles/shape-gif");
+    expect(result.npmPackages).toContain("@tsparticles/shape-text");
+    expect(result.npmPackages).toContain("@tsparticles/shape-image");
+    expect(result.npmPackages).not.toContain("@tsparticles/shape-triangle");
+  });
+
   it("should detect background mask", () => {
     const result = suggestPlugins({
       backgroundMask: { enable: true },

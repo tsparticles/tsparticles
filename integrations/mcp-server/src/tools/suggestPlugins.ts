@@ -117,14 +117,25 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as
       Record<string, unknown> | undefined,
     shapeType = shapeSection?.type,
-    shapeOptions = shapeSection?.options as Record<string, unknown> | undefined;
+    shapeOptions = shapeSection?.options as Record<string, unknown> | undefined,
+    shapeAliases: Record<string, string> = {
+      char: "text",
+      character: "text",
+      edge: "square",
+      gifs: "gif",
+      images: "image",
+      "multiline-text": "text",
+      triangle: "polygon",
+    };
 
   /**
    *
    * @param name
    */
   function addShapeByName(name: string): void {
-    const fullName = name.startsWith("@tsparticles/") ? name : `@tsparticles/shape-${name}`;
+    const shapeName = shapeAliases[name] ?? name,
+      fullName = shapeName.startsWith("@tsparticles/") ? shapeName : `@tsparticles/shape-${shapeName}`;
+
     if (fullName in packageCatalog.byName) {
       matched.add(fullName);
     }
@@ -199,11 +210,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  // tsParticles requires @tsparticles/plugin-interactivity whenever
-  // `interactivity` is configured at all — there's no partial substitute
-  // for it, so this is unconditional rather than gated behind a stub
-  // check that always evaluated to true anyway.
-  if (hasInteractivity) {
+  // Emitters and absorbers register interaction loaders that require the
+  // interactivity plugin, so load it before those package loaders too.
+  if (hasInteractivity || hasEmitter || hasAbsorber) {
     matched.add("@tsparticles/plugin-interactivity");
   }
 

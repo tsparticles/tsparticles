@@ -132,6 +132,16 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
   });
 
+  it("reports a year-like value after fireworks with as ambiguous", () => {
+    const result = generateCode({ description: "fireworks with 2026 written in the sky" }),
+      labeledResult = generateCode({ description: "fireworks with 2026 written in the sky, split count: 75" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(labeledResult.options).toHaveProperty("splitCount", 75);
+    expect(labeledResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it("does not treat a bare number after fireworks as a splitCount request", () => {
     const result = generateCode({ description: "fireworks 2026" });
 
