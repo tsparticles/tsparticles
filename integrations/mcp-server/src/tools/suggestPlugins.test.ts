@@ -311,6 +311,17 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/plugin-responsive");
   });
 
+  it("should detect shapes from responsive particle overrides", () => {
+    const result = suggestPlugins({
+      particles: { shape: { type: "circle" } },
+      responsive: [{ maxWidth: 800, options: { particles: { shape: { type: "star" } } } }],
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-responsive");
+    expect(result.npmPackages).toContain("@tsparticles/shape-circle");
+    expect(result.npmPackages).toContain("@tsparticles/shape-star");
+  });
+
   it("should detect themes", () => {
     const result = suggestPlugins({
       themes: [{ name: "dark", default: { value: true } }],
@@ -363,6 +374,28 @@ describe("suggestPlugins", () => {
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
     expect(result.npmPackages).toContain("@tsparticles/interaction-external-push");
+  });
+
+  it("should detect interactivity modes from single and array events.onDiv entries", () => {
+    const singleEntryResult = suggestPlugins({
+        interactivity: {
+          events: {
+            onDiv: { selectors: "#obstacle", mode: "repulse" },
+          },
+        },
+      }),
+      arrayEntryResult = suggestPlugins({
+        interactivity: {
+          events: {
+            onDiv: [{ selectors: "#obstacle", mode: "repulse" }],
+          },
+        },
+      });
+
+    for (const result of [singleEntryResult, arrayEntryResult]) {
+      expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+      expect(result.npmPackages).toContain("@tsparticles/interaction-external-repulse");
+    }
   });
 
   it("should detect emitter shapes", () => {

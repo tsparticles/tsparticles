@@ -214,14 +214,32 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  addParticleOptionPlugins(options.particles);
-
-  const particleGroups = getOptionValue(options, "particles.groups");
-
-  if (particleGroups && typeof particleGroups === "object" && !Array.isArray(particleGroups)) {
-    for (const groupOptions of Object.values(particleGroups)) {
-      addParticleOptionPlugins(groupOptions);
+  /**
+   *
+   * @param rawOptions - Source options containing particles and optional groups.
+   */
+  function addParticleOptions(rawOptions: unknown): void {
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
     }
+
+    const sourceOptions = rawOptions as Record<string, unknown>;
+
+    addParticleOptionPlugins(sourceOptions.particles);
+
+    const particleGroups = getOptionValue(sourceOptions, "particles.groups");
+
+    if (particleGroups && typeof particleGroups === "object" && !Array.isArray(particleGroups)) {
+      for (const groupOptions of Object.values(particleGroups)) {
+        addParticleOptionPlugins(groupOptions);
+      }
+    }
+  }
+
+  addParticleOptions(options);
+
+  for (const responsiveEntry of asArray<Record<string, unknown>>(options.responsive)) {
+    addParticleOptions(responsiveEntry.options);
   }
 
   // -- Emitter Shape Detection --
