@@ -67,8 +67,23 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/updater-paint");
     expect(result.npmPackages).toContain("@tsparticles/shape-circle");
     expect(result.npmPackages).toContain("@tsparticles/updater-size");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
     expect(result.imports.some(item => item.function === "loadMovePlugin")).toBe(true);
     expect(result.imports.some(item => item.function === "loadPaintUpdater")).toBe(true);
+    expect(result.imports.some(item => item.function === "loadHexColorPlugin")).toBe(true);
+  });
+
+  it("should detect multiple effect types", () => {
+    const result = suggestPlugins({
+      particles: {
+        effect: {
+          type: ["trail", "bubble"],
+        },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/effect-trail");
+    expect(result.npmPackages).toContain("@tsparticles/effect-bubble");
   });
 
   it("should detect absorbers", () => {

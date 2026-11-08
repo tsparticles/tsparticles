@@ -77,6 +77,39 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     matched.add("@tsparticles/updater-paint");
   }
 
+  /**
+   *
+   * @param value - A color value or array of color values.
+   */
+  function addColorPlugins(value: unknown): void {
+    const colorValues = Array.isArray(value) ? value : [value];
+
+    for (const color of colorValues) {
+      if (typeof color !== "string") {
+        continue;
+      }
+
+      const normalizedColor = color.trim().toLowerCase();
+
+      if (normalizedColor.startsWith("#")) {
+        matched.add("@tsparticles/plugin-hex-color");
+      } else if (normalizedColor.startsWith("hsl")) {
+        matched.add("@tsparticles/plugin-hsl-color");
+      } else if (normalizedColor.startsWith("rgb")) {
+        matched.add("@tsparticles/plugin-rgb-color");
+      }
+    }
+  }
+
+  for (const colorPath of [
+    "particles.color.value",
+    "particles.paint.color.value",
+    "particles.paint.fill.color.value",
+    "particles.paint.stroke.color.value",
+  ]) {
+    addColorPlugins(getOptionValue(options, colorPath));
+  }
+
   const hasInteractivity = options.interactivity !== undefined,
     hasEmitter = options.emitters !== undefined,
     hasAbsorber = options.absorbers !== undefined,
@@ -134,15 +167,20 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     Record<string, unknown> | undefined;
   if (effectType?.type) {
     const effectMap: Record<string, string> = {
-        bubble: "@tsparticles/effect-bubble",
-        filter: "@tsparticles/effect-filter",
-        particles: "@tsparticles/effect-particles",
-        shadow: "@tsparticles/effect-shadow",
-        trail: "@tsparticles/effect-trail",
-      },
-      typeStr = effectType.type as string,
-      pkg = effectMap[typeStr];
-    if (pkg) matched.add(pkg);
+      bubble: "@tsparticles/effect-bubble",
+      filter: "@tsparticles/effect-filter",
+      particles: "@tsparticles/effect-particles",
+      shadow: "@tsparticles/effect-shadow",
+      trail: "@tsparticles/effect-trail",
+    };
+
+    for (const typeName of parseModeNames(effectType.type)) {
+      const pkg = effectMap[typeName];
+
+      if (pkg) {
+        matched.add(pkg);
+      }
+    }
   }
 
   // -- Emitter Shape Detection --

@@ -584,13 +584,19 @@ function extractCount(text: string): number | undefined {
 
 /**
  *
- * @param text
+ * @param text - The fireworks description.
+ * @param labelPattern - The count label to search for.
+ * @param skipSplitCount - Whether to skip split-count labels.
  */
-function extractFireworksSplitCount(text: string): number | undefined {
-  const countLabel = /\b(?:split\s*count|count)\b/i.exec(text);
+function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSplitCount: boolean): string | undefined {
+  for (const labelMatch of text.matchAll(labelPattern)) {
+    const labelIndex = labelMatch.index;
 
-  if (countLabel) {
-    let suffix = text.slice(countLabel.index + countLabel[0].length).replace(/^\s+/, "");
+    if (skipSplitCount && /\bsplit\s*$/i.test(text.slice(0, labelIndex))) {
+      continue;
+    }
+
+    let suffix = text.slice(labelIndex + labelMatch[0].length).replace(/^\s+/, "");
 
     if (/^of\b/i.test(suffix)) {
       suffix = suffix.slice(2).replace(/^\s+/, "");
@@ -603,8 +609,24 @@ function extractFireworksSplitCount(text: string): number | undefined {
     const labeledCount = /^(\d+)\b/.exec(suffix);
 
     if (labeledCount) {
-      return Number(labeledCount[1]);
+      return labeledCount[1];
     }
+  }
+
+  return undefined;
+}
+
+/**
+ *
+ * @param text - The fireworks description.
+ */
+function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
+  const labeledCount =
+    extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false) ??
+    extractLabeledFireworksCount(text, /\bcount\b/gi, true);
+
+  if (labeledCount !== undefined) {
+    return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
   }
 
   const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text),
@@ -612,25 +634,25 @@ function extractFireworksSplitCount(text: string): number | undefined {
     bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
 
   if (explicitSparkCount) {
-    return Number(explicitSparkCount[1]);
+    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
   }
 
   if (withCount) {
-    return Number(withCount[1]);
+    return { ambiguous: false, raw: withCount[1], value: Number(withCount[1]) };
   }
 
   const count = bareCount?.[1];
 
-  if (
-    count === undefined ||
-    (count.length === FIREWORKS_YEAR_LENGTH &&
-      Number(count) >= FIRST_FIREWORKS_YEAR &&
-      Number(count) <= LAST_FIREWORKS_YEAR)
-  ) {
+  if (count === undefined) {
     return undefined;
   }
 
-  return Number(count);
+  const ambiguous =
+    count.length === FIREWORKS_YEAR_LENGTH &&
+    Number(count) >= FIRST_FIREWORKS_YEAR &&
+    Number(count) <= LAST_FIREWORKS_YEAR;
+
+  return { ambiguous, raw: count, value: Number(count) };
 }
 
 /**
@@ -774,6 +796,7 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
   }
   if (bundle.isAutoInitialized) {
     let template: Record<string, unknown>;
+
     if (bundle.bundleName === "@tsparticles/fireworks") {
       template = FIREWORKS_TEMPLATE;
     } else if (bundle.bundleName === "@tsparticles/ribbons") {
@@ -781,15 +804,27 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
     } else {
       template = CONFETTI_TEMPLATE;
     }
-    const isFireworks = bundle.bundleName === "@tsparticles/fireworks";
+    const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
+      fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
+
+    let requestedCount: number | undefined = undefined;
+
+    if (isFireworks) {
+      if (!fireworksSplitCount?.ambiguous) {
+        requestedCount = fireworksSplitCount?.value;
+      }
+    } else {
+      requestedCount = extractCount(lower);
+    }
 
     return applySpecializedOverrides(
       template,
-      isFireworks ? extractFireworksSplitCount(lower) : extractCount(lower),
+      requestedCount,
       isFireworks ? "splitCount" : "count",
       isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
     );
   }
+
   return generateGenericOptions(keywords, lower);
 }
 
@@ -1351,9 +1386,13 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
   if (bundleMatch.bundleName === "@tsparticles/fireworks") {
     const requestedSplitCount = extractFireworksSplitCount(lower);
 
-    if (requestedSplitCount !== undefined && requestedSplitCount > MAX_FIREWORKS_SPLIT_COUNT) {
+    if (requestedSplitCount?.ambiguous) {
       notes.push(
-        `Requested fireworks splitCount of ${requestedSplitCount} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+        `The fireworks value "${requestedSplitCount.raw}" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: ${requestedSplitCount.raw}".`,
+      );
+    } else if (requestedSplitCount && requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT) {
+      notes.push(
+        `Requested fireworks splitCount of ${requestedSplitCount.raw} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
       );
     }
   }

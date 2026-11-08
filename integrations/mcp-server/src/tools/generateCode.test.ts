@@ -9,7 +9,8 @@ import {
   matchBundle,
 } from "./generateCode.js";
 
-const LONG_WHITESPACE_LENGTH = 10000;
+const LARGE_COUNT_DIGITS = 400,
+  LONG_WHITESPACE_LENGTH = 10000;
 
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
@@ -124,10 +125,11 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
-  it("does not treat a year before the event phrase as a fireworks splitCount request", () => {
-    const result = generateCode({ description: "2026 fireworks" });
+  it("reports a year before the event phrase as an ambiguous fireworks count", () => {
+    const result = generateCode({ description: "2000 fireworks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
   });
 
   it("does not treat a bare number after fireworks as a splitCount request", () => {
@@ -143,6 +145,12 @@ describe("generateOptions", () => {
 
     expect(colonResult.options).toHaveProperty("splitCount", 200);
     expect(equalsResult.options).toHaveProperty("splitCount", 200);
+  });
+
+  it("prioritizes a valid split count label over an earlier generic count", () => {
+    const result = generateCode({ description: "count 4 fireworks, split count: 20" });
+
+    expect(result.options).toHaveProperty("splitCount", 20);
   });
 
   it("prioritizes an explicit spark count over the number of fireworks", () => {
@@ -173,6 +181,21 @@ describe("generateOptions", () => {
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes).toContain("Requested fireworks splitCount of 10000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("preserves the original text for imprecise and infinite requested counts", () => {
+    const impreciseCount = "9007199254740993",
+      infiniteCount = "9".repeat(LARGE_COUNT_DIGITS),
+      impreciseResult = generateCode({ description: `${impreciseCount} fireworks` }),
+      infiniteResult = generateCode({ description: `${infiniteCount} fireworks` });
+
+    expect(impreciseResult.notes).toContain(
+      `Requested fireworks splitCount of ${impreciseCount} exceeds the maximum of 500; using 500.`,
+    );
+    expect(infiniteResult.notes).toContain(
+      `Requested fireworks splitCount of ${infiniteCount} exceeds the maximum of 500; using 500.`,
+    );
+    expect(infiniteResult.notes.some(note => note.includes("Infinity"))).toBe(false);
   });
 
   it("preserves count overrides above the fireworks cap for other bundles", () => {
