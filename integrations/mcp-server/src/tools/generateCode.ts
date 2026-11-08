@@ -30,6 +30,9 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
   },
   MAX_FIREWORKS_SPLIT_COUNT = 500,
+  FIREWORKS_YEAR_LENGTH = 4,
+  FIRST_FIREWORKS_YEAR = 1900,
+  LAST_FIREWORKS_YEAR = 2099,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -584,13 +587,50 @@ function extractCount(text: string): number | undefined {
  * @param text
  */
 function extractFireworksSplitCount(text: string): number | undefined {
-  const match =
-      /\b(\d+)\s+(?:fireworks|particles|sparks)\b|\b(?:split\s*count|count)\s*(?:(?:of\s*)?[:=]?\s*)(\d+)\b|\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(
-        text,
-      ),
-    count = match?.[1] ?? match?.[2] ?? match?.[3];
+  const countLabel = /\b(?:split\s*count|count)\b/i.exec(text);
 
-  return count === undefined ? undefined : Number(count);
+  if (countLabel) {
+    let suffix = text.slice(countLabel.index + countLabel[0].length).replace(/^\s+/, "");
+
+    if (/^of\b/i.test(suffix)) {
+      suffix = suffix.slice(2).replace(/^\s+/, "");
+    }
+
+    if (suffix.startsWith(":") || suffix.startsWith("=")) {
+      suffix = suffix.slice(1).replace(/^\s+/, "");
+    }
+
+    const labeledCount = /^(\d+)\b/.exec(suffix);
+
+    if (labeledCount) {
+      return Number(labeledCount[1]);
+    }
+  }
+
+  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text),
+    withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),
+    bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
+
+  if (explicitSparkCount) {
+    return Number(explicitSparkCount[1]);
+  }
+
+  if (withCount) {
+    return Number(withCount[1]);
+  }
+
+  const count = bareCount?.[1];
+
+  if (
+    count === undefined ||
+    (count.length === FIREWORKS_YEAR_LENGTH &&
+      Number(count) >= FIRST_FIREWORKS_YEAR &&
+      Number(count) <= LAST_FIREWORKS_YEAR)
+  ) {
+    return undefined;
+  }
+
+  return Number(count);
 }
 
 /**

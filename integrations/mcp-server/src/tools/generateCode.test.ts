@@ -9,6 +9,8 @@ import {
   matchBundle,
 } from "./generateCode.js";
 
+const LONG_WHITESPACE_LENGTH = 10000;
+
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
     expect(extractKeywords("Simple Circles Moving")).toEqual(["simple", "circles", "moving"]);
@@ -122,6 +124,12 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
+  it("does not treat a year before the event phrase as a fireworks splitCount request", () => {
+    const result = generateCode({ description: "2026 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+  });
+
   it("does not treat a bare number after fireworks as a splitCount request", () => {
     const result = generateCode({ description: "fireworks 2026" });
 
@@ -135,6 +143,22 @@ describe("generateOptions", () => {
 
     expect(colonResult.options).toHaveProperty("splitCount", 200);
     expect(equalsResult.options).toHaveProperty("splitCount", 200);
+  });
+
+  it("prioritizes an explicit spark count over the number of fireworks", () => {
+    const result = generateCode({ description: "10 fireworks with 50 sparks each" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+  });
+
+  it("parses labeled counts after long whitespace without stalling", () => {
+    const result = generateCode({ description: `fireworks${" ".repeat(LONG_WHITESPACE_LENGTH)}split count: 200` }),
+      malformedResult = generateCode({
+        description: `fireworks count${" ".repeat(LONG_WHITESPACE_LENGTH)}not-a-number`,
+      });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+    expect(malformedResult.options).toHaveProperty("splitCount", 50);
   });
 
   it("caps excessive fireworks splitCount requests and reports the cap", () => {

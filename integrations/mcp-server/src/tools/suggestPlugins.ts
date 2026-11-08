@@ -69,6 +69,14 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
+  if (isOptionEnabled(options, "particles.move")) {
+    matched.add("@tsparticles/plugin-move");
+  }
+
+  if (isOptionEnabled(options, "particles.paint")) {
+    matched.add("@tsparticles/updater-paint");
+  }
+
   const hasInteractivity = options.interactivity !== undefined,
     hasEmitter = options.emitters !== undefined,
     hasAbsorber = options.absorbers !== undefined,

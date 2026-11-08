@@ -47,8 +47,28 @@ describe("suggestPlugins", () => {
         .filter(index => index >= 0);
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+    expect(result.npmPackages).toContain("@tsparticles/interaction-particles-repulse");
     expect(interactivityIndex).toBeGreaterThanOrEqual(0);
     expect(particleInteractionIndexes.every(index => interactivityIndex < index)).toBe(true);
+    expect(result.imports.some(item => item.function === "loadParticlesRepulseInteraction")).toBe(true);
+  });
+
+  it("should detect core movement and paint loaders", () => {
+    const result = suggestPlugins({
+      particles: {
+        move: { enable: true, speed: 3 },
+        paint: { color: { value: "#fff" } },
+        shape: { type: "circle" },
+        size: { value: 3 },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+    expect(result.npmPackages).toContain("@tsparticles/updater-paint");
+    expect(result.npmPackages).toContain("@tsparticles/shape-circle");
+    expect(result.npmPackages).toContain("@tsparticles/updater-size");
+    expect(result.imports.some(item => item.function === "loadMovePlugin")).toBe(true);
+    expect(result.imports.some(item => item.function === "loadPaintUpdater")).toBe(true);
   });
 
   it("should detect absorbers", () => {

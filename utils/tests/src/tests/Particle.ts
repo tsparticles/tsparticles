@@ -388,6 +388,10 @@ describe("Particle", async () => {
 
       expect(particle.isInsideCanvas()).to.be.false;
       expect(particle.isInsideCanvas(OutModeDirection.top)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
     });
 
     it("should use union bounds for destroy and out modes, while retaining AND for collision modes", async () => {
@@ -415,7 +419,9 @@ describe("Particle", async () => {
       }
 
       expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
       expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
       expect(particle.isInsideCanvasForOutMode(OutMode.bounce)).to.be.false;
       expect(particle.isInsideCanvasForOutMode(OutMode.split)).to.be.false;
     });
