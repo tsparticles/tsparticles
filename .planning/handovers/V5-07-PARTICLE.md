@@ -1,54 +1,57 @@
-# V5-07 — Revisione completa di Particle
+# V5-07 — Full Particle review
 
-Stato: da eseguire. Dipendenza: 06 completato. Tutta `Particle.ts` è nel perimetro.
+Status pending. Requires completion of 06. All of `Particle.ts` is in scope.
 
-## Responsabilità
+## Ownership
 
-Dominio Particle, helper di inizializzazione e stato particella, integrazione
-Retina/options/modifier/drawer/updater e contratti usati dai plugin. Test correlati.
-Non annullare modifiche altrui; mantenere gli invarianti stabiliti in 06.
+Particle, initialization and state helpers, integration with Retina, options,
+modifiers, drawers, and updaters, plugin contracts, and related tests.
+Preserve other contributors' changes and invariants established in 06.
 
-## Lavoro
+## Work
 
-1. Inventariare campi, metodi, getter e helper del file completo: costruzione/init,
-   options e override di gruppo/shape/effect, posizione/velocità, dimensione/colore,
-   bounds, distruzione, reset e stato delle estensioni. Distinguere stato sempre
-   necessario da capacità opzionali oggi trattenute dal core.
-2. Rivedere la costruzione delle options e l'inizializzazione degli hook in ordine:
-   default, preset/override, retina, modifier, shape/effect e updater/plugin.
-   Ridurre merge/lavoro duplicato senza alterare precedenze o mutare input condivisi.
-3. Rivedere Retina integralmente, sia container che particella: pixel ratio,
-   reduce factor, dimensioni e range random. Verificare aggiornamenti dopo resize.
-4. Rivedere allocazioni e calcoli ripetuti in getter/update/render, gestione vettori
-   e conversioni colore. Non introdurre closure/oggetti per particella per il solo
-   scopo di estrarre metodi dal file principale.
-5. Valutare estrazione di stato/capacità opzionali verso helper o plugin usando
-   evidenze di byte e costo memoria; per ogni cambiamento fornire migrazione dei
-   consumer e default equivalenti nei bundle. Nessuna rimozione silenziosa di feature.
-6. Verificare riuso tramite pool e lifecycle destroy/reset: nessun dato di shape,
-   effetto, modifier, collisione o plugin precedente rimane attivo accidentalmente.
-7. Preservare accesso pubblico minimo necessario ai plugin ed estensioni dichiarate
-   in TypeScript. Spostare solo implementazioni interne dietro facciate selettive.
+1. Inventory fields, methods, getters, and helpers across the file. Cover
+   construction/init, options and group/shape/effect overrides, position and
+   velocity, size and color, bounds, destruction, reset, and extension state.
+   Distinguish required state from optional capabilities currently in core.
+2. Review option construction and hook initialization in order, including
+   defaults, presets/overrides, Retina, modifiers, shapes/effects, and
+   updaters/plugins. Reduce redundant merges and work while preserving
+   precedence and leaving shared inputs intact.
+3. Review all Retina behavior at both container and particle level, including
+   pixel ratio, reduce factor, dimensions, and random ranges. Verify resize updates.
+4. Review repeated allocations and calculations in getters, updates, and
+   rendering, vector handling, and color conversion. Require a benefit beyond
+   extracting methods for any new per-particle closures or objects.
+5. Evaluate extracting optional state or capabilities into helpers or plugins
+   using bundle and memory evidence. For each change, provide a consumer
+   migration and equivalent bundle defaults. Account for each feature.
+6. Verify pool reuse and destroy/reset. Clear stale shape, effect, modifier,
+   collision, and plugin data before incompatible reuse.
+7. Preserve the minimal public access plugins need and their TypeScript
+   extensions. Move internal implementations behind selective entrypoints.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Test deterministici su precedenze options/gruppi, init posizione/velocità,
-  range random/colore, retina, bounds, distruzione e reset/riuso dal pool.
-- Ordine hook/modifier/updater/drawer documentato e invariato; non duplicare
-  callback destroy o particleCreated su rami di errore e ripartenze.
-- Consumer rappresentativi: move/outModes, size/opacity/color/rotate, collisioni,
-  links, emitter/absorber, shape/effect custom e plugin con stato esteso.
-- Memoria per particella e allocazioni misurate oltre al costo update/draw; nessun
-  trasferimento di stato tra gruppi, container o engine con RNG/logger differenti.
-- Bundle min/gzip/Brotli della stessa scena confrontati con 06 e baseline;
-  suite completa, lint/format e build downstream.
+- Deterministically test option/group precedence, position and velocity init,
+  random ranges and colors, Retina, bounds, destruction, and pool reset/reuse.
+- Document and preserve hook/modifier/updater/drawer order. Verify that error
+  paths and restarts do not duplicate destroy or particleCreated callbacks.
+- Check representative consumers including move/outModes,
+  size/opacity/color/rotate, collisions, links, emitters/absorbers, custom
+  shapes/effects, and plugins with extended state.
+- Measure memory per particle and allocations as well as update/draw cost.
+  Verify isolation across groups, containers, and engines with different RNG/loggers.
+- Compare min/gzip/Brotli for the same scene against 06 and the baseline.
+  Run the full suite, lint/format, and downstream builds.
 
-## Consegna
+## Deliverables
 
-Mappa campi/metodi e decisioni di revisione, API cambiate e migrazioni, report delle
-misure. Aggiornare la matrice engine di 03: nessuna area senza owner o verifica.
+Provide a field/method map, review decisions, changed APIs and migrations, and
+measurements. Update the engine matrix from 03 with ownership and evidence for
+every area.
 
-## Approfondimenti di performance e dimensioni
+## Performance and size plans
 
-Consultare [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+See [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).

@@ -1,68 +1,67 @@
-# V5-IMP-01 — Baseline e protocollo di confronto
+# V5-IMP-01 — Baseline and comparison protocol
 
-Stato: da eseguire. Owner: 01 per baseline; 04–09 per esperimenti; 10 per chiusura.
-Questo protocollo fa parte del piano v5 e vale per tutti i documenti IMP.
+Status pending. Handover 01 owns the baseline, 04–09 own experiments, and 10
+owns completion. This protocol applies to all IMP plans.
 
-## Scopo
+## Purpose
 
-Rendere riproducibili le decisioni: una riduzione del bundle, del tempo di frame
-o delle allocazioni deve essere distinguibile dal rumore e dai cambi di toolchain.
-La baseline resta quella richiesta nell'indice principale, senza una seconda
-misurazione incompatibile. Raccoglierla prima di modificare il runtime.
+Make decisions reproducible. Distinguish changes in bundle size, frame time,
+and allocations from measurement noise and toolchain changes. Use the single
+baseline required by the main index and collect it before modifying runtime.
 
-## Scenari da preparare
+## Scenarios
 
-| ID  | Scenario                                                 | Scopo                                             |
-| --- | -------------------------------------------------------- | ------------------------------------------------- |
-| M1  | Import di un helper matematico puro effettivamente usato | Individuare dipendenze runtime involontarie       |
-| M2  | Creazione engine senza load                              | Separare costo della factory dal rendering        |
-| M3  | Scena minima con movimento e shape base                  | Costo minimo di una scena funzionante             |
-| M4  | Links e collisioni classiche a densità differenti        | Query spaziali e costo interazioni                |
-| M5  | Fluid con options/seed fissi                             | Carico denso e sensibilità all'ordine delle query |
-| M6  | Gruppi, emitter/absorber e cicli add/remove              | Conteggi, pool e retention dopo churn             |
-| M7  | Molti z-layer e modifiche di profondità                  | Bucket, sort e ordine di disegno                  |
-| M8  | HDR/background mask/layer e resize                       | Pipeline render e funzionalità opzionali          |
-| M9  | Due engine contemporanei con plugin diversi              | Costi per istanza e isolamento                    |
-| M10 | CDN completo e engine + feature external, incluse lazy   | Costo reale della pagina e startup                |
+| ID  | Scenario                                                         | Purpose                                                |
+| --- | ---------------------------------------------------------------- | ------------------------------------------------------ |
+| M1  | Import and use a pure math helper                                | Find unintended runtime dependencies                   |
+| M2  | Create an engine without loading a scene                         | Separate factory cost from rendering                   |
+| M3  | Minimal moving scene with a basic shape                          | Measure the cost of a working minimal scene            |
+| M4  | Links and classic collisions at different densities              | Measure spatial query and interaction costs            |
+| M5  | Fluid with fixed options and seed                                | Measure dense workloads and sensitivity to query order |
+| M6  | Groups, emitters/absorbers, and add/remove cycles                | Measure counts, pool, and retention after churn        |
+| M7  | Many Z layers and depth changes                                  | Measure buckets, sorting, and draw order               |
+| M8  | HDR, background mask, layers, and resize                         | Measure the render pipeline and optional features      |
+| M9  | Two concurrent engines with different plugins                    | Measure per-instance costs and isolation               |
+| M10 | Standalone CDN and engine with external features, including lazy | Measure full page and startup costs                    |
 
-Per M3–M8 usare almeno tre quantità esplicite di particelle, ad esempio 100, 1000,
-5000 se sostenibili sull'ambiente scelto. Non ridurre N tra prima e dopo; se uno
-scenario satura il browser, registrarlo e scegliere anche un carico confrontabile.
+For M3–M8, use at least three explicit particle counts, such as 100, 1,000,
+and 5,000 if the environment supports them. Keep N fixed across comparisons.
+If a scenario saturates the browser, record it and also test a comparable workload.
 
-## Procedura
+## Procedure
 
-1. Registrare commit, dirty diff, Node/pnpm, bundler/minificatore, browser/versione,
-   sistema, macchina, viewport, devicePixelRatio, feature abilitate e formato output.
-2. Riutilizzare configurazioni e sequenze RNG deterministiche. Separare timing
-   della simulazione da wall-clock e non cambiare ordine delle chiamate random
-   soltanto per ottenere benchmark migliori.
-3. Separare cold load, caricamento asset, inizializzazione particelle, steady-state,
-   resize e teardown. Eseguire warmup e più campioni; indicare durate/campioni nel
-   report, usare mediana, p95 e dispersione. Alternare baseline e variante quando
-   possibile, evitando confronti tra browser o macchine differenti.
-4. Misurare update e draw separatamente; FPS da solo può essere limitato da vsync.
-   Riportare costo totale frame, long frame e GC con overhead di profiling dichiarato.
-5. Misurare heap/memoria dopo cicli ripetuti, distinguendo oggetti trattenuti dai
-   pool da leak. Heap istantaneo e GC forzato non sono prove sufficienti da soli.
-6. Bundle: raw/min/gzip/Brotli, entry e chunk totali della stessa scena, modulo di
-   provenienza e duplicazioni. Cold cache e warm cache sono risultati distinti.
-7. Salvare risultati in `../V5-BUNDLE-REPORT.md` e nel registro esperimenti; definire
-   budget per scenario prima dei refactor di dimensioni, come da indice principale.
+1. Record the commit, working-tree diff, Node/pnpm, bundler/minifier,
+   browser/version, system, machine, viewport, devicePixelRatio, enabled
+   features, and output format.
+2. Reuse deterministic configurations and RNG sequences. Separate simulation
+   time from wall-clock time and preserve random call order.
+3. Separate cold load, asset loading, particle initialization, steady state,
+   resize, and teardown. Warm up and take repeated samples. Record run lengths,
+   sample counts, median, p95, and dispersion. Alternate baseline and variant
+   where possible and compare on the same browser and machine.
+4. Measure update and draw separately. Vsync can cap FPS. Report total frame
+   cost, long frames, GC, and profiling overhead.
+5. Measure heap/memory after repeated cycles and distinguish pool retention from
+   leaks. Supplement instantaneous heap and forced GC with other evidence.
+6. Record raw/min/gzip/Brotli, entry and total chunks for the same scene, source
+   modules, and duplicates. Report cold and warm cache results separately.
+7. Save results in `../V5-BUNDLE-REPORT.md` and the experiment log. Define budgets
+   per scenario before size refactors, as specified by the main index.
 
-## Registro esperimenti
+## Experiment log
 
-Per ogni IMP conservare una scheda con: ID, ipotesi, file revisionati, scenario,
-variante minima, costo prima/dopo, ripetizioni, esito funzionale, costo API/plugin,
-limiti della misura, decisione e link al diff. Stati ammessi: da misurare, in analisi,
-implementato e verificato, scartato con evidenza, rinviato con motivazione.
+For each IMP, record ID, hypothesis, reviewed files, scenario, minimal variant,
+before/after cost, repetitions, functional result, API/plugin cost, measurement
+limitations, decision, and diff link. Valid statuses are pending measurement,
+under analysis, implemented and verified, rejected with evidence, and deferred
+with rationale.
 
-L'analisi delle opportunità è parte obbligatoria della revisione. Implementare le
-varianti utili sulla base dei risultati, senza chiedere approvazioni aggiuntive per
-routine reversibili già nel perimetro. Cambiamenti pubblici richiedono migrazione
-coerente con il contratto v5 e con i criteri dell'handover owner.
+Reviewing the opportunities is mandatory. Implement useful variants based on
+results. Reversible in-scope work can proceed under existing authorization.
+Public changes require migration consistent with the v5 contract and owning handover.
 
-## Chiusura
+## Completion
 
-Nessun numero inventato o percentuale prevista trattata come risultato. Un candidato
-scartato può essere chiuso con dati; una misura assente resta aperta. Il gate 10
-controlla che ogni IMP abbia esito e che i budget globali restino soddisfatti.
+Report measured values and label estimates as such. Evidence can close a rejected
+candidate. Missing measurements keep it open. Gate 10 checks that every IMP has
+an outcome and that global budgets remain satisfied.

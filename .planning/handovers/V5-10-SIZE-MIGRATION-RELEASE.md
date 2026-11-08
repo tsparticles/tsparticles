@@ -1,72 +1,79 @@
-# V5-10 — Gate dimensioni, migrazione e preparazione release
+# V5-10 — Size, migration, and release readiness gates
 
-Stato: da eseguire. Dipendenza: 01–09 verificati.
+Status pending. Requires verified completion of 01–09.
 
-## Responsabilità
+## Ownership
 
-Report/budget bundle e relativi check CI, test di integrazione/package consumer,
-manifest distribuiti, changelog, README, guide, traduzioni, demo/template/codegen e
-planning finale. Correggere regressioni riscontrate coordinandosi con le ownership
-precedenti; non annullare modifiche altrui. Questo handover prepara la release,
-non autorizza publish, deployment o incremento automatico di versione.
+Bundle reports, budgets, and CI checks, integration and package consumer tests,
+distributed manifests, changelogs, READMEs, guides, translations, demos,
+templates, code generation, and final planning. Coordinate regression fixes
+with earlier owners and preserve other contributors' changes. Publishing,
+deployment, and version bumps belong to the separate release workflow.
 
-## Lavoro
+## Work
 
-1. Ricostruire gli artefatti dalla stessa pipeline della baseline, senza usare
-   file dist obsoleti. Verificare pack/publishConfig e risoluzione dei consumer
-   installati da pacchetto preparato, comprese dichiarazioni e package exports.
-2. Completare `V5-BUNDLE-REPORT.md`: raw/min/gzip/Brotli, entry + chunk effettivi,
-   delta assoluti e percentuali, dipendenze trattenute, budget e spiegazioni.
-   Non contare source map o altri asset come JS, ma registrarli separatamente.
-3. Automatizzare gli scenari di dimensione in un target/check coerente con Nx
-   e la pipeline esistente; budget versionati con toolchain e motivazioni. Niente
-   percentuali o soglie cambiate per far passare il refactor a posteriori.
-4. Completare la guida v4 → v5: factory, più engine, plugin registrati per engine,
-   random/log (ed eventuale scheduler), wrapper/provider, convenience bundle,
-   browser/CDN e lazy, simboli rimossi e nuovi confini dei moduli.
-5. Eseguire gli esempi documentati e il codice generato da CLI/MCP. Ricercare
-   pattern v4 nelle guide EN, nelle 9 traduzioni, README e template; distinguere
-   esempi storici di migrazione dai consumer che devono usare la v5.
-6. Allineare `package.json` e `package.dist.json` dei pacchetti modificati, compresi
-   i bundle pubblicabili, changelog e typedoc. Non cambiare API per correggere
-   soltanto un problema di packaging senza test della risoluzione reale.
-7. Aggiornare PROJECT/REQUIREMENTS/ROADMAP/STATE e analisi codebase pertinenti con
-   fatti verificati. Conservare lo storico 4.x e il vecchio significato di “v5”
-   usato per una revisione del solver fluid: non era la major del prodotto.
+1. Rebuild fresh artifacts through the baseline pipeline. Verify packing,
+   `publishConfig`, and resolution in consumers installed from the packaged
+   artifacts, including declarations and package exports.
+2. Complete `V5-BUNDLE-REPORT.md` with raw/min/gzip/Brotli, actual entry and chunk
+   sizes, absolute and percentage deltas, retained dependencies, budgets, and
+   explanations. Record source maps and other assets separately from JS.
+3. Automate size scenarios in a target or check consistent with Nx and the
+   existing pipeline. Version budgets with toolchain and rationale. Keep
+   agreed thresholds fixed when evaluating the refactor.
+4. Finish the v4 → v5 guide covering the factory, multiple engines,
+   per-engine plugin registration, random/logging and any scheduler changes,
+   wrappers/providers, convenience bundles, browser/CDN and lazy, removed
+   symbols, and new module boundaries.
+5. Run documented examples and CLI/MCP-generated code. Search English guides,
+   all nine translations, READMEs, and templates for v4 patterns. Distinguish
+   historical migration examples from consumers that should use v5.
+6. Align `package.json` and `package.dist.json` for changed packages, including
+   publishable bundles. Update changelogs and TypeDoc. Test actual resolution
+   before changing APIs to address packaging issues.
+7. Update PROJECT/REQUIREMENTS/ROADMAP/STATE and relevant codebase analyses with
+   verified facts. Preserve 4.x history and distinguish the former “v5” fluid
+   solver revision from the product major release.
 
-## Copertura aggiuntiva obbligatoria
+## Required additional coverage
 
-Raccogliere `V5-ENGINE-AUDIT.md`, `V5-PLUGIN-AUDIT.md` e matrice browser di 09.
-Verificare copertura completa di sorgenti engine e pacchetti estensione, compresi
-Particle, ParticlesManager, utility, opzioni e palette. “Già compatibile” richiede
-prove; un file o pacchetto senza esito lascia il gate aperto.
+Collect `V5-ENGINE-AUDIT.md`, `V5-PLUGIN-AUDIT.md`, and the browser matrix from 09. Verify complete coverage of engine source and extension packages, including
+Particle, ParticlesManager, utilities, options, and palettes. Record evidence
+for compatibility claims. Files or packages without an outcome keep the gate open.
 
-## Checklist finale
+## Final checklist
 
-- [ ] Nessun singleton/default engine implicito, nessuno stato personalizzato
-      random/logger condiviso; eventuali limiti scheduler/cache dichiarati e risolti
-      oppure riportati come gate aperto.
-- [ ] Registri, eventi, async init e teardown isolati su più engine.
-- [ ] Revisione completa engine, ParticlesManager/Particle e matrici plugin/browser chiuse.
-- [ ] API plugin/option inheritance e consumer built-package verificati.
-- [ ] Scena minima e slim realmente più piccoli in gzip e Brotli; tutti i budget
-      soddisfatti. Entry lazy e totale chunk distinti nel report.
-- [ ] Nessuna regressione di draw/update/allocazioni non spiegata e accettata.
-- [ ] Test mirati, suite completa (`pnpm exec vitest`, più run finito se necessario),
-      lint e format passano. Target Nx verificati prima di eseguirli.
-- [ ] Rebuild non CLI/non website/non palette previsto da AGENTS; ulteriori build
-      dei CLI/generatori/consumer modificati; `pnpm run build:ci` completo.
-- [ ] Smoke browser reali e guide/demos/template/codegen funzionanti.
-- [ ] Changelog breaking e guida migrazione completi; EN e traduzioni coerenti.
+- [ ] Explicit engines only. Custom RNG and logging are isolated. Any scheduler
+      or cache limitations are documented and resolved or recorded as open gates.
+- [ ] Registries, events, async initialization, and teardown are isolated across engines.
+- [ ] Full engine review, including ParticlesManager and Particle, and plugin and browser matrices complete.
+- [ ] Plugin APIs, option inheritance, and consumers using built packages verified.
+- [ ] The minimal scene and slim are smaller in gzip and Brotli, with all
+      budgets met. Lazy entry and total chunks are reported separately.
+- [ ] Draw/update/allocation regressions are either resolved or explained and accepted.
+- [ ] Targeted tests, full suite (`pnpm exec vitest`, plus a finite run if needed),
+      lint, and formatting pass. Verify Nx targets before running them.
+- [ ] Complete the rebuild outside CLI/website/palette required by AGENTS, builds
+      for affected CLI/generators/consumers, and `pnpm run build:ci`.
+- [ ] Real browser smoke tests pass and guides/demos/templates/generated code work.
+- [ ] Breaking-change changelog and migration guide are complete, with English and translations aligned.
 
-## Consegna
+## Deliverables
 
-Stato finale per ogni requisito V5, report riproducibile e problemi residui con
-passi di riproduzione. Non segnare v5 completata se resta aperto un gate richiesto;
-non presentare un limite dell'ambiente come verifica superata. Lasciare al flusso
-release separato commit/tag/versionamento, pubblicazione e deployment.
+Provide final status for every V5 requirement, a reproducible report, and
+reproduction steps for remaining issues. Keep v5 open while any required gate
+is unmet. Record environment limitations as such. Leave commits, tags,
+versioning, publishing, and deployment to the separate release workflow.
 
-## Approfondimenti di performance e dimensioni
+## Performance and size plans
 
-Consultare [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+See [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Consumers installed outside the monorepo
+
+Reuse fixtures from the [v4 wrapper, CLI, and MCP plan](../v4-review/WRAPPER-CLI-MCP.md)
+when available. Verify wrapper mount, errors, and teardown against the v5
+contract, scaffolding commands from the publishable package, and compilation of
+MCP snippets in consumer projects. Include an isolated install to catch
+undeclared direct imports and templates that build only in the workspace.

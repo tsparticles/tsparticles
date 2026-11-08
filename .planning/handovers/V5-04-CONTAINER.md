@@ -1,53 +1,61 @@
-# V5-04 — Ridurre Container senza alterarne il lifecycle
+# V5-04 — Simplify Container while preserving its lifecycle
 
-Stato: da eseguire. Dipendenza: 03 completato.
+Status pending. Requires completion of 03.
 
-## Responsabilità
+## Ownership
 
-Dominio Container, relativi helper options/lifecycle/eventi, test del container e
-consumer dei contratti eventualmente modificati. Non modificare canvas/render
-salvo gli adattamenti di firma necessari. Non annullare modifiche altrui.
+The Container domain, its option, lifecycle, and event helpers, container tests,
+and consumers of any affected contracts. Limit canvas/rendering changes to
+necessary signature adaptations and preserve other contributors' changes.
 
-## Lavoro
+## Work
 
-1. Partire da una tabella stato/transizioni: init/start/play/pause/stop/destroy,
-   refresh/reset, delay/duration, hidden/resize e cancellazioni async. Mappare ordine
-   degli eventi e hook plugin prima di cambiare il codice.
-2. Profilare il contributo al bundle: option load, init plugin/drawer/updater,
-   callback dispatch, loop frame, export e branches. Selezionare duplicazioni o
-   dipendenze evitabili sulla base del report, non del numero di metodi.
-3. Estrarre helper coesi e non pubblici nella cartella Container quando condividono
-   responsabilità reali. Ridurre passaggi e logica duplicata; mantenere lo stato
-   del lifecycle in un solo proprietario. Evitare nuove classi manager obbligatorie
-   se aumentano codice, allocazioni o complessità di teardown.
-4. Preservare il caricamento dinamico di Container da Engine e l'accesso ai
-   servizi per engine definiti in 02. Testare riferimenti e cleanup dopo refresh.
-5. Valutare i rami opzionali trattenuti: usare gli hook già esistenti quando
-   permettono di escludere codice. Ogni spostamento in plugin richiede compatibilità
-   con bundle standard, loader e options, test e nota di migrazione.
-6. Misurare dopo ogni gruppo coeso di modifiche. Annullare estrazioni peggiorative
-   salvo motivazione architetturale esplicita separata dal risultato di dimensioni.
+1. Start with a state transition table for init/start/play/pause/stop/destroy,
+   refresh/reset, delay/duration, visibility/resize, and async cancellation.
+   Map event and plugin hook order before changing code.
+2. Profile bundle contributions from option loading, plugin/drawer/updater init,
+   callback dispatch, the frame loop, exports, and branches. Use the report to
+   identify duplication or avoidable dependencies.
+3. Extract cohesive internal helpers into Container where responsibilities warrant
+   it. Reduce repeated work and give lifecycle state a single owner. Avoid
+   mandatory managers that increase code, allocations, or teardown complexity.
+4. Preserve dynamic Container loading from Engine and access to the per-engine
+   services defined in 02. Test references and cleanup after refresh.
+5. Evaluate retained optional branches. Use existing hooks where they allow code
+   to be excluded. Moves into plugins require compatible standard bundles,
+   loaders and options, tests, and a migration note.
+6. Measure after each cohesive change. Revert extractions that make results worse
+   unless a separate architectural reason justifies them.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Start/stop/destroy ripetuti, play/pause, refresh/reset mantengono ordine eventi,
-  hook, options effettive e cleanup; nessuna duplicazione di listener o plugin.
-- Destroy durante delay/start/init async e refresh concorrenti non lasciano timer,
-  frame o container registrati; promesse vengono risolte/rifiutate come da contratto.
-- Due engine e più container: azioni e logger/RNG restano locali.
-- Timing deterministico con fake scheduler, senza asserzioni su elapsed reale.
-- Test di gruppi, particelle, background, export e tema opzionale pertinenti passano.
-- Confronto gzip/Brotli e benchmark della stessa scena rispetto a 03 e baseline.
-  Nessuna allocazione aggiunta per frame senza prova di beneficio.
-- Suite, lint/format e build downstream completati.
+- Repeated start/stop/destroy, play/pause, and refresh/reset preserve event order,
+  hooks, effective options, and cleanup, with no duplicate listeners or plugins.
+- Destroy during delay or async start/init and concurrent refresh leave no timers,
+  frames, or registered containers. Promises settle according to the contract.
+- With two engines and several containers, actions, logging, and RNG remain local.
+- Test timing with a fake scheduler and deterministic assertions.
+- Pass relevant group, particle, background, export, and optional theme tests.
+- Compare gzip/Brotli and benchmark the same scene against 03 and the baseline.
+  Require evidence of benefit for any added per-frame allocation.
+- Complete the suite, lint/format checks, and downstream builds.
 
-## Consegna
+## Regressions to carry forward from v4
 
-Tabella lifecycle, componenti realmente estratti, byte prima/dopo e prove. Se la
-riduzione non è dimostrata, riportare il risultato senza presentarlo come obiettivo
-raggiunto. Aggiornare architettura, changelog se API cambiata e stato in indice.
+Carry the startup contract verified in [V4-B01–B04](../v4-review/CORRECTNESS.md)
+into the state model. Each engine's registry must complete before its concurrent
+loads proceed. A canceled transition must leave no late events or rescheduled
+frames. Verify one pending frame per container and smoke-test an explicit
+OffscreenCanvas in a dedicated worker without DOM dependencies in the core path.
+Reuse v4 regression tests once available.
 
-## Approfondimenti di performance e dimensioni
+## Deliverables
 
-Consultare [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+Provide the lifecycle table, extracted components, before/after sizes, and
+evidence. If measurements do not show a reduction, record that outcome. Update
+architecture docs, the changelog for API changes, and index status.
+
+## Performance and size plans
+
+See [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).

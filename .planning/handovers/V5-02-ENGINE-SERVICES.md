@@ -1,65 +1,65 @@
-# V5-02 — Random e logger appartenenti all'engine
+# V5-02 — Engine-owned random and logging services
 
-Stato: da eseguire. Dipendenza: 01 completato.
+Status pending. Requires completion of 01.
 
-## Responsabilità
+## Ownership
 
-`Core/Engine.ts`, `Utils/{MathUtils,LogUtils,ColorUtils,Utils}.ts`, tipi/export,
-PluginManager, Container/Particle/option loaders e ogni consumer workspace che
-usa questi servizi direttamente o tramite helper. Test, esempi e changelog relativi.
-Non riorganizzare cartelle in questa fase; non annullare modifiche altrui.
+`Core/Engine.ts`, `Utils/{MathUtils,LogUtils,ColorUtils,Utils}.ts`, types and
+exports, PluginManager, Container, Particle, option loaders, and workspace
+consumers that use these services directly or through helpers. Include related
+tests, examples, and changelogs. Keep the folder layout in this phase and
+preserve other contributors' changes.
 
-## Contratto proposto
+## Proposed contract
 
-- Metodi engine: `setRandom(rnd = Math.random)`, `getRandomFn()`, `getRandom()`,
-  `setLogger(logger: Partial<ILogger>)`, `getLogger(): ILogger`.
-- Default equivalenti alla v4: RNG Math.random e logger console con stessa
-  gestione codici `TSP-xxxx`, livelli e wrapping. Ogni engine possiede il proprio
-  oggetto logger mutabile; il logger passato dall'utente non viene modificato.
-- Conservare il clamp RNG corrente `[0, 1 - Number.EPSILON]`. Documentare il
-  requisito di valori finiti e non cambiare incidentalmente semantiche di range.
-- Una modifica ai servizi si applica alle successive chiamate dei container
-  dell'engine, anche già creati. Non catturare copie obsolete del callback RNG.
-- Rimuovere i setter/getter di modulo e gli alias globali. Nessun `currentEngine`,
-  variabile ambientale, fallback singleton o swap del RNG globale durante un frame.
+- Engine methods are `setRandom(rnd = Math.random)`, `getRandomFn()`,
+  `getRandom()`, `setLogger(logger: Partial<ILogger>)`, and `getLogger(): ILogger`.
+- Match v4 defaults with `Math.random` and console logging, preserving
+  `TSP-xxxx` codes, levels, and wrapping. Each engine owns a mutable logger
+  object. Leave the object passed by the user intact.
+- Preserve the RNG clamp `[0, 1 - Number.EPSILON]`. Document the finite-value
+  requirement and preserve existing range semantics.
+- Service changes apply to subsequent calls from existing and future containers
+  on that engine. Avoid capturing stale RNG callbacks.
+- Remove module-level setters/getters and global aliases. Avoid `currentEngine`,
+  ambient variables, singleton fallbacks, and swapping the global RNG during a frame.
 
-## Lavoro
+## Work
 
-1. Inventario transitivo: RNG → range, direzioni/posizioni, scelta array, colori,
-   animazioni, path, emitter, collisioni, noise; logger → fetch, immagini/audio,
-   plugin e lifecycle. Cercare anche `Math.random` e `console` diretti; distinguere
-   tooling e utility pure da runtime con engine proprietario.
-2. Rendere disponibile il contesto ai plugin attraverso engine/container/plugin
-   manager con un accesso pubblico minimo documentato. Evitare cast su campi privati.
-3. Per helper con casualità passare esplicitamente un provider RNG stabile oppure
-   usare servizi dell'engine; scegliere una convenzione unica e fissarla prima
-   della migrazione. Helper matematici puri restano funzioni pure esportabili.
-   Non passare tutto Engine a funzioni che richiedono solo un callback.
-4. Migrare tutte le chiamate, incluse async continuation: gli errori dopo un fetch
-   devono andare al logger dell'engine originario anche se nel frattempo lavora B.
-5. Audit `_animationLoop` / `setAnimationFunctions`: è altro stato configurabile
-   condiviso. Decisione preferita: spostarlo per engine conservando i default browser,
-   con test di cancellazione locale. Se viene rinviato, segnalarlo esplicitamente
-   come limite e motivare; non descrivere l'intero runtime come isolato.
-6. Audit cache/registri mutabili dei plugin: eventuale deduplicazione deve essere
-   per engine quando influenza registrazioni o valori casuali personalizzati.
-   Cache di dati immutabili e cache di risorse DOM richiedono analisi distinta.
-7. Migrare test che oggi chiamano setter globali o fanno reset manuali. Aggiornare
-   firme pubbliche, export di `ILogger`, changelog e guida di migrazione.
+1. Inventory transitive usage. RNG affects ranges, directions, positions, array
+   selection, colors, animations, paths, emitters, collisions, and noise. Logging
+   affects fetch, images/audio, plugins, and lifecycle. Also search for direct
+   `Math.random` and `console` calls. Distinguish tooling and pure utilities from
+   runtime code owned by an engine.
+2. Give plugins a minimal documented way to access context through the engine,
+   container, or plugin manager. Avoid casts that expose private fields.
+3. For helpers that use randomness, choose one convention before migration:
+   pass a stable RNG provider explicitly or use engine services. Keep pure math
+   helpers exportable as pure functions. Pass just the callback where it suffices.
+4. Migrate all calls, including async continuations. A fetch error must reach the
+   originating engine's logger even while another engine is running.
+5. Audit `_animationLoop` and `setAnimationFunctions`, which are also shared
+   configurable state. Prefer per-engine scheduling with browser defaults and
+   local cancellation tests. If deferred, record the limitation and reason.
+6. Audit mutable plugin caches and registries. Scope deduplication per engine
+   where it affects registration or customized random values. Analyze immutable
+   data caches separately from DOM resource caches.
+7. Migrate tests that use global setters or manual resets. Update public
+   signatures, `ILogger` exports, changelogs, and the migration guide.
 
-## Prove di accettazione
+## Acceptance tests
 
-- A e B con sequenze deterministiche diverse: alternare creazione particelle,
-  colori/range, emissione e tick; ogni sequenza avanza solo per il proprio engine.
-- Cambiare o resettare RNG di A non cambia B; testare la semantica dei limiti.
-- Logger parziali: default degli altri livelli, nessuna mutazione di B o input;
-  preservati messaggi/codici. Test su errore async e destroy durante attesa.
-- Nessuna dipendenza residua dai servizi globali, inclusi browser/lazy e generatori.
-- Se scheduler migrato: pause/destroy cancella solo handle dell'engine proprietario.
-- Suite completa, lint/format e build di tutti i consumer coinvolti. Report bundle
-  intermedio: descrivere il costo dei servizi senza nasconderlo nei passaggi dopo.
+- Alternate particle creation, colors/ranges, emission, and ticks across A and B
+  with different deterministic sequences. Each sequence advances only for its engine.
+- Change or reset A's RNG and verify B is unaffected. Test boundary semantics.
+- Test partial loggers, defaults for other levels, preserved messages and codes,
+  and unchanged inputs and other engines. Cover async errors and destroy while waiting.
+- Check browser/lazy and generators for residual dependencies on global services.
+- If the scheduler migrates, pause and destroy cancel only the owning engine's handles.
+- Run the full suite, lint and formatting checks, and all affected consumer
+  builds. Record the service cost in the intermediate bundle report.
 
-## Consegna
+## Deliverables
 
-Mappa vecchie → nuove API, convenzione helper, esiti di test e inventario stato
-condiviso residuo con motivazione. Aggiornare indice e documentazione pubblica.
+Provide an old-to-new API map, helper convention, test results, and a justified
+inventory of remaining shared state. Update the index and public documentation.
