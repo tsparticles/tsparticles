@@ -11,7 +11,7 @@ import { suggestPlugins } from "./suggestPlugins.js";
 // parameters (count, color, speed, shape, direction, ...).
 
 const CONFETTI_TEMPLATE: Record<string, unknown> = {
-    particleCount: 120,
+    count: 120,
     spread: 100,
     origin: { y: 0.7 },
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
@@ -19,23 +19,18 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     ticks: 200,
   },
   FIREWORKS_TEMPLATE: Record<string, unknown> = {
-    particleCount: 50,
-    spread: 360,
-    startVelocity: 30,
-    decay: 0.9,
-    gravity: 0.8,
-    ticks: 200,
+    splitCount: 50,
+    speed: 30,
+    gravity: 30,
     colors: ["#ff0000", "#ffff00", "#00ff00", "#00ffff", "#ff00ff"],
-    origin: { x: 0.5, y: 0.8 },
   },
   RIBBONS_TEMPLATE: Record<string, unknown> = {
-    particleCount: 60,
-    spread: 120,
-    origin: { y: 0.5 },
+    count: 60,
+    positionX: 50,
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
-    gravity: 1.5,
-    ticks: 300,
   },
+  MAX_FIREWORKS_SPLIT_COUNT = 500,
+  FIREWORKS_YEAR_LENGTH = 4,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -587,6 +582,91 @@ function extractCount(text: string): number | undefined {
 
 /**
  *
+ * @param text - The fireworks description.
+ * @param labelPattern - The count label to search for.
+ * @param skipSplitCount - Whether to skip split-count labels.
+ */
+function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSplitCount: boolean): string | undefined {
+  for (const labelMatch of text.matchAll(labelPattern)) {
+    const labelIndex = labelMatch.index;
+
+    if (skipSplitCount && /\bsplit\s*$/i.test(text.slice(0, labelIndex))) {
+      continue;
+    }
+
+    let suffix = text.slice(labelIndex + labelMatch[0].length).replace(/^\s+/, "");
+
+    if (/^of\b/i.test(suffix)) {
+      suffix = suffix.slice(2).replace(/^\s+/, "");
+    }
+
+    if (suffix.startsWith(":") || suffix.startsWith("=")) {
+      suffix = suffix.slice(1).replace(/^\s+/, "");
+    }
+
+    const labeledCount = /^(\d+)\b/.exec(suffix);
+
+    if (labeledCount) {
+      return labeledCount[1];
+    }
+  }
+
+  return undefined;
+}
+
+/**
+ *
+ * @param count - The candidate count.
+ */
+function isAmbiguousFireworksYear(count: string): boolean {
+  return count.length === FIREWORKS_YEAR_LENGTH;
+}
+
+/**
+ *
+ * @param text - The fireworks description.
+ */
+function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
+  const splitCount = extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false);
+
+  if (splitCount !== undefined) {
+    return { ambiguous: false, raw: splitCount, value: Number(splitCount) };
+  }
+
+  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text);
+
+  if (explicitSparkCount) {
+    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
+  }
+
+  const labeledCount = extractLabeledFireworksCount(text, /\bcount\b/gi, true);
+
+  if (labeledCount !== undefined) {
+    return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
+  }
+
+  const withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),
+    bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
+
+  if (withCount) {
+    return {
+      ambiguous: isAmbiguousFireworksYear(withCount[1]),
+      raw: withCount[1],
+      value: Number(withCount[1]),
+    };
+  }
+
+  const count = bareCount?.[1];
+
+  if (count === undefined) {
+    return undefined;
+  }
+
+  return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
+}
+
+/**
+ *
  * @param text
  */
 function findNamedColor(text: string): string | undefined {
@@ -636,12 +716,18 @@ function findDirection(text: string): string | undefined {
  * @param template
  * @param lower
  */
-function applySpecializedOverrides(template: Record<string, unknown>, lower: string): Record<string, unknown> {
-  const result = { ...template },
-    count = extractCount(lower);
+function applySpecializedOverrides(
+  template: Record<string, unknown>,
+  count: number | undefined,
+  countProperty: "count" | "splitCount",
+  maxCount?: number,
+): Record<string, unknown> {
+  const result = JSON.parse(JSON.stringify(template)) as Record<string, unknown>;
+
   if (count !== undefined) {
-    result.particleCount = count;
+    result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
   }
+
   return result;
 }
 
@@ -720,6 +806,7 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
   }
   if (bundle.isAutoInitialized) {
     let template: Record<string, unknown>;
+
     if (bundle.bundleName === "@tsparticles/fireworks") {
       template = FIREWORKS_TEMPLATE;
     } else if (bundle.bundleName === "@tsparticles/ribbons") {
@@ -727,8 +814,27 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
     } else {
       template = CONFETTI_TEMPLATE;
     }
-    return applySpecializedOverrides(template, lower);
+    const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
+      fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
+
+    let requestedCount: number | undefined = undefined;
+
+    if (isFireworks) {
+      if (!fireworksSplitCount?.ambiguous) {
+        requestedCount = fireworksSplitCount?.value;
+      }
+    } else {
+      requestedCount = extractCount(lower);
+    }
+
+    return applySpecializedOverrides(
+      template,
+      requestedCount,
+      isFireworks ? "splitCount" : "count",
+      isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
+    );
   }
+
   return generateGenericOptions(keywords, lower);
 }
 
@@ -1286,6 +1392,20 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     html = generateHtml(framework, bundleMatch),
     matchedRuleCount = SPECIALIZED_RULES.filter(rule => matchesAny(lower, rule.keywords)).length,
     notes = buildNotes(bundleMatch, framework, lower, keywords, extraPackages, matchedRuleCount > CONFLICT_THRESHOLD);
+
+  if (bundleMatch.bundleName === "@tsparticles/fireworks") {
+    const requestedSplitCount = extractFireworksSplitCount(lower);
+
+    if (requestedSplitCount?.ambiguous) {
+      notes.push(
+        `The fireworks value "${requestedSplitCount.raw}" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: ${requestedSplitCount.raw}".`,
+      );
+    } else if (requestedSplitCount && requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT) {
+      notes.push(
+        `Requested fireworks splitCount of ${requestedSplitCount.raw} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+      );
+    }
+  }
 
   return {
     options,

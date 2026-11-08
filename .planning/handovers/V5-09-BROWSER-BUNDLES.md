@@ -1,75 +1,86 @@
-# V5-09 — Rifinire la distribuzione browser senza singleton
+# V5-09 — Refine browser distribution without a singleton
 
-Stato: da eseguire. Contratto minimo e migrazione funzionante già in 01;
-rifinitura e verifica finale dopo 08. Non rimandare a questo punto build rotte.
+Status pending. Define the minimum contract and make migration work in 01.
+Refine and verify distribution after 08. Fix build failures when they arise.
 
-## Responsabilità
+## Ownership
 
-Entry browser/bundle/lazy di engine, bundle e feature; package exports/browser,
-manifest dist/CDN; `cli/utils/{rollup-plugin,rolldown-plugin,webpack-config}/`,
-generatori e relativi test, esempi script/CDN e module-script. Non annullare
-modifiche altrui. Conservare i formati supportati salvo decisione motivata esplicita.
+Browser, bundle, and lazy entries for engine, bundles, and features,
+package exports and browser conditions, dist/CDN manifests,
+`cli/utils/{rollup-plugin,rolldown-plugin,webpack-config}/`, generators and
+tests, and classic and module-script CDN examples. Preserve other
+contributors' changes and supported formats unless an explicit decision
+justifies a change.
 
-## Evidenza di partenza
+## Starting evidence
 
-Rollup ha policy dedicate `config/iifePolicy.ts` e `config/entry.ts`: scope globali
-sotto `__tsParticlesInternals`, mapping degli external, bootstrap namespace/Proxy
-ed entry `browser`/`bundle`/lazy. Anche il sorgente dei feature browser espone
-loader globali. Questa infrastruttura richiede revisione oltre alla rimozione
-`globalThis.tsParticles`; verificare le implementazioni degli altri bundler.
+Rollup has dedicated policies in `config/iifePolicy.ts` and `config/entry.ts`
+covering global scopes under `__tsParticlesInternals`, external mapping,
+namespace/Proxy bootstrap, and browser, bundle, and lazy entries. Feature browser
+source also exposes global loaders. Review this infrastructure alongside
+`globalThis.tsParticles` removal and check the other bundlers.
 
-## Lavoro
+## Work
 
-1. Inventariare prodotti supportati: ESM consumer browser, script classici IIFE/UMD
-   dove previsti, bundle completi/autocontenuti, engine + feature esterne e lazy.
-   Separare API pubblica del bootstrap dal namespace interno dei moduli.
-2. Definire in 01 e consolidare qui nome namespace, factory, loader e API convenience.
-   Caricare script rende disponibili definizioni; l'app crea e conserva i propri
-   engine e passa quello scelto a ogni loader. Esempio minimo e due engine devono
-   restare semplici. Nessun default engine reintrodotto per comodità CDN.
-3. Rivedere registri globali, mapping degli external e bootstrap: mantenere solo
-   l'infrastruttura necessaria a risolvere moduli, senza istanze, servizi o flag
-   globali di registrazione che impediscano il secondo engine.
-4. Analizzare duplicazione di core/helper tra engine, slim/full/all e feature
-   autonome: confrontare distribuzioni autocontenute e con external usando il costo
-   totale della pagina. Stabilire modalità di composizione supportate e relativo
-   ordine script; gli ordini non supportati devono fallire con errore chiaro.
-5. Definire caricamenti ripetuti, più bundle sulla pagina, collisioni di namespace
-   e version mismatch. Non sovrascrivere motori già creati o ricollegare plugin
-   silenziosamente a una versione incompatibile. Testare gli ordini documentati.
-6. Verificare lazy: URL/base path dei chunk da CDN, minificato/non minificato,
-   dynamic import e dipendenze esterne. Misurare chunk caricati per stessa scena;
-   niente risparmio dichiarato per semplice spostamento di codice.
-7. Allineare Rollup (standard), Rolldown e Webpack per gli output effettivamente
-   supportati. Controllare entry selection, global name, externals, minificazione,
-   exports e `sideEffects`. La risoluzione browser dei moduli standard resta pura.
-8. Aggiornare README/guide/CDN, template e generatori. Esplicitare breaking change
-   del precedente auto-bootstrap; testare il codice pubblicato negli esempi.
+1. Inventory supported products, including browser ESM consumers, classic
+   IIFE/UMD scripts where provided, standalone bundles, engine with external
+   features, and lazy loading. Separate the public bootstrap API from the
+   internal module namespace.
+2. Define the namespace, factory, loader, and convenience APIs in 01 and
+   finalize them here. Script loading makes definitions available. Applications
+   create and retain their engines and pass the selected engine to each loader.
+   Keep minimal and two-engine examples simple and creation explicit on CDN.
+3. Review global registries, externals, and bootstrap. Keep infrastructure
+   needed for module resolution and exclude global instances, services, or
+   registration flags that would prevent a second engine from working.
+4. Analyze duplicate core and helpers across engine, slim/full/all, and
+   standalone features. Compare standalone and external builds by total page
+   cost. Define supported combinations and script order, with clear errors
+   for unsupported orderings.
+5. Define repeated loads, multiple bundles on a page, namespace collisions,
+   and version mismatches. Keep existing engines intact and reject incompatible
+   plugin wiring. Test documented script orders.
+6. Check lazy CDN chunk URLs/base paths, minified and unminified outputs,
+   dynamic imports, and externals. Measure chunks loaded for the same scene
+   and account for bytes moved into chunks.
+7. Align Rollup (standard), Rolldown, and Webpack for supported outputs.
+   Check entry selection, global names, externals, minification, exports, and
+   `sideEffects`. Keep standard module resolution in browsers pure.
+8. Update README, CDN guides, templates, and generators. Document the breaking
+   change to automatic bootstrap and test the published examples.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Browser reale: bundle completo → factory → loader → load, e engine + singole
-  feature; due engine con set plugin diversi; stessa feature installata su entrambi.
-- Slim + full oppure due bundle supportati sulla stessa pagina: nessuna istanza
-  implicita, nessuna perdita dei motori esistenti o deduplicazione globale scorretta.
-- Lazy servito da un percorso CDN realistico, chunk caricati correttamente;
-  errori di modulo/versione chiari. Testare anche reimport/script duplicati.
-- ESM browser e package conditions non scrivono globals; lo script classico espone
-  soltanto il bootstrap documentato e le definizioni necessarie.
-- Output e pacchetto distribuito coerenti per tutti i bundler/formati supportati;
-  test delle policy/mapping oltre agli smoke degli artefatti costruiti.
-- Report dimensioni: pagina completa e feature selettive, duplicazioni residue,
-  byte entry/chunk, gzip/Brotli e costo startup.
+- In a real browser, exercise standalone bundle → factory → loader → load,
+  engine with individual features, two engines with different plugin sets,
+  and installation of the same feature on both engines.
+- Load slim and full or two supported bundles on the same page. Verify explicit
+  creation, preservation of existing engines, and correct deduplication.
+- Serve lazy output from a realistic CDN path. Check chunks, clear module/version
+  errors, repeated imports, and duplicate scripts.
+- Browser ESM and package conditions avoid global writes. Classic scripts expose
+  only the documented bootstrap and required definitions.
+- Verify consistent output and packaged artifacts across supported bundlers and
+  formats. Test policies and mappings alongside smoke tests.
+- Report full-page and selective-feature sizes, remaining duplication,
+  entry/chunk bytes, gzip/Brotli, and startup cost.
 
-## Consegna
+Include an installed consumer with `browser`, `import`, and `require` conditions.
+Check resolved root and `/lazy` entries, including transitive lazy subpaths, and
+measure requests before invoking the loader and at the first frame.
+[V4-D01](../v4-review/PERFORMANCE-AND-BUNDLES.md) shows that manifests can select
+an eager entry even when lazy source is correct. Reuse the v4 fixture when available.
 
-Matrice formato/entry/bundler, contratto browser definitivo con esempi, test reali
-ed esiti, cambiamenti ai manifest e misure. Il gate 10 include questa matrice.
+## Deliverables
 
-## Approfondimenti di performance e dimensioni
+Provide the format/entry/bundler matrix, final browser contract and examples,
+real browser tests and results, manifest changes, and measurements. Gate 10
+includes this matrix.
 
-Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+## Performance and size plans
+
+See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
 ## Valutazioni architetturali
 

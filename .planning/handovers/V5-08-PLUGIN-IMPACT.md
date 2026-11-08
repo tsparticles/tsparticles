@@ -1,61 +1,60 @@
-# V5-08 — Audit dell'ecosistema plugin dopo la rimozione del singleton
+# V5-08 — Audit plugins after singleton removal
 
-Stato: da eseguire. Audit iniziale obbligatorio in 01/02; questo handover completa
-la verifica dopo 07, con i contratti del core stabilizzati.
+Status pending. An initial audit is required in 01/02. This handover completes
+verification after 07, once core contracts are stable.
 
-## Responsabilità
+## Ownership
 
-Tutti i pacchetti di estensione: `plugins/`, `interactions/`, `updaters/`, `shapes/`,
-`effects/`, `paths/`, `presets/`, `palettes/` e utility runtime consumate dagli stessi.
-Entrypoint normali/lazy/browser, implementazioni, cache e test. Non riscrivere
-pacchetti già corretti; non annullare modifiche altrui.
+All extension packages in `plugins/`, `interactions/`, `updaters/`, `shapes/`,
+`effects/`, `paths/`, `presets/`, `palettes/`, and the runtime utilities they
+consume. Include standard/lazy/browser entrypoints, implementations, caches,
+and tests. Preserve packages that already work and other contributors' changes.
 
-## Lavoro
+## Work
 
-1. Produrre `V5-PLUGIN-AUDIT.md` con una riga per pacchetto e colonne: loader con
-   engine esplicito, dipendenze RNG/log/scheduler, stato/cache di modulo,
-   estensioni Engine/PluginManager/Container/Particle, entrypoint browser/lazy,
-   esito build/test e azione richiesta. Nessuna categoria saltata per esclusioni
-   automatiche della build standard (incluse palette).
-2. Partire dall'ipotesi che molti loader siano già corretti: i loader osservati,
-   come `loadCircleShape(engine)`, ricevono un Engine. Verificarne l'intera catena,
-   senza concludere che la sola firma garantisca isolamento.
-3. Cercare import del vecchio singleton, lookup di globals, flag loaded/initialized,
-   promesse condivise, cache con valori custom e uso diretto/transitivo dei servizi.
-   Una definizione immutabile può essere condivisa; registrazioni, manager mutabili
-   e cache che dipendono dal contesto devono rispettare engine/container proprietario.
-4. Verificare plugin che estendono API dell'engine/plugin manager o del container
-   (move, interactivity, temi, export e altri): nessuna closure cattura il primo
-   engine, nessuna estensione installata solo sul primo registrato.
-5. Migrare i consumer delle API rifinite in 03–07; controllare option loader,
-   ereditarietà, augmentations/type export e accesso ai campi Particle.
-6. Correggere solo i difetti dimostrati, aggiornando test e manifest/changelog dove
-   serve. Per pacchetti invariati registrare evidenze di compatibilità.
+1. Create `V5-PLUGIN-AUDIT.md` with one row per package. Record explicit engine
+   loaders, RNG/logging/scheduler dependencies, module state and caches,
+   Engine/PluginManager/Container/Particle extensions, browser/lazy entrypoints,
+   build/test results, and required action. Include all categories, including
+   palettes and packages omitted by standard build filters.
+2. Start from the observation that many loaders already accept an Engine, such
+   as `loadCircleShape(engine)`. Verify the full call chain for isolation.
+3. Search for imports of the old singleton, global lookups, loaded/initialized
+   flags, shared promises, caches with custom values, and direct or transitive
+   service use. Immutable definitions can be shared. Scope registrations,
+   mutable managers, and contextual caches to their owning engine/container.
+4. Check plugins that extend engine, plugin manager, or container APIs
+   (move, interactivity, themes, export, and others). Ensure closures use the
+   correct engine and extensions install on each registered engine.
+5. Migrate consumers of APIs refined in 03–07. Check option loaders,
+   inheritance, augmentations, type exports, and access to Particle fields.
+6. Fix demonstrated defects and update tests, manifests, or changelogs as
+   needed. Record compatibility evidence for packages that require no edits.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Stesso loader su A e B, in ordine inverso e in concorrenza; chiamate ripetute su A
-  non duplicano registrazioni e non impediscono il caricamento su B.
-- Due engine con combinazioni di plugin diverse: preset/palette, path/easing,
-  custom shape/updater e API aggiunte rimangono locali.
-- Runtime interleaved con RNG/logger distinti e errori async: nessuna dipendenza
-  da import order, dal primo engine o da stato ambientale.
-- Distruzione/refresh di un container non invalida asset condivisi ancora in uso
-  né lascia registrazioni/listener sull'altro engine. Distinguere cache risorse e stato.
-- Tutti i pacchetti censiti hanno un esito; build compatibilità sull'intero insieme,
-  test mirati per ogni difetto e scenari di integrazione per famiglie, suite completa.
-- Bundle/lazy/browser verificati anche nel percorso CDN di 09.
+- Run the same loader on A and B in reverse order and concurrently. Repeated
+  calls on A must leave one registration and allow B to load.
+- Use two engines with different plugin sets. Keep presets/palettes,
+  paths/easings, custom shapes/updaters, and added APIs local.
+- Interleave runtime with distinct RNG/loggers and async errors. Verify
+  independence from import order, the first engine, and ambient state.
+- Destroy or refresh a container while shared assets are still used. Verify
+  those assets remain available and the other engine gains no registrations
+  or listeners. Distinguish resource caches from state.
+- Record an outcome for every package. Run compatibility builds across the set,
+  targeted tests for each defect, integration scenarios by family, and the full suite.
+- Verify bundle/lazy/browser behavior through the CDN path in 09 as well.
 
-## Consegna
+## Deliverables
 
-Matrice pacchetto per pacchetto, elenco modifiche effettivamente necessarie e
-residui riproducibili. L'assenza di modifiche è un risultato valido con prove;
-non dichiarare “tutti a posto” sulla sola ricerca del nome `tsParticles`.
+Provide the per-package matrix, required changes, and reproducible remaining
+issues. An unchanged package is a valid result with verification evidence.
 
-## Approfondimenti di performance e dimensioni
+## Performance and size plans
 
-Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
 ## Valutazioni architetturali
 

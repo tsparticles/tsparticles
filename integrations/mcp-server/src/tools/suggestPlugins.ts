@@ -61,29 +61,60 @@ function findBundle(packages: string[]): string | undefined {
  */
 export function suggestPlugins(options: Record<string, unknown>): SuggestPluginsResult {
   const matched = new Set<string>(),
-    imports: PackageImport[] = [];
+    imports: PackageImport[] = [],
+    particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles."));
 
   for (const mapping of optionToPlugin) {
-    if (isOptionEnabled(options, mapping.optionPath)) {
+    if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
       matched.add(mapping.packageName);
+    }
+  }
+
+  /**
+   *
+   * @param value - A color value or array of color values.
+   */
+  function addColorPlugins(value: unknown): void {
+    const colorValues = Array.isArray(value) ? value : [value];
+
+    for (const color of colorValues) {
+      if (typeof color !== "string") {
+        continue;
+      }
+
+      const normalizedColor = color.trim().toLowerCase();
+
+      if (normalizedColor.startsWith("#")) {
+        matched.add("@tsparticles/plugin-hex-color");
+      } else if (normalizedColor.startsWith("hsl")) {
+        matched.add("@tsparticles/plugin-hsl-color");
+      } else if (normalizedColor.startsWith("rgb")) {
+        matched.add("@tsparticles/plugin-rgb-color");
+      }
     }
   }
 
   const hasInteractivity = options.interactivity !== undefined,
     hasEmitter = options.emitters !== undefined,
     hasAbsorber = options.absorbers !== undefined,
-    // -- Shape Detection --
-    shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as
-      Record<string, unknown> | undefined,
-    shapeType = shapeSection?.type,
-    shapeOptions = shapeSection?.options as Record<string, unknown> | undefined;
+    shapeAliases: Record<string, string> = {
+      char: "text",
+      character: "text",
+      edge: "square",
+      gifs: "gif",
+      images: "image",
+      "multiline-text": "text",
+      triangle: "polygon",
+    };
 
   /**
    *
    * @param name
    */
   function addShapeByName(name: string): void {
-    const fullName = name.startsWith("@tsparticles/") ? name : `@tsparticles/shape-${name}`;
+    const shapeName = Object.prototype.hasOwnProperty.call(shapeAliases, name) ? shapeAliases[name] : name,
+      fullName = shapeName.startsWith("@tsparticles/") ? shapeName : `@tsparticles/shape-${shapeName}`;
+
     if (fullName in packageCatalog.byName) {
       matched.add(fullName);
     }
@@ -97,13 +128,20 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     return parseModeNames(value);
   }
 
-  for (const name of getShapeNames(shapeType)) {
-    addShapeByName(name);
-  }
-
-  // Infer shapes from shape options keys (e.g. shape.options.image → shape-image)
-  if (shapeOptions) {
-    const optionToShape: Record<string, string> = {
+  const effectMap: Record<string, string> = {
+      bubble: "@tsparticles/effect-bubble",
+      filter: "@tsparticles/effect-filter",
+      particles: "@tsparticles/effect-particles",
+      shadow: "@tsparticles/effect-shadow",
+      trail: "@tsparticles/effect-trail",
+    },
+    colorPaths = [
+      "particles.color.value",
+      "particles.paint.color.value",
+      "particles.paint.fill.color.value",
+      "particles.paint.stroke.color.value",
+    ],
+    optionToShape: Record<string, string> = {
       image: "image",
       text: "text",
       emoji: "emoji",
@@ -115,26 +153,66 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
       heart: "heart",
       arrow: "arrow",
     };
-    for (const key of Object.keys(shapeOptions)) {
-      const shapeName = optionToShape[key];
-      if (shapeName) addShapeByName(shapeName);
+
+  /**
+   *
+   * @param particleOptions - Particle options to inspect for required loaders.
+   */
+  function addParticleOptionPlugins(particleOptions: Record<string, unknown>): void {
+    const particleRoot = { particles: particleOptions },
+      shapeSection = particleOptions.shape as Record<string, unknown> | undefined,
+      shapeOptions = shapeSection?.options as Record<string, unknown> | undefined,
+      effectSection = particleOptions.effect as Record<string, unknown> | undefined;
+
+    for (const mapping of particleOptionMappings) {
+      if (isOptionEnabled(particleRoot, mapping.optionPath)) {
+        matched.add(mapping.packageName);
+
+        if (mapping.packageName.startsWith("@tsparticles/interaction-particles-")) {
+          matched.add("@tsparticles/plugin-interactivity");
+        }
+      }
+    }
+
+    if (isOptionEnabled(particleRoot, "particles.move")) {
+      matched.add("@tsparticles/plugin-move");
+    }
+
+    if (isOptionEnabled(particleRoot, "particles.paint")) {
+      matched.add("@tsparticles/updater-paint");
+    }
+
+    for (const colorPath of colorPaths) {
+      addColorPlugins(getOptionValue(particleRoot, colorPath));
+    }
+
+    for (const name of getShapeNames(shapeSection?.type)) {
+      addShapeByName(name);
+    }
+
+    if (shapeOptions) {
+      for (const key of Object.keys(shapeOptions)) {
+        const shapeName = optionToShape[key];
+
+        if (shapeName) {
+          addShapeByName(shapeName);
+        }
+      }
+    }
+
+    for (const typeName of parseModeNames(effectSection?.type)) {
+      const pkg = effectMap[typeName];
+
+      if (pkg) {
+        matched.add(pkg);
+      }
     }
   }
 
-  // -- Effect Detection --
-  const effectType = (options.particles as Record<string, unknown> | undefined)?.effect as
-    Record<string, unknown> | undefined;
-  if (effectType?.type) {
-    const effectMap: Record<string, string> = {
-        bubble: "@tsparticles/effect-bubble",
-        filter: "@tsparticles/effect-filter",
-        particles: "@tsparticles/effect-particles",
-        shadow: "@tsparticles/effect-shadow",
-        trail: "@tsparticles/effect-trail",
-      },
-      typeStr = effectType.type as string,
-      pkg = effectMap[typeStr];
-    if (pkg) matched.add(pkg);
+  const topLevelParticles = options.particles;
+
+  if (topLevelParticles && typeof topLevelParticles === "object" && !Array.isArray(topLevelParticles)) {
+    addParticleOptionPlugins(topLevelParticles as Record<string, unknown>);
   }
 
   // -- Emitter Shape Detection --
@@ -151,27 +229,22 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
         matchedEmitterShapePackages.add(pkg);
       }
     }
-  }
 
-  // tsParticles requires @tsparticles/plugin-interactivity whenever
-  // `interactivity` is configured at all — there's no partial substitute
-  // for it, so this is unconditional rather than gated behind a stub
-  // check that always evaluated to true anyway.
-  if (hasInteractivity) {
-    matched.add("@tsparticles/plugin-interactivity");
-  }
+    const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
 
-  const pluginInteractions = [
-    { key: "particles.links", pkg: "@tsparticles/interaction-particles-links" },
-    { key: "particles.collisions", pkg: "@tsparticles/interaction-particles-collisions" },
-    { key: "particles.move.attract", pkg: "@tsparticles/interaction-particles-attract" },
-    { key: "particles.move.repulse", pkg: "@tsparticles/interaction-particles-repulse" },
-  ];
+    for (const particleOptions of particleOverrides) {
+      if (particleOptions === null || typeof particleOptions !== "object" || Array.isArray(particleOptions)) {
+        continue;
+      }
 
-  for (const { key, pkg } of pluginInteractions) {
-    if (isOptionEnabled(options, key)) {
-      matched.add(pkg);
+      addParticleOptionPlugins(particleOptions as Record<string, unknown>);
     }
+  }
+
+  // Emitters and absorbers register interaction loaders that require the
+  // interactivity plugin, so load it before those package loaders too.
+  if (hasInteractivity || hasEmitter || hasAbsorber) {
+    matched.add("@tsparticles/plugin-interactivity");
   }
 
   const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
@@ -196,9 +269,14 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     matched.add("@tsparticles/plugin-absorbers");
   }
 
-  const matchedArr = [...matched].filter(Boolean).sort();
+  const interactivityPackage = "@tsparticles/plugin-interactivity",
+    matchedArr = [...matched].filter(Boolean).sort(),
+    importOrder = [
+      ...(matchedArr.includes(interactivityPackage) ? [interactivityPackage] : []),
+      ...matchedArr.filter(pkgName => pkgName !== interactivityPackage),
+    ];
 
-  for (const pkgName of matchedArr) {
+  for (const pkgName of importOrder) {
     const pkgInfo = packageCatalog.byName[pkgName];
     if (pkgInfo.loadFunction) {
       imports.push({

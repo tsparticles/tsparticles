@@ -5,11 +5,14 @@ import type { ParticlesInstance } from "./ParticlesInstance.js";
 const instances = new Map<string, ParticlesInstance | Promise<ParticlesInstance | undefined>>();
 
 /**
- * @param id
+ * @param id - The cache key
+ * @param instance - The instance expected to be cached
  * @internal
  */
-export function deleteParticlesInstance(id: string): void {
-  instances.delete(id);
+export function deleteParticlesInstance(id: string, instance: ParticlesInstance): void {
+  if (instances.get(id) === instance) {
+    instances.delete(id);
+  }
 }
 
 const defaultCount = 80,

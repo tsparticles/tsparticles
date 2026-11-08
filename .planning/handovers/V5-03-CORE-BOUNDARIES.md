@@ -1,54 +1,53 @@
-# V5-03 — Cartelle di dominio e superficie pubblica minima
+# V5-03 — Domain folders and a minimal public API surface
 
-Stato: da eseguire. Dipendenza: 02 completato e firme stabilizzate.
+Status pending. Requires completion of 02 and stable signatures.
 
-## Responsabilità
+## Ownership
 
-Struttura/import del core, `exports.ts`, `export-types.ts`, package exports engine,
-controlli di dipendenza e consumer che importano simboli riclassificati. Non
-riscrivere algoritmi o lifecycle; non annullare modifiche di altri agent.
+Core structure and imports, `exports.ts`, `export-types.ts`, engine package
+exports, dependency checks, and consumers importing reclassified symbols.
+Keep existing algorithms and lifecycle in this phase and preserve other agents' changes.
 
-## Revisione obbligatoria di tutto l'engine
+## Required review of the entire engine
 
-Produrre `V5-ENGINE-AUDIT.md` censendo tutti i file sotto `engine/src/`, incluse
-aree poco grandi o già modulari. Colonne: file/area, responsabilità, export/consumer,
-stato condiviso, dipendenze/costo, owner/handover, decisione, evidenza di verifica.
-Ogni nuovo file va incluso nella matrice; nessuna area esclusa per numero di righe.
+Create `V5-ENGINE-AUDIT.md` with every file under `engine/src/`, including small
+or already modular areas. Record file/area, responsibility, exports/consumers,
+shared state, dependencies/cost, owner/handover, decision, and verification
+evidence. Include each new file regardless of its size.
 
-| Area                                                                | Owner della revisione                                            |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Entry, Engine e inizializzazione                                    | 01; servizi in 02; API/import in 03                              |
-| PluginManager e registri/loader                                     | 01–03; impatto su estensioni in 08                               |
-| Container e lifecycle                                               | 04                                                               |
-| CanvasManager e RenderManager                                       | 05                                                               |
-| ParticlesManager e SpatialHashGrid                                  | 06                                                               |
-| Particle e Retina                                                   | 07                                                               |
-| EventListeners ed EventDispatcher                                   | 04, con verifica canvas in 05                                    |
-| Math/Color/Log/Error/Type/Options utility, ranges/vectors/constants | 02/03 per revisione completa; ottimizzazioni pertinenti in 04–07 |
-| Classi e interfacce options, tipi/enums, export                     | 03; test compatibilità in 08                                     |
-| Browser/lazy e distribuzione                                        | 01 per migrazione; 09 per rifinitura                             |
+| Area                                                                  | Review ownership                                           |
+| --------------------------------------------------------------------- | ---------------------------------------------------------- |
+| Entry, Engine, and initialization                                     | 01, with services in 02 and API/imports in 03              |
+| PluginManager, registries, and loaders                                | 01–03, with extension impact in 08                         |
+| Container and lifecycle                                               | 04                                                         |
+| CanvasManager and RenderManager                                       | 05                                                         |
+| ParticlesManager and SpatialHashGrid                                  | 06                                                         |
+| Particle and Retina                                                   | 07                                                         |
+| EventListeners and EventDispatcher                                    | 04, with canvas verification in 05                         |
+| Math/Color/Log/Error/Type/Options utilities, ranges/vectors/constants | Full review in 02/03, with relevant optimizations in 04–07 |
+| Option classes and interfaces, types/enums, exports                   | 03, with compatibility tests in 08                         |
+| Browser/lazy and distribution                                         | Migration in 01 and refinement in 09                       |
 
-03 è responsabile della revisione delle aree residue e dell'assegnazione esplicita
-di qualsiasi file non coperto dalla tabella. Esito “mantenuto” ammesso con ragione
-tecnica, consumer e verifica; non equivale a file ignorato. Il gate finale richiede
-copertura completa della matrice, senza pretendere riscritture inutili.
+Handover 03 owns remaining areas and explicitly assigns files outside the table.
+A decision to keep a file is valid when it records the technical reason, consumers,
+and verification. The final gate requires full coverage of the matrix.
 
-## Struttura di partenza proposta
+## Proposed starting structure
 
 ```text
 engine/src/Core/
   Engine/
-    index.ts             # facciata selettiva del dominio
+    index.ts             # selective domain entrypoint
     Engine.ts
-    ...                  # servizi e registrazione interni
+    ...                  # internal services and registration
   Container/
     index.ts
     Container.ts
-    ...                  # helper lifecycle interni
+    ...                  # internal lifecycle helpers
   Canvas/
     index.ts
     CanvasManager.ts
-    ...                  # helper canvas/style interni
+    ...                  # internal canvas and style helpers
   Rendering/
     index.ts
     RenderManager.ts
@@ -58,54 +57,55 @@ engine/src/Core/
     ParticlesManager.ts
 ```
 
-Adattare il perimetro di `Interfaces/`, `Utils/` e `Retina` al grafo rilevato;
-non spostare ogni file per simmetria. I nomi finali vanno registrati in STRUCTURE.
+Use the observed graph to place `Interfaces/`, `Utils/`, and `Retina`. Move
+files where the domain boundary warrants it. Record final names in STRUCTURE.
 
-## Lavoro
+## Work
 
-1. Inventariare export e usi: pubblici richiesti da app, contratti plugin, runtime
-   necessari a ereditarietà, dettagli interni. Le classi option estese dai plugin,
-   `IOptionLoader.load()`, animazioni e i tipi Container/Particle sono sensibili.
-2. Disegnare un grafo senza cicli e distinguere import runtime da `import type`.
-   Tenere le facciate con soli export espliciti; all'interno del dominio usare
-   import diretti dei sibling, senza reimportare il proprio barrel o la root engine.
-3. Introdurre cartelle e aggiornare import `.js`, dichiarazioni emesse, typedoc e
-   test. Mantenere i tipi pubblici necessari nei root export; rimuovere solo simboli
-   intenzionalmente privati, con elenco breaking e alternativa documentata.
-4. Nessun `export *` indiscriminato nelle nuove facciate. Un helper interno può
-   avere `export` per altri file dello stesso dominio: non va riesportato da index.
-5. Enforce dei confini con la configurazione di dipendenze/ESLint già in repo:
-   vietare deep import tra domini e dai consumer. `package.json#exports` limita
-   i subpath pubblici, ma da solo non blocca import relativi interni o accesso fisico.
-6. Verificare root e `./lazy` in source e `package.dist.json`. Introdurre subpath
-   aggiuntivi solo se necessari a consumer reali e con misure di inclusione.
-7. Non forzare estrazioni di capacità opzionali: proporle con byte recuperabili,
-   costo migrazione/default e contratto plugin prima di implementarle in 04/05.
+1. Inventory exports and uses, including application APIs, plugin contracts,
+   runtime values required for inheritance, and internal details. Option classes
+   extended by plugins, `IOptionLoader.load()`, animation APIs, and
+   Container/Particle types are sensitive.
+2. Design an acyclic graph and distinguish runtime imports from `import type`.
+   Keep domain exports explicit. Within a domain, import siblings directly
+   without reimporting the domain barrel or engine root.
+3. Introduce folders and update `.js` imports, emitted declarations, TypeDoc,
+   and tests. Keep necessary public types in the root exports. List intentional
+   API removals and document alternatives.
+4. Keep new domain entrypoints selective. Internal helpers can export symbols
+   to siblings and keep them out of the index.
+5. Enforce boundaries using the existing dependency or ESLint configuration.
+   Block deep imports across domains and from consumers. `package.json#exports`
+   limits public subpaths. Internal relative and physical imports need separate checks.
+6. Verify the root and `./lazy` entries in source and `package.dist.json`.
+   Add subpaths only for real consumer needs and with inclusion measurements.
+7. Propose optional feature extraction with recoverable bytes, migration and
+   default behavior costs, and a plugin contract before implementing it in 04/05.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Nessun ciclo runtime nuovo; un tentativo di deep import vietato è rilevato dal
-  controllo scelto. Verificare anche un'importazione pubblica valida.
-- Consumer TypeScript rappresentativi: option loader plugin, classe derivata,
-  tipi di callback e custom plugin compilano tramite API pubblica.
-- Smoke del pacchetto costruito: ESM/CJS/browser/lazy e tipi risolti correttamente;
-  nessun export runtime accidentale di classi prima esportate solo come tipi.
-- Confronto bundle con 02: lo spostamento non deve introdurre costi ingiustificati.
-  Nessuna dichiarazione di risparmio basata soltanto su file più piccoli.
-- Build downstream, suite e lint/format conformi.
+- Check for new runtime cycles. Verify the selected rule catches a forbidden
+  deep import and allows a valid public import.
+- Compile representative TypeScript consumers through public APIs, including
+  a plugin option loader, a derived class, callback types, and a custom plugin.
+- Smoke-test the built package across ESM/CJS/browser/lazy and type resolution.
+  Check that type-only classes do not become runtime exports.
+- Compare bundle sizes with 02 and justify any added cost. Measure the output
+  graph to substantiate savings.
+- Pass downstream builds, suites, lint, and formatting checks.
 
-## Consegna
+## Deliverables
 
-Inventario completo `V5-ENGINE-AUDIT.md`, con ogni file assegnato e stato di revisione.
+Complete `V5-ENGINE-AUDIT.md` with ownership and review status for every file.
 
-Matrice public/internal, grafo dei domini, regole applicate, elenco rimozioni API e
-misure. Aggiornare ARCHITECTURE/STRUCTURE e stato. I due handover seguenti usano i
-nuovi percorsi; i nomi vecchi nei loro riferimenti identificano le responsabilità.
+Provide the public/internal matrix, domain graph, enforced rules, API removal list,
+and measurements. Update ARCHITECTURE/STRUCTURE and status. Later handovers use the
+new paths. References to original names identify ownership.
 
-## Approfondimenti di performance e dimensioni
+## Performance and size plans
 
-Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
 ## Valutazioni architetturali
 

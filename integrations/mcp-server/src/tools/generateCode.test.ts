@@ -9,6 +9,9 @@ import {
   matchBundle,
 } from "./generateCode.js";
 
+const LARGE_COUNT_DIGITS = 400,
+  LONG_WHITESPACE_LENGTH = 10000;
+
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
     expect(extractKeywords("Simple Circles Moving")).toEqual(["simple", "circles", "moving"]);
@@ -76,7 +79,7 @@ describe("generateOptions", () => {
     const match = matchBundle(extractKeywords("confetti"), "confetti"),
       options = generateOptions(match, extractKeywords("confetti"), "confetti");
     expect(options).toMatchObject({
-      particleCount: 120,
+      count: 120,
       spread: 100,
       gravity: 1.2,
       ticks: 200,
@@ -88,7 +91,154 @@ describe("generateOptions", () => {
   it("produces the fireworks template", () => {
     const match = matchBundle(extractKeywords("fireworks"), "fireworks"),
       options = generateOptions(match, extractKeywords("fireworks"), "fireworks");
-    expect(options).toMatchObject({ particleCount: 50, spread: 360, startVelocity: 30 });
+    expect(options).toMatchObject({ splitCount: 50, speed: 30, gravity: 30 });
+    expect(options).not.toHaveProperty("particleCount");
+    expect(options).not.toHaveProperty("spread");
+  });
+
+  it("returns independent copies of specialized templates", () => {
+    const match = matchBundle(extractKeywords("confetti"), "confetti"),
+      keywords = extractKeywords("confetti"),
+      first = generateOptions(match, keywords, "confetti"),
+      firstColors = first.colors as string[],
+      firstOrigin = first.origin as Record<string, number>;
+
+    firstColors[0] = "#000000";
+    firstOrigin.y = 0.5;
+
+    const second = generateOptions(match, keywords, "confetti");
+
+    expect(second.colors).toEqual(["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"]);
+    expect(second.origin).toEqual({ y: 0.7 });
+  });
+
+  it("applies fireworks count overrides to splitCount", () => {
+    const result = generateCode({ description: "200 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+  });
+
+  it("does not treat a year as a fireworks splitCount request", () => {
+    const result = generateCode({ description: "fireworks for 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("reports a year before the event phrase as an ambiguous fireworks count", () => {
+    const result = generateCode({ description: "2000 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+  });
+
+  it("reports a year-like value after fireworks with as ambiguous", () => {
+    const result = generateCode({ description: "fireworks with 2026 written in the sky" }),
+      futureYearResult = generateCode({ description: "fireworks with 2100 written in the sky" }),
+      labeledResult = generateCode({ description: "fireworks with 2100 written in the sky, split count: 75" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(futureYearResult.options).toHaveProperty("splitCount", 50);
+    expect(futureYearResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(labeledResult.options).toHaveProperty("splitCount", 75);
+    expect(labeledResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses explicitly labeled four-digit counts instead of treating them as years", () => {
+    const result = generateCode({ description: "count: 2100 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("does not treat a bare number after fireworks as a splitCount request", () => {
+    const result = generateCode({ description: "fireworks 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Requested fireworks splitCount"))).toBe(false);
+  });
+
+  it("parses labeled split counts separated by a colon or equals sign", () => {
+    const colonResult = generateCode({ description: "fireworks split count: 200" }),
+      equalsResult = generateCode({ description: "fireworks count=200" });
+
+    expect(colonResult.options).toHaveProperty("splitCount", 200);
+    expect(equalsResult.options).toHaveProperty("splitCount", 200);
+  });
+
+  it("prioritizes a valid split count label over an earlier generic count", () => {
+    const result = generateCode({ description: "count 4 fireworks, split count: 20" });
+
+    expect(result.options).toHaveProperty("splitCount", 20);
+  });
+
+  it("prioritizes an explicit spark count over the number of fireworks", () => {
+    const result = generateCode({ description: "10 fireworks with 50 sparks each" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+  });
+
+  it("prioritizes a spark count over a generic count but keeps split count labels highest", () => {
+    const sparkCountResult = generateCode({ description: "count 4 fireworks with 200 sparks" }),
+      splitCountResult = generateCode({ description: "count 4 fireworks with 200 sparks, split count: 300" });
+
+    expect(sparkCountResult.options).toHaveProperty("splitCount", 200);
+    expect(splitCountResult.options).toHaveProperty("splitCount", 300);
+  });
+
+  it("parses labeled counts after long whitespace without stalling", () => {
+    const result = generateCode({ description: `fireworks${" ".repeat(LONG_WHITESPACE_LENGTH)}split count: 200` }),
+      malformedResult = generateCode({
+        description: `fireworks count${" ".repeat(LONG_WHITESPACE_LENGTH)}not-a-number`,
+      });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+    expect(malformedResult.options).toHaveProperty("splitCount", 50);
+  });
+
+  it("caps excessive fireworks splitCount requests and reports the cap", () => {
+    const result = generateCode({ description: "fireworks split count: 1000" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("captures full fireworks counts before applying the cap", () => {
+    const result = generateCode({ description: "10000 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 10000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("preserves the original text for imprecise and infinite requested counts", () => {
+    const impreciseCount = "9007199254740993",
+      infiniteCount = "9".repeat(LARGE_COUNT_DIGITS),
+      impreciseResult = generateCode({ description: `${impreciseCount} fireworks` }),
+      infiniteResult = generateCode({ description: `${infiniteCount} fireworks` });
+
+    expect(impreciseResult.notes).toContain(
+      `Requested fireworks splitCount of ${impreciseCount} exceeds the maximum of 500; using 500.`,
+    );
+    expect(infiniteResult.notes).toContain(
+      `Requested fireworks splitCount of ${infiniteCount} exceeds the maximum of 500; using 500.`,
+    );
+    expect(infiniteResult.notes.some(note => note.includes("Infinity"))).toBe(false);
+  });
+
+  it("preserves count overrides above the fireworks cap for other bundles", () => {
+    const result = generateCode({ description: "1000 ribbons" });
+
+    expect(result.options).toHaveProperty("count", 1000);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("uses supported ribbon options and count overrides", () => {
+    const result = generateCode({ description: "200 ribbons" });
+
+    expect(result.options).toMatchObject({ count: 200, positionX: 50 });
+    expect(result.options).not.toHaveProperty("spread");
+    expect(result.options).not.toHaveProperty("gravity");
   });
 
   it("produces a generic template with core sections", () => {

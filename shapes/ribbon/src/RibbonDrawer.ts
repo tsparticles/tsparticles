@@ -126,13 +126,40 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   }
 
   isInsideCanvas(data: IParticleCanvasBoundsData<RibbonParticle>): boolean {
-    const { outMode, particle, radius } = data,
+    const { canvasSize, direction, outMode, particle, radius } = data,
       points = particle.ribbonPoints,
       offsets = particle.ribbonOffsets,
       position = particle.position,
       strictBounds = outMode === OutMode.destroy || outMode === OutMode.out,
       scaledOffsetLen = (offsets?.length ?? minRadius) * radius,
       headRadius = Math.max(radius, scaledOffsetLen);
+
+    if (outMode === OutMode.bounce || outMode === OutMode.split) {
+      const collisionPosition = particle.getPosition();
+
+      if (direction === OutModeDirection.bottom) {
+        return collisionPosition.y + radius < canvasSize.height;
+      }
+
+      if (direction === OutModeDirection.left) {
+        return collisionPosition.x - radius > 0;
+      }
+
+      if (direction === OutModeDirection.right) {
+        return collisionPosition.x + radius < canvasSize.width;
+      }
+
+      if (direction === OutModeDirection.top) {
+        return collisionPosition.y - radius > 0;
+      }
+
+      return (
+        collisionPosition.x >= -radius &&
+        collisionPosition.y >= -radius &&
+        collisionPosition.y <= canvasSize.height + radius &&
+        collisionPosition.x <= canvasSize.width + radius
+      );
+    }
 
     if (!strictBounds) {
       return isInsideByDirection(

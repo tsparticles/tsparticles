@@ -1,60 +1,65 @@
-# V5-05 — CanvasManager, rendering e altri costi del core
+# V5-05 — CanvasManager, rendering, and other core costs
 
-Stato: da eseguire. Dipendenza: 04 completato.
+Status pending. Requires completion of 04.
 
-## Responsabilità
+## Ownership
 
-Domini Canvas/Rendering, helper colore/HDR/style strettamente correlati, adattamenti
-ai contratti condivisi e relativi test. ParticlesManager, Particle e Retina
-sono revisionati integralmente nei successivi handover 06/07. Non introdurre
-nuovi package solo per distribuire i file. Non annullare modifiche di altri agent.
+Canvas and Rendering, closely related color/HDR/style helpers, changes to
+shared contracts, and related tests. Handovers 06/07 review ParticlesManager,
+Particle, and Retina in full. Add packages only for a substantive reason and
+preserve other agents' changes.
 
-## Lavoro
+## Work
 
-1. Analizzare insieme `CanvasManager` e `RenderManager`: gestione risorsa/canvas,
-   style/fullscreen, resize/zoom, contesti, colori/HDR, pipeline draw e hook plugin.
-   Coordinare dipendenze e misure con le revisioni obbligatorie di
-   `ParticlesManager` (06) e `Particle`/Retina (07).
-2. Introdurre helper privati di dominio quando eliminano duplicazioni o dipendenze;
-   non aggiungere un oggetto/closure per particella o per frame per ridurre le righe.
-3. Separare codice DOM e trasformazioni pure se il grafo consente esclusione reale.
-   Un import dinamico sempre eseguito sposta byte, non li elimina. Misurare somma
-   dei chunk, startup e costo runtime delle eventuali capacità lazy.
-4. Preservare OffscreenCanvas, trasferimento una tantum, ownership e canvas fornito
-   dal consumer. La WeakMap dei trasferimenti è una cache della risorsa browser:
-   per-engine non significa trasferire due volte lo stesso HTMLCanvasElement.
-5. Conservare pipeline background/background mask, layer e ordine hook, blending,
-   trasformazioni/zoom e source canvas dei plugin export. Non eliminare HDR,
-   P3, tone mapping o fallback per ottenere una cifra migliore.
-6. Ridurre dipendenze obbligatorie solo con un percorso opzionale completo: loader,
-   options, bundle che lo abilita, fallback esplicito e test. Nessun enablement
-   nascosto basato sull'engine globale o sugli effetti collaterali dell'import.
-7. Misurare risultato sull'entry minimale e sui bundle, più prestazioni di draw/update
-   e allocazioni. Confronti omogenei; riportare eventuale costo dei nuovi confini.
+1. Analyze `CanvasManager` and `RenderManager` together, covering resource/canvas
+   management, styling/fullscreen, resize/zoom, contexts, color/HDR, the draw
+   pipeline, and plugin hooks. Coordinate dependencies and measurements with
+   `ParticlesManager` (06) and `Particle`/Retina (07).
+2. Introduce private domain helpers where they remove duplication or
+   dependencies. Require a benefit beyond shorter source for objects or closures
+   allocated per particle or frame.
+3. Separate DOM code and pure transforms where the graph allows real exclusion.
+   An unconditional dynamic import still ships those bytes. Measure total
+   chunks, startup, and runtime cost for lazy capabilities.
+4. Preserve OffscreenCanvas, one-time transfer, ownership, and caller-supplied
+   canvases. The transfer WeakMap is a browser resource cache. A per-engine
+   design must still avoid transferring the same HTMLCanvasElement twice.
+5. Preserve background/background mask, layers and hook order, blending,
+   transforms/zoom, and source canvases used by export plugins. Keep HDR,
+   P3, tone mapping, and fallbacks in the comparison.
+6. Reduce mandatory dependencies only with a complete optional path that
+   includes loader, options, an enabling bundle, explicit fallback, and tests.
+   Keep enablement explicit and independent of global engines and import effects.
+7. Measure the minimal entry and bundles, draw/update performance, and
+   allocations. Compare like for like and report costs of the new boundaries.
 
-## Prove di accettazione
+## Acceptance tests
 
-- DOM canvas e OffscreenCanvas esplicito, resize/fullscreen/zoom, teardown e
-  riutilizzo DOM dopo destroy, errori supporto/trasferimento con codici corretti.
-- Ownership definita per stesso canvas con engine distinti; nessun trasferimento
-  ripetuto, nessun listener/MutationObserver/media listener perso o duplicato.
-- HDR richiesto vs color space effettivo, P3/sRGB e fallback, tone mapping e
-  alpha/blending; test dei layer e hook di background/mask/export.
-- Smoke in browser reale di scena base, links/collisioni, emitter/absorber,
-  HDR/background mask e due engine contemporanei. Registrare ambiente e screenshot
-  quando utili; segnalare il gate aperto se non eseguibile.
-- Suite completa, lint/format e build downstream; budget intermedi rispettati.
+- Test DOM canvas and explicit OffscreenCanvas, resize/fullscreen/zoom, teardown,
+  DOM reuse after destroy, and correct error codes for support/transfer failures.
+- Define ownership for the same canvas across engines. Verify one-time transfer
+  and correct cleanup of listeners, MutationObserver, and media listeners.
+- Verify requested HDR against effective color space, P3/sRGB and fallback,
+  tone mapping, alpha/blending, layers, and background/mask/export hooks.
+- Smoke-test basic scenes, links/collisions, emitters/absorbers, HDR/background
+  mask, and two simultaneous engines in a real browser. Record the environment
+  and screenshots when helpful. Leave the gate open if tests cannot run.
+- Pass the full suite, lint/format, downstream builds, and intermediate budgets.
 
-## Consegna
+Include a custom updater with private state in parity tests. Init, update, and
+draw must use the same instance within each cycle, including after redraw and
+refresh, as described in [V4-B05](../v4-review/CORRECTNESS.md#v4-b05--p1--particle-initialization-and-drawing-use-different-updater-instances).
 
-Misure per scenario, prove browser e inventario responsabilità finali. Registrare
-anche ottimizzazioni considerate e scartate quando spiegano un tradeoff concreto.
-Aggiornare ARCHITECTURE/STRUCTURE, changelog se necessario e indice.
+## Deliverables
 
-## Approfondimenti di performance e dimensioni
+Provide per-scenario measurements, browser evidence, and the final ownership
+inventory. Record rejected optimizations when they explain a concrete tradeoff.
+Update ARCHITECTURE/STRUCTURE, the changelog as needed, and the index.
 
-Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+## Performance and size plans
+
+See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md) and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
 
 ## Migrazione colore obbligatoria
 

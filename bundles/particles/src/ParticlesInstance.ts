@@ -25,7 +25,7 @@ export class ParticlesInstance {
   destroy(): void {
     this.#container.destroy();
 
-    deleteParticlesInstance(this.#id);
+    deleteParticlesInstance(this.#id, this);
   }
 
   /** Pause the particles animation */

@@ -1,66 +1,67 @@
-# V5-IMP-05 — Costo per particella, options e cache
+# V5-IMP-05 — Per-particle costs, options, and caches
 
-Stato: da analizzare. Priorità media/alta secondo i profili. Owner: 07; supporto 02/03/08.
-Prerequisito: [IMP-01](V5-IMP-01-MEASUREMENT.md).
+Status pending analysis. Medium to high priority according to profiles.
+Handover 07 owns this plan, with support from 02/03/08.
+Requires [IMP-01](V5-IMP-01-MEASUREMENT.md).
 
-## Obiettivo e ricognizione
+## Goal and starting point
 
-Particle integra options, vettori, colore, stato di animazione, modifier e hook;
-Retina contribuisce a dimensioni/range. Separare costo di costruzione/riuso da
-getter e calcoli eseguiti ogni frame. Non ogni campo o helper del file grande è
-costoso: raccogliere conteggi di chiamate e dipendenze trattenute nel bundle.
+Particle integrates options, vectors, color, animation state, modifiers,
+and hooks. Retina contributes sizes and ranges. Separate construction and
+reuse from getters and calculations that run every frame. Use call counts
+and retained bundle dependencies to identify costly fields and helpers.
 
-### T1 — Options e merge
+### T1 — Options and merges
 
-Su M6 misurare costruzione/merge per particella, precedenze tra base/gruppo/shape/
-effect e override dinamici. Valutare un template normalizzato per configurazione
-stabile e una copia dei soli campi mutabili, invece del merge completo ripetuto.
-Prima definire ownership: niente oggetti options mutabili condivisi tra particelle.
+In M6, measure per-particle construction and merging, precedence across
+base/group/shape/effect, and dynamic overrides. Compare repeated full merges
+with a normalized template for stable configuration and copying only mutable
+fields. Define ownership first and keep mutable options separate per particle.
 
-Cache o template richiedono invalidazione su refresh/reset, temi, plugin option
-loader e gruppi. Chiavi non basate su JSON.stringify nel percorso caldo; verificare
-se identità/versione della configurazione sono contratti sufficienti. Non aggiungere
-una cache se l'input può essere mutato senza un punto di invalidazione controllato.
+Caches and templates need invalidation for refresh/reset, themes, plugin option
+loaders, and groups. Keep JSON.stringify out of hot-path keys. Verify whether
+configuration identity or version is a sufficient key. Require a controlled
+invalidation point for any mutable input.
 
-### T2 — Getter, vettori e conversioni colore
+### T2 — Getters, vectors, and color conversion
 
-Profilare chiamate ripetute a getPosition/bounds, normalizzazione/mix colore e
-accesso a dimensioni. Confrontare calcolo una volta per fase con risultato scratch
-per owner; aggiornamenti plugin durante frame possono invalidare dati intermedi.
-Non restituire un oggetto mutabile condiviso al posto di un risultato indipendente
-senza verificare tutti i consumer. Distinguere API pubblica da helper interni.
+Profile repeated getPosition/bounds calls, color normalization and mixing, and
+size access. Compare calculating once per phase with owner-local scratch
+storage. Plugin updates during the frame can invalidate intermediate values.
+Verify all consumers before replacing an independent result with a shared
+mutable object. Distinguish public APIs from internal helpers.
 
-Accettazione: stessi risultati su HDR/sRGB, animazioni e modifiche plugin, meno
-allocazioni/calcoli sul profilo, assenza di regressioni visive e di aliasing.
+Acceptance requires equivalent HDR/sRGB, animations, and plugin mutations,
+fewer measured allocations or calculations, and no visual or aliasing regressions.
 
-### T3 — Layout dello stato e capacità opzionali
+### T3 — State layout and optional capabilities
 
-Misurare heap per particella con M3 rispetto a M8, numero oggetti e costo init.
-Valutare campi lazy per feature rare e inizializzazione coerente degli oggetti;
-confrontare costo di branch e frammentazione con memoria recuperata. Evitare
-un oggetto o closure aggiuntivo per ogni campo estratto in un helper.
+Compare per-particle heap, object count, and initialization cost in M3 and M8.
+Evaluate lazy fields for rare features and consistent object initialization.
+Compare branch and fragmentation costs against recovered memory. Avoid adding
+an object or closure for every field extracted into a helper.
 
-Pooling e reset devono eliminare stato di plugin/shape precedente; optional state
-non può restare attivo dopo riuso. Array tipizzati o una riscrittura data-oriented
-sono un esperimento separato ad alto impatto sui plugin: giustificarli con profili,
-prototipo limitato e migrazione, prima di farne un requisito architetturale v5.
+Pooling and reset must clear previous plugin and shape state, including
+optional state. Typed arrays or a data-oriented rewrite are separate
+experiments with significant plugin impact. Require profiles, a limited
+prototype, and migration before making either an architectural requirement.
 
-### T4 — Cache colore e risorse
+### T4 — Color and resource caches
 
-La styleCache osservata è già limitata a 2000: non proporre di “aggiungere un
-limite” come se mancasse. Misurare hit/miss, cardinalità e churn nelle animazioni
-HDR. Verificare se il caching costa più della conversione nei casi poco riusabili.
-Non quantizzare ulteriormente colore o coordinate per ridurre chiavi senza
-preservare precisione e risultati visivi.
+The observed styleCache already has a limit of 2,000. Measure hits, misses,
+cardinality, and churn in HDR animations. Check whether caching costs more
+than conversion when reuse is low. Preserve precision and visual results
+when evaluating further quantization of colors or coordinates.
 
-Distinguere dati immutabili condivisibili da risultati che dipendono da engine,
-RNG/logger e plugin. Scope/eviction/cleanup delle nuove cache devono essere espliciti.
+Distinguish shareable immutable data from results that depend on the engine,
+RNG/logger, or plugins. Specify scope, eviction, and cleanup for new caches.
 
-## Consegna
+## Deliverables
 
-Misure per particella e per fase, template/cache introdotti con invalidazione,
-consumer delle API coinvolte e delta bundle. Test di reset/pool, override, modifier,
-Retina, HDR e due engine. Chiudere T1–T4 in 07 e verificare le estensioni in 08.
+Provide measurements per particle and phase, new templates or caches and their
+invalidation, affected API consumers, and bundle deltas. Test reset/pool,
+overrides, modifiers, Retina, HDR, and two engines. Close T1–T4 in 07 and
+verify extensions in 08.
 
 ## Contratti architetturali collegati
 
