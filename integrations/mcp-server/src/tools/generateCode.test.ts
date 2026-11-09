@@ -154,6 +154,7 @@ describe("generateOptions", () => {
     ["fireworks with 120", 120, false],
     ["fireworks with 2026 sparks", 500, true],
     ["fireworks using 600", 500, true],
+    ["fireworks for exactly 2000 sparks", 500, true],
     ["fireworks for 1000 sparks", 500, true],
     ["fireworks for 1000\nsparks", 500, true],
     ["fireworks for the spring gala 1000 sparks", 500, true],

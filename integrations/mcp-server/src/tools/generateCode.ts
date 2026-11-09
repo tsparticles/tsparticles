@@ -653,7 +653,7 @@ function getYearContextCountIndexes(text: string): Set<number> {
  *
  * @param text - The normalized fireworks description.
  */
-function getEventYearCountIndexes(text: string): Set<number> {
+function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<number>): Set<number> {
   const indexes = new Set<number>(),
     eventYearPattern =
       /\b(?:christmas|easter|halloween|thanksgiving|new year(?:'s)?(?: (?:day|eve))?|valentine(?:'s)?(?: day)?|independence day|memorial day|labor day|canada day|diwali|hanukkah|ramadan|eid(?: al-(?:fitr|adha))?)(?:\s*[:=]\s*|\s+(?:of\s+)?)(\d{4})\b/gi;
@@ -726,7 +726,12 @@ function getEventYearCountIndexes(text: string): Set<number> {
                 eventContextGapIsSingleSpace,
           value = Number(text.slice(phraseWordStart, phraseWordStart + FIREWORKS_YEAR_LENGTH));
 
-        if (!isYearContext && value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR) {
+        if (
+          !isYearContext &&
+          !explicitSparkCountIndexes.has(phraseWordStart) &&
+          value >= MIN_IMPLICIT_YEAR &&
+          value <= MAX_IMPLICIT_YEAR
+        ) {
           indexes.add(phraseWordStart);
         }
       }
@@ -787,6 +792,10 @@ function getExplicitSparkCountIndexes(text: string): Set<number> {
     /\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b/gi,
   )) {
     indexes.add(match.index ?? 0);
+  }
+
+  for (const match of text.matchAll(/\bexactly\s+(\d+)\s+(?:sparks|particles)\b/gi)) {
+    indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
   }
 
   return indexes;
@@ -871,9 +880,9 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: false, raw: sparkCountAfterHeading, value: Number(sparkCountAfterHeading) };
   }
 
-  const yearContextCountIndexes = getYearContextCountIndexes(text),
-    eventYearCountIndexes = getEventYearCountIndexes(text),
-    explicitSparkCountIndexes = getExplicitSparkCountIndexes(text);
+  const explicitSparkCountIndexes = getExplicitSparkCountIndexes(text),
+    yearContextCountIndexes = getYearContextCountIndexes(text),
+    eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
