@@ -193,10 +193,13 @@ describe("suggestPlugins", () => {
   it("should ignore inherited shape alias names", () => {
     const result = suggestPlugins({
       emitters: [{ shape: { type: ["constructor", "__proto__"] } }],
+      interactivity: { events: { onHover: { enable: true, mode: "constructor" } } },
       particles: {
         move: { enable: true },
+        effect: { type: "constructor" },
         shape: {
           type: ["constructor", "__proto__"],
+          options: { constructor: {} },
         },
       },
     });
@@ -327,9 +330,43 @@ describe("suggestPlugins", () => {
 
   it("should detect themes", () => {
     const result = suggestPlugins({
-      themes: [{ name: "dark", default: { value: true } }],
+      themes: [
+        {
+          name: "dark",
+          default: { value: true },
+          options: {
+            particles: {
+              effect: { type: "trail" },
+              shape: { type: "heart" },
+            },
+          },
+        },
+      ],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-themes");
+    expect(result.npmPackages).toContain("@tsparticles/shape-heart");
+    expect(result.npmPackages).toContain("@tsparticles/effect-trail");
+  });
+
+  it("should detect non-particle plugins from responsive overrides", () => {
+    const result = suggestPlugins({
+      responsive: [
+        {
+          maxWidth: 800,
+          options: {
+            emitters: [{ shape: { type: "circle" } }],
+            interactivity: { events: { onHover: { enable: true, mode: "repulse" } } },
+          },
+        },
+      ],
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+    expect(result.npmPackages).toContain("@tsparticles/interaction-external-repulse");
+    expect(result.imports.some(item => item.from === "@tsparticles/plugin-emitters")).toBe(true);
+    expect(result.imports.some(item => item.from === "@tsparticles/interaction-external-repulse")).toBe(true);
   });
 
   it("should detect shape types", () => {

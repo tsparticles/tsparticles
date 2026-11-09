@@ -63,6 +63,19 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   const matched = new Set<string>(),
     imports: PackageImport[] = [],
     particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles."));
+  const optionSources: Record<string, unknown>[] = [options];
+
+  for (const override of [...asArray<unknown>(options.themes), ...asArray<unknown>(options.responsive)]) {
+    if (!override || typeof override !== "object" || Array.isArray(override)) {
+      continue;
+    }
+
+    const sourceOptions = (override as Record<string, unknown>).options;
+
+    if (sourceOptions && typeof sourceOptions === "object" && !Array.isArray(sourceOptions)) {
+      optionSources.push(sourceOptions as Record<string, unknown>);
+    }
+  }
 
   /**
    *
@@ -92,25 +105,24 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
    * Adds packages for enabled plugin options outside the particle options tree.
    */
   function addMappedPlugins(): void {
-    for (const mapping of optionToPlugin) {
-      if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
-        matched.add(mapping.packageName);
+    for (const sourceOptions of optionSources) {
+      for (const mapping of optionToPlugin) {
+        if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(sourceOptions, mapping.optionPath)) {
+          matched.add(mapping.packageName);
+        }
       }
     }
   }
 
-  const hasInteractivity = options.interactivity !== undefined,
-    hasEmitter = options.emitters !== undefined,
-    hasAbsorber = options.absorbers !== undefined,
-    shapeAliases: Record<string, string> = {
-      char: "text",
-      character: "text",
-      edge: "square",
-      gifs: "gif",
-      images: "image",
-      "multiline-text": "text",
-      triangle: "polygon",
-    };
+  const shapeAliases: Record<string, string> = {
+    char: "text",
+    character: "text",
+    edge: "square",
+    gifs: "gif",
+    images: "image",
+    "multiline-text": "text",
+    triangle: "polygon",
+  };
 
   /**
    *
@@ -202,7 +214,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
     if (shapeOptions) {
       for (const key of Object.keys(shapeOptions)) {
-        const shapeName = optionToShape[key];
+        const shapeName = Object.hasOwn(optionToShape, key) ? optionToShape[key] : undefined;
 
         if (shapeName) {
           addShapeByName(shapeName);
@@ -211,7 +223,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
 
     for (const typeName of parseModeNames(effectSection?.type)) {
-      const pkg = effectMap[typeName];
+      const pkg = Object.hasOwn(effectMap, typeName) ? effectMap[typeName] : undefined;
 
       if (pkg) {
         matched.add(pkg);
@@ -242,40 +254,41 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   }
 
   /**
-   * Adds packages required by root and responsive particle options.
+   * Adds packages required by root, theme, and responsive particle options.
    */
   function addSourceParticlePlugins(): void {
-    addParticleOptions(options);
-
-    for (const responsiveEntry of asArray<Record<string, unknown>>(options.responsive)) {
-      addParticleOptions(responsiveEntry.options);
+    for (const sourceOptions of optionSources) {
+      addParticleOptions(sourceOptions);
     }
   }
 
   // -- Emitter Shape Detection --
-  // `emitters` may be a single config object or an array of them — walk
-  // every entry so array-form configs aren't silently skipped.
-  const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
 
   /**
    * Adds emitter and shape packages required by every emitter entry.
    */
   function addEmitterPlugins(): void {
-    for (const emitter of emitterEntries) {
-      const shapeType = getOptionValue(emitter, "shape.type");
+    for (const sourceOptions of optionSources) {
+      const emitterEntries = asArray<Record<string, unknown>>(sourceOptions.emitters);
 
-      for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
-        const pkg = EMITTER_SHAPE_PACKAGES[name];
+      for (const emitter of emitterEntries) {
+        const shapeType = getOptionValue(emitter, "shape.type");
 
-        if (Object.hasOwn(EMITTER_SHAPE_PACKAGES, name) && pkg) {
-          matched.add(pkg);
+        for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
+          if (Object.hasOwn(EMITTER_SHAPE_PACKAGES, name)) {
+            const pkg = EMITTER_SHAPE_PACKAGES[name];
+
+            if (pkg) {
+              matched.add(pkg);
+            }
+          }
         }
-      }
 
-      const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
+        const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
 
-      for (const particleOptions of particleOverrides) {
-        addParticleOptionPlugins(particleOptions);
+        for (const particleOptions of particleOverrides) {
+          addParticleOptionPlugins(particleOptions);
+        }
       }
     }
   }
@@ -286,26 +299,36 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
    * Adds interactivity, emitter, and absorber packages required by the options.
    */
   function addInteractivityPlugins(): void {
-    if (hasInteractivity || hasEmitter || hasAbsorber) {
-      matched.add("@tsparticles/plugin-interactivity");
-    }
+    for (const sourceOptions of optionSources) {
+      const hasInteractivity = sourceOptions.interactivity !== undefined,
+        hasEmitter = sourceOptions.emitters !== undefined,
+        hasAbsorber = sourceOptions.absorbers !== undefined;
 
-    const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
-
-    for (const mode of interactivityModes) {
-      const pkg = INTERACTION_MODE_PACKAGES[mode];
-
-      if (pkg) {
-        matched.add(pkg);
+      if (hasInteractivity || hasEmitter || hasAbsorber) {
+        matched.add("@tsparticles/plugin-interactivity");
       }
-    }
 
-    if (hasEmitter) {
-      matched.add("@tsparticles/plugin-emitters");
-    }
+      const interactivityModes = collectInteractivityModes(
+        sourceOptions.interactivity as Record<string, unknown> | undefined,
+      );
 
-    if (hasAbsorber) {
-      matched.add("@tsparticles/plugin-absorbers");
+      for (const mode of interactivityModes) {
+        if (Object.hasOwn(INTERACTION_MODE_PACKAGES, mode)) {
+          const pkg = INTERACTION_MODE_PACKAGES[mode];
+
+          if (pkg) {
+            matched.add(pkg);
+          }
+        }
+      }
+
+      if (hasEmitter) {
+        matched.add("@tsparticles/plugin-emitters");
+      }
+
+      if (hasAbsorber) {
+        matched.add("@tsparticles/plugin-absorbers");
+      }
     }
   }
 
