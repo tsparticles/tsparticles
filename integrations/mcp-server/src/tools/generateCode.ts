@@ -649,14 +649,14 @@ function getYearContextCountIndexes(text: string): Set<number> {
 }
 
 /**
- * Collects the positions of counts explicitly described as being per burst.
+ * Collects the positions of spark quantities explicitly identified by their usage.
  *
  * @param text - The normalized fireworks description.
  */
-function getPerBurstCountIndexes(text: string): Set<number> {
+function getExplicitSparkCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>();
 
-  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+per\s+burst\b/gi)) {
+  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+burst|each)\b/gi)) {
     indexes.add(match.index ?? 0);
   }
 
@@ -737,7 +737,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   }
 
   const yearContextCountIndexes = getYearContextCountIndexes(text),
-    perBurstCountIndexes = getPerBurstCountIndexes(text);
+    explicitSparkCountIndexes = getExplicitSparkCountIndexes(text);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
@@ -748,7 +748,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
         /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
     ),
     isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
-      yearContextCountIndexes.has(match.index ?? 0) && !perBurstCountIndexes.has(match.index ?? 0);
+      yearContextCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
 
   if (bareSparkCounts.length > 0) {
     const bareSparkCount = bareSparkCounts[0];

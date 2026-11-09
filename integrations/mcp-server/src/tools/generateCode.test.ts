@@ -123,6 +123,8 @@ describe("generateOptions", () => {
     ["fireworks for 2026", 50, false],
     ["fireworks for 2026 sparks", 50, true],
     ["fireworks in 2026 sparks", 50, true],
+    ["fireworks for 1900 sparks", 50, true],
+    ["fireworks for 2100 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],
@@ -147,6 +149,7 @@ describe("generateOptions", () => {
     ["fireworks with 120", 120, false],
     ["fireworks using 600", 500, true],
     ["fireworks for 1000 sparks", 500, true],
+    ["fireworks for 2026 sparks each", 500, true],
   ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
     const result = generateCode({ description });
 
