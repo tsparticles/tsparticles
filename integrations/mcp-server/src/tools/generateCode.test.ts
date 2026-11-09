@@ -121,10 +121,10 @@ describe("generateOptions", () => {
 
   it.each([
     ["fireworks for 2026", 50, false],
-    ["fireworks for 2026 sparks", 50, true],
-    ["fireworks in 2026 sparks", 50, true],
-    ["fireworks for 1900 sparks", 50, true],
-    ["fireworks for 2100 sparks", 50, true],
+    ["fireworks for 2026 sparks", 50, false],
+    ["fireworks in 2026 sparks", 50, false],
+    ["fireworks for 1900 sparks", 50, false],
+    ["fireworks for 2100 sparks", 50, false],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],
@@ -147,6 +147,7 @@ describe("generateOptions", () => {
     ["count 4 fireworks with 200 sparks", 200, false],
     ["count 4 fireworks with 200 sparks, split count: 300", 300, false],
     ["fireworks with 120", 120, false],
+    ["fireworks with 2026 sparks", 500, true],
     ["fireworks using 600", 500, true],
     ["fireworks for 1000 sparks", 500, true],
     ["fireworks for 1000\nsparks", 500, true],
@@ -161,36 +162,34 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(capExpected);
   });
 
-  it("asks for clarification when a bare spark count is used as a year", () => {
+  it("ignores an event year before a bare spark heading", () => {
     const result = generateCode({ description: "fireworks for the new year 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes).toContain(
-      'The fireworks value "2026" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: 2026".',
-    );
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
   it("recognizes a colon after the year label before a bare spark count", () => {
     const result = generateCode({ description: "fireworks for the new year: 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
   it("recognizes year of before a bare spark count", () => {
     const result = generateCode({ description: "fireworks for the year of 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
-  it("asks for clarification when a year precedes a newline spark heading without a count", () => {
+  it("ignores an event year before a newline spark heading without a count", () => {
     const result = generateCode({ description: "fireworks for the new year 2026\nsparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes).toContain(
-      'The fireworks value "2026" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: 2026".',
-    );
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
   it("uses a count following a newline spark heading instead of a preceding year", () => {
