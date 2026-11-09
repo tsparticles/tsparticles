@@ -343,6 +343,20 @@ describe("generateOptions", () => {
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
   });
 
+  it.each([
+    "2,000 fireworks",
+    "fireworks split count: 2,000",
+    "fireworks count: 2,000",
+    "fireworks\nsparks: 2,000",
+    "fireworks with 2,000 sparks",
+  ])("normalizes grouped fireworks counts in %s", description => {
+    const result = generateCode({ description });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it.each(["10 fireworks, 1000 sparks each", "fireworks 1000 particles"])(
     "caps explicit fireworks particle counts in %s",
     description => {
@@ -376,9 +390,11 @@ describe("generateOptions", () => {
   });
 
   it("preserves count overrides above the fireworks cap for other bundles", () => {
-    const result = generateCode({ description: "1000 ribbons" });
+    const result = generateCode({ description: "1000 ribbons" }),
+      groupedResult = generateCode({ description: "2,000 ribbons" });
 
     expect(result.options).toHaveProperty("count", 1000);
+    expect(groupedResult.options).toHaveProperty("count", 2000);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 

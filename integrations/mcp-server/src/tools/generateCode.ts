@@ -33,6 +33,8 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   FIREWORKS_YEAR_LENGTH = 4,
   MIN_IMPLICIT_YEAR = 1900,
   MAX_IMPLICIT_YEAR = 2100,
+  GROUPED_INTEGER_PATTERN = String.raw`(?:\d{1,3}(?:,\d{3})+|\d+)`,
+  GROUPED_INTEGER_COUNT_PATTERN = new RegExp(String.raw`^(${GROUPED_INTEGER_PATTERN})\b`),
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -578,15 +580,21 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
  * @param text - The normalized particle description.
  */
 function extractCount(text: string): number | undefined {
-  const labeledCount = extractLabeledCount(text, /\bcount\b/gi, false, /^(\d{1,4})\b/);
+  const labeledCount = extractLabeledCount(text, /\bcount\b/gi, false);
 
   if (labeledCount !== undefined) {
-    return Number(labeledCount);
+    return Number(normalizeCountString(labeledCount));
   }
 
-  const match = [...text.matchAll(/\b(\d{1,4})\b/g)].find(candidate => !isAmbiguousYearReference(text, candidate));
+  const match = [
+    ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g")),
+  ].find(candidate => !isAmbiguousYearReference(text, candidate));
 
-  return match ? Number(match[1]) : undefined;
+  return match ? Number(normalizeCountString(match[1])) : undefined;
+}
+
+function normalizeCountString(count: string): string {
+  return count.replace(/,/g, "");
 }
 
 /**
@@ -806,8 +814,10 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
  * @param text - The normalized fireworks description.
  */
 function extractSparkCountAfterHeading(text: string): string | undefined {
-  const match =
-    /(?:^|\r?\n)[ \t]*(?:sparks|particles)(?:[ \t]*[:=][ \t]*(?:\r?\n[ \t]*)?|[ \t]+|\r?\n[ \t]*)(\d+)\b/gim.exec(text);
+  const match = new RegExp(
+    String.raw`(?:^|\r?\n)[ \t]*(?:sparks|particles)(?:[ \t]*[:=][ \t]*(?:\r?\n[ \t]*)?|[ \t]+|\r?\n[ \t]*)(${GROUPED_INTEGER_PATTERN})\b`,
+    "gim",
+  ).exec(text);
 
   return match?.[1];
 }
@@ -821,13 +831,16 @@ function getExplicitSparkCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>();
 
   for (const match of text.matchAll(
-    /\b((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b/gi,
+    new RegExp(
+      String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b`,
+      "gi",
+    ),
   )) {
     indexes.add(match.index ?? 0);
   }
 
   for (const match of text.matchAll(
-    /\b(?:exactly|precisely)\s+((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\b/gi,
+    new RegExp(String.raw`\b(?:exactly|precisely)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi"),
   )) {
     indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
   }
@@ -847,7 +860,7 @@ function extractLabeledCount(
   text: string,
   labelPattern: RegExp,
   skipSplitCount: boolean,
-  countPattern: RegExp = /^(\d+)\b/,
+  countPattern: RegExp = GROUPED_INTEGER_COUNT_PATTERN,
 ): string | undefined {
   for (const labelMatch of text.matchAll(labelPattern)) {
     const labelIndex = labelMatch.index;
@@ -893,33 +906,55 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const splitCount = extractLabeledCount(text, /\bsplit\s*count\b/gi, false);
 
   if (splitCount !== undefined) {
-    return { ambiguous: false, raw: splitCount, value: Number(splitCount) };
+    const raw = normalizeCountString(splitCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text);
+  const explicitSparkCount = new RegExp(
+    String.raw`\b(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`,
+    "i",
+  ).exec(text);
 
   if (explicitSparkCount) {
-    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
+    const raw = normalizeCountString(explicitSparkCount[1]);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   const labeledCount = extractLabeledCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
-    return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
+    const raw = normalizeCountString(labeledCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   const sparkCountAfterHeading = extractSparkCountAfterHeading(text);
 
   if (sparkCountAfterHeading !== undefined) {
-    return { ambiguous: false, raw: sparkCountAfterHeading, value: Number(sparkCountAfterHeading) };
+    const raw = normalizeCountString(sparkCountAfterHeading);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   const explicitSparkCountIndexes = getExplicitSparkCountIndexes(text),
     yearContextCountIndexes = getYearContextCountIndexes(text),
     eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
-  const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
-    bareSparkCounts = [...text.matchAll(/\b((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\b/gi)],
-    bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
+  const withCounts = [
+      ...text.matchAll(
+        new RegExp(
+          String.raw`\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\b`,
+          "gi",
+        ),
+      ),
+    ],
+    bareSparkCounts = [
+      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi")),
+    ],
+    bareFireworksCounts = [
+      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+fireworks\b`, "gi")),
+    ],
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
     standaloneWithCount = withCounts.find(
       match =>
@@ -936,35 +971,45 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   );
 
   if (bareSparkCount) {
-    const raw = bareSparkCount[1].replace(/,/g, "");
+    const raw = normalizeCountString(bareSparkCount[1]);
 
     return { ambiguous: false, raw, value: Number(raw) };
   }
 
   if (unambiguousFireworksCount !== undefined) {
-    return { ambiguous: false, raw: unambiguousFireworksCount, value: Number(unambiguousFireworksCount) };
+    const raw = normalizeCountString(unambiguousFireworksCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   if (standaloneWithCount) {
-    return { ambiguous: false, raw: standaloneWithCount[1], value: Number(standaloneWithCount[1]) };
+    const raw = normalizeCountString(standaloneWithCount[1]);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   const eventYearSparkCount = bareSparkCounts.find(isEventYearSparkCount);
 
   if (eventYearSparkCount) {
-    return { ambiguous: true, raw: eventYearSparkCount[1], value: Number(eventYearSparkCount[1]) };
+    const raw = normalizeCountString(eventYearSparkCount[1]);
+
+    return { ambiguous: true, raw, value: Number(raw) };
   }
 
   const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];
 
   if (ambiguousFireworksCount !== undefined) {
-    return { ambiguous: true, raw: ambiguousFireworksCount, value: Number(ambiguousFireworksCount) };
+    const raw = normalizeCountString(ambiguousFireworksCount);
+
+    return { ambiguous: true, raw, value: Number(raw) };
   }
 
   const ambiguousWithCount = withCounts.find(match => isAmbiguousFireworksYear(match[1]));
 
   if (ambiguousWithCount) {
-    return { ambiguous: true, raw: ambiguousWithCount[1], value: Number(ambiguousWithCount[1]) };
+    const raw = normalizeCountString(ambiguousWithCount[1]);
+
+    return { ambiguous: true, raw, value: Number(raw) };
   }
 
   return undefined;
