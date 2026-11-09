@@ -583,18 +583,24 @@ function extractCount(text: string): number | undefined {
   const labeledCount = extractLabeledCount(text, /\bcount\b/gi, false);
 
   if (labeledCount !== undefined) {
-    return Number(normalizeCountString(labeledCount));
+    return parseSafeCount(labeledCount);
   }
 
   const match = [
     ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g")),
   ].find(candidate => !isAmbiguousYearReference(text, candidate));
 
-  return match ? Number(normalizeCountString(match[1])) : undefined;
+  return match ? parseSafeCount(match[1]) : undefined;
 }
 
 function normalizeCountString(count: string): string {
   return count.replace(/,/g, "");
+}
+
+function parseSafeCount(count: string): number | undefined {
+  const value = Number(normalizeCountString(count));
+
+  return Number.isSafeInteger(value) ? value : undefined;
 }
 
 /**

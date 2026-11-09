@@ -449,6 +449,18 @@ describe("generateOptions", () => {
     expect(options.background).toEqual({ color: "#000000" });
   });
 
+  it.each([
+    "particle animation count: 9007199254740993",
+    "particle animation 9007199254740993",
+  ])("keeps the generic default for unsafe counts in %s", description => {
+    const lower = description.toLowerCase(),
+      keywords = extractKeywords(lower),
+      match = matchBundle(keywords, lower),
+      options = generateOptions(match, keywords, lower);
+
+    expect(options).toMatchObject({ particles: { number: { value: 80 } } });
+  });
+
   it("applies color keyword overrides", () => {
     const result = generateCode({ description: "red particles floating" });
     expect((result.options.particles as Record<string, unknown>).paint).toEqual({
