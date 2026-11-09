@@ -571,13 +571,53 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
 // ── Options generation ────────────────────────────────────────────
 
 /**
+ * Extracts the first requested count, ignoring numbers used as year references.
  *
- * @param text
+ * @param text - The normalized particle description.
  */
 function extractCount(text: string): number | undefined {
-  const match = /\b(\d{1,4})\b/.exec(text);
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  const match = [...text.matchAll(/\b(\d{1,4})\b/g)].find(candidate => !isAmbiguousYearReference(text, candidate));
+
   return match ? Number(match[1]) : undefined;
+}
+
+/**
+ * Determines whether a numeric candidate appears in a year-reference context without an explicit count unit.
+ *
+ * @param text - The normalized particle description.
+ * @param match - The numeric candidate to inspect.
+ */
+function isAmbiguousYearReference(text: string, match: RegExpMatchArray): boolean {
+  const count = match[1],
+    index = match.index ?? 0;
+
+  if (count.length !== FIREWORKS_YEAR_LENGTH) {
+    return false;
+  }
+
+  const precedingText = text.slice(0, index),
+    followingText = text.slice(index + count.length),
+    hasYearContext = /\b(?:new\s+year|year(?:\s+of)?|for|in)\s*[:=]?\s*(?:the\s+)?$/i.test(precedingText),
+    isExplicitCount =
+      /\b(?:count|number)(?:\s+of)?\s*[:=]?\s*$/i.test(precedingText) ||
+      /^\s+(?:particles|sparks|fireworks|ribbons|confetti)\b/i.test(followingText);
+
+  return hasYearContext && !isExplicitCount;
+}
+
+/**
+ * Finds a year reference that could otherwise be mistaken for a particle count.
+ *
+ * @param text - The normalized particle description.
+ */
+function extractAmbiguousYearCount(text: string): string | undefined {
+  for (const match of text.matchAll(/\b(\d{4})\b/g)) {
+    if (isAmbiguousYearReference(text, match)) {
+      return match[1];
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -623,8 +663,9 @@ function isAmbiguousFireworksYear(count: string): boolean {
 }
 
 /**
+ * Extracts an explicit or ambiguous split count from a fireworks description.
  *
- * @param text - The fireworks description.
+ * @param text - The normalized fireworks description.
  */
 function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
   const splitCount = extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false);
@@ -647,6 +688,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
+    bareFireworksCount = /\b(\d+)\s+fireworks\b/i.exec(text)?.[1],
     isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
       isAmbiguousFireworksYear(match[1]) && /\byear(?:\s*:\s*|\s+(?:of\s+)?)$/i.test(text.slice(0, match.index));
 
@@ -659,6 +701,10 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
       if (laterSparkCount) {
         return { ambiguous: false, raw: laterSparkCount[1], value: Number(laterSparkCount[1]) };
       }
+
+      if (bareFireworksCount !== undefined && !isAmbiguousFireworksYear(bareFireworksCount)) {
+        return { ambiguous: false, raw: bareFireworksCount, value: Number(bareFireworksCount) };
+      }
     }
 
     return {
@@ -668,8 +714,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     };
   }
 
-  const bareCount = /\b(\d+)\s+fireworks\b/i.exec(text),
-    count = bareCount?.[1];
+  const count = bareFireworksCount;
 
   if (count !== undefined) {
     return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
@@ -1433,6 +1478,14 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     } else if (requestedSplitCount && requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT) {
       notes.push(
         `Requested fireworks splitCount of ${requestedSplitCount.raw} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+      );
+    }
+  } else {
+    const ambiguousYearCount = extractAmbiguousYearCount(lower);
+
+    if (ambiguousYearCount !== undefined && extractCount(lower) === undefined) {
+      notes.push(
+        `The value "${ambiguousYearCount}" could be a year or a requested particle count. Please clarify with a labeled count, such as "count: ${ambiguousYearCount}".`,
       );
     }
   }

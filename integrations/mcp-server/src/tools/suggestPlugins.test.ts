@@ -192,6 +192,7 @@ describe("suggestPlugins", () => {
 
   it("should ignore inherited shape alias names", () => {
     const result = suggestPlugins({
+      emitters: [{ shape: { type: ["constructor", "__proto__"] } }],
       particles: {
         move: { enable: true },
         shape: {
@@ -201,6 +202,8 @@ describe("suggestPlugins", () => {
     });
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
+    expect(result.npmPackages.every(pkg => typeof pkg === "string")).toBe(true);
   });
 
   it("should detect loaders required by emitter particle overrides", () => {

@@ -88,6 +88,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
+  /**
+   * Adds packages for enabled plugin options outside the particle options tree.
+   */
   function addMappedPlugins(): void {
     for (const mapping of optionToPlugin) {
       if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
@@ -238,6 +241,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
+  /**
+   * Adds packages required by root and responsive particle options.
+   */
   function addSourceParticlePlugins(): void {
     addParticleOptions(options);
 
@@ -251,6 +257,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   // every entry so array-form configs aren't silently skipped.
   const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
 
+  /**
+   * Adds emitter and shape packages required by every emitter entry.
+   */
   function addEmitterPlugins(): void {
     for (const emitter of emitterEntries) {
       const shapeType = getOptionValue(emitter, "shape.type");
@@ -258,7 +267,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
       for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
         const pkg = EMITTER_SHAPE_PACKAGES[name];
 
-        if (pkg) {
+        if (Object.hasOwn(EMITTER_SHAPE_PACKAGES, name) && pkg) {
           matched.add(pkg);
         }
       }
@@ -273,6 +282,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   // Emitters and absorbers register interaction loaders that require the
   // interactivity plugin, so load it before those package loaders too.
+  /**
+   * Adds interactivity, emitter, and absorber packages required by the options.
+   */
   function addInteractivityPlugins(): void {
     if (hasInteractivity || hasEmitter || hasAbsorber) {
       matched.add("@tsparticles/plugin-interactivity");
@@ -309,6 +321,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
       ...matchedArr.filter(pkgName => pkgName !== interactivityPackage),
     ];
 
+  /**
+   * Builds loader imports for the matched packages in dependency order.
+   */
   function buildImports(): void {
     for (const pkgName of importOrder) {
       const pkgInfo = packageCatalog.byName[pkgName];
@@ -322,6 +337,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
+  /**
+   * Finds the most suitable bundle and identifies matched packages it already includes.
+   */
   function getBundleSuggestion(): { alreadyInBundle: string[]; suggestedBundle: string | undefined } {
     const suggestedBundle = findBundle(matchedArr);
 

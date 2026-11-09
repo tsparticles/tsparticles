@@ -179,6 +179,13 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
+  it("uses a later bare fireworks count after an ambiguous year value", () => {
+    const result = generateCode({ description: "new year 2026 sparks and 120 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
   it("uses a later withCount after an ambiguous year value", () => {
     const result = generateCode({
       description: "fireworks for the new year 2026 sparks and fireworks with 120 sparks",
@@ -278,6 +285,22 @@ describe("generateOptions", () => {
 
     expect(result.options).toHaveProperty("count", 1000);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("keeps the default count and asks for clarification for a year-like confetti value", () => {
+    const result = generateCode({ description: "confetti for 2026 party" });
+
+    expect(result.options).toHaveProperty("count", 120);
+    expect(result.notes).toContain(
+      'The value "2026" could be a year or a requested particle count. Please clarify with a labeled count, such as "count: 2026".',
+    );
+  });
+
+  it("keeps an explicitly requested confetti count when a year is also mentioned", () => {
+    const result = generateCode({ description: "confetti for 2026 party with count: 240" });
+
+    expect(result.options).toHaveProperty("count", 240);
+    expect(result.notes.some(note => note.includes("could be a year or a requested particle count"))).toBe(false);
   });
 
   it("uses supported ribbon options and count overrides", () => {
