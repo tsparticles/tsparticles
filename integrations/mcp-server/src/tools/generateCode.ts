@@ -705,8 +705,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
         !isAmbiguousFireworksYear(match[1]) &&
         /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
     ),
-    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
-      isAmbiguousFireworksYear(match[1]) && /\byear(?:\s*:\s*|\s+(?:of\s+)?)$/i.test(text.slice(0, match.index));
+    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean => isAmbiguousYearReference(text, match);
 
   if (bareSparkCounts.length > 0) {
     const bareSparkCount = bareSparkCounts[0];

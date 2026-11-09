@@ -120,6 +120,8 @@ describe("generateOptions", () => {
 
   it.each([
     ["fireworks for 2026", 50, false],
+    ["fireworks for 2026 sparks", 50, true],
+    ["fireworks in 2026 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],
