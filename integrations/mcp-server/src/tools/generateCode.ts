@@ -31,6 +31,8 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   },
   MAX_FIREWORKS_SPLIT_COUNT = 500,
   FIREWORKS_YEAR_LENGTH = 4,
+  MIN_IMPLICIT_YEAR = 1900,
+  MAX_IMPLICIT_YEAR = 2100,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -630,10 +632,17 @@ function extractAmbiguousYearCount(text: string): string | undefined {
  */
 function getYearContextCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>(),
-    yearContextPattern = /(?:^|\s)(?:new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
+    yearContextPattern = /(?:^|\s)(new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
 
   for (const match of text.matchAll(yearContextPattern)) {
-    indexes.add((match.index ?? 0) + match[0].length - match[1].length);
+    const count = match[2],
+      value = Number(count),
+      hasExplicitYearLabel = /year/i.test(match[1]),
+      isPlausibleImplicitYear = value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR;
+
+    if (hasExplicitYearLabel || isPlausibleImplicitYear) {
+      indexes.add((match.index ?? 0) + match[0].length - count.length);
+    }
   }
 
   return indexes;

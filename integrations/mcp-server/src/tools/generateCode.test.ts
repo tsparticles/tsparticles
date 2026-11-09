@@ -10,7 +10,8 @@ import {
 } from "./generateCode.js";
 
 const LARGE_COUNT_DIGITS = 400,
-  LONG_WHITESPACE_LENGTH = 10000;
+  LONG_WHITESPACE_LENGTH = 10000,
+  LONG_WHITESPACE = " ".repeat(LONG_WHITESPACE_LENGTH);
 
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
@@ -145,6 +146,7 @@ describe("generateOptions", () => {
     ["count 4 fireworks with 200 sparks, split count: 300", 300, false],
     ["fireworks with 120", 120, false],
     ["fireworks using 600", 500, true],
+    ["fireworks for 1000 sparks", 500, true],
   ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
     const result = generateCode({ description });
 
@@ -176,8 +178,12 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
   });
 
-  it("uses a per-burst count instead of treating the year-like value as ambiguous", () => {
-    const result = generateCode({ description: "fireworks for 2026 sparks per burst" });
+  it.each([
+    "fireworks for 2026 sparks per burst",
+    "fireworks for the new year 2026 particles per burst",
+    `fireworks for the${LONG_WHITESPACE}new${LONG_WHITESPACE}year${LONG_WHITESPACE}2026${LONG_WHITESPACE}particles${LONG_WHITESPACE}per${LONG_WHITESPACE}burst`,
+  ])("uses a per-burst count instead of treating the year-like value as ambiguous in %s", description => {
+    const result = generateCode({ description });
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes).toContain("Requested fireworks splitCount of 2026 exceeds the maximum of 500; using 500.");
