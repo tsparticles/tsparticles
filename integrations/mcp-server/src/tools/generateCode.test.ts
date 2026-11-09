@@ -129,6 +129,7 @@ describe("generateOptions", () => {
     ["fireworks for 2100 sparks", 50, false],
     ["fireworks for Christmas 2026 sparks", 50, true],
     ["fireworks for the spring gala 2026 sparks", 50, true],
+    ["fireworks for the spring gala 2026 sparks and 2027 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],

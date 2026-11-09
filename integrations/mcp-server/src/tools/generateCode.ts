@@ -697,8 +697,6 @@ function getEventYearCountIndexes(text: string): Set<number> {
       thirdPhraseWord = "",
       firstPhraseGapIsSingleSpace = false,
       secondPhraseGapIsSingleSpace = false,
-      candidateYearIndex = -1,
-      candidateIsYearContext = false,
       previousPhraseWordEnd = -1;
 
     while (position < text.length && /[a-z0-9]/i.test(text[position])) {
@@ -719,14 +717,18 @@ function getEventYearCountIndexes(text: string): Set<number> {
           secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
           eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace;
 
-        candidateYearIndex = phraseWordStart;
-        candidateIsYearContext =
-          eventContextWordCount === 1
-            ? firstEventContextWord === "year"
-            : eventContextWordCount === 2 &&
-              firstEventContextWord === "year" &&
-              secondEventContextWord === "of" &&
-              eventContextGapIsSingleSpace;
+        const isYearContext =
+            eventContextWordCount === 1
+              ? firstEventContextWord === "year"
+              : eventContextWordCount === 2 &&
+                firstEventContextWord === "year" &&
+                secondEventContextWord === "of" &&
+                eventContextGapIsSingleSpace,
+          value = Number(text.slice(phraseWordStart, phraseWordStart + FIREWORKS_YEAR_LENGTH));
+
+        if (!isYearContext && value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR) {
+          indexes.add(phraseWordStart);
+        }
       }
 
       if (!isWhitespace(text[position])) {
@@ -752,14 +754,6 @@ function getEventYearCountIndexes(text: string): Set<number> {
 
       while (isWhitespace(text[position])) {
         position++;
-      }
-    }
-
-    if (candidateYearIndex >= 0 && !candidateIsYearContext) {
-      const value = Number(text.slice(candidateYearIndex, candidateYearIndex + FIREWORKS_YEAR_LENGTH));
-
-      if (value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR) {
-        indexes.add(candidateYearIndex);
       }
     }
 
