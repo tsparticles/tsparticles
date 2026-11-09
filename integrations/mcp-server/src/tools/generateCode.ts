@@ -588,7 +588,7 @@ function extractCount(text: string): number | undefined {
 }
 
 /**
- * Determines whether a numeric candidate appears in a year-reference context without an explicit count unit.
+ * Determines whether a numeric candidate follows a year reference rather than an explicit count label.
  *
  * @param text - The normalized particle description.
  * @param match - The numeric candidate to inspect.
@@ -602,14 +602,8 @@ function isAmbiguousYearReference(text: string, match: RegExpMatchArray): boolea
   }
 
   const precedingText = text.slice(0, index).trimEnd().replace(/[:=]$/, "").trimEnd().replace(/\s+/g, " "),
-    followingText = text
-      .slice(index + count.length)
-      .trimStart()
-      .replace(/\s+/g, " "),
     hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(precedingText),
-    isExplicitCount =
-      /(?:^|\s)(?:count|number)(?: of)?$/i.test(precedingText) ||
-      /^(?:particles|sparks|fireworks|ribbons|confetti)(?:\s|$)/i.test(followingText);
+    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(precedingText);
 
   return hasYearContext && !isExplicitCount;
 }
@@ -706,6 +700,11 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
+    standaloneWithCount = withCounts.find(
+      match =>
+        !isAmbiguousFireworksYear(match[1]) &&
+        /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
+    ),
     isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
       isAmbiguousFireworksYear(match[1]) && /\byear(?:\s*:\s*|\s+(?:of\s+)?)$/i.test(text.slice(0, match.index));
 
@@ -722,6 +721,10 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
       if (unambiguousFireworksCount !== undefined) {
         return { ambiguous: false, raw: unambiguousFireworksCount, value: Number(unambiguousFireworksCount) };
       }
+
+      if (standaloneWithCount) {
+        return { ambiguous: false, raw: standaloneWithCount[1], value: Number(standaloneWithCount[1]) };
+      }
     }
 
     return {
@@ -733,6 +736,10 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   if (unambiguousFireworksCount !== undefined) {
     return { ambiguous: false, raw: unambiguousFireworksCount, value: Number(unambiguousFireworksCount) };
+  }
+
+  if (standaloneWithCount) {
+    return { ambiguous: false, raw: standaloneWithCount[1], value: Number(standaloneWithCount[1]) };
   }
 
   const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];

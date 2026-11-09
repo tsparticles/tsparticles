@@ -284,7 +284,10 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
           }
         }
 
-        const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
+        const particleOverrides = [
+          ...asArray<unknown>(getOptionValue(emitter, "particles")),
+          ...asArray<unknown>(getOptionValue(emitter, "destroy.split.particles")),
+        ];
 
         for (const particleOptions of particleOverrides) {
           addParticleOptionPlugins(particleOptions);

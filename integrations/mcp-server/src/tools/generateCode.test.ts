@@ -141,6 +141,8 @@ describe("generateOptions", () => {
     ["10 fireworks with 50 sparks each", 50, false],
     ["count 4 fireworks with 200 sparks", 200, false],
     ["count 4 fireworks with 200 sparks, split count: 300", 300, false],
+    ["fireworks with 120", 120, false],
+    ["fireworks using 600", 500, true],
   ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
     const result = generateCode({ description });
 
@@ -225,6 +227,13 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
+  it("does not treat a non-particle with-value as a fireworks split count", () => {
+    const result = generateCode({ description: "fireworks with 3 colors" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
   it("preserves explicit particle-count parsing when the number follows with", () => {
     const result = generateCode({ description: "fireworks with 2026 sparks" });
 
@@ -303,6 +312,13 @@ describe("generateOptions", () => {
     expect(result.notes).toContain(
       'The value "2026" could be a year or a requested particle count. Please clarify with a labeled count, such as "count: 2026".',
     );
+  });
+
+  it("keeps the default count and asks for clarification when a year label precedes the effect noun", () => {
+    const result = generateCode({ description: "new year 2026 confetti" });
+
+    expect(result.options).toHaveProperty("count", 120);
+    expect(result.notes.some(note => note.includes("could be a year or a requested particle count"))).toBe(true);
   });
 
   it("keeps an explicitly requested confetti count when a year is also mentioned", () => {
