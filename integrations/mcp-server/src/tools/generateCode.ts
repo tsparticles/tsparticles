@@ -624,6 +624,37 @@ function extractAmbiguousYearCount(text: string): string | undefined {
 }
 
 /**
+ * Collects the positions of four-digit values introduced by year context phrases.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getYearContextCountIndexes(text: string): Set<number> {
+  const indexes = new Set<number>(),
+    yearContextPattern = /(?:^|\s)(?:new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
+
+  for (const match of text.matchAll(yearContextPattern)) {
+    indexes.add((match.index ?? 0) + match[0].length - match[1].length);
+  }
+
+  return indexes;
+}
+
+/**
+ * Collects the positions of counts explicitly described as being per burst.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getPerBurstCountIndexes(text: string): Set<number> {
+  const indexes = new Set<number>();
+
+  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+per\s+burst\b/gi)) {
+    indexes.add(match.index ?? 0);
+  }
+
+  return indexes;
+}
+
+/**
  * Extracts a number following a count label.
  *
  * @param text - The description to search.
@@ -696,6 +727,8 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
   }
 
+  const yearContextCountIndexes = getYearContextCountIndexes(text),
+    perBurstCountIndexes = getPerBurstCountIndexes(text);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
@@ -705,7 +738,8 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
         !isAmbiguousFireworksYear(match[1]) &&
         /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
     ),
-    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean => isAmbiguousYearReference(text, match);
+    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
+      yearContextCountIndexes.has(match.index ?? 0) && !perBurstCountIndexes.has(match.index ?? 0);
 
   if (bareSparkCounts.length > 0) {
     const bareSparkCount = bareSparkCounts[0];
