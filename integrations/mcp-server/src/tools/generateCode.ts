@@ -649,7 +649,7 @@ function getYearContextCountIndexes(text: string): Set<number> {
 }
 
 /**
- * Collects years associated with named events.
+ * Collects years associated with named events or event contexts.
  *
  * @param text - The normalized fireworks description.
  */
@@ -660,6 +660,20 @@ function getEventYearCountIndexes(text: string): Set<number> {
 
   for (const match of text.matchAll(eventYearPattern)) {
     const count = match[1];
+
+    indexes.add((match.index ?? 0) + match[0].length - count.length);
+  }
+
+  const eventContextYearPattern =
+    /\b(?:for|in|during|at|on)\s+(?:(?:the|a|an)\s+)?((?:[a-z0-9][a-z0-9'-]*\s+)+)(\d{4})\b/gi;
+
+  for (const match of text.matchAll(eventContextYearPattern)) {
+    const eventContext = match[1].trim(),
+      count = match[2];
+
+    if (/^year(?: of)?$/i.test(eventContext)) {
+      continue;
+    }
 
     indexes.add((match.index ?? 0) + match[0].length - count.length);
   }

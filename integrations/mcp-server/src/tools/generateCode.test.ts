@@ -126,6 +126,7 @@ describe("generateOptions", () => {
     ["fireworks for 1900 sparks", 50, false],
     ["fireworks for 2100 sparks", 50, false],
     ["fireworks for Christmas 2026 sparks", 50, true],
+    ["fireworks for the spring gala 2026 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],
@@ -212,6 +213,7 @@ describe("generateOptions", () => {
     "fireworks for 2026 sparks per burst",
     "fireworks for 2026 sparks per explosion",
     "fireworks for Christmas 2026 sparks per burst",
+    "fireworks for the spring gala 2026 sparks per burst",
     "fireworks for the new year 2026 particles per burst",
     `fireworks for the${LONG_WHITESPACE}new${LONG_WHITESPACE}year${LONG_WHITESPACE}2026${LONG_WHITESPACE}particles${LONG_WHITESPACE}per${LONG_WHITESPACE}burst`,
   ])("uses an explicit particle count instead of treating the year-like value as ambiguous in %s", description => {
