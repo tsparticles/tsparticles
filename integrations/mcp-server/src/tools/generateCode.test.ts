@@ -183,9 +183,10 @@ describe("generateOptions", () => {
 
   it.each([
     "fireworks for 2026 sparks per burst",
+    "fireworks for 2026 sparks per explosion",
     "fireworks for the new year 2026 particles per burst",
     `fireworks for the${LONG_WHITESPACE}new${LONG_WHITESPACE}year${LONG_WHITESPACE}2026${LONG_WHITESPACE}particles${LONG_WHITESPACE}per${LONG_WHITESPACE}burst`,
-  ])("uses a per-burst count instead of treating the year-like value as ambiguous in %s", description => {
+  ])("uses an explicit particle count instead of treating the year-like value as ambiguous in %s", description => {
     const result = generateCode({ description });
 
     expect(result.options).toHaveProperty("splitCount", 500);

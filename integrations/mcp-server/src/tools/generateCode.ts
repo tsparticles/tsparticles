@@ -656,7 +656,7 @@ function getYearContextCountIndexes(text: string): Set<number> {
 function getExplicitSparkCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>();
 
-  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+burst|each)\b/gi)) {
+  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion)|each)\b/gi)) {
     indexes.add(match.index ?? 0);
   }
 
