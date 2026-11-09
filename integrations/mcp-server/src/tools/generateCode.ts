@@ -741,7 +741,7 @@ function applySpecializedOverrides(
   countProperty: "count" | "splitCount",
   maxCount?: number,
 ): Record<string, unknown> {
-  const result = JSON.parse(JSON.stringify(template)) as Record<string, unknown>;
+  const result = structuredClone(template);
 
   if (count !== undefined) {
     result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
@@ -756,7 +756,7 @@ function applySpecializedOverrides(
  * @param lower
  */
 function generateGenericOptions(keywords: string[], lower: string): Record<string, unknown> {
-  const options = JSON.parse(JSON.stringify(GENERIC_TEMPLATE)) as Record<string, unknown>,
+  const options = structuredClone(GENERIC_TEMPLATE),
     particles = options.particles as Record<string, unknown>,
     move = particles.move as Record<string, unknown>,
     count = extractCount(lower);
@@ -823,38 +823,49 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
   if (bundle.isPreset && bundle.presetName) {
     return { preset: bundle.presetName };
   }
+
   if (bundle.isAutoInitialized) {
-    let template: Record<string, unknown>;
-
-    if (bundle.bundleName === "@tsparticles/fireworks") {
-      template = FIREWORKS_TEMPLATE;
-    } else if (bundle.bundleName === "@tsparticles/ribbons") {
-      template = RIBBONS_TEMPLATE;
-    } else {
-      template = CONFETTI_TEMPLATE;
-    }
-    const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
-      fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
-
-    let requestedCount: number | undefined = undefined;
-
-    if (isFireworks) {
-      if (!fireworksSplitCount?.ambiguous) {
-        requestedCount = fireworksSplitCount?.value;
-      }
-    } else {
-      requestedCount = extractCount(lower);
-    }
-
-    return applySpecializedOverrides(
-      template,
-      requestedCount,
-      isFireworks ? "splitCount" : "count",
-      isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
-    );
+    return generateAutoInitializedOptions(bundle, lower);
   }
 
   return generateGenericOptions(keywords, lower);
+}
+
+/**
+ *
+ * @param bundle - The matched bundle configuration.
+ * @param lower - The normalized description.
+ */
+function generateAutoInitializedOptions(bundle: BundleMatch, lower: string): Record<string, unknown> {
+  let template: Record<string, unknown>;
+
+  if (bundle.bundleName === "@tsparticles/fireworks") {
+    template = FIREWORKS_TEMPLATE;
+  } else if (bundle.bundleName === "@tsparticles/ribbons") {
+    template = RIBBONS_TEMPLATE;
+  } else {
+    template = CONFETTI_TEMPLATE;
+  }
+
+  const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
+    fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
+
+  let requestedCount: number | undefined;
+
+  if (isFireworks) {
+    if (!fireworksSplitCount?.ambiguous) {
+      requestedCount = fireworksSplitCount?.value;
+    }
+  } else {
+    requestedCount = extractCount(lower);
+  }
+
+  return applySpecializedOverrides(
+    template,
+    requestedCount,
+    isFireworks ? "splitCount" : "count",
+    isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
+  );
 }
 
 // ── Framework codegen ─────────────────────────────────────────────

@@ -118,65 +118,35 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 200);
   });
 
-  it("does not treat a year as a fireworks splitCount request", () => {
-    const result = generateCode({ description: "fireworks for 2026" });
+  it.each([
+    ["fireworks for 2026", 50, false],
+    ["2000 fireworks", 50, true],
+    ["fireworks with 2026 written in the sky", 50, true],
+    ["fireworks with 2100 written in the sky", 50, true],
+    ["fireworks with 2100 written in the sky, split count: 75", 75, false],
+  ] as const)("handles year-like fireworks values in %s", (description, splitCount, clarificationExpected) => {
+    const result = generateCode({ description });
 
-    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.options).toHaveProperty("splitCount", splitCount);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(clarificationExpected);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
-  it("reports a year before the event phrase as an ambiguous fireworks count", () => {
-    const result = generateCode({ description: "2000 fireworks" });
+  it.each([
+    ["count: 2100 fireworks", 500, true],
+    ["fireworks 2026", 50, false],
+    ["fireworks split count: 200", 200, false],
+    ["fireworks count=200", 200, false],
+    ["count 4 fireworks, split count: 20", 20, false],
+    ["10 fireworks with 50 sparks each", 50, false],
+    ["count 4 fireworks with 200 sparks", 200, false],
+    ["count 4 fireworks with 200 sparks, split count: 300", 300, false],
+  ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
+    const result = generateCode({ description });
 
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-  });
-
-  it("reports a year-like value after fireworks with as ambiguous", () => {
-    const result = generateCode({ description: "fireworks with 2026 written in the sky" }),
-      futureYearResult = generateCode({ description: "fireworks with 2100 written in the sky" }),
-      labeledResult = generateCode({ description: "fireworks with 2100 written in the sky, split count: 75" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-    expect(futureYearResult.options).toHaveProperty("splitCount", 50);
-    expect(futureYearResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-    expect(labeledResult.options).toHaveProperty("splitCount", 75);
-    expect(labeledResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
-  });
-
-  it("uses explicitly labeled four-digit counts instead of treating them as years", () => {
-    const result = generateCode({ description: "count: 2100 fireworks" });
-
-    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.options).toHaveProperty("splitCount", splitCount);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
-  });
-
-  it("does not treat a bare number after fireworks as a splitCount request", () => {
-    const result = generateCode({ description: "fireworks 2026" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Requested fireworks splitCount"))).toBe(false);
-  });
-
-  it("parses labeled split counts separated by a colon or equals sign", () => {
-    const colonResult = generateCode({ description: "fireworks split count: 200" }),
-      equalsResult = generateCode({ description: "fireworks count=200" });
-
-    expect(colonResult.options).toHaveProperty("splitCount", 200);
-    expect(equalsResult.options).toHaveProperty("splitCount", 200);
-  });
-
-  it("prioritizes a valid split count label over an earlier generic count", () => {
-    const result = generateCode({ description: "count 4 fireworks, split count: 20" });
-
-    expect(result.options).toHaveProperty("splitCount", 20);
-  });
-
-  it("prioritizes an explicit spark count over the number of fireworks", () => {
-    const result = generateCode({ description: "10 fireworks with 50 sparks each" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(capExpected);
   });
 
   it("asks for clarification when a bare spark count is used as a year", () => {

@@ -64,12 +64,6 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     imports: PackageImport[] = [],
     particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles."));
 
-  for (const mapping of optionToPlugin) {
-    if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
-      matched.add(mapping.packageName);
-    }
-  }
-
   /**
    *
    * @param value - A color value or array of color values.
@@ -94,6 +88,14 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
+  function addMappedPlugins(): void {
+    for (const mapping of optionToPlugin) {
+      if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
+        matched.add(mapping.packageName);
+      }
+    }
+  }
+
   const hasInteractivity = options.interactivity !== undefined,
     hasEmitter = options.emitters !== undefined,
     hasAbsorber = options.absorbers !== undefined,
@@ -112,7 +114,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
    * @param name
    */
   function addShapeByName(name: string): void {
-    const shapeName = Object.prototype.hasOwnProperty.call(shapeAliases, name) ? shapeAliases[name] : name,
+    const shapeName = Object.hasOwn(shapeAliases, name) ? shapeAliases[name] : name,
       fullName = shapeName.startsWith("@tsparticles/") ? shapeName : `@tsparticles/shape-${shapeName}`;
 
     if (fullName in packageCatalog.byName) {
@@ -236,10 +238,12 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  addParticleOptions(options);
+  function addSourceParticlePlugins(): void {
+    addParticleOptions(options);
 
-  for (const responsiveEntry of asArray<Record<string, unknown>>(options.responsive)) {
-    addParticleOptions(responsiveEntry.options);
+    for (const responsiveEntry of asArray<Record<string, unknown>>(options.responsive)) {
+      addParticleOptions(responsiveEntry.options);
+    }
   }
 
   // -- Emitter Shape Detection --
@@ -247,72 +251,101 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   // every entry so array-form configs aren't silently skipped.
   const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
 
-  for (const emitter of emitterEntries) {
-    const shapeType = getOptionValue(emitter, "shape.type");
+  function addEmitterPlugins(): void {
+    for (const emitter of emitterEntries) {
+      const shapeType = getOptionValue(emitter, "shape.type");
 
-    for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
-      const pkg = EMITTER_SHAPE_PACKAGES[name];
+      for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
+        const pkg = EMITTER_SHAPE_PACKAGES[name];
+
+        if (pkg) {
+          matched.add(pkg);
+        }
+      }
+
+      const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
+
+      for (const particleOptions of particleOverrides) {
+        addParticleOptionPlugins(particleOptions);
+      }
+    }
+  }
+
+  // Emitters and absorbers register interaction loaders that require the
+  // interactivity plugin, so load it before those package loaders too.
+  function addInteractivityPlugins(): void {
+    if (hasInteractivity || hasEmitter || hasAbsorber) {
+      matched.add("@tsparticles/plugin-interactivity");
+    }
+
+    const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
+
+    for (const mode of interactivityModes) {
+      const pkg = INTERACTION_MODE_PACKAGES[mode];
 
       if (pkg) {
         matched.add(pkg);
       }
     }
 
-    const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
+    if (hasEmitter) {
+      matched.add("@tsparticles/plugin-emitters");
+    }
 
-    for (const particleOptions of particleOverrides) {
-      addParticleOptionPlugins(particleOptions);
+    if (hasAbsorber) {
+      matched.add("@tsparticles/plugin-absorbers");
     }
   }
 
-  // Emitters and absorbers register interaction loaders that require the
-  // interactivity plugin, so load it before those package loaders too.
-  if (hasInteractivity || hasEmitter || hasAbsorber) {
-    matched.add("@tsparticles/plugin-interactivity");
-  }
-
-  const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
-  for (const mode of interactivityModes) {
-    const pkg = INTERACTION_MODE_PACKAGES[mode];
-    if (pkg) matched.add(pkg);
-  }
-
-  if (hasEmitter) {
-    matched.add("@tsparticles/plugin-emitters");
-  }
-
-  if (hasAbsorber) {
-    matched.add("@tsparticles/plugin-absorbers");
-  }
+  addMappedPlugins();
+  addSourceParticlePlugins();
+  addEmitterPlugins();
+  addInteractivityPlugins();
 
   const interactivityPackage = "@tsparticles/plugin-interactivity",
-    matchedArr = [...matched].filter(Boolean).sort(),
+    matchedArr = [...matched].filter(Boolean).sort((first, second) => first.localeCompare(second)),
     importOrder = [
       ...(matchedArr.includes(interactivityPackage) ? [interactivityPackage] : []),
       ...matchedArr.filter(pkgName => pkgName !== interactivityPackage),
     ];
 
-  for (const pkgName of importOrder) {
-    const pkgInfo = packageCatalog.byName[pkgName];
-    if (pkgInfo.loadFunction) {
-      imports.push({
-        function: pkgInfo.loadFunction,
-        from: pkgName,
-      });
+  function buildImports(): void {
+    for (const pkgName of importOrder) {
+      const pkgInfo = packageCatalog.byName[pkgName];
+
+      if (pkgInfo.loadFunction) {
+        imports.push({
+          function: pkgInfo.loadFunction,
+          from: pkgName,
+        });
+      }
     }
   }
 
-  const suggestedBundle = findBundle(matchedArr);
+  function getBundleSuggestion(): { alreadyInBundle: string[]; suggestedBundle: string | undefined } {
+    const suggestedBundle = findBundle(matchedArr);
 
-  let alreadyInBundle: string[] = [];
-  if (suggestedBundle) {
+    if (!suggestedBundle) {
+      return { alreadyInBundle: [], suggestedBundle };
+    }
+
     const bundleInfo = bundles.find(b => b.name === suggestedBundle);
-    if (bundleInfo) {
-      alreadyInBundle = matchedArr.filter(
-        p => bundleInfo.packages.includes(p) || bundleInfo.packages.includes(p.replace("@tsparticles/", "")),
-      );
+
+    if (!bundleInfo) {
+      return { alreadyInBundle: [], suggestedBundle };
     }
+
+    const alreadyInBundle = matchedArr.filter(
+      pkgName =>
+        bundleInfo.packages.includes(pkgName) || bundleInfo.packages.includes(pkgName.replace("@tsparticles/", "")),
+    );
+
+    return { alreadyInBundle, suggestedBundle };
   }
+
+  buildImports();
+
+  const { suggestedBundle, alreadyInBundle } = getBundleSuggestion();
 
   return {
     npmPackages: matchedArr,
