@@ -150,6 +150,8 @@ describe("generateOptions", () => {
     ["fireworks using 600", 500, true],
     ["fireworks for 1000 sparks", 500, true],
     ["fireworks for 2026 sparks each", 500, true],
+    ["fireworks 2000 sparks per firework", 500, true],
+    ["fireworks for 2000 sparks per firework", 500, true],
   ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
     const result = generateCode({ description });
 
@@ -179,6 +181,23 @@ describe("generateOptions", () => {
 
     expect(result.options).toHaveProperty("splitCount", 50);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+  });
+
+  it("asks for clarification when a year precedes a newline spark heading without a count", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes).toContain(
+      'The fireworks value "2026" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: 2026".',
+    );
+  });
+
+  it("uses a count following a newline spark heading instead of a preceding year", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks\n1000" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
   it.each([

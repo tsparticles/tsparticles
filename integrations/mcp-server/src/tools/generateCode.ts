@@ -649,6 +649,37 @@ function getYearContextCountIndexes(text: string): Set<number> {
 }
 
 /**
+ * Collects year-context values that are followed by a spark heading on the next line.
+ *
+ * @param text - The normalized fireworks description.
+ * @param yearContextCountIndexes - Positions already identified as year-context values.
+ */
+function getYearContextSparkHeadingIndexes(text: string, yearContextCountIndexes: Set<number>): Set<number> {
+  const indexes = new Set<number>();
+
+  for (const match of text.matchAll(/\b(\d{4})[ \t]*\r?\n[ \t]*(?:sparks|particles)\b/gi)) {
+    const index = match.index ?? 0;
+
+    if (yearContextCountIndexes.has(index)) {
+      indexes.add(index);
+    }
+  }
+
+  return indexes;
+}
+
+/**
+ * Extracts a count written after a spark heading.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function extractSparkCountAfterHeading(text: string): string | undefined {
+  const match = /(?:^|\r?\n)[ \t]*(?:sparks|particles)[ \t]*(?:[:=][ \t]*|[ \t]+|\r?\n[ \t]*)(\d+)\b/gim.exec(text);
+
+  return match?.[1];
+}
+
+/**
  * Collects the positions of spark quantities explicitly identified by their usage.
  *
  * @param text - The normalized fireworks description.
@@ -656,7 +687,9 @@ function getYearContextCountIndexes(text: string): Set<number> {
 function getExplicitSparkCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>();
 
-  for (const match of text.matchAll(/\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion)|each)\b/gi)) {
+  for (const match of text.matchAll(
+    /\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b/gi,
+  )) {
     indexes.add(match.index ?? 0);
   }
 
@@ -736,10 +769,17 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
   }
 
+  const sparkCountAfterHeading = extractSparkCountAfterHeading(text);
+
+  if (sparkCountAfterHeading !== undefined) {
+    return { ambiguous: false, raw: sparkCountAfterHeading, value: Number(sparkCountAfterHeading) };
+  }
+
   const yearContextCountIndexes = getYearContextCountIndexes(text),
+    yearContextSparkHeadingIndexes = getYearContextSparkHeadingIndexes(text, yearContextCountIndexes),
     explicitSparkCountIndexes = getExplicitSparkCountIndexes(text);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
-    bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
+    bareSparkCounts = [...text.matchAll(/\b(\d+)[ \t]+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
     standaloneWithCount = withCounts.find(
@@ -782,6 +822,14 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   if (standaloneWithCount) {
     return { ambiguous: false, raw: standaloneWithCount[1], value: Number(standaloneWithCount[1]) };
+  }
+
+  const yearBeforeSparkHeadingIndex = [...yearContextSparkHeadingIndexes][0];
+
+  if (yearBeforeSparkHeadingIndex !== undefined) {
+    const raw = text.slice(yearBeforeSparkHeadingIndex, yearBeforeSparkHeadingIndex + FIREWORKS_YEAR_LENGTH);
+
+    return { ambiguous: true, raw, value: Number(raw) };
   }
 
   const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];
