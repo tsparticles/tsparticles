@@ -699,6 +699,52 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
       secondPhraseGapIsSingleSpace = false,
       previousPhraseWordEnd = -1;
 
+    const isFourDigitYearAt = (yearIndex: number): boolean =>
+        /^\d{4}$/.test(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH)) &&
+        !isWordCharacter(text[yearIndex + FIREWORKS_YEAR_LENGTH]),
+      addPhraseWord = (phraseWordStart: number, phraseWordEnd: number): void => {
+        const phraseWord = text.slice(phraseWordStart, phraseWordEnd).toLowerCase();
+
+        if (phraseWordCount === 0) {
+          firstPhraseWord = phraseWord;
+        } else if (phraseWordCount === 1) {
+          secondPhraseWord = phraseWord;
+          firstPhraseGapIsSingleSpace =
+            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+        } else if (phraseWordCount === 2) {
+          thirdPhraseWord = phraseWord;
+          secondPhraseGapIsSingleSpace =
+            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+        }
+
+        phraseWordCount++;
+        previousPhraseWordEnd = phraseWordEnd;
+      },
+      addEventYearCandidate = (yearIndex: number): void => {
+        const skipsArticle = phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
+          eventContextWordCount = phraseWordCount - (skipsArticle ? 1 : 0),
+          firstEventContextWord = skipsArticle ? secondPhraseWord : firstPhraseWord,
+          secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
+          eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace,
+          isYearContext =
+            eventContextWordCount === 1
+              ? firstEventContextWord === "year"
+              : eventContextWordCount === 2 &&
+                firstEventContextWord === "year" &&
+                secondEventContextWord === "of" &&
+                eventContextGapIsSingleSpace,
+          value = Number(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH));
+
+        if (
+          !isYearContext &&
+          !explicitSparkCountIndexes.has(yearIndex) &&
+          value >= MIN_IMPLICIT_YEAR &&
+          value <= MAX_IMPLICIT_YEAR
+        ) {
+          indexes.add(yearIndex);
+        }
+      };
+
     while (position < text.length && /[a-z0-9]/i.test(text[position])) {
       const phraseWordStart = position;
 
@@ -706,56 +752,42 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
         position++;
       }
 
-      if (
-        phraseWordCount > 0 &&
-        /^\d{4}$/.test(text.slice(phraseWordStart, phraseWordStart + FIREWORKS_YEAR_LENGTH)) &&
-        !isWordCharacter(text[phraseWordStart + FIREWORKS_YEAR_LENGTH])
-      ) {
-        const skipsArticle = phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
-          eventContextWordCount = phraseWordCount - (skipsArticle ? 1 : 0),
-          firstEventContextWord = skipsArticle ? secondPhraseWord : firstPhraseWord,
-          secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
-          eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace;
-
-        const isYearContext =
-            eventContextWordCount === 1
-              ? firstEventContextWord === "year"
-              : eventContextWordCount === 2 &&
-                firstEventContextWord === "year" &&
-                secondEventContextWord === "of" &&
-                eventContextGapIsSingleSpace,
-          value = Number(text.slice(phraseWordStart, phraseWordStart + FIREWORKS_YEAR_LENGTH));
-
-        if (
-          !isYearContext &&
-          !explicitSparkCountIndexes.has(phraseWordStart) &&
-          value >= MIN_IMPLICIT_YEAR &&
-          value <= MAX_IMPLICIT_YEAR
-        ) {
-          indexes.add(phraseWordStart);
-        }
+      if (phraseWordCount > 0 && isFourDigitYearAt(phraseWordStart)) {
+        addEventYearCandidate(phraseWordStart);
       }
 
-      if (!isWhitespace(text[position])) {
+      if (isWhitespace(text[position])) {
+        addPhraseWord(phraseWordStart, position);
+
+        while (isWhitespace(text[position])) {
+          position++;
+        }
+
+        continue;
+      }
+
+      if (isWordCharacter(text[position])) {
         break;
       }
 
-      const phraseWord = text.slice(phraseWordStart, position).toLowerCase();
+      let yearIndex = position;
 
-      if (phraseWordCount === 0) {
-        firstPhraseWord = phraseWord;
-      } else if (phraseWordCount === 1) {
-        secondPhraseWord = phraseWord;
-        firstPhraseGapIsSingleSpace =
-          phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
-      } else if (phraseWordCount === 2) {
-        thirdPhraseWord = phraseWord;
-        secondPhraseGapIsSingleSpace =
-          phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+      while (yearIndex < text.length && !isWhitespace(text[yearIndex]) && !isWordCharacter(text[yearIndex])) {
+        yearIndex++;
       }
 
-      phraseWordCount++;
-      previousPhraseWordEnd = position;
+      while (isWhitespace(text[yearIndex])) {
+        yearIndex++;
+      }
+
+      if (phraseWordCount === 0 || !isFourDigitYearAt(yearIndex)) {
+        break;
+      }
+
+      addPhraseWord(phraseWordStart, position);
+      addEventYearCandidate(yearIndex);
+      addPhraseWord(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH);
+      position = yearIndex + FIREWORKS_YEAR_LENGTH;
 
       while (isWhitespace(text[position])) {
         position++;
@@ -789,12 +821,14 @@ function getExplicitSparkCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>();
 
   for (const match of text.matchAll(
-    /\b(\d+)\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b/gi,
+    /\b((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b/gi,
   )) {
     indexes.add(match.index ?? 0);
   }
 
-  for (const match of text.matchAll(/\bexactly\s+(\d+)\s+(?:sparks|particles)\b/gi)) {
+  for (const match of text.matchAll(
+    /\b(?:exactly|precisely)\s+((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\b/gi,
+  )) {
     indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
   }
 
@@ -884,7 +918,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     yearContextCountIndexes = getYearContextCountIndexes(text),
     eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
-    bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
+    bareSparkCounts = [...text.matchAll(/\b((?:\d{1,3}(?:,\d{3})+|\d+))\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
     standaloneWithCount = withCounts.find(
@@ -902,7 +936,9 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   );
 
   if (bareSparkCount) {
-    return { ambiguous: false, raw: bareSparkCount[1], value: Number(bareSparkCount[1]) };
+    const raw = bareSparkCount[1].replace(/,/g, "");
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
   if (unambiguousFireworksCount !== undefined) {

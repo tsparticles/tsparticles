@@ -129,6 +129,7 @@ describe("generateOptions", () => {
     ["fireworks for 2100 sparks", 50, false],
     ["fireworks for Christmas 2026 sparks", 50, true],
     ["fireworks for the spring gala 2026 sparks", 50, true],
+    ["fireworks for the spring gala: 2026 sparks", 50, true],
     ["fireworks for the spring gala 2026 sparks and 2027 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
@@ -155,6 +156,7 @@ describe("generateOptions", () => {
     ["fireworks with 2026 sparks", 500, true],
     ["fireworks using 600", 500, true],
     ["fireworks for exactly 2000 sparks", 500, true],
+    ["fireworks for precisely 2026 sparks", 500, true],
     ["fireworks for 1000 sparks", 500, true],
     ["fireworks for 1000\nsparks", 500, true],
     ["fireworks for the spring gala 1000 sparks", 500, true],
@@ -167,6 +169,14 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", splitCount);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(capExpected);
+  });
+
+  it("normalizes comma-grouped spark counts before applying the splitCount cap", () => {
+    const result = generateCode({ description: "fireworks for exactly 2,000 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
   it("asks for clarification when a new year is associated with a bare spark heading", () => {
