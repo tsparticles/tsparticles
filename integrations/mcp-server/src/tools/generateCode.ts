@@ -649,6 +649,25 @@ function getYearContextCountIndexes(text: string): Set<number> {
 }
 
 /**
+ * Collects years associated with named events.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getEventYearCountIndexes(text: string): Set<number> {
+  const indexes = new Set<number>(),
+    eventYearPattern =
+      /\b(?:christmas|easter|halloween|thanksgiving|new year(?:'s)?(?: (?:day|eve))?|valentine(?:'s)?(?: day)?|independence day|memorial day|labor day|canada day|diwali|hanukkah|ramadan|eid(?: al-(?:fitr|adha))?)(?:\s*[:=]\s*|\s+(?:of\s+)?)(\d{4})\b/gi;
+
+  for (const match of text.matchAll(eventYearPattern)) {
+    const count = match[1];
+
+    indexes.add((match.index ?? 0) + match[0].length - count.length);
+  }
+
+  return indexes;
+}
+
+/**
  * Extracts a count written after a spark heading.
  *
  * @param text - The normalized fireworks description.
@@ -757,6 +776,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   }
 
   const yearContextCountIndexes = getYearContextCountIndexes(text),
+    eventYearCountIndexes = getEventYearCountIndexes(text),
     explicitSparkCountIndexes = getExplicitSparkCountIndexes(text);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
     bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
@@ -769,8 +789,12 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     ),
     isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
       yearContextCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
+  const isEventYearSparkCount = (match: RegExpMatchArray): boolean =>
+    eventYearCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
 
-  const bareSparkCount = bareSparkCounts.find(match => !isYearLabeledSparkCount(match));
+  const bareSparkCount = bareSparkCounts.find(
+    match => !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match),
+  );
 
   if (bareSparkCount) {
     return { ambiguous: false, raw: bareSparkCount[1], value: Number(bareSparkCount[1]) };
@@ -782,6 +806,12 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   if (standaloneWithCount) {
     return { ambiguous: false, raw: standaloneWithCount[1], value: Number(standaloneWithCount[1]) };
+  }
+
+  const eventYearSparkCount = bareSparkCounts.find(isEventYearSparkCount);
+
+  if (eventYearSparkCount) {
+    return { ambiguous: true, raw: eventYearSparkCount[1], value: Number(eventYearSparkCount[1]) };
   }
 
   const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];

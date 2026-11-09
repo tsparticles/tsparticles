@@ -125,6 +125,7 @@ describe("generateOptions", () => {
     ["fireworks in 2026 sparks", 50, false],
     ["fireworks for 1900 sparks", 50, false],
     ["fireworks for 2100 sparks", 50, false],
+    ["fireworks for Christmas 2026 sparks", 50, true],
     ["2000 fireworks", 50, true],
     ["fireworks with 2026 written in the sky", 50, true],
     ["fireworks with 2100 written in the sky", 50, true],
@@ -162,11 +163,11 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(capExpected);
   });
 
-  it("ignores an event year before a bare spark heading", () => {
+  it("asks for clarification when a new year is associated with a bare spark heading", () => {
     const result = generateCode({ description: "fireworks for the new year 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
@@ -174,7 +175,7 @@ describe("generateOptions", () => {
     const result = generateCode({ description: "fireworks for the new year: 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
   });
 
   it("recognizes year of before a bare spark count", () => {
@@ -184,11 +185,11 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
-  it("ignores an event year before a newline spark heading without a count", () => {
+  it("asks for clarification when an event year precedes a newline spark heading without a count", () => {
     const result = generateCode({ description: "fireworks for the new year 2026\nsparks" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
@@ -210,6 +211,7 @@ describe("generateOptions", () => {
   it.each([
     "fireworks for 2026 sparks per burst",
     "fireworks for 2026 sparks per explosion",
+    "fireworks for Christmas 2026 sparks per burst",
     "fireworks for the new year 2026 particles per burst",
     `fireworks for the${LONG_WHITESPACE}new${LONG_WHITESPACE}year${LONG_WHITESPACE}2026${LONG_WHITESPACE}particles${LONG_WHITESPACE}per${LONG_WHITESPACE}burst`,
   ])("uses an explicit particle count instead of treating the year-like value as ambiguous in %s", description => {
