@@ -664,18 +664,106 @@ function getEventYearCountIndexes(text: string): Set<number> {
     indexes.add((match.index ?? 0) + match[0].length - count.length);
   }
 
-  const eventContextYearPattern =
-    /\b(?:for|in|during|at|on)\s+(?:(?:the|a|an)\s+)?((?:[a-z0-9][a-z0-9'-]*\s+)+)(\d{4})\b/gi;
+  const eventContextWords = ["for", "in", "during", "at", "on"],
+    isWhitespace = (char: string | undefined): boolean => char !== undefined && /\s/.test(char),
+    isWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9_]/i.test(char),
+    isPhraseWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9'-]/i.test(char);
 
-  for (const match of text.matchAll(eventContextYearPattern)) {
-    const eventContext = match[1].trim(),
-      count = match[2];
-
-    if (/^year(?: of)?$/i.test(eventContext)) {
+  // Consume each context phrase once so repeated prefixes cannot rescan the remaining text.
+  for (let index = 0; index < text.length;) {
+    if (isWordCharacter(text[index - 1])) {
+      index++;
       continue;
     }
 
-    indexes.add((match.index ?? 0) + match[0].length - count.length);
+    const contextWord = eventContextWords.find(
+      word => text.slice(index, index + word.length).toLowerCase() === word && isWhitespace(text[index + word.length]),
+    );
+
+    if (!contextWord) {
+      index++;
+      continue;
+    }
+
+    let position = index + contextWord.length;
+
+    while (isWhitespace(text[position])) {
+      position++;
+    }
+
+    let phraseWordCount = 0,
+      firstPhraseWord = "",
+      secondPhraseWord = "",
+      thirdPhraseWord = "",
+      firstPhraseGapIsSingleSpace = false,
+      secondPhraseGapIsSingleSpace = false,
+      candidateYearIndex = -1,
+      candidateIsYearContext = false,
+      previousPhraseWordEnd = -1;
+
+    while (position < text.length && /[a-z0-9]/i.test(text[position])) {
+      const phraseWordStart = position;
+
+      while (isPhraseWordCharacter(text[position])) {
+        position++;
+      }
+
+      if (
+        phraseWordCount > 0 &&
+        /^\d{4}$/.test(text.slice(phraseWordStart, phraseWordStart + FIREWORKS_YEAR_LENGTH)) &&
+        !isWordCharacter(text[phraseWordStart + FIREWORKS_YEAR_LENGTH])
+      ) {
+        const skipsArticle = phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
+          eventContextWordCount = phraseWordCount - (skipsArticle ? 1 : 0),
+          firstEventContextWord = skipsArticle ? secondPhraseWord : firstPhraseWord,
+          secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
+          eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace;
+
+        candidateYearIndex = phraseWordStart;
+        candidateIsYearContext =
+          eventContextWordCount === 1
+            ? firstEventContextWord === "year"
+            : eventContextWordCount === 2 &&
+              firstEventContextWord === "year" &&
+              secondEventContextWord === "of" &&
+              eventContextGapIsSingleSpace;
+      }
+
+      if (!isWhitespace(text[position])) {
+        break;
+      }
+
+      const phraseWord = text.slice(phraseWordStart, position).toLowerCase();
+
+      if (phraseWordCount === 0) {
+        firstPhraseWord = phraseWord;
+      } else if (phraseWordCount === 1) {
+        secondPhraseWord = phraseWord;
+        firstPhraseGapIsSingleSpace =
+          phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+      } else if (phraseWordCount === 2) {
+        thirdPhraseWord = phraseWord;
+        secondPhraseGapIsSingleSpace =
+          phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+      }
+
+      phraseWordCount++;
+      previousPhraseWordEnd = position;
+
+      while (isWhitespace(text[position])) {
+        position++;
+      }
+    }
+
+    if (candidateYearIndex >= 0 && !candidateIsYearContext) {
+      const value = Number(text.slice(candidateYearIndex, candidateYearIndex + FIREWORKS_YEAR_LENGTH));
+
+      if (value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR) {
+        indexes.add(candidateYearIndex);
+      }
+    }
+
+    index = position;
   }
 
   return indexes;

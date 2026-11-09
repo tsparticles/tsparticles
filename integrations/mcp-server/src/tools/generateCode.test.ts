@@ -11,7 +11,9 @@ import {
 
 const LARGE_COUNT_DIGITS = 400,
   LONG_WHITESPACE_LENGTH = 10000,
-  LONG_WHITESPACE = " ".repeat(LONG_WHITESPACE_LENGTH);
+  LONG_WHITESPACE = " ".repeat(LONG_WHITESPACE_LENGTH),
+  REPEATED_EVENT_CONTEXT_PREFIX_COUNT = 24000,
+  EVENT_CONTEXT_PARSER_TIMEOUT_MS = 2000;
 
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
@@ -153,6 +155,7 @@ describe("generateOptions", () => {
     ["fireworks using 600", 500, true],
     ["fireworks for 1000 sparks", 500, true],
     ["fireworks for 1000\nsparks", 500, true],
+    ["fireworks for the spring gala 1000 sparks", 500, true],
     ["fireworks for 2026 sparks each", 500, true],
     ["fireworks 2000 sparks per firework", 500, true],
     ["fireworks for 2000 sparks per firework", 500, true],
@@ -223,6 +226,18 @@ describe("generateOptions", () => {
     expect(result.notes).toContain("Requested fireworks splitCount of 2026 exceeds the maximum of 500; using 500.");
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
+
+  it(
+    "parses repeated event-context prefixes without rescanning the description",
+    () => {
+      const description = `fireworks ${"in ".repeat(REPEATED_EVENT_CONTEXT_PREFIX_COUNT)}sparks`,
+        result = generateCode({ description });
+
+      expect(result.options).toHaveProperty("splitCount", 50);
+      expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    },
+    EVENT_CONTEXT_PARSER_TIMEOUT_MS,
+  );
 
   it("uses a later bare spark count after an ambiguous year value", () => {
     const result = generateCode({ description: "fireworks for the new year 2026 sparks and 120 sparks" });
