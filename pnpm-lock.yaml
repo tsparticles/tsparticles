@@ -4698,8 +4698,8 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))
       '@babel/plugin-transform-nullish-coalescing-operator':
-        specifier: ^7.29.7
-        version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))
+        specifier: ^8.0.1
+        version: 8.0.1(@babel/core@7.29.7(supports-color@10.2.2))
       '@babel/plugin-transform-optional-chaining':
         specifier: ^7.29.7
         version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
@@ -45528,6 +45528,10 @@ snapshots:
 
   '@babel/helper-plugin-utils@7.29.7': {}
 
+  '@babel/helper-plugin-utils@8.0.1(@babel/core@7.29.7(supports-color@10.2.2))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@10.2.2)
+
   '@babel/helper-plugin-utils@8.0.1(@babel/core@8.1.0)':
     dependencies:
       '@babel/core': 8.1.0
@@ -47211,6 +47215,11 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/helper-plugin-utils': 7.29.7
+
+  '@babel/plugin-transform-nullish-coalescing-operator@8.0.1(@babel/core@7.29.7(supports-color@10.2.2))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@10.2.2)
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@7.29.7(supports-color@10.2.2))
 
   '@babel/plugin-transform-nullish-coalescing-operator@8.0.1(@babel/core@8.1.0)':
     dependencies:
