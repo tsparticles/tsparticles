@@ -149,6 +149,7 @@ describe("generateOptions", () => {
     ["fireworks with 120", 120, false],
     ["fireworks using 600", 500, true],
     ["fireworks for 1000 sparks", 500, true],
+    ["fireworks for 1000\nsparks", 500, true],
     ["fireworks for 2026 sparks each", 500, true],
     ["fireworks 2000 sparks per firework", 500, true],
     ["fireworks for 2000 sparks per firework", 500, true],
@@ -197,6 +198,13 @@ describe("generateOptions", () => {
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("parses a count after a colon and newline in a spark heading", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks:\n100" });
+
+    expect(result.options).toHaveProperty("splitCount", 100);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 

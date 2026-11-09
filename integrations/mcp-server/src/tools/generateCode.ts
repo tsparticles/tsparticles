@@ -674,7 +674,8 @@ function getYearContextSparkHeadingIndexes(text: string, yearContextCountIndexes
  * @param text - The normalized fireworks description.
  */
 function extractSparkCountAfterHeading(text: string): string | undefined {
-  const match = /(?:^|\r?\n)[ \t]*(?:sparks|particles)[ \t]*(?:[:=][ \t]*|[ \t]+|\r?\n[ \t]*)(\d+)\b/gim.exec(text);
+  const match =
+    /(?:^|\r?\n)[ \t]*(?:sparks|particles)(?:[ \t]*[:=][ \t]*(?:\r?\n[ \t]*)?|[ \t]+|\r?\n[ \t]*)(\d+)\b/gim.exec(text);
 
   return match?.[1];
 }
@@ -779,7 +780,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     yearContextSparkHeadingIndexes = getYearContextSparkHeadingIndexes(text, yearContextCountIndexes),
     explicitSparkCountIndexes = getExplicitSparkCountIndexes(text);
   const withCounts = [...text.matchAll(/\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/gi)],
-    bareSparkCounts = [...text.matchAll(/\b(\d+)[ \t]+(?:sparks|particles)\b/gi)],
+    bareSparkCounts = [...text.matchAll(/\b(\d+)\s+(?:sparks|particles)\b/gi)],
     bareFireworksCounts = [...text.matchAll(/\b(\d+)\s+fireworks\b/gi)],
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
     standaloneWithCount = withCounts.find(
