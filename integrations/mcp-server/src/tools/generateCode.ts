@@ -33,6 +33,8 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   FIREWORKS_YEAR_LENGTH = 4,
   MIN_IMPLICIT_YEAR = 1900,
   MAX_IMPLICIT_YEAR = 2100,
+  // Bounded suffix covering the longest year/count context phrase and its word boundary.
+  YEAR_CONTEXT_SUFFIX_LENGTH = 32,
   GROUPED_INTEGER_PATTERN = String.raw`(?:\d{1,3}(?:,\d{3})+|\d+)`,
   GROUPED_INTEGER_COUNT_PATTERN = new RegExp(String.raw`^(${GROUPED_INTEGER_PATTERN})\b`),
   GENERIC_TEMPLATE: Record<string, unknown> = {
@@ -586,11 +588,15 @@ function extractCount(text: string): number | undefined {
     return parseSafeCount(labeledCount);
   }
 
-  const match = [
-    ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g")),
-  ].find(candidate => !isAmbiguousYearReference(text, candidate));
+  const numberPattern = new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g");
 
-  return match ? parseSafeCount(match[1]) : undefined;
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, numberPattern)) {
+    if (!isAmbiguousYearReference(precedingText, match[1])) {
+      return parseSafeCount(match[1]);
+    }
+  }
+
+  return undefined;
 }
 
 function normalizeCountString(count: string): string {
@@ -603,23 +609,52 @@ function parseSafeCount(count: string): number | undefined {
   return Number.isSafeInteger(value) ? value : undefined;
 }
 
+function* getMatchesWithNormalizedPrefix(
+  text: string,
+  pattern: RegExp,
+): Generator<{ match: RegExpMatchArray; precedingText: string }> {
+  let textIndex = 0,
+    precedingText = "";
+
+  for (const match of text.matchAll(pattern)) {
+    const matchIndex = match.index;
+
+    while (textIndex < matchIndex) {
+      const char = text[textIndex];
+
+      if (/\s/.test(char)) {
+        if (!precedingText.endsWith(" ")) {
+          precedingText += " ";
+        }
+      } else {
+        precedingText += char;
+      }
+
+      if (precedingText.length > YEAR_CONTEXT_SUFFIX_LENGTH) {
+        precedingText = precedingText.slice(-YEAR_CONTEXT_SUFFIX_LENGTH);
+      }
+
+      textIndex++;
+    }
+
+    yield { match, precedingText };
+  }
+}
+
 /**
  * Determines whether a numeric candidate follows a year reference rather than an explicit count label.
  *
- * @param text - The normalized particle description.
- * @param match - The numeric candidate to inspect.
+ * @param precedingText - The normalized text before the numeric candidate.
+ * @param count - The numeric candidate to inspect.
  */
-function isAmbiguousYearReference(text: string, match: RegExpMatchArray): boolean {
-  const count = match[1],
-    index = match.index ?? 0;
-
+function isAmbiguousYearReference(precedingText: string, count: string): boolean {
   if (count.length !== FIREWORKS_YEAR_LENGTH) {
     return false;
   }
 
-  const precedingText = text.slice(0, index).trimEnd().replace(/[:=]$/, "").trimEnd().replace(/\s+/g, " "),
-    hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(precedingText),
-    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(precedingText);
+  const normalizedPrecedingText = precedingText.trimEnd().replace(/[:=]$/, "").trimEnd(),
+    hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(normalizedPrecedingText),
+    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(normalizedPrecedingText);
 
   return hasYearContext && !isExplicitCount;
 }
@@ -630,8 +665,8 @@ function isAmbiguousYearReference(text: string, match: RegExpMatchArray): boolea
  * @param text - The normalized particle description.
  */
 function extractAmbiguousYearCount(text: string): string | undefined {
-  for (const match of text.matchAll(/\b(\d{4})\b/g)) {
-    if (isAmbiguousYearReference(text, match)) {
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, /\b(\d{4})\b/g)) {
+    if (isAmbiguousYearReference(precedingText, match[1])) {
       return match[1];
     }
   }

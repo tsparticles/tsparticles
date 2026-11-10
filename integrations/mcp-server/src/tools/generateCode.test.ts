@@ -13,7 +13,9 @@ const LARGE_COUNT_DIGITS = 400,
   LONG_WHITESPACE_LENGTH = 10000,
   LONG_WHITESPACE = " ".repeat(LONG_WHITESPACE_LENGTH),
   REPEATED_EVENT_CONTEXT_PREFIX_COUNT = 24000,
-  EVENT_CONTEXT_PARSER_TIMEOUT_MS = 2000;
+  EVENT_CONTEXT_PARSER_TIMEOUT_MS = 2000,
+  REPEATED_YEAR_CONTEXT_COUNT = 10000,
+  YEAR_CONTEXT_SCANNER_TIMEOUT_MS = 2000;
 
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
@@ -460,6 +462,20 @@ describe("generateOptions", () => {
 
     expect(options).toMatchObject({ particles: { number: { value: 80 } } });
   });
+
+  it(
+    "scans repeated year-reference candidates without rescanning description prefixes",
+    () => {
+      const description = `particle animation ${"for 2026 ".repeat(REPEATED_YEAR_CONTEXT_COUNT)}and 7`,
+        lower = description.toLowerCase(),
+        keywords = extractKeywords(lower),
+        match = matchBundle(keywords, lower),
+        options = generateOptions(match, keywords, lower);
+
+      expect(options).toMatchObject({ particles: { number: { value: 7 } } });
+    },
+    YEAR_CONTEXT_SCANNER_TIMEOUT_MS,
+  );
 
   it("applies color keyword overrides", () => {
     const result = generateCode({ description: "red particles floating" });

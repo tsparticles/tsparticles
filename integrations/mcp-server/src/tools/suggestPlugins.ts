@@ -233,6 +233,24 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   /**
    *
+   * @param rawOptions - Particle options and any split particle overrides.
+   */
+  function addParticleOptionPluginsAndSplits(rawOptions: unknown): void {
+    addParticleOptionPlugins(rawOptions);
+
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
+    }
+
+    const splitParticleOptions = getOptionValue(rawOptions as Record<string, unknown>, "destroy.split.particles");
+
+    for (const splitOptions of asArray<unknown>(splitParticleOptions)) {
+      addParticleOptionPlugins(splitOptions);
+    }
+  }
+
+  /**
+   *
    * @param rawOptions - Source options containing particles and optional groups.
    */
   function addParticleOptions(rawOptions: unknown): void {
@@ -242,13 +260,13 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
     const sourceOptions = rawOptions as Record<string, unknown>;
 
-    addParticleOptionPlugins(sourceOptions.particles);
+    addParticleOptionPluginsAndSplits(sourceOptions.particles);
 
     const particleGroups = getOptionValue(sourceOptions, "particles.groups");
 
     if (particleGroups && typeof particleGroups === "object" && !Array.isArray(particleGroups)) {
       for (const groupOptions of Object.values(particleGroups)) {
-        addParticleOptionPlugins(groupOptions);
+        addParticleOptionPluginsAndSplits(groupOptions);
       }
     }
   }

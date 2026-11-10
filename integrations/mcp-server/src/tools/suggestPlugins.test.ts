@@ -263,6 +263,34 @@ describe("suggestPlugins", () => {
     expect(result.imports.some(item => item.from === "@tsparticles/effect-trail")).toBe(true);
   });
 
+  it("should detect loaders required by particle split overrides in object and array forms", () => {
+    const objectResult = suggestPlugins({
+        particles: {
+          destroy: {
+            split: {
+              particles: { effect: { type: "trail" }, shape: { type: "heart" } },
+            },
+          },
+        },
+      }),
+      arrayResult = suggestPlugins({
+        particles: {
+          destroy: {
+            split: {
+              particles: [{ shape: { type: "heart" } }, { effect: { type: "trail" } }],
+            },
+          },
+        },
+      });
+
+    for (const result of [objectResult, arrayResult]) {
+      expect(result.npmPackages).toContain("@tsparticles/shape-heart");
+      expect(result.npmPackages).toContain("@tsparticles/effect-trail");
+      expect(result.imports.some(item => item.from === "@tsparticles/shape-heart")).toBe(true);
+      expect(result.imports.some(item => item.from === "@tsparticles/effect-trail")).toBe(true);
+    }
+  });
+
   it("should detect loaders required by particle group overrides", () => {
     const result = suggestPlugins({
       particles: {
