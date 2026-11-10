@@ -43,6 +43,10 @@ Once connected, the AI assistant can use these tools:
 | `diagnose_issues`  | Analyzes options for configuration problems and performance issues                      |
 | `generate_code`    | Generates complete code from a natural language description with smart bundle selection |
 
+`suggest_plugins` は、ルート設定、テーマ、レスポンシブ設定、パーティクルグループ、エミッターの
+個別設定、分割時に生成されるパーティクルの各オプションを調べます。エミッターの形状と
+インタラクションモードも考慮し、ネストされた設定に必要な import を提案します。
+
 ### Generating code
 
 `generate_code` turns a natural language description into ready-to-use code. It uses deterministic
@@ -58,6 +62,9 @@ The result includes the selected bundle, the npm install command, the generated 
 with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
 "@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
 leaves `html` empty. Other bundles return the framework-specific component in `code`; for `framework: "vanilla"` `code` is a load script instead, and `html` — populated only for `framework: "vanilla"` — contains the container `div`.
+
+生成される花火の例では、明示された `splitCount` は最大 500 に制限されます。指定された数値が
+年号ともパーティクル数とも解釈できる場合、数値を使う前に用途を明記するよう結果内で案内します。
 
 ## Resources
 

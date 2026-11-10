@@ -43,6 +43,9 @@ Once connected, the AI assistant can use these tools:
 | `diagnose_issues`  | Analyzes options for configuration problems and performance issues                      |
 | `generate_code`    | Generates complete code from a natural language description with smart bundle selection |
 
+`suggest_plugins` 会检查主配置、主题、响应式覆盖、粒子组、发射器覆盖以及分裂生成的粒子选项。
+它还会考虑发射器形状和交互模式，从而为嵌套配置推荐所需的导入项。
+
 ### Generating code
 
 `generate_code` turns a natural language description into ready-to-use code. It uses deterministic
@@ -58,6 +61,9 @@ The result includes the selected bundle, the npm install command, the generated 
 with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
 "@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
 leaves `html` empty. Other bundles return the framework-specific component in `code`; for `framework: "vanilla"` `code` is a load script instead, and `html` — populated only for `framework: "vanilla"` — contains the container `div`.
+
+生成的烟花示例中，显式指定的 `splitCount` 最大为 500。如果请求中的数字可能表示年份或粒子数量，
+结果会提示先标明数量含义，再使用该数字。
 
 ## Resources
 
