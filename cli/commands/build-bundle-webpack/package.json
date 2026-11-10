@@ -36,7 +36,7 @@
     "commander": "^15"
   },
   "dependencies": {
-    "@swc/core": "^1.16.21",
+    "@swc/core": "^1.16.22",
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
@@ -56,7 +56,7 @@
     "rimraf": "^6.1.4",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1",
+    "typescript-eslint": "^8.72.2",
     "webpack": "^5.112.2"
   },
   "devDependencies": {
@@ -72,7 +72,7 @@
     "terser-webpack-plugin": "^5.6.1",
     "ts-node": "^10.9.2",
     "vitest": "^5.1.0",
-    "webpack-bundle-analyzer": "^5.4.1",
+    "webpack-bundle-analyzer": "^5.4.2",
     "webpack-cli": "^7.3.1"
   },
   "description": "tsParticles CLI",

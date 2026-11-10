@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@swc/core": "^1.16.21",
+    "@swc/core": "^1.16.22",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "browserslist": "^4.29.5",
@@ -54,8 +54,8 @@
     "swc-loader": "^0.2.7",
     "terser-webpack-plugin": "^5.6.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1",
-    "webpack-bundle-analyzer": "^5.4.1",
+    "typescript-eslint": "^8.72.2",
+    "webpack-bundle-analyzer": "^5.4.2",
     "webpack-cli": "^7.3.1"
   },
   "devDependencies": {

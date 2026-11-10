@@ -46,7 +46,7 @@
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.2"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
