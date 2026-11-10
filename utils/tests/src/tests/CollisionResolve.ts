@@ -245,19 +245,22 @@ describe("CollisionResolve tests", () => {
 
     for (const largeFirst of [false, true]) {
       const container = await loadCollisionContainer(
-          collisionContainerOptions({ enable: true, mode: "destroy", maxSpeed: 100 }),
-        ),
-        [a, b] = arrangePair(container, radius.small + radius.large);
+        collisionContainerOptions({ enable: true, mode: "destroy", maxSpeed: 100 }),
+      );
 
-      a.size.value = largeFirst ? radius.large : radius.small;
-      b.size.value = largeFirst ? radius.small : radius.large;
-      container.particles.update(testDelta);
+      try {
+        const [a, b] = arrangePair(container, radius.small + radius.large);
 
-      expect(a.destroyed).toBe(!largeFirst);
-      expect(b.destroyed).toBe(largeFirst);
-      expect(container.particles.filter(particle => !particle.destroyed)).toHaveLength(1);
+        a.size.value = largeFirst ? radius.large : radius.small;
+        b.size.value = largeFirst ? radius.small : radius.large;
+        container.particles.update(testDelta);
 
-      container.destroy(false);
+        expect(a.destroyed).toBe(!largeFirst);
+        expect(b.destroyed).toBe(largeFirst);
+        expect(container.particles.filter(particle => !particle.destroyed)).toHaveLength(1);
+      } finally {
+        await container.destroy(false);
+      }
     }
   }, 30000);
 

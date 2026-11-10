@@ -246,7 +246,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
   /** Resets the path generator (no-op) */
   reset(): void {
-    this.#requestId++;
+    // Pending URL loads belong to the generator, not to an individual particle reset.
   }
 
   /** Updates the path generator (no-op) */

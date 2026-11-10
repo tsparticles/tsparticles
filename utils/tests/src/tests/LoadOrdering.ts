@@ -80,13 +80,24 @@ describe("container load ordering", () => {
   it("keeps anonymous DOM hosts independent and reuses their identity", async () => {
     globalThis.window = TestWindow;
 
-    const firstElement = document.createElement("div"),
-      secondElement = document.createElement("div"),
-      options = { autoPlay: false, particles: { number: { value: noParticles } } },
-      firstContainer = await tsParticles.load({ element: firstElement, options }),
-      secondContainer = await tsParticles.load({ element: secondElement, options });
+    const containers: Container[] = [];
 
     try {
+      const firstElement = document.createElement("div"),
+        secondElement = document.createElement("div"),
+        options = { autoPlay: false, particles: { number: { value: noParticles } } },
+        firstContainer = await tsParticles.load({ element: firstElement, options });
+
+      if (firstContainer) {
+        containers.push(firstContainer);
+      }
+
+      const secondContainer = await tsParticles.load({ element: secondElement, options });
+
+      if (secondContainer) {
+        containers.push(secondContainer);
+      }
+
       expect(firstContainer).toBeDefined();
       expect(secondContainer).toBeDefined();
       expect(firstContainer?.id).not.toBe(secondContainer?.id);
@@ -95,20 +106,16 @@ describe("container load ordering", () => {
 
       const reloaded = await tsParticles.load({ element: firstElement, options });
 
+      if (reloaded) {
+        containers.push(reloaded);
+      }
+
       expect(reloaded?.id.description).toBe(firstContainer?.id.description);
       expect(firstContainer?.destroyed).toBe(true);
     } finally {
-      secondContainer?.destroy();
-      tsParticles.items
-        .filter(item => item.id === firstContainer?.id)
-        .forEach(item => {
-          item.destroy();
-        });
-      tsParticles.items
-        .filter(item => item.id === secondContainer?.id)
-        .forEach(item => {
-          item.destroy();
-        });
+      for (const container of containers) {
+        container.destroy();
+      }
     }
   });
 

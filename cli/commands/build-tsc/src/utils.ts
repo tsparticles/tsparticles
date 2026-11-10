@@ -5,8 +5,6 @@ import { readFile } from "node:fs/promises";
 enum ExitCodes {
   OK = 0,
   EmitErrors = 1,
-  NoDataOrOptions = 2,
-  NoOptions = 3,
   ParseError = 4,
 }
 
@@ -91,37 +89,9 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
   let options: unknown;
 
   const logs: string[] = [],
-    data = await readConfig(basePath, compileConfigs[type].configFile);
-
-  if (!data) {
-    options = getDefaultOptions(type);
-  } else {
-    options = {};
-  }
-
-  if (!data && !options) {
-    logs.push(`No TS config found for ${type} build.`);
-
-    return {
-      type,
-      logs,
-      exitCode: ExitCodes.NoDataOrOptions,
-    };
-  }
-
-  if (!options) {
-    logs.push(`No TS options available for ${type} build.`);
-
-    return {
-      type,
-      logs,
-      exitCode: ExitCodes.NoOptions,
-    };
-  }
-
-  const ts = await import("typescript"),
+    data = await readConfig(basePath, compileConfigs[type].configFile),
+    ts = await import("typescript"),
     configPath = path.join(basePath, compileConfigs[type].configFile);
-  let configOptions: unknown = options;
 
   if (data) {
     const configResult = ts.parseConfigFileTextToJson(configPath, data);
@@ -136,10 +106,12 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
       };
     }
 
-    configOptions = configResult.config as unknown;
+    options = configResult.config as unknown;
+  } else {
+    options = getDefaultOptions(type);
   }
 
-  let parsed = ts.parseJsonConfigFileContent(configOptions, ts.sys, basePath, undefined, data ? configPath : undefined);
+  let parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath, undefined, data ? configPath : undefined);
 
   if (parsed.errors.length && type === "cjs" && data) {
     const noInputsCode = 18003,

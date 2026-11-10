@@ -53,4 +53,40 @@ describe("build-distfiles", () => {
       await rm(basePath, { recursive: true, force: true });
     }
   });
+
+  it("updates the source manifest with the resolved version and dependencies outside CI", async () => {
+    const basePath = await mkdtemp(path.join(os.tmpdir(), "tsparticles-distfiles-")),
+      distPath = path.join(basePath, "dist"),
+      version = "4.5.4";
+
+    try {
+      await mkdir(path.join(distPath, "cjs"), { recursive: true });
+      await mkdir(path.join(distPath, "esm"), { recursive: true });
+      await mkdir(path.join(distPath, "browser"), { recursive: true });
+      await writeFile(
+        path.join(basePath, "package.json"),
+        JSON.stringify({
+          version,
+          dependencies: { "@tsparticles/engine": "workspace:*" },
+          peerDependencies: { "@tsparticles/particles": "workspace:^" },
+        }),
+      );
+      await writeFile(path.join(basePath, "package.dist.json"), JSON.stringify({ name: "fixture", version: "0.0.0" }));
+      await writeFile(path.join(basePath, "LICENSE"), "fixture license");
+      await writeFile(path.join(basePath, "README.md"), "fixture readme");
+
+      expect(await buildDistFiles(basePath, true, false)).toBe(true);
+
+      const sourceManifest = JSON.parse(await readFile(path.join(basePath, "package.dist.json"), "utf8")),
+        distManifest = JSON.parse(await readFile(path.join(distPath, "package.json"), "utf8"));
+
+      for (const manifest of [sourceManifest, distManifest]) {
+        expect(manifest.version).toBe(version);
+        expect(manifest.dependencies).toEqual({ "@tsparticles/engine": version });
+        expect(manifest.peerDependencies).toEqual({ "@tsparticles/particles": `^${version}` });
+      }
+    } finally {
+      await rm(basePath, { recursive: true, force: true });
+    }
+  });
 });
