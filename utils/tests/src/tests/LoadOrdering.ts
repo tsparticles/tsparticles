@@ -48,6 +48,87 @@ describe("container load ordering", () => {
     expect(calls).to.equal(1);
   });
 
+  it("waits for a loader registered while initialization is in flight", async () => {
+    const engine = new Engine();
+    let releaseInitial!: () => void,
+      releaseLate!: () => void,
+      markInitialFinished!: () => void,
+      markLateStarted!: () => void;
+    const initialGate = new Promise<void>(resolve => {
+        releaseInitial = resolve;
+      }),
+      lateGate = new Promise<void>(resolve => {
+        releaseLate = resolve;
+      }),
+      initialFinished = new Promise<void>(resolve => {
+        markInitialFinished = resolve;
+      }),
+      lateStarted = new Promise<void>(resolve => {
+        markLateStarted = resolve;
+      });
+
+    await engine.pluginManager.register(async () => {
+      await initialGate;
+      markInitialFinished();
+    });
+
+    const initialization = engine.init();
+
+    await Promise.resolve();
+
+    const registration = engine.pluginManager.register(async () => {
+      markLateStarted();
+      await lateGate;
+    });
+
+    await lateStarted;
+    releaseInitial();
+    await initialFinished;
+    await new Promise<void>(resolve => setTimeout(resolve, 0));
+
+    expect(engine.pluginManager.initialized).toBe(false);
+
+    releaseLate();
+    await Promise.all([initialization, registration]);
+
+    expect(engine.pluginManager.initialized).toBe(true);
+  });
+
+  it("awaits a nested child loader without waiting on its parent", async () => {
+    const engine = new Engine();
+    let releaseChild!: () => void,
+      markChildStarted!: () => void,
+      parentFinished = false,
+      childFinished = false;
+    const childGate = new Promise<void>(resolve => {
+        releaseChild = resolve;
+      }),
+      childStarted = new Promise<void>(resolve => {
+        markChildStarted = resolve;
+      });
+
+    await engine.pluginManager.register(async () => {
+      await engine.pluginManager.register(async () => {
+        markChildStarted();
+        await childGate;
+        childFinished = true;
+      });
+      parentFinished = true;
+    });
+
+    const initialization = engine.init();
+
+    await childStarted;
+
+    expect(parentFinished).toBe(false);
+
+    releaseChild();
+    await initialization;
+
+    expect(parentFinished).toBe(true);
+    expect(childFinished).toBe(true);
+  });
+
   it("shares loader rejection and retries an incomplete registration batch", async () => {
     const engine = new Engine(),
       failure = new Error("controlled loader failure");

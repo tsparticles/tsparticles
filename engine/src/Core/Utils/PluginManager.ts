@@ -64,6 +64,8 @@ export class PluginManager {
 
   readonly #executedSet = new Set<LoadPluginFunction>();
 
+  readonly #inFlightLoaders = new Set<Promise<void>>();
+
   /**
    * Checks if the engine instance is initialized
    */
@@ -282,8 +284,19 @@ export class PluginManager {
 
     this.#initPromise = (async (): Promise<void> => {
       try {
-        for (const loader of this.#allLoadersSet) {
-          await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+        while (
+          this.#inFlightLoaders.size > 0 ||
+          [...this.#allLoadersSet].some(loader => !this.#executedSet.has(loader))
+        ) {
+          for (const loader of this.#allLoadersSet) {
+            await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+          }
+
+          const inFlightLoaders = [...this.#inFlightLoaders];
+
+          if (inFlightLoaders.length) {
+            await Promise.all(inFlightLoaders);
+          }
         }
 
         this.#loadPromises.clear();
@@ -328,12 +341,18 @@ export class PluginManager {
     executed.add(loader);
     allLoaders.add(loader);
 
+    const loaderPromise = (async (): Promise<void> => loader(this.#engine))();
+
+    this.#inFlightLoaders.add(loaderPromise);
+
     try {
-      await loader(this.#engine);
+      await loaderPromise;
     } catch (error) {
       executed.delete(loader);
 
       throw error;
+    } finally {
+      this.#inFlightLoaders.delete(loaderPromise);
     }
   }
 }
