@@ -244,6 +244,25 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
   });
 
+  it("should detect loaders required by split particles in emitter particle overrides", () => {
+    const result = suggestPlugins({
+      emitters: [
+        {
+          particles: {
+            destroy: {
+              split: {
+                particles: [{ shape: { type: "heart" } }],
+              },
+            },
+          },
+        },
+      ],
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/shape-heart");
+    expect(result.imports.some(item => item.from === "@tsparticles/shape-heart")).toBe(true);
+  });
+
   it("should detect loaders required by emitter split particles", () => {
     const result = suggestPlugins({
       emitters: [

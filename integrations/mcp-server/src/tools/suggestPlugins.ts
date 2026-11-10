@@ -308,7 +308,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
         ];
 
         for (const particleOptions of particleOverrides) {
-          addParticleOptionPlugins(particleOptions);
+          addParticleOptionPluginsAndSplits(particleOptions);
         }
       }
     }
