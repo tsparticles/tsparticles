@@ -1,5 +1,6 @@
 import { type Container, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
+import { Engine } from "../../../../engine/src/Core/Engine.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
@@ -23,6 +24,94 @@ function loadContainer(id: string): Promise<Container | undefined> {
 }
 
 describe("container load ordering", () => {
+  it("shares plugin initialization between concurrent callers", async () => {
+    const engine = new Engine();
+    let release!: () => void,
+      calls = 0;
+    const barrier = new Promise<void>(resolve => {
+        release = resolve;
+      }),
+      loader = async (): Promise<void> => {
+        calls++;
+        await barrier;
+      };
+
+    await engine.pluginManager.register(loader);
+
+    const first = engine.init(),
+      second = engine.init();
+
+    await Promise.resolve();
+    expect(calls).to.equal(1);
+    release();
+    await Promise.all([first, second]);
+    expect(calls).to.equal(1);
+  });
+
+  it("shares loader rejection and retries an incomplete registration batch", async () => {
+    const engine = new Engine(),
+      failure = new Error("controlled loader failure");
+    let attempts = 0;
+
+    await engine.pluginManager.register(async () => {
+      attempts++;
+      await Promise.resolve();
+
+      if (attempts === 1) {
+        throw failure;
+      }
+    });
+
+    const [first, second] = await Promise.allSettled([engine.init(), engine.init()]);
+
+    expect(first.status).to.equal("rejected");
+    expect(second.status).to.equal("rejected");
+
+    if (first.status === "rejected" && second.status === "rejected") {
+      expect(first.reason).to.equal(failure);
+      expect(second.reason).to.equal(failure);
+    }
+
+    await engine.init();
+
+    expect(attempts).to.equal(2);
+  });
+
+  it("keeps anonymous DOM hosts independent and reuses their identity", async () => {
+    globalThis.window = TestWindow;
+
+    const firstElement = document.createElement("div"),
+      secondElement = document.createElement("div"),
+      options = { autoPlay: false, particles: { number: { value: noParticles } } },
+      firstContainer = await tsParticles.load({ element: firstElement, options }),
+      secondContainer = await tsParticles.load({ element: secondElement, options });
+
+    try {
+      expect(firstContainer).toBeDefined();
+      expect(secondContainer).toBeDefined();
+      expect(firstContainer?.id).not.toBe(secondContainer?.id);
+      expect(firstElement.id).toBe("");
+      expect(secondElement.id).toBe("");
+
+      const reloaded = await tsParticles.load({ element: firstElement, options });
+
+      expect(reloaded?.id.description).toBe(firstContainer?.id.description);
+      expect(firstContainer?.destroyed).toBe(true);
+    } finally {
+      secondContainer?.destroy();
+      tsParticles.items
+        .filter(item => item.id === firstContainer?.id)
+        .forEach(item => {
+          item.destroy();
+        });
+      tsParticles.items
+        .filter(item => item.id === secondContainer?.id)
+        .forEach(item => {
+          item.destroy();
+        });
+    }
+  });
+
   it("discards an overlapping load for the same id instead of replacing the newer container", async () => {
     globalThis.window = TestWindow;
 

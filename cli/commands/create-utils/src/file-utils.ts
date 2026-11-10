@@ -64,7 +64,7 @@ export async function updateJsonFile<T>(filePath: string, updater: JsonUpdater<T
  * @returns the destination directory path
  */
 export async function getDestinationDir(destination: string): Promise<string> {
-  const destPath = path.join(process.cwd(), destination),
+  const destPath = path.resolve(process.cwd(), destination),
     destExists = existsSync(destPath);
 
   if (destExists) {

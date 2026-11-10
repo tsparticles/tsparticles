@@ -132,7 +132,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     const shapeName = Object.hasOwn(shapeAliases, name) ? shapeAliases[name] : name,
       fullName = shapeName.startsWith("@tsparticles/") ? shapeName : `@tsparticles/shape-${shapeName}`;
 
-    if (fullName in packageCatalog.byName) {
+    if (Object.hasOwn(packageCatalog.byName, fullName)) {
       matched.add(fullName);
     }
   }

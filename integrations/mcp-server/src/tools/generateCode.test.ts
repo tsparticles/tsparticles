@@ -543,6 +543,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<ParticlesProvider init={init}>");
     expect(result.code).toContain("export function ParticlesBackground()");
     expect(result.installPackages).toContain("@tsparticles/react");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Vue 3 code with the vue-particles component", () => {
@@ -550,6 +551,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<vue-particles");
     expect(result.code).toContain('from "@tsparticles/vue3"');
     expect(result.installPackages).toContain("@tsparticles/vue3");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Svelte code with the Svelte wrapper", () => {
@@ -557,6 +559,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain('from "@tsparticles/svelte"');
     expect(result.code).toContain("initParticlesEngine");
     expect(result.installPackages).toContain("@tsparticles/svelte");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Angular code with @Component and ngx-particles", () => {
@@ -565,6 +568,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<ngx-particles");
     expect(result.code).toContain("NgParticlesService");
     expect(result.installPackages).toContain("@tsparticles/angular");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("emits TypeScript annotations when typescript: true", () => {
@@ -676,8 +680,8 @@ describe("generateCode integration", () => {
     });
     expect(result.bundle).toBe("@tsparticles/slim");
     expect(result.loadFunction).toBe("loadSlim");
-    expect(result.installPackages).toEqual(["@tsparticles/slim", "@tsparticles/react"]);
-    expect(result.installCommand).toBe("npm install @tsparticles/slim @tsparticles/react");
+    expect(result.installPackages).toEqual(["@tsparticles/slim", "@tsparticles/engine", "@tsparticles/react"]);
+    expect(result.installCommand).toBe("npm install @tsparticles/slim @tsparticles/engine @tsparticles/react");
     expect(result.html).toBe("");
     expect(result.code).toContain("ParticlesBackground");
   });
@@ -687,7 +691,7 @@ describe("generateCode integration", () => {
     expect(result.bundle).toBe("@tsparticles/basic");
     expect(result.loadFunction).toBe("loadBasic");
     expect(result.isAutoInitialized).toBeUndefined();
-    expect(result.installPackages).toEqual(["@tsparticles/basic", "@tsparticles/preset-snow"]);
+    expect(result.installPackages).toEqual(["@tsparticles/basic", "@tsparticles/engine", "@tsparticles/preset-snow"]);
     expect(result.installCommand).toContain("@tsparticles/preset-snow");
     expect(result.html).toBe('<div id="tsparticles"></div>');
   });

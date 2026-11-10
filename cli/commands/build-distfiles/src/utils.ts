@@ -45,7 +45,7 @@ function resolveDeps(deps: Record<string, string>, version: string): Record<stri
  * @param silent - The silent
  * @returns true if the dist files process was successful
  */
-export async function buildDistFiles(basePath: string, silent: boolean): Promise<boolean> {
+export async function buildDistFiles(basePath: string, silent: boolean, ci = false): Promise<boolean> {
   if (!silent) {
     console.info("Build - started on dist files");
   }
@@ -78,29 +78,24 @@ export async function buildDistFiles(basePath: string, silent: boolean): Promise
     const jsonIndent = 2,
       newLibPackageContents = `${JSON.stringify(libObj, undefined, jsonIndent)}\n`;
 
-    if (newLibPackageContents !== text) {
+    if (!ci && newLibPackageContents !== text) {
       await writeFile(libPackage, newLibPackageContents, "utf8");
     }
 
     if (!silent) {
-      console.info(`package.dist.json updated successfully to version ${pkgInfo.version}`);
+      console.info(`package.dist.json ${ci ? "prepared" : "updated"} for version ${pkgInfo.version}`);
     }
 
-    const rootFilesToCopy = [
-      "LICENSE",
-      "README.md",
-      {
-        source: "package.dist.json",
-        destination: "package.json",
-      },
-    ];
+    const rootFilesToCopy = ["LICENSE", "README.md"];
 
     for (const file of rootFilesToCopy) {
-      const src = path.join(basePath, typeof file === "string" ? file : file.source),
-        dest = path.join(distPath, typeof file === "string" ? file : file.destination);
+      const src = path.join(basePath, file),
+        dest = path.join(distPath, file);
 
       await copyFile(src, dest);
     }
+
+    await writeFile(path.join(distPath, "package.json"), newLibPackageContents, "utf8");
 
     const scriptsPath = path.join(basePath, "scripts"),
       distScriptsPath = path.join(distPath, "scripts");
@@ -116,7 +111,7 @@ export async function buildDistFiles(basePath: string, silent: boolean): Promise
     }
 
     for await (const file of klaw(distPath)) {
-      if (file.stats.isDirectory()) {
+      if (file.stats.isDirectory() || ![".js", ".mjs", ".cjs"].includes(path.extname(file.path))) {
         continue;
       }
 

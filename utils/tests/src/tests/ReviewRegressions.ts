@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-
 import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/AbsorbersPluginInstance.js";
+import { EventListeners } from "../../../../engine/src/Core/Utils/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
 import { Vector } from "@tsparticles/engine";
@@ -8,6 +8,19 @@ import { Vector } from "@tsparticles/engine";
 const testOrbitRadius = 10;
 
 describe("review regressions", () => {
+  it("adds and removes listeners without a document in a worker", () => {
+    vi.stubGlobal("document", undefined);
+
+    try {
+      const listeners = new EventListeners({ actualOptions: { resize: { enable: false } } } as never);
+
+      listeners.addListeners();
+      listeners.removeListeners();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it("does not retry a GIF after its particle is recycled as an image", () => {
     const retries: (() => void)[] = [],
       timeout = vi.spyOn(globalThis, "setTimeout");

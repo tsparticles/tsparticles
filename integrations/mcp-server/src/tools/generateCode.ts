@@ -1775,6 +1775,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     installPackages.push(bundleMatch.bundleName);
   } else {
     installPackages.push(bundleMatch.bundleName);
+    installPackages.push("@tsparticles/engine");
     if (bundleMatch.presetPackage) {
       installPackages.push(bundleMatch.presetPackage);
     }

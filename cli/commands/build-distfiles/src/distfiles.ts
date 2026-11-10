@@ -27,7 +27,7 @@ distFilesCommand.action(async () => {
     throw new Error("Provided path does not exist");
   }
 
-  if (!(await buildDistFiles(basePath, silent))) {
+  if (!(await buildDistFiles(basePath, silent, ci))) {
     throw new Error("Dist files build failed");
   }
 

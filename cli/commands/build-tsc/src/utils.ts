@@ -95,6 +95,8 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
 
   if (!data) {
     options = getDefaultOptions(type);
+  } else {
+    options = {};
   }
 
   if (!data && !options) {
@@ -107,10 +109,6 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
     };
   }
 
-  if (!options && data) {
-    options = JSON.parse(data);
-  }
-
   if (!options) {
     logs.push(`No TS options available for ${type} build.`);
 
@@ -121,9 +119,27 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
     };
   }
 
-  const ts = await import("typescript");
+  const ts = await import("typescript"),
+    configPath = path.join(basePath, compileConfigs[type].configFile);
+  let configOptions: unknown = options;
 
-  let parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath);
+  if (data) {
+    const configResult = ts.parseConfigFileTextToJson(configPath, data);
+
+    if (configResult.error) {
+      logs.push(ts.flattenDiagnosticMessageText(configResult.error.messageText, "\n"));
+
+      return {
+        type,
+        logs,
+        exitCode: ExitCodes.ParseError,
+      };
+    }
+
+    configOptions = configResult.config as unknown;
+  }
+
+  let parsed = ts.parseJsonConfigFileContent(configOptions, ts.sys, basePath, undefined, data ? configPath : undefined);
 
   if (parsed.errors.length && type === "cjs" && data) {
     const noInputsCode = 18003,
@@ -131,7 +147,7 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
 
     if (hasNoInputsError) {
       options = getDefaultOptions(type);
-      parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath);
+      parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath, undefined, configPath);
 
       if (!silent) {
         logs.push("Using default cjs build options because tsconfig.json has no input files for this build.");

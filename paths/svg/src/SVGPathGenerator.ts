@@ -8,6 +8,7 @@ import {
   type Particle,
   PixelMode,
   Vector,
+  getLogger,
   getPosition,
   getRandom,
   half,
@@ -68,6 +69,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
   readonly #offset: ICoordinatesWithMode;
   /** The parsed SVG paths */
   #paths: SVGPathData[];
+  #ready: boolean;
+  #requestId: number;
   /** The result vector */
   readonly #res: Vector;
   /** Whether to reverse path direction */
@@ -86,11 +89,13 @@ export class SVGPathGenerator implements IMovePathGenerator {
   constructor(container: Container) {
     this.#container = container;
     this.#paths = [];
+    this.#ready = false;
     this.#reverse = false;
     this.#size = { width: 0, height: 0 };
     this.#scale = 1;
     this.#offset = { x: 0, y: 0, mode: PixelMode.percent };
     this.#width = 0;
+    this.#requestId = 0;
     this.#res = Vector.origin;
   }
 
@@ -101,6 +106,13 @@ export class SVGPathGenerator implements IMovePathGenerator {
    * @returns The result
    */
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
+    if (!this.#ready) {
+      this.#res.x = 0;
+      this.#res.y = 0;
+
+      return this.#res;
+    }
+
     const container = this.#container,
       pxRatio = container.retina.pixelRatio;
 
@@ -189,23 +201,44 @@ export class SVGPathGenerator implements IMovePathGenerator {
     this.#offset.y = position.y;
     this.#offset.mode = position.mode;
     this.#width = options.width ?? minWidth;
+    const requestId = ++this.#requestId;
+
+    this.#paths = [];
+    this.#ready = false;
 
     if (options.url && !options.path) {
       const url = options.url;
 
       void (async (): Promise<void> => {
-        const response = await fetch(url),
-          data = await response.text(),
-          { paths, size } = loadSVGFromString(data);
+        try {
+          const response = await fetch(url);
 
-        this.#paths = paths;
-        this.#size.width = size.width;
-        this.#size.height = size.height;
+          if (!response.ok) {
+            throw new Error(`Failed to load SVG path from ${url}: ${response.status} ${response.statusText}`);
+          }
+
+          const data = await response.text(),
+            { paths, size } = loadSVGFromString(data);
+
+          if (requestId !== this.#requestId) {
+            return;
+          }
+
+          this.#paths = paths;
+          this.#ready = paths.some(path => path.length > 0);
+          this.#size.width = size.width;
+          this.#size.height = size.height;
+        } catch (error) {
+          if (requestId === this.#requestId) {
+            getLogger().error("error loading SVG path", error);
+          }
+        }
       })();
     } else if (options.path) {
       const path = options.path;
 
       this.#paths = createSVGPaths(options.path.data);
+      this.#ready = this.#paths.some(path => path.length > 0);
       this.#size.height = path.size.height;
       this.#size.width = path.size.width;
     }
@@ -213,7 +246,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
   /** Resets the path generator (no-op) */
   reset(): void {
-    // do nothing
+    this.#requestId++;
   }
 
   /** Updates the path generator (no-op) */

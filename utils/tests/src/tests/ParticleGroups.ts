@@ -561,6 +561,37 @@ describe("ParticleGroups", async () => {
   });
 
   describe("density", () => {
+    it("T34 - keeps a rounded fractional density target stable and ignores invalid reference sizes", async () => {
+      const fresh = await loadContainer("test-density-fractional", {
+        detectRetina: false,
+        autoPlay: false,
+        particles: {
+          number: {
+            value: 3,
+            density: { enable: true, width: 200, height: 100 },
+          },
+        },
+      });
+
+      try {
+        fresh.canvas.size = { width: 100, height: 100 };
+        fresh.particles.setDensity();
+
+        expect(fresh.particles.count).to.equal(2);
+
+        fresh.particles.setDensity();
+
+        expect(fresh.particles.count).to.equal(2);
+
+        fresh.actualOptions.particles.number.density.width = 0;
+        fresh.particles.setDensity();
+
+        expect(fresh.particles.count).to.equal(3);
+      } finally {
+        fresh.destroy(false);
+      }
+    });
+
     it("T17 - should scale the global particle count by the density factor and re-scale on resize", async () => {
       const fresh = await loadContainer("test-density-global", {
         detectRetina: false,

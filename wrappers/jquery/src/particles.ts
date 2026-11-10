@@ -1,4 +1,4 @@
-import { type Container, getRandom, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
 
@@ -83,16 +83,10 @@ declare global {
 }
 
 $.fn.particles = function (): ParticlesResult {
-  const baseId = "tsparticles";
-
   const load = (options: IParticlesProps): Promise<Container | undefined> => {
     const promises: Promise<Container | undefined>[] = [];
 
     this.each((index, element) => {
-      if (element.id === undefined) {
-        element.id = baseId + Math.floor(getRandom() * 1000);
-      }
-
       const p = (async () => {
         // If the wrapper hasn't been initialized yet, attempt a safe
         // default initialization (no registrar). This avoids throwing
@@ -109,7 +103,7 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        const container = await tsParticles.load({ id: element.id, options });
+        const container = await tsParticles.load({ element, options });
 
         if (container) {
           containers.set(element, container);
@@ -128,10 +122,6 @@ $.fn.particles = function (): ParticlesResult {
     const promises: Promise<Container | undefined>[] = [];
 
     this.each((index, element) => {
-      if (element.id === undefined) {
-        element.id = baseId + Math.floor(getRandom() * 1000);
-      }
-
       const p = (async () => {
         await waitForParticlesEngineInitialization();
 
@@ -139,7 +129,7 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        const container = await tsParticles.load({ id: element.id, url: jsonUrl });
+        const container = await tsParticles.load({ element, url: jsonUrl });
 
         if (container) {
           containers.set(element, container);
