@@ -19,6 +19,7 @@ import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
 import { getOptionsGuideResource } from "./resources/optionsGuide.js";
 import { getPackageCatalogResource } from "./resources/packageCatalog.js";
 import { getPackageInfo } from "./tools/getPackageInfo.js";
+import { isIP } from "node:net";
 import { listPackages } from "./tools/listPackages.js";
 import { normalizeOrigin } from "./http/security.js";
 import { readFileSync } from "node:fs";
@@ -65,8 +66,10 @@ const PACKAGE_VERSION = readPackageVersion();
 interface ParsedArgs {
   allowedOrigins?: string[];
   authToken?: string;
+  host?: string;
   mode: "stdio" | "http";
   port?: number;
+  trustedProxies?: string[];
 }
 
 /**
@@ -76,7 +79,8 @@ function parseArgs(): ParsedArgs {
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const args = process.argv.slice(2),
     result: ParsedArgs = { mode: "stdio" };
-  let rawPort: string | undefined;
+  let rawHost: string | undefined, rawPort: string | undefined;
+  const rawTrustedProxies: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--stdio") {
@@ -89,6 +93,30 @@ function parseArgs(): ParsedArgs {
       result.mode = "http";
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       rawPort = args[i].split("=")[1];
+    } else if (args[i] === "--host") {
+      result.mode = "http";
+
+      if (i + 1 >= args.length || args[i + 1].startsWith("--")) {
+        console.error("Missing value for --host. Expected a hostname or IP address.");
+        process.exit(ExitCode.Failure);
+      }
+
+      rawHost = args[++i];
+    } else if (args[i].startsWith("--host=")) {
+      result.mode = "http";
+      rawHost = args[i].slice("--host=".length);
+    } else if (args[i] === "--trusted-proxy") {
+      result.mode = "http";
+
+      if (i + 1 >= args.length || args[i + 1].startsWith("--")) {
+        console.error("Missing value for --trusted-proxy. Expected an IP address.");
+        process.exit(ExitCode.Failure);
+      }
+
+      rawTrustedProxies.push(args[++i]);
+    } else if (args[i].startsWith("--trusted-proxy=")) {
+      result.mode = "http";
+      rawTrustedProxies.push(args[i].slice("--trusted-proxy=".length));
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     } else if (args[i] === "--allowed-origin" && i + 1 < args.length) {
       result.allowedOrigins = (result.allowedOrigins ?? []).concat(args[++i]);
@@ -107,6 +135,26 @@ function parseArgs(): ParsedArgs {
     result.authToken = process.env.MCP_AUTH_TOKEN;
   }
 
+  const rawEnvironmentTrustedProxies = process.env.MCP_TRUSTED_PROXIES,
+    environmentTrustedProxies = rawEnvironmentTrustedProxies
+      ? rawEnvironmentTrustedProxies
+          .split(",")
+          .map(proxy => proxy.trim())
+          .filter(Boolean)
+      : [],
+    configuredTrustedProxies = rawTrustedProxies.length ? rawTrustedProxies : environmentTrustedProxies;
+
+  if (configuredTrustedProxies.length) {
+    const normalizedTrustedProxies = configuredTrustedProxies.map(proxy => proxy.trim());
+
+    if (normalizedTrustedProxies.some(proxy => !proxy || !isIP(proxy))) {
+      console.error("Invalid trusted proxy. Use an IP address for each trusted proxy.");
+      process.exit(ExitCode.Failure);
+    }
+
+    result.trustedProxies = [...new Set(normalizedTrustedProxies)];
+  }
+
   if (result.mode === "http") {
     const port = rawPort !== undefined ? Number(rawPort) : NaN;
     if (!Number.isInteger(port) || port < MIN_PORT || port > MAX_PORT) {
@@ -116,6 +164,15 @@ function parseArgs(): ParsedArgs {
       process.exit(ExitCode.Failure);
     }
     result.port = port;
+
+    if (rawHost !== undefined) {
+      if (!rawHost.trim()) {
+        console.error("Invalid --host value. Expected a hostname or IP address.");
+        process.exit(ExitCode.Failure);
+      }
+
+      result.host = rawHost.trim();
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
@@ -136,6 +193,14 @@ function parseArgs(): ParsedArgs {
     }
     if (result.authToken) {
       console.error("--auth-token can only be used with HTTP mode (--port <number>)");
+      process.exit(ExitCode.Failure);
+    }
+    if (rawHost) {
+      console.error("--host can only be used with HTTP mode (--port <number>)");
+      process.exit(ExitCode.Failure);
+    }
+    if (configuredTrustedProxies.length) {
+      console.error("--trusted-proxy can only be used with HTTP mode (--port <number>)");
       process.exit(ExitCode.Failure);
     }
   }
@@ -370,8 +435,10 @@ async function main(): Promise<void> {
   if (args.mode === "http" && args.port) {
     await startHttpServer({
       port: args.port,
+      host: args.host,
       allowedOrigins: args.allowedOrigins,
       authToken: args.authToken,
+      trustedProxies: args.trustedProxies,
       createMcpServer,
     });
   } else {

@@ -14,9 +14,9 @@ export function parseModeNames(value: unknown): string[] {
  * Collects every interactivity mode name referenced by an
  * `interactivity` options section, whether declared under
  * `interactivity.modes` (object keys) or under
- * `interactivity.events.onClick.mode` / `.onHover.mode` (string or
- * array). Shared between `suggestPlugins` and `diagnoseIssues` so the
- * two tools never drift on what counts as "this mode is configured".
+ * `interactivity.events.onClick.mode`, `.onHover.mode`, or `.onDiv.mode`
+ * (string or array). Shared between `suggestPlugins` and `diagnoseIssues`
+ * so the two tools never drift on what counts as "this mode is configured".
  * @param interactivity
  */
 export function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
@@ -31,7 +31,8 @@ export function collectInteractivityModes(interactivity: Record<string, unknown>
   }
 
   const events = interactivity.events as Record<string, unknown> | undefined,
-    eventEntries = [events?.onClick, events?.onHover];
+    onDivEntries: unknown[] = Array.isArray(events?.onDiv) ? events.onDiv : [events?.onDiv],
+    eventEntries = [events?.onClick, events?.onHover, ...onDivEntries];
 
   for (const entry of eventEntries) {
     if (!entry || typeof entry !== "object") continue;

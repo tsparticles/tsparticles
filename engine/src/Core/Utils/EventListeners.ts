@@ -105,7 +105,9 @@ export class EventListeners {
 
     this.#manageResize(add);
 
-    manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
+    if (typeof document !== "undefined") {
+      manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
+    }
   }
 
   #manageResize(add: boolean): void {

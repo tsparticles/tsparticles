@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, setAnimationFunctions, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -107,6 +107,52 @@ describe("Container lifecycle", () => {
     }).to.not.throw();
 
     container.destroy();
+  });
+
+  it("keeps only one queued animation frame after repeated play calls", async () => {
+    const container = await loadContainer({ particles: { number: { value: 0 } } }),
+      scheduled = new Map<number, FrameRequestCallback>();
+    let nextHandle = 0;
+
+    setAnimationFunctions(
+      callback => {
+        const handle = ++nextHandle;
+
+        scheduled.set(handle, callback);
+
+        return handle;
+      },
+      handle => {
+        scheduled.delete(handle);
+      },
+    );
+
+    try {
+      container.play();
+      container.play();
+      container.play(true);
+
+      expect(scheduled.size).to.equal(1);
+
+      const [handle, callback] = [...scheduled.entries()][0];
+
+      scheduled.delete(handle);
+      callback(16);
+
+      expect(scheduled.size).to.equal(1);
+
+      container.pause();
+
+      expect(scheduled.size).to.equal(0);
+    } finally {
+      container.destroy();
+      setAnimationFunctions(
+        callback => requestAnimationFrame(callback),
+        handle => {
+          cancelAnimationFrame(handle);
+        },
+      );
+    }
   });
 
   it("re-scales the particles when the canvas is resized", async () => {

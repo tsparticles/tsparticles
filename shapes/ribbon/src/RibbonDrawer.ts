@@ -89,6 +89,33 @@ function isInsideByDirection(
   return maxX >= -margin && maxY >= -margin && minX <= canvasSize.width + margin && minY <= canvasSize.height + margin;
 }
 
+/**
+ *
+ * @param data - The canvas bounds data.
+ */
+function isInsideOnBounce(data: IParticleCanvasBoundsData<RibbonParticle>): boolean {
+  const { canvasSize, direction, particle, radius } = data,
+    collisionPosition = particle.getPosition();
+
+  switch (direction) {
+    case OutModeDirection.bottom:
+      return collisionPosition.y + radius < canvasSize.height;
+    case OutModeDirection.left:
+      return collisionPosition.x - radius > 0;
+    case OutModeDirection.right:
+      return collisionPosition.x + radius < canvasSize.width;
+    case OutModeDirection.top:
+      return collisionPosition.y - radius > 0;
+    default:
+      return (
+        collisionPosition.x >= -radius &&
+        collisionPosition.y >= -radius &&
+        collisionPosition.y <= canvasSize.height + radius &&
+        collisionPosition.x <= canvasSize.width + radius
+      );
+  }
+}
+
 /** Ribbon shape drawer plugin */
 export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   readonly #container: Container;
@@ -126,7 +153,7 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   }
 
   isInsideCanvas(data: IParticleCanvasBoundsData<RibbonParticle>): boolean {
-    const { canvasSize, direction, outMode, particle, radius } = data,
+    const { outMode, particle, radius } = data,
       points = particle.ribbonPoints,
       offsets = particle.ribbonOffsets,
       position = particle.position,
@@ -135,44 +162,10 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
       headRadius = Math.max(radius, scaledOffsetLen);
 
     if (outMode === OutMode.bounce || outMode === OutMode.split) {
-      const collisionPosition = particle.getPosition();
-
-      if (direction === OutModeDirection.bottom) {
-        return collisionPosition.y + radius < canvasSize.height;
-      }
-
-      if (direction === OutModeDirection.left) {
-        return collisionPosition.x - radius > 0;
-      }
-
-      if (direction === OutModeDirection.right) {
-        return collisionPosition.x + radius < canvasSize.width;
-      }
-
-      if (direction === OutModeDirection.top) {
-        return collisionPosition.y - radius > 0;
-      }
-
-      return (
-        collisionPosition.x >= -radius &&
-        collisionPosition.y >= -radius &&
-        collisionPosition.y <= canvasSize.height + radius &&
-        collisionPosition.x <= canvasSize.width + radius
-      );
+      return isInsideOnBounce(data);
     }
 
-    if (!strictBounds) {
-      return isInsideByDirection(
-        data,
-        position.x - headRadius,
-        position.x + headRadius,
-        position.y - headRadius,
-        position.y + headRadius,
-        insideMargin,
-      );
-    }
-
-    if (!points?.length || !offsets) {
+    if (!strictBounds || !points?.length || !offsets) {
       return isInsideByDirection(
         data,
         position.x - headRadius,

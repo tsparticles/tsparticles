@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
+
+### Bug Fixes
+
+* fixes from v4 plan ([49d614d](https://github.com/tsparticles/tsparticles/commit/49d614d937df608ded6417f077cff5c3328e55b0))
+
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
 **Note:** Version bump only for package @tsparticles/jquery

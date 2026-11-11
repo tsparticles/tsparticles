@@ -63,10 +63,17 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   const matched = new Set<string>(),
     imports: PackageImport[] = [],
     particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles."));
+  const optionSources: Record<string, unknown>[] = [options];
 
-  for (const mapping of optionToPlugin) {
-    if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(options, mapping.optionPath)) {
-      matched.add(mapping.packageName);
+  for (const override of [...asArray<unknown>(options.themes), ...asArray<unknown>(options.responsive)]) {
+    if (!override || typeof override !== "object" || Array.isArray(override)) {
+      continue;
+    }
+
+    const sourceOptions = (override as Record<string, unknown>).options;
+
+    if (sourceOptions && typeof sourceOptions === "object" && !Array.isArray(sourceOptions)) {
+      optionSources.push(sourceOptions as Record<string, unknown>);
     }
   }
 
@@ -94,28 +101,38 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const hasInteractivity = options.interactivity !== undefined,
-    hasEmitter = options.emitters !== undefined,
-    hasAbsorber = options.absorbers !== undefined,
-    shapeAliases: Record<string, string> = {
-      char: "text",
-      character: "text",
-      edge: "square",
-      gifs: "gif",
-      images: "image",
-      "multiline-text": "text",
-      triangle: "polygon",
-    };
+  /**
+   * Adds packages for enabled plugin options outside the particle options tree.
+   */
+  function addMappedPlugins(): void {
+    for (const sourceOptions of optionSources) {
+      for (const mapping of optionToPlugin) {
+        if (!mapping.optionPath.startsWith("particles.") && isOptionEnabled(sourceOptions, mapping.optionPath)) {
+          matched.add(mapping.packageName);
+        }
+      }
+    }
+  }
+
+  const shapeAliases: Record<string, string> = {
+    char: "text",
+    character: "text",
+    edge: "square",
+    gifs: "gif",
+    images: "image",
+    "multiline-text": "text",
+    triangle: "polygon",
+  };
 
   /**
    *
    * @param name
    */
   function addShapeByName(name: string): void {
-    const shapeName = Object.prototype.hasOwnProperty.call(shapeAliases, name) ? shapeAliases[name] : name,
+    const shapeName = Object.hasOwn(shapeAliases, name) ? shapeAliases[name] : name,
       fullName = shapeName.startsWith("@tsparticles/") ? shapeName : `@tsparticles/shape-${shapeName}`;
 
-    if (fullName in packageCatalog.byName) {
+    if (Object.hasOwn(packageCatalog.byName, fullName)) {
       matched.add(fullName);
     }
   }
@@ -156,10 +173,15 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   /**
    *
-   * @param particleOptions - Particle options to inspect for required loaders.
+   * @param rawOptions - Particle options to inspect for required loaders.
    */
-  function addParticleOptionPlugins(particleOptions: Record<string, unknown>): void {
-    const particleRoot = { particles: particleOptions },
+  function addParticleOptionPlugins(rawOptions: unknown): void {
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
+    }
+
+    const particleOptions = rawOptions as Record<string, unknown>,
+      particleRoot = { particles: particleOptions },
       shapeSection = particleOptions.shape as Record<string, unknown> | undefined,
       shapeOptions = shapeSection?.options as Record<string, unknown> | undefined,
       effectSection = particleOptions.effect as Record<string, unknown> | undefined;
@@ -192,7 +214,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
     if (shapeOptions) {
       for (const key of Object.keys(shapeOptions)) {
-        const shapeName = optionToShape[key];
+        const shapeName = Object.hasOwn(optionToShape, key) ? optionToShape[key] : undefined;
 
         if (shapeName) {
           addShapeByName(shapeName);
@@ -201,7 +223,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
 
     for (const typeName of parseModeNames(effectSection?.type)) {
-      const pkg = effectMap[typeName];
+      const pkg = Object.hasOwn(effectMap, typeName) ? effectMap[typeName] : undefined;
 
       if (pkg) {
         matched.add(pkg);
@@ -209,94 +231,183 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const topLevelParticles = options.particles;
+  /**
+   *
+   * @param rawOptions - Particle options and any split particle overrides.
+   */
+  function addParticleOptionPluginsAndSplits(rawOptions: unknown): void {
+    addParticleOptionPlugins(rawOptions);
 
-  if (topLevelParticles && typeof topLevelParticles === "object" && !Array.isArray(topLevelParticles)) {
-    addParticleOptionPlugins(topLevelParticles as Record<string, unknown>);
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
+    }
+
+    const splitParticleOptions = getOptionValue(rawOptions as Record<string, unknown>, "destroy.split.particles");
+
+    for (const splitOptions of asArray<unknown>(splitParticleOptions)) {
+      addParticleOptionPlugins(splitOptions);
+    }
+  }
+
+  /**
+   *
+   * @param rawOptions - Source options containing particles and optional groups.
+   */
+  function addParticleOptions(rawOptions: unknown): void {
+    if (!rawOptions || typeof rawOptions !== "object" || Array.isArray(rawOptions)) {
+      return;
+    }
+
+    const sourceOptions = rawOptions as Record<string, unknown>;
+
+    addParticleOptionPluginsAndSplits(sourceOptions.particles);
+
+    const particleGroups = getOptionValue(sourceOptions, "particles.groups");
+
+    if (particleGroups && typeof particleGroups === "object" && !Array.isArray(particleGroups)) {
+      for (const groupOptions of Object.values(particleGroups)) {
+        addParticleOptionPluginsAndSplits(groupOptions);
+      }
+    }
+  }
+
+  /**
+   * Adds packages required by root, theme, and responsive particle options.
+   */
+  function addSourceParticlePlugins(): void {
+    for (const sourceOptions of optionSources) {
+      addParticleOptions(sourceOptions);
+    }
   }
 
   // -- Emitter Shape Detection --
-  // `emitters` may be a single config object or an array of them — walk
-  // every entry so array-form configs aren't silently skipped.
-  const emitterEntries = asArray<Record<string, unknown>>(options.emitters),
-    matchedEmitterShapePackages = new Set<string>();
-  for (const emitter of emitterEntries) {
-    const esTypeRaw = getOptionValue(emitter, "shape.type");
-    for (const name of getShapeNames(esTypeRaw)) {
-      const pkg = EMITTER_SHAPE_PACKAGES[name];
-      if (pkg) {
-        matched.add(pkg);
-        matchedEmitterShapePackages.add(pkg);
+
+  /**
+   * Adds emitter and shape packages required by every emitter entry.
+   */
+  function addEmitterPlugins(): void {
+    for (const sourceOptions of optionSources) {
+      const emitterEntries = asArray<Record<string, unknown>>(sourceOptions.emitters);
+
+      for (const emitter of emitterEntries) {
+        const shapeType = getOptionValue(emitter, "shape.type");
+
+        for (const name of getShapeNames(shapeType === undefined ? "square" : shapeType)) {
+          if (Object.hasOwn(EMITTER_SHAPE_PACKAGES, name)) {
+            const pkg = EMITTER_SHAPE_PACKAGES[name];
+
+            if (pkg) {
+              matched.add(pkg);
+            }
+          }
+        }
+
+        const particleOverrides = [
+          ...asArray<unknown>(getOptionValue(emitter, "particles")),
+          ...asArray<unknown>(getOptionValue(emitter, "destroy.split.particles")),
+        ];
+
+        for (const particleOptions of particleOverrides) {
+          addParticleOptionPluginsAndSplits(particleOptions);
+        }
       }
-    }
-
-    const particleOverrides = asArray<unknown>(getOptionValue(emitter, "particles"));
-
-    for (const particleOptions of particleOverrides) {
-      if (particleOptions === null || typeof particleOptions !== "object" || Array.isArray(particleOptions)) {
-        continue;
-      }
-
-      addParticleOptionPlugins(particleOptions as Record<string, unknown>);
     }
   }
 
   // Emitters and absorbers register interaction loaders that require the
   // interactivity plugin, so load it before those package loaders too.
-  if (hasInteractivity || hasEmitter || hasAbsorber) {
-    matched.add("@tsparticles/plugin-interactivity");
-  }
+  /**
+   * Adds interactivity, emitter, and absorber packages required by the options.
+   */
+  function addInteractivityPlugins(): void {
+    for (const sourceOptions of optionSources) {
+      const hasInteractivity = sourceOptions.interactivity !== undefined,
+        hasEmitter = sourceOptions.emitters !== undefined,
+        hasAbsorber = sourceOptions.absorbers !== undefined;
 
-  const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
-  for (const mode of interactivityModes) {
-    const pkg = INTERACTION_MODE_PACKAGES[mode];
-    if (pkg) matched.add(pkg);
-  }
+      if (hasInteractivity || hasEmitter || hasAbsorber) {
+        matched.add("@tsparticles/plugin-interactivity");
+      }
 
-  if (hasEmitter) {
-    matched.add("@tsparticles/plugin-emitters");
-    // Only fall back to the default circle emitter shape if none of the
-    // configured emitters resolved to ANY known emitter-shape package
-    // (previously this only checked circle/square, so an emitter using
-    // e.g. "polygon" would incorrectly also get "circle" added).
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    if (matchedEmitterShapePackages.size === 0) {
-      matched.add("@tsparticles/plugin-emitters-shape-circle");
+      const interactivityModes = collectInteractivityModes(
+        sourceOptions.interactivity as Record<string, unknown> | undefined,
+      );
+
+      for (const mode of interactivityModes) {
+        if (Object.hasOwn(INTERACTION_MODE_PACKAGES, mode)) {
+          const pkg = INTERACTION_MODE_PACKAGES[mode];
+
+          if (pkg) {
+            matched.add(pkg);
+          }
+        }
+      }
+
+      if (hasEmitter) {
+        matched.add("@tsparticles/plugin-emitters");
+      }
+
+      if (hasAbsorber) {
+        matched.add("@tsparticles/plugin-absorbers");
+      }
     }
   }
 
-  if (hasAbsorber) {
-    matched.add("@tsparticles/plugin-absorbers");
-  }
+  addMappedPlugins();
+  addSourceParticlePlugins();
+  addEmitterPlugins();
+  addInteractivityPlugins();
 
   const interactivityPackage = "@tsparticles/plugin-interactivity",
-    matchedArr = [...matched].filter(Boolean).sort(),
+    matchedArr = [...matched].filter(Boolean).sort((first, second) => first.localeCompare(second)),
     importOrder = [
       ...(matchedArr.includes(interactivityPackage) ? [interactivityPackage] : []),
       ...matchedArr.filter(pkgName => pkgName !== interactivityPackage),
     ];
 
-  for (const pkgName of importOrder) {
-    const pkgInfo = packageCatalog.byName[pkgName];
-    if (pkgInfo.loadFunction) {
-      imports.push({
-        function: pkgInfo.loadFunction,
-        from: pkgName,
-      });
+  /**
+   * Builds loader imports for the matched packages in dependency order.
+   */
+  function buildImports(): void {
+    for (const pkgName of importOrder) {
+      const pkgInfo = packageCatalog.byName[pkgName];
+
+      if (pkgInfo.loadFunction) {
+        imports.push({
+          function: pkgInfo.loadFunction,
+          from: pkgName,
+        });
+      }
     }
   }
 
-  const suggestedBundle = findBundle(matchedArr);
+  /**
+   * Finds the most suitable bundle and identifies matched packages it already includes.
+   */
+  function getBundleSuggestion(): { alreadyInBundle: string[]; suggestedBundle: string | undefined } {
+    const suggestedBundle = findBundle(matchedArr);
 
-  let alreadyInBundle: string[] = [];
-  if (suggestedBundle) {
+    if (!suggestedBundle) {
+      return { alreadyInBundle: [], suggestedBundle };
+    }
+
     const bundleInfo = bundles.find(b => b.name === suggestedBundle);
-    if (bundleInfo) {
-      alreadyInBundle = matchedArr.filter(
-        p => bundleInfo.packages.includes(p) || bundleInfo.packages.includes(p.replace("@tsparticles/", "")),
-      );
+
+    if (!bundleInfo) {
+      return { alreadyInBundle: [], suggestedBundle };
     }
+
+    const alreadyInBundle = matchedArr.filter(
+      pkgName =>
+        bundleInfo.packages.includes(pkgName) || bundleInfo.packages.includes(pkgName.replace("@tsparticles/", "")),
+    );
+
+    return { alreadyInBundle, suggestedBundle };
   }
+
+  buildImports();
+
+  const { suggestedBundle, alreadyInBundle } = getBundleSuggestion();
 
   return {
     npmPackages: matchedArr,

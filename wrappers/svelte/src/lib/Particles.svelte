@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import type { Container, ISourceOptions } from '@tsparticles/engine';
-	import { tsParticles } from '@tsparticles/engine';
+	import { getLogger, tsParticles } from '@tsparticles/engine';
 	import * as particlesEngineInitialization from './utils.js';
 
 	let cssClass = '';
@@ -52,54 +52,60 @@
 	async function loadParticles(): Promise<void> {
 		const generation = ++loadGeneration;
 
-		destroyOldContainer();
+		try {
+			destroyOldContainer();
 
-		if (!mounted) {
-			return;
-		}
+			if (!mounted) {
+				return;
+			}
 
-		await particlesEngineInitialization.waitForParticlesEngineInitialization();
+			await particlesEngineInitialization.waitForParticlesEngineInitialization();
 
-		if (!particlesEngineInitialization.isParticlesEngineInitialized()) {
-			throw new Error(
-				'initParticlesEngine(...) must be called once before rendering <Particles /> components.'
-			);
-		}
+			if (!particlesEngineInitialization.isParticlesEngineInitialized()) {
+				throw new Error(
+					'initParticlesEngine(...) must be called once before rendering <Particles /> components.'
+				);
+			}
 
-		if (!mounted || generation !== loadGeneration) {
-			return;
-		}
+			if (!mounted || generation !== loadGeneration) {
+				return;
+			}
 
-		if (id) {
-			const cb = (container?: Container) => {
+			if (id) {
+				const cb = (container?: Container) => {
+					if (generation !== loadGeneration) {
+						container?.destroy();
+						return;
+					}
+
+					dispatch(particlesLoadedEvent, {
+						particles: container
+					});
+				};
+
+				const container = await tsParticles.load({
+					id,
+					options,
+					url
+				});
+
 				if (generation !== loadGeneration) {
 					container?.destroy();
 					return;
 				}
 
+				currentContainer = container;
+
+				cb(container);
+			} else {
 				dispatch(particlesLoadedEvent, {
-					particles: container
+					particles: undefined
 				});
-			};
-
-			const container = await tsParticles.load({
-				id,
-				options,
-				url
-			});
-
-			if (generation !== loadGeneration) {
-				container?.destroy();
-				return;
 			}
-
-			currentContainer = container;
-
-			cb(container);
-		} else {
-			dispatch(particlesLoadedEvent, {
-				particles: undefined
-			});
+		} catch (error) {
+			if (mounted && generation === loadGeneration) {
+				getLogger().error('Particles: error loading particles', error);
+			}
 		}
 	}
 </script>

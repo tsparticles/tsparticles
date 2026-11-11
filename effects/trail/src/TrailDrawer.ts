@@ -76,6 +76,41 @@ export type TrailParticle = Particle & {
   trailTransform?: boolean;
 };
 
+/**
+ *
+ * @param data - The canvas bounds data.
+ * @param isBounce - Whether the particle is bouncing or splitting.
+ * @param bouncePosition - The particle position used for bounce checks.
+ * @param minX - The leftmost trail bound.
+ * @param maxX - The rightmost trail bound.
+ * @param minY - The topmost trail bound.
+ * @param maxY - The bottommost trail bound.
+ */
+function isInsideByDirection(
+  data: IParticleCanvasBoundsData<TrailParticle>,
+  isBounce: boolean,
+  bouncePosition: ICoordinates,
+  minX: number,
+  maxX: number,
+  minY: number,
+  maxY: number,
+): boolean | undefined {
+  const { canvasSize, direction, radius } = data;
+
+  switch (direction) {
+    case OutModeDirection.bottom:
+      return isBounce ? bouncePosition.y + radius < canvasSize.height : minY <= canvasSize.height;
+    case OutModeDirection.left:
+      return isBounce ? bouncePosition.x - radius > minBound : maxX >= minBound;
+    case OutModeDirection.right:
+      return isBounce ? bouncePosition.x + radius < canvasSize.width : minX <= canvasSize.width;
+    case OutModeDirection.top:
+      return isBounce ? bouncePosition.y - radius > minBound : maxY >= minBound;
+    default:
+      return undefined;
+  }
+}
+
 /** Trail effect drawer plugin */
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   /** The particles container */
@@ -186,7 +221,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   }
 
   isInsideCanvas(data: IParticleCanvasBoundsData<TrailParticle>): boolean {
-    const { canvasSize, direction, outMode, particle, radius } = data,
+    const { canvasSize, outMode, particle, radius } = data,
       position = particle.position,
       trail = particle.trail;
 
@@ -214,22 +249,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     const strictBounds = outMode === OutMode.destroy,
       isBounce = outMode === OutMode.bounce || outMode === OutMode.split,
-      bouncePosition = isBounce ? particle.getPosition() : position;
+      bouncePosition = isBounce ? particle.getPosition() : position,
+      directionalResult = isInsideByDirection(data, isBounce, bouncePosition, minX, maxX, minY, maxY);
 
-    if (direction === OutModeDirection.bottom) {
-      return isBounce ? bouncePosition.y + radius < canvasSize.height : minY <= canvasSize.height;
-    }
-
-    if (direction === OutModeDirection.left) {
-      return isBounce ? bouncePosition.x - radius > minBound : maxX >= minBound;
-    }
-
-    if (direction === OutModeDirection.right) {
-      return isBounce ? bouncePosition.x + radius < canvasSize.width : minX <= canvasSize.width;
-    }
-
-    if (direction === OutModeDirection.top) {
-      return isBounce ? bouncePosition.y - radius > minBound : maxY >= minBound;
+    if (directionalResult !== undefined) {
+      return directionalResult;
     }
 
     if (!strictBounds) {

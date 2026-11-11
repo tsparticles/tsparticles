@@ -43,6 +43,10 @@ Once connected, the AI assistant can use these tools:
 | `diagnose_issues`  | Analyzes options for configuration problems and performance issues                      |
 | `generate_code`    | Generates complete code from a natural language description with smart bundle selection |
 
+`suggest_plugins` checks particle options in the root configuration, themes, responsive
+overrides, particle groups, emitter overrides, and split particles. It also accounts for
+emitter shapes and interactivity modes, so the suggested imports cover nested configurations.
+
 ### Generating code
 
 `generate_code` turns a natural language description into ready-to-use code. It uses deterministic
@@ -58,6 +62,10 @@ The result includes the selected bundle, the npm install command, the generated 
 with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
 "@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
 leaves `html` empty. Other bundles return the framework-specific component in `code`; for `framework: "vanilla"` `code` is a load script instead, and `html` — populated only for `framework: "vanilla"` — contains the container `div`.
+
+For fireworks, an explicit `splitCount` is capped at 500 in generated examples. If a number in
+the request could be a year or a particle count, the result includes a note requesting a labeled
+count before the number is used.
 
 ## Resources
 

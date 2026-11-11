@@ -31,6 +31,12 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   },
   MAX_FIREWORKS_SPLIT_COUNT = 500,
   FIREWORKS_YEAR_LENGTH = 4,
+  MIN_IMPLICIT_YEAR = 1900,
+  MAX_IMPLICIT_YEAR = 2100,
+  // Bounded suffix covering the longest year/count context phrase and its word boundary.
+  YEAR_CONTEXT_SUFFIX_LENGTH = 32,
+  GROUPED_INTEGER_PATTERN = String.raw`(?:\d{1,3}(?:,\d{3})+|\d+)`,
+  GROUPED_INTEGER_COUNT_PATTERN = new RegExp(String.raw`^(${GROUPED_INTEGER_PATTERN})\b`),
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -571,22 +577,332 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
 // ── Options generation ────────────────────────────────────────────
 
 /**
+ * Extracts the first requested count, ignoring numbers used as year references.
  *
- * @param text
+ * @param text - The normalized particle description.
  */
 function extractCount(text: string): number | undefined {
-  const match = /\b(\d{1,4})\b/.exec(text);
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  return match ? Number(match[1]) : undefined;
+  const labeledCount = extractLabeledCount(text, /\bcount\b/gi, false);
+
+  if (labeledCount !== undefined) {
+    return parseSafeCount(labeledCount);
+  }
+
+  const numberPattern = new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g");
+
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, numberPattern)) {
+    if (!isAmbiguousYearReference(precedingText, match[1])) {
+      return parseSafeCount(match[1]);
+    }
+  }
+
+  return undefined;
+}
+
+function normalizeCountString(count: string): string {
+  return count.replace(/,/g, "");
+}
+
+function parseSafeCount(count: string): number | undefined {
+  const value = Number(normalizeCountString(count));
+
+  return Number.isSafeInteger(value) ? value : undefined;
+}
+
+function* getMatchesWithNormalizedPrefix(
+  text: string,
+  pattern: RegExp,
+): Generator<{ match: RegExpMatchArray; precedingText: string }> {
+  let textIndex = 0,
+    precedingText = "";
+
+  for (const match of text.matchAll(pattern)) {
+    const matchIndex = match.index;
+
+    while (textIndex < matchIndex) {
+      const char = text[textIndex];
+
+      if (/\s/.test(char)) {
+        if (!precedingText.endsWith(" ")) {
+          precedingText += " ";
+        }
+      } else {
+        precedingText += char;
+      }
+
+      if (precedingText.length > YEAR_CONTEXT_SUFFIX_LENGTH) {
+        precedingText = precedingText.slice(-YEAR_CONTEXT_SUFFIX_LENGTH);
+      }
+
+      textIndex++;
+    }
+
+    yield { match, precedingText };
+  }
 }
 
 /**
+ * Determines whether a numeric candidate follows a year reference rather than an explicit count label.
  *
- * @param text - The fireworks description.
- * @param labelPattern - The count label to search for.
- * @param skipSplitCount - Whether to skip split-count labels.
+ * @param precedingText - The normalized text before the numeric candidate.
+ * @param count - The numeric candidate to inspect.
  */
-function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSplitCount: boolean): string | undefined {
+function isAmbiguousYearReference(precedingText: string, count: string): boolean {
+  if (count.length !== FIREWORKS_YEAR_LENGTH) {
+    return false;
+  }
+
+  const normalizedPrecedingText = precedingText.trimEnd().replace(/[:=]$/, "").trimEnd(),
+    hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(normalizedPrecedingText),
+    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(normalizedPrecedingText);
+
+  return hasYearContext && !isExplicitCount;
+}
+
+/**
+ * Finds a year reference that could otherwise be mistaken for a particle count.
+ *
+ * @param text - The normalized particle description.
+ */
+function extractAmbiguousYearCount(text: string): string | undefined {
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, /\b(\d{4})\b/g)) {
+    if (isAmbiguousYearReference(precedingText, match[1])) {
+      return match[1];
+    }
+  }
+
+  return undefined;
+}
+
+/**
+ * Collects the positions of four-digit values introduced by year context phrases.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getYearContextCountIndexes(text: string): Set<number> {
+  const indexes = new Set<number>(),
+    yearContextPattern = /(?:^|\s)(new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
+
+  for (const match of text.matchAll(yearContextPattern)) {
+    const count = match[2],
+      value = Number(count),
+      hasExplicitYearLabel = /year/i.test(match[1]),
+      isPlausibleImplicitYear = value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR;
+
+    if (hasExplicitYearLabel || isPlausibleImplicitYear) {
+      indexes.add((match.index ?? 0) + match[0].length - count.length);
+    }
+  }
+
+  return indexes;
+}
+
+/**
+ * Collects years associated with named events or event contexts.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<number>): Set<number> {
+  const indexes = new Set<number>(),
+    eventYearPattern =
+      /\b(?:christmas|easter|halloween|thanksgiving|new year(?:'s)?(?: (?:day|eve))?|valentine(?:'s)?(?: day)?|independence day|memorial day|labor day|canada day|diwali|hanukkah|ramadan|eid(?: al-(?:fitr|adha))?)(?:\s*[:=]\s*|\s+(?:of\s+)?)(\d{4})\b/gi;
+
+  for (const match of text.matchAll(eventYearPattern)) {
+    const count = match[1];
+
+    indexes.add((match.index ?? 0) + match[0].length - count.length);
+  }
+
+  const eventContextWords = ["for", "in", "during", "at", "on"],
+    isWhitespace = (char: string | undefined): boolean => char !== undefined && /\s/.test(char),
+    isWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9_]/i.test(char),
+    isPhraseWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9'-]/i.test(char);
+
+  // Consume each context phrase once so repeated prefixes cannot rescan the remaining text.
+  for (let index = 0; index < text.length;) {
+    if (isWordCharacter(text[index - 1])) {
+      index++;
+      continue;
+    }
+
+    const contextWord = eventContextWords.find(
+      word => text.slice(index, index + word.length).toLowerCase() === word && isWhitespace(text[index + word.length]),
+    );
+
+    if (!contextWord) {
+      index++;
+      continue;
+    }
+
+    let position = index + contextWord.length;
+
+    while (isWhitespace(text[position])) {
+      position++;
+    }
+
+    let phraseWordCount = 0,
+      firstPhraseWord = "",
+      secondPhraseWord = "",
+      thirdPhraseWord = "",
+      firstPhraseGapIsSingleSpace = false,
+      secondPhraseGapIsSingleSpace = false,
+      previousPhraseWordEnd = -1;
+
+    const isFourDigitYearAt = (yearIndex: number): boolean =>
+        /^\d{4}$/.test(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH)) &&
+        !isWordCharacter(text[yearIndex + FIREWORKS_YEAR_LENGTH]),
+      addPhraseWord = (phraseWordStart: number, phraseWordEnd: number): void => {
+        const phraseWord = text.slice(phraseWordStart, phraseWordEnd).toLowerCase();
+
+        if (phraseWordCount === 0) {
+          firstPhraseWord = phraseWord;
+        } else if (phraseWordCount === 1) {
+          secondPhraseWord = phraseWord;
+          firstPhraseGapIsSingleSpace =
+            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+        } else if (phraseWordCount === 2) {
+          thirdPhraseWord = phraseWord;
+          secondPhraseGapIsSingleSpace =
+            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+        }
+
+        phraseWordCount++;
+        previousPhraseWordEnd = phraseWordEnd;
+      },
+      addEventYearCandidate = (yearIndex: number): void => {
+        const skipsArticle = phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
+          eventContextWordCount = phraseWordCount - (skipsArticle ? 1 : 0),
+          firstEventContextWord = skipsArticle ? secondPhraseWord : firstPhraseWord,
+          secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
+          eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace,
+          isYearContext =
+            eventContextWordCount === 1
+              ? firstEventContextWord === "year"
+              : eventContextWordCount === 2 &&
+                firstEventContextWord === "year" &&
+                secondEventContextWord === "of" &&
+                eventContextGapIsSingleSpace,
+          value = Number(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH));
+
+        if (
+          !isYearContext &&
+          !explicitSparkCountIndexes.has(yearIndex) &&
+          value >= MIN_IMPLICIT_YEAR &&
+          value <= MAX_IMPLICIT_YEAR
+        ) {
+          indexes.add(yearIndex);
+        }
+      };
+
+    while (position < text.length && /[a-z0-9]/i.test(text[position])) {
+      const phraseWordStart = position;
+
+      while (isPhraseWordCharacter(text[position])) {
+        position++;
+      }
+
+      if (phraseWordCount > 0 && isFourDigitYearAt(phraseWordStart)) {
+        addEventYearCandidate(phraseWordStart);
+      }
+
+      if (isWhitespace(text[position])) {
+        addPhraseWord(phraseWordStart, position);
+
+        while (isWhitespace(text[position])) {
+          position++;
+        }
+
+        continue;
+      }
+
+      if (isWordCharacter(text[position])) {
+        break;
+      }
+
+      let yearIndex = position;
+
+      while (yearIndex < text.length && !isWhitespace(text[yearIndex]) && !isWordCharacter(text[yearIndex])) {
+        yearIndex++;
+      }
+
+      while (isWhitespace(text[yearIndex])) {
+        yearIndex++;
+      }
+
+      if (phraseWordCount === 0 || !isFourDigitYearAt(yearIndex)) {
+        break;
+      }
+
+      addPhraseWord(phraseWordStart, position);
+      addEventYearCandidate(yearIndex);
+      addPhraseWord(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH);
+      position = yearIndex + FIREWORKS_YEAR_LENGTH;
+
+      while (isWhitespace(text[position])) {
+        position++;
+      }
+    }
+
+    index = position;
+  }
+
+  return indexes;
+}
+
+/**
+ * Extracts a count written after a spark heading.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function extractSparkCountAfterHeading(text: string): string | undefined {
+  const match = new RegExp(
+    String.raw`(?:^|\r?\n)[ \t]*(?:sparks|particles)(?:[ \t]*[:=][ \t]*(?:\r?\n[ \t]*)?|[ \t]+|\r?\n[ \t]*)(${GROUPED_INTEGER_PATTERN})\b`,
+    "gim",
+  ).exec(text);
+
+  return match?.[1];
+}
+
+/**
+ * Collects the positions of spark quantities explicitly identified by their usage.
+ *
+ * @param text - The normalized fireworks description.
+ */
+function getExplicitSparkCountIndexes(text: string): Set<number> {
+  const indexes = new Set<number>();
+
+  for (const match of text.matchAll(
+    new RegExp(
+      String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\s+(?:per\s+(?:burst|explosion|fireworks?)|each)\b`,
+      "gi",
+    ),
+  )) {
+    indexes.add(match.index ?? 0);
+  }
+
+  for (const match of text.matchAll(
+    new RegExp(String.raw`\b(?:exactly|precisely)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi"),
+  )) {
+    indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
+  }
+
+  return indexes;
+}
+
+/**
+ * Extracts a number following a count label.
+ *
+ * @param text - The description to search.
+ * @param labelPattern - The label to search for.
+ * @param skipSplitCount - Whether to skip labels preceded by "split".
+ * @param countPattern - The accepted numeric count format.
+ */
+function extractLabeledCount(
+  text: string,
+  labelPattern: RegExp,
+  skipSplitCount: boolean,
+  countPattern: RegExp = GROUPED_INTEGER_COUNT_PATTERN,
+): string | undefined {
   for (const labelMatch of text.matchAll(labelPattern)) {
     const labelIndex = labelMatch.index;
 
@@ -604,7 +920,7 @@ function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSp
       suffix = suffix.slice(1).replace(/^\s+/, "");
     }
 
-    const labeledCount = /^(\d+)\b/.exec(suffix);
+    const labeledCount = countPattern.exec(suffix);
 
     if (labeledCount) {
       return labeledCount[1];
@@ -623,46 +939,121 @@ function isAmbiguousFireworksYear(count: string): boolean {
 }
 
 /**
+ * Extracts an explicit or ambiguous split count from a fireworks description.
  *
- * @param text - The fireworks description.
+ * @param text - The normalized fireworks description.
  */
 function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
-  const splitCount = extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false);
+  const splitCount = extractLabeledCount(text, /\bsplit\s*count\b/gi, false);
 
   if (splitCount !== undefined) {
-    return { ambiguous: false, raw: splitCount, value: Number(splitCount) };
+    const raw = normalizeCountString(splitCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text);
+  const explicitSparkCount = new RegExp(
+    String.raw`\b(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`,
+    "i",
+  ).exec(text);
 
   if (explicitSparkCount) {
-    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
+    const raw = normalizeCountString(explicitSparkCount[1]);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  const labeledCount = extractLabeledFireworksCount(text, /\bcount\b/gi, true);
+  const labeledCount = extractLabeledCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
-    return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
+    const raw = normalizeCountString(labeledCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  const withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),
-    bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
+  const sparkCountAfterHeading = extractSparkCountAfterHeading(text);
 
-  if (withCount) {
-    return {
-      ambiguous: isAmbiguousFireworksYear(withCount[1]),
-      raw: withCount[1],
-      value: Number(withCount[1]),
-    };
+  if (sparkCountAfterHeading !== undefined) {
+    const raw = normalizeCountString(sparkCountAfterHeading);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  const count = bareCount?.[1];
+  const explicitSparkCountIndexes = getExplicitSparkCountIndexes(text),
+    yearContextCountIndexes = getYearContextCountIndexes(text),
+    eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
+  const withCounts = [
+      ...text.matchAll(
+        new RegExp(
+          String.raw`\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\b`,
+          "gi",
+        ),
+      ),
+    ],
+    bareSparkCounts = [
+      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi")),
+    ],
+    bareFireworksCounts = [
+      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+fireworks\b`, "gi")),
+    ],
+    unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
+    standaloneWithCount = withCounts.find(
+      match =>
+        !isAmbiguousFireworksYear(match[1]) &&
+        /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
+    ),
+    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
+      yearContextCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
+  const isEventYearSparkCount = (match: RegExpMatchArray): boolean =>
+    eventYearCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
 
-  if (count === undefined) {
-    return undefined;
+  const bareSparkCount = bareSparkCounts.find(
+    match => !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match),
+  );
+
+  if (bareSparkCount) {
+    const raw = normalizeCountString(bareSparkCount[1]);
+
+    return { ambiguous: false, raw, value: Number(raw) };
   }
 
-  return { ambiguous: isAmbiguousFireworksYear(count), raw: count, value: Number(count) };
+  if (unambiguousFireworksCount !== undefined) {
+    const raw = normalizeCountString(unambiguousFireworksCount);
+
+    return { ambiguous: false, raw, value: Number(raw) };
+  }
+
+  if (standaloneWithCount) {
+    const raw = normalizeCountString(standaloneWithCount[1]);
+
+    return { ambiguous: false, raw, value: Number(raw) };
+  }
+
+  const eventYearSparkCount = bareSparkCounts.find(isEventYearSparkCount);
+
+  if (eventYearSparkCount) {
+    const raw = normalizeCountString(eventYearSparkCount[1]);
+
+    return { ambiguous: true, raw, value: Number(raw) };
+  }
+
+  const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];
+
+  if (ambiguousFireworksCount !== undefined) {
+    const raw = normalizeCountString(ambiguousFireworksCount);
+
+    return { ambiguous: true, raw, value: Number(raw) };
+  }
+
+  const ambiguousWithCount = withCounts.find(match => isAmbiguousFireworksYear(match[1]));
+
+  if (ambiguousWithCount) {
+    const raw = normalizeCountString(ambiguousWithCount[1]);
+
+    return { ambiguous: true, raw, value: Number(raw) };
+  }
+
+  return undefined;
 }
 
 /**
@@ -722,7 +1113,7 @@ function applySpecializedOverrides(
   countProperty: "count" | "splitCount",
   maxCount?: number,
 ): Record<string, unknown> {
-  const result = JSON.parse(JSON.stringify(template)) as Record<string, unknown>;
+  const result = structuredClone(template);
 
   if (count !== undefined) {
     result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
@@ -737,7 +1128,7 @@ function applySpecializedOverrides(
  * @param lower
  */
 function generateGenericOptions(keywords: string[], lower: string): Record<string, unknown> {
-  const options = JSON.parse(JSON.stringify(GENERIC_TEMPLATE)) as Record<string, unknown>,
+  const options = structuredClone(GENERIC_TEMPLATE),
     particles = options.particles as Record<string, unknown>,
     move = particles.move as Record<string, unknown>,
     count = extractCount(lower);
@@ -804,38 +1195,49 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
   if (bundle.isPreset && bundle.presetName) {
     return { preset: bundle.presetName };
   }
+
   if (bundle.isAutoInitialized) {
-    let template: Record<string, unknown>;
-
-    if (bundle.bundleName === "@tsparticles/fireworks") {
-      template = FIREWORKS_TEMPLATE;
-    } else if (bundle.bundleName === "@tsparticles/ribbons") {
-      template = RIBBONS_TEMPLATE;
-    } else {
-      template = CONFETTI_TEMPLATE;
-    }
-    const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
-      fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
-
-    let requestedCount: number | undefined = undefined;
-
-    if (isFireworks) {
-      if (!fireworksSplitCount?.ambiguous) {
-        requestedCount = fireworksSplitCount?.value;
-      }
-    } else {
-      requestedCount = extractCount(lower);
-    }
-
-    return applySpecializedOverrides(
-      template,
-      requestedCount,
-      isFireworks ? "splitCount" : "count",
-      isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
-    );
+    return generateAutoInitializedOptions(bundle, lower);
   }
 
   return generateGenericOptions(keywords, lower);
+}
+
+/**
+ *
+ * @param bundle - The matched bundle configuration.
+ * @param lower - The normalized description.
+ */
+function generateAutoInitializedOptions(bundle: BundleMatch, lower: string): Record<string, unknown> {
+  let template: Record<string, unknown>;
+
+  if (bundle.bundleName === "@tsparticles/fireworks") {
+    template = FIREWORKS_TEMPLATE;
+  } else if (bundle.bundleName === "@tsparticles/ribbons") {
+    template = RIBBONS_TEMPLATE;
+  } else {
+    template = CONFETTI_TEMPLATE;
+  }
+
+  const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
+    fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
+
+  let requestedCount: number | undefined;
+
+  if (isFireworks) {
+    if (!fireworksSplitCount?.ambiguous) {
+      requestedCount = fireworksSplitCount?.value;
+    }
+  } else {
+    requestedCount = extractCount(lower);
+  }
+
+  return applySpecializedOverrides(
+    template,
+    requestedCount,
+    isFireworks ? "splitCount" : "count",
+    isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
+  );
 }
 
 // ── Framework codegen ─────────────────────────────────────────────
@@ -1373,6 +1775,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     installPackages.push(bundleMatch.bundleName);
   } else {
     installPackages.push(bundleMatch.bundleName);
+    installPackages.push("@tsparticles/engine");
     if (bundleMatch.presetPackage) {
       installPackages.push(bundleMatch.presetPackage);
     }
@@ -1403,6 +1806,14 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     } else if (requestedSplitCount && requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT) {
       notes.push(
         `Requested fireworks splitCount of ${requestedSplitCount.raw} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+      );
+    }
+  } else {
+    const ambiguousYearCount = extractAmbiguousYearCount(lower);
+
+    if (ambiguousYearCount !== undefined && extractCount(lower) === undefined) {
+      notes.push(
+        `The value "${ambiguousYearCount}" could be a year or a requested particle count. Please clarify with a labeled count, such as "count: ${ambiguousYearCount}".`,
       );
     }
   }

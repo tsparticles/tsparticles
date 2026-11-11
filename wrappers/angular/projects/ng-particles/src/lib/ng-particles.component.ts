@@ -11,7 +11,7 @@ import {
   SimpleChanges,
 } from "@angular/core";
 import { isPlatformServer } from "@angular/common";
-import { tsParticles } from "@tsparticles/engine";
+import { getLogger, tsParticles } from "@tsparticles/engine";
 import type { Container } from "@tsparticles/engine";
 import { IParticlesProps } from "./ng-particles.module";
 import { NgParticlesService } from "./ng-particles.service";
@@ -77,30 +77,36 @@ export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestro
   async #loadParticles(): Promise<void> {
     const loadId = ++this.#loadId;
 
-    await this.#particlesService.waitForInitialization();
-    this.#particlesService.assertInitialized();
+    try {
+      await this.#particlesService.waitForInitialization();
+      this.#particlesService.assertInitialized();
 
-    if (loadId !== this.#loadId) {
-      return;
+      if (loadId !== this.#loadId) {
+        return;
+      }
+
+      this.#container?.destroy();
+
+      const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+
+      if (loadId !== this.#loadId) {
+        /* a newer load has been requested with the latest inputs, so this container is not the current one */
+        container?.destroy();
+
+        return;
+      }
+
+      this.#container = container;
+
+      if (container && this.theme) {
+        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+      }
+
+      this.particlesLoaded.emit(container);
+    } catch (error) {
+      if (loadId === this.#loadId) {
+        getLogger().error("ng-particles: error loading particles", error);
+      }
     }
-
-    this.#container?.destroy();
-
-    const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
-
-    if (loadId !== this.#loadId) {
-      /* a newer load has been requested with the latest inputs, so this container is not the current one */
-      container?.destroy();
-
-      return;
-    }
-
-    this.#container = container;
-
-    if (container && this.theme) {
-      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
-    }
-
-    this.particlesLoaded.emit(container);
   }
 }

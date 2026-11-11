@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-build-bundle-rolldown",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -36,7 +36,7 @@
     "commander": "^15"
   },
   "dependencies": {
-    "@swc/core": "^1.16.21",
+    "@swc/core": "^1.16.22",
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
@@ -57,7 +57,7 @@
     "rolldown": "1.2.8",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.2"
   },
   "devDependencies": {
     "@types/estree": "^1.0.10",

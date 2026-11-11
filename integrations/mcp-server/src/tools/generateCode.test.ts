@@ -10,7 +10,12 @@ import {
 } from "./generateCode.js";
 
 const LARGE_COUNT_DIGITS = 400,
-  LONG_WHITESPACE_LENGTH = 10000;
+  LONG_WHITESPACE_LENGTH = 10000,
+  LONG_WHITESPACE = " ".repeat(LONG_WHITESPACE_LENGTH),
+  REPEATED_EVENT_CONTEXT_PREFIX_COUNT = 24000,
+  EVENT_CONTEXT_PARSER_TIMEOUT_MS = 2000,
+  REPEATED_YEAR_CONTEXT_COUNT = 10000,
+  YEAR_CONTEXT_SCANNER_TIMEOUT_MS = 2000;
 
 describe("extractKeywords", () => {
   it("extracts normalized lowercase tokens", () => {
@@ -118,65 +123,201 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 200);
   });
 
-  it("does not treat a year as a fireworks splitCount request", () => {
-    const result = generateCode({ description: "fireworks for 2026" });
+  it.each([
+    ["fireworks for 2026", 50, false],
+    ["fireworks for 2026 sparks", 50, false],
+    ["fireworks in 2026 sparks", 50, false],
+    ["fireworks for 1900 sparks", 50, false],
+    ["fireworks for 2100 sparks", 50, false],
+    ["fireworks for Christmas 2026 sparks", 50, true],
+    ["fireworks for the spring gala 2026 sparks", 50, true],
+    ["fireworks for the spring gala: 2026 sparks", 50, true],
+    ["fireworks for the spring gala 2026 sparks and 2027 sparks", 50, true],
+    ["2000 fireworks", 50, true],
+    ["fireworks with 2026 written in the sky", 50, true],
+    ["fireworks with 2100 written in the sky", 50, true],
+    ["fireworks with 2100 written in the sky, split count: 75", 75, false],
+  ] as const)("handles year-like fireworks values in %s", (description, splitCount, clarificationExpected) => {
+    const result = generateCode({ description });
+
+    expect(result.options).toHaveProperty("splitCount", splitCount);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(clarificationExpected);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it.each([
+    ["count: 2100 fireworks", 500, true],
+    ["fireworks 2026", 50, false],
+    ["fireworks split count: 200", 200, false],
+    ["fireworks count=200", 200, false],
+    ["count 4 fireworks, split count: 20", 20, false],
+    ["10 fireworks with 50 sparks each", 50, false],
+    ["count 4 fireworks with 200 sparks", 200, false],
+    ["count 4 fireworks with 200 sparks, split count: 300", 300, false],
+    ["fireworks with 120", 120, false],
+    ["fireworks with 2026 sparks", 500, true],
+    ["fireworks using 600", 500, true],
+    ["fireworks for exactly 2000 sparks", 500, true],
+    ["fireworks for precisely 2026 sparks", 500, true],
+    ["fireworks for 1000 sparks", 500, true],
+    ["fireworks for 1000\nsparks", 500, true],
+    ["fireworks for the spring gala 1000 sparks", 500, true],
+    ["fireworks for 2026 sparks each", 500, true],
+    ["fireworks 2000 sparks per firework", 500, true],
+    ["fireworks for 2000 sparks per firework", 500, true],
+  ] as const)("resolves fireworks split counts in %s", (description, splitCount, capExpected) => {
+    const result = generateCode({ description });
+
+    expect(result.options).toHaveProperty("splitCount", splitCount);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(capExpected);
+  });
+
+  it("normalizes comma-grouped spark counts before applying the splitCount cap", () => {
+    const result = generateCode({ description: "fireworks for exactly 2,000 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("asks for clarification when a new year is associated with a bare spark heading", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("recognizes a colon after the year label before a bare spark count", () => {
+    const result = generateCode({ description: "fireworks for the new year: 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+  });
+
+  it("recognizes year of before a bare spark count", () => {
+    const result = generateCode({ description: "fireworks for the year of 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("asks for clarification when an event year precedes a newline spark heading without a count", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("uses a count following a newline spark heading instead of a preceding year", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks\n1000" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("parses a count after a colon and newline in a spark heading", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026\nsparks:\n100" });
+
+    expect(result.options).toHaveProperty("splitCount", 100);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it.each([
+    "fireworks for 2026 sparks per burst",
+    "fireworks for 2026 sparks per explosion",
+    "fireworks for Christmas 2026 sparks per burst",
+    "fireworks for the spring gala 2026 sparks per burst",
+    "fireworks for the new year 2026 particles per burst",
+    `fireworks for the${LONG_WHITESPACE}new${LONG_WHITESPACE}year${LONG_WHITESPACE}2026${LONG_WHITESPACE}particles${LONG_WHITESPACE}per${LONG_WHITESPACE}burst`,
+  ])("uses an explicit particle count instead of treating the year-like value as ambiguous in %s", description => {
+    const result = generateCode({ description });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 2026 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it(
+    "parses repeated event-context prefixes without rescanning the description",
+    () => {
+      const description = `fireworks ${"in ".repeat(REPEATED_EVENT_CONTEXT_PREFIX_COUNT)}sparks`,
+        result = generateCode({ description });
+
+      expect(result.options).toHaveProperty("splitCount", 50);
+      expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+    },
+    EVENT_CONTEXT_PARSER_TIMEOUT_MS,
+  );
+
+  it("uses a later bare spark count after an ambiguous year value", () => {
+    const result = generateCode({ description: "fireworks for the new year 2026 sparks and 120 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses a later bare fireworks count after an ambiguous year value", () => {
+    const result = generateCode({ description: "new year 2026 sparks and 120 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses an unambiguous bare fireworks count after an ambiguous fireworks value", () => {
+    const result = generateCode({
+      description: "new year 2026 sparks, 2026 fireworks, and 120 fireworks",
+    });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses a later withCount after an ambiguous year value", () => {
+    const result = generateCode({
+      description: "fireworks for the new year 2026 sparks and fireworks with 120 sparks",
+    });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses an explicit spark count before an ambiguous year value", () => {
+    const result = generateCode({ description: "fireworks with 120 sparks, for the new year 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 120);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses a bare fireworks count instead of an ambiguous withCount", () => {
+    const result = generateCode({ description: "200 fireworks, fireworks with 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("uses the bare fireworks count instead of a with-value for a non-particle option", () => {
+    const result = generateCode({ description: "100 fireworks with 3 colors" });
+
+    expect(result.options).toHaveProperty("splitCount", 100);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it("does not treat a non-particle with-value as a fireworks split count", () => {
+    const result = generateCode({ description: "fireworks with 3 colors" });
 
     expect(result.options).toHaveProperty("splitCount", 50);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
-  it("reports a year before the event phrase as an ambiguous fireworks count", () => {
-    const result = generateCode({ description: "2000 fireworks" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-  });
-
-  it("reports a year-like value after fireworks with as ambiguous", () => {
-    const result = generateCode({ description: "fireworks with 2026 written in the sky" }),
-      futureYearResult = generateCode({ description: "fireworks with 2100 written in the sky" }),
-      labeledResult = generateCode({ description: "fireworks with 2100 written in the sky, split count: 75" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-    expect(futureYearResult.options).toHaveProperty("splitCount", 50);
-    expect(futureYearResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
-    expect(labeledResult.options).toHaveProperty("splitCount", 75);
-    expect(labeledResult.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
-  });
-
-  it("uses explicitly labeled four-digit counts instead of treating them as years", () => {
-    const result = generateCode({ description: "count: 2100 fireworks" });
+  it("preserves explicit particle-count parsing when the number follows with", () => {
+    const result = generateCode({ description: "fireworks with 2026 sparks" });
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
-  });
-
-  it("does not treat a bare number after fireworks as a splitCount request", () => {
-    const result = generateCode({ description: "fireworks 2026" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
-    expect(result.notes.some(note => note.includes("Requested fireworks splitCount"))).toBe(false);
-  });
-
-  it("parses labeled split counts separated by a colon or equals sign", () => {
-    const colonResult = generateCode({ description: "fireworks split count: 200" }),
-      equalsResult = generateCode({ description: "fireworks count=200" });
-
-    expect(colonResult.options).toHaveProperty("splitCount", 200);
-    expect(equalsResult.options).toHaveProperty("splitCount", 200);
-  });
-
-  it("prioritizes a valid split count label over an earlier generic count", () => {
-    const result = generateCode({ description: "count 4 fireworks, split count: 20" });
-
-    expect(result.options).toHaveProperty("splitCount", 20);
-  });
-
-  it("prioritizes an explicit spark count over the number of fireworks", () => {
-    const result = generateCode({ description: "10 fireworks with 50 sparks each" });
-
-    expect(result.options).toHaveProperty("splitCount", 50);
   });
 
   it("prioritizes a spark count over a generic count but keeps split count labels highest", () => {
@@ -204,6 +345,30 @@ describe("generateOptions", () => {
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
   });
 
+  it.each([
+    "2,000 fireworks",
+    "fireworks split count: 2,000",
+    "fireworks count: 2,000",
+    "fireworks\nsparks: 2,000",
+    "fireworks with 2,000 sparks",
+  ])("normalizes grouped fireworks counts in %s", description => {
+    const result = generateCode({ description });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
+  });
+
+  it.each(["10 fireworks, 1000 sparks each", "fireworks 1000 particles"])(
+    "caps explicit fireworks particle counts in %s",
+    description => {
+      const result = generateCode({ description });
+
+      expect(result.options).toHaveProperty("splitCount", 500);
+      expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+    },
+  );
+
   it("captures full fireworks counts before applying the cap", () => {
     const result = generateCode({ description: "10000 fireworks" });
 
@@ -227,10 +392,41 @@ describe("generateOptions", () => {
   });
 
   it("preserves count overrides above the fireworks cap for other bundles", () => {
-    const result = generateCode({ description: "1000 ribbons" });
+    const result = generateCode({ description: "1000 ribbons" }),
+      groupedResult = generateCode({ description: "2,000 ribbons" });
 
     expect(result.options).toHaveProperty("count", 1000);
+    expect(groupedResult.options).toHaveProperty("count", 2000);
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("keeps the default count and asks for clarification for a year-like confetti value", () => {
+    const result = generateCode({ description: "confetti for 2026 party" });
+
+    expect(result.options).toHaveProperty("count", 120);
+    expect(result.notes).toContain(
+      'The value "2026" could be a year or a requested particle count. Please clarify with a labeled count, such as "count: 2026".',
+    );
+  });
+
+  it("keeps the default count and asks for clarification when a year label precedes the effect noun", () => {
+    const result = generateCode({ description: "new year 2026 confetti" });
+
+    expect(result.options).toHaveProperty("count", 120);
+    expect(result.notes.some(note => note.includes("could be a year or a requested particle count"))).toBe(true);
+  });
+
+  it("keeps an explicitly requested confetti count when a year is also mentioned", () => {
+    const result = generateCode({ description: "confetti for 2026 party with count: 240" });
+
+    expect(result.options).toHaveProperty("count", 240);
+    expect(result.notes.some(note => note.includes("could be a year or a requested particle count"))).toBe(false);
+  });
+
+  it("prioritizes an explicitly labeled count over an earlier unlabeled number", () => {
+    const result = generateCode({ description: "confetti 80 particles, count: 240" });
+
+    expect(result.options).toHaveProperty("count", 240);
   });
 
   it("uses supported ribbon options and count overrides", () => {
@@ -254,6 +450,32 @@ describe("generateOptions", () => {
     });
     expect(options.background).toEqual({ color: "#000000" });
   });
+
+  it.each([
+    "particle animation count: 9007199254740993",
+    "particle animation 9007199254740993",
+  ])("keeps the generic default for unsafe counts in %s", description => {
+    const lower = description.toLowerCase(),
+      keywords = extractKeywords(lower),
+      match = matchBundle(keywords, lower),
+      options = generateOptions(match, keywords, lower);
+
+    expect(options).toMatchObject({ particles: { number: { value: 80 } } });
+  });
+
+  it(
+    "scans repeated year-reference candidates without rescanning description prefixes",
+    () => {
+      const description = `particle animation ${"for 2026 ".repeat(REPEATED_YEAR_CONTEXT_COUNT)}and 7`,
+        lower = description.toLowerCase(),
+        keywords = extractKeywords(lower),
+        match = matchBundle(keywords, lower),
+        options = generateOptions(match, keywords, lower);
+
+      expect(options).toMatchObject({ particles: { number: { value: 7 } } });
+    },
+    YEAR_CONTEXT_SCANNER_TIMEOUT_MS,
+  );
 
   it("applies color keyword overrides", () => {
     const result = generateCode({ description: "red particles floating" });
@@ -321,6 +543,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<ParticlesProvider init={init}>");
     expect(result.code).toContain("export function ParticlesBackground()");
     expect(result.installPackages).toContain("@tsparticles/react");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Vue 3 code with the vue-particles component", () => {
@@ -328,6 +551,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<vue-particles");
     expect(result.code).toContain('from "@tsparticles/vue3"');
     expect(result.installPackages).toContain("@tsparticles/vue3");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Svelte code with the Svelte wrapper", () => {
@@ -335,6 +559,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain('from "@tsparticles/svelte"');
     expect(result.code).toContain("initParticlesEngine");
     expect(result.installPackages).toContain("@tsparticles/svelte");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("generates Angular code with @Component and ngx-particles", () => {
@@ -343,6 +568,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain("<ngx-particles");
     expect(result.code).toContain("NgParticlesService");
     expect(result.installPackages).toContain("@tsparticles/angular");
+    expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
   it("emits TypeScript annotations when typescript: true", () => {
@@ -454,8 +680,8 @@ describe("generateCode integration", () => {
     });
     expect(result.bundle).toBe("@tsparticles/slim");
     expect(result.loadFunction).toBe("loadSlim");
-    expect(result.installPackages).toEqual(["@tsparticles/slim", "@tsparticles/react"]);
-    expect(result.installCommand).toBe("npm install @tsparticles/slim @tsparticles/react");
+    expect(result.installPackages).toEqual(["@tsparticles/slim", "@tsparticles/engine", "@tsparticles/react"]);
+    expect(result.installCommand).toBe("npm install @tsparticles/slim @tsparticles/engine @tsparticles/react");
     expect(result.html).toBe("");
     expect(result.code).toContain("ParticlesBackground");
   });
@@ -465,7 +691,7 @@ describe("generateCode integration", () => {
     expect(result.bundle).toBe("@tsparticles/basic");
     expect(result.loadFunction).toBe("loadBasic");
     expect(result.isAutoInitialized).toBeUndefined();
-    expect(result.installPackages).toEqual(["@tsparticles/basic", "@tsparticles/preset-snow"]);
+    expect(result.installPackages).toEqual(["@tsparticles/basic", "@tsparticles/engine", "@tsparticles/preset-snow"]);
     expect(result.installCommand).toContain("@tsparticles/preset-snow");
     expect(result.html).toBe('<div id="tsparticles"></div>');
   });

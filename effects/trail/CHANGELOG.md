@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
+
+### Bug Fixes
+
+* fixes after AI reviews ([c625975](https://github.com/tsparticles/tsparticles/commit/c6259752f8fd0ac74b30e7f1e6d2a0564d5eab45))
+* fixes after AI reviews ([d641680](https://github.com/tsparticles/tsparticles/commit/d6416808aec6d99afefaf80b0e88b9e0b9cef21d))
+* fixes after AI reviews ([57ed0c0](https://github.com/tsparticles/tsparticles/commit/57ed0c04ced4fec33896639441bb3a0e68366e1b))
+
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
 **Note:** Version bump only for package @tsparticles/effect-trail

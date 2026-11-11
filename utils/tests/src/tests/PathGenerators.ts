@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { type Container, type IDelta, type Particle, Vector, tsParticles } from "@tsparticles/engine";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { branchingPathName, loadBranchesPath } from "@tsparticles/path-branches";
 import { brownianPathName, loadBrownianPath } from "@tsparticles/path-brownian";
@@ -46,12 +46,17 @@ const allNames = [
 
 let containerId = 0;
 
-async function loadPathContainer(generator: string, options: unknown, size = 200): Promise<Container> {
+async function loadPathContainer(
+  generator: string,
+  options: unknown,
+  size = 200,
+  particlesNumber = 1,
+): Promise<Container> {
   const container = await tsParticles.load({
     id: `path-${(containerId++).toString()}`,
     options: {
       particles: {
-        number: { value: 1 },
+        number: { value: particlesNumber },
         move: { enable: true, path: { enable: true, generator, options } },
       },
     },
@@ -451,5 +456,72 @@ describe("PathGenerators", async () => {
     expect(() => gen.init()).to.not.throw();
 
     container.destroy(false);
+  });
+
+  it("keeps a pending URL load available after one particle is destroyed", async () => {
+    let resolveResponse!: (response: Response) => void;
+    const pendingResponse = new Promise<Response>(resolve => {
+      resolveResponse = resolve;
+    });
+    const fetchMock = vi.fn(() => pendingResponse),
+      pathElement = new (class {
+        getTotalLength(): number {
+          return 100;
+        }
+
+        getPointAtLength(): { x: number; y: number } {
+          return { x: 90, y: 40 };
+        }
+      })(),
+      parser = class {
+        parseFromString(): unknown {
+          return {
+            querySelector: () => ({
+              querySelectorAll: () => [pathElement],
+              getAttribute: (name: string) => (name === "width" ? "100" : "50"),
+            }),
+          };
+        }
+      };
+
+    vi.stubGlobal("fetch", fetchMock);
+    vi.stubGlobal("SVGPathElement", pathElement.constructor);
+    vi.stubGlobal("DOMParser", parser);
+
+    let container: Container | undefined;
+
+    try {
+      container = await loadPathContainer(svgPathName, { url: "https://example.test/path.svg" }, 200, 2);
+
+      const gen = generator(container, svgPathName),
+        [destroyedParticle, activeParticle] = container.particles.filter(() => true);
+
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(destroyedParticle).toBeDefined();
+      expect(activeParticle).toBeDefined();
+
+      destroyedParticle!.destroy();
+
+      const pathParticle = activeParticle as Particle & {
+        svgInitialPosition?: { x: number; y: number };
+        svgPathIndex?: number;
+      };
+
+      resolveResponse({
+        ok: true,
+        text: async () => '<svg width="100" height="50"><path d="M0 0 L100 50" /></svg>',
+      } as Response);
+
+      await vi.waitFor(() => {
+        gen.generate(pathParticle, delta);
+        expect(pathParticle.svgPathIndex).toBe(0);
+      });
+
+      expect(pathParticle.position.x).not.toBe(pathParticle.svgInitialPosition?.x);
+      expect(pathParticle.position.y).not.toBe(pathParticle.svgInitialPosition?.y);
+    } finally {
+      container?.destroy(false);
+      vi.unstubAllGlobals();
+    }
   });
 });

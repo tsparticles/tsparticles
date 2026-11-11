@@ -240,6 +240,30 @@ describe("CollisionResolve tests", () => {
     await equalContainer.destroy(false);
   }, 30000);
 
+  it("resolves mixed-radius collisions once regardless of particle creation order", async () => {
+    const radius = { small: 5, large: 20 };
+
+    for (const largeFirst of [false, true]) {
+      const container = await loadCollisionContainer(
+        collisionContainerOptions({ enable: true, mode: "destroy", maxSpeed: 100 }),
+      );
+
+      try {
+        const [a, b] = arrangePair(container, radius.small + radius.large);
+
+        a.size.value = largeFirst ? radius.large : radius.small;
+        b.size.value = largeFirst ? radius.small : radius.large;
+        container.particles.update(testDelta);
+
+        expect(a.destroyed).toBe(!largeFirst);
+        expect(b.destroyed).toBe(largeFirst);
+        expect(container.particles.filter(particle => !particle.destroyed)).toHaveLength(1);
+      } finally {
+        await container.destroy(false);
+      }
+    }
+  }, 30000);
+
   it("should load the fluid collision mode with the overlap/fluid plugin [structural]", async () => {
     const container = await loadCollisionContainer(collisionContainerOptions({ enable: true, mode: "fluid" })),
       particles = container.particles.filter(() => true);
