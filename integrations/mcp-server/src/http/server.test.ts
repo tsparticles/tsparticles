@@ -9,6 +9,7 @@ const MAX_REQUESTS_PER_WINDOW = 120,
   HTTP_STATUS_OK = 200,
   HTTP_STATUS_TOO_MANY_REQUESTS = 429,
   HTTP_STATUS_UNAUTHORIZED = 401,
+  HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
   RESULT_LAST_INDEX = -1;
 
 describe("HTTP server", () => {
@@ -121,7 +122,90 @@ describe("HTTP server", () => {
 
     expect(deniedResponse.status).toBe(HTTP_STATUS_TOO_MANY_REQUESTS);
 
+    const otherClientResponse = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json, text/event-stream",
+        "X-Forwarded-For": "198.51.100.251, 203.0.113.26",
+      },
+      body: JSON.stringify(initializeRequest),
+    });
+
+    expect(otherClientResponse.status).toBe(HTTP_STATUS_OK);
+
+    const otherSessionId = otherClientResponse.headers.get("mcp-session-id");
+
+    if (otherSessionId) {
+      sessions.push(otherSessionId);
+    }
+
     for (const sessionId of sessions) {
+      await fetch(baseUrl, { method: "DELETE", headers: { "mcp-session-id": sessionId } });
+    }
+  });
+
+  it("releases a pending session reservation when server creation throws", async () => {
+    if (server) {
+      await new Promise<void>((resolve, reject) => {
+        server?.close(err => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    }
+
+    let creationFailures = MAX_HTTP_SESSIONS_PER_CLIENT;
+
+    server = await startHttpServer({
+      port: 0,
+      createMcpServer: () => {
+        if (creationFailures > 0) {
+          creationFailures--;
+          throw new Error("Simulated MCP server factory failure");
+        }
+
+        return new McpServer({ name: "test-server", version: "1.0.0" }, { capabilities: {} });
+      },
+    });
+
+    const { port } = server.address() as AddressInfo,
+      baseUrl = `http://127.0.0.1:${port}/mcp`,
+      initializeRequest = {
+        jsonrpc: "2.0",
+        id: 1,
+        method: "initialize",
+        params: {
+          protocolVersion: "2025-06-18",
+          capabilities: {},
+          clientInfo: { name: "test-client", version: "1.0.0" },
+        },
+      };
+
+    for (let index = 0; index < MAX_HTTP_SESSIONS_PER_CLIENT; index++) {
+      const response = await fetch(baseUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
+        body: JSON.stringify(initializeRequest),
+      });
+
+      expect(response.status).toBe(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+    }
+
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
+      body: JSON.stringify(initializeRequest),
+    });
+
+    expect(response.status).toBe(HTTP_STATUS_OK);
+
+    const sessionId = response.headers.get("mcp-session-id");
+
+    if (sessionId) {
       await fetch(baseUrl, { method: "DELETE", headers: { "mcp-session-id": sessionId } });
     }
   });

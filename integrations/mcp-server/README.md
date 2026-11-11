@@ -68,16 +68,14 @@ Set a bearer token to require `Authorization: Bearer <token>` on every request t
 binding beyond loopback:
 
 ```bash
-# via CLI flag
-npx @tsparticles/mcp-server --port 3000 --host 0.0.0.0 --auth-token "$(openssl rand -hex 32)"
-
-# or via environment variable (recommended so the token doesn't end up in shell history)
-MCP_AUTH_TOKEN="$(openssl rand -hex 32)" npx @tsparticles/mcp-server --host 0.0.0.0 --port 3000
+export MCP_AUTH_TOKEN="$(openssl rand -hex 32)"
+npx @tsparticles/mcp-server --port 3000 --host 0.0.0.0 --auth-token "$MCP_AUTH_TOKEN"
 ```
 
-Configure your MCP client to send that token as a bearer token when connecting. On loopback,
-no token is required; origin checks still restrict browser-originated requests, but are not
-authentication and do not protect non-browser clients.
+Configure your MCP client to send the same value in the `Authorization: Bearer <token>` header.
+The exported `MCP_AUTH_TOKEN` remains available in your shell for copying into the client
+configuration. On loopback, no token is required; origin checks still restrict browser-originated
+requests, but are not authentication and do not protect non-browser clients.
 
 ### Rate limiting
 

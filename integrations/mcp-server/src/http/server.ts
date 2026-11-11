@@ -448,24 +448,32 @@ export async function startHttpServer({
     // request processing fails before onsessioninitialized fires the
     // pair is cleaned up explicitly since it was never registered in
     // the sessions map and would otherwise leak.
-    const newServer = createMcpServer(),
-      sessionRegistered = { value: false },
-      transport = new StreamableHTTPServerTransport({
-        sessionIdGenerator: (): string => randomUUID(),
-        onsessioninitialized: (newSessionId: string): void => {
-          sessionRegistered.value = true;
-          sessions.set(newSessionId, { clientIp, server: newServer, transport, lastActivity: Date.now() });
-        },
-        onsessionclosed: (closedSessionId: string): void => {
-          sessions.delete(closedSessionId);
-        },
-      });
+    let transport: StreamableHTTPServerTransport | undefined;
+    const sessionRegistered = { value: false };
 
     try {
-      await newServer.connect(transport);
-      await transport.handleRequest(req, res, parsedBody);
+      const newServer = createMcpServer(),
+        newTransport = new StreamableHTTPServerTransport({
+          sessionIdGenerator: (): string => randomUUID(),
+          onsessioninitialized: (newSessionId: string): void => {
+            sessionRegistered.value = true;
+            sessions.set(newSessionId, {
+              clientIp,
+              server: newServer,
+              transport: newTransport,
+              lastActivity: Date.now(),
+            });
+          },
+          onsessionclosed: (closedSessionId: string): void => {
+            sessions.delete(closedSessionId);
+          },
+        });
+      transport = newTransport;
+
+      await newServer.connect(newTransport);
+      await newTransport.handleRequest(req, res, parsedBody);
     } catch (error) {
-      if (!sessionRegistered.value) {
+      if (!sessionRegistered.value && transport) {
         void transport.close().catch(() => undefined);
       }
 
