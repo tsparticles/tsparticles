@@ -3,6 +3,7 @@ import {
   HTTP_KEEP_ALIVE_TIMEOUT_MS,
   HTTP_REQUEST_TIMEOUT_MS,
   MAX_CONCURRENT_HTTP_SESSIONS,
+  MAX_HTTP_SESSIONS_PER_CLIENT,
   MAX_REQUEST_BODY_BYTES,
   SESSION_IDLE_TIMEOUT_MS,
   SESSION_SWEEP_INTERVAL_MS,
@@ -19,6 +20,7 @@ import {
 import type { SessionEntry, StartHttpServerParams } from "./types.js";
 
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { isIP } from "node:net";
 import { randomUUID } from "node:crypto";
 
 enum HttpStatusCode {
@@ -36,7 +38,9 @@ enum HttpStatusCode {
   InternalServerError = 500,
 }
 
-const HTTP_BIND_HOST = "0.0.0.0",
+const DEFAULT_HTTP_BIND_HOST = "127.0.0.1",
+  IPV4_VERSION = 4,
+  IPV6_VERSION = 6,
   RATE_LIMIT_RETRY_AFTER_SECONDS = "60",
   FORCE_EXIT_TIMEOUT_MS = 10_000,
   FIRST_HEADER_VALUE_INDEX = 0,
@@ -54,6 +58,7 @@ class RequestBodyTooLargeError extends Error {
  *
  * @param root0
  * @param root0.port
+ * @param root0.host
  * @param root0.allowedOrigins
  * @param root0.authToken
  * @param root0.trustedProxies
@@ -61,13 +66,25 @@ class RequestBodyTooLargeError extends Error {
  */
 export async function startHttpServer({
   port,
+  host = DEFAULT_HTTP_BIND_HOST,
   allowedOrigins,
   authToken,
   trustedProxies,
   createMcpServer,
 }: StartHttpServerParams): Promise<HttpServer> {
   const sessions = new Map<string, SessionEntry>(),
-    rateLimiter = new RateLimiter();
+    pendingInitializations = new Map<string, number>(),
+    mcpRateLimiter = new RateLimiter(),
+    publicRateLimiter = new RateLimiter(),
+    normalizedHost = host.toLowerCase(),
+    isLoopbackHost =
+      normalizedHost === "localhost" ||
+      (isIP(normalizedHost) === IPV4_VERSION && normalizedHost.split(".")[FIRST_HEADER_VALUE_INDEX] === "127") ||
+      (isIP(normalizedHost) === IPV6_VERSION && normalizedHost === "::1");
+
+  if (!authToken && !isLoopbackHost) {
+    throw new Error(`An auth token is required when binding the MCP HTTP server to non-loopback host "${host}".`);
+  }
 
   if (!authToken) {
     console.error(
@@ -110,7 +127,8 @@ export async function startHttpServer({
         void closeSession(sessionId);
       }
     }
-    rateLimiter.sweep();
+    mcpRateLimiter.sweep();
+    publicRateLimiter.sweep();
   }, SESSION_SWEEP_INTERVAL_MS);
   sweepInterval.unref();
 
@@ -123,11 +141,17 @@ export async function startHttpServer({
     const remoteAddress = req.socket.remoteAddress;
 
     if (trustedProxies?.length && remoteAddress && trustedProxies.includes(remoteAddress)) {
-      const forwardedFor = req.headers["x-forwarded-for"];
+      const forwardedFor = req.headers["x-forwarded-for"],
+        forwardedAddresses = (Array.isArray(forwardedFor) ? forwardedFor.join(",") : forwardedFor)
+          ?.split(",")
+          .map(address => address.trim())
+          .filter(Boolean)
+          .reverse();
 
-      return typeof forwardedFor === "string"
-        ? forwardedFor.split(",")[FIRST_HEADER_VALUE_INDEX]?.trim() || remoteAddress
-        : remoteAddress;
+      // Walk from the directly connected peer toward the original client.
+      // This skips trusted proxies appended to X-Forwarded-For and avoids
+      // trusting a client-supplied leftmost value when the proxy appends.
+      return forwardedAddresses?.find(address => !trustedProxies.includes(address)) ?? remoteAddress;
     }
 
     return remoteAddress ?? "unknown";
@@ -140,34 +164,47 @@ export async function startHttpServer({
    * @returns true when the request may proceed, false once a response was sent
    */
   function admitRequest(req: IncomingMessage, res: ServerResponse): boolean {
-    // Basic per-IP rate limiting, ahead of auth/origin checks so a
-    // flood of requests can't be used to brute-force the auth token
-    // or exhaust the session table.  When the request arrives through
-    // a trusted reverse proxy the real client IP is read from the
-    // first value in the X-Forwarded-For header. The limiter also
-    // bounds the /health endpoint, which otherwise would be open to
-    // unlimited unauthenticated remote requests.
-    if (!rateLimiter.allow(resolveClientIp(req))) {
+    const clientIp = resolveClientIp(req);
+
+    /**
+     * @param limiter - the rate limiter to check
+     */
+    function checkRateLimit(limiter: RateLimiter): boolean {
+      if (limiter.allow(clientIp)) {
+        return true;
+      }
+
       res.writeHead(HttpStatusCode.TooManyRequests, {
         "Content-Type": "application/json",
         "Retry-After": RATE_LIMIT_RETRY_AFTER_SECONDS,
       });
       res.end(JSON.stringify({ error: "Too many requests" }));
+
       return false;
     }
 
     // Health check endpoint
     if (req.method === "GET" && req.url === "/health") {
+      if (!checkRateLimit(publicRateLimiter)) {
+        return false;
+      }
+
       res.writeHead(HttpStatusCode.OK, { "Content-Type": "application/json" });
       // Deliberately no version/build info here — an exact version string
       // aids fingerprinting of known-vulnerable releases.
       res.end(JSON.stringify({ status: "ok" }));
+
       return false;
     }
 
     if (req.url !== "/mcp") {
+      if (!checkRateLimit(publicRateLimiter)) {
+        return false;
+      }
+
       res.writeHead(HttpStatusCode.NotFound);
       res.end("Not found");
+
       return false;
     }
 
@@ -178,13 +215,25 @@ export async function startHttpServer({
       const provided = extractBearerToken(req.headers.authorization);
 
       if (!provided || !isValidAuthToken(provided, authToken)) {
+        if (!checkRateLimit(publicRateLimiter)) {
+          return false;
+        }
+
         res.writeHead(HttpStatusCode.Unauthorized, {
           "Content-Type": "application/json",
           "WWW-Authenticate": "Bearer",
         });
         res.end(JSON.stringify({ error: "Unauthorized" }));
+
         return false;
       }
+    }
+
+    // Only authenticated MCP traffic consumes the service budget. Invalid
+    // credentials, health checks, and unknown paths use a separate budget
+    // so unauthenticated traffic cannot starve valid clients.
+    if (!checkRateLimit(mcpRateLimiter)) {
+      return false;
     }
 
     // Defend against DNS rebinding: reject browser-originated requests
@@ -364,6 +413,7 @@ export async function startHttpServer({
     req: IncomingMessage,
     res: ServerResponse,
     parsedBody: unknown,
+    clientIp: string,
   ): Promise<void> {
     if (!isInitializeRequest(parsedBody)) {
       res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
@@ -371,11 +421,26 @@ export async function startHttpServer({
       return;
     }
 
-    if (sessions.size >= MAX_CONCURRENT_HTTP_SESSIONS) {
-      res.writeHead(HttpStatusCode.ServiceUnavailable, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Server busy, try again later" }));
+    const clientSessionCount = [...sessions.values()].filter(entry => entry.clientIp === clientIp).length,
+      clientPendingCount = pendingInitializations.get(clientIp) ?? 0;
+
+    if (clientSessionCount + clientPendingCount >= MAX_HTTP_SESSIONS_PER_CLIENT) {
+      res.writeHead(HttpStatusCode.TooManyRequests, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Too many active sessions for this client" }));
+
       return;
     }
+
+    const totalPendingCount = [...pendingInitializations.values()].reduce((total, count) => total + count, 0);
+
+    if (sessions.size + totalPendingCount >= MAX_CONCURRENT_HTTP_SESSIONS) {
+      res.writeHead(HttpStatusCode.ServiceUnavailable, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Server busy, try again later" }));
+
+      return;
+    }
+
+    pendingInitializations.set(clientIp, clientPendingCount + 1);
 
     // No session id: this must be an initialize request. Spin up a
     // brand new Server + Transport pair dedicated to this session so
@@ -389,7 +454,7 @@ export async function startHttpServer({
         sessionIdGenerator: (): string => randomUUID(),
         onsessioninitialized: (newSessionId: string): void => {
           sessionRegistered.value = true;
-          sessions.set(newSessionId, { server: newServer, transport, lastActivity: Date.now() });
+          sessions.set(newSessionId, { clientIp, server: newServer, transport, lastActivity: Date.now() });
         },
         onsessionclosed: (closedSessionId: string): void => {
           sessions.delete(closedSessionId);
@@ -405,6 +470,14 @@ export async function startHttpServer({
       }
 
       throw error;
+    } finally {
+      const pendingCount = (pendingInitializations.get(clientIp) ?? 1) - 1;
+
+      if (pendingCount === 0) {
+        pendingInitializations.delete(clientIp);
+      } else {
+        pendingInitializations.set(clientIp, pendingCount);
+      }
     }
   }
 
@@ -447,7 +520,7 @@ export async function startHttpServer({
       return;
     }
 
-    await handleSessionInitialize(req, res, parsedBody);
+    await handleSessionInitialize(req, res, parsedBody, resolveClientIp(req));
   }
 
   /**
@@ -493,10 +566,10 @@ export async function startHttpServer({
 
   await new Promise<void>((resolve, reject) => {
     httpServer.once("error", reject);
-    httpServer.listen(port, HTTP_BIND_HOST, () => {
+    httpServer.listen(port, host, () => {
       httpServer.off("error", reject);
-      console.error(`tsParticles MCP server running on http://${HTTP_BIND_HOST}:${port}/mcp`);
-      console.error(`Health check: http://${HTTP_BIND_HOST}:${port}/health`);
+      console.error(`tsParticles MCP server running on http://${host}:${port}/mcp`);
+      console.error(`Health check: http://${host}:${port}/health`);
       resolve();
     });
   });

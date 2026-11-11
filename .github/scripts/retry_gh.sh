@@ -24,12 +24,12 @@ retry_gh() {
     fi
 
     if [[ "$attempt" -ge "$max" ]]; then
-      echo "::error::Command failed after ${max} attempts: $*"
+      echo "::error::Command failed after ${max} attempts: $*" >&2
       return 1
     fi
 
     local sleep_seconds=$(( base * (2 ** (attempt - 1)) ))
-    echo "Attempt ${attempt}/${max} failed. Waiting ${sleep_seconds}s before retry..."
+    echo "Attempt ${attempt}/${max} failed. Waiting ${sleep_seconds}s before retry..." >&2
     sleep "$sleep_seconds"
     attempt=$(( attempt + 1 ))
   done

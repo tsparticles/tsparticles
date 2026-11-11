@@ -110,7 +110,6 @@ jobs:
       # 🧠 Create release + upload assets with retry/backoff
       - name: Create Release (raw)
         if: env.IS_STABLE == 'true'
-        id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -127,20 +126,12 @@ jobs:
             retry_gh gh release upload "$TAG" "$file" --clobber
           done
 
-          {
-            echo "body<<EOF"
-            retry_gh gh release view "$TAG" --json body -q .body
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          retry_gh gh release view "$TAG" --json body -q .body > RAW_RELEASE.md
 
       # ✨ Prettify changelog → per package
       - name: Prettify changelog
         if: env.IS_STABLE == 'true'
-        env:
-          RELEASE_BODY: ${{ steps.release.outputs.body }}
-        run: |
-          printf '%s\n' "$RELEASE_BODY" > RAW_RELEASE.md
-          pnpm run release:prettify-changelog
+        run: pnpm run release:prettify-changelog
 
       # 🔁 Update release con changelog finale
       - name: Update Release Notes

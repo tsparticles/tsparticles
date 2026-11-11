@@ -58,39 +58,43 @@ Add this to your `claude_desktop_config.json`:
 
 The server can also run as an HTTP endpoint, accessible by any MCP client that supports SSE.
 
-> **Security note:** the HTTP transport has no authentication by default — it's meant for
-> localhost/trusted-network use. If you expose it beyond your machine (tunnel, reverse proxy,
-> port forward, etc.), always set an auth token (see below). Without one, anyone who can reach
-> the endpoint can call every tool.
+HTTP mode binds to `127.0.0.1` by default. Binding to any other interface requires an auth token;
+startup fails if a non-loopback host is configured without one. Use HTTPS at a trusted reverse
+proxy or tunnel when connecting over an untrusted network.
 
 ### Authentication
 
-Set a bearer token to require `Authorization: Bearer <token>` on every request to `/mcp`:
+Set a bearer token to require `Authorization: Bearer <token>` on every request to `/mcp` when
+binding beyond loopback:
 
 ```bash
 # via CLI flag
-npx @tsparticles/mcp-server --port 3000 --auth-token "$(openssl rand -hex 32)"
+npx @tsparticles/mcp-server --port 3000 --host 0.0.0.0 --auth-token "$(openssl rand -hex 32)"
 
 # or via environment variable (recommended so the token doesn't end up in shell history)
-MCP_AUTH_TOKEN="$(openssl rand -hex 32)" npx @tsparticles/mcp-server --port 3000
+MCP_AUTH_TOKEN="$(openssl rand -hex 32)" npx @tsparticles/mcp-server --host 0.0.0.0 --port 3000
 ```
 
-Configure your MCP client to send that token as a bearer token when connecting. If no token is
-set, the server prints a startup warning and falls back to allowing only local origins
-(`localhost`/`127.0.0.1`) by default for browser-originated requests — non-browser clients
-(curl, most MCP clients) aren't affected by that check, so it's not a substitute for auth.
+Configure your MCP client to send that token as a bearer token when connecting. On loopback,
+no token is required; origin checks still restrict browser-originated requests, but are not
+authentication and do not protect non-browser clients.
 
 ### Rate limiting
 
-The server applies a basic in-memory per-IP rate limit (120 requests/minute by default) and caps
-total concurrent sessions at 500, to keep a single misbehaving client from exhausting the
-process. This is not a substitute for rate limiting at a reverse proxy or CDN if you're exposing
-the server publicly — it only protects the Node process itself.
+MCP traffic and unauthenticated requests have separate in-memory rate limits, so failed
+authentication attempts cannot consume the MCP request budget. The server also limits each client
+IP to 10 sessions and caps the process at 500 sessions. These controls are process-local and do not
+replace rate limiting at a reverse proxy or CDN.
+
+When running behind a reverse proxy, pass each proxy's IP with `--trusted-proxy <IP>` (repeat the
+flag for multiple hops) or set `MCP_TRUSTED_PROXIES` to a comma-separated list. The edge proxy must
+overwrite or append the connecting client IP to `X-Forwarded-For`; the server walks the trusted
+proxy chain from right to left to resolve the client address.
 
 ### Option 1: Direct access (no tunnel)
 
 ```bash
-# Start on port 3000
+# Start on port 3000 (loopback only)
 npx @tsparticles/mcp-server --port 3000
 # Health check: http://localhost:3000/health
 # MCP endpoint:  http://localhost:3000/mcp
@@ -98,37 +102,30 @@ npx @tsparticles/mcp-server --port 3000
 
 ### Option 2: Docker (pre-built image)
 
-Pull and run directly from Docker Hub (no build needed):
+The container listens on all interfaces, so provide a token:
 
 ```bash
-docker run -d -p 3000:3000 tsparticles/mcp-server
-```
-
-Or use a specific version:
-
-```bash
-docker run -d -p 3000:3000 tsparticles/mcp-server:v4.3.1
-```
-
-With auth token:
-
-```bash
-docker run -d -p 3000:3000 -e MCP_AUTH_TOKEN="$(openssl rand -hex 32)" tsparticles/mcp-server
+export MCP_AUTH_TOKEN="$(openssl rand -hex 32)"
+docker run -d -p 3000:3000 -e MCP_AUTH_TOKEN tsparticles/mcp-server
 ```
 
 ### Option 3: Docker Compose (build from source)
 
 ```bash
-# Build and start
+# Set a token, then build and start
+export MCP_AUTH_TOKEN="$(openssl rand -hex 32)"
 docker compose up -d
 
 # Or with Cloudflare Tunnel for public HTTPS access
 docker compose --profile tunnel up
 ```
 
-Set `MCP_AUTH_TOKEN` in your environment (or a `.env` file next to `docker-compose.yml`, see
-`.env.example`) before running this if the container is reachable from outside your machine —
-this is required reading before using the tunnel/reverse-proxy options below.
+`MCP_AUTH_TOKEN` is required by Compose because the container binds to all interfaces. Set it in
+your environment or in a `.env` file next to `docker-compose.yml` before starting the server or
+the tunnel. If all traffic arrives through a reverse proxy, set `MCP_TRUSTED_PROXIES` to the
+comma-separated IP addresses of every trusted proxy hop so rate limits and session quotas use the
+real client address. The edge proxy must overwrite or append the connecting client IP to
+`X-Forwarded-For`.
 
 This prints a temporary URL like `https://random.trycloudflare.com`. Configure your MCP client with `https://random.trycloudflare.com/mcp` as the endpoint.
 

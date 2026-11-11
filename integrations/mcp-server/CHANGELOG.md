@@ -30,6 +30,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Security
 
+- bind HTTP mode to loopback by default and require authentication on non-loopback interfaces
+- isolate unauthenticated request limits from authenticated MCP traffic and resolve proxy client IPs from the trusted chain
+- limit active HTTP sessions per client IP and count in-flight initialization requests against session capacity
 - removed exact package version from the `/health` endpoint to avoid exposing fingerprintable release info
 - sanitize user-supplied values echoed in tool messages (strip control characters, code-fence reflections) to reduce prompt-injection surface
 - added a per-process global rate limit in addition to the per-IP limit
