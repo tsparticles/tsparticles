@@ -73,7 +73,6 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     for (const p2 of query) {
       if (
         p1 === p2 ||
-        p1.id >= p2.id ||
         !p2.options.collisions?.enable ||
         collisions.mode !== p2.options.collisions.mode ||
         p2.destroyed ||
@@ -84,6 +83,11 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
 
       const pos2 = p2.getPosition(),
         radius2 = p2.getRadius();
+
+      /* Resolve from the larger particle so its broad-phase query covers the full pair radius. */
+      if (radius1 < radius2 || (radius1 === radius2 && p1.id > p2.id)) {
+        continue;
+      }
 
       if (Math.abs(Math.round(pos1.z) - Math.round(pos2.z)) > radius1 + radius2) {
         continue;

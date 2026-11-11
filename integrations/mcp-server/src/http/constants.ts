@@ -5,6 +5,7 @@ export const SESSION_IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SESSION_SWEEP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 export const MAX_CONCURRENT_HTTP_SESSIONS = 500;
+export const MAX_HTTP_SESSIONS_PER_CLIENT = 10;
 
 export const HTTP_REQUEST_TIMEOUT_MS = 30_000;
 export const HTTP_HEADERS_TIMEOUT_MS = 15_000;

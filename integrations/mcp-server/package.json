@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/mcp-server",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "description": "MCP server for tsParticles - generate options from natural language and suggest required plugins",
   "homepage": "https://particles.js.org",
   "type": "module",
@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "dev": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",

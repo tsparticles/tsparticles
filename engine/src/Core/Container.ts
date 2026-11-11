@@ -186,6 +186,9 @@ export class Container {
   readonly #pluginManager;
   #smooth;
   #sourceOptions;
+  #startCancel?: () => void;
+  #startGeneration = 0;
+  #startPromise?: Promise<void>;
 
   /**
    * This is the core class, create an instance to have a new working particles manager
@@ -333,9 +336,20 @@ export class Container {
       return;
     }
 
+    if (this.#drawAnimationFrame !== undefined) {
+      if (!force) {
+        return;
+      }
+
+      cancelAnimation(this.#drawAnimationFrame);
+      this.#drawAnimationFrame = undefined;
+    }
+
     let refreshTime = force;
 
     this.#drawAnimationFrame = animate((timestamp: number): void => {
+      this.#drawAnimationFrame = undefined;
+
       if (refreshTime) {
         this.#lastFrameTime = undefined;
 
@@ -381,19 +395,32 @@ export class Container {
       return;
     }
 
-    const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
+    const generation = this.#startGeneration,
+      allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
 
     for (const plugin of this.#pluginManager.plugins) {
       const containerPlugin = await plugin.getPlugin(this);
 
+      if (generation !== this.#startGeneration || this.destroyed) {
+        return;
+      }
+
       if (containerPlugin.preInit) {
         await containerPlugin.preInit();
+
+        if (generation !== this.#startGeneration) {
+          return;
+        }
       }
 
       allContainerPlugins.set(plugin, containerPlugin);
     }
 
     await this.initDrawersAndUpdaters();
+
+    if (generation !== this.#startGeneration) {
+      return;
+    }
 
     /* options settings */
     this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
@@ -424,9 +451,17 @@ export class Container {
 
     for (const plugin of this.plugins) {
       await plugin.init?.();
+
+      if (generation !== this.#startGeneration) {
+        return;
+      }
     }
 
     await this.particles.init();
+
+    if (generation !== this.#startGeneration) {
+      return;
+    }
 
     this.dispatchEvent(EventType.containerInit);
 
@@ -561,38 +596,94 @@ export class Container {
       return;
     }
 
-    await this.init();
+    if (this.#startPromise) {
+      return this.#startPromise;
+    }
 
-    this.started = true;
+    const generation = ++this.#startGeneration;
+    let cancel!: () => void;
+    const cancelled = new Promise<void>(resolve => {
+      cancel = resolve;
+    });
 
-    await new Promise<void>(resolve => {
-      this.#delayResolve = resolve;
+    this.#startCancel = cancel;
+    this.#startPromise = (async (): Promise<void> => {
+      try {
+        await Promise.race([this.init(), cancelled]);
 
-      const start = async (): Promise<void> => {
-        this.#delayTimeout = undefined;
-        this.#delayResolve = undefined;
+        if (generation !== this.#startGeneration) {
+          return;
+        }
+
+        this.started = true;
+
+        await Promise.race([
+          new Promise<void>(resolve => {
+            this.#delayResolve = resolve;
+            this.#delayTimeout = setTimeout(() => {
+              this.#delayTimeout = undefined;
+              this.#delayResolve = undefined;
+              resolve();
+            }, this.#delay);
+          }),
+          cancelled,
+        ]);
+
+        if (generation !== this.#startGeneration || this.destroyed) {
+          return;
+        }
+
         this.#eventListeners.addListeners();
 
-        for (const plugin of this.plugins) {
-          await plugin.start?.();
+        const startPlugins = async (): Promise<void> => {
+          for (const plugin of this.plugins) {
+            if (generation !== this.#startGeneration) {
+              return;
+            }
+
+            await plugin.start?.();
+          }
+        };
+
+        await Promise.race([startPlugins(), cancelled]);
+
+        if (generation !== this.#startGeneration) {
+          return;
         }
 
         this.dispatchEvent(EventType.containerStarted);
-
         this.play();
+      } catch (error) {
+        if (generation === this.#startGeneration && !this.destroyed) {
+          this.stop();
+        }
 
-        resolve();
-      };
+        throw error;
+      } finally {
+        if (generation === this.#startGeneration) {
+          this.#startPromise = undefined;
+          this.#startCancel = undefined;
+        }
+      }
+    })();
 
-      this.#delayTimeout = setTimeout(() => void start(), this.#delay);
-    });
+    return this.#startPromise;
   }
 
   /**
    * Stops the container, opposite to `start`. Clears some resources and stops events.
    */
   stop(): void {
-    if (!guardCheck(this) || !this.started) {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    this.#startGeneration++;
+    this.#startCancel?.();
+    this.#startCancel = undefined;
+    this.#startPromise = undefined;
+
+    if (!this.started) {
       return;
     }
 

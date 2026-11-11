@@ -1108,10 +1108,11 @@ export class Particle {
         : undefined;
 
     if (shapeResult && effectResult) {
-      const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle);
+      const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle),
+        useUnion = outMode === OutMode.destroy || outMode === OutMode.out;
 
       return {
-        inside: shapeResult.inside && effectResult.inside,
+        inside: useUnion ? shapeResult.inside || effectResult.inside : shapeResult.inside && effectResult.inside,
         margin: margin > defaultAngle ? margin : undefined,
         reason: "combined",
       };

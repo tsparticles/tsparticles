@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-create-utils",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -52,7 +52,7 @@
     "prompts": "^2.4.2",
     "rimraf": "^6.1.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.2"
   },
   "devDependencies": {
     "@types/estree": "^1.0.10",

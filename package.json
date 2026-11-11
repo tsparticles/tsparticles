@@ -2,7 +2,7 @@
   "private": true,
   "name": "@tsparticles/workspace",
   "description": "tsParticles monorepository",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "type": "module",
   "scripts": {
     "build": "pnpm run prettify:readme && nx run-many -t build --parallel=50%",
@@ -37,11 +37,11 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
-    "@crowdin/cli": "^5.5.0",
-    "@nx/devkit": "^24.0.4",
-    "@nx/js": "^24.0.4",
+    "@crowdin/cli": "^5.6.0",
+    "@nx/devkit": "^24.0.5",
+    "@nx/js": "^24.0.5",
     "@swc-node/register": "^1.12.1",
-    "@swc/core": "^1.16.21",
+    "@swc/core": "^1.16.22",
     "@tsparticles/browserslist-config": "workspace:*",
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/cli-nx-plugin": "workspace:*",
@@ -64,8 +64,8 @@
     "fs-extra": "^11.4.1",
     "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
-    "lerna": "^10.1.1",
-    "nx": "^24.0.4",
+    "lerna": "^10.1.2",
+    "nx": "^24.0.5",
     "nx-cloud": "^19.1.5",
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
@@ -77,11 +77,11 @@
     "ts-json-schema-generator": "^2.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1",
+    "typescript-eslint": "^8.72.2",
     "webpack": "^5.112.2",
-    "webpack-bundle-analyzer": "^5.4.1",
+    "webpack-bundle-analyzer": "^5.4.2",
     "webpack-cli": "^7.3.1",
     "yargs": "^18.2.0"
   },
-  "packageManager": "pnpm@12.18.0"
+  "packageManager": "pnpm@12.19.0"
 }

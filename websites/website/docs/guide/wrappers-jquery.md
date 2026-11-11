@@ -14,6 +14,14 @@ pnpm add @tsparticles/jquery @tsparticles/engine @tsparticles/slim
 2. Initialize features once using slim/all as needed.
 3. Apply plugin on target element with options.
 
+The plugin mounts into each selected DOM element directly, so the element does not need an `id`:
+
+```js
+const container = await $(".particles-background").particles().load(options);
+```
+
+The same element selection can be used with `.ajax(url)` to load options from a JSON URL.
+
 ## Monorepo references
 
 - Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>

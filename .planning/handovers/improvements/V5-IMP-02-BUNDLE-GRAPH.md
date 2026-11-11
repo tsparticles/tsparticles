@@ -1,65 +1,68 @@
-# V5-IMP-02 — Grafo import, capacità opzionali e distribuzione browser
+# V5-IMP-02 — Import graph, optional features, and browser distribution
 
-Stato: da analizzare. Priorità alta. Owner: 03 e 09; collaborazione 01, 05, 07, 08.
-Prerequisiti: protocollo [IMP-01](V5-IMP-01-MEASUREMENT.md), contratto factory in 01.
+Status pending analysis. High priority. Owners are 03 and 09, with support from
+01, 05, 07, and 08. Requires the [IMP-01 protocol](V5-IMP-01-MEASUREMENT.md)
+and the factory contract from 01.
 
-## Evidenze iniziali e ipotesi
+## Starting evidence and hypotheses
 
-Nel checkout analizzato `exports.ts` riesporta utility, enum e classi option;
-`Engine.load()` importa dinamicamente Container. I manifest espongono condizioni
-browser e lazy, mentre browser entry e policy IIFE definiscono namespace e loader.
-Sono punti da verificare sugli artefatti prodotti, non prove di byte superflui.
+In the reviewed checkout, `exports.ts` re-exports utilities, enums, and option
+classes. `Engine.load()` imports Container dynamically. Manifests expose browser
+and lazy conditions, while browser entries and IIFE policies define namespaces
+and loaders. Check the produced artifacts to see which of these retain bytes.
 
-### B1 — Helper puri e radice package
+### B1 — Pure helpers and the package root
 
-Confrontare la fixture M1 con M2/M3. Individuare nel grafo i moduli inclusi per
-importazioni runtime, cicli, side effect o selezione dell'entry browser. Verificare
-se le nuove facciate selettive eliminano dipendenze o cambiano soltanto il source.
-Confrontare import root e un eventuale subpath documentato solo se serve a un
-consumer reale; evitare un subpath per ogni file. `export *` può essere eliminato
-dal tree-shaking: non riscrivere l'API sulla sola base della sua presenza.
+Compare M1 with M2/M3. Identify modules retained by runtime imports, cycles,
+side effects, or browser entry selection. Verify whether selective entrypoints
+remove dependencies from the bundle. Compare root imports with a documented
+subpath only where a real consumer needs it. Keep subpaths selective.
+Tree shaking can eliminate `export *` dependencies, so check the output graph
+before changing the API.
 
-Accettazione: helper puro senza creazione engine/DOM; factory senza avvio scena;
-fixture costruite con le condizioni browser reali. Tipi e API plugin restano
-raggiungibili, senza export runtime accidentali delle classi oggi type-only.
+Acceptance requires a pure helper without engine or DOM creation, a factory
+without scene startup, and fixtures built with actual browser conditions.
+Keep plugin APIs and types reachable and preserve type-only class exports.
 
-### B2 — Separazione delle capacità opzionali
+### B2 — Separate optional features
 
-Mappare il costo transitivo di options, colore/HDR, fullscreen/style e background
-nei consumer M3 e M8. Distinguere codice sempre necessario da codice utilizzato
-solo quando una feature è abilitata. Valutare tre alternative: semplificare il ramo
-esistente, helper puro eliminabile, plugin/capacità lazy esplicita.
+Map the transitive cost of options, color/HDR, fullscreen/style, and background
+in M3 and M8. Distinguish always-required code from feature-specific code.
+Compare simplifying the existing branch, extracting a tree-shakable pure
+helper, and making a plugin or capability explicitly lazy.
 
-Prima di un'estrazione elencare loader, options, default, fallback e bundle che la
-abilitano. Tenere conto del costo del nuovo hook, della latenza e del codice comune
-aggiuntivo. Non estrarre se il bundle minimo carica comunque tutto. Preservare HDR,
-OffscreenCanvas e feature pubbliche; documentare gli eventuali cambi di integrazione.
+Before extraction, list loaders, options, defaults, fallbacks, and enabling
+bundles. Account for hook cost, latency, and added shared code. Extract only
+where the minimal bundle can omit code. Preserve HDR, OffscreenCanvas,
+and public features, and document integration changes.
 
-Accettazione: byte recuperati nel consumer minimo e totale di M8 confrontabile,
-feature riattivabile tramite percorso documentato, test dei bundle standard e custom.
+Acceptance requires fewer bytes in the minimal consumer, comparable total M8
+size, a documented path to re-enable the feature, and tests of standard and
+custom bundles.
 
-### B3 — Lazy e condizioni exports
+### B3 — Lazy loading and export conditions
 
-Verificare se `./lazy`, `browser` e l'entry selezionata dal bundler mantengono
-l'intento lazy. Misurare moduli caricati alla creazione e dopo `load()`, richieste,
-URL CDN, somma chunk e startup. Confrontare eager e lazy sulla stessa scena; chunk
-più piccoli possono aumentare richieste e duplicazioni. Non cambiare formati o
-conditional exports senza smoke del pacchetto distribuito ESM/CJS/browser.
+Verify that `./lazy`, `browser`, and the bundler-selected entry retain lazy
+behavior. Measure modules loaded at creation and after `load()`, requests,
+CDN URLs, total chunks, and startup. Compare eager and lazy on the same scene.
+Smaller chunks may increase requests and duplication. Smoke-test distributed
+ESM/CJS/browser packages before changing formats or conditional exports.
 
-### B4 — Duplicazione browser e bootstrap
+### B4 — Browser duplication and bootstrap
 
-Per M10 censire engine/helper duplicati in bundle completi e feature standalone,
-bootstrap namespace, eventuali Proxy e mapping external. Confrontare modalità
-supportate: bundle autocontenuto, engine condiviso con plugin external, combinazione
-di più bundle. Una libreria runtime condivisa può ridurre il totale della pagina
-ma richiede ordine script e versioni coerenti: registrarne il tradeoff.
+In M10, inventory duplicate engine and helper code in full bundles and
+standalone features, namespace bootstrap, any Proxy, and external mappings.
+Compare standalone bundles, shared engine with external plugins, and multiple
+bundle combinations. A shared runtime can reduce full-page cost at the
+expense of script ordering and version constraints. Record that tradeoff.
 
-Accettazione: due engine creati dall'app, registrazioni indipendenti, nessun default
-engine nascosto, script ripetuti e version mismatch gestiti, lazy/CDN funzionanti.
-Riduzioni conteggiate su pagina completa, senza confrontare prodotti con feature diverse.
+Acceptance requires two app-created engines, independent registrations,
+explicit engine selection, handling of repeated scripts and version mismatches,
+and working lazy/CDN. Count full-page savings with equivalent feature coverage.
 
-## Sequenza e consegna
+## Sequence and deliverables
 
-Analizzare B1 e B3 durante 03, rifinire B2 con 05/07 e B4 con 09. Validare runtime,
-package exports e generatori tramite 08/09. Allegare grafi prima/dopo, attributi di
-build, budget, matrice feature e migrazione; aggiornare il report comune e il gate 10.
+Analyze B1 and B3 in 03, refine B2 with 05/07 and B4 with 09. Validate runtime,
+package exports, and generators through 08/09. Attach before/after graphs,
+build settings, budgets, a feature matrix, and migration notes. Update the
+shared report and gate 10.

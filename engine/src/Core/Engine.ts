@@ -23,6 +23,9 @@ declare const __VERSION__: string;
 export class Engine {
   /** The plugin manager */
   readonly pluginManager = new PluginManager(this);
+  #anonymousElementId = 0;
+  readonly #anonymousElementIds = new WeakMap<HTMLElement, string>();
+
   /**
    * Contains all the {@link Container} instances of the current engine instance
    */
@@ -137,7 +140,9 @@ export class Engine {
 
     /* the sequence is assigned before the first await, so the loads are ordered by when they were requested */
     const id =
-        params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+        params.id ??
+        (domSourceElement ? this.#getElementId(domSourceElement) : undefined) ??
+        `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
       loadSequence = ++this.#loadSequence;
 
     this.#loadSequences.set(id, loadSequence);
@@ -200,7 +205,19 @@ export class Engine {
       newItem.canvas.loadCanvas(sourceCanvas);
 
       /* launch tsParticles */
-      await newItem.start();
+      try {
+        await newItem.start();
+      } catch (error) {
+        newItem.destroy(false);
+
+        const failedIndex = items.indexOf(newItem);
+
+        if (failedIndex >= loadMinIndex) {
+          items.splice(failedIndex, removeDeleteCount);
+        }
+
+        throw error;
+      }
 
       if (newItem.destroyed) {
         /* the container was destroyed before start() completed, so do not return it */
@@ -235,5 +252,20 @@ export class Engine {
    */
   removeEventListener(type: string, listener: CustomEventListener): void {
     this.#eventDispatcher.removeEventListener(type, listener);
+  }
+
+  #getAnonymousElementId(element: HTMLElement): string {
+    let id = this.#anonymousElementIds.get(element);
+
+    if (!id) {
+      id = `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}_${this.#anonymousElementId++}`;
+      this.#anonymousElementIds.set(element, id);
+    }
+
+    return id;
+  }
+
+  #getElementId(element: HTMLElement): string {
+    return element.id.length ? element.id : this.#getAnonymousElementId(element);
   }
 }

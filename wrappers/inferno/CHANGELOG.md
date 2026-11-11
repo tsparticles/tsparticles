@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
+
+### Bug Fixes
+
+* fixes after AI reviews ([3e8ce93](https://github.com/tsparticles/tsparticles/commit/3e8ce9355ad7dd3d8c0c4b6dd475ee1e0a433d58))
+* fixes after AI reviews ([7b20de3](https://github.com/tsparticles/tsparticles/commit/7b20de3c6708d79f9195eeab7a5032e17d7477f0))
+* fixes after AI reviews ([b9fffdc](https://github.com/tsparticles/tsparticles/commit/b9fffdc190f6bc5c890a7347c1a5d5ccf34c79ba))
+* fixes after AI reviews ([ed3c577](https://github.com/tsparticles/tsparticles/commit/ed3c577fec75c109d1457b9ae20c2b8df8db214f))
+* **inferno:** preserve ESM in Vitest Babel transform ([b2e7315](https://github.com/tsparticles/tsparticles/commit/b2e7315073030836552cfbf1078e534bc9f4ee90))
+
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
 **Note:** Version bump only for package @tsparticles/inferno

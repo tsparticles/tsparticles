@@ -75,6 +75,13 @@ describe("file-utils", async () => {
       expect(destDir2).toBe(path.join(baseDir, "baz"));
     });
 
+    it("should preserve an absolute destination path", async () => {
+      const absoluteDestination = path.join(baseDir, "absolute destination"),
+        resolved = await getDestinationDir(absoluteDestination);
+
+      expect(resolved).toBe(absoluteDestination);
+    });
+
     it("should throw exception", async () => {
       await writeFile(path.join(baseDir, "baz", "tmp.txt"), "");
 

@@ -1,60 +1,69 @@
-# V5-06 — Revisione completa di ParticlesManager
+# V5-06 — Full ParticlesManager review
 
-Stato: da eseguire. Dipendenza: 05 completato. Revisione obbligatoria, non limitata
-agli adattamenti richiesti da Container o CanvasManager.
+Status pending. Requires completion of 05. Review the entire area, including
+work beyond changes required by Container or CanvasManager.
 
-## Responsabilità
+## Ownership
 
-Dominio ParticlesManager e relativa gestione collection/pool, gruppi, density,
-limiti, bucket z-order, spatial index e pipeline update/draw. Includere
-`Core/Utils/SpatialHashGrid.ts`, contratti dei consumer e test associati.
-I percorsi originali identificano le responsabilità dopo gli spostamenti di 03.
-Coordinare modifiche ai contratti Particle con 07; non annullare modifiche altrui.
+ParticlesManager and its collection/pool, groups, density, limits, Z-order
+buckets, spatial index, and update/draw pipeline. Include
+`Core/Utils/SpatialHashGrid.ts`, consumer contracts, and associated tests.
+Original paths identify responsibilities after the moves in 03. Coordinate
+Particle contract changes with 07 and preserve other contributors' changes.
 
-## Lavoro
+## Work
 
-1. Mappare tutte le responsabilità di `ParticlesManager.ts`, i campi e gli invarianti:
-   collezione attiva, pool, contatori/id, gruppi, bucket e griglia. Valutare ogni
-   metodo per dipendenze obbligatorie, duplicazione, costo di allocazione e API.
-2. Rivedere add/push/remove/removeAt/removeQuantity, clear/destroy/redraw, density
-   e limit mode: semplificare percorsi ripetuti preservando gruppi e hook plugin.
-   Distinguere inizializzazione una tantum da lavoro per frame.
-3. Rivedere pool e reset: nessuno stato di gruppo, plugin o engine deve sopravvivere
-   a un riuso incompatibile. Evitare pool globali e nuove retention di container.
-4. Rivedere le due fasi update, rimozioni differite, ordinamento z e aggiornamento
-   bucket/griglia. Documentare l'ordine osservabile di updater/interactor/plugin;
-   non unificare passaggi che richiedono snapshot diversi senza test di equivalenza.
-5. Valutare allocazioni temporanee, incluso il Set delle particelle da rimuovere,
-   copie di array e iterazioni ripetute. Riutilizzare strutture solo con cleanup
-   corretto, senza cambiare risultati quando i plugin aggiungono/rimuovono particelle.
-6. Rivedere SpatialHashGrid e i suoi range/vettori: query, bordi, reset/resize e
-   riferimenti restituiti ai plugin. Misurare costi e verificare consumer collisioni,
-   links, absorber e interazioni esterne prima di cambiare i contratti.
-7. Suddividere in helper interni coesi quando utile; ridurre inclusioni e duplicazioni
-   reali. Misurare bundle e prestazioni separatamente, senza ottimizzazioni basate
-   solo sulle righe o aggiunta di manager obbligatori per mascherare complessità.
+1. Map all responsibilities, fields, and invariants in `ParticlesManager.ts`,
+   including the active collection, pool, counters/IDs, groups, buckets, and
+   grid. Evaluate each method for mandatory dependencies, duplication,
+   allocation cost, and API exposure.
+2. Review add/push/remove/removeAt/removeQuantity, clear/destroy/redraw, density,
+   and limit modes. Simplify repeated paths while preserving groups and plugin
+   hooks. Distinguish one-time initialization from per-frame work.
+3. Review pool and reset. Group, plugin, and engine state must be cleared before
+   incompatible reuse. Avoid global pools and retaining additional containers.
+4. Review both update phases, deferred removal, Z ordering, and bucket/grid
+   updates. Document observable updater/interactor/plugin order. Require
+   equivalence tests before merging passes that depend on different snapshots.
+5. Evaluate temporary allocations, including the set of particles to remove,
+   array copies, and repeated iteration. Reuse structures only with correct
+   cleanup and equivalent results when plugins add or remove particles.
+6. Review SpatialHashGrid and its ranges and vectors, including queries,
+   boundaries, reset/resize, and references returned to plugins. Measure costs
+   and verify collisions, links, absorbers, and external interactions before
+   changing contracts.
+7. Extract cohesive internal helpers where they reduce actual inclusions and
+   duplication. Measure bundle and runtime independently. Use measured costs
+   to justify changes and avoid mandatory managers that hide complexity.
 
-## Prove di accettazione
+## Acceptance tests
 
-- Add/remove e conteggi coerenti con gruppi, density, limiti e resize; assenti
-  duplicati, elementi distrutti ancora nella griglia e riferimenti residui nel pool.
-- Z-order stabile e bucket corretti dopo variazioni di profondità e rimozioni;
-  query spaziali corrette sui bordi e dopo resize/clear/redraw.
-- Hook che aggiungono/rimuovono durante update non saltano o aggiornano due volte
-  particelle; stesso ordine e risultati delle scene deterministiche di baseline.
-- Test di collisioni classiche/fluid, links, emitter, absorber, gruppi e interattività;
-  riuso pool tra gruppi con options differenti e isolamento tra container/engine.
-- Benchmark a più conteggi e densità: update, draw, allocazioni e memoria dopo
-  churn ripetuto. Identico scenario e RNG seed alla baseline; riportare varianza.
-- Suite completa, lint/format, build downstream e delta min/gzip/Brotli registrati.
+- Adds, removals, and counts stay consistent with groups, density, limits, and
+  resize. Check for duplicates, destroyed entries in the grid, and pool retention.
+- Z order stays stable and buckets stay correct after depth changes and
+  removals. Check spatial queries at boundaries and after resize/clear/redraw.
+- Hooks that add or remove during updates neither skip nor double-update
+  particles. Deterministic scenes retain baseline order and results.
+- Test classic/fluid collisions, links, emitters, absorbers, groups, and
+  interactivity, plus pool reuse across groups with different options and
+  isolation across containers/engines.
+- Benchmark several counts and densities for update, draw, allocations, and
+  memory after repeated churn. Match the baseline scenario and RNG seed and
+  report variance.
+- Complete the full suite, lint/format, downstream builds, and min/gzip/Brotli deltas.
 
-## Consegna
+Carry the mixed-radius collision symmetry and fractional-density idempotence
+checks from [V4-B08 and V4-B09](../v4-review/CORRECTNESS.md) into the tests.
+Also compare the index in sparse scenes where the query area greatly exceeds
+occupied cells, while preserving observable query order.
 
-Inventario metodi/invarianti revisionati, semplificazioni applicate e parti mantenute
-con motivazione. Report bundle/runtime e contratti da verificare in 07/08.
-Aggiornare matrice di copertura dell'intero engine e stato in indice.
+## Deliverables
 
-## Approfondimenti di performance e dimensioni
+List reviewed methods and invariants, applied simplifications, and retained
+code with reasons. Report bundle/runtime results and contracts to verify in
+07/08. Update the full engine coverage matrix and index status.
 
-Consultare [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
-Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+## Performance and size plans
+
+See [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md) and [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
+Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).

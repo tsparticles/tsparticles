@@ -1,82 +1,87 @@
-# tsParticles v5 — piano di esecuzione
+# tsParticles v5 execution plan
 
-Data: 2026-11-03. Branch dedicato: `v5`. Baseline sorgenti: versione `4.5.1`.
-Stato: **pianificato, nessuna modifica runtime eseguita**.
+Dated 2026-11-03. Use the dedicated branch `v5` and source baseline `4.5.1`.
+Status **planned, with runtime implementation pending**.
 
-## Obiettivo e ordine
+## Goals and sequence
 
-Eliminare il singleton `tsParticles`, consentire engine indipendenti e portare la
-personalizzazione di random e log nell'engine. Ridurre il codice effettivamente
-spedito ai consumatori e delimitare i moduli del core con cartelle e facciate
-pubbliche piccole. **Tutto `engine/src/` va revisionato**, inclusi ParticlesManager,
-Particle, Engine/PluginManager, Retina, eventi, utility, opzioni, tipi ed entrypoint.
-La revisione di ogni area è obbligatoria; le riscritture vanno giustificate dalle
-misure e dai contratti. Audit esplicito anche di tutti i plugin e della distribuzione
-browser/CDN senza singleton. È una major: le rotture intenzionali vanno migrate e documentate.
+Remove the `tsParticles` singleton, support independent engines, and move random
+and logger customization into each engine. Reduce the code shipped to consumers
+and organize the core into domain folders with small public entrypoints.
+**Review all of `engine/src/`**, including ParticlesManager, Particle,
+Engine/PluginManager, Retina, events, utilities, options, types, and entrypoints.
+Every area requires review. Measurements and contracts should justify any rewrite.
+Explicitly audit all plugins and browser/CDN distribution without the singleton.
+Document intentional breaking changes and provide migration paths for this major release.
 
-| Ordine | Handover                                                  | Dipendenza                                 | Risultato                                                 |
-| ------ | --------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------- |
-| 1      | [Engine espliciti](V5-01-ENGINE-INSTANCES.md)             | Baseline preliminare                       | Nessuna istanza implicita; consumer e browser funzionanti |
-| 2      | [Random e logger](V5-02-ENGINE-SERVICES.md)               | 01                                         | Servizi isolati per engine                                |
-| 3      | [Confini e audit intero engine](V5-03-CORE-BOUNDARIES.md) | 02                                         | Inventario completo, facciate e responsabilità            |
-| 4      | [Container](V5-04-CONTAINER.md)                           | 03                                         | Revisione lifecycle                                       |
-| 5      | [Canvas e rendering](V5-05-CANVAS-RENDERING.md)           | 04                                         | Revisione canvas/render                                   |
-| 6      | [ParticlesManager](V5-06-PARTICLES-MANAGER.md)            | 05                                         | Revisione collection, pool, update e griglia              |
-| 7      | [Particle](V5-07-PARTICLE.md)                             | 06                                         | Revisione stato/init particella e Retina                  |
-| 8      | [Impatto sui plugin](V5-08-PLUGIN-IMPACT.md)              | Audit iniziale in 01/02; chiusura dopo 07  | Compatibilità verificata per ogni pacchetto               |
-| 9      | [Bundle browser/CDN](V5-09-BROWSER-BUNDLES.md)            | Contratto iniziale in 01; chiusura dopo 08 | Bootstrap e composizione senza singleton                  |
-| 10     | [Gate v5](V5-10-SIZE-MIGRATION-RELEASE.md)                | 01–09                                      | Budget, integrazione e migrazione                         |
+| Order | Handover                                                          | Dependency                                  | Outcome                                                     |
+| ----- | ----------------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
+| 1     | [Explicit engines](V5-01-ENGINE-INSTANCES.md)                     | Preliminary baseline                        | Explicit instances and working consumers and browser builds |
+| 2     | [Random and logger](V5-02-ENGINE-SERVICES.md)                     | 01                                          | Services isolated per engine                                |
+| 3     | [Core boundaries and full engine audit](V5-03-CORE-BOUNDARIES.md) | 02                                          | Complete inventory, entrypoints, and responsibilities       |
+| 4     | [Container](V5-04-CONTAINER.md)                                   | 03                                          | Lifecycle review                                            |
+| 5     | [Canvas and rendering](V5-05-CANVAS-RENDERING.md)                 | 04                                          | Canvas and rendering review                                 |
+| 6     | [ParticlesManager](V5-06-PARTICLES-MANAGER.md)                    | 05                                          | Collection, pool, update, and grid review                   |
+| 7     | [Particle](V5-07-PARTICLE.md)                                     | 06                                          | Particle state, initialization, and Retina review           |
+| 8     | [Plugin impact](V5-08-PLUGIN-IMPACT.md)                           | Initial audit in 01/02, completion after 07 | Verified compatibility for each package                     |
+| 9     | [Browser and CDN bundles](V5-09-BROWSER-BUNDLES.md)               | Initial contract in 01, completion after 08 | Bootstrap and composition without a singleton               |
+| 10    | [v5 release gates](V5-10-SIZE-MIGRATION-RELEASE.md)               | 01–09                                       | Budgets, integration, and migration                         |
 
-Eseguire in sequenza: i primi tre handover cambiano contratti e import condivisi.
-Ogni handover indica responsabilità, test e prove richieste; non equivale al
-permesso di dichiarare completati i passaggi successivi. Gli agent devono leggere
-`AGENTS.md`, questo indice e il proprio handover prima di modificare i sorgenti.
-Non annullare modifiche altrui; registrare file cambiati, decisioni, comandi ed esiti.
-Non fare commit, pubblicare o avviare release come effetto automatico del piano.
+Follow the sequence because the first three handovers change shared contracts and
+imports. Each handover defines ownership, tests, and evidence. Complete each later
+step independently before marking it done. Agents must read `AGENTS.md`, this index,
+and their handover before editing source. Preserve other contributors' changes and
+record files, decisions, commands, and results. Commits, publishing, and releases
+require separate authorization.
 
-## Evidenze del checkout
+## Checkout evidence
 
-- `engine/src/index.ts` e `index.lazy.ts` chiamano `initEngine()` a import-time.
-- `initEngine.ts` riusa `globalThis.tsParticles` se trova `pluginManager`.
-- `index.lazy.ts` e `browser.ts` scrivono globals; `browser.ts` espone anche i
-  getter/setter di random/log. Il solo `index.ts` non assegna direttamente globals.
-- `MathUtils.ts` conserva `_random` e `_animationLoop` a livello di modulo;
-  `LogUtils.ts` muta un oggetto `_logger` condiviso.
-- `Engine` espone un `PluginManager` per istanza; buona parte della struttura
-  necessaria esiste già. `Engine.load()` importa dinamicamente `Container`.
-- `Engine`, `Container`, `CanvasManager`, `PluginManager` sono oggi esportati come
-  **tipi** da `export-types.ts`. Non trasformarli incidentalmente in export runtime.
-- Dimensioni sorgenti indicative: `Container.ts` 710 righe, `CanvasManager.ts` 671,
-  `RenderManager.ts` 831, `ParticlesManager.ts` 818, `Particle.ts` 1178.
-  Le righe non sono una misura del bundle.
-- Esistono `wrappers/`, `templates/`, generatori in `cli/commands/create-utils/`
-  e codice prodotto dal MCP: la migrazione non termina in `engine/`.
-- Il build standard `tsparticles-build` usa Rollup. Webpack e Rolldown sono opt-in
-  (`cli/commands/build/src/build.ts`); la presenza di una config non prova che venga eseguita.
-- `CanvasManager` ha una WeakMap di trasferimenti HTMLCanvas → OffscreenCanvas:
-  è stato legato alla risorsa browser e non va spostato ciecamente per engine.
+- `engine/src/index.ts` and `index.lazy.ts` call `initEngine()` at import time.
+- `initEngine.ts` reuses `globalThis.tsParticles` if it finds `pluginManager`.
+- `index.lazy.ts` and `browser.ts` write globals. `browser.ts` also exposes random
+  and logger getters and setters. `index.ts` itself makes no direct global assignments.
+- `MathUtils.ts` holds module-level `_random` and `_animationLoop`.
+  `LogUtils.ts` mutates a shared `_logger` object.
+- `Engine` exposes a `PluginManager` per instance. Much of the required structure
+  already exists. `Engine.load()` imports `Container` dynamically.
+- `Engine`, `Container`, `CanvasManager`, and `PluginManager` are currently
+  exported as **types** from `export-types.ts`. Preserve that distinction.
+- Approximate source lengths are 710 lines for `Container.ts`, 671 for
+  `CanvasManager.ts`, 831 for `RenderManager.ts`, 818 for `ParticlesManager.ts`,
+  and 1,178 for `Particle.ts`. Measure bundle size separately.
+- Migration also covers `wrappers/`, `templates/`, generators in
+  `cli/commands/create-utils/`, and MCP-generated code.
+- In handover 01, carry forward the v4 Inferno wrapper's load generation check or
+  an equivalent guard. Test by changing the component ID during a pending load,
+  resolving the newer load first, and then resolving the older one. Verify that
+  the wrapper destroys the stale container and retains the newer reference.
+- The standard `tsparticles-build` uses Rollup. Webpack and Rolldown are opt-in
+  (`cli/commands/build/src/build.ts`). Verify which configurations actually run.
+- `CanvasManager` uses a WeakMap for HTMLCanvas → OffscreenCanvas transfers.
+  The cache belongs to the browser resource and requires care in a per-engine design.
 
-## Contratto architetturale proposto
+## Proposed architecture contract
 
-1. API primaria sincrona `createEngine(): Engine`, con una nuova istanza a ogni
-   chiamata e nessuna inizializzazione DOM. Conservare l'inizializzazione async
-   attraverso `engine.init()` / `engine.load()`; i loader ricevono l'engine.
-2. Nessun export di un oggetto `tsParticles`, nessun fallback che cerca un engine
-   in `globalThis`, nessun default engine nascosto nei wrapper. Una variabile locale
-   dell'app può continuare a chiamarsi `tsParticles`.
-3. `engine.setRandom()`, `getRandom()`, `getRandomFn()`, `setLogger()` e `getLogger()`
-   sono il contratto proposto per i servizi. I dettagli delle firme e del passaggio
-   del contesto agli helper sono definiti in 02, senza stato ambientale.
-4. I browser script possono esporre factory e loader tramite un bootstrap esplicito;
-   non creano un engine automaticamente. Gli import ESM/CJS e le risoluzioni
-   `browser` devono restare utilizzabili senza scritture globali implicite.
-5. Cartelle di dominio con `index.ts` selettivo; helper non riesportati e niente
-   deep import tra domini. I tipi necessari ai plugin restano pubblici. La cartella
-   non rende i file privati nel linguaggio: servono regole sugli import e package exports.
-6. Refactor orientato alle dipendenze realmente incluse: niente wrapper class,
-   factory di funzioni o nuove astrazioni per il solo scopo di accorciare un file.
+1. The primary API is a synchronous `createEngine(): Engine` that creates a new
+   instance on each call without initializing the DOM. Keep async initialization
+   via `engine.init()` and `engine.load()`. Pass the engine to loaders.
+2. Remove the exported `tsParticles` object, fallback engine lookup in
+   `globalThis`, and implicit default engines in wrappers. Applications can keep
+   using `tsParticles` as a local variable name.
+3. The proposed service methods are `engine.setRandom()`, `getRandom()`,
+   `getRandomFn()`, `setLogger()`, and `getLogger()`. Handover 02 defines
+   signatures and how helpers receive context without ambient state.
+4. Browser scripts can expose factories and loaders through explicit bootstrap.
+   Engine creation remains explicit. ESM/CJS imports and the `browser` condition
+   remain usable without implicit global writes.
+5. Give domain folders selective `index.ts` files. Keep internal helpers out of
+   public exports and prevent cross-domain deep imports. Keep types required by
+   plugins public. Enforce privacy through import rules and package exports.
+6. Refactor based on dependencies that actually ship. Add wrapper classes,
+   function factories, or other abstractions only when they serve a purpose
+   beyond shortening a file.
 
-Esempio di destinazione (proposta di API, non codice già disponibile):
+Example of the proposed API:
 
 ```ts
 import { createEngine } from "@tsparticles/engine";
@@ -93,69 +98,74 @@ await first.load({ id: "first", options: {} });
 await second.load({ id: "second", options: {} });
 ```
 
-Il contratto è la scelta di partenza per gli agent. Se l'analisi dimostra che va
-cambiato, documentare motivazione e migrazione prima di propagare una firma diversa.
+Use this contract as the starting point. If the analysis shows it needs to change,
+document the reason and migration before propagating a different signature.
 
-## Baseline obbligatoria prima della prima modifica runtime
+## Required baseline before the first runtime change
 
-Parte iniziale di 01, non un refactor preliminare. Salvare in
-`V5-BUNDLE-REPORT.md` commit di partenza, dirty diff, versioni Node/pnpm, build
-invocati, formati e misure. Non prendere dist preesistenti come baseline verificata.
+Capture the baseline at the start of 01, before refactoring. In
+`V5-BUNDLE-REPORT.md`, record the starting commit, working-tree diff, Node and pnpm
+versions, build commands, formats, and measurements. Build fresh artifacts for
+the verified baseline. Use the same toolchain, minifier, and compression settings.
 
-Misurare con la stessa toolchain, minificatore e compressione:
+| Scenario                  | Include                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                   |
+| Acquire an engine         | Consumer bundle that uses the exported `tsParticles` singleton in 4.5.1 and calls `createEngine()` in v5 |
+| Minimal scene             | Engine and only the required loaders, using identical options                                            |
+| Basic / slim / full / all | Supported minified distribution bundles                                                                  |
+| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                     |
 
-| Scenario                     | Cosa includere                                                 |
-| ---------------------------- | -------------------------------------------------------------- |
-| Import di un helper puro     | Bundle consumer di una sola funzione, senza engine o DOM       |
-| Factory importata e invocata | Bundle consumer con creazione esplicita; distinguere init/load |
-| Scena minima                 | Engine + soli loader necessari alla scena; options identiche   |
-| Basic / slim / full / all    | Bundle distribuiti supportati, minificati                      |
-| Lazy/CDN                     | Entry + tutti i chunk richiesti per avviare la stessa scena    |
+For engine acquisition, build an entry that exports the acquired engine so the
+bundler retains it. In 4.5.1, import and re-export `tsParticles` from
+`@tsparticles/engine`. The import creates or reuses the shared instance. In v5,
+import `createEngine` and export the result of one call, which creates a new
+instance. Measure explicit initialization and scene loading in separate
+consumer entries using `engine.init()` and `engine.load({ id, options })` on
+the acquired engine. Use the same ID, options, and required loaders for both versions.
 
-Registrare byte raw/minificati, gzip, Brotli, numero dei chunk e dipendenze trattenute.
-Per ESM confrontare anche bundle consumer browser con risoluzione reale di `exports`.
-Un entry più piccolo con lo stesso codice spostato nei chunk non è un risparmio.
-Definire dopo la baseline budget numerici per scenario e registrarli prima del
-refactor di dimensioni. Non promettere percentuali senza misure. Gate minimo:
-scena minima e slim ridotti in gzip e Brotli rispetto alla baseline; gli altri
-scenari senza aumenti non spiegati e senza superare i budget concordati nel report.
-Se un budget non è raggiunto, il gate rimane aperto con dati e motivazione.
+Record raw and minified bytes, gzip, Brotli, chunk count, and retained dependencies.
+For ESM, also compare browser consumer bundles using actual `exports` resolution.
+Count bytes moved from an entry into chunks in the total. Define numeric budgets
+per scenario after measuring the baseline and record them before the size refactor.
+Base percentage claims on measurements. At a minimum, the minimal scene and slim
+must shrink in gzip and Brotli. Explain increases in other scenarios and stay
+within agreed budgets. Leave the gate open with data and reasons if a budget is missed.
 
-## Verifica comune agli handover
+## Verification shared by all handovers
 
-- Scoprire i target con `pnpm nx show project <nome> --json`; non presumere target
-  `lint` o `test` separati. Il target engine `build` risolve a `tsparticles-build`.
-- Su questo sandbox Nx funziona con `NX_DAEMON=false NX_ISOLATE_PLUGINS=false`;
-  la query senza queste variabili fallisce sui socket. Sono workaround locali.
-- Per runtime modificato: test mirati e suite completa, lint/format dei file
-  interessati, build dei consumer. Prima di proporre commit eseguire anche
-  `pnpm exec vitest` come richiesto da `AGENTS.md`; registrare se avvia watch e
-  completare una esecuzione finita con `pnpm exec vitest run`.
-- Dopo modifiche engine, ricostruire tutti i pacchetti non CLI/non website/non
-  palette come da `AGENTS.md`, verificando i nomi con `pnpm nx show projects --json`.
-  In 01/02 includere inoltre CLI/generatori e altri consumer modificati: le
-  esclusioni della verifica standard non li coprono.
-- Build CI senza autofix (`pnpm run build:ci`) al gate finale. Non presentare
-  errori preesistenti come risolti o come esenzione: riportare riproduzione e impatto.
-- Test deterministici, fake scheduler o tick espliciti; verifiche browser per
-  canvas/HDR. I mock jsdom non sostituiscono il controllo visivo.
+- Discover targets with `pnpm nx show project <name> --json`. Check whether
+  separate `lint` and `test` targets exist. Engine `build` resolves to `tsparticles-build`.
+- In this sandbox, Nx works with `NX_DAEMON=false NX_ISOLATE_PLUGINS=false`.
+  Without these local workarounds, the query fails on socket permissions.
+- For runtime changes, run targeted tests and the full suite, lint and formatting
+  checks for affected files, and consumer builds. Before proposing a commit, run
+  `pnpm exec vitest` as required by `AGENTS.md`. If it starts in watch mode,
+  record that and complete a finite run with `pnpm exec vitest run`.
+- After engine changes, rebuild packages outside CLI, website, and palette as
+  specified in `AGENTS.md`. Verify names with `pnpm nx show projects --json`.
+  In 01/02 also include the CLI, generators, and other modified consumers covered
+  by the standard exclusions.
+- Run the CI build without autofixes (`pnpm run build:ci`) at the final gate.
+  Record reproduction and impact for existing errors.
+- Use deterministic tests, fake schedulers or explicit ticks, and browser checks
+  for canvas/HDR. Use real visual verification alongside jsdom mocks.
 
-## Miglioramenti candidati
+## Improvement candidates
 
-Il [piano miglioramenti](V5-IMPROVEMENTS.md) è articolato in sei approfondimenti:
-misure/baseline, grafo bundle e browser, collection particelle, indice spaziale,
-stato per particella, rendering/lifecycle. Ogni documento specifica ownership,
-alternative, vincoli, scenari e criteri di accettazione. Gli handover principali
-rimandano agli approfondimenti di propria competenza; il gate 10 verifica anche
-il registro delle decisioni e gli esiti delle opportunità analizzate.
+The [improvement plan](V5-IMPROVEMENTS.md) has six detailed plans covering
+measurement, bundle graph and browser delivery, particle collections, spatial
+indexing, per-particle state, and rendering/lifecycle. Each defines ownership,
+options, constraints, scenarios, and acceptance criteria. The main handovers
+link to the relevant plans. Gate 10 also verifies the decision log and outcomes.
 
-## Stato di questo piano
+## Plan status
 
-- [x] Ricognizione dei punti critici e aggiornamento della documentazione di planning.
-- [x] Handover 01–10 preparati.
-- [ ] Baseline bundle e budget numerici.
-- [ ] Implementazione e verifica 01–10, con copertura di tutto l’engine e audit plugin/browser.
+- [x] Review the critical areas and update planning documentation.
+- [x] Prepare handovers 01–10.
+- [ ] Capture the bundle baseline and numeric budgets.
+- [ ] Implement and verify 01–10, covering the full engine and the plugin and browser audits.
 
-I conteggi test storici in `STATE.md` restano riferiti alle sessioni 4.x. Le analisi
-in `codebase/` e `research/` non completamente riverificate sono riferimenti storici,
-non un backlog automatico da aggiungere alla v5.
+Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in
+`codebase/` and `research/` that have yet to be fully rechecked as historical
+references. Revalidate them before adding items to the v5 backlog.

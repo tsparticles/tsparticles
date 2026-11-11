@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
+
+### Bug Fixes
+
+* fixes after AI reviews ([7574993](https://github.com/tsparticles/tsparticles/commit/757499307b930fef9c0cdee36968b8a9803a2be1))
+* fixes after AI reviews ([124327a](https://github.com/tsparticles/tsparticles/commit/124327a22ece0617577eb4b37362fcf7ae1b27cc))
+* fixes after AI reviews ([0af13da](https://github.com/tsparticles/tsparticles/commit/0af13da768cc11fa35392b4ea29e9db52287921e))
+* fixes after AI reviews ([3e8ce93](https://github.com/tsparticles/tsparticles/commit/3e8ce9355ad7dd3d8c0c4b6dd475ee1e0a433d58))
+* fixes after AI reviews ([9f714e7](https://github.com/tsparticles/tsparticles/commit/9f714e7003f97b6435cb75f3a8053e29f7ed4490))
+* fixes after AI reviews ([44abaab](https://github.com/tsparticles/tsparticles/commit/44abaab1757f9e3f40f4133ce3519bf7f2d4780e))
+* fixes after AI reviews ([8c51de2](https://github.com/tsparticles/tsparticles/commit/8c51de2407e50bec2fe2be9d47a99a95b575ff09))
+* fixes after AI reviews ([1d8a3e4](https://github.com/tsparticles/tsparticles/commit/1d8a3e4a30995fa85fcdcc873ee6b36470cf48db))
+* fixes after AI reviews ([4acd935](https://github.com/tsparticles/tsparticles/commit/4acd935dec59bcca5d170166748bae87832d259e))
+* fixes after AI reviews ([ce9030a](https://github.com/tsparticles/tsparticles/commit/ce9030a0e43c3935d1082be1f651b64323cc5df7))
+* fixes after AI reviews ([53c7b6c](https://github.com/tsparticles/tsparticles/commit/53c7b6c09931b33793dd017bb4c7a181a974c1ce))
+* fixes after AI reviews ([d3f3d36](https://github.com/tsparticles/tsparticles/commit/d3f3d362853f347e1d005a1fa55730ad75ee3198))
+* fixes after AI reviews ([d841821](https://github.com/tsparticles/tsparticles/commit/d8418219dcb0344439ae49175133f87650fd69dd))
+* fixes after AI reviews ([e77f9c0](https://github.com/tsparticles/tsparticles/commit/e77f9c0afa581fed40a54341e0432ff1a271ab27))
+* fixes after AI reviews ([3243262](https://github.com/tsparticles/tsparticles/commit/324326252cc08757ef1a7282add59f0c5da5cd9d))
+* fixes after AI reviews ([c6c50b6](https://github.com/tsparticles/tsparticles/commit/c6c50b667500610c20fdbad40ce8dbd3d6eb5d1b))
+* fixes after AI reviews ([16e1fc7](https://github.com/tsparticles/tsparticles/commit/16e1fc753b62ab7822ac7379f34d46469b26ca91))
+* fixes after AI reviews ([4f142a5](https://github.com/tsparticles/tsparticles/commit/4f142a5da70d4047d9acc723f2481680826d3c68))
+* fixes after AI reviews ([d4a7e76](https://github.com/tsparticles/tsparticles/commit/d4a7e76a6d02ddecf5149e501d2f81309724974c))
+* fixes after AI reviews ([f1ed1dd](https://github.com/tsparticles/tsparticles/commit/f1ed1dd1f86a2d053c8fa4b4fcc1b97d7b73bed6))
+* fixes after AI reviews ([bd1c38a](https://github.com/tsparticles/tsparticles/commit/bd1c38a42a4e26823b9abec9f25863df32817ecc))
+* fixes after AI reviews ([3675618](https://github.com/tsparticles/tsparticles/commit/36756186676aded2525dd33b3fc4b7b1f5d09cd8))
+* fixes after AI reviews ([ea82957](https://github.com/tsparticles/tsparticles/commit/ea829572832bf0b2e36049956b8d95f28dd94d62))
+* fixes after AI reviews ([c625975](https://github.com/tsparticles/tsparticles/commit/c6259752f8fd0ac74b30e7f1e6d2a0564d5eab45))
+* fixes after AI reviews ([c62fe31](https://github.com/tsparticles/tsparticles/commit/c62fe31022896d6d8b74defc3cf6a20ad6bd7746))
+* fixes after AI reviews ([7ab5187](https://github.com/tsparticles/tsparticles/commit/7ab5187877b68f837bfc46b3e9e12ced304743d0))
+* fixes after AI reviews ([0ddf479](https://github.com/tsparticles/tsparticles/commit/0ddf4795fb2834af85ea9603b2afccca8b06706c))
+* fixes after AI reviews ([7f9d697](https://github.com/tsparticles/tsparticles/commit/7f9d6975a23fd36fbf29187fa28797800c94fc9c))
+* fixes after AI reviews ([fbe867c](https://github.com/tsparticles/tsparticles/commit/fbe867c00c5ab622a529120fe86f00a59c51d6f9))
+* fixes after AI reviews ([01ccd35](https://github.com/tsparticles/tsparticles/commit/01ccd35f0cfc4686fb578fbe7d409f067ef6f567))
+* fixes after AI reviews ([a2cff79](https://github.com/tsparticles/tsparticles/commit/a2cff7943ffe18204ae330e30361a4fd56c697a0))
+* fixes after AI reviews ([5d59d1d](https://github.com/tsparticles/tsparticles/commit/5d59d1dbbd6af1eea5dff02289621a2ae3366017))
+* fixes after AI reviews ([cfdbe5d](https://github.com/tsparticles/tsparticles/commit/cfdbe5d38ba7f5a2d7b0917c289d9445870cacb3))
+* fixes after AI reviews ([47d8759](https://github.com/tsparticles/tsparticles/commit/47d8759d984c7816f2a7133f21110c3d5acc2a48))
+* fixes after AI reviews ([5d452c9](https://github.com/tsparticles/tsparticles/commit/5d452c99d5902dd38b60403bc1da925e5d3f11cc))
+* fixes after AI reviews ([5334c1b](https://github.com/tsparticles/tsparticles/commit/5334c1b56bedd65cd9b2486853280b292f6b38d2))
+* fixes after AI reviews ([d8a54c0](https://github.com/tsparticles/tsparticles/commit/d8a54c0ec642935fd07ef66b534175957003ffb6))
+* fixes after AI reviews ([2b534c7](https://github.com/tsparticles/tsparticles/commit/2b534c7d494a4f270ba6f0225b972a6486cd54ce))
+* fixes after AI reviews ([0009afa](https://github.com/tsparticles/tsparticles/commit/0009afaaa509d240ccfcd454e7de0bc9a9880ed8))
+* fixes after AI reviews ([1c9d4cc](https://github.com/tsparticles/tsparticles/commit/1c9d4ccd678fecd29f0c3932aaaf9003ebae1bbf))
+* fixes from v4 plan ([49d614d](https://github.com/tsparticles/tsparticles/commit/49d614d937df608ded6417f077cff5c3328e55b0))
+* security fixes for mcp server and gh workflows ([7115ce5](https://github.com/tsparticles/tsparticles/commit/7115ce5ff47b76f276e53001d70d8b2eb16186e6))
+
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
 **Note:** Version bump only for package @tsparticles/mcp-server
@@ -30,6 +77,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Security
 
+- bind HTTP mode to loopback by default and require authentication on non-loopback interfaces
+- isolate unauthenticated request limits from authenticated MCP traffic and resolve proxy client IPs from the trusted chain
+- limit active HTTP sessions per client IP and count in-flight initialization requests against session capacity
 - removed exact package version from the `/health` endpoint to avoid exposing fingerprintable release info
 - sanitize user-supplied values echoed in tool messages (strip control characters, code-fence reflections) to reduce prompt-injection surface
 - added a per-process global rate limit in addition to the per-IP limit

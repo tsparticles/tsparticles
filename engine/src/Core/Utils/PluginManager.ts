@@ -62,12 +62,15 @@ export class PluginManager {
 
   readonly #engine;
 
-  #executedSet = new Set<LoadPluginFunction>();
+  readonly #executedSet = new Set<LoadPluginFunction>();
+
+  readonly #inFlightLoaders = new Set<Promise<void>>();
 
   /**
    * Checks if the engine instance is initialized
    */
   #initialized = false;
+  #initPromise?: Promise<void>;
 
   #isRunningLoaders = false;
 
@@ -268,23 +271,43 @@ export class PluginManager {
    * init method, used by imports
    */
   async init(): Promise<void> {
-    if (this.#initialized || this.#isRunningLoaders) {
+    if (this.#initialized) {
       return;
     }
 
+    if (this.#initPromise) {
+      return this.#initPromise;
+    }
+
     this.#isRunningLoaders = true;
-    this.#executedSet = new Set<LoadPluginFunction>();
     this.#allLoadersSet = new Set(this.#loadPromises);
 
-    try {
-      for (const loader of this.#allLoadersSet) {
-        await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+    this.#initPromise = (async (): Promise<void> => {
+      try {
+        while (
+          this.#inFlightLoaders.size > 0 ||
+          [...this.#allLoadersSet].some(loader => !this.#executedSet.has(loader))
+        ) {
+          for (const loader of this.#allLoadersSet) {
+            await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+          }
+
+          const inFlightLoaders = [...this.#inFlightLoaders];
+
+          if (inFlightLoaders.length) {
+            await Promise.all(inFlightLoaders);
+          }
+        }
+
+        this.#loadPromises.clear();
+        this.#initialized = true;
+      } finally {
+        this.#isRunningLoaders = false;
+        this.#initPromise = undefined;
       }
-    } finally {
-      this.#loadPromises.clear();
-      this.#isRunningLoaders = false;
-      this.#initialized = true;
-    }
+    })();
+
+    return this.#initPromise;
   }
 
   /**
@@ -298,6 +321,7 @@ export class PluginManager {
 
     for (const loader of loaders) {
       if (this.#isRunningLoaders) {
+        this.#loadPromises.add(loader);
         await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
       } else {
         this.#loadPromises.add(loader);
@@ -317,6 +341,18 @@ export class PluginManager {
     executed.add(loader);
     allLoaders.add(loader);
 
-    await loader(this.#engine);
+    const loaderPromise = (async (): Promise<void> => loader(this.#engine))();
+
+    this.#inFlightLoaders.add(loaderPromise);
+
+    try {
+      await loaderPromise;
+    } catch (error) {
+      executed.delete(loader);
+
+      throw error;
+    } finally {
+      this.#inFlightLoaders.delete(loaderPromise);
+    }
   }
 }

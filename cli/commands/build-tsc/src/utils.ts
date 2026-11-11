@@ -5,8 +5,6 @@ import { readFile } from "node:fs/promises";
 enum ExitCodes {
   OK = 0,
   EmitErrors = 1,
-  NoDataOrOptions = 2,
-  NoOptions = 3,
   ParseError = 4,
 }
 
@@ -91,39 +89,29 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
   let options: unknown;
 
   const logs: string[] = [],
-    data = await readConfig(basePath, compileConfigs[type].configFile);
+    data = await readConfig(basePath, compileConfigs[type].configFile),
+    ts = await import("typescript"),
+    configPath = path.join(basePath, compileConfigs[type].configFile);
 
-  if (!data) {
+  if (data) {
+    const configResult = ts.parseConfigFileTextToJson(configPath, data);
+
+    if (configResult.error) {
+      logs.push(ts.flattenDiagnosticMessageText(configResult.error.messageText, "\n"));
+
+      return {
+        type,
+        logs,
+        exitCode: ExitCodes.ParseError,
+      };
+    }
+
+    options = configResult.config as unknown;
+  } else {
     options = getDefaultOptions(type);
   }
 
-  if (!data && !options) {
-    logs.push(`No TS config found for ${type} build.`);
-
-    return {
-      type,
-      logs,
-      exitCode: ExitCodes.NoDataOrOptions,
-    };
-  }
-
-  if (!options && data) {
-    options = JSON.parse(data);
-  }
-
-  if (!options) {
-    logs.push(`No TS options available for ${type} build.`);
-
-    return {
-      type,
-      logs,
-      exitCode: ExitCodes.NoOptions,
-    };
-  }
-
-  const ts = await import("typescript");
-
-  let parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath);
+  let parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath, undefined, data ? configPath : undefined);
 
   if (parsed.errors.length && type === "cjs" && data) {
     const noInputsCode = 18003,
@@ -131,7 +119,7 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
 
     if (hasNoInputsError) {
       options = getDefaultOptions(type);
-      parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath);
+      parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath, undefined, configPath);
 
       if (!silent) {
         logs.push("Using default cjs build options because tsconfig.json has no input files for this build.");

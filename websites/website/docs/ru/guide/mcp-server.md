@@ -43,6 +43,11 @@ Once connected, the AI assistant can use these tools:
 | `diagnose_issues`  | Analyzes options for configuration problems and performance issues                      |
 | `generate_code`    | Generates complete code from a natural language description with smart bundle selection |
 
+`suggest_plugins` анализирует параметры частиц в основной конфигурации, темах, адаптивных
+настройках, группах частиц, переопределениях эмиттеров и частицах, создаваемых при разделении.
+Также учитываются формы эмиттеров и режимы взаимодействия, поэтому рекомендуемые импорты охватывают
+вложенные конфигурации.
+
 ### Generating code
 
 `generate_code` turns a natural language description into ready-to-use code. It uses deterministic
@@ -58,6 +63,10 @@ The result includes the selected bundle, the npm install command, the generated 
 with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
 "@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
 leaves `html` empty. Other bundles return the framework-specific component in `code`; for `framework: "vanilla"` `code` is a load script instead, and `html` — populated only for `framework: "vanilla"` — contains the container `div`.
+
+В сгенерированных примерах фейерверков явное значение `splitCount` ограничено числом 500. Если
+число в запросе может означать как год, так и количество частиц, результат содержит просьбу
+уточнить назначение числа перед его использованием.
 
 ## Resources
 

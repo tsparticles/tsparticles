@@ -10,6 +10,9 @@ import { waitForParticlesEngineInitialization } from "./initParticlesEngine";
 export default class Particles extends Component<IParticlesProps> {
 	_container?: Container;
 	_cancelled = false;
+	_loadId = 0;
+	_themeLoadId = 0;
+	_themePlaybackStates = new WeakMap<Container, { activeRequests: number; wasPlaying: boolean }>();
 
 	componentDidMount() {
 		this._cancelled = false;
@@ -19,8 +22,21 @@ export default class Particles extends Component<IParticlesProps> {
 
 	componentDidUpdate(prevProps: IParticlesProps) {
 		// Apply theme change without full reload
-		if (prevProps.theme !== this.props.theme && this._container) {
-			(this._container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
+		const container = this._container,
+			theme = this.props.theme;
+
+		if (prevProps.theme !== theme && container && theme) {
+			const themeLoad = this.loadTheme(container, theme, () => !this._cancelled && this._container === container),
+				themeLoadId = this._themeLoadId,
+				isCurrentRequest = () => themeLoadId === this._themeLoadId && !this._cancelled && this._container === container;
+
+			void themeLoad.catch(error => {
+				getLogger().error("Particles: error during theme recovery", error);
+
+				if (isCurrentRequest() && !container.destroyed) {
+					void this.reloadContainer();
+				}
+			});
 		}
 
 		// Reload the container if relevant props changed
@@ -44,31 +60,41 @@ export default class Particles extends Component<IParticlesProps> {
 	}
 
 	async loadContainer() {
+		const loadId = ++this._loadId;
+
 		try {
 			await waitForParticlesEngineInitialization();
 
-			if (this._cancelled) {
+			if (this._cancelled || loadId !== this._loadId) {
 				return;
 			}
 
-			const { id, url, options, loaded, particlesLoaded, container, theme } = this.props;
+			const { id, url, options, loaded, particlesLoaded, container } = this.props;
 
 			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
 
-			if (this._cancelled) {
+			if (this._cancelled || loadId !== this._loadId) {
 				newContainer?.destroy();
 
 				return;
 			}
 
+			const theme = this.props.theme;
+
 			this._container = newContainer;
+
+			if (newContainer && theme) {
+				await this.loadTheme(newContainer, theme, () => !this._cancelled && loadId === this._loadId);
+			}
+
+			if (this._cancelled || loadId !== this._loadId) {
+				newContainer?.destroy();
+
+				return;
+			}
 
 			if (container) {
 				container.current = newContainer;
-			}
-
-			if (newContainer && theme) {
-				(newContainer as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
 			}
 
 			if (newContainer) {
@@ -77,6 +103,35 @@ export default class Particles extends Component<IParticlesProps> {
 			}
 		} catch (e) {
 			getLogger().error("Particles: error during load", e);
+		}
+	}
+
+	async loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
+		const themeLoadId = ++this._themeLoadId,
+			isCurrentRequest = () => themeLoadId === this._themeLoadId && isCurrent();
+		let playbackState = this._themePlaybackStates.get(container);
+
+		if (!playbackState) {
+			playbackState = { activeRequests: 0, wasPlaying: container.animationStatus };
+			this._themePlaybackStates.set(container, playbackState);
+		}
+
+		playbackState.activeRequests++;
+
+		try {
+			await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+		} catch (e) {
+			getLogger().error("Particles: error during theme load", e);
+
+			if (playbackState.wasPlaying && isCurrentRequest() && !container.destroyed) {
+				await container.refresh();
+			}
+		} finally {
+			playbackState.activeRequests--;
+
+			if (playbackState.activeRequests === 0) {
+				this._themePlaybackStates.delete(container);
+			}
 		}
 	}
 

@@ -199,7 +199,18 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
     if (typeof cover.element === "string") {
       if (typeof document !== "undefined") {
-        const node = document.querySelector(cover.element);
+        let node: Element | null;
+
+        try {
+          node = document.querySelector(cover.element);
+        } catch {
+          this.#maskWarnOnce(
+            "mask-element-invalid-selector",
+            `Mask cover element selector "${cover.element}" is invalid`,
+          );
+
+          return;
+        }
 
         if (node && this.#isSupportedMaskElement(node)) {
           this.#maskElement = node;

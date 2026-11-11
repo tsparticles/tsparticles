@@ -406,7 +406,7 @@ export class ParticlesManager {
     const densityFactor = this.#initDensityFactor(numberOptions.density),
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
-      particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
+      particlesNumber = Math.round(Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount),
       particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
 
     if (group === undefined) {
@@ -536,19 +536,32 @@ export class ParticlesManager {
     const canvasSize = container.canvas.size,
       pxRatio = container.retina.pixelRatio;
 
-    if (!canvasSize.width || !canvasSize.height) {
+    if (
+      !Number.isFinite(canvasSize.width) ||
+      !Number.isFinite(canvasSize.height) ||
+      canvasSize.width <= 0 ||
+      canvasSize.height <= 0 ||
+      !Number.isFinite(densityOptions.width) ||
+      !Number.isFinite(densityOptions.height) ||
+      densityOptions.width <= 0 ||
+      densityOptions.height <= 0 ||
+      !Number.isFinite(pxRatio) ||
+      pxRatio <= 0
+    ) {
       return defaultDensityFactor;
     }
 
-    return (
-      (canvasSize.width * canvasSize.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp)
-    );
+    const densityFactor =
+      (canvasSize.width * canvasSize.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
+
+    return Number.isFinite(densityFactor) && densityFactor >= 0 ? densityFactor : defaultDensityFactor;
   }
 
   async #initDrawersAndUpdaters(): Promise<void> {
     const container = this.#container;
 
     await container.initDrawersAndUpdaters();
+    container.canvas.render.initUpdaters();
 
     for (const drawer of container.effectDrawers.values()) {
       await drawer.init?.(container);

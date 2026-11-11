@@ -1,61 +1,59 @@
-# V5-IMP-04 — SpatialHashGrid e costo delle query
+# V5-IMP-04 — SpatialHashGrid and query cost
 
-Stato: da analizzare. Priorità alta. Owner: 06; consumer verificati in 08.
-Prerequisito: [IMP-01](V5-IMP-01-MEASUREMENT.md).
+Status pending analysis. High priority. Handover 06 owns this plan, with
+consumer verification in 08. Requires [IMP-01](V5-IMP-01-MEASUREMENT.md).
 
-## Evidenze e obiettivo
+## Evidence and goal
 
-La griglia analizzata usa `Map<string, Particle[]>`, chiavi derivate dalle coordinate,
-clear a ogni frame e lookup `has` poi `get` in insert. Le query accettano già un array
-output opzionale e usano pool di Circle/Rectangle. Conservare le ottimizzazioni già
-presenti, inclusa la sicurezza delle query annidate; misurare il collo di bottiglia.
+The reviewed grid uses `Map<string, Particle[]>`, coordinate-derived keys,
+a clear on every frame, and a `has` followed by `get` on insert. Queries already
+accept an optional output array and pool Circle/Rectangle instances. Preserve
+existing optimizations and nested-query safety. Measure the bottleneck.
 
-### S1 — Lookup e chiavi
+### S1 — Lookups and keys
 
-Prima variante: un solo get e creazione della cella se assente. Poi confrontare
-chiavi stringa attuali con mappe nidificate o encoding numerico. Per encoding
-numerico definire limiti, negativi, precisione e collisioni; non usare bit packing
-con overflow silenzioso. Supportare le coordinate ammesse oggi e le scene in resize.
+First try a single lookup and create the cell when absent. Then compare
+string keys with nested maps or numeric encoding. For numeric encoding, define
+bounds, negative coordinates, precision, and collisions. Guard against
+bit-packing overflow. Support existing coordinates and resize scenarios.
 
-Misurare costo di generazione chiave, lookup, inserimento, memoria e bundle. Una
-mappa nidificata evita stringhe ma aggiunge oggetti/lookup; conservare la soluzione
-più semplice quando il vantaggio non è dimostrato.
+Measure key generation, lookup, insertion, memory, and bundle cost. Nested
+maps avoid strings and add objects and lookups. Keep the simplest solution
+unless evidence supports a change.
 
-### S2 — Riutilizzo celle
+### S2 — Cell reuse
 
-Confrontare clear completo con riuso limitato degli array delle celle attive.
-Definire lista delle celle usate nel frame e rilascio riferimenti delle particelle.
-Una griglia che si espande o si sposta non deve conservare per sempre ogni cella
-visitata; budget/cap o eviction devono essere espliciti e misurati.
+Compare full clearing with bounded reuse of active cell arrays. Define which
+cells belong to the frame and how they release particle references. A moving
+or growing grid needs explicit, measured caps or eviction for visited cells.
 
-Verificare cambio cellSize, resize, destroy e due container. Misurare sia scena
-stabile sia movimento attraverso molte celle, conteggio celle e heap dopo churn.
+Verify cellSize changes, resize, destroy, and two containers. Measure stable
+scenes and movement across many cells, including cell count and heap after churn.
 
-### S3 — Output delle query
+### S3 — Query output
 
-Inventariare i consumer di queryCircle/queryRectangle e verificare se sfruttano
-`out`. Proporre buffer riusabili per chiamante solo quando il risultato non viene
-conservato o riutilizzato da un'altra query. Esplicitare append vs reset dell'array:
-non cambiare il comportamento pubblico senza migrare i consumer.
+Inventory queryCircle/queryRectangle consumers and check use of `out`.
+Propose reusable buffers per caller only when results are neither retained nor
+used by another query. Define append versus reset behavior and migrate consumers
+before any public change.
 
-Testare query annidate da callback e plugin, output persistito, query vuote e
-particelle rimosse. La riusabilità di un buffer non autorizza un buffer scratch
-unico globale che viene sovrascritto durante chiamate rientranti.
+Test nested queries from callbacks and plugins, retained output, empty queries,
+and removed particles. Keep reusable buffers safe under reentrant calls.
 
-### S4 — Dimensione celle e ordine risultati
+### S4 — Cell size and result order
 
-Misurare celle visitate e candidati controllati su M4/M5: distribuzioni uniformi,
-cluster densi, raggi piccoli/grandi e pixel ratio differenti. Valutare la politica
-cellSize attuale prima di aggiungere adattività. Un tuning dinamico può costare
-ricostruzioni e rendere risultati/tempi meno prevedibili.
+Measure visited cells and tested candidates in M4/M5 for uniform and clustered
+distributions, small and large radii, and different pixel ratios. Evaluate the
+current cellSize policy before making it adaptive. Dynamic tuning can cause
+rebuilds and make results and timings less predictable.
 
-Conservare insieme dei vicini, gestione bordi e, dove rilevante, ordine dei risultati:
-collisioni/fluid con cap maxNeighbors possono cambiare esito se l'ordine cambia.
-Confrontare output deterministici e comportamento visivo prima di promuovere una variante.
+Preserve the neighbor set, boundary handling, and result order where relevant.
+Collisions and fluid with a maxNeighbors cap may change outcomes when order
+changes. Compare deterministic results and visuals before adopting a variant.
 
-## Consegna
+## Deliverables
 
-Tabella S1–S4 con profili, alternative, delta bundle/heap/query time e test sui
-consumer. Includere casi negativi/lontani/bordi, query annidate, resize/cellSize e
-collisioni/fluid/links. Nessun cambio predefinito di algoritmo spaziale basato su
-un solo benchmark sintetico; validare anche una scena completa M3/M4/M5.
+Provide an S1–S4 table with profiles, alternatives, bundle/heap/query time deltas,
+and consumer tests. Include negative and distant coordinates, boundaries,
+nested queries, resize/cellSize, and collisions/fluid/links. Validate a full
+M3/M4/M5 scene alongside synthetic benchmarks before changing the default algorithm.

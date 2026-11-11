@@ -71,9 +71,18 @@ describe("Particle", async () => {
     effectDrawerOutside: IEffectDrawer = {
       isInsideCanvas: () => false,
     },
+    rightDirectionEffectInputs: string[] = [],
+    rightDirectionShapeInputs: string[] = [],
     effectDrawerOutModeAware: IEffectDrawer = {
       isInsideCanvas: data => {
         return data.outMode !== OutMode.destroy;
+      },
+    },
+    rightDirectionEffectDrawer: IEffectDrawer = {
+      isInsideCanvas: data => {
+        rightDirectionEffectInputs.push(`${data.outMode}:${data.direction}`);
+
+        return data.direction === OutModeDirection.right;
       },
     },
     shapeDrawerOutModeAware: IShapeDrawer = {
@@ -83,15 +92,27 @@ describe("Particle", async () => {
       isInsideCanvas: data => {
         return data.outMode !== OutMode.destroy;
       },
+    },
+    rightDirectionShapeDrawer: IShapeDrawer = {
+      draw: () => {
+        // no-op
+      },
+      isInsideCanvas: data => {
+        rightDirectionShapeInputs.push(`${data.outMode}:${data.direction}`);
+
+        return data.direction === OutModeDirection.right;
+      },
     };
 
   pluginManager.addShape(["bounds-default-shape"], () => Promise.resolve(shapeDrawerDefault));
   pluginManager.addShape(["bounds-shape-inside"], () => Promise.resolve(shapeDrawerInside));
   pluginManager.addShape(["bounds-shape-outside"], () => Promise.resolve(shapeDrawerOutside));
   pluginManager.addShape(["bounds-shape-out-mode-aware"], () => Promise.resolve(shapeDrawerOutModeAware));
+  pluginManager.addShape(["bounds-shape-right-direction"], () => Promise.resolve(rightDirectionShapeDrawer));
   pluginManager.addEffect("bounds-effect-inside", () => Promise.resolve(effectDrawerInside));
   pluginManager.addEffect("bounds-effect-outside", () => Promise.resolve(effectDrawerOutside));
   pluginManager.addEffect("bounds-effect-out-mode-aware", () => Promise.resolve(effectDrawerOutModeAware));
+  pluginManager.addEffect("bounds-effect-right-direction", () => Promise.resolve(rightDirectionEffectDrawer));
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
   const canvas = createCustomCanvas(width, height) as any,
@@ -388,6 +409,109 @@ describe("Particle", async () => {
 
       expect(particle.isInsideCanvas()).to.be.false;
       expect(particle.isInsideCanvas(OutModeDirection.top)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+    });
+
+    it("should report destroy and out as outside when both bounds callbacks return outside", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-outside",
+          },
+          shape: {
+            type: "bounds-shape-outside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.false;
+    });
+
+    it("should use union bounds for destroy and out modes, while retaining AND for collision modes", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-outside",
+          },
+          shape: {
+            type: "bounds-shape-inside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.bounce)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.split)).to.be.false;
+    });
+
+    it("should pass the right direction to both bounds callbacks for destroy and out modes", async () => {
+      rightDirectionEffectInputs.length = 0;
+      rightDirectionShapeInputs.length = 0;
+
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-right-direction",
+          },
+          shape: {
+            type: "bounds-shape-right-direction",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(rightDirectionEffectInputs).toEqual([
+        `${OutMode.destroy}:${OutModeDirection.right}`,
+        `${OutMode.out}:${OutModeDirection.right}`,
+      ]);
+      expect(rightDirectionShapeInputs).toEqual([
+        `${OutMode.destroy}:${OutModeDirection.right}`,
+        `${OutMode.out}:${OutModeDirection.right}`,
+      ]);
     });
 
     it("should pass out mode to callbacks for strategy-aware bounds", async () => {

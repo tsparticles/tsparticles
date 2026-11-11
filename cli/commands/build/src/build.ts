@@ -161,7 +161,7 @@ buildCommand.action(async (argPath: string) => {
     throw new Error("Project prettify failed");
   }
 
-  if (options.distfiles && !(await buildDistFiles(basePath, options.silent))) {
+  if (options.distfiles && !(await buildDistFiles(basePath, options.silent, ci))) {
     throw new Error("Dist files build failed");
   }
 

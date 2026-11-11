@@ -1,68 +1,68 @@
-# V5-IMP-03 — Gruppi, rimozioni differite, pool e ordinamento
+# V5-IMP-03 — Groups, deferred removal, pooling, and ordering
 
-Stato: da analizzare. Priorità alta. Owner: 06; contratti Particle in 07 e plugin in 08.
-Prerequisiti: [IMP-01](V5-IMP-01-MEASUREMENT.md), stato e lifecycle stabilizzati.
+Status pending analysis. High priority. Handover 06 owns this plan, with
+Particle contracts in 07 and plugins in 08. Requires
+[IMP-01](V5-IMP-01-MEASUREMENT.md) and stable state and lifecycle contracts.
 
-## Evidenze iniziali
+## Starting evidence
 
-ParticlesManager usa `filter(...).length` nei conteggi di density e limiti gruppo,
-un Set creato nella prima fase update per accumulare rimozioni e un ordinamento
-per id nei bucket in alcuni casi di inserimento. Profilare questi percorsi nel
-codice risultante dagli handover precedenti prima di modificarli.
+ParticlesManager uses `filter(...).length` for density and group limits,
+a set created in the first update phase to collect removals, and ID sorting
+on some bucket insertions. Profile these paths after earlier handovers.
 
-### P1 — Conteggi gruppi
+### P1 — Group counts
 
-Su M6 distinguere costo add/remove e density da costo per frame. Confrontare:
-conteggio senza array intermedio; conteggi per gruppo mantenuti incrementalmente;
-conteggio aggregato una volta per operazione massiva. L'array filtrato è evitabile
-quando serve solo la lunghezza, ma una mappa introduce memoria e invalidazione.
+In M6, distinguish add/remove and density costs from per-frame work. Compare
+counting without a temporary array, incrementally maintained group counts,
+and one aggregate count per bulk operation. The filtered array is avoidable
+when only its length matters. A map adds memory and invalidation costs.
 
-Per contatori incrementali definire un unico punto di aggiornamento per add/remove,
-init/redraw/clear/destroy, riuso pool e rifiuto di inserimento. Verificare se `group`
-è modificabile dai plugin: supportare la mutazione o cambiare/documentare il
-contratto prima di affidarsi a contatori potenzialmente stale.
+For incremental counters, define one update path covering add/remove,
+init/redraw/clear/destroy, pool reuse, and rejected insertions. Check whether
+plugins can mutate `group`. Support mutation or revise and document the
+contract before relying on potentially stale counters.
 
-Accettazione: gruppi e limite globale interagiscono correttamente, modalità wait e
-delete preservate, nessun conteggio negativo o doppio decremento, throughput di
-churn migliorato oltre il rumore. Non aggiungere cache su tutti i frame se aiuta
-solo un setup raro senza beneficio apprezzabile.
+Acceptance requires correct interactions between groups and the global limit,
+preserved wait and delete modes, no negative counts or double decrements, and
+churn throughput improvement beyond noise. Justify any per-frame cache with
+measurable benefit, especially when it serves rare setup work.
 
-### P2 — Rimozioni differite
+### P2 — Deferred removal
 
-Confrontare Set per frame, Set riusabile e lista riusabile con deduplicazione.
-Definire il momento esatto in cui si rimuove una particella dalle collection,
-dalla griglia e dai bucket, prima di cambiare il contenitore. Conservare le due
-fasi update e l'ordine degli hook che ne dipendono.
+Compare a per-frame set, a reusable set, and a reusable deduplicated list.
+Define exactly when a particle leaves the collection, grid, and buckets before
+changing data structures. Preserve both update phases and dependent hook order.
 
-Gestire early return/eccezioni, callback che distruggono o creano particelle e
-riuso dalla pool. Un flag o generation stamp aggiunge stato per particella: misurare
-memoria e byte, non solo GC. Buffer riusabili devono rilasciare riferimenti al termine
-anche in caso di errore; nessun buffer globale tra container/engine.
+Handle early returns, exceptions, callbacks that create or destroy particles,
+and pool reuse. Flags or generation stamps add per-particle state. Measure
+memory and bytes as well as GC. Reusable buffers must release references even
+on error and belong to a container or engine.
 
-Accettazione: nessuna rimozione doppia, particella saltata o callback di destroy
-aggiuntiva; allocazioni/frame ridotte senza aumentare retention o tempo update.
+Acceptance requires no duplicate removals, skipped particles, or extra destroy
+callbacks, plus fewer per-frame allocations without increased retention or update time.
 
-### P3 — Bucket e z-order
+### P3 — Buckets and Z order
 
-Su M7 misurare frequenza reale del sort, bucket molto sbilanciati, id riusati e
-particelle che cambiano profondità. Confrontare inserimento ordinato, sort differito
-di soli bucket sporchi e gestione attuale. Il sort differito deve avvenire prima
-che un consumer osservi l'ordine, non soltanto prima del draw se altre API lo usano.
+In M7, measure actual sort frequency, skewed buckets, reused IDs, and particles
+that change depth. Compare sorted insertion, deferred sorting of dirty buckets,
+and the current approach. Sort before any consumer can observe ordering,
+including APIs that run before draw.
 
-Preservare stabilità a parità di profondità e semantica attuale per id. Non
-sostituire gli array con linked list/strutture complesse senza misurare scansione,
-rimozione, memoria e costi dei consumer. Lasciare il percorso attuale se il sort è raro.
+Preserve stability at equal depth and current ID semantics. Measure traversal,
+removal, memory, and consumer costs before replacing arrays with linked lists
+or more complex structures. Keep the current path if sorting is rare.
 
-### P4 — Pool e retention
+### P4 — Pool and retention
 
-Misurare heap dopo picchi e dopo più cicli M6/M9. Verificare quali oggetti vengono
-riusati e quali stato/plugin/asset rimangono referenziati. Valutare un limite o una
-politica di riduzione del pool solo se i picchi trattengono memoria significativa.
-Misurare il costo di nuove allocazioni quando la scena torna al picco.
+Measure heap after peaks and repeated M6/M9 cycles. Identify reused objects
+and retained state, plugins, and assets. Evaluate a pool cap or shrink policy
+only if peaks retain significant memory. Measure new allocation cost when
+the scene returns to its peak.
 
-## Verifica e consegna
+## Verification and deliverables
 
-Regression su count/gruppi/density/limiti, reset, lifecycle, ordine hook e consumer
-emitter/absorber/collisioni; benchmark identico di M3, M6, M7, M9. Allegare contatori
-operazioni, allocazioni, heap, tempi e delta bundle. Documentare alternative scartate
-con dati. L'handover 06 chiude P1–P4 e passa gli invarianti necessari a 07/08.
+Run regressions for counts, groups, density, limits, reset, lifecycle, hook
+order, and emitter/absorber/collision consumers. Benchmark identical M3, M6,
+M7, and M9 scenarios. Attach operation counts, allocations, heap, timings,
+and bundle deltas. Document rejected alternatives with data. Handover 06
+closes P1–P4 and passes the required invariants to 07/08.
