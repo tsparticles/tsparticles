@@ -28,10 +28,7 @@ const nextSection = workspaceYaml.search(/\n\S[^\n]*:/);
 const packagesContent =
   packagesStart < 0
     ? ""
-    : workspaceYaml.slice(
-        packagesStart + "packages:\n".length,
-        nextSection < 0 ? workspaceYaml.length : nextSection
-      );
+    : workspaceYaml.slice(packagesStart + "packages:\n".length, nextSection < 0 ? workspaceYaml.length : nextSection);
 const patterns = [...packagesContent.matchAll(/^\s+-\s+(.+)$/gm)].map(m => m[1]);
 
 const pkgJsonFiles = [];
@@ -63,16 +60,23 @@ for (const pattern of patterns) {
 }
 
 const unique = [...new Set(pkgJsonFiles)].filter(f => !f.includes("/dist/"));
+const workspacePackageNames = new Set(
+  unique.flatMap(f => {
+    const pkg = JSON.parse(readFileSync(f, "utf-8"));
+
+    return pkg.name ? [pkg.name] : [];
+  }),
+);
 
 for (const f of unique) {
   const pkg = JSON.parse(readFileSync(f, "utf-8"));
   let fileChanged = false;
 
-  for (const depType of ["dependencies", "devDependencies", "peerDependencies"]) {
+  for (const depType of ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"]) {
     const deps = pkg[depType];
     if (!deps) continue;
     for (const [k, v] of Object.entries(deps)) {
-      if (k.startsWith("@tsparticles/") && v !== "workspace:*") {
+      if (workspacePackageNames.has(k) && v !== "workspace:*") {
         deps[k] = "workspace:*";
         fileChanged = true;
         console.log(`  🔧 ${f.replace(root, "")} [${depType}]: ${k} "${v}" → "workspace:*"`);
@@ -86,16 +90,14 @@ for (const f of unique) {
   }
 }
 
-// ── 2b. Regenerate lockfile to reflect restored workspace:* specifiers ──
-if (modifiedFiles.length > 0) {
-  console.log("\n🔄 Regenerating lockfile...");
-  execSync("pnpm install --no-frozen-lockfile", { cwd: root, stdio: "inherit" });
-}
+// ── 2b. Always sync the lockfile after restoring workspace specifiers ──
+console.log("\n🔄 Regenerating lockfile...");
+execSync("pnpm install --lockfile-only --no-frozen-lockfile", { cwd: root, stdio: "inherit" });
 
 // ── 2c. Clean up extra blank lines lerna adds to CHANGELOG.md files ──
 const allChangelogPaths = [
   join(root, "CHANGELOG.md"),
-  ...unique.map(f => join(dirname(f), "CHANGELOG.md"))
+  ...unique.map(f => join(dirname(f), "CHANGELOG.md")),
 ];
 
 for (const changelogPath of allChangelogPaths) {
