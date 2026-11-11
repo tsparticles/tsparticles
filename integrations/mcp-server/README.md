@@ -69,13 +69,14 @@ binding beyond loopback:
 
 ```bash
 export MCP_AUTH_TOKEN="$(openssl rand -hex 32)"
-npx @tsparticles/mcp-server --port 3000 --host 0.0.0.0 --auth-token "$MCP_AUTH_TOKEN"
+npx @tsparticles/mcp-server --port 3000 --host 0.0.0.0
 ```
 
-Configure your MCP client to send the same value in the `Authorization: Bearer <token>` header.
-The exported `MCP_AUTH_TOKEN` remains available in your shell for copying into the client
-configuration. On loopback, no token is required; origin checks still restrict browser-originated
-requests, but are not authentication and do not protect non-browser clients.
+The CLI reads the exported `MCP_AUTH_TOKEN` automatically. Configure your MCP client to send the
+same value in the `Authorization: Bearer <token>` header. The exported token remains available in
+your shell for copying into the client configuration. On loopback, no token is required; origin
+checks still restrict browser-originated requests, but are not authentication and do not protect
+non-browser clients.
 
 ### Rate limiting
 

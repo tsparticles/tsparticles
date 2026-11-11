@@ -571,13 +571,14 @@ export async function startHttpServer({
   httpServer.requestTimeout = HTTP_REQUEST_TIMEOUT_MS;
   httpServer.headersTimeout = HTTP_HEADERS_TIMEOUT_MS;
   httpServer.keepAliveTimeout = HTTP_KEEP_ALIVE_TIMEOUT_MS;
+  const urlHost = isIP(host) === IPV6_VERSION ? `[${host}]` : host;
 
   await new Promise<void>((resolve, reject) => {
     httpServer.once("error", reject);
     httpServer.listen(port, host, () => {
       httpServer.off("error", reject);
-      console.error(`tsParticles MCP server running on http://${host}:${port}/mcp`);
-      console.error(`Health check: http://${host}:${port}/health`);
+      console.error(`tsParticles MCP server running on http://${urlHost}:${port}/mcp`);
+      console.error(`Health check: http://${urlHost}:${port}/health`);
       resolve();
     });
   });
