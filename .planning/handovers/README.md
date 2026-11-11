@@ -111,21 +111,30 @@ Capture the baseline at the start of 01, before refactoring. In
 versions, build commands, formats, and measurements. Build fresh artifacts for
 the verified baseline. Use the same toolchain, minifier, and compression settings.
 
-| Scenario                  | Include                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                   |
-| Acquire an engine         | Consumer bundle that uses the exported `tsParticles` singleton in 4.5.1 and calls `createEngine()` in v5 |
-| Minimal scene             | Engine and only the required loaders, using identical options                                            |
-| Basic / slim / full / all | Supported minified distribution bundles                                                                  |
-| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                     |
+<!-- coderabbit-ai-generated:v1 -->
 
-For engine acquisition, build an entry that exports the acquired engine so the
-bundler retains it. In 4.5.1, import and re-export `tsParticles` from
-`@tsparticles/engine`. The import creates or reuses the shared instance. In v5,
-import `createEngine` and export the result of one call, which creates a new
-instance. Measure explicit initialization and scene loading in separate
-consumer entries using `engine.init()` and `engine.load({ id, options })` on
-the acquired engine. Use the same ID, options, and required loaders for both versions.
+<!-- coderabbit-ai-generated-section:v1:48e33223d4af4463d81ff82bbe13ab8dd138c879ac57b98059f9152826f890f6 -->
+
+| Scenario                  | Include                                                                                                                                         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                                                          |
+| Acquire the singleton     | Existing consumer measurement importing and re-exporting `tsParticles` from `@tsparticles/engine`; record separately with its measured revision |
+| Acquire a factory engine  | Unavailable until `@tsparticles/engine` exports `createEngine()`; no buildable factory baseline exists yet                                      |
+| Minimal scene             | Engine and only the required loaders, using identical options                                                                                   |
+| Basic / slim / full / all | Supported minified distribution bundles                                                                                                         |
+| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                                                            |
+
+For singleton acquisition, import and re-export `tsParticles` so the bundler
+retains the acquired engine. Record this existing measurement separately from
+factory acquisition. The current package exports the singleton and does not
+export `createEngine()`, so mark the factory-consumer scenario unavailable.
+Once the factory is exported, build a separate entry that imports `createEngine`
+and exports the result of one call. Measure explicit initialization and scene
+loading in separate consumer entries using `engine.init()` and
+`engine.load({ id, options })` on the acquired engine. Use the same ID, options,
+and required loaders for both versions.
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 Record raw and minified bytes, gzip, Brotli, chunk count, and retained dependencies.
 For ESM, also compare browser consumer bundles using actual `exports` resolution.

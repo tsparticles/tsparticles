@@ -22,6 +22,43 @@ describe("Inferno Particles component", () => {
 		loggerError.mockReset();
 	});
 
+	it("waits for the newest theme before publishing the container", async () => {
+		let finishFirst!: () => void, finishSecond!: () => void;
+		const container = {
+			destroy: vi.fn(),
+			loadTheme: vi
+				.fn()
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>(resolve => {
+							finishFirst = resolve;
+						}),
+				)
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>(resolve => {
+							finishSecond = resolve;
+						}),
+				),
+		};
+		const loaded = vi.fn(),
+			ref = { current: undefined };
+		loadMock.mockResolvedValueOnce(container);
+		const component = new Particles({ theme: "first", loaded, container: ref });
+		const loading = component.loadContainer();
+		await vi.waitFor(() => expect(container.loadTheme).toHaveBeenCalledTimes(1));
+		component.props = { ...component.props, theme: "second" };
+		component.componentDidUpdate({ theme: "first" });
+		finishFirst();
+		await new Promise(resolve => setTimeout(resolve, 0));
+		expect(loaded).not.toHaveBeenCalled();
+		expect(ref.current).toBeUndefined();
+		finishSecond();
+		await loading;
+		expect(loaded).toHaveBeenCalledWith(container);
+		expect(ref.current).toBe(container);
+	});
+
 	it("applies the latest theme when a pending container load completes", async () => {
 		let resolveTheme: (() => void) | undefined;
 		const loadedContainer = {

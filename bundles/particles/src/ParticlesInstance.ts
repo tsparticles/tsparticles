@@ -28,6 +28,11 @@ export class ParticlesInstance {
     deleteParticlesInstance(this.#id, this);
   }
 
+  /** @internal Checks whether another wrapper uses this container. */
+  hasSameContainer(instance: ParticlesInstance): boolean {
+    return this.#container === instance.#container;
+  }
+
   /** Pause the particles animation */
   pause(): void {
     this.#container.pause();

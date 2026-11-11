@@ -1,12 +1,30 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { type PluginManager, getLogger } from "@tsparticles/engine";
 import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
+import type { BackgroundMaskContainer } from "./types.js";
 import { BackgroundMaskCover } from "./Options/Classes/BackgroundMaskCover.js";
+import { BackgroundMaskPluginInstance } from "./BackgroundMaskPluginInstance.js";
 
 const testOpacity = 0.8,
   fullOpacity = 1,
   half = 0.5;
 
 describe("BackgroundMask integration", () => {
+  it("warns when initialization receives an invalid cover selector", async () => {
+    const warning = vi.spyOn(getLogger(), "warning").mockImplementation(() => {}),
+      container = { actualOptions: { backgroundMask: { cover: { element: "[" } } } },
+      plugin = new BackgroundMaskPluginInstance({} as PluginManager, container as BackgroundMaskContainer);
+
+    try {
+      await plugin.init();
+      expect(warning).toHaveBeenCalledExactlyOnceWith(
+        '[tsParticles BackgroundMask] Mask cover element selector "[" is invalid',
+      );
+    } finally {
+      warning.mockRestore();
+    }
+  });
+
   it("BackgroundMask options route covers to BackgroundMaskCover", () => {
     const mask = new BackgroundMask(),
       element = "#myCanvas";

@@ -22,7 +22,9 @@ async function getRegisteredShapeNames(loader: (engine: never) => Promise<void>)
     engine = {
       checkVersion: vi.fn(),
       pluginManager: {
-        addShape: (names: string[]): void => registeredNames.push(...names),
+        addShape: (names: string[]): void => {
+          registeredNames.push(...names);
+        },
         register: async (loader: (engine: typeof engine) => Promise<void> | void): Promise<void> => {
           await loader(engine);
         },
@@ -39,6 +41,27 @@ async function getRegisteredShapeNames(loader: (engine: never) => Promise<void>)
 }
 
 describe("suggestPlugins", () => {
+  it.each([
+    { r: 255, g: 0, b: 0 },
+    { rgb: { r: { min: 0, max: 255 }, g: 0, b: 0 } },
+    { h: 120, s: 50, l: 50 },
+    { hsl: { h: 120, s: 50, l: 50 } },
+  ])("detects structured paint %j", value => {
+    const result = suggestPlugins({ particles: { paint: { fill: { color: { value } } } } });
+    expect(result.npmPackages).toContain(
+      "r" in value || "rgb" in value ? "@tsparticles/plugin-rgb-color" : "@tsparticles/plugin-hsl-color",
+    );
+  });
+
+  it.each(["#000", { value: "#000" }])("detects background color %j alongside RGB paint", color => {
+    const result = suggestPlugins({
+      background: { color },
+      particles: { paint: { fill: { color: { value: "rgb(1,2,3)" } } } },
+    });
+    expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
+    expect(result.npmPackages).toContain("@tsparticles/plugin-rgb-color");
+  });
+
   it("should return empty result for empty options", () => {
     const result = suggestPlugins({});
     expect(result.npmPackages).toEqual([]);

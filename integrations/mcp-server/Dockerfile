@@ -7,14 +7,14 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY patches/ ./patches/
 
 # Package files
-COPY integrations/mcp-server/package.json integrations/mcp-server/tsconfig.json ./integrations/mcp-server/
+COPY integrations/mcp-server/package.json integrations/mcp-server/tsconfig.json integrations/mcp-server/tsconfig.build.json ./integrations/mcp-server/
 COPY integrations/mcp-server/src/ ./integrations/mcp-server/src/
 
 # Install only this package's dependencies
 RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server --ignore-scripts
 
 # Build
-RUN pnpm --filter @tsparticles/mcp-server exec tsc
+RUN pnpm --filter @tsparticles/mcp-server exec tsc --project tsconfig.build.json
 
 # Copy build output + package.json to a clean directory
 RUN mkdir -p /tmp/app && \
