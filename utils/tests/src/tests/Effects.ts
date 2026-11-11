@@ -388,11 +388,13 @@ describe("Effects", async () => {
   }, 30000);
 
   it("uses offsets for directionless trail bounce and split bounds", async () => {
-    const container = await loadContainer({ particles: { number: { value: 1 }, effect: { type: "trail" } } }),
-      particle = firstParticle(container),
-      drawer = container.effectDrawers.get("trail"),
-      radius = particle.getRadius();
+    const container = await loadContainer({ particles: { number: { value: 1 }, effect: { type: "trail" } } });
+
     try {
+      const particle = firstParticle(container),
+        drawer = container.effectDrawers.get("trail"),
+        radius = particle.getRadius();
+
       particle.position.x = container.canvas.size.width / 2;
       particle.position.y = container.canvas.size.height / 2;
       particle.offset.x = container.canvas.size.width + radius + 1;
@@ -402,7 +404,7 @@ describe("Effects", async () => {
       expect(drawer?.isInsideCanvas?.({ canvasSize: container.canvas.size, particle, radius, outMode: OutMode.out })).to
         .be.true;
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   }, 30000);
 
