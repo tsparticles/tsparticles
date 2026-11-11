@@ -228,6 +228,7 @@ describe("suggestPlugins", () => {
     });
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+    expect(result.npmPackages.some(pkg => pkg.startsWith("@tsparticles/shape-"))).toBe(false);
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
     expect(result.npmPackages.every(pkg => typeof pkg === "string")).toBe(true);
   });

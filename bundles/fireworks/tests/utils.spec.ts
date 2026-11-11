@@ -13,7 +13,14 @@ describe("fireworks cache cleanup", () => {
     };
     const engine = { load: vi.fn().mockResolvedValue(container) };
     const cached = await getFireworksInstance(engine as unknown as Engine, "cache-test", {});
+    if (!cached) {
+      throw new Error("Expected the fireworks instance to load");
+    }
+    const cachedDestroyed = vi.spyOn(cached, "destroyed", "get");
+
     new FireworksInstance(container as Container, "cache-test").destroy();
+    cachedDestroyed.mockClear();
+
     const replacement = {
       destroyed: false,
       destroy() {
@@ -22,6 +29,7 @@ describe("fireworks cache cleanup", () => {
     };
     engine.load.mockResolvedValue(replacement);
     const next = await getFireworksInstance(engine as unknown as Engine, "cache-test", {});
+    expect(cachedDestroyed).not.toHaveBeenCalled();
     expect(next).not.toBe(cached);
     expect(engine.load).toHaveBeenCalledTimes(2);
     cached?.destroy();

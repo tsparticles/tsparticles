@@ -322,48 +322,50 @@ describe("Effects", async () => {
 
   it("uses offset-aware positions for trail bounce and split checks in every direction", async () => {
     const container = await loadContainer({
-        particles: {
-          number: { value: 1 },
-          effect: { type: "trail" },
-        },
-      }),
-      particle = firstParticle(container),
-      canvasWidth = container.canvas.size.width,
-      canvasHeight = container.canvas.size.height,
-      radius = particle.getRadius(),
-      drawer = container.effectDrawers.get("trail"),
-      directions = [
-        {
-          direction: OutModeDirection.bottom,
-          x: canvasWidth / 2,
-          y: canvasHeight - radius - 1,
-          offsetX: 0,
-          offsetY: 3,
-        },
-        {
-          direction: OutModeDirection.left,
-          x: radius + 1,
-          y: canvasHeight / 2,
-          offsetX: -(radius + 2),
-          offsetY: 0,
-        },
-        {
-          direction: OutModeDirection.right,
-          x: canvasWidth - radius - 1,
-          y: canvasHeight / 2,
-          offsetX: 3,
-          offsetY: 0,
-        },
-        {
-          direction: OutModeDirection.top,
-          x: canvasWidth / 2,
-          y: radius + 1,
-          offsetX: 0,
-          offsetY: -(radius + 2),
-        },
-      ];
+      particles: {
+        number: { value: 1 },
+        effect: { type: "trail" },
+      },
+    });
 
     try {
+      const particle = firstParticle(container),
+        canvasWidth = container.canvas.size.width,
+        canvasHeight = container.canvas.size.height,
+        radius = particle.getRadius(),
+        drawer = container.effectDrawers.get("trail"),
+        insideCanvasSize = { width: 100, height: 100 },
+        directions = [
+          {
+            direction: OutModeDirection.bottom,
+            x: canvasWidth / 2,
+            y: canvasHeight - radius - 1,
+            offsetX: 0,
+            offsetY: 3,
+          },
+          {
+            direction: OutModeDirection.left,
+            x: radius + 1,
+            y: canvasHeight / 2,
+            offsetX: -(radius + 2),
+            offsetY: 0,
+          },
+          {
+            direction: OutModeDirection.right,
+            x: canvasWidth - radius - 1,
+            y: canvasHeight / 2,
+            offsetX: 3,
+            offsetY: 0,
+          },
+          {
+            direction: OutModeDirection.top,
+            x: canvasWidth / 2,
+            y: radius + 1,
+            offsetX: 0,
+            offsetY: -(radius + 2),
+          },
+        ];
+
       for (const outMode of [OutMode.bounce, OutMode.split]) {
         for (const { direction, x, y, offsetX, offsetY } of directions) {
           particle.position.x = x;
@@ -380,10 +382,25 @@ describe("Effects", async () => {
               radius,
             }),
           ).to.be.false;
+
+          particle.position.x = insideCanvasSize.width / 2;
+          particle.position.y = insideCanvasSize.height / 2;
+          particle.offset.x = 0;
+          particle.offset.y = 0;
+
+          expect(
+            drawer?.isInsideCanvas?.({
+              canvasSize: insideCanvasSize,
+              direction,
+              outMode,
+              particle,
+              radius,
+            }),
+          ).to.be.true;
         }
       }
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   }, 30000);
 

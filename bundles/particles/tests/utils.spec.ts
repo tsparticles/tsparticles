@@ -13,7 +13,14 @@ describe("particles cache cleanup", () => {
     };
     const engine = { load: vi.fn().mockResolvedValue(container) };
     const cached = await getParticlesInstance(engine as unknown as Engine, "cache-test", {});
+    if (!cached) {
+      throw new Error("Expected the particles instance to load");
+    }
+    const cachedDestroyed = vi.spyOn(cached, "destroyed", "get");
+
     new ParticlesInstance(container as Container, "cache-test").destroy();
+    cachedDestroyed.mockClear();
+
     const replacement = {
       destroyed: false,
       destroy() {
@@ -22,6 +29,7 @@ describe("particles cache cleanup", () => {
     };
     engine.load.mockResolvedValue(replacement);
     const next = await getParticlesInstance(engine as unknown as Engine, "cache-test", {});
+    expect(cachedDestroyed).not.toHaveBeenCalled();
     expect(next).not.toBe(cached);
     expect(engine.load).toHaveBeenCalledTimes(2);
     cached?.destroy();
