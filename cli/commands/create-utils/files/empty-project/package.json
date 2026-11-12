@@ -96,6 +96,7 @@
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.10",
+    "prettier-plugin-multiline-arrays": "^4.1.11",
     "rimraf": "^6.1.4",
     "rollup": "^4.67.4",
     "typescript": "^6.0.3",

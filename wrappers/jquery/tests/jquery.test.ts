@@ -66,11 +66,33 @@ describe("jquery $.particles", () => {
     expect(loadMock).toHaveBeenCalledTimes(1);
     expect(loadMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        id: "jquery-particles",
+        element: expect.objectContaining({ id: "jquery-particles" }),
         options: { particles: { number: { value: 3 } } },
       }),
     );
     expect(container).toBeDefined();
+  });
+
+  it("keeps anonymous selected elements independent", async () => {
+    await loadModule();
+
+    await jQuery.particles().init();
+
+    const hosts = jQuery("<div></div><div></div>");
+
+    await hosts.particles().load({ particles: { number: { value: 1 } } });
+
+    expect(loadMock).toHaveBeenCalledTimes(2);
+    expect(loadMock).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ element: hosts[0], options: { particles: { number: { value: 1 } } } }),
+    );
+    expect(loadMock).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ element: hosts[1], options: { particles: { number: { value: 1 } } } }),
+    );
+    expect(hosts[0]?.id).toBe("");
+    expect(hosts[1]?.id).toBe("");
   });
 
   it("loads particles from a url through ajax", async () => {
@@ -82,7 +104,7 @@ describe("jquery $.particles", () => {
 
     expect(loadMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        id: "jquery-ajax",
+        element: expect.objectContaining({ id: "jquery-ajax" }),
         url: "https://example.com/particles.json",
       }),
     );

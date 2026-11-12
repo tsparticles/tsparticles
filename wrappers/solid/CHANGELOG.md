@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Bug Fixes
+
+- isolate the canvas when a particle component changes id during a pending load
+- report engine load and particlesLoaded callback failures without unhandled rejections
+
 ## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
 
 **Note:** Version bump only for package @tsparticles/solid

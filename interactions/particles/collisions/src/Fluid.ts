@@ -207,6 +207,7 @@ export class FluidSolver {
     const fluidOptions = collisionsOptions.fluid,
       pixelRatio = container.retina.pixelRatio,
       radius = getRangeValue(fluidOptions.radius) * pixelRatio,
+      radiusSq = radius * Math.abs(radius),
       stiffness = getRangeValue(fluidOptions.stiffness),
       nearStiffness = getRangeValue(fluidOptions.nearStiffness),
       restDensity = getRangeValue(fluidOptions.restDensity),
@@ -257,13 +258,14 @@ export class FluidSolver {
         const neighborPosition = neighbor.getPosition(),
           dx = neighborPosition.x - focalPosition.x,
           dy = neighborPosition.y - focalPosition.y,
-          dist = Math.sqrt(dx * dx + dy * dy);
+          distanceSq = dx * dx + dy * dy;
 
-        if (dist > radius) {
+        if (distanceSq > radiusSq) {
           continue;
         }
 
-        const q = identity - dist / radius,
+        const dist = Math.sqrt(distanceSq),
+          q = identity - dist / radius,
           force = clamp(pressure + pressureNear * q, -maxForce, maxForce),
           contactDistance = particleRadius + neighbor.getRadius(),
           /* the non-penetration floor is applied per pair and not averaged: a particle squeezed

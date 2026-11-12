@@ -1,12 +1,5 @@
 import type { AttractParticle, IParticlesAttractOptions, ParticlesAttractOptions } from "./Types.js";
-import {
-  type Container,
-  type RecursivePartial,
-  getDistances,
-  getRangeValue,
-  isNull,
-  loadOptionProperty,
-} from "@tsparticles/engine";
+import { type Container, type RecursivePartial, getRangeValue, isNull, loadOptionProperty } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
@@ -62,7 +55,8 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
       }
 
       const pos2 = p2.getPosition(),
-        { dx, dy } = getDistances(pos1, pos2),
+        dx = pos1.x - pos2.x,
+        dy = pos1.y - pos2.y,
         rotate = p1.options.attract.rotate,
         ax = dx / (rotate.x * attractFactor),
         ay = dy / (rotate.y * attractFactor),

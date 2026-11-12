@@ -56,6 +56,14 @@
     "node": ">=15.0.0"
   },
   "type": "module",
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/vite.config.ts"],
+        "outputs": ["{projectRoot}/lib", "{projectRoot}/lib-types"]
+      }
+    }
+  },
   "scripts": {
     "prettify:src": "prettier --write ./src/**/*",
     "prettify:readme": "prettier --write ./README.md",

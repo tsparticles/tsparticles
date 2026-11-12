@@ -46,11 +46,6 @@ export class PluginManager {
   readonly palettes = new Map<string, IPalette>();
 
   /**
-   * The plugins array
-   */
-  readonly plugins: IPlugin[] = [];
-
-  /**
    * The presets array
    */
   /** The presets map */
@@ -76,6 +71,9 @@ export class PluginManager {
 
   readonly #loadPromises = new Set<LoadPluginFunction>();
 
+  readonly #plugins: IPlugin[] = [];
+  #pluginsView?: readonly IPlugin[];
+
   constructor(engine: Engine) {
     this.#engine = engine;
   }
@@ -99,14 +97,19 @@ export class PluginManager {
   }
 
   /**
+   * @returns The plugins registered with this manager
+   */
+  get plugins(): readonly IPlugin[] {
+    return (this.#pluginsView ??= Object.freeze([...this.#plugins]));
+  }
+
+  /**
    * Registers a color manager.
    * @param name - Color manager identifier.
    * @param manager - Color manager implementation.
    */
   addColorManager(name: string, manager: IColorManager): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     this.colorManagers.set(name, manager);
   }
@@ -116,9 +119,7 @@ export class PluginManager {
    * @param config - the configuration to add
    */
   addConfig(config: ISourceOptions): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     const key = config.key ?? config.name ?? "default";
 
@@ -132,9 +133,7 @@ export class PluginManager {
    * @param easing - Easing function implementation.
    */
   addEasing(name: string, easing: EasingFunction): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     if (this.easingFunctions.get(name)) {
       return;
@@ -149,9 +148,7 @@ export class PluginManager {
    * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
    */
   addEffect(effect: string, drawer: EffectInitializer): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     this.initializers.effects.set(effect, drawer);
   }
@@ -162,9 +159,7 @@ export class PluginManager {
    * @param palette - the palette to add
    */
   addPalette(name: string, palette: IPalette): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     this.palettes.set(name, palette);
   }
@@ -175,27 +170,26 @@ export class PluginManager {
    * @param updaterInitializer - the particle updater initializer
    */
   addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     this.initializers.updaters.set(name, updaterInitializer);
   }
 
   /**
-   * addPlugin adds plugin to tsParticles, if an instance needs it, it will be loaded
+   * Adds a plugin from a registered loader during engine initialization.
    * @param plugin - the plugin implementation of {@link IPlugin}
    */
   addPlugin(plugin: IPlugin): void {
-    if (this.#initialized) {
-      return;
+    if (!this.#isRunningLoaders) {
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
     }
 
     if (this.getPlugin(plugin.id)) {
       return;
     }
 
-    this.plugins.push(plugin);
+    this.#plugins.push(plugin);
+    this.#pluginsView = undefined;
   }
 
   /**
@@ -205,9 +199,7 @@ export class PluginManager {
    * @param override - if true, the preset will override any existing with the same name
    */
   addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     if (!(override || !this.getPreset(preset))) {
       return;
@@ -222,9 +214,7 @@ export class PluginManager {
    * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
    */
   addShape(shapes: string[], drawer: ShapeInitializer): void {
-    if (this.#initialized) {
-      return;
-    }
+    this.#checkRegistrationOpen();
 
     for (const shape of shapes) {
       this.initializers.shapes.set(shape, drawer);
@@ -255,7 +245,7 @@ export class PluginManager {
    * @returns the plugin if found, or undefined
    */
   getPlugin(plugin: string): IPlugin | undefined {
-    return this.plugins.find(t => t.id === plugin);
+    return this.#plugins.find(t => t.id === plugin);
   }
 
   /**
@@ -279,10 +269,11 @@ export class PluginManager {
       return this.#initPromise;
     }
 
-    this.#isRunningLoaders = true;
-    this.#allLoadersSet = new Set(this.#loadPromises);
+    /* Publish the shared promise before any loader can call back into init(). */
+    this.#initPromise = Promise.resolve().then(async () => {
+      this.#isRunningLoaders = true;
+      this.#allLoadersSet = new Set(this.#loadPromises);
 
-    this.#initPromise = (async (): Promise<void> => {
       try {
         while (
           this.#inFlightLoaders.size > 0 ||
@@ -305,19 +296,17 @@ export class PluginManager {
         this.#isRunningLoaders = false;
         this.#initPromise = undefined;
       }
-    })();
+    });
 
     return this.#initPromise;
   }
 
   /**
-   * Registers plugin loaders
+   * Queues plugin loaders before initialization. Loaders can compose other loaders during initialization.
    * @param loaders - the plugin loader functions to register
    */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
-    if (this.#initialized) {
-      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
-    }
+    this.#checkRegistrationOpen();
 
     for (const loader of loaders) {
       if (this.#isRunningLoaders) {
@@ -326,6 +315,12 @@ export class PluginManager {
       } else {
         this.#loadPromises.add(loader);
       }
+    }
+  }
+
+  #checkRegistrationOpen(): void {
+    if (this.#initialized) {
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
     }
   }
 

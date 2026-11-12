@@ -10,6 +10,10 @@ The numerical examples below provide minimal inputs for regression tests. The pr
 
 **Acceptance.** In [LoadOrdering](../../utils/tests/src/tests/LoadOrdering.ts), verify the same plugins in both containers, one execution per loader on the successful path, and deterministic batch rejection. Cover nested registration and preserve ordering for concurrent loads with the same ID.
 
+**4.6.0 verification.** The engine accepts custom plugins through registered loaders and closes registration when initialization completes. A late `register()` or `addPlugin()` reports `TSP-1003`. Engine and container plugin lists are read-only snapshots. The regression tests preserve shared initialization, nested loader composition and retry. The production Basic bundle also passed the registration checks in Chrome.
+
+A loader could synchronously start another `init()` before the shared promise existed. The nested call marked initialization complete while the loader was still executing. The regression now checks that registration stays open until the shared initialization completes. The browser consumer started two scenes while this loader was paused and verified that both saw the same plugin list.
+
 ## V4-B02 · P1 · Startup can hang or emit an event for a destroyed container
 
 **Reproduced.** A rejecting `plugin.start()` hook triggers an `unhandledRejection`. `Engine.load()` stays pending, and `items` retains a container with `started = true`. If startup is paused in a hook, calling `destroy()` and then releasing the hook still emits `containerStarted`, even though the load returns `undefined`. The async timer callback runs independently of the outer promise. `Engine.load()` inserts the new container before awaiting startup. [Container](../../engine/src/Core/Container.ts#L559), [Engine](../../engine/src/Core/Engine.ts#L182).
@@ -42,6 +46,8 @@ The numerical examples below provide minimal inputs for regression tests. The pr
 
 **Acceptance.** Use a test updater with per-particle state shared across init, update, before/afterDraw, and destruction. Repeat for start, redraw, and refresh. Verify shape and effect drawers with aliases, plus gradient, orbit, and paint. Count initializer calls on cold startup to measure any savings.
 
+**4.6.0 verification.** In Chrome at DPR 1 and 2, the compiled All bundle used one updater instance per particle for initialization, update, drawing, and explicit removal. Startup, redraw, and refresh passed with gradient, orbit, paint, and aliased shape and effect drawers. Startup and refresh invoked initializers twice each, and redraw once. The two startup calls observed different particle counts in the container options, first 0 and then 2. Consolidating these calls is deferred because initializers can depend on the final options. See [v5 engine services](../handovers/V5-02-ENGINE-SERVICES.md).
+
 ## V4-B06 · P1 · A remote SVG can stop animation before the fetch completes
 
 **Reproduced in the generator.** Configure a URL and hold the `fetch` response. The first `generate()` call tries to read the length of a missing path. On the normal path, Move calls the generator during a frame, and the loop logs the exception without scheduling the next frame. The fetch from `init()` also leaves the HTTP status unchecked and its rejection unhandled. [SVGPathGenerator](../../paths/svg/src/SVGPathGenerator.ts#L103), [fetch](../../paths/svg/src/SVGPathGenerator.ts#L181), [Move](../../plugins/move/src/MovePluginInstance.ts#L55), [loop](../../engine/src/Core/Container.ts#L697).
@@ -49,6 +55,8 @@ The numerical examples below provide minimal inputs for regression tests. The pr
 **Patch.** Track readiness inside the generator. Return a neutral contribution while paths are pending, leaving the particle index and state untouched and allowing the frame to continue. Handle HTTP and parse errors, empty paths, and results that arrive after a reset or configuration change. Keep `IMovePathGenerator` synchronous and preserve inline data support.
 
 **Acceptance.** In [PathGenerators](../../utils/tests/src/tests/PathGenerators.ts), control the fetch and exercise ticks before and after readiness, HTTP and parsing errors, stale responses, and inline data. Once data arrives, particles follow the path without a refresh. Frames continue after an error.
+
+**4.6.0 verification.** Chrome ran the compiled All bundle against a held SVG response. Updates continued while the response was pending. After one particle was destroyed, the surviving particle acquired the SVG path from the same request. A separate scene continued updating after an HTTP 404.
 
 ## V4-B07 · P2 · Two HTML elements without IDs replace one another
 
@@ -66,6 +74,8 @@ The numerical examples below provide minimal inputs for regression tests. The pr
 
 **Acceptance.** In [CollisionResolve](../../utils/tests/src/tests/CollisionResolve.ts), cover both orders, exact contact and misses, resize/DPR and animated radii, bounce/absorb/destroy, and one resolution per pair. Profile uniform and mixed radii before accepting the broad phase.
 
+**4.6.0 verification.** The compiled All bundle passed overlap, exact contact, and miss cases with both creation orders at DPR 1 and 2. Destroy mode kept the larger particle and emitted one destruction event on contact. A miss kept both particles and emitted no destruction event. In a separate Chrome run with 500 particles, fixed positions, and 100 update samples per scene, Slim measured 1.2 ms median and 1.5 ms p95 at radius 5. With one in ten particles at radius 20, it measured 1.3 ms median and 1.5 ms p95. These timings cover the full particle update in bounce mode.
+
 ## V4-B09 · P2 · Reapplying the same density can alternate the particle count
 
 **Reproduced.** On a 100×100 canvas at DPR 1 with `number.value = 3` and a density reference of 200×100, the target is 1.5. Four observations at startup and after repeated `setDensity()` calls yield `1, 2, 1, 2`. Both `push()` and `removeAt()` effectively round the fractional difference up. Code inspection also shows that a zero reference dimension can produce an infinite target and a nonterminating insertion loop. [Density and limits](../../engine/src/Core/ParticlesManager.ts#L392), [factor](../../engine/src/Core/ParticlesManager.ts#L530), [density options](../../engine/src/Options/Classes/Particles/Number/ParticlesDensity.ts).
@@ -73,3 +83,5 @@ The numerical examples below provide minimal inputs for regression tests. The pr
 **Patch.** Normalize the target once to a finite integer before calculating the difference. Define a rounding policy that accounts for effective limits and existing visual results. Define a fallback for nonpositive reference dimensions and nonfinite values. Preserve `wait`/`delete` precedence, plugin counts, and groups.
 
 **Acceptance.** In [ParticleGroups](../../utils/tests/src/tests/ParticleGroups.ts), applying identical inputs twice yields the same count and no extra events. Test DPR 1 and 2, resize, fractional targets, global and group limits, plugin contributions, and termination with degenerate inputs.
+
+**4.6.0 verification.** The compiled All bundle kept the fractional target at two particles through repeated density applications with zero add or remove events at DPR 1 and 2. Resizing the actual host from 100 to 200 CSS pixels and back produced counts of three and two. A zero reference width used the configured base count of three.

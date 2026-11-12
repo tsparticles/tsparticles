@@ -1,5 +1,5 @@
 import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
-import { createEffect, createMemo, createSignal, JSX, mergeProps, onCleanup, untrack } from "solid-js";
+import { For, JSX, createEffect, createMemo, createSignal, mergeProps, onCleanup, untrack } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
@@ -22,13 +22,23 @@ const Particles = (props: IParticlesProps): JSX.Element => {
     void (async () => {
       untrack(() => container())?.destroy();
 
-      await waitForParticlesEngineInitialization();
+      let newContainer: Container | undefined;
 
-      if (!isParticlesEngineInitialized()) {
-        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+      try {
+        await waitForParticlesEngineInitialization();
+
+        if (!isParticlesEngineInitialized()) {
+          throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+        }
+
+        newContainer = await tsParticles.load({ id, options, url });
+      } catch (error: unknown) {
+        if (currentLoadId === loadId) {
+          getLogger().error("Particles: error loading particles", error);
+        }
+
+        return;
       }
-
-      const newContainer = await tsParticles.load({ id, options, url });
 
       if (currentLoadId !== loadId) {
         newContainer?.destroy();
@@ -37,7 +47,11 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
       setContainer(newContainer);
 
-      props.particlesLoaded?.(newContainer);
+      try {
+        await props.particlesLoaded?.(newContainer);
+      } catch (error: unknown) {
+        getLogger().error("Particles: error in particlesLoaded callback", error);
+      }
     })();
   });
 
@@ -66,14 +80,19 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
   return (
     <div class={merged.class} id={merged.id}>
-      <canvas
-        class={merged.canvasClass}
-        style={{
-          ...merged.style,
-          width: merged.width,
-          height: merged.height,
-        }}
-      />
+      {/* An unfinished load still owns its canvas until its cleanup completes. */}
+      <For each={[merged.id]}>
+        {() => (
+          <canvas
+            class={merged.canvasClass}
+            style={{
+              ...merged.style,
+              width: merged.width,
+              height: merged.height,
+            }}
+          />
+        )}
+      </For>
     </div>
   );
 };

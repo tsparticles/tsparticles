@@ -10,7 +10,7 @@
     "directory": "demo/riot"
   },
   "scripts": {
-    "test": "nyc --require esm --require jsdom-global/register --require @riotjs/register mocha src/**/*.spec.js",
+    "test": "nyc node --import ./test/setup.mjs ./node_modules/mocha/bin/mocha.js \"src/**/*.spec.js\"",
     "cov": "nyc report --reporter=text-lcov",
     "cov-html": "nyc report --reporter=html",
     "build": "webpack --mode production",

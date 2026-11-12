@@ -3,7 +3,7 @@ import {
   type IDimension,
   double,
   doublePI,
-  getDistance,
+  getDistanceSq,
   getRandom,
   minCount,
 } from "@tsparticles/engine";
@@ -247,6 +247,8 @@ export class PoissonDisc {
       return;
     }
 
+    const radiusSq = this.radius * Math.abs(this.radius);
+
     for (let i = -1; i <= maxNeighbourIndex; i++) {
       for (let j = -1; j <= maxNeighbourIndex; j++) {
         if (!i && !j) {
@@ -279,7 +281,7 @@ export class PoissonDisc {
           continue;
         }
 
-        if (getDistance(newPoint, neighbour.position) < this.radius) {
+        if (getDistanceSq(newPoint, neighbour.position) < radiusSq) {
           return;
         }
       }

@@ -19,12 +19,14 @@ let nextId = 0;
  * @param distance - Distance from click
  * @param speed - Repulse speed
  * @param enabled - Whether click mode is enabled
+ * @param verticalDistance - Vertical distance from click
  * @returns The container, interactor, and particle
  */
 async function fixture(
   distance: number,
   speed = 1,
   enabled = true,
+  verticalDistance = 0,
 ): Promise<{ container: RepulseContainer; interactor: Repulser; particle: Particle }> {
   const base = await tsParticles.load({
     id: `click-repulse-${nextId++}`,
@@ -51,7 +53,7 @@ async function fixture(
     container.actualOptions.interactivity = interactivity;
     container.repulse = { clicking: true, particles: [] };
     container.retina.repulseModeDistance = 60;
-    const particle = base.particles.addParticle({ x: 100 + distance, y: 100 });
+    const particle = base.particles.addParticle({ x: 100 + distance, y: 100 + verticalDistance });
 
     if (!particle) {
       throw new Error("Test particle was not initialized");
@@ -110,6 +112,20 @@ describe("click repulse", () => {
     try {
       interactor.interact(clickData);
       expect(particle.velocity.length).toBe(0);
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it.each([30, -30])("keeps the inverse-square force at the diagonal cutoff (%s)", async verticalDistance => {
+    const { container, interactor, particle } = await fixture(10, 1, true, verticalDistance);
+
+    try {
+      interactor.interact(clickData);
+      expect(particle.velocity.length).toBeCloseTo(1);
+      expect(particle.velocity.x).toBeCloseTo(10 / Math.sqrt(1000));
+      expect(particle.velocity.y).toBeCloseTo(verticalDistance / Math.sqrt(1000));
+      expect(container.repulse?.particles).toEqual([particle]);
     } finally {
       container.destroy();
     }

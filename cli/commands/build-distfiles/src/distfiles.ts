@@ -18,7 +18,7 @@ distFilesCommand.option(
 
 distFilesCommand.action(async () => {
   const opts = distFilesCommand.opts(),
-    ci = !!opts["ci"],
+    ci = opts["ci"] === true || distFilesCommand.parent?.getOptionValue("ci") === true,
     silentOpt = opts["silent"] as string | boolean,
     silent = silentOpt === "false" ? false : !!silentOpt || ci,
     basePath = process.cwd();

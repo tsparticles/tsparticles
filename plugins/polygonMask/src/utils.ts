@@ -5,10 +5,8 @@ import {
   Vector,
   defaultTransform,
   double,
-  getDistances,
   getStyleFromRgb,
   rangeColorToRgb,
-  squareExp,
 } from "@tsparticles/engine";
 import type {
   SVGPathSeg,
@@ -213,12 +211,13 @@ export function calcClosestPointOnSegment(
   pos: ICoordinates,
 ): ICoordinates & { isOnSegment: boolean } {
   // calc delta distance: source point to line start, line start to end
-  const { dx: dx1, dy: dy1 } = getDistances(pos, s1),
-    // calc delta distance:
-    { dx: dx2, dy: dy2 } = getDistances(s2, s1),
+  const dx1 = pos.x - s1.x,
+    dy1 = pos.y - s1.y,
+    dx2 = s2.x - s1.x,
+    dy2 = s2.y - s1.y,
     // Calc position on line normalized between 0.00 & 1.00
     // == dot product divided by delta line distances squared
-    t = (dx1 * dx2 + dy1 * dy2) / (dx2 ** squareExp + dy2 ** squareExp),
+    t = (dx1 * dx2 + dy1 * dy2) / (dx2 * dx2 + dy2 * dy2),
     // calc nearest pt on line
     res = {
       x: s1.x + dx2 * t,
@@ -244,7 +243,8 @@ export function calcClosestPointOnSegment(
  * @param velocity - The velocity
  */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-  const { dx, dy } = getDistances(start, stop),
+  const dx = start.x - stop.x,
+    dy = start.y - stop.y,
     wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;
     wallNormal = Vector.create(Math.sin(wallAngle), -Math.cos(wallAngle)),
     d = double * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);

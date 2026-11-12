@@ -10,7 +10,7 @@ import {
   minRadius,
   percentDenominator,
 } from "../Core/Utils/Constants.js";
-import { collisionVelocity, getDistances, getRandom, getRangeValue } from "./MathUtils.js";
+import { collisionVelocity, getRandom, getRangeValue } from "./MathUtils.js";
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import type { Container } from "../Core/Container.js";
 import type { DataFromUrlParams } from "../Core/Interfaces/DataFromUrlParams.js";
@@ -265,7 +265,8 @@ export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
   const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
     [pos1, pos2] = [p1.position, p2.position],
-    { dx: xDist, dy: yDist } = getDistances(pos2, pos1),
+    xDist = pos2.x - pos1.x,
+    yDist = pos2.y - pos1.y,
     minimumDistance = 0;
 
   // Prevent accidental overlap of particles

@@ -237,7 +237,7 @@ function createBundleConfig(nameData: INameData, description: string): IProjectC
     rollupNameKey: "bundleName",
     rollupNameValue: nameData.pascalName,
     srcFiles: {
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -281,7 +281,7 @@ function createEffectConfig(nameData: INameData, description: string): IProjectC
     rollupNameKey: "effectName",
     rollupNameValue: nameData.pascalName,
     srcFiles: {
-      "src/index.ts": `import { type Engine, type IEffectDrawer, type IShapeDrawData, type Particle } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine, IEffectDrawer, IShapeDrawData, Particle } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -350,7 +350,7 @@ function createInteractionConfig(nameData: INameData, description: string, type:
     rollupNameKey: "pluginName",
     rollupNameValue: nameData.pascalName,
     srcFiles: {
-      "src/index.ts": `import { type Engine, type IDelta, type Particle } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine, IDelta, Particle } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -483,7 +483,7 @@ export const options: ISourceOptions = {
   // TODO: palette options
 };
 `,
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 
 export const paletteName = "${nameData.dashedName}";
@@ -584,7 +584,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @returns The string value
  */
 function createGenericPluginIndex(loadFunction: string, pluginClass: string): string {
-  return `import { type Engine } from "@tsparticles/engine";
+  return `import type { Engine } from "@tsparticles/engine";
 import { ${pluginClass} } from "./${pluginClass}.js";
 
 declare const __VERSION__: string;
@@ -625,7 +625,7 @@ function createPluginConfig(nameData: INameData, description: string, type: Plug
       rollupNameKey: "pluginName",
       rollupNameValue: nameData.pascalName,
       srcFiles: {
-        "src/PluginInstance.ts": `import { type Container, type IContainerPlugin } from "@tsparticles/engine";
+        "src/PluginInstance.ts": `import type { Container, IContainerPlugin } from "@tsparticles/engine";
 
 export class PluginInstance implements IContainerPlugin {
   readonly #container: Container;
@@ -659,7 +659,7 @@ export class PluginInstance implements IContainerPlugin {
   }
 }
 `,
-        "src/Plugin.ts": `import { type Container, type IPlugin, type ISourceOptions, type Options } from "@tsparticles/engine";
+        "src/Plugin.ts": `import type { Container, IPlugin, ISourceOptions, Options } from "@tsparticles/engine";
 import type { PluginInstance } from "./PluginInstance.js";
 
 export class ${pluginClass} implements IPlugin {
@@ -706,7 +706,7 @@ export class ${pluginClass} implements IPlugin {
       rollupNameKey: "pluginName",
       rollupNameValue: nameData.pascalName,
       srcFiles: {
-        "src/index.ts": `import { type Engine, type ICoordinates, type IDimension } from "@tsparticles/engine";
+        "src/index.ts": `import type { Engine, ICoordinates, IDimension } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -770,7 +770,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
       rollupNameKey: "pluginName",
       rollupNameValue: nameData.pascalName,
       srcFiles: {
-        "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+        "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -813,7 +813,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
       rollupNameKey: "pluginName",
       rollupNameValue: nameData.pascalName,
       srcFiles: {
-        "src/ExportPlugin.ts": `import { type Container, type IContainerPlugin, type IPlugin, type ISourceOptions, type Options } from "@tsparticles/engine";
+        "src/ExportPlugin.ts": `import type { Container, IContainerPlugin, IPlugin, ISourceOptions, Options } from "@tsparticles/engine";
 
 class ${nameData.pascalName}ExportPluginInstance implements IContainerPlugin {
   readonly #container: Container;
@@ -888,7 +888,7 @@ export class ${pluginClass} implements IPlugin {
     rollupNameKey: "pluginName",
     rollupNameValue: `${nameData.pascalName} Color`,
     srcFiles: {
-      "src/ColorManager.ts": `import { type IColor, type IColorManager, type IRangeColor, type IRgb, type IRgba } from "@tsparticles/engine";
+      "src/ColorManager.ts": `import type { IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
 
 export class ${managerClass} implements IColorManager {
   accepts(input: string): boolean {
@@ -908,7 +908,7 @@ export class ${managerClass} implements IColorManager {
   }
 }
 `,
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 import { ${managerClass} } from "./ColorManager.js";
 
 declare const __VERSION__: string;
@@ -957,7 +957,7 @@ export const options: ISourceOptions = {
   // TODO: preset options
 };
 `,
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 
 declare const __VERSION__: string;
@@ -1002,7 +1002,7 @@ function createShapeConfig(nameData: INameData, description: string): IProjectCo
     rollupNameKey: "shapeName",
     rollupNameValue: nameData.pascalName,
     srcFiles: {
-      "src/ShapeDrawer.ts": `import { type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
+      "src/ShapeDrawer.ts": `import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 
 export class ${className} implements IShapeDrawer {
   readonly validTypes = ["${nameData.camelName}"] as const;
@@ -1012,7 +1012,7 @@ export class ${className} implements IShapeDrawer {
   }
 }
 `,
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 import { ${className} } from "./ShapeDrawer.js";
 
 declare const __VERSION__: string;
@@ -1058,7 +1058,7 @@ function createUpdaterConfig(nameData: INameData, description: string): IProject
     rollupNameKey: "updaterName",
     rollupNameValue: nameData.pascalName,
     srcFiles: {
-      "src/Updater.ts": `import { type IDelta, type IParticleUpdater, type Particle } from "@tsparticles/engine";
+      "src/Updater.ts": `import type { IDelta, IParticleUpdater, Particle } from "@tsparticles/engine";
 
 export class ${className} implements IParticleUpdater {
   init(_particle: Particle): void {
@@ -1074,7 +1074,7 @@ export class ${className} implements IParticleUpdater {
   }
 }
 `,
-      "src/index.ts": `import { type Engine } from "@tsparticles/engine";
+      "src/index.ts": `import type { Engine } from "@tsparticles/engine";
 import { ${className} } from "./Updater.js";
 
 declare const __VERSION__: string;

@@ -7,7 +7,6 @@ import {
   clamp,
   doublePI,
   getDistance,
-  getDistances,
   getRandom,
   getRangeValue,
   half,
@@ -27,7 +26,8 @@ const moveSpeedFactor = 60,
  */
 export function applyDistance(particle: MoveParticle): void {
   const initialPosition = particle.initialPosition,
-    { dx, dy } = getDistances(initialPosition, particle.position),
+    dx = initialPosition.x - particle.position.x,
+    dy = initialPosition.y - particle.position.y,
     dxFixed = Math.abs(dx),
     dyFixed = Math.abs(dy),
     { maxDistance } = particle.retina,

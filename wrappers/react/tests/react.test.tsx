@@ -1,9 +1,8 @@
-/* eslint-disable */
 import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { containerMock, loadMock } = vi.hoisted(() => {
+const { containerMock, errorMock, loadMock } = vi.hoisted(() => {
   const containerMock = {
     destroyed: false,
     destroy: vi.fn(),
@@ -11,11 +10,13 @@ const { containerMock, loadMock } = vi.hoisted(() => {
 
   return {
     containerMock,
+    errorMock: vi.fn(),
     loadMock: vi.fn(async () => containerMock),
   };
 });
 
 vi.mock("@tsparticles/engine", () => ({
+  getLogger: () => ({ error: errorMock }),
   tsParticles: {
     load: loadMock,
   },
@@ -45,6 +46,7 @@ async function loadModules(): Promise<{
 
 beforeEach(() => {
   loadMock.mockClear();
+  errorMock.mockClear();
   containerMock.destroy.mockClear();
   containerMock.destroyed = false;
   host = document.createElement("div");
@@ -101,6 +103,66 @@ describe("Particles", () => {
     expect(particlesLoaded).toHaveBeenCalledWith(containerMock);
   });
 
+  it("reports a rejected load and recovers on a later render", async () => {
+    const { Particles, ParticlesProvider } = await loadModules(),
+      loadError = new Error("load failed"),
+      particlesLoaded = vi.fn();
+
+    loadMock.mockRejectedValueOnce(loadError);
+    root = createRoot(host!);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    await vi.waitFor(() => {
+      expect(errorMock).toHaveBeenCalledWith("Particles: error loading particles", loadError);
+    });
+    expect(particlesLoaded).not.toHaveBeenCalled();
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 2 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    await vi.waitFor(() => {
+      expect(particlesLoaded).toHaveBeenCalledWith(containerMock);
+    });
+  });
+
+  it("reports particlesLoaded callback errors separately from engine load errors", async () => {
+    const { Particles, ParticlesProvider } = await loadModules(),
+      callbackError = new Error("callback failed"),
+      particlesLoaded = vi.fn(() => {
+        throw callbackError;
+      });
+
+    root = createRoot(host!);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    await vi.waitFor(() => {
+      expect(errorMock).toHaveBeenCalledWith("Particles: error in particlesLoaded callback", callbackError);
+    });
+    expect(errorMock).not.toHaveBeenCalledWith("Particles: error loading particles", callbackError);
+  });
+
   it("destroys the container on unmount", async () => {
     const { Particles, ParticlesProvider } = await loadModules();
 
@@ -121,6 +183,51 @@ describe("Particles", () => {
     });
 
     expect(containerMock.destroy).toHaveBeenCalledTimes(1);
+  });
+
+  it("replaces the host when a pending load is superseded by a different id", async () => {
+    const { Particles, ParticlesProvider } = await loadModules(),
+      init = async (): Promise<void> => Promise.resolve(),
+      staleContainer = { destroyed: false, destroy: vi.fn() };
+
+    let finishLoad: (container: typeof containerMock) => void = () => undefined;
+
+    loadMock.mockImplementationOnce(
+      () =>
+        new Promise<typeof containerMock>(resolve => {
+          finishLoad = resolve;
+        }),
+    );
+    root = createRoot(host!);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={init}>
+          <Particles id="old-scene" />
+        </ParticlesProvider>,
+      );
+    });
+
+    const oldHost = host!.querySelector("#old-scene");
+
+    expect(oldHost).toBeInstanceOf(HTMLDivElement);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={init}>
+          <Particles id="new-scene" />
+        </ParticlesProvider>,
+      );
+    });
+
+    expect(oldHost?.isConnected).toBe(false);
+    expect(host!.querySelector("#new-scene")).toBeInstanceOf(HTMLDivElement);
+
+    await act(async () => {
+      finishLoad(staleContainer);
+    });
+
+    expect(staleContainer.destroy).toHaveBeenCalledOnce();
   });
 
   it("ignores a superseded load that resolves after the newer one", async () => {

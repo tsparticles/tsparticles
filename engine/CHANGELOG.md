@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Bug Fixes
+
+- share engine initialization with calls made from plugin loaders
+- reject late plugin registration and protect engine and container plugin lists from direct mutation
+- bound large spatial queries on sparse particle grids and reject unsafe cell bounds
+- count particle groups without allocating temporary arrays during density and limit checks
+- avoid square roots when comparing two-dimensional distances
+
 ## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
 
 ### Bug Fixes

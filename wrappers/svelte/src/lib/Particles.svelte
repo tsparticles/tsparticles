@@ -110,4 +110,6 @@
 	}
 </script>
 
-<div {id} class={cssClass} {style}></div>
+{#key id}
+	<div {id} class={cssClass} {style}></div>
+{/key}

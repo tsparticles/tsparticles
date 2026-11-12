@@ -5,7 +5,6 @@ import {
   type Particle,
   type Vector,
   double,
-  getDistances,
   half,
 } from "@tsparticles/engine";
 
@@ -28,7 +27,8 @@ export function buildParticleWithDirection(container: Container, direction: Move
  * @param velocity - The velocity
  */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-  const { dx, dy } = getDistances(start, stop),
+  const dx = start.x - stop.x,
+    dy = start.y - stop.y,
     wallAngle = Math.atan2(dy, dx) + Math.PI * half,
     wallNormalX = Math.sin(wallAngle),
     wallNormalY = -Math.cos(wallAngle),

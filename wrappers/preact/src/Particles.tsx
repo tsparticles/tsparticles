@@ -1,6 +1,6 @@
 import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
-import { tsParticles, Container } from "@tsparticles/engine";
+import { Container, getLogger, tsParticles } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
@@ -12,6 +12,10 @@ import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } fr
  * @param {IParticlesProps}
  */
 export default class Particles extends Component<IParticlesProps, IParticlesState> {
+  #container?: Container;
+  #loadId = 0;
+  #mounted = false;
+
   static defaultProps: IParticlesProps = {
     width: "100%",
     height: "100%",
@@ -30,15 +34,20 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
   }
 
   destroy(): void {
-    if (!this.state.library) {
+    this.#loadId++;
+
+    const container = this.#container;
+
+    if (!container) {
       return;
     }
 
-    this.state.library.destroy();
+    this.#container = undefined;
+    container.destroy();
 
-    this.setState({
-      library: undefined,
-    });
+    if (this.#mounted) {
+      this.setState({ library: undefined });
+    }
   }
 
   shouldComponentUpdate(nextProps: Readonly<IParticlesProps>, nextState: Readonly<IParticlesState>): boolean {
@@ -60,14 +69,11 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
   }
 
   componentDidUpdate(prevProps: Readonly<IParticlesProps>): void {
-    if (prevProps.theme !== this.props.theme && this.state.library) {
-      void (this.state.library as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
-        this.props.theme,
-      );
+    if (prevProps.theme !== this.props.theme && this.#container) {
+      void this.loadTheme(this.#container);
     }
 
     if (
-      !this.state.library ||
       prevProps.url !== this.props.url ||
       prevProps.id !== this.props.id ||
       prevProps.canvasClassName !== this.props.canvasClassName ||
@@ -80,24 +86,32 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         key.startsWith("_"),
       )
     ) {
-      this.refresh();
+      void this.refresh();
     }
   }
 
   forceUpdate(): void {
     this.refresh().then(() => {
-      super.forceUpdate();
+      if (this.#mounted) {
+        super.forceUpdate();
+      }
     });
   }
 
   componentDidMount(): void {
-    (async () => {
+    this.#mounted = true;
+
+    void (async () => {
       if (!this.state.init) {
         await waitForParticlesEngineInitialization();
 
         if (!isParticlesEngineInitialized()) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
+      }
+
+      if (!this.#mounted) {
+        return;
       }
 
       this.setState(
@@ -108,10 +122,15 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
           void this.loadParticles();
         },
       );
-    })();
+    })().catch((error: unknown) => {
+      if (this.#mounted) {
+        getLogger().error("Particles: error initializing engine", error);
+      }
+    });
   }
 
   componentWillUnmount(): void {
+    this.#mounted = false;
     this.destroy();
   }
 
@@ -121,6 +140,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     return (
       <div className={className} id={id}>
         <canvas
+          key={id}
           className={canvasClassName}
           style={{
             ...this.props.style,
@@ -139,34 +159,61 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
   }
 
   private async loadParticles(): Promise<void> {
-    if (!this.state.init) {
+    if (!this.state.init || !this.#mounted) {
       return;
     }
 
-    const cb = async (container?: Container) => {
-      if (this.props.container) {
-        (this.props.container as MutableRefObject<Container | undefined>).current = container;
-      }
+    const loadId = ++this.#loadId;
+    let container: Container | undefined;
 
-      this.setState({
-        library: container,
+    try {
+      container = await tsParticles.load({
+        url: this.props.url,
+        options: this.props.options,
+        id: this.props.id,
       });
-
-      if (container && this.props.theme) {
-        await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
+    } catch (error: unknown) {
+      if (loadId === this.#loadId) {
+        getLogger().error("Particles: error loading particles", error);
       }
 
-      if (this.props.particlesLoaded) {
-        await this.props.particlesLoaded(container);
+      return;
+    }
+
+    if (loadId !== this.#loadId) {
+      container?.destroy();
+
+      return;
+    }
+
+    this.#container = container;
+
+    if (this.props.container) {
+      (this.props.container as MutableRefObject<Container | undefined>).current = container;
+    }
+
+    this.setState({ library: container });
+
+    if (container && this.props.theme) {
+      await this.loadTheme(container);
+    }
+
+    if (loadId === this.#loadId) {
+      try {
+        await this.props.particlesLoaded?.(container);
+      } catch (error: unknown) {
+        getLogger().error("Particles: error in particlesLoaded callback", error);
       }
-    };
+    }
+  }
 
-    const container = await tsParticles.load({
-      url: this.props.url,
-      options: this.props.options,
-      id: this.props.id,
-    });
-
-    await cb(container);
+  private async loadTheme(container: Container): Promise<void> {
+    try {
+      await (container as Container & { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
+    } catch (error: unknown) {
+      if (this.#container === container) {
+        getLogger().error("Particles: error loading theme", error);
+      }
+    }
   }
 }

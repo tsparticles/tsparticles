@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Bug Fixes
+
+- isolate the canvas when the scene id changes during a pending load
+- handle failed particle loads and dispose of the container owned by each visible task
+- reuse the engine peer dependency in ESM and CommonJS consumers
+
 ## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
 
 **Note:** Version bump only for package @tsparticles/qwik

@@ -19,7 +19,9 @@ import { NgParticlesService } from "./ng-particles.service";
 @Component({
   selector: "ngx-particles",
   standalone: false,
-  template: '<div [id]="id"></div>',
+  template: `@for (sceneId of [id]; track sceneId) {
+    <div [id]="sceneId"></div>
+  }`,
 })
 export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() options?: IParticlesProps;
