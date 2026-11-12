@@ -90,8 +90,11 @@ describe("container load ordering", () => {
       options: { autoPlay: false, particles: { number: { value: noParticles } } },
     });
 
-    expect(container).toBeDefined();
-    container?.destroy();
+    try {
+      expect(container).toBeDefined();
+    } finally {
+      container?.destroy();
+    }
   });
 
   it("waits for a loader registered while initialization is in flight", async () => {
