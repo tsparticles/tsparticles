@@ -15,6 +15,8 @@ const canvasHeight = 600,
   comparisonPrecision = 10,
   decayAmount = 0.1,
   decayMultiplier = 0.9,
+  strongDecayAmount = 0.8,
+  strongDecayMultiplier = 0.2,
   distanceTolerance = 0.06,
   fps30 = 30,
   fps60 = 60,
@@ -79,6 +81,19 @@ describe("Move timing", () => {
       expect(result.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
       expect(Math.abs(result.distance - at60.distance) / at60.distance).toBeLessThan(distanceTolerance);
     }
+  });
+
+  it("integrates strong-decay displacement consistently over equal elapsed time", async () => {
+    const move = { decay: strongDecayAmount },
+      at60 = await simulateMove(fps60, framesAt60Fps, move),
+      at30 = await simulateMove(fps30, framesAt30Fps, move),
+      at120 = await simulateMove(fps120, framesAt120Fps, move);
+
+    expect(at60.velocity).toBeCloseTo(-(strongDecayMultiplier ** framesAt60Fps), comparisonPrecision);
+    expect(at30.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
+    expect(at120.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
+    expect(at30.distance).toBeCloseTo(at60.distance, comparisonPrecision);
+    expect(at120.distance).toBeCloseTo(at60.distance, comparisonPrecision);
   });
 
   it("applies the same gravity acceleration over equal elapsed time", async () => {

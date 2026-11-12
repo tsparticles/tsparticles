@@ -101,6 +101,11 @@ export function move(
     deltaFactor = delta.factor || identity,
     decay = particle.moveDecay ?? noDecay,
     decayFactor = decay < 0 ? decay : decay ** deltaFactor,
+    accelerationX = moveDrift && moveSpeed ? moveDrift / (moveSpeedFactor * moveSpeed) : 0,
+    accelerationY =
+      gravityOptions?.enable && moveSpeed
+        ? (gravityFactor * gravityOptions.acceleration) / (moveSpeedFactor * moveSpeed)
+        : 0,
     integrateAcceleration = (acceleration: number): number => {
       if (decay <= 0 || decay === noDecay) {
         return acceleration * deltaFactor;
@@ -113,15 +118,9 @@ export function move(
     particle.velocity.multTo(decayFactor);
   }
 
-  if (moveDrift && moveSpeed) {
-    particle.velocity.x += integrateAcceleration(moveDrift / (moveSpeedFactor * moveSpeed));
-  }
+  particle.velocity.x += integrateAcceleration(accelerationX);
 
-  if (gravityOptions?.enable && moveSpeed) {
-    particle.velocity.y += integrateAcceleration(
-      (gravityFactor * gravityOptions.acceleration) / (moveSpeedFactor * moveSpeed),
-    );
-  }
+  particle.velocity.y += integrateAcceleration(accelerationY);
 
   if (decay <= 0) {
     // Negative multipliers reverse direction and have no real fractional power.
@@ -129,11 +128,7 @@ export function move(
   }
 
   const velocity = particle.velocity.mult(moveSpeed);
-
-  if (decay > 0 && decay < noDecay) {
-    velocity.x = ((initialVelocityX + particle.velocity.x) * moveSpeed) / 2;
-    velocity.y = ((initialVelocityY + particle.velocity.y) * moveSpeed) / 2;
-  }
+  let speedClamped = false;
 
   if (
     gravityOptions?.enable &&
@@ -142,10 +137,24 @@ export function move(
       (gravityOptions.inverse && velocity.y <= minVelocity && velocity.y <= -maxSpeed))
   ) {
     velocity.y = gravityFactor * maxSpeed;
+    speedClamped = true;
 
     if (moveSpeed) {
       particle.velocity.y = velocity.y / moveSpeed;
     }
+  }
+
+  const integrateDecayDisplacement = decay > 0 && decay < noDecay;
+
+  if (integrateDecayDisplacement) {
+    const decayRate = -Math.log(decay),
+      decayIntegral = (identity - decayFactor) / decayRate,
+      accelerationIntegral = (deltaFactor - decayIntegral) / decayRate;
+
+    velocity.x = (initialVelocityX * decayIntegral + accelerationX * accelerationIntegral) * moveSpeed;
+    velocity.y = speedClamped
+      ? particle.velocity.y * moveSpeed * deltaFactor
+      : (initialVelocityY * decayIntegral + accelerationY * accelerationIntegral) * moveSpeed;
   }
 
   const zIndexOptions = particle.options.zIndex,
@@ -153,7 +162,10 @@ export function move(
 
   velocity.multTo(zVelocityFactor);
   velocity.multTo(reduceFactor);
-  velocity.multTo(deltaFactor);
+
+  if (!integrateDecayDisplacement) {
+    velocity.multTo(deltaFactor);
+  }
 
   const { position } = particle;
 
