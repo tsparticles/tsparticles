@@ -204,6 +204,33 @@ describe("container load ordering", () => {
     expect(attempts).to.equal(2);
   });
 
+  it("allows a retained loader engine to retry initialization after failure", async () => {
+    const engine = new Engine(),
+      failure = new Error("controlled loader failure");
+    let attempts = 0,
+      retainedEngine: Engine | undefined;
+
+    await engine.pluginManager.register(e => {
+      retainedEngine = e;
+      attempts++;
+
+      if (attempts === 1) {
+        throw failure;
+      }
+    });
+
+    await expect(engine.init()).rejects.toBe(failure);
+
+    if (!retainedEngine) {
+      throw new Error("The loader engine was not retained");
+    }
+
+    await retainedEngine.init();
+
+    expect(attempts).to.equal(2);
+    expect(engine.pluginManager.initialized).toBe(true);
+  });
+
   it("accepts plugins from registered loaders and rejects additions after initialization", async () => {
     const engine = new Engine(),
       manager = engine.pluginManager,

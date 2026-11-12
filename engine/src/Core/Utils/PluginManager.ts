@@ -51,6 +51,8 @@ export class PluginManager {
   /** The presets map */
   readonly presets = new Map<string, ISourceOptions>();
 
+  #activeLoaderCount = 0;
+
   #allLoadersSet = new Set<LoadPluginFunction>();
 
   readonly #configs = new Map<string, ISourceOptions>();
@@ -80,7 +82,7 @@ export class PluginManager {
     this.#engine = engine;
 
     const boundMethods = new WeakMap<object, (...args: unknown[]) => unknown>(),
-      loaderInit = (): Promise<void> => Promise.resolve();
+      loaderInit = (): Promise<void> => (this.#activeLoaderCount > 0 ? Promise.resolve() : engine.init());
 
     this.#loaderEngine = new Proxy(engine, {
       get: (target, property) => {
@@ -331,8 +333,8 @@ export class PluginManager {
 
   /**
    * Queues plugin loaders before initialization. Loaders can compose other loaders during initialization.
-   * The engine passed to a loader resolves nested init() calls immediately; the outer initialization owns
-   * completion of the loader batch.
+   * The engine passed to a loader resolves nested init() calls immediately while a loader is executing;
+   * calls made afterward delegate to the original engine.
    * @param loaders - the plugin loader functions to register
    */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
@@ -366,6 +368,8 @@ export class PluginManager {
     executed.add(loader);
     allLoaders.add(loader);
 
+    this.#activeLoaderCount++;
+
     const loaderPromise = (async (): Promise<void> => loader(this.#loaderEngine))();
 
     this.#inFlightLoaders.add(loaderPromise);
@@ -377,6 +381,7 @@ export class PluginManager {
 
       throw error;
     } finally {
+      this.#activeLoaderCount--;
       this.#inFlightLoaders.delete(loaderPromise);
     }
   }
