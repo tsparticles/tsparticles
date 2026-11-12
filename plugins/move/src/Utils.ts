@@ -95,26 +95,45 @@ export function move(
   applyPath(particle, delta);
 
   const gravityOptions = particle.gravity,
-    gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
+    gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity,
+    initialVelocityX = particle.velocity.x,
+    initialVelocityY = particle.velocity.y,
+    deltaFactor = delta.factor || identity,
+    decay = particle.moveDecay ?? noDecay,
+    decayFactor = decay < 0 ? decay : decay ** deltaFactor,
+    integrateAcceleration = (acceleration: number): number => {
+      if (decay <= 0 || decay === noDecay) {
+        return acceleration * deltaFactor;
+      }
+
+      return (acceleration * (identity - decayFactor)) / -Math.log(decay);
+    };
+
+  if (decay > 0) {
+    particle.velocity.multTo(decayFactor);
+  }
 
   if (moveDrift && moveSpeed) {
-    particle.velocity.x += (moveDrift * delta.factor) / (moveSpeedFactor * moveSpeed);
+    particle.velocity.x += integrateAcceleration(moveDrift / (moveSpeedFactor * moveSpeed));
   }
 
   if (gravityOptions?.enable && moveSpeed) {
-    particle.velocity.y +=
-      (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
+    particle.velocity.y += integrateAcceleration(
+      (gravityFactor * gravityOptions.acceleration) / (moveSpeedFactor * moveSpeed),
+    );
   }
 
-  const deltaFactor = delta.factor || identity,
-    decay = particle.moveDecay ?? noDecay;
-
-  if (decay !== noDecay) {
+  if (decay <= 0) {
     // Negative multipliers reverse direction and have no real fractional power.
-    particle.velocity.multTo(decay < 0 ? decay : decay ** deltaFactor);
+    particle.velocity.multTo(decayFactor);
   }
 
   const velocity = particle.velocity.mult(moveSpeed);
+
+  if (decay > 0 && decay < noDecay) {
+    velocity.x = ((initialVelocityX + particle.velocity.x) * moveSpeed) / 2;
+    velocity.y = ((initialVelocityY + particle.velocity.y) * moveSpeed) / 2;
+  }
 
   if (
     gravityOptions?.enable &&
