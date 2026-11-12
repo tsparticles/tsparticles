@@ -14270,7 +14270,7 @@ importers:
         version: 6.0.3
       undici:
         specifier: ^8.10.0
-        version: 8.12.2
+        version: 8.12.4
       vite:
         specifier: ^7.3.6
         version: 7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
@@ -42114,10 +42114,6 @@ packages:
   undici@7.30.1:
     resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
     engines: {node: '>=20.18.1'}
-
-  undici@8.12.2:
-    resolution: {integrity: sha512-XtuDWVdqTLr3NAxm2ly9/hU6kUsJOgGh1RASzMBbsw6aWCOaQzHdW+QQDfdERjfJ2V5vL5pRPa4RetO9UfivDg==}
-    engines: {node: '>=22.19.0'}
 
   undici@8.12.4:
     resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
@@ -75527,7 +75523,7 @@ snapshots:
       semver: 7.8.5
       tar: 7.5.22
       tinyglobby: 0.2.17
-      undici: 8.12.2
+      undici: 8.12.4
       which: 7.0.0
 
   node-gyp@9.4.1(bluebird@3.7.2)(supports-color@8.1.1):
@@ -85112,8 +85108,6 @@ snapshots:
 
   undici@7.30.1: {}
 
-  undici@8.12.2: {}
-
   undici@8.12.4: {}
 
   unenv@2.0.0-rc.24:
@@ -85217,7 +85211,7 @@ snapshots:
       css-tree: 3.2.1
       fnv1a-64: 0.1.2
       std-env: 4.2.0
-      undici: 8.12.2
+      undici: 8.12.4
 
   unimport@6.3.0(oxc-parser@0.143.0)(rolldown@1.2.15):
     dependencies:
