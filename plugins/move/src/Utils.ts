@@ -106,9 +106,13 @@ export function move(
       (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
   }
 
-  const decay = particle.moveDecay;
+  const deltaFactor = delta.factor || identity,
+    decay = particle.moveDecay ?? noDecay;
 
-  particle.velocity.multTo(decay ?? noDecay);
+  if (decay !== noDecay) {
+    // Negative multipliers reverse direction and have no real fractional power.
+    particle.velocity.multTo(decay < 0 ? decay : decay ** deltaFactor);
+  }
 
   const velocity = particle.velocity.mult(moveSpeed);
 
@@ -130,6 +134,7 @@ export function move(
 
   velocity.multTo(zVelocityFactor);
   velocity.multTo(reduceFactor);
+  velocity.multTo(deltaFactor);
 
   const { position } = particle;
 
