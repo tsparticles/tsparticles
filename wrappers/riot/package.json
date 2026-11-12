@@ -120,7 +120,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "riot": "^10.1.6",
     "rollup": "^4.67.4",
     "rollup-plugin-riot": "^10.0.0",

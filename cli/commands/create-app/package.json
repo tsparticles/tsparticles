@@ -52,7 +52,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "prompts": "^2.4.2"
   },

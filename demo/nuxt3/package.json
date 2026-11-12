@@ -40,7 +40,7 @@
     "globals": "^17.14.0",
     "lint-staged": "^17.6.0",
     "nuxt": "^3.21.11",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
     "vue": "^3.5.44",

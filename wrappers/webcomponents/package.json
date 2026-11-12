@@ -116,7 +116,7 @@
     "@tsparticles/prettier-config": "workspace:*",
     "@types/node": "^26.6.6",
     "jsdom": "^31.0.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "rollup": "^4.67.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.9.1",

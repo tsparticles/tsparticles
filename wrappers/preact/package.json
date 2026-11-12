@@ -127,7 +127,7 @@
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "preact": "^10.29.8",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "ts-loader": "^9.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",

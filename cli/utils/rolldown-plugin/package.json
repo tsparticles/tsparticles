@@ -58,7 +58,7 @@
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-tsdoc": "^0.5.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "rolldown": "1.2.8",
     "rollup-plugin-visualizer": "^7.1.1"

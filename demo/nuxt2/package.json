@@ -51,7 +51,7 @@
     "eslint-plugin-vue": "^10.12.0",
     "globals": "^17.14.0",
     "postcss-loader": "^4.3.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "ts-loader": "^8.4.0",
     "vue-eslint-parser": "^10.4.1",
     "vue-loader": "^15.11.1",
