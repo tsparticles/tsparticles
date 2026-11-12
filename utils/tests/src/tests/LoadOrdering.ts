@@ -77,6 +77,8 @@ describe("container load ordering", () => {
     });
     await engine.pluginManager.register(e => {
       expect(e).to.equal(firstLoaderEngine);
+      // This compares method identity; neither reference is called without its owning Engine.
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(e.load).to.equal(firstLoaderEngine?.load);
     });
 
