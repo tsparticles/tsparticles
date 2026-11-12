@@ -38,7 +38,10 @@ it('replaces the host when the scene id changes during startup', async () => {
 		component.$set({ id: 'second' });
 
 		await vi.waitFor(() => expect(loaded).toHaveBeenCalledOnce());
-		expect(host.querySelector('#second')).not.toBe(firstHost);
+		const secondHost = host.querySelector('#second');
+
+		expect(secondHost).toBeInstanceOf(HTMLDivElement);
+		expect(secondHost).not.toBe(firstHost);
 
 		pending.resolve(stale);
 

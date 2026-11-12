@@ -32,7 +32,10 @@ it("replaces the host when its id changes during a pending load", async () => {
     id.value = "second";
 
     await vi.waitFor(() => expect(loaded).toHaveBeenCalledExactlyOnceWith(current));
-    expect(host.querySelector("#second")).not.toBe(firstHost);
+    const secondHost = host.querySelector("#second");
+
+    expect(secondHost).toBeInstanceOf(HTMLDivElement);
+    expect(secondHost).not.toBe(firstHost);
 
     pending.resolve(stale);
 

@@ -105,8 +105,8 @@ define the proposed domain folders; these have not been created in the runtime.
 
 **Entry Points:**
 
-- `engine/src/index.ts`: Primary engine import path; creates/reuses the exported singleton and exports API/types. Global writes occur in browser entrypoints; ESM/CJS lazy entrypoints are separate.
-- `engine/src/browser.ts` and `engine/src/index.lazy.ts`: Browser/global and lazy entrypoints; no current engine `bundle.ts`.
+- `engine/src/index.ts`: Primary engine import path; creates/reuses the exported singleton and exports API/types. It does not assign `globalThis.tsParticles`.
+- `engine/src/browser.ts` and `engine/src/index.lazy.ts`: Browser/global and lazy entrypoints; both assign `globalThis.tsParticles`. This current entrypoint behavior is distinct from the planned v5 singleton-removal work. There is no current engine `bundle.ts`.
 - `bundles/basic/src/index.ts`: Minimal curated loader.
 - `bundles/slim/src/index.ts`: Mid-size curated loader.
 - `bundles/full/src/index.ts`: Full compatibility loader.

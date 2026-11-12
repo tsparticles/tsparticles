@@ -69,6 +69,8 @@ export class PluginManager {
 
   #isRunningLoaders = false;
 
+  readonly #loaderEngine: Engine;
+
   readonly #loadPromises = new Set<LoadPluginFunction>();
 
   readonly #plugins: IPlugin[] = [];
@@ -76,6 +78,32 @@ export class PluginManager {
 
   constructor(engine: Engine) {
     this.#engine = engine;
+
+    const boundMethods = new WeakMap<object, (...args: unknown[]) => unknown>(),
+      loaderInit = (): Promise<void> => Promise.resolve();
+
+    this.#loaderEngine = new Proxy(engine, {
+      get: (target, property) => {
+        if (property === "init") {
+          return loaderInit;
+        }
+
+        const value: unknown = Reflect.get(target, property, target);
+
+        if (typeof value !== "function") {
+          return value;
+        }
+
+        let boundMethod = boundMethods.get(value);
+
+        if (!boundMethod) {
+          boundMethod = (...args: unknown[]): unknown => Reflect.apply(value, target, args) as unknown;
+          boundMethods.set(value, boundMethod);
+        }
+
+        return boundMethod;
+      },
+    });
   }
 
   /**
@@ -303,6 +331,8 @@ export class PluginManager {
 
   /**
    * Queues plugin loaders before initialization. Loaders can compose other loaders during initialization.
+   * The engine passed to a loader resolves nested init() calls immediately; the outer initialization owns
+   * completion of the loader batch.
    * @param loaders - the plugin loader functions to register
    */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
@@ -336,7 +366,7 @@ export class PluginManager {
     executed.add(loader);
     allLoaders.add(loader);
 
-    const loaderPromise = (async (): Promise<void> => loader(this.#engine))();
+    const loaderPromise = (async (): Promise<void> => loader(this.#loaderEngine))();
 
     this.#inFlightLoaders.add(loaderPromise);
 

@@ -13,7 +13,7 @@ const messages: Record<string, string> = {
     "The tsParticles version is different from the loaded plugins version. Engine version: {0}. Plugin version: {1}",
   [ErrorCodes.particlePositionNotFound]: "a valid position cannot be found for particle",
   [ErrorCodes.pluginRegisterAfterLoad]:
-    "Register plugin loaders before engine initialization and add plugins from a registered loader",
+    "Registration APIs must be called before engine initialization; plugins must be added from a registered loader",
   [ErrorCodes.offscreenCanvasUnsupported]: "OffscreenCanvas is required but not supported by this browser",
   [ErrorCodes.offscreenCanvasTransferFailed]: "OffscreenCanvas transfer failed",
   [ErrorCodes.hdrEnableInvalid]: 'Invalid HDR "enable" value: expected a boolean, got "{0}"',

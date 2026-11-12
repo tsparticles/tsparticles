@@ -19,11 +19,11 @@ import { NgParticlesService } from "./ng-particles.service";
 @Component({
   selector: "ngx-particles",
   standalone: false,
-  template: `@for (sceneId of [id]; track sceneId) {
-    <div [id]="sceneId"></div>
-  }`,
+  template: `<div *ngFor="let sceneId of [id]; trackBy: trackSceneId" [id]="sceneId"></div>`,
 })
 export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestroy {
+  readonly trackSceneId = (_index: number, sceneId: string): string => sceneId;
+
   @Input() options?: IParticlesProps;
   @Input() url?: string;
   @Input() id = "tsparticles";

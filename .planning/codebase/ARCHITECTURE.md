@@ -139,7 +139,7 @@ already implemented state.
 
 - Location: `engine/src/index.ts`
 - Triggers: Package import of `@tsparticles/engine`.
-- Responsibilities: Create/reuse singleton engine (`tsParticles`) and re-export public API/types. Global assignment belongs to browser entrypoints; ESM/CJS lazy entrypoints are separate.
+- Responsibilities: Create/reuse singleton engine (`tsParticles`) and re-export public API/types. `index.lazy.ts` and `browser.ts` assign `globalThis.tsParticles`; this current entrypoint behavior is distinct from the planned v5 singleton-removal work.
 
 **Engine Browser and Lazy Entrypoints:**
 

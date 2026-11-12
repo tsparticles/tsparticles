@@ -105,6 +105,8 @@ describe("NgxParticlesComponent", () => {
   });
 
   it.each(["id", "options"] as const)("discards an older load when %s changes", async input => {
+    loadMock.mockClear();
+
     const { component, loaded } = createComponent(),
       staleContainer = { destroy: vi.fn(), loadTheme: vi.fn(async () => Promise.resolve()) },
       currentContainer = { destroy: vi.fn(), loadTheme: vi.fn(async () => Promise.resolve()) };

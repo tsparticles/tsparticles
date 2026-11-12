@@ -65,6 +65,35 @@ describe("container load ordering", () => {
     expect(manager.initialized).toBe(true);
   });
 
+  it("resolves init calls awaited by loaders and permits later scene loads", async () => {
+    const engine = new Engine();
+    let loaderContinued = false,
+      firstLoaderEngine: Engine | undefined;
+
+    await engine.pluginManager.register(async e => {
+      firstLoaderEngine = e;
+      await e.init();
+      loaderContinued = true;
+    });
+    await engine.pluginManager.register(e => {
+      expect(e).to.equal(firstLoaderEngine);
+      expect(e.load).to.equal(firstLoaderEngine?.load);
+    });
+
+    await engine.init();
+
+    expect(loaderContinued).toBe(true);
+    expect(engine.pluginManager.initialized).toBe(true);
+
+    const container = await engine.load({
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      options: { autoPlay: false, particles: { number: { value: noParticles } } },
+    });
+
+    expect(container).toBeDefined();
+    container?.destroy();
+  });
+
   it("waits for a loader registered while initialization is in flight", async () => {
     const engine = new Engine();
     let releaseInitial!: () => void,
@@ -186,7 +215,7 @@ describe("container load ordering", () => {
         },
         needsPlugin: () => true,
       },
-      registrationError = /TSP-1003|Register plugin loaders before engine initialization/;
+      registrationError = /TSP-1003|Registration APIs must be called before engine initialization/;
 
     expect(() => {
       manager.addPlugin(plugin);
