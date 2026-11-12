@@ -46,8 +46,8 @@ O site foi reformulado para responder à pergunta mais comum: **“Como usar tsP
 3. [Playground](/playground/): execute demos sob demanda e edite JSON ao vivo.
 4. [Demos](/demos/): receitas prontas para copiar em projetos de produção.
 5. [Opções](/options/): visão geral das opções e links detalhados.
-6. [Migrações](/migrations/): migração do tsParticles v1/v2/v3 para a versão atual.
-7. [Migração do particles.js](/migrations/particles-js): migração do particles.js com notas de compatibilidade.
+6. [Migrações](/pt/migrations/): migração do tsParticles v1/v2/v3 para a versão atual.
+7. [Migração do particles.js](/pt/migrations/particles-js): migração do particles.js com notas de compatibilidade.
 8. [Wrappers](/guide/wrappers): wrappers oficiais e links para frameworks.
 9. [Personalização de plugins](/guide/plugins-customization): formas personalizadas, presets e extensões de plugins.
 10. [Modelos e recursos](/guide/templates-resources): projetos iniciais e recursos compartilháveis.

@@ -46,8 +46,8 @@ Le site a été repensé pour répondre à la question la plus fréquente : **«
 3. [Playground](/playground/): lancez les démos à la demande et modifiez le JSON en direct.
 4. [Démos](/demos/): recettes prêtes à copier dans vos projets.
 5. [Options](/options/): aperçu des options principales et liens détaillés.
-6. [Migrations](/migrations/): migration de tsParticles v1/v2/v3 vers la version actuelle.
-7. [Migration depuis particles.js](/migrations/particles-js): migration depuis particles.js et notes de compatibilité.
+6. [Migrations](/fr/migrations/): migration de tsParticles v1/v2/v3 vers la version actuelle.
+7. [Migration depuis particles.js](/fr/migrations/particles-js): migration depuis particles.js et notes de compatibilité.
 8. [Wrappers](/guide/wrappers): packages de wrappers officiels et liens vers les frameworks.
 9. [Personnalisation des plugins](/guide/plugins-customization): formes personnalisées, presets et extensions de plugins.
 10. [Modèles et ressources](/guide/templates-resources): projets de démarrage et ressources partageables.

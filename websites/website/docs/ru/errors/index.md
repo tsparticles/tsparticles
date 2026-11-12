@@ -44,7 +44,7 @@ denote the positional arguments.
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | <a id="TSP-1001"></a>`TSP-1001` | The tsParticles version is different from the loaded plugins version. Engine version: `{0}`. Plugin version: `{1}` |
 | <a id="TSP-1002"></a>`TSP-1002` | a valid position cannot be found for particle                                                                      |
-| <a id="TSP-1003"></a>`TSP-1003` | Register plugin loaders before engine initialization and add plugins from a registered loader                      |
+| <a id="TSP-1003"></a>`TSP-1003` | Register plugin loaders before engine initialization; call all registration APIs, including addShape and addPreset, before initialization; add plugins from a registered loader                      |
 | <a id="TSP-1101"></a>`TSP-1101` | OffscreenCanvas is required but not supported by this browser                                                      |
 | <a id="TSP-1102"></a>`TSP-1102` | OffscreenCanvas transfer failed                                                                                    |
 | <a id="TSP-1201"></a>`TSP-1201` | Invalid HDR `enable` value: expected a boolean, got `{0}`                                                          |

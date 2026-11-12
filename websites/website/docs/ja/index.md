@@ -46,8 +46,8 @@ features:
 3. [Playground](/playground/): デモを必要なときだけ起動し、JSON をその場で編集できます。
 4. [デモ](/demos/): 本番環境ですぐに使えるレシピ。
 5. [オプション](/options/): ルートオプションの一覧と詳細リンク。
-6. [移行ガイド](/migrations/): tsParticles v1/v2/v3 から現行版への移行。
-7. [particles.js からの移行](/migrations/particles-js): particles.js からの移行と互換性に関する注意点。
+6. [移行ガイド](/ja/migrations/): tsParticles v1/v2/v3 から現行版への移行。
+7. [particles.js からの移行](/ja/migrations/particles-js): particles.js からの移行と互換性に関する注意点。
 8. [ラッパー](/guide/wrappers): 公式ラッパーパッケージと各フレームワークへのリンク。
 9. [プラグインのカスタマイズ](/guide/plugins-customization): カスタムシェイプ、プリセット、プラグインの拡張。
 10. [テンプレートとリソース](/guide/templates-resources): スタータープロジェクトと共有可能なリソース。

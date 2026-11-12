@@ -46,8 +46,8 @@ features:
 3. [Playground](/playground/): 按需启动演示并实时编辑 JSON。
 4. [演示](/demos/): 可直接复制到生产项目中的示例。
 5. [选项](/options/): 根选项概览和详细链接。
-6. [迁移指南](/migrations/): 从 tsParticles v1/v2/v3 迁移到当前版本。
-7. [从 particles.js 迁移](/migrations/particles-js): 从 particles.js 迁移及兼容性说明。
+6. [迁移指南](/zh/migrations/): 从 tsParticles v1/v2/v3 迁移到当前版本。
+7. [从 particles.js 迁移](/zh/migrations/particles-js): 从 particles.js 迁移及兼容性说明。
 8. [框架封装](/guide/wrappers): 官方封装包和框架链接。
 9. [插件自定义](/guide/plugins-customization): 自定义形状、预设和插件扩展。
 10. [模板和资源](/guide/templates-resources): 起始项目和可分享资源。
