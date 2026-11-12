@@ -1,77 +1,77 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
-  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "简体中文",
+  "title": "tsParticles Ribbons | 网站 JavaScript 飘带动画",
+  "description": "为网站创建轻量、可自定义的飘带动画。支持 React、Vue、Angular 和 Svelte。免费开源。",
+  "ogTitle": "tsParticles Ribbons | 网站 JavaScript 飘带动画",
+  "ogDescription": "为网站创建轻量、可自定义的飘带动画。支持 React、Vue、Angular 和 Svelte。免费开源。",
+  "twitterTitle": "tsParticles Ribbons | 网站 JavaScript 飘带动画",
+  "twitterDescription": "为网站创建轻量、可自定义的飘带动画。支持 React、Vue、Angular 和 Svelte。免费开源。",
   "header": {
-    "about": "About",
-    "blog": "Blog",
+    "about": "关于",
+    "blog": "博客",
     "cookie": "Cookie",
-    "privacy": "Privacy",
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitConfetti": "Visit tsParticles confetti website",
-    "visitConfettiAria": "Visit tsParticles confetti website",
-    "language": "Language"
+    "privacy": "隐私",
+    "switchTheme": "切换主题",
+    "visitGitHub": "访问 GitHub",
+    "viewSource": "在 GitHub 查看源码",
+    "joinDiscord": "加入 Discord",
+    "joinDiscordAria": "加入 tsParticles Discord",
+    "visitReddit": "访问 Reddit",
+    "visitRedditAria": "在 Reddit 访问 tsParticles",
+    "visitWebsite": "访问 tsParticles 网站",
+    "visitWebsiteAria": "访问 tsParticles 网站",
+    "visitConfetti": "访问 tsParticles Confetti 网站",
+    "visitConfettiAria": "访问 tsParticles Confetti 网站",
+    "language": "语言"
   },
   "intro": {
-    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
-    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+    "lead": "只需几行 JavaScript，即可为网站创建流畅的飘带动画。tsParticles Ribbons 提供轻量、动感的效果，让页面更出彩且不会拖慢速度。",
+    "sub": "无论是庆祝活动、交互式背景还是细腻的氛围动画，飘带都是优雅且通用的方案：无需插件或 Flash，只使用 HTML5 Canvas。"
   },
   "features": {
-    "title": "Why Choose tsParticles Ribbons?",
+    "title": "为什么选择 tsParticles Ribbons？",
     "lightweight": {
-      "title": "Lightweight & Fast",
-      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+      "title": "轻量快速",
+      "text": "压缩后的 Ribbons bundle 只有几 KB。硬件加速的 Canvas 动画可达 60 fps，在移动设备上也很流畅。"
     },
     "zeroDependencies": {
-      "title": "Zero Dependencies",
-      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+      "title": "零依赖",
+      "text": "使用简单的 script 标签或通过 npm 安装。无需 jQuery、React 或构建工具，同时也能轻松集成主流框架。"
     },
     "customizable": {
-      "title": "Fully Customizable",
-      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+      "title": "完全可定制",
+      "text": "控制颜色、物理效果、位置和时长。用少量选项创建细腻背景或醒目的庆祝动画。"
     },
     "crossBrowser": {
-      "title": "Cross-Browser Compatible",
-      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+      "title": "跨浏览器兼容",
+      "text": "支持 Chrome、Firefox、Safari、Edge 等现代浏览器，并为旧浏览器提供备用方案，确保网站可用。"
     },
     "frameworkSupport": {
-      "title": "Framework Support",
-      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+      "title": "支持框架",
+      "text": "提供 React、Vue.js、Angular 和 Svelte 官方包。专用组件会自动管理 canvas 生命周期。"
     },
     "openSource": {
-      "title": "Open Source",
-      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+      "title": "开源",
+      "text": "采用 MIT 许可并由 tsParticles 社区支持。GitHub 提供完整源码、文档和示例。"
     }
   },
   "usecases": {
-    "title": "Perfect For",
-    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
-    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
-    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
-    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
-    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
-    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+    "title": "适用于",
+    "launches": "产品发布与公告：用醒目的飘带效果庆祝新版本并吸引注意。",
+    "holidays": "节日与季节主题：为节日、促销和特别活动添加应景动画。",
+    "backgrounds": "交互式背景：创建可响应用户交互、又不干扰内容的氛围效果。",
+    "gamification": "游戏化与奖励：在用户完成操作、获得成就或达成目标时触发飘带。",
+    "portfolio": "作品集与创意网站：添加独特视觉元素，让作品集脱颖而出。",
+    "ecommerce": "电商与转化：用庆祝效果突出特别优惠、折扣揭晓和成功购买。"
   },
   "quickstart": {
-    "title": "Quick Start",
-    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
-    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+    "title": "快速开始",
+    "intro": "不到一分钟即可为网站添加飘带。引入脚本并调用一个函数：",
+    "outroHtml": "完成！飘带会从页面顶部的随机位置落下。可查看下方交互示例，或阅读<a href=\"/blog/customization-guide.html\">自定义指南</a>进行调整。"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "分享此页面",
+    "share": "分享",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -79,72 +79,62 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "复制链接"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "运行",
+  "copied": "已复制",
   "footer": {
-    "about": "About",
-    "blog": "Blog",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "about": "关于",
+    "blog": "博客",
+    "cookiePolicy": "Cookie 政策",
+    "privacyPolicy": "隐私政策",
+    "with": "由",
+    "by": "来自",
+    "cookiePreferences": "Cookie 偏好设置"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "隐私设置",
+    "text": "选择此网站如何使用分析和广告技术。停用分析 Cookie 后，匿名无 Cookie 测量仍会启用。",
+    "cookiePolicy": "Cookie 政策",
+    "analytics": "分析 Cookie",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "全部拒绝",
+    "saveChoices": "保存选择",
+    "acceptAll": "全部接受"
   },
   "modes": {
     "basic": {
-      "name": "Basic Ribbons",
-      "description": [
-        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
-      ]
+      "name": "基础飘带",
+      "description": ["默认模式：飘带从页面顶部随机位置落下，使用默认颜色和物理效果。"]
     },
     "colors": {
-      "name": "Custom Colors",
+      "name": "自定义颜色",
       "description": [
-        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
-        "🔥 Ocean to flame color transition! 🔥"
+        "自定义飘带颜色以匹配品牌或主题。支持 HEX、RGB 和颜色名称。",
+        "🔥 从海洋到火焰的颜色渐变！🔥"
       ]
     },
     "multiple": {
-      "name": "Multiple Bursts",
-      "description": [
-        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
-      ]
+      "name": "多次喷发",
+      "description": ["以错开的时间触发多次飘带喷发，形成层叠效果。"]
     },
     "continuous": {
-      "name": "Continuous Fall",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
-      ]
+      "name": "持续飘落",
+      "description": ["从随机位置持续生成飘带 8 秒。"]
     },
     "fixedPosition": {
-      "name": "Fixed Position",
-      "description": [
-        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
-      ]
+      "name": "固定位置",
+      "description": ["从固定位置 (x: 50, y: 0) 喷发，适合由按钮或指定元素触发。"]
     },
     "customCanvas": {
-      "name": "Custom Canvas",
-      "description": [
-        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
-      ]
+      "name": "自定义画布",
+      "description": ["提供自己的 canvas 元素，将飘带限制在页面的特定区域。"]
     },
     "ribbonsConfetti": {
-      "name": "Ribbons + Confetti",
+      "name": "彩纸与飘带",
       "description": [
-        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "🎉 Double the celebration! 🎉"
+        "将彩纸和飘带结合，带来双倍庆祝效果：彩纸从上方落下，飘带在屏幕中飞舞，适合产品发布、里程碑和节日问候。",
+        "双倍庆祝！"
       ]
     }
   }

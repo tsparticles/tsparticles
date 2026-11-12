@@ -1,28 +1,28 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
-  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
-  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "हिन्दी",
+  "title": "tsParticles Confetti | वेबसाइट के लिए कंफ़ेटी, पार्टिकल और आतिशबाज़ी एनिमेशन",
+  "description": "वेबसाइट के बैकग्राउंड के लिए अनुकूलित कंफ़ेटी, पार्टिकल और आतिशबाज़ी एनिमेशन बनाएँ। React, Vue, Angular, Svelte, jQuery, Preact और Inferno के कंपोनेंट उपलब्ध हैं।",
+  "ogTitle": "tsParticles Confetti | वेबसाइट के लिए कंफ़ेटी, पार्टिकल और आतिशबाज़ी एनिमेशन",
+  "ogDescription": "tsParticles से कंफ़ेटी, पार्टिकल और आतिशबाज़ी इफेक्ट बनाएँ। कोड एडिटर वाला इंटरैक्टिव Playground। React, Vue, Angular और Svelte समर्थित।",
+  "twitterTitle": "tsParticles Confetti | वेबसाइट के लिए कंफ़ेटी, पार्टिकल और आतिशबाज़ी एनिमेशन",
+  "twitterDescription": "tsParticles से कंफ़ेटी, पार्टिकल और आतिशबाज़ी इफेक्ट बनाएँ। कोड एडिटर वाला इंटरैक्टिव Playground।",
   "header": {
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitRibbons": "Visit tsParticles ribbons website",
-    "visitRibbonsAria": "Visit tsParticles ribbons website",
-    "language": "Language"
+    "switchTheme": "थीम बदलें",
+    "visitGitHub": "GitHub देखें",
+    "viewSource": "GitHub पर स्रोत देखें",
+    "joinDiscord": "Discord से जुड़ें",
+    "joinDiscordAria": "tsParticles Discord से जुड़ें",
+    "visitReddit": "Reddit देखें",
+    "visitRedditAria": "Reddit पर tsParticles देखें",
+    "visitWebsite": "tsParticles वेबसाइट देखें",
+    "visitWebsiteAria": "tsParticles वेबसाइट देखें",
+    "visitRibbons": "tsParticles Ribbons वेबसाइट देखें",
+    "visitRibbonsAria": "tsParticles Ribbons वेबसाइट देखें",
+    "language": "भाषा"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "यह पेज साझा करें",
+    "share": "साझा करें",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -30,113 +30,91 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "लिंक कॉपी करें"
   },
   "usage": {
-    "title": "Usage",
-    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+    "title": "उपयोग",
+    "description": "plain HTML/JS का उपयोग करने पर पेज में स्क्रिप्ट शामिल करें:"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "चलाएँ",
+  "copied": "कॉपी हो गया",
   "footer": {
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "with": "के साथ",
+    "by": "द्वारा",
+    "cookiePreferences": "कुकी प्राथमिकताएँ"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "गोपनीयता सेटिंग",
+    "text": "चुनें कि यह साइट विश्लेषण और विज्ञापन तकनीकों का उपयोग कैसे कर सकती है। विश्लेषण कुकी बंद होने पर भी गुमनाम, कुकी-रहित मापन चालू रहता है।",
+    "cookiePolicy": "कुकी नीति",
+    "analytics": "विश्लेषण कुकी",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "सभी अस्वीकार करें",
+    "saveChoices": "चयन सहेजें",
+    "acceptAll": "सभी स्वीकार करें"
   },
   "modes": {
     "cannon": {
-      "name": "Basic Cannon",
-      "description": [
-        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
-      ]
+      "name": "बेसिक कैनन",
+      "description": ["डिफ़ॉल्ट मोड: सामान्य कंफ़ेटी की बौछार, सरल लेकिन मज़ेदार।"]
     },
     "random": {
-      "name": "Random Direction",
-      "description": [
-        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
-      ]
+      "name": "यादृच्छिक दिशा",
+      "description": ["यादृच्छिक मात्रा में कंफ़ेटी को अलग-अलग दिशाओं में चलाएँ। बटन कई बार दबाएँ।"]
     },
     "realistic": {
-      "name": "Realistic Look",
+      "name": "वास्तविक रूप",
       "description": [
-        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
+        "बहुत सारे पार्टिकल होने पर एकसमान शंकु नकली लगता है। कई इफेक्ट मिलाकर प्राकृतिक रूप बनाएँ।"
       ]
     },
     "hearts": {
-      "name": "Valentine's Day",
-      "description": [
-        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
-        "❤️ Happy Valentine's Day! ❤️"
-      ]
+      "name": "वैलेंटाइन डे",
+      "description": ["दिल के आकार के कंफ़ेटी से वैलेंटाइन इफेक्ट बनाएँ।", "❤️ वैलेंटाइन डे की शुभकामनाएँ! ❤️"]
     },
     "stars": {
-      "name": "Stars",
+      "name": "सितारे",
       "description": [
-        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
-        "✨ Celebrate with a burst of stars! ✨"
+        "अलग-अलग आकार और सेटिंग मिलाएँ, और समय में अंतर रखकर प्रभाव बढ़ाएँ।",
+        "✨ सितारों की बारिश के साथ जश्न मनाएँ! ✨"
       ]
     },
     "emoji": {
-      "name": "Emoji and Unicorns",
-      "description": [
-        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
-        "🦄 Unicorns loves rainbows! 🦄"
-      ]
+      "name": "इमोजी और यूनिकॉर्न",
+      "description": ["इंद्रधनुषी इफेक्ट में यूनिकॉर्न इमोजी जोड़ें। 🦄", "🦄 यूनिकॉर्न को इंद्रधनुष पसंद हैं! 🦄"]
     },
     "images": {
-      "name": "Images",
+      "name": "इमेज",
       "description": [
-        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
-        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+        "अपनी पसंदीदा इमेज को कंफ़ेटी आकार के रूप में इस्तेमाल करें और उनका आकार जाँचें।",
+        "🍎🥑🍌🍉🍍🍓 क्या ये फल बहुत प्यारे नहीं हैं? 🍒🍑🍈🍇🍊🍋"
       ]
     },
     "fireworks": {
-      "name": "Fireworks",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
-      ]
+      "name": "आतिशबाज़ी",
+      "description": ["पेज के किनारों से कंफ़ेटी चलाएँ ताकि बीच की सामग्री साफ़ रहे।"]
     },
     "snow": {
-      "name": "Snow",
-      "description": [
-        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
-      ]
+      "name": "बर्फ़",
+      "description": ["पूरे पेज पर धीरे गिरते पार्टिकल से सर्दियों का माहौल बनाएँ।"]
     },
     "continuous": {
-      "name": "School Pride",
-      "description": [
-        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
-        "🌰 Go Buckeyes! 🌰"
-      ]
+      "name": "स्कूल का गौरव",
+      "description": ["पेज के दोनों ओर दो कैनन से अपने रंग दिखाएँ।", "🌰 चलो Buckeyes! 🌰"]
     },
     "customShapes": {
-      "name": "Custom Shapes",
-      "description": [
-        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
-        "🎃🎄💜"
-      ]
+      "name": "कस्टम आकार",
+      "description": ["किसी भी SVG पाथ से त्योहारों के लिए खास आकार बनाएँ। कल्पना को खुला छोड़ें!", "🎃🎄💜"]
     },
     "custom": {
-      "name": "Custom Canvas",
-      "description": [
-        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
-      ]
+      "name": "कस्टम Canvas",
+      "description": ["अपने canvas एलिमेंट से कंफ़ेटी का क्षेत्र सीमित करें।"]
     },
     "confettiRibbons": {
-      "name": "Confetti + Ribbons",
+      "name": "कंफ़ेटी और रिबन",
       "description": [
-        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "Double the celebration!"
+        "कंफ़ेटी और रिबन से दोगुना जश्न मनाएँ—लॉन्च, उपलब्धियों और शुभकामनाओं के लिए बढ़िया।",
+        "दोगुना जश्न!"
       ]
     }
   }

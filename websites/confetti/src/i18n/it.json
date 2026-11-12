@@ -1,28 +1,28 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
-  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
-  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "Italiano",
+  "title": "tsParticles Confetti | Animazioni di coriandoli, particelle e fuochi d’artificio per il tuo sito",
+  "description": "Crea animazioni personalizzabili di coriandoli, particelle e fuochi d’artificio come sfondi per il tuo sito. Componenti per React, Vue, Angular, Svelte, jQuery, Preact e Inferno.",
+  "ogTitle": "tsParticles Confetti | Animazioni di coriandoli, particelle e fuochi d’artificio per il tuo sito",
+  "ogDescription": "Crea spettacolari effetti di coriandoli, particelle e fuochi d’artificio con tsParticles. Playground interattivo con editor di codice. Supporta React, Vue, Angular e Svelte.",
+  "twitterTitle": "tsParticles Confetti | Animazioni di coriandoli, particelle e fuochi d’artificio per il tuo sito",
+  "twitterDescription": "Crea spettacolari effetti di coriandoli, particelle e fuochi d’artificio con tsParticles. Playground interattivo con editor di codice.",
   "header": {
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitRibbons": "Visit tsParticles ribbons website",
-    "visitRibbonsAria": "Visit tsParticles ribbons website",
-    "language": "Language"
+    "switchTheme": "Cambia tema",
+    "visitGitHub": "Visita GitHub",
+    "viewSource": "Visualizza il codice su GitHub",
+    "joinDiscord": "Unisciti a Discord",
+    "joinDiscordAria": "Unisciti al Discord di tsParticles",
+    "visitReddit": "Visita Reddit",
+    "visitRedditAria": "Visita tsParticles su Reddit",
+    "visitWebsite": "Visita il sito di tsParticles",
+    "visitWebsiteAria": "Visita il sito di tsParticles",
+    "visitRibbons": "Visita il sito Ribbons di tsParticles",
+    "visitRibbonsAria": "Visita il sito Ribbons di tsParticles",
+    "language": "Lingua"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "Condividi questa pagina",
+    "share": "Condividi",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -30,113 +30,111 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "Copia link"
   },
   "usage": {
-    "title": "Usage",
-    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+    "title": "Uso",
+    "description": "Includi lo script nella pagina se usi HTML/JS senza framework:"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "Esegui",
+  "copied": "Copiato",
   "footer": {
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "with": "con",
+    "by": "da",
+    "cookiePreferences": "Preferenze cookie"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "Impostazioni privacy",
+    "text": "Scegli come questo sito può usare le tecnologie di analisi e pubblicità. Se disattivi i cookie analitici, continuerà la misurazione anonima senza cookie.",
+    "cookiePolicy": "informativa sui cookie",
+    "analytics": "Cookie analitici",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "Rifiuta tutto",
+    "saveChoices": "Salva le scelte",
+    "acceptAll": "Accetta tutto"
   },
   "modes": {
     "cannon": {
-      "name": "Basic Cannon",
+      "name": "Cannone classico",
       "description": [
-        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
+        "La modalità predefinita: una semplice raffica di coriandoli, sempre divertente."
       ]
     },
     "random": {
-      "name": "Random Direction",
+      "name": "Direzione casuale",
       "description": [
-        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
+        "Spara quantità casuali di coriandoli in direzioni casuali. Premi il pulsante più volte."
       ]
     },
     "realistic": {
-      "name": "Realistic Look",
+      "name": "Effetto realistico",
       "description": [
-        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
+        "Con molte particelle, il cono uniforme sembra artificiale. Combina effetti per rendere i coriandoli più naturali."
       ]
     },
     "hearts": {
-      "name": "Valentine's Day",
+      "name": "San Valentino",
       "description": [
-        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
-        "❤️ Happy Valentine's Day! ❤️"
+        "Crea un effetto romantico con coriandoli a forma di cuore.",
+        "❤️ Buon San Valentino! ❤️"
       ]
     },
     "stars": {
-      "name": "Stars",
+      "name": "Stelle",
       "description": [
-        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
-        "✨ Celebrate with a burst of stars! ✨"
+        "Combina forme, dimensioni e impostazioni diverse; sfalsa le chiamate per più vivacità.",
+        "✨ Festeggia con una pioggia di stelle! ✨"
       ]
     },
     "emoji": {
-      "name": "Emoji and Unicorns",
+      "name": "Emoji e unicorni",
       "description": [
-        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
-        "🦄 Unicorns loves rainbows! 🦄"
+        "Aggiungi emoji di unicorni a un effetto arcobaleno. 🦄",
+        "🦄 Gli unicorni adorano gli arcobaleni! 🦄"
       ]
     },
     "images": {
-      "name": "Images",
+      "name": "Immagini",
       "description": [
-        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
-        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+        "Usa le tue immagini preferite come forme dei coriandoli e verifica che abbiano dimensioni adatte.",
+        "🍎🥑🍌🍉🍍🍓 Questi frutti non sono adorabili? 🍒🍑🍈🍇🍊🍋"
       ]
     },
     "fireworks": {
-      "name": "Fireworks",
+      "name": "Fuochi d’artificio",
       "description": [
-        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
+        "Lancia coriandoli dai lati della pagina, lasciando libero il contenuto al centro."
       ]
     },
     "snow": {
-      "name": "Snow",
+      "name": "Neve",
       "description": [
-        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
+        "Crea un’atmosfera invernale con particelle che cadono lentamente su tutta la pagina."
       ]
     },
     "continuous": {
-      "name": "School Pride",
+      "name": "Orgoglio scolastico",
       "description": [
-        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
-        "🌰 Go Buckeyes! 🌰"
+        "Mostra i tuoi colori con due cannoni ai lati della pagina.",
+        "🌰 Forza Buckeyes! 🌰"
       ]
     },
     "customShapes": {
-      "name": "Custom Shapes",
+      "name": "Forme personalizzate",
       "description": [
-        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
+        "Festeggia con forme a tema usando qualsiasi tracciato SVG. Libera la fantasia!",
         "🎃🎄💜"
       ]
     },
     "custom": {
-      "name": "Custom Canvas",
-      "description": [
-        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
-      ]
+      "name": "Canvas personalizzato",
+      "description": ["Specifica un elemento canvas per limitare l’area dei coriandoli."]
     },
     "confettiRibbons": {
-      "name": "Confetti + Ribbons",
+      "name": "Coriandoli e nastri",
       "description": [
-        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "Double the celebration!"
+        "Unisci coriandoli e nastri per festeggiare il doppio: ideali per lanci, traguardi e auguri.",
+        "Raddoppia la festa!"
       ]
     }
   }
