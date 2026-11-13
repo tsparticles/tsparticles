@@ -7,14 +7,16 @@ verification after 07, once core contracts are stable.
 
 All extension packages in `plugins/`, `interactions/`, `updaters/`, `shapes/`,
 `effects/`, `paths/`, `presets/`, `palettes/`, and the runtime utilities they
-consume. Include standard/lazy/browser entrypoints, implementations, caches,
+consume. Include standard and ESM/CJS lazy entrypoints, browser entrypoints,
+implementations, caches,
 and tests. Preserve packages that already work and other contributors' changes.
 
 ## Work
 
 1. Create `V5-PLUGIN-AUDIT.md` with one row per package. Record explicit engine
    loaders, RNG/logging/scheduler dependencies, module state and caches,
-   Engine/PluginManager/Container/Particle extensions, browser/lazy entrypoints,
+   Engine/PluginManager/Container/Particle extensions, browser entrypoints,
+   ESM/CJS lazy entrypoints,
    build/test results, and required action. Include all categories, including
    palettes and packages omitted by standard build filters.
 2. Start from the observation that many loaders already accept an Engine, such
@@ -44,7 +46,8 @@ and tests. Preserve packages that already work and other contributors' changes.
   or listeners. Distinguish resource caches from state.
 - Record an outcome for every package. Run compatibility builds across the set,
   targeted tests for each defect, integration scenarios by family, and the full suite.
-- Verify bundle/lazy/browser behavior through the CDN path in 09 as well.
+- Verify bundle and browser behavior through the CDN path in 09. Check ESM/CJS
+  lazy export resolution through package consumers where applicable.
 
 ## Deliverables
 

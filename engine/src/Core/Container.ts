@@ -74,6 +74,8 @@ function loadContainerOptions(
   return options;
 }
 
+const emptyPlugins: readonly IContainerPlugin[] = Object.freeze([]);
+
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
@@ -120,13 +122,6 @@ export class Container {
    */
   pageHidden;
 
-  /** Particle created plugins */
-  readonly particleCreatedPlugins: IContainerPlugin[];
-  /** Particle destroyed plugins */
-  readonly particleDestroyedPlugins: IContainerPlugin[];
-  /** Particle position plugins */
-  readonly particlePositionPlugins: IContainerPlugin[];
-
   /**
    * The particles manager
    */
@@ -139,11 +134,6 @@ export class Container {
    * The peak brightness in nits for HDR rendering
    */
   peakNits: number;
-
-  /**
-   * All the plugins used by the container
-   */
-  readonly plugins: IContainerPlugin[];
 
   /** The retina manager */
   readonly retina;
@@ -182,8 +172,12 @@ export class Container {
   #lifeTime;
   readonly #onDestroy;
   #options;
+  #particleCreatedPlugins = emptyPlugins;
+  #particleDestroyedPlugins = emptyPlugins;
+  #particlePositionPlugins = emptyPlugins;
   #paused;
   readonly #pluginManager;
+  #plugins = emptyPlugins;
   #smooth;
   #sourceOptions;
   #startCancel?: () => void;
@@ -224,10 +218,6 @@ export class Container {
     this.retina = new Retina(this);
     this.canvas = new CanvasManager(this.#pluginManager, this);
     this.particles = new ParticlesManager(this.#pluginManager, this);
-    this.plugins = [];
-    this.particleDestroyedPlugins = [];
-    this.particleCreatedPlugins = [];
-    this.particlePositionPlugins = [];
     /* tsParticles variables with default values */
     this.#options = loadContainerOptions(this.#pluginManager, this);
     this.actualOptions = loadContainerOptions(this.#pluginManager, this);
@@ -251,6 +241,34 @@ export class Container {
    */
   get options(): Options {
     return this.#options;
+  }
+
+  /**
+   * @returns Particle created plugins
+   */
+  get particleCreatedPlugins(): readonly IContainerPlugin[] {
+    return this.#particleCreatedPlugins;
+  }
+
+  /**
+   * @returns Particle destroyed plugins
+   */
+  get particleDestroyedPlugins(): readonly IContainerPlugin[] {
+    return this.#particleDestroyedPlugins;
+  }
+
+  /**
+   * @returns Particle position plugins
+   */
+  get particlePositionPlugins(): readonly IContainerPlugin[] {
+    return this.#particlePositionPlugins;
+  }
+
+  /**
+   * @returns All the plugins used by the container
+   */
+  get plugins(): readonly IContainerPlugin[] {
+    return this.#plugins;
   }
 
   /**
@@ -306,7 +324,7 @@ export class Container {
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.particleUpdaters = [];
-    this.plugins.length = 0;
+    this.#plugins = emptyPlugins;
 
     this.destroyed = true;
 
@@ -706,9 +724,9 @@ export class Container {
       plugin.stop?.();
     }
 
-    this.particleCreatedPlugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
+    this.#particleCreatedPlugins = emptyPlugins;
+    this.#particleDestroyedPlugins = emptyPlugins;
+    this.#particlePositionPlugins = emptyPlugins;
 
     this.#sourceOptions = this.#options;
 
@@ -734,30 +752,35 @@ export class Container {
   }
 
   #initPlugins(allContainerPlugins: Map<IPlugin, IContainerPlugin>): void {
-    this.plugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particleCreatedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
+    const plugins: IContainerPlugin[] = [],
+      particleCreatedPlugins: IContainerPlugin[] = [],
+      particleDestroyedPlugins: IContainerPlugin[] = [],
+      particlePositionPlugins: IContainerPlugin[] = [];
 
     for (const [plugin, containerPlugin] of allContainerPlugins) {
       if (!plugin.needsPlugin(this.actualOptions)) {
         continue;
       }
 
-      this.plugins.push(containerPlugin);
+      plugins.push(containerPlugin);
 
       if (containerPlugin.particleCreated) {
-        this.particleCreatedPlugins.push(containerPlugin);
+        particleCreatedPlugins.push(containerPlugin);
       }
 
       if (containerPlugin.particleDestroyed) {
-        this.particleDestroyedPlugins.push(containerPlugin);
+        particleDestroyedPlugins.push(containerPlugin);
       }
 
       if (containerPlugin.particlePosition) {
-        this.particlePositionPlugins.push(containerPlugin);
+        particlePositionPlugins.push(containerPlugin);
       }
     }
+
+    this.#plugins = Object.freeze(plugins);
+    this.#particleCreatedPlugins = Object.freeze(particleCreatedPlugins);
+    this.#particleDestroyedPlugins = Object.freeze(particleDestroyedPlugins);
+    this.#particlePositionPlugins = Object.freeze(particlePositionPlugins);
   }
 
   #nextFrame(timestamp: DOMHighResTimeStamp): void {

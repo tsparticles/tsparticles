@@ -1,77 +1,77 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
-  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "Русский",
+  "title": "tsParticles Ribbons | JavaScript-анимация лент для сайта",
+  "description": "Создавайте лёгкие настраиваемые анимации лент для сайта. Поддерживаются React, Vue, Angular и Svelte. Бесплатно, открытый исходный код.",
+  "ogTitle": "tsParticles Ribbons | JavaScript-анимация лент для сайта",
+  "ogDescription": "Создавайте лёгкие настраиваемые анимации лент для сайта. Поддерживаются React, Vue, Angular и Svelte. Бесплатно, открытый исходный код.",
+  "twitterTitle": "tsParticles Ribbons | JavaScript-анимация лент для сайта",
+  "twitterDescription": "Создавайте лёгкие настраиваемые анимации лент для сайта. Поддерживаются React, Vue, Angular и Svelte. Бесплатно, открытый исходный код.",
   "header": {
-    "about": "About",
-    "blog": "Blog",
+    "about": "О проекте",
+    "blog": "Блог",
     "cookie": "Cookie",
-    "privacy": "Privacy",
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitConfetti": "Visit tsParticles confetti website",
-    "visitConfettiAria": "Visit tsParticles confetti website",
-    "language": "Language"
+    "privacy": "Конфиденциальность",
+    "switchTheme": "Сменить тему",
+    "visitGitHub": "Открыть GitHub",
+    "viewSource": "Посмотреть исходный код на GitHub",
+    "joinDiscord": "Присоединиться к Discord",
+    "joinDiscordAria": "Присоединиться к Discord tsParticles",
+    "visitReddit": "Открыть Reddit",
+    "visitRedditAria": "Найти tsParticles на Reddit",
+    "visitWebsite": "Перейти на сайт tsParticles",
+    "visitWebsiteAria": "Перейти на сайт tsParticles",
+    "visitConfetti": "Перейти на сайт Confetti tsParticles",
+    "visitConfettiAria": "Перейти на сайт Confetti tsParticles",
+    "language": "Язык"
   },
   "intro": {
-    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
-    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+    "lead": "Создавайте плавные анимации лент для сайта с помощью нескольких строк JavaScript. tsParticles Ribbons добавляет лёгкие динамичные эффекты, не замедляя страницы.",
+    "sub": "Для праздника, интерактивного фона или ненавязчивой анимации ленты станут элегантным решением: без плагинов и Flash, только HTML5 Canvas."
   },
   "features": {
-    "title": "Why Choose tsParticles Ribbons?",
+    "title": "Почему tsParticles Ribbons?",
     "lightweight": {
-      "title": "Lightweight & Fast",
-      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+      "title": "Лёгкий и быстрый",
+      "text": "Сжатый bundle Ribbons занимает всего несколько килобайт. Аппаратно ускоренные Canvas-анимации работают с частотой 60 fps даже на мобильных устройствах."
     },
     "zeroDependencies": {
-      "title": "Zero Dependencies",
-      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+      "title": "Без зависимостей",
+      "text": "Используйте тег script или установите пакет через npm. jQuery, React и инструменты сборки не нужны, но интеграция с фреймворками проста."
     },
     "customizable": {
-      "title": "Fully Customizable",
-      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+      "title": "Полная настройка",
+      "text": "Настраивайте цвета, физику, положение и время. Создавайте ненавязчивый фон или яркий праздничный эффект с помощью нескольких параметров."
     },
     "crossBrowser": {
-      "title": "Cross-Browser Compatible",
-      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+      "title": "Поддержка браузеров",
+      "text": "Работает в современных Chrome, Firefox, Safari и Edge. Для старых браузеров есть fallback, чтобы сайт оставался функциональным."
     },
     "frameworkSupport": {
-      "title": "Framework Support",
-      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+      "title": "Поддержка фреймворков",
+      "text": "Официальные пакеты доступны для React, Vue.js, Angular и Svelte. Компоненты автоматически управляют жизненным циклом canvas."
     },
     "openSource": {
-      "title": "Open Source",
-      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+      "title": "Открытый исходный код",
+      "text": "Лицензия MIT и поддержка сообщества tsParticles. Исходный код, документация и примеры доступны на GitHub."
     }
   },
   "usecases": {
-    "title": "Perfect For",
-    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
-    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
-    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
-    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
-    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
-    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+    "title": "Подходит для",
+    "launches": "Запусков продуктов и объявлений: привлекайте внимание к новостям яркими лентами.",
+    "holidays": "Праздников и сезонов: добавьте тематические анимации для праздников, распродаж и особых дат.",
+    "backgrounds": "Интерактивных фонов: создавайте атмосферные эффекты, реагирующие на действия пользователя и не отвлекающие от содержания.",
+    "gamification": "Игровых механик и наград: запускайте ленты при выполнении действий или достижении целей.",
+    "portfolio": "Портфолио и творческих сайтов: добавьте визуальную деталь, которая выделит портфолио.",
+    "ecommerce": "Электронной торговли и конверсий: выделяйте предложения, скидки и успешные покупки праздничными эффектами."
   },
   "quickstart": {
-    "title": "Quick Start",
-    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
-    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+    "title": "Быстрый старт",
+    "intro": "Добавьте ленты на сайт менее чем за минуту. Подключите скрипт и вызовите функцию:",
+    "outroHtml": "Готово! Ленты будут падать из случайных точек вверху страницы. Настройте их с помощью интерактивных примеров или <a href=\"/blog/customization-guide.html\">руководства по настройке</a>."
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "Поделиться страницей",
+    "share": "Поделиться",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -79,72 +79,66 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "Копировать ссылку"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "Запустить",
+  "copied": "Скопировано",
   "footer": {
-    "about": "About",
-    "blog": "Blog",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "about": "О проекте",
+    "blog": "Блог",
+    "cookiePolicy": "Политика cookie",
+    "privacyPolicy": "Политика конфиденциальности",
+    "with": "с",
+    "by": "от",
+    "cookiePreferences": "Настройки файлов cookie"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "Настройки конфиденциальности",
+    "text": "Выберите, как сайт может использовать технологии аналитики и рекламы. Если аналитические cookie отключены, анонимный сбор данных без cookie продолжит работать.",
+    "cookiePolicy": "политика cookie",
+    "analytics": "Аналитические cookie",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "Отклонить все",
+    "saveChoices": "Сохранить выбор",
+    "acceptAll": "Принять все"
   },
   "modes": {
     "basic": {
-      "name": "Basic Ribbons",
+      "name": "Обычные ленты",
       "description": [
-        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
+        "Режим по умолчанию: ленты падают сверху из случайных точек со стандартными цветами и физикой."
       ]
     },
     "colors": {
-      "name": "Custom Colors",
+      "name": "Свои цвета",
       "description": [
-        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
-        "🔥 Ocean to flame color transition! 🔥"
+        "Настройте цвета под бренд или тему. Используйте HEX, RGB или названия цветов.",
+        "🔥 Переход цвета от океана к пламени! 🔥"
       ]
     },
     "multiple": {
-      "name": "Multiple Bursts",
-      "description": [
-        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
-      ]
+      "name": "Несколько залпов",
+      "description": ["Создавайте несколько залпов с задержкой для каскадного эффекта."]
     },
     "continuous": {
-      "name": "Continuous Fall",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
-      ]
+      "name": "Непрерывное падение",
+      "description": ["Непрерывно запускайте ленты из случайных точек в течение 8 секунд."]
     },
     "fixedPosition": {
-      "name": "Fixed Position",
+      "name": "Фиксированная позиция",
       "description": [
-        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
+        "Залп из фиксированной точки (x: 50, y: 0), например, по нажатию кнопки или для элемента."
       ]
     },
     "customCanvas": {
-      "name": "Custom Canvas",
-      "description": [
-        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
-      ]
+      "name": "Свой canvas",
+      "description": ["Ограничьте ленты нужным разделом, указав собственный элемент canvas."]
     },
     "ribbonsConfetti": {
-      "name": "Ribbons + Confetti",
+      "name": "Конфетти и ленты",
       "description": [
-        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "🎉 Double the celebration! 🎉"
+        "Объедините конфетти и ленты для двойного праздника: конфетти падает сверху, а ленты струятся по экрану. Отлично подходит для запусков, достижений и поздравлений.",
+        "Праздник вдвойне!"
       ]
     }
   }

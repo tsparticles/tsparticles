@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
+
+### Bug Fixes
+
+* fixed movement decay with fps limiter ([817251d](https://github.com/tsparticles/tsparticles/commit/817251d3482a9929414ba514da280d25ffd089d3))
+* fixes after AI reviews ([049bf70](https://github.com/tsparticles/tsparticles/commit/049bf70d67701b14010f324d2726ff426fced0c8))
+* fixes after AI reviews ([08f1b2d](https://github.com/tsparticles/tsparticles/commit/08f1b2d13b5f349f3d0749c60e53c6c329416331))
+
 ## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
 
 **Note:** Version bump only for package @tsparticles/plugin-move

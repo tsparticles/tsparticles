@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-create",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -55,7 +55,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "rimraf": "^6.1.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.2"

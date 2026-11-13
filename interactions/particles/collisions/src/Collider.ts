@@ -4,7 +4,7 @@ import {
   type IDelta,
   type RecursivePartial,
   double,
-  getDistance,
+  getDistanceSq,
   getRangeValue,
   loadOptionProperty,
 } from "@tsparticles/engine";
@@ -89,14 +89,13 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
         continue;
       }
 
-      if (Math.abs(Math.round(pos1.z) - Math.round(pos2.z)) > radius1 + radius2) {
+      const contactDistance = radius1 + radius2;
+
+      if (contactDistance < 0 || Math.abs(Math.round(pos1.z) - Math.round(pos2.z)) > contactDistance) {
         continue;
       }
 
-      const dist = getDistance(pos1, pos2),
-        distP = radius1 + radius2;
-
-      if (dist > distP) {
+      if (getDistanceSq(pos1, pos2) > contactDistance * contactDistance) {
         continue;
       }
 

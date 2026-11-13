@@ -23,6 +23,7 @@ env:
   RELEASE_RETRY_BASE_DELAY: 10
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
   NODE_OPTIONS: "--max-old-space-size=4096"
+  npm_config_frozen_lockfile: false
 
 jobs:
   publish:
@@ -45,7 +46,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Initialize Nx Cloud
         run: pnpm exec nx-cloud start-ci-run --distribute-on="10 linux-medium-js"
@@ -63,24 +64,27 @@ jobs:
       # 🚀 Publish npm
       - name: Publish to NPM (OIDC Auth)
         run: |
+          set -uo pipefail
           TAG="${GITHUB_REF_NAME}"
-          BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
+          BASE_CMD="pnpm lerna publish from-package --ignore-scripts --concurrency 3"
 
-          echo "Publishing tag: $TAG via OIDC"
-
-          if [[ "$TAG" == *"-alpha."* ]]; then
-            $BASE_CMD --dist-tag alpha
-          elif [[ "$TAG" == *"-beta."* ]]; then
-            $BASE_CMD --dist-tag beta
-          elif [[ "$TAG" == v1* ]]; then
-            $BASE_CMD --dist-tag v1
-          elif [[ "$TAG" == v2* ]]; then
-            $BASE_CMD --dist-tag v2
-          elif [[ "$TAG" == v3* ]]; then
-            $BASE_CMD --dist-tag v3
-          else
-            $BASE_CMD
+          if [[ "$TAG" == *"-alpha."* ]]; then   CMD="$BASE_CMD --dist-tag alpha"
+          elif [[ "$TAG" == *"-beta."* ]]; then  CMD="$BASE_CMD --dist-tag beta"
+          elif [[ "$TAG" == v1* ]]; then         CMD="$BASE_CMD --dist-tag v1"
+          elif [[ "$TAG" == v2* ]]; then         CMD="$BASE_CMD --dist-tag v2"
+          elif [[ "$TAG" == v3* ]]; then         CMD="$BASE_CMD --dist-tag v3"
+          else                                   CMD="$BASE_CMD"
           fi
+
+          for attempt in 1 2 3 4; do
+            echo "Publish attempt $attempt"
+            if $CMD; then
+              exit 0
+            fi
+            sleep $((attempt * 20))
+          done
+          echo "Publish failed after retries"
+          exit 1
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

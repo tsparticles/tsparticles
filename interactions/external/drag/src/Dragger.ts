@@ -12,7 +12,7 @@ import {
   type Particle,
   type RecursivePartial,
   defaultFps,
-  getDistance,
+  getDistanceSq,
   isInArray,
   loadOptionProperty,
   millisecondsToSeconds,
@@ -214,15 +214,21 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
       closestDist = Infinity;
 
     for (const candidate of candidates) {
-      const dist = getDistance(candidate.getPosition(), mousePos),
+      const distSq = getDistanceSq(candidate.getPosition(), mousePos),
         radius = candidate.getRadius();
 
-      if (!Number.isFinite(dist) || !Number.isFinite(radius) || dist > radius || dist >= closestDist) {
+      if (
+        !Number.isFinite(distSq) ||
+        !Number.isFinite(radius) ||
+        radius < 0 ||
+        distSq > radius * radius ||
+        distSq >= closestDist
+      ) {
         continue;
       }
 
       closest = candidate;
-      closestDist = dist;
+      closestDist = distSq;
     }
 
     return closest;

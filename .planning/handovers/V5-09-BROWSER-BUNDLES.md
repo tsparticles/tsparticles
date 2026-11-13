@@ -40,9 +40,8 @@ source also exposes global loaders. Review this infrastructure alongside
 5. Define repeated loads, multiple bundles on a page, namespace collisions,
    and version mismatches. Keep existing engines intact and reject incompatible
    plugin wiring. Test documented script orders.
-6. Check lazy CDN chunk URLs/base paths, minified and unminified outputs,
-   dynamic imports, and externals. Measure chunks loaded for the same scene
-   and account for bytes moved into chunks.
+6. Check classic and module-script CDN URLs, minified and unminified outputs,
+   and externals. Verify supported loader behavior and script ordering.
 7. Align Rollup (standard), Rolldown, and Webpack for supported outputs.
    Check entry selection, global names, externals, minification, exports, and
    `sideEffects`. Keep standard module resolution in browsers pure.
@@ -56,8 +55,8 @@ source also exposes global loaders. Review this infrastructure alongside
   and installation of the same feature on both engines.
 - Load slim and full or two supported bundles on the same page. Verify explicit
   creation, preservation of existing engines, and correct deduplication.
-- Serve lazy output from a realistic CDN path. Check chunks, clear module/version
-  errors, repeated imports, and duplicate scripts.
+- Serve supported browser and CDN outputs from realistic paths. Check clear
+  module/version errors, repeated imports, and duplicate scripts.
 - Browser ESM and package conditions avoid global writes. Classic scripts expose
   only the documented bootstrap and required definitions.
 - Verify consistent output and packaged artifacts across supported bundlers and
@@ -66,10 +65,9 @@ source also exposes global loaders. Review this infrastructure alongside
   entry/chunk bytes, gzip/Brotli, and startup cost.
 
 Include an installed consumer with `browser`, `import`, and `require` conditions.
-Check resolved root and `/lazy` entries, including transitive lazy subpaths, and
-measure requests before invoking the loader and at the first frame.
-[V4-D01](../v4-review/PERFORMANCE-AND-BUNDLES.md) shows that manifests can select
-an eager entry even when lazy source is correct. Reuse the v4 fixture when available.
+Verify each condition resolves to its documented entry, including the existing
+package `/lazy` subpath where available. Verify browser entry resolution
+separately from ESM/CJS lazy exports.
 
 ## Deliverables
 

@@ -29,6 +29,7 @@ import {
   hslToRgb,
   hslToRgbFloat,
   hslaToRgba,
+  hypot,
   isInArray,
   itemFromArray,
   itemFromSingleOrMultiple,
@@ -180,8 +181,18 @@ describe("EngineUtils", () => {
   });
 
   describe("distance helpers", () => {
+    it("hypot returns the length of a two-dimensional vector", () => {
+      expect(hypot(3, 4)).to.equal(5);
+      expect(hypot(-3, -4)).to.equal(5);
+      expect(hypot(0, 0)).to.equal(0);
+    });
+
     it("getDistances returns the signed deltas and the hypotenuse", () => {
       expect(getDistances({ x: 0, y: 0 }, { x: 3, y: 4 })).to.eql({ dx: -3, dy: -4, distance: 5 });
+    });
+
+    it.each([1e-200, 1e200])("getDistances preserves the length of a delta of %s", delta => {
+      expect(getDistances({ x: delta, y: 0 }, { x: 0, y: 0 }).distance).to.equal(delta);
     });
 
     it("getDistanceSq and getDistance are consistent", () => {

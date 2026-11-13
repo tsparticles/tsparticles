@@ -88,7 +88,8 @@ files where the domain boundary warrants it. Record final names in STRUCTURE.
   deep import and allows a valid public import.
 - Compile representative TypeScript consumers through public APIs, including
   a plugin option loader, a derived class, callback types, and a custom plugin.
-- Smoke-test the built package across ESM/CJS/browser/lazy and type resolution.
+- Smoke-test the built package across ESM/CJS root and `/lazy`, browser root,
+  and type resolution.
   Check that type-only classes do not become runtime exports.
 - Compare bundle sizes with 02 and justify any added cost. Measure the output
   graph to substantiate savings.

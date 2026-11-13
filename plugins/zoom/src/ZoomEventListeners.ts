@@ -1,4 +1,4 @@
-import { defaultZoom, manageListener, safeDocument } from "@tsparticles/engine";
+import { defaultZoom, hypot, manageListener, safeDocument } from "@tsparticles/engine";
 import {
   initialTouchDistance,
   touchCenterDivisor,
@@ -261,7 +261,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    const distance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+    const distance = hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
 
     if (this.#touchDistance === initialTouchDistance) {
       this.#touchDistance = distance;

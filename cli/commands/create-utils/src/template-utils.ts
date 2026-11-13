@@ -97,7 +97,7 @@ export async function updatePackageDistFile(destPath: string, metadata: IProject
  * @param destPath - The path where the project will be created
  */
 export async function copyEmptyTemplateFiles(destPath: string): Promise<void> {
-  await fsPromises.cp(path.join(__dirname, "..", "files", "empty-project"), destPath, {
+  await fsPromises.cp(new URL("../files/empty-project/", import.meta.url), destPath, {
     recursive: true,
     force: true,
     filter: copyFilter,

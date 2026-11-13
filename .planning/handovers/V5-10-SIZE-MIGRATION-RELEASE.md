@@ -49,7 +49,8 @@ for compatibility claims. Files or packages without an outcome keep the gate ope
 - [ ] Full engine review, including ParticlesManager and Particle, and plugin and browser matrices complete.
 - [ ] Plugin APIs, option inheritance, and consumers using built packages verified.
 - [ ] The minimal scene and slim are smaller in gzip and Brotli, with all
-      budgets met. Lazy entry and total chunks are reported separately.
+      budgets met. Report ESM/CJS lazy subpath sizes separately where consumers
+      use those entrypoints.
 - [ ] Draw/update/allocation regressions are either resolved or explained and accepted.
 - [ ] Targeted tests, full suite (`pnpm exec vitest`, plus a finite run if needed),
       lint, and formatting pass. Verify Nx targets before running them.

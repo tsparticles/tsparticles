@@ -2,7 +2,7 @@ import {
   type Container,
   type IContainerPlugin,
   type ICoordinates,
-  getDistance,
+  getDistanceSq,
   getErrorMessage,
 } from "@tsparticles/engine";
 import type { CollisionParticle } from "./Types.js";
@@ -40,6 +40,10 @@ export class OverlapPluginInstance implements IContainerPlugin {
       throw new Error(getErrorMessage(ErrorCodes.overlapNotPlaced));
     }
 
-    return !!this.#container.particles.find(p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius());
+    return !!this.#container.particles.find(p => {
+      const radius = particle.getRadius() + p.getRadius();
+
+      return radius > 0 && getDistanceSq(pos, p.position) < radius * radius;
+    });
   }
 }

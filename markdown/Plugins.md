@@ -12,10 +12,24 @@ This page provides a practical flow to build extensions that users can reuse eas
 
 ## Before you start
 
-- Register shape/preset before calling `tsParticles.load(...)`
+- Register extensions before calling `tsParticles.init()` or `tsParticles.load(...)`.
 - Use a unique name (for example, with a project prefix)
 - Always document a minimal configuration example
 - If you are starting from an existing demo object, keep that config as a fixture while developing your extension
+
+## Register a plugin
+
+Queue custom plugins through `pluginManager.register` before initializing the engine or loading the first scene. The engine executes the registered loaders during initialization.
+
+```ts
+await tsParticles.pluginManager.register((engine) => {
+  engine.pluginManager.addPlugin(myPlugin);
+});
+
+await tsParticles.load({ id: "tsparticles", options });
+```
+
+Calls to `register` after initialization and calls to `addPlugin` outside the loader phase report `TSP-1003`. The engine and container expose read-only plugin lists.
 
 ## Create a custom shape
 

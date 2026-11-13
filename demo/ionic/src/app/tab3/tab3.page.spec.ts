@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideIonicAngular } from "@ionic/angular/standalone";
 
 import { Tab3Page } from "./tab3.page";
@@ -7,8 +7,8 @@ describe("Tab3Page", () => {
   let component: Tab3Page;
   let fixture: ComponentFixture<Tab3Page>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [Tab3Page],
       providers: [provideIonicAngular()],
     }).compileComponents();
@@ -16,7 +16,7 @@ describe("Tab3Page", () => {
     fixture = TestBed.createComponent(Tab3Page);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

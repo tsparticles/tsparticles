@@ -7,14 +7,20 @@
 | 1   | GIF Shape, Background Canvas, BgMask Dynamic, Draw Layer System, Particle Modifier, HDR Precision                             | 4.3.0         | ✅ Released |
 | 2   | HDR Color Fix & Rendering Modes, Code Review Fixes                                                                            | 4.4.0         | ✅ Released |
 | 3   | Fluid Particle Interaction, MCP `generate_code` tool, Emitter Draw/Drag, Absorber Split, Error Codes, Workspace Test Coverage | 4.5.0 / 4.5.1 | ✅ Released |
+| 4   | Close the v4 review findings and verify package, browser, and integration contracts                                           | 4.6.0         | Planned     |
 
-## Current execution — v5 major
+## Current execution — v4.6.0 minor release
 
-**Status.** Planned on branch `v5`, with package version `4.5.3` after the v4
-merge. Capture a clean baseline from the actual starting commit before the
-first major runtime change, which removes the singleton. Follow the
-[handover index](handovers/README.md). The [v4 review](v4-review/README.md)
-retains its original evidence and patch scope.
+**Goal:** close or explicitly disposition every finding in the [v4 review](v4-review/README.md) before beginning v5 runtime implementation. The nine core runtime fixes are in the released 4.5.4 patch; remaining integration, distribution, measurement, and real-browser gates are tracked in [the 4.6.0 release plan](v4-review/RELEASE-4.6.md).
+
+Do not start v5 runtime changes until each v4 finding has a verified outcome: fixed and covered, reproduced as not fixed, or deferred with evidence and an explicit compatibility reason. Performance and bundle experiments may close without code changes when measurements show no worthwhile compatible improvement.
+
+## Next major — v5
+
+**Status:** planned on dedicated branch `v5`; runtime work follows the 4.6.0 closure gate. Existing handovers were prepared against `4.5.1` and must be reconciled with the final v4 baseline before execution.
+Capture a clean baseline from the actual starting commit before the first major
+runtime change, which removes the singleton. Follow the [handover index](handovers/README.md).
+The [v4 review](v4-review/README.md) retains its original evidence and patch scope.
 
 | Step | Scope                                                               | Handover                                        |
 | ---- | ------------------------------------------------------------------- | ----------------------------------------------- |

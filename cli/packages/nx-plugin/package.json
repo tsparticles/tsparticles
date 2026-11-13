@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-nx-plugin",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -31,7 +31,7 @@
     "nx": "^24"
   },
   "dependencies": {
-    "@nx/devkit": "^24.0.5",
+    "@nx/devkit": "^24.0.6",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
@@ -39,7 +39,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "rimraf": "^6.1.4",
     "typescript": "^6.0.3",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
-    "nx": "^24.0.5"
+    "nx": "^24.0.6"
   },
   "description": "tsParticles Nx plugin",
   "main": "src/index.ts",

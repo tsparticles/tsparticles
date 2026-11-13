@@ -7,7 +7,6 @@ import {
   clamp,
   doublePI,
   getDistance,
-  getDistances,
   getRandom,
   getRangeValue,
   half,
@@ -27,7 +26,8 @@ const moveSpeedFactor = 60,
  */
 export function applyDistance(particle: MoveParticle): void {
   const initialPosition = particle.initialPosition,
-    { dx, dy } = getDistances(initialPosition, particle.position),
+    dx = initialPosition.x - particle.position.x,
+    dy = initialPosition.y - particle.position.y,
     dxFixed = Math.abs(dx),
     dyFixed = Math.abs(dy),
     { maxDistance } = particle.retina,
@@ -95,22 +95,40 @@ export function move(
   applyPath(particle, delta);
 
   const gravityOptions = particle.gravity,
-    gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
+    gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity,
+    initialVelocityX = particle.velocity.x,
+    initialVelocityY = particle.velocity.y,
+    deltaFactor = delta.factor || identity,
+    decay = particle.moveDecay ?? noDecay,
+    decayFactor = decay < 0 ? decay : decay ** deltaFactor,
+    accelerationX = moveDrift && moveSpeed ? moveDrift / (moveSpeedFactor * moveSpeed) : 0,
+    accelerationY =
+      gravityOptions?.enable && moveSpeed
+        ? (gravityFactor * gravityOptions.acceleration) / (moveSpeedFactor * moveSpeed)
+        : 0,
+    integrateAcceleration = (acceleration: number): number => {
+      if (decay <= 0 || decay === noDecay) {
+        return acceleration * deltaFactor;
+      }
 
-  if (moveDrift && moveSpeed) {
-    particle.velocity.x += (moveDrift * delta.factor) / (moveSpeedFactor * moveSpeed);
+      return (acceleration * (identity - decayFactor)) / -Math.log(decay);
+    };
+
+  if (decay > 0) {
+    particle.velocity.multTo(decayFactor);
   }
 
-  if (gravityOptions?.enable && moveSpeed) {
-    particle.velocity.y +=
-      (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
+  particle.velocity.x += integrateAcceleration(accelerationX);
+
+  particle.velocity.y += integrateAcceleration(accelerationY);
+
+  if (decay <= 0) {
+    // Negative multipliers reverse direction and have no real fractional power.
+    particle.velocity.multTo(decayFactor);
   }
-
-  const decay = particle.moveDecay;
-
-  particle.velocity.multTo(decay ?? noDecay);
 
   const velocity = particle.velocity.mult(moveSpeed);
+  let speedClamped = false;
 
   if (
     gravityOptions?.enable &&
@@ -119,10 +137,24 @@ export function move(
       (gravityOptions.inverse && velocity.y <= minVelocity && velocity.y <= -maxSpeed))
   ) {
     velocity.y = gravityFactor * maxSpeed;
+    speedClamped = true;
 
     if (moveSpeed) {
       particle.velocity.y = velocity.y / moveSpeed;
     }
+  }
+
+  const integrateDecayDisplacement = decay > 0 && decay < noDecay;
+
+  if (integrateDecayDisplacement) {
+    const decayRate = -Math.log(decay),
+      decayIntegral = (identity - decayFactor) / decayRate,
+      accelerationIntegral = (deltaFactor - decayIntegral) / decayRate;
+
+    velocity.x = (initialVelocityX * decayIntegral + accelerationX * accelerationIntegral) * moveSpeed;
+    velocity.y = speedClamped
+      ? particle.velocity.y * moveSpeed * deltaFactor
+      : (initialVelocityY * decayIntegral + accelerationY * accelerationIntegral) * moveSpeed;
   }
 
   const zIndexOptions = particle.options.zIndex,
@@ -130,6 +162,10 @@ export function move(
 
   velocity.multTo(zVelocityFactor);
   velocity.multTo(reduceFactor);
+
+  if (!integrateDecayDisplacement) {
+    velocity.multTo(deltaFactor);
+  }
 
   const { position } = particle;
 

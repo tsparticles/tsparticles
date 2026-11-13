@@ -40,12 +40,11 @@ Acceptance requires fewer bytes in the minimal consumer, comparable total M8
 size, a documented path to re-enable the feature, and tests of standard and
 custom bundles.
 
-### B3 — Lazy loading and export conditions
+### B3 — Package entry conditions
 
-Verify that `./lazy`, `browser`, and the bundler-selected entry retain lazy
-behavior. Measure modules loaded at creation and after `load()`, requests,
-CDN URLs, total chunks, and startup. Compare eager and lazy on the same scene.
-Smaller chunks may increase requests and duplication. Smoke-test distributed
+Verify that package conditions select their documented entries. Measure the
+existing ESM/CJS `./lazy` exports as package entrypoints where consumers use
+them. Verify browser entry resolution separately. Smoke-test distributed
 ESM/CJS/browser packages before changing formats or conditional exports.
 
 ### B4 — Browser duplication and bootstrap
@@ -57,8 +56,8 @@ bundle combinations. A shared runtime can reduce full-page cost at the
 expense of script ordering and version constraints. Record that tradeoff.
 
 Acceptance requires two app-created engines, independent registrations,
-explicit engine selection, handling of repeated scripts and version mismatches,
-and working lazy/CDN. Count full-page savings with equivalent feature coverage.
+explicit engine selection, and handling of repeated scripts and version
+mismatches. Count full-page savings with equivalent feature coverage.
 
 ## Sequence and deliverables
 

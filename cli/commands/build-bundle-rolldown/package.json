@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-build-bundle-rolldown",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -50,7 +50,7 @@
     "klaw": "^4.1.0",
     "lookpath": "^1.2.3",
     "path-scurry": "^3.0.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "prompts": "^2.4.2",
     "rimraf": "^6.1.4",

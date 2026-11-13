@@ -1,28 +1,28 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
-  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
-  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "日本語",
+  "title": "tsParticles Confetti | Web サイト向け紙吹雪・パーティクル・花火アニメーション",
+  "description": "カスタマイズ可能な紙吹雪、パーティクル、花火のアニメーションを Web サイトの背景に使用できます。React、Vue、Angular、Svelte、jQuery、Preact、Inferno 用コンポーネントを提供します。",
+  "ogTitle": "tsParticles Confetti | Web サイト向け紙吹雪・パーティクル・花火アニメーション",
+  "ogDescription": "tsParticles で紙吹雪、パーティクル、花火のエフェクトを作成できます。コードエディター付き Playground。React、Vue、Angular、Svelte に対応。",
+  "twitterTitle": "tsParticles Confetti | Web サイト向け紙吹雪・パーティクル・花火アニメーション",
+  "twitterDescription": "tsParticles で紙吹雪、パーティクル、花火のエフェクトを作成できます。コードエディター付き Playground。",
   "header": {
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitRibbons": "Visit tsParticles ribbons website",
-    "visitRibbonsAria": "Visit tsParticles ribbons website",
-    "language": "Language"
+    "switchTheme": "テーマを切り替える",
+    "visitGitHub": "GitHub を開く",
+    "viewSource": "GitHub でソースを表示",
+    "joinDiscord": "Discord に参加",
+    "joinDiscordAria": "tsParticles Discord に参加",
+    "visitReddit": "Reddit を開く",
+    "visitRedditAria": "Reddit で tsParticles を見る",
+    "visitWebsite": "tsParticles サイトを開く",
+    "visitWebsiteAria": "tsParticles サイトを開く",
+    "visitRibbons": "tsParticles Ribbons サイトを開く",
+    "visitRibbonsAria": "tsParticles Ribbons サイトを開く",
+    "language": "言語"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "このページを共有",
+    "share": "共有",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -30,113 +30,105 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "リンクをコピー"
   },
   "usage": {
-    "title": "Usage",
-    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+    "title": "使い方",
+    "description": "素の HTML/JS を使う場合は、ページにスクリプトを読み込みます。"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "実行",
+  "copied": "コピーしました",
   "footer": {
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "with": "提供",
+    "by": "作成",
+    "cookiePreferences": "Cookie の設定"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "プライバシー設定",
+    "text": "このサイトでの分析および広告技術の使用方法を選択してください。分析 Cookie を無効にしても、Cookie を使用しない匿名測定は有効です。",
+    "cookiePolicy": "Cookie ポリシー",
+    "analytics": "分析 Cookie",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "すべて拒否",
+    "saveChoices": "選択を保存",
+    "acceptAll": "すべて許可"
   },
   "modes": {
     "cannon": {
-      "name": "Basic Cannon",
-      "description": [
-        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
-      ]
+      "name": "ベーシックキャノン",
+      "description": ["デフォルトのモードです。定番の紙吹雪をシンプルに楽しめます。"]
     },
     "random": {
-      "name": "Random Direction",
+      "name": "ランダムな方向",
       "description": [
-        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
+        "ランダムな量の紙吹雪をランダムな方向へ発射します。何度か押してみてください。"
       ]
     },
     "realistic": {
-      "name": "Realistic Look",
+      "name": "リアルな見た目",
       "description": [
-        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
+        "粒子が多いと均一な円すい形は不自然です。複数のエフェクトで自然に見せましょう。"
       ]
     },
     "hearts": {
-      "name": "Valentine's Day",
+      "name": "バレンタイン",
       "description": [
-        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
-        "❤️ Happy Valentine's Day! ❤️"
+        "ハート形の紙吹雪でバレンタインを演出できます。",
+        "❤️ ハッピーバレンタイン！❤️"
       ]
     },
     "stars": {
-      "name": "Stars",
+      "name": "星",
       "description": [
-        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
-        "✨ Celebrate with a burst of stars! ✨"
+        "形や大きさ、設定を変え、時間をずらして呼び出すと華やかになります。",
+        "✨ 星のきらめきでお祝いしましょう！✨"
       ]
     },
     "emoji": {
-      "name": "Emoji and Unicorns",
+      "name": "絵文字とユニコーン",
       "description": [
-        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
-        "🦄 Unicorns loves rainbows! 🦄"
+        "虹色のエフェクトにユニコーンの絵文字を加えます。🦄",
+        "🦄 ユニコーンは虹が大好き！🦄"
       ]
     },
     "images": {
-      "name": "Images",
+      "name": "画像",
       "description": [
-        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
-        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+        "お気に入りの画像を紙吹雪の形として使えます。適切なサイズか確認してください。",
+        "🍎🥑🍌🍉🍍🍓 このフルーツ、とてもかわいいですね？🍒🍑🍈🍇🍊🍋"
       ]
     },
     "fireworks": {
-      "name": "Fireworks",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
-      ]
+      "name": "花火",
+      "description": ["ページの左右から紙吹雪を飛ばし、中央の内容を読みやすく保ちます。"]
     },
     "snow": {
-      "name": "Snow",
-      "description": [
-        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
-      ]
+      "name": "雪",
+      "description": ["ページ全体に粒子をゆっくり降らせ、冬の雰囲気を演出できます。"]
     },
     "continuous": {
-      "name": "School Pride",
+      "name": "スクールプライド",
       "description": [
-        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
-        "🌰 Go Buckeyes! 🌰"
+        "ページの両側にキャノンを置いて、自分の色を見せましょう。",
+        "🌰 がんばれ Buckeyes！🌰"
       ]
     },
     "customShapes": {
-      "name": "Custom Shapes",
+      "name": "カスタムシェイプ",
       "description": [
-        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
+        "任意の SVG パスでイベントに合う形を作れます。自由にデザインしましょう！",
         "🎃🎄💜"
       ]
     },
     "custom": {
-      "name": "Custom Canvas",
-      "description": [
-        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
-      ]
+      "name": "カスタム Canvas",
+      "description": ["独自の canvas 要素で紙吹雪の表示範囲を限定できます。"]
     },
     "confettiRibbons": {
-      "name": "Confetti + Ribbons",
+      "name": "紙吹雪とリボン",
       "description": [
-        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "Double the celebration!"
+        "紙吹雪とリボンを組み合わせ、公開や節目、季節の挨拶を華やかに演出します。",
+        "お祝いを2倍に！"
       ]
     }
   }

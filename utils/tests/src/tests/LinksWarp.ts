@@ -88,6 +88,13 @@ async function checkLinks(
 
 describe("Warped links", () => {
   globalThis.window = TestWindow;
+  it("includes the wrapped corner at the exact radius", () => {
+    const circle = new CircleWarp(0, 0, 5, { width, height });
+
+    expect(circle.contains({ x: width - 3, y: height - 4 })).toBe(true);
+    expect(circle.contains({ x: width - 3, y: height - 5 })).toBe(false);
+  });
+
   for (const [name, p1, p2] of [
     ["left", { x: 5, y: 300 }, { x: 795, y: 300 }],
     ["right", { x: 795, y: 300 }, { x: 5, y: 300 }],

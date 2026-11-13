@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-rounded-rect",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles shape for rendering particles as rounded rectangle shapes",
   "homepage": "https://particles.js.org",
   "scripts": {

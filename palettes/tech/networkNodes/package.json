@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-network-nodes",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles network nodes palette",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -10,7 +10,7 @@ import {
   Vector,
   calcPositionOrRandomFromSizeRanged,
   doublePI,
-  getDistance,
+  getDistanceSq,
   getRangeValue,
   getStyleFromRgb,
   isPointInside,
@@ -18,7 +18,6 @@ import {
   minRadius,
   originPoint,
   rangeColorToRgb,
-  squareExp,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -194,13 +193,16 @@ export class AbsorberInstance {
     const container = this.#container,
       options = this.options,
       pos = particle.getPosition(),
-      distance = getDistance(this.position, pos);
+      particleRadius = particle.getRadius(),
+      distanceSq = getDistanceSq(this.position, pos),
+      contactRadius = this.size + particleRadius;
 
-    if (distance < this.size + particle.getRadius()) {
-      const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio * delta.factor;
+    if (contactRadius > 0 && distanceSq < contactRadius * contactRadius) {
+      const sizeFactor = particleRadius * absorbFactor * container.retina.pixelRatio * delta.factor,
+        innerRadius = this.size - particleRadius;
 
       if (
-        (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
+        (innerRadius > 0 && distanceSq < innerRadius * innerRadius) ||
         (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < minOrbitLength)
       ) {
         if (options.destroy) {
@@ -251,12 +253,13 @@ export class AbsorberInstance {
   getAttraction(point: ICoordinates): number {
     // the absorber is a body with a radius, not a point mass: clamping the effective distance to
     // its own size keeps the inverse square force finite when the particle reaches the centre
-    const effectiveDistance = Math.max(getDistance(this.position, point), this.size, minRadius);
-
-    return Math.min(
-      (this.mass / effectiveDistance ** squareExp) * this.#container.retina.reduceFactor,
-      maxAttractForce,
+    const effectiveDistanceSq = Math.max(
+      getDistanceSq(this.position, point),
+      this.size * this.size,
+      minRadius * minRadius,
     );
+
+    return Math.min((this.mass / effectiveDistanceSq) * this.#container.retina.reduceFactor, maxAttractForce);
   }
 
   /**

@@ -2,7 +2,6 @@ import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import { RangeType } from "../../Enums/RangeType.js";
 import { checkDistance } from "../../Utils/MathUtils.js";
-import { squareExp } from "./Constants.js";
 
 /** Abstract base class for spatial ranges */
 export abstract class BaseRange {
@@ -89,21 +88,24 @@ export class Circle extends BaseRange {
     const pos1 = this.position,
       pos2 = range.position,
       r = this.radius,
-      dx = Math.abs(pos2.x - pos1.x),
-      dy = Math.abs(pos2.y - pos1.y);
+      dx = pos2.x - pos1.x,
+      dy = pos2.y - pos1.y;
 
     if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
-        rSum = r + circleRange.radius,
-        dist = Math.hypot(dx, dy);
+        rSum = r + circleRange.radius;
 
-      return rSum > dist;
+      return rSum > 0 && dx * dx + dy * dy < rSum * rSum;
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
       const rectRange = range as Rectangle,
         { width, height } = rectRange.size,
-        edges = Math.pow(dx - width, squareExp) + Math.pow(dy - height, squareExp);
+        absX = Math.abs(dx),
+        absY = Math.abs(dy),
+        xEdge = absX - width,
+        yEdge = absY - height,
+        edges = xEdge * xEdge + yEdge * yEdge;
 
-      return edges <= r ** squareExp || (dx <= r + width && dy <= r + height) || dx <= width || dy <= height;
+      return edges <= r * r || (absX <= r + width && absY <= r + height) || absX <= width || absY <= height;
     }
 
     return false;

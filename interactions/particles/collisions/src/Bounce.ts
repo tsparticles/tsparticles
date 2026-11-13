@@ -19,8 +19,10 @@ const energyCorrectionMinRatio = 1e-6,
 
     p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
 
-    if (p.velocity.length > p.collisionMaxSpeed) {
-      p.velocity.length = p.collisionMaxSpeed;
+    const maxSpeed = p.collisionMaxSpeed;
+
+    if (p.velocity.getLengthSq() > maxSpeed * Math.abs(maxSpeed)) {
+      p.velocity.length = maxSpeed;
     }
   };
 
@@ -31,22 +33,20 @@ const energyCorrectionMinRatio = 1e-6,
 export function bounce(p1: BounceParticle, p2: BounceParticle): void {
   const m1 = p1.getMass(),
     m2 = p2.getMass(),
-    speed1Before = p1.velocity.length,
-    speed2Before = p2.velocity.length,
-    keBefore = m1 * speed1Before * speed1Before + m2 * speed2Before * speed2Before;
+    keBefore = m1 * p1.velocity.getLengthSq() + m2 * p2.velocity.getLengthSq();
 
   circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 
-  const speed1After = p1.velocity.length,
-    speed2After = p2.velocity.length,
-    keAfter = m1 * speed1After * speed1After + m2 * speed2After * speed2After;
+  const speed1SqAfter = p1.velocity.getLengthSq(),
+    speed2SqAfter = p2.velocity.getLengthSq(),
+    keAfter = m1 * speed1SqAfter + m2 * speed2SqAfter;
 
   if (keAfter > keBefore * energyCorrectionMinRatio) {
     const correctionFactor = Math.sqrt(keBefore / keAfter);
 
     if (Math.abs(correctionFactor - correctionFactorNeutral) > energyDriftThreshold) {
-      p1.velocity.length = speed1After * correctionFactor;
-      p2.velocity.length = speed2After * correctionFactor;
+      p1.velocity.length = Math.sqrt(speed1SqAfter) * correctionFactor;
+      p2.velocity.length = Math.sqrt(speed2SqAfter) * correctionFactor;
     }
   }
 

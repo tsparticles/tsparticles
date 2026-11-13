@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/riot",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "Official tsParticles Riot Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "main": "dist/riot-particles.cjs",
   "module": "dist/riot-particles.esm.js",
@@ -120,7 +120,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "riot": "^10.1.6",
     "rollup": "^4.67.4",
     "rollup-plugin-riot": "^10.0.0",

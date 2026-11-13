@@ -39,7 +39,13 @@ const Particles: FC<IParticlesProps> = props => {
 
         containerRef.current = c;
 
-        particlesLoaded?.(c);
+        void (async () => {
+          try {
+            await particlesLoaded?.(c);
+          } catch (error) {
+            getLogger().error("Particles: error in particlesLoaded callback", error);
+          }
+        })();
       })
       .catch(error => {
         if (!cancelled) {
@@ -56,7 +62,8 @@ const Particles: FC<IParticlesProps> = props => {
     };
   }, [id, loaded, options, particlesLoaded, url]);
 
-  return <div id={id ?? "tsparticles"} className={className} style={style}></div>;
+  /* An unfinished load still owns its canvas until its cleanup completes. */
+  return <div key={id ?? "tsparticles"} id={id ?? "tsparticles"} className={className} style={style}></div>;
 };
 
 export default Particles;

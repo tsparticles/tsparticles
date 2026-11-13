@@ -5,13 +5,11 @@ import {
   type RecursivePartial,
   Vector,
   clamp,
-  getDistances,
   getRangeValue,
   identity,
   loadOptionProperty,
   minDistance,
   minVelocity,
-  squareExp,
 } from "@tsparticles/engine";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
 
@@ -80,7 +78,9 @@ export class Repulser extends ParticlesInteractorBase {
 
     const pos1 = p1.getPosition(),
       query = container.particles.grid.queryCircle(pos1, p1.repulse.distance),
-      p1DistanceFactor = identity / p1.repulse.distance;
+      p1DistanceFactor = identity / p1.repulse.distance,
+      p1DistanceFactorSq = p1DistanceFactor * p1DistanceFactor,
+      velocity = p1.repulse.speed * p1.repulse.factor;
 
     for (const p2 of query) {
       if (p1 === p2 || p2.destroyed) {
@@ -88,14 +88,13 @@ export class Repulser extends ParticlesInteractorBase {
       }
 
       const pos2 = p2.getPosition(),
-        { dx, dy, distance } = getDistances(pos2, pos1),
-        distanceFactor = identity / distance,
-        velocity = p1.repulse.speed * p1.repulse.factor;
+        dx = pos2.x - pos1.x,
+        dy = pos2.y - pos1.y,
+        distanceSq = dx * dx + dy * dy;
 
-      if (distance > minDistance) {
+      if (distanceSq > minDistance) {
         const repulseFactor =
-          clamp((identity - Math.pow(distance * p1DistanceFactor, squareExp)) * velocity, minVelocity, velocity) *
-          distanceFactor;
+          clamp((identity - distanceSq * p1DistanceFactorSq) * velocity, minVelocity, velocity) / Math.sqrt(distanceSq);
 
         this.#normVec.x = dx * repulseFactor;
         this.#normVec.y = dy * repulseFactor;

@@ -1,6 +1,6 @@
 {
 	"name": "@tsparticles/svelte-kit-demo",
-	"version": "4.5.4",
+	"version": "4.6.0",
 	"private": true,
 	"imports": {
 		"#lib/*": "./src/lib/*"
@@ -31,7 +31,7 @@
 		"eslint": "^10.14.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.24.0",
-		"prettier": "^3.9.10",
+		"prettier": "^3.10.1",
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.57.3",
 		"svelte-check": "^4.7.8",

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-quart",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles easing quart plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

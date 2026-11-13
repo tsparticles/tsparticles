@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt4-demo",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "private": true,
   "type": "module",
   "repository": {
@@ -40,7 +40,7 @@
     "globals": "^17.14.0",
     "lint-staged": "^17.6.0",
     "nuxt": "^4.6.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
     "vue": "^3.5.44",
