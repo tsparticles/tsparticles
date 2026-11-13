@@ -23,6 +23,7 @@ env:
   RELEASE_RETRY_BASE_DELAY: 10
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
   NODE_OPTIONS: "--max-old-space-size=4096"
+  npm_config_frozen_lockfile: false
 
 jobs:
   publish:
@@ -45,7 +46,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Initialize Nx Cloud
         run: pnpm exec nx-cloud start-ci-run --distribute-on="10 linux-medium-js"
