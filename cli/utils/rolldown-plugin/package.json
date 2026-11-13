@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/rolldown-plugin",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "Rolldown build utilities for tsParticles",
   "private": false,
   "type": "module",

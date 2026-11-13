@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-circle",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles emitters shape circle plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
