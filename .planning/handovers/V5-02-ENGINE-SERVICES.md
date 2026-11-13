@@ -1,6 +1,6 @@
 # V5-02 — Engine-owned random and logging services
 
-Status pending. Requires completion of 01.
+Status pending. Execute in E2 after E1. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 

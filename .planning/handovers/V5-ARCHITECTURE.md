@@ -24,17 +24,18 @@ These evaluations are part of the [01–10 handovers](README.md). Each evaluatio
 is required. Implement a proposed rewrite only when the evidence supports it.
 The singleton, service isolation, coverage, and budget requirements still apply.
 
-1. In 01/02, identify dependencies and constraints for explicit engines.
-   Keep registries per engine and evaluate package splits in the later steps.
-2. In 03, propose contracts for state, options, and extensions and compare
-   package boundaries. Consult ARCH-01/03/04 together to avoid incompatible
-   APIs. Draft contracts before considering a physical split.
-3. In 04–07, verify the contracts in lifecycle and hot paths. In 06, agree on
-   Particle and ParticlesManager responsibilities before changing collections.
-   In 07, implement only selected and measured alternatives.
-4. In 08, complete migration and verification across extension families.
-   In 09, verify package distribution and composition.
-5. In 10, close decisions and document actual breaking changes in the v4 → v5 guide.
+Follow [E0–E10](V5-EXECUTION.md); numeric handover IDs identify owners.
+
+1. E0 inventories dependencies; E1/E2 establish explicit engines and isolated services.
+2. E3 evaluates ARCH-01/03/04 together and records implementable state, options,
+   reset and extension contracts. Evaluate ARCH-02 logical boundaries here;
+   physical package extraction normally waits for E9 evidence.
+3. E4 integrates lifecycle contracts. E5 implements selected Particle/options
+   changes with OKLCH and affected extensions before collection optimization.
+4. E6 optimizes manager/pool/index against E5 invariants. E7 completes rendering
+   review on stable color and simulation behavior. Migrate consumers throughout.
+5. E8 closes extension verification, E9 verifies package composition, and E10
+   closes decisions and documents actual breaking changes.
 
 ## Decision log and completion
 

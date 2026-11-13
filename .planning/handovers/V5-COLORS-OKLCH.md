@@ -188,8 +188,12 @@ Preserve semantically valid HSL/RGB converters or document removals and replacem
 
 ## Implementation sequence and gates
 
-Run C0–C5 within 03/05/07/08/09/10. Define Particle contracts needed by 05 in 03,
-deliver minimum integration in 05, and keep the full Particle review in 07.
+Follow the [execution sequence](V5-EXECUTION.md): C0 decisions in E3, C1–C4
+in the coordinated E5 model/color migration, C5 distribution in E9 and closure
+in E10. Numbers below identify technical handover owners, not execution order.
+C2/C3 share a buildable integration checkpoint: migrate all directly affected
+consumers with the signature switch. Complete Particle review and C4 in E5
+before collection and rendering optimizations in E6/E7.
 
 1. **C0 — Baseline and decisions (03, before shared changes).** Capture the
    commit and working-tree diff, APIs/types, color and scene fixtures, images,

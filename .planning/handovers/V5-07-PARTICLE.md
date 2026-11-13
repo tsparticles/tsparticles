@@ -1,12 +1,14 @@
 # V5-07 — Full Particle review
 
-Status pending. Requires completion of 06. All of `Particle.ts` is in scope.
+Status pending. Execute in E5 after E4, before the collection/pool optimizations
+in E6. Coordinate color/output and consumers with 05/08. Verify reset against the
+existing manager and establish invariants for 06. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
 Particle, initialization and state helpers, integration with Retina, options,
 modifiers, drawers, and updaters, plugin contracts, and related tests.
-Preserve other contributors' changes and invariants established in 06.
+Preserve other contributors' changes and the E3/E4 contracts.
 
 ## Work
 
@@ -42,7 +44,7 @@ Preserve other contributors' changes and invariants established in 06.
   shapes/effects, and plugins with extended state.
 - Measure memory per particle and allocations as well as update/draw cost.
   Verify isolation across groups, containers, and engines with different RNG/loggers.
-- Compare min/gzip/Brotli for the same scene against 06 and the baseline.
+- Compare min/gzip/Brotli for the same scene against the preceding verified checkpoint and the E0 baseline.
 - Reuse the 4.6.0 `MoveTiming.ts` regressions for decay, gravity and
   speed limits when changing particle movement state or its update contract.
   Run the full suite, lint/format, and downstream builds.

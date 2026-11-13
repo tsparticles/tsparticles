@@ -1,6 +1,7 @@
 # V5-10 — Size, migration, and release readiness gates
 
-Status pending. Requires verified completion of 01–09.
+Status pending. Execute in E10 after verified E0–E9 gates and completion of
+all technical handovers 01–09. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 

@@ -16,9 +16,12 @@ Savings have yet to be demonstrated.
 
 ## Execution and tracking
 
-Run the IMP work within the [main handovers](README.md) according to ownership
-and dependencies. Owners read their assigned plans before starting. IMP numbers
-identify technical topics. The main handovers define the execution sequence.
+Run the IMP work in the [E0–E10 execution sequence](V5-EXECUTION.md).
+IMP-01 starts in E0; IMP-02 analysis starts in E3 and closes in E9; IMP-05
+runs on the final Particle/color state in E5; IMP-03/04 run in E6; IMP-06
+splits lifecycle work in E4 from final rendering work in E7. Owners read their
+assigned plans before starting. IMP and handover numbers identify technical
+topics; E0–E10 defines execution order.
 
 Record a decision for every B/P/S/T/R candidate: implemented and verified,
 rejected with evidence, or deferred with rationale and budget impact.

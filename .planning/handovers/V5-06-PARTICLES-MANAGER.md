@@ -1,7 +1,8 @@
 # V5-06 — Full ParticlesManager review
 
-Status pending. Requires completion of 05. Review the entire area, including
-work beyond changes required by Container or CanvasManager.
+Status pending. Execute in E6 after the E5 Particle/options and color gate.
+Review the entire area, including work beyond signature adaptations.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -60,8 +61,8 @@ occupied cells, while preserving observable query order.
 ## Deliverables
 
 List reviewed methods and invariants, applied simplifications, and retained
-code with reasons. Report bundle/runtime results and contracts to verify in
-07/08. Update the full engine coverage matrix and index status.
+code with reasons. Report bundle/runtime results, recheck the reset contracts established by 07
+in E5, and provide evidence for the final audit in 08. Update the full engine coverage matrix and index status.
 
 ## Performance and size plans
 

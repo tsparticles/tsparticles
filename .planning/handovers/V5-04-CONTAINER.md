@@ -1,6 +1,7 @@
 # V5-04 — Simplify Container while preserving its lifecycle
 
-Status pending. Requires completion of 03.
+Status pending. Execute in E4 after the E3 shared-contract gate.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 

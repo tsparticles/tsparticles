@@ -6,6 +6,20 @@ See: .planning/PROJECT.md (initialized)
 
 **Current focus.** v5 major planning on branch `v5`, with package version `4.6.0`.
 
+## Session status — 2026-11-13 — v5 execution reordering
+
+- Added the authoritative [E0–E10 sequence](handovers/V5-EXECUTION.md), with
+  dependencies, difficulty, impact, implementation increments and exit gates.
+  Handover 01–10 filenames remain stable topic/ownership references.
+- Baseline and retirement/browser scope precede runtime changes. Explicit engines
+  remain first, immediately followed by isolated services. Shared contracts and
+  lifecycle precede Particle/options plus the complete OKLCH migration; collections
+  and rendering optimizations follow the resulting model.
+- Plugin and browser migration now explicitly accompany every breaking change;
+  final ecosystem/distribution stages close coverage rather than postpone repairs.
+- Next action: E0 baseline and inventories. All runtime stages remain pending.
+  Documentation-only revision; no runtime tests, builds or measurements claimed.
+
 ## Session status — 2026-11-13 — v4.6.0 merge
 
 - Merge `201b8e8d33` brought `main` at `eab131e13a`, including the

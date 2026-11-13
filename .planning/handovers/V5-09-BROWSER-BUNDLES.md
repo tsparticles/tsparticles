@@ -1,7 +1,8 @@
 # V5-09 — Refine browser distribution without a singleton
 
-Status pending. Define the minimum contract and make migration work in 01.
-Refine and verify distribution after 08. Fix build failures when they arise.
+Status pending. Define support scope in E0 and make browser migration work in E1.
+Refine and verify distribution in E9 after E8. Fix build failures when they arise.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -97,7 +98,9 @@ and consumers installed from built packages.
 
 ## Legacy support retirement
 
-Apply [V5-LEG](../REQUIREMENTS.md). Inventory Vue 2, Nuxt 2, and Nuxt 3 wrappers
+Apply [V5-LEG](../REQUIREMENTS.md). Define the inventory and browser policy in E0;
+remove retired integrations before supported-consumer migration in E1. In E9,
+verify the completed removal of Vue 2, Nuxt 2, and Nuxt 3 wrappers
 and related demos, starter templates, installer detection, package references,
 docs, and translations. Inventory APIs marked `@deprecated` with documented
 supported replacements and record their migration paths.

@@ -22,39 +22,31 @@ V4-S03 remains deferred pending cold first-use and standalone All measurements.
 Follow the [handover index](handovers/README.md) and capture a clean baseline
 from the actual starting commit before removing the singleton.
 
-| Step | Scope                                                               | Handover                                        |
-| ---- | ------------------------------------------------------------------- | ----------------------------------------------- |
-| 1    | Explicit engines, initial plugin audit and working browser contract | [01](handovers/V5-01-ENGINE-INSTANCES.md)       |
-| 2    | Per-engine services and shared-state audit                          | [02](handovers/V5-02-ENGINE-SERVICES.md)        |
-| 3    | Full engine inventory, domain boundaries and review ownership       | [03](handovers/V5-03-CORE-BOUNDARIES.md)        |
-| 4    | Container and events                                                | [04](handovers/V5-04-CONTAINER.md)              |
-| 5    | CanvasManager and RenderManager                                     | [05](handovers/V5-05-CANVAS-RENDERING.md)       |
-| 6    | ParticlesManager and SpatialHashGrid                                | [06](handovers/V5-06-PARTICLES-MANAGER.md)      |
-| 7    | Particle and Retina                                                 | [07](handovers/V5-07-PARTICLE.md)               |
-| 8    | Ecosystem plugin impact and compatibility audit                     | [08](handovers/V5-08-PLUGIN-IMPACT.md)          |
-| 9    | Browser/CDN distribution refinement and legacy support retirement   | [09](handovers/V5-09-BROWSER-BUNDLES.md)        |
-| 10   | Complete coverage, budget and migration gate, including removals    | [10](handovers/V5-10-SIZE-MIGRATION-RELEASE.md) |
+Use the [dependency-driven E0–E10 sequence](handovers/V5-EXECUTION.md).
+Handover filenames retain their original topic IDs; they are not chronological.
 
-Performance and bundle-size candidates are tracked in [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md) and enter implementation only when the relevant measurements support them.
+1. **E0:** capture baseline/budgets, inventory consumers, define retirement and browser scope.
+2. **E1:** remove singleton, migrate supported consumers and working browser bootstrap.
+3. **E2:** isolate RNG/loggers and audit scheduler/caches per engine.
+4. **E3:** decide Particle/options/extensions/color contracts, then establish internal boundaries.
+5. **E4:** stabilize Container lifecycle, refresh, cancellation and hooks.
+6. **E5:** implement Particle/options and OKLCH end to end, including affected plugins/output.
+7. **E6:** review and optimize collections, pooling, update phases and spatial indexing.
+8. **E7:** complete canvas review and optimize rendering against the final model.
+9. **E8:** close ecosystem compatibility coverage accumulated throughout implementation.
+10. **E9:** finalize packaging/CDN/lazy composition and verify legacy cleanup.
+11. **E10:** close budgets, full verification, migration documentation and release readiness.
 
-V5 also retires obsolete framework integrations (Vue 2, Nuxt 2 and Nuxt 3),
-documented deprecated compatibility APIs, and support/compatibility code needed
-only by browsers older than the agreed 5–6 year window with negligible usage share.
-Handover 09 must record the Browserslist targets and share threshold for the v5
-release before changing the shared browser policy; handover 10 verifies workspace,
-package, template, installer, docs/translation and bundle cleanup. Feature detection
-for optional browser capabilities still relevant to supported targets remains in scope.
+The sequence includes difficulty, impact and exit gates. [Architecture evaluations](handovers/V5-ARCHITECTURE.md)
+feed E3 contracts; [OKLCH C1–C4](handovers/V5-COLORS-OKLCH.md) form the coordinated E5
+migration. [Performance candidates](handovers/V5-IMPROVEMENTS.md) require measured
+benefits on stable contracts. Existing handover acceptance checks remain required.
 
-The [architecture plan](handovers/V5-ARCHITECTURE.md), added on 2026-11-06,
-provides four dedicated evaluations: Particle state/serialization, engine package
-boundaries, options resolution and a common extension architecture. Contracts are
-proposed in step 03, verified in 04–09 and closed with evidence in step 10; no
-additional sequential phase or mandatory full rewrite is introduced.
-
-The [OKLCH migration plan](handovers/V5-COLORS-OKLCH.md) adds V5-COLOR:
-canonical particle state and h/c/l animation, native color-manager conversions,
-wide-gamut output and separate HDR capabilities. C0–C5 are integrated into steps
-03/05/07/08/09/10, with explicit compatibility and accuracy gates.
+Vue 2, Nuxt 2 and Nuxt 3 retirement is scoped in E0 and performed before migrating
+retained integrations in E1. Remove deprecated APIs with their owning contract
+changes. Record browser targets and usage threshold in E0 before removing support;
+preserve fallbacks required by supported browsers. E9/E10 verify all workspace,
+package, installer, template, documentation and translation cleanup.
 
 No implementation step is complete yet. Historical fluid references to “v5” below
 identify a solver-plan revision, not this product major release.

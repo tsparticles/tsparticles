@@ -1,7 +1,8 @@
 # V5-08 — Audit plugins after singleton removal
 
-Status pending. An initial audit is required in 01/02. This handover completes
-verification after 07, once core contracts are stable.
+Status pending. Start the inventory in E0 and migrate affected consumers with
+every breaking change in E1–E7, including color closure in E5. Complete the
+independent coverage audit in E8. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 

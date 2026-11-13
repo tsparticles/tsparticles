@@ -1,6 +1,8 @@
 # V5-05 — CanvasManager, rendering, and other core costs
 
-Status pending. Requires completion of 04.
+Status pending. Color/output migration runs in E5 with 07/08 after E4.
+Complete rendering optimizations and the remaining full review in E7, after E6.
+See the [execution sequence](V5-EXECUTION.md); this handover has two checkpoints.
 
 ## Ownership
 
@@ -63,7 +65,7 @@ Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.
 
 ## Required color migration
 
-Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C1/C2 and minimum C3
-integration. Cover conversion without early clipping, OKLCH/P3 output and
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In E5, coordinate C1–C4
+with 07/08, including complete canonical runtime and affected-consumer integration. Cover conversion without early clipping, OKLCH/P3 output and
 fallbacks, separate gamut/precision/HDR capabilities, intermediate surfaces,
-and numerical and browser tests. The full Particle review remains in 07.
+and numerical and browser tests. The full Particle review belongs to 07 in the same E5 stage; optimization follows in E7.

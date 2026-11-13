@@ -1,6 +1,8 @@
 # V5-03 — Domain folders and a minimal public API surface
 
-Status pending. Requires completion of 02 and stable signatures.
+Status pending. Start inventories in E0; execute contracts and internal boundaries
+in E3 after E2. Physical package extraction is evaluated here and finalized in E9.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -97,7 +99,8 @@ files where the domain boundary warrants it. Record final names in STRUCTURE.
 
 ## Deliverables
 
-Complete `V5-ENGINE-AUDIT.md` with ownership and review status for every file.
+Complete `V5-ENGINE-AUDIT.md` with ownership and current review status for every
+file, extending the inventory started in E0. Later owners close their reviews.
 
 Provide the public/internal matrix, domain graph, enforced rules, API removal list,
 and measurements. Update ARCHITECTURE/STRUCTURE and status. Later handovers use the

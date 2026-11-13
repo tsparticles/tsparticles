@@ -1,6 +1,6 @@
 # V5-IMP-01 — Baseline and comparison protocol
 
-Status pending. Handover 01 owns the baseline, 04–09 own experiments, and 10
+Status pending. Capture the baseline in E0 under handover 01 ownership; 04–09 own experiments, and 10
 owns completion. This protocol applies to all IMP plans.
 
 ## Purpose

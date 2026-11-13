@@ -18,7 +18,8 @@ Provide a small, high-performance, and extensible particle engine that developer
 
 ### Active — v5 major (planned 2026-11-03)
 
-Execution source: [v5 handovers](handovers/README.md). Dedicated branch: `v5`.
+Execution order: [E0–E10](handovers/V5-EXECUTION.md), with detailed scope in the
+[v5 handovers](handovers/README.md). Topic IDs are not chronological. Dedicated branch: `v5`.
 The branch carries package version `4.6.0` after merging `main`. Major runtime
 implementation and the clean bundle baseline are pending.
 
@@ -70,4 +71,4 @@ implementation and the clean bundle baseline are pending.
 
 ---
 
-_Last updated 2026-11-08 after the v4 merge. Major implementation and measurements are pending._
+_Last updated 2026-11-13 after execution reordering. Major implementation and measurements are pending._
