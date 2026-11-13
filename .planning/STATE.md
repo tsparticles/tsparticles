@@ -4,7 +4,16 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus.** v5 major planning on branch `v5`, with package version `4.5.3`.
+**Current focus.** v5 major planning on branch `v5`, with package version `4.6.0`.
+
+## Session status — 2026-11-13 — v4.6.0 merge
+
+- Merge `201b8e8d33` brought `main` at `eab131e13a`, including the
+  `v4.6.0` tag at `8c572f3f97` and subsequent publishing fixes. The first
+  major runtime handover and its clean measurement baseline remain pending.
+- The 4.6.0 release is complete. Collect the outstanding V4-S01 Rollup and CDN
+  measurements in the v5 baseline. V4-S03 remains deferred under its first-use
+  and standalone All compatibility criteria.
 
 ## Session status — 2026-11-08 — Post-merge documentation review
 
@@ -15,10 +24,6 @@ See: .planning/PROJECT.md (initialized)
   The original `4.5.1` reconnaissance and `4.5.2` architecture/color review remain
   historical. Capture a clean measurement baseline from the implementation
   starting commit before any major runtime changes.
-- The [v4 review](v4-review/README.md) records evidence from `5d59d1dbbd`. The
-  reviewed implementation files linked there are unchanged at the merge. Treat
-  the findings as pending work and rerun the relevant regressions when taking
-  them on.
 - Translated the v5-only architecture and OKLCH plans and their handover
   additions into English. This pass checked documentation and source references.
   Runtime tests and measurements were not rerun.

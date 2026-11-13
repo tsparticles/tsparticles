@@ -1,10 +1,10 @@
 # tsParticles v5 execution plan
 
-Initial plan dated 2026-11-03. Use the dedicated branch `v5`. The
-2026-11-08 merge `e9c7a7378d` includes v4 tip `5aba15652a` and carries
-package version `4.5.3`. Status **planned, with major runtime implementation
-and a clean measurement baseline pending**. The original `4.5.1`
-reconnaissance and later `4.5.2` architecture and color review are historical.
+Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
+`201b8e8d33` incorporates the `4.6.0` release through `main`. Status
+**planned, with major runtime implementation and a clean measurement baseline
+pending**. The original `4.5.1` reconnaissance and later `4.5.2` architecture
+and color review are historical.
 
 ## Goals and sequence
 
@@ -111,6 +111,10 @@ Capture the baseline at the start of 01, before refactoring. In
 versions, build commands, formats, and measurements. Build fresh artifacts for
 the verified baseline. Use the same toolchain, minifier, and compression settings.
 
+Complete the standard Rollup baseline and CDN engine-plus-feature measurements
+carried forward from V4-S01. Record compressed bytes, request counts, and
+duplicate modules for the entry, the first scene, and the full output graph.
+
 <!-- coderabbit-ai-generated:v1 -->
 
 <!-- coderabbit-ai-generated-section:v1:48e33223d4af4463d81ff82bbe13ab8dd138c879ac57b98059f9152826f890f6 -->
@@ -122,7 +126,7 @@ the verified baseline. Use the same toolchain, minifier, and compression setting
 | Acquire a factory engine  | Unavailable until `@tsparticles/engine` exports `createEngine()`; no buildable factory baseline exists yet                                      |
 | Minimal scene             | Engine and only the required loaders, using identical options                                                                                   |
 | Basic / slim / full / all | Supported minified distribution bundles                                                                                                         |
-| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                                                            |
+| ESM/CJS lazy and CDN      | Separate package `/lazy` and documented CDN consumers; record entry and every chunk needed to start the same scene                              |
 
 For singleton acquisition, import and re-export `tsParticles` so the bundler
 retains the acquired engine. Record this existing measurement separately from
@@ -199,10 +203,6 @@ verify distribution in 09, and close the gate in 10.
 deprecated APIs with documented replacements, and browser support under the
 agreed age and usage policy. Define and verify the scope in 09 and close it
 in 10. Preserve fallbacks needed by supported browsers.
-
-The [v4 review](../v4-review/README.md) is a separate patch-first plan.
-Reuse relevant regression fixtures as they become available. Recheck each
-finding on the implementation commit and preserve the v4 review's provenance.
 
 ## Plan status
 

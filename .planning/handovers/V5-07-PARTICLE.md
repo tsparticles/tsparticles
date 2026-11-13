@@ -43,6 +43,8 @@ Preserve other contributors' changes and invariants established in 06.
 - Measure memory per particle and allocations as well as update/draw cost.
   Verify isolation across groups, containers, and engines with different RNG/loggers.
 - Compare min/gzip/Brotli for the same scene against 06 and the baseline.
+- Reuse the 4.6.0 `MoveTiming.ts` regressions for decay, gravity and
+  speed limits when changing particle movement state or its update contract.
   Run the full suite, lint/format, and downstream builds.
 
 ## Deliverables

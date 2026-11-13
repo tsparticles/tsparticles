@@ -53,7 +53,7 @@ Particle contract changes with 07 and preserve other contributors' changes.
 - Complete the full suite, lint/format, downstream builds, and min/gzip/Brotli deltas.
 
 Carry the mixed-radius collision symmetry and fractional-density idempotence
-checks from [V4-B08 and V4-B09](../v4-review/CORRECTNESS.md) into the tests.
+checks from V4-B08 and V4-B09 into the tests.
 Also compare the index in sparse scenes where the query area greatly exceeds
 occupied cells, while preserving observable query order.
 

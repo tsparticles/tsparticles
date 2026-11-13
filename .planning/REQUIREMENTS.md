@@ -7,7 +7,7 @@
 
 These requirements supersede the auto-initialized backlog for current execution.
 See [handover index](handovers/README.md) for dependencies and acceptance checks.
-The post-merge checkout carries package version `4.5.3`. Major implementation
+The post-merge checkout carries package version `4.6.0`. Major implementation
 and clean bundle baseline validation are pending.
 
 | ID       | Requirement                                                                                                            | Handover                | Status  |

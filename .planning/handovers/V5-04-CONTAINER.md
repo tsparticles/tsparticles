@@ -42,12 +42,12 @@ necessary signature adaptations and preserve other contributors' changes.
 
 ## Regressions to carry forward from v4
 
-Carry the startup contract verified in [V4-B01–B04](../v4-review/CORRECTNESS.md)
-into the state model. Each engine's registry must complete before its concurrent
+Carry the startup contract verified in V4-B01–B04 into the state model. Each
+engine's registry must complete before its concurrent
 loads proceed. A canceled transition must leave no late events or rescheduled
 frames. Verify one pending frame per container and smoke-test an explicit
 OffscreenCanvas in a dedicated worker without DOM dependencies in the core path.
-Reuse v4 regression tests once available.
+Reuse the v4 regression tests.
 
 ## Deliverables
 

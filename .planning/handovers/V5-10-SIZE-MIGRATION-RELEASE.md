@@ -74,8 +74,8 @@ Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.
 
 ## Consumers installed outside the monorepo
 
-Reuse fixtures from the [v4 wrapper, CLI, and MCP plan](../v4-review/WRAPPER-CLI-MCP.md)
-when available. Verify wrapper mount, errors, and teardown against the v5
+Reuse the v4 wrapper, CLI, and MCP regression fixtures where applicable.
+Verify wrapper mount, errors, and teardown against the v5
 contract, scaffolding commands from the publishable package, and compilation of
 MCP snippets in consumer projects. Include an isolated install to catch
 undeclared direct imports and templates that build only in the workspace.

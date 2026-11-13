@@ -7,20 +7,20 @@
 | 1   | GIF Shape, Background Canvas, BgMask Dynamic, Draw Layer System, Particle Modifier, HDR Precision                             | 4.3.0         | ✅ Released |
 | 2   | HDR Color Fix & Rendering Modes, Code Review Fixes                                                                            | 4.4.0         | ✅ Released |
 | 3   | Fluid Particle Interaction, MCP `generate_code` tool, Emitter Draw/Drag, Absorber Split, Error Codes, Workspace Test Coverage | 4.5.0 / 4.5.1 | ✅ Released |
-| 4   | Close the v4 review findings and verify package, browser, and integration contracts                                           | 4.6.0         | Planned     |
+| 4   | Close the v4 review findings and verify package, browser, and integration contracts                                           | 4.6.0         | ✅ Released |
 
-## Current execution — v4.6.0 minor release
+## v4.6.0 release and follow-up
 
-**Goal:** close or explicitly disposition every finding in the [v4 review](v4-review/README.md) before beginning v5 runtime implementation. The nine core runtime fixes are in the released 4.5.4 patch; remaining integration, distribution, measurement, and real-browser gates are tracked in [the 4.6.0 release plan](v4-review/RELEASE-4.6.md).
+The 4.6.0 release is included in `v5` through merge `201b8e8d33` from `main`.
+Collect the pending V4-S01 Rollup baseline and CDN engine-plus-feature
+measurements with the [v5 baseline](handovers/README.md#required-baseline-before-the-first-runtime-change).
+V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
-Do not start v5 runtime changes until each v4 finding has a verified outcome: fixed and covered, reproduced as not fixed, or deferred with evidence and an explicit compatibility reason. Performance and bundle experiments may close without code changes when measurements show no worthwhile compatible improvement.
+## Current execution — v5 major
 
-## Next major — v5
-
-**Status:** planned on dedicated branch `v5`; runtime work follows the 4.6.0 closure gate. Existing handovers were prepared against `4.5.1` and must be reconciled with the final v4 baseline before execution.
-Capture a clean baseline from the actual starting commit before the first major
-runtime change, which removes the singleton. Follow the [handover index](handovers/README.md).
-The [v4 review](v4-review/README.md) retains its original evidence and patch scope.
+**Status.** Planned on branch `v5`, with package version `4.6.0`.
+Follow the [handover index](handovers/README.md) and capture a clean baseline
+from the actual starting commit before removing the singleton.
 
 | Step | Scope                                                               | Handover                                        |
 | ---- | ------------------------------------------------------------------- | ----------------------------------------------- |

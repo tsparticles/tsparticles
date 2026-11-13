@@ -48,7 +48,7 @@ preserve other agents' changes.
 
 Include a custom updater with private state in parity tests. Init, update, and
 draw must use the same instance within each cycle, including after redraw and
-refresh, as described in [V4-B05](../v4-review/CORRECTNESS.md#v4-b05--p1--particle-initialization-and-drawing-use-different-updater-instances).
+refresh (V4-B05).
 
 ## Deliverables
 
