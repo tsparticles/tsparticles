@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
 import { type PluginManager, getLogger } from "@tsparticles/engine";
+import { describe, expect, it, vi } from "vitest";
 import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 import type { BackgroundMaskContainer } from "./types.js";
 import { BackgroundMaskCover } from "./Options/Classes/BackgroundMaskCover.js";
@@ -11,7 +11,7 @@ const testOpacity = 0.8,
 
 describe("BackgroundMask integration", () => {
   it("warns when initialization receives an invalid cover selector", async () => {
-    const warning = vi.spyOn(getLogger(), "warning").mockImplementation(() => {}),
+    const warning = vi.spyOn(getLogger(), "warning").mockReturnValue(undefined),
       container = { actualOptions: { backgroundMask: { cover: { element: "[" } } } },
       plugin = new BackgroundMaskPluginInstance({} as PluginManager, container as BackgroundMaskContainer);
 

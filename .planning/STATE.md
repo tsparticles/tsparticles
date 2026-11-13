@@ -4,7 +4,27 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus.** v5 major planning on branch `v5`, with package version `4.6.0`.
+**Current focus.** v5 E0 baseline execution on branch `v5`, with package version `4.6.0`.
+
+## Session status — 2026-11-13 — E0 execution checkpoint
+
+- Started from clean `1944fa0f5c202b8af82841b5de9b2315f758a258` after reading
+  AGENTS, the handover index, execution sequence, source review and E0 owners.
+- Captured fresh Rollup artifacts, ten consumer graphs, numeric payload budgets,
+  six package-condition checks, classic-CDN cold/warm HTTP checks, 54 seeded
+  runtime runs and an inspected SDR color reference. See
+  [the report and exit checklist](handovers/V5-BUNDLE-REPORT.md).
+- Created inventories for 153 engine source files and 349 extension/utility
+  manifests, the consumer matrix, migration draft and decisions including G1–G7,
+  retirement scope and browser age/usage policy. Inventory is not completed audit.
+- Fixed import ordering and an empty logger mock in the existing BackgroundMask
+  test to unblock baseline builds. No library runtime changes. Main suite:
+  49 files / 668 tests passed; BackgroundMask: 16 tests passed. Earlier overlapping
+  build/test runs are explicitly invalidated and their logs retained.
+- E0 remains open: finish CJS/installed-consumer accounting and lazy-CDN
+  disposition, emitter/absorber/retention, HDR/layers/resize and broader visual
+  baseline evidence. E1–E10 have not started; do not skip the evidence gate.
+- No commits, version bumps, publications or E11 work.
 
 ## Session status — 2026-11-13 — source-based coverage check
 

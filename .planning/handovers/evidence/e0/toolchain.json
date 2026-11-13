@@ -1,0 +1,196 @@
+[
+  {
+    "name": "@tsparticles/workspace",
+    "version": "4.6.0",
+    "devDependencies": {
+      "@commitlint/cli": {
+        "from": "@commitlint/cli",
+        "version": "21.2.4"
+      },
+      "@commitlint/config-conventional": {
+        "from": "@commitlint/config-conventional",
+        "version": "21.2.4"
+      },
+      "@crowdin/cli": {
+        "from": "@crowdin/cli",
+        "version": "5.6.0"
+      },
+      "@nx/devkit": {
+        "from": "@nx/devkit",
+        "version": "24.0.6"
+      },
+      "@nx/js": {
+        "from": "@nx/js",
+        "version": "24.0.6"
+      },
+      "@swc-node/register": {
+        "from": "@swc-node/register",
+        "version": "1.12.1"
+      },
+      "@swc/core": {
+        "from": "@swc/core",
+        "version": "1.16.22"
+      },
+      "@tsparticles/browserslist-config": {
+        "from": "@tsparticles/browserslist-config",
+        "version": "link:cli/utils/browserslist-config"
+      },
+      "@tsparticles/cli-build": {
+        "from": "@tsparticles/cli-build",
+        "version": "link:cli/packages/cli-build"
+      },
+      "@tsparticles/cli-nx-plugin": {
+        "from": "@tsparticles/cli-nx-plugin",
+        "version": "link:cli/packages/nx-plugin"
+      },
+      "@tsparticles/depcruise-config": {
+        "from": "@tsparticles/depcruise-config",
+        "version": "link:cli/utils/depcruise-config"
+      },
+      "@tsparticles/eslint-config": {
+        "from": "@tsparticles/eslint-config",
+        "version": "link:cli/utils/eslint-config"
+      },
+      "@tsparticles/prettier-config": {
+        "from": "@tsparticles/prettier-config",
+        "version": "link:cli/utils/prettier-config"
+      },
+      "@tsparticles/rolldown-plugin": {
+        "from": "@tsparticles/rolldown-plugin",
+        "version": "link:cli/utils/rolldown-plugin"
+      },
+      "@tsparticles/rollup-plugin": {
+        "from": "@tsparticles/rollup-plugin",
+        "version": "link:cli/utils/rollup-plugin"
+      },
+      "@tsparticles/tsconfig": {
+        "from": "@tsparticles/tsconfig",
+        "version": "link:cli/utils/tsconfig"
+      },
+      "@tsparticles/webpack-plugin": {
+        "from": "@tsparticles/webpack-plugin",
+        "version": "link:cli/utils/webpack-config"
+      },
+      "@types/node": {
+        "from": "@types/node",
+        "version": "26.6.6"
+      },
+      "@types/webpack-env": {
+        "from": "@types/webpack-env",
+        "version": "1.18.8"
+      },
+      "browserslist": {
+        "from": "browserslist",
+        "version": "4.29.5"
+      },
+      "copyfiles": {
+        "from": "copyfiles",
+        "version": "2.4.1"
+      },
+      "cross-env": {
+        "from": "cross-env",
+        "version": "10.1.0"
+      },
+      "eslint": {
+        "from": "eslint",
+        "version": "10.14.0"
+      },
+      "eslint-config-prettier": {
+        "from": "eslint-config-prettier",
+        "version": "10.1.8"
+      },
+      "eslint-plugin-prettier": {
+        "from": "eslint-plugin-prettier",
+        "version": "5.5.7"
+      },
+      "eslint-plugin-tsdoc": {
+        "from": "eslint-plugin-tsdoc",
+        "version": "0.5.4"
+      },
+      "fs-extra": {
+        "from": "fs-extra",
+        "version": "11.4.1"
+      },
+      "gh-pages": {
+        "from": "gh-pages",
+        "version": "6.3.0"
+      },
+      "husky": {
+        "from": "husky",
+        "version": "9.1.7"
+      },
+      "lerna": {
+        "from": "lerna",
+        "version": "10.1.2"
+      },
+      "nx": {
+        "from": "nx",
+        "version": "24.0.6"
+      },
+      "nx-cloud": {
+        "from": "nx-cloud",
+        "version": "19.1.5"
+      },
+      "prettier": {
+        "from": "prettier",
+        "version": "3.10.1"
+      },
+      "prettier-plugin-multiline-arrays": {
+        "from": "prettier-plugin-multiline-arrays",
+        "version": "4.1.11"
+      },
+      "puppeteer": {
+        "from": "puppeteer",
+        "version": "25.17.0"
+      },
+      "rimraf": {
+        "from": "rimraf",
+        "version": "6.1.4"
+      },
+      "source-map-support": {
+        "from": "source-map-support",
+        "version": "0.5.21"
+      },
+      "swc-loader": {
+        "from": "swc-loader",
+        "version": "0.2.7"
+      },
+      "terser-webpack-plugin": {
+        "from": "terser-webpack-plugin",
+        "version": "5.6.1"
+      },
+      "ts-json-schema-generator": {
+        "from": "ts-json-schema-generator",
+        "version": "2.9.0"
+      },
+      "ts-node": {
+        "from": "ts-node",
+        "version": "10.9.2"
+      },
+      "typescript": {
+        "from": "typescript",
+        "version": "6.0.3"
+      },
+      "typescript-eslint": {
+        "from": "typescript-eslint",
+        "version": "8.72.2"
+      },
+      "webpack": {
+        "from": "webpack",
+        "version": "5.112.2"
+      },
+      "webpack-bundle-analyzer": {
+        "from": "webpack-bundle-analyzer",
+        "version": "5.4.2"
+      },
+      "webpack-cli": {
+        "from": "webpack-cli",
+        "version": "7.3.1"
+      },
+      "yargs": {
+        "from": "yargs",
+        "version": "18.2.0"
+      }
+    }
+  }
+]

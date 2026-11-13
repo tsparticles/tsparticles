@@ -2,8 +2,9 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**planned, with major runtime implementation and a clean measurement baseline
-pending**. The original `4.5.1` reconnaissance and later `4.5.2` architecture
+**E0 in progress, with major runtime implementation pending and the measurement
+baseline partially captured**. See [the evidence report](V5-BUNDLE-REPORT.md)
+for measured budgets and remaining exit criteria. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.
 
 ## Goals and sequence
@@ -103,7 +104,7 @@ const first = createEngine();
 const second = createEngine();
 first.setRandom(() => 0.25);
 second.setRandom(() => 0.75);
-first.setLogger({ warning: (message) => console.warn(message) });
+first.setLogger({ warning: message => console.warn(message) });
 await loadSlim(first);
 await loadSlim(second);
 await first.load({ id: "first", options: {} });
@@ -227,7 +228,7 @@ there are no claimed savings or mandatory new visual plugins.
 
 - [x] Review the critical areas and update planning documentation.
 - [x] Prepare handovers 01–10.
-- [ ] Capture the bundle baseline and numeric budgets.
+- [ ] Complete the baseline and numeric budgets — initial Rollup/consumer/CDN and runtime evidence recorded in [V5-BUNDLE-REPORT.md](V5-BUNDLE-REPORT.md); E0 remains open.
 - [ ] Implement and verify E0–E10, covering the full engine and the plugin and browser audits.
 
 Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in

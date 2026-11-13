@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. All implementation stages remain pending. This is the
+Replanned on 2026-11-13. E0 evidence collection is in progress; E1–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -198,7 +198,7 @@ new capability packages need a separate demonstrated consumer benefit.
 
 ## Progress
 
-- [ ] E0 — Baseline and scope
+- [ ] E0 — Baseline and scope — in progress; see [measured evidence and open gates](V5-BUNDLE-REPORT.md)
 - [ ] E1 — Explicit engines
 - [ ] E2 — Isolated services
 - [ ] E3 — Contracts and boundaries
@@ -210,8 +210,14 @@ new capability packages need a separate demonstrated consumer benefit.
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: E0. No runtime change, benchmark result or completed implementation
-is implied by this planning revision.
+Next action: finish E0's missing CJS/installed-package and lazy-CDN disposition,
+runtime/retention and color/visual baseline evidence. Initial bundle budgets,
+54 runtime runs, package-condition and classic-CDN checks are recorded in
+[the report](V5-BUNDLE-REPORT.md). The main suite passes 668 tests; BackgroundMask
+passes 16 tests after two lint-only test corrections. No v5 runtime change has
+started. [Decisions](V5-DECISIONS.md), [engine audit](V5-ENGINE-AUDIT.md),
+[plugin audit](V5-PLUGIN-AUDIT.md) and [consumer matrix](V5-MIGRATION-MATRIX.md)
+track the checkpoint without claiming completed source reviews.
 
 Optional follow-up (not part of E10 completion):
 
