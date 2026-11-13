@@ -289,6 +289,31 @@ describe("ParticleGroups", async () => {
       expect(container.particles.count).to.equal(3);
     });
 
+    it("checks the current group after an existing particle changes groups", async () => {
+      await container.reset({
+        particles: {
+          number: { value: 0 },
+          groups: { g1: { number: { value: 0, limit: { value: 1, mode: LimitMode.wait } } } },
+        },
+      });
+
+      const first = container.particles.addParticle(undefined, undefined, "g1");
+
+      if (!first) {
+        throw new Error("Expected a particle in g1");
+      }
+
+      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be.undefined;
+      first.group = "g2";
+
+      const next = container.particles.addParticle(undefined, undefined, "g1");
+
+      expect(next).to.be.not.undefined;
+      expect(container.particles.get(0)).to.equal(first);
+      expect(container.particles.get(1)).to.equal(next);
+      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be.undefined;
+    });
+
     it("T16 - should trim the oldest group particle over a group limit in delete mode, leaving other groups alone", async () => {
       await container.reset({
         particles: {

@@ -4,17 +4,17 @@ Migration के दौरान सबसे common renames के लिए qu
 
 ## tsParticles
 
-| Legacy key         | Current key              | Notes                                       |
-| ------------------ | ------------------------ | ------------------------------------------- |
+| Legacy key         | Current key              | Notes                                  |
+| ------------------ | ------------------------ | -------------------------------------- |
 | `particles.color`  | `particles.paint.fill`   | मुख्य color path `paint.fill` में moved है। |
-| `particles.stroke` | `particles.paint.stroke` | stroke path `paint.stroke` में moved है।    |
+| `particles.stroke` | `particles.paint.stroke` | stroke path `paint.stroke` में moved है।  |
 
 ## particles.js legacy
 
-| particles.js key | Current key    | Notes                        |
-| ---------------- | -------------- | ---------------------------- |
+| particles.js key | Current key    | Notes                      |
+| ---------------- | -------------- | -------------------------- |
 | `line_linked`    | `links`        | modern key style में rename। |
-| `retina_detect`  | `detectRetina` | snake_case से camelCase.     |
+| `retina_detect`  | `detectRetina` | snake_case से camelCase.    |
 
 ## Load API
 

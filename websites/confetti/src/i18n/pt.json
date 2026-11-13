@@ -1,28 +1,28 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
-  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
-  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "Português",
+  "title": "tsParticles Confetti | Animações de confetes, partículas e fogos de artifício para seu site",
+  "description": "Crie animações personalizáveis de confetes, partículas e fogos de artifício para seu site. Componentes para React, Vue, Angular, Svelte, jQuery, Preact e Inferno.",
+  "ogTitle": "tsParticles Confetti | Animações de confetes, partículas e fogos de artifício para seu site",
+  "ogDescription": "Crie efeitos de confetes, partículas e fogos de artifício com tsParticles. Playground interativo com editor de código. Compatível com React, Vue, Angular e Svelte.",
+  "twitterTitle": "tsParticles Confetti | Animações de confetes, partículas e fogos de artifício para seu site",
+  "twitterDescription": "Crie efeitos de confetes, partículas e fogos de artifício com tsParticles. Playground interativo com editor de código.",
   "header": {
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitRibbons": "Visit tsParticles ribbons website",
-    "visitRibbonsAria": "Visit tsParticles ribbons website",
-    "language": "Language"
+    "switchTheme": "Mudar tema",
+    "visitGitHub": "Visitar GitHub",
+    "viewSource": "Ver código no GitHub",
+    "joinDiscord": "Entrar no Discord",
+    "joinDiscordAria": "Entrar no Discord do tsParticles",
+    "visitReddit": "Visitar Reddit",
+    "visitRedditAria": "Visitar tsParticles no Reddit",
+    "visitWebsite": "Visitar o site do tsParticles",
+    "visitWebsiteAria": "Visitar o site do tsParticles",
+    "visitRibbons": "Visitar o site Ribbons do tsParticles",
+    "visitRibbonsAria": "Visitar o site Ribbons do tsParticles",
+    "language": "Idioma"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "Compartilhar esta página",
+    "share": "Compartilhar",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -30,113 +30,107 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "Copiar link"
   },
   "usage": {
-    "title": "Usage",
-    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+    "title": "Uso",
+    "description": "Inclua o script na página se estiver usando HTML/JS sem framework:"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "Executar",
+  "copied": "Copiado",
   "footer": {
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "with": "com",
+    "by": "por",
+    "cookiePreferences": "Preferências de cookies"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "Configurações de privacidade",
+    "text": "Escolha como este site pode usar tecnologias de análise e publicidade. Se os cookies analíticos forem desativados, a medição anônima sem cookies continuará ativa.",
+    "cookiePolicy": "política de cookies",
+    "analytics": "Cookies analíticos",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "Rejeitar tudo",
+    "saveChoices": "Salvar escolhas",
+    "acceptAll": "Aceitar tudo"
   },
   "modes": {
     "cannon": {
-      "name": "Basic Cannon",
-      "description": [
-        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
-      ]
+      "name": "Canhão básico",
+      "description": ["Modo padrão: uma chuva simples de confetes, mas ainda divertida."]
     },
     "random": {
-      "name": "Random Direction",
+      "name": "Direção aleatória",
       "description": [
-        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
+        "Dispare quantidades aleatórias de confetes em direções aleatórias. Clique várias vezes."
       ]
     },
     "realistic": {
-      "name": "Realistic Look",
+      "name": "Visual realista",
       "description": [
-        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
+        "Com muitas partículas, o cone uniforme parece artificial. Combine efeitos para um resultado natural."
       ]
     },
     "hearts": {
-      "name": "Valentine's Day",
+      "name": "Dia dos Namorados",
       "description": [
-        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
-        "❤️ Happy Valentine's Day! ❤️"
+        "Crie um efeito especial com confetes em formato de coração.",
+        "❤️ Feliz Dia dos Namorados! ❤️"
       ]
     },
     "stars": {
-      "name": "Stars",
+      "name": "Estrelas",
       "description": [
-        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
-        "✨ Celebrate with a burst of stars! ✨"
+        "Combine formas, tamanhos e configurações diferentes. Alterne os tempos para animar mais.",
+        "✨ Comemore com uma chuva de estrelas! ✨"
       ]
     },
     "emoji": {
-      "name": "Emoji and Unicorns",
+      "name": "Emojis e unicórnios",
       "description": [
-        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
-        "🦄 Unicorns loves rainbows! 🦄"
+        "Adicione emojis de unicórnios a um efeito de arco-íris. 🦄",
+        "🦄 Unicórnios adoram arco-íris! 🦄"
       ]
     },
     "images": {
-      "name": "Images",
+      "name": "Imagens",
       "description": [
-        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
-        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+        "Use suas imagens favoritas como formas dos confetes e confira se têm o tamanho adequado.",
+        "🍎🥑🍌🍉🍍🍓 Essas frutas não são fofas? 🍒🍑🍈🍇🍊🍋"
       ]
     },
     "fireworks": {
-      "name": "Fireworks",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
-      ]
+      "name": "Fogos de artifício",
+      "description": ["Dispare confetes pelas laterais e mantenha o conteúdo central livre."]
     },
     "snow": {
-      "name": "Snow",
+      "name": "Neve",
       "description": [
-        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
+        "Crie um clima de inverno com partículas caindo suavemente por toda a página."
       ]
     },
     "continuous": {
-      "name": "School Pride",
+      "name": "Orgulho escolar",
       "description": [
-        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
-        "🌰 Go Buckeyes! 🌰"
+        "Mostre suas cores com dois canhões nas laterais da página.",
+        "🌰 Vamos, Buckeyes! 🌰"
       ]
     },
     "customShapes": {
-      "name": "Custom Shapes",
+      "name": "Formas personalizadas",
       "description": [
-        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
+        "Comemore com formas temáticas usando qualquer caminho SVG. Solte a imaginação!",
         "🎃🎄💜"
       ]
     },
     "custom": {
-      "name": "Custom Canvas",
-      "description": [
-        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
-      ]
+      "name": "Canvas personalizado",
+      "description": ["Forneça seu próprio canvas para limitar a área dos confetes."]
     },
     "confettiRibbons": {
-      "name": "Confetti + Ribbons",
+      "name": "Confetes e fitas",
       "description": [
-        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "Double the celebration!"
+        "Combine confetes e fitas para comemorar em dobro: ideal para lançamentos, marcos e felicitações.",
+        "Comemore em dobro!"
       ]
     }
   }

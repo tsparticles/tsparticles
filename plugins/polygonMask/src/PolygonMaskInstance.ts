@@ -9,8 +9,7 @@ import {
   type PluginManager,
   deepExtend,
   double,
-  getDistance,
-  getDistances,
+  getDistanceSq,
   getErrorMessage,
   getRandom,
   half,
@@ -559,9 +558,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     if (options.type === PolygonMaskType.inside || options.type === PolygonMaskType.outside) {
-      let closest: ICoordinates | undefined, dx: number | undefined, dy: number | undefined;
+      let closest: ICoordinates | undefined;
       const pos = particle.getPosition(),
         radius = particle.getRadius(),
+        radiusSq = radius * Math.abs(radius),
         offset = 1;
 
       for (let i = 0, j = this.raw.length - offset; i < this.raw.length; j = i++) {
@@ -574,18 +574,14 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         closest = calcClosestPointOnSegment(pi, pj, pos);
 
-        const dist = getDistances(pos, closest);
-
-        [dx, dy] = [dist.dx, dist.dy];
-
-        if (dist.distance < radius) {
+        if (getDistanceSq(pos, closest) < radiusSq) {
           segmentBounce(pi, pj, particle.velocity);
 
           return true;
         }
       }
 
-      if (closest && dx !== undefined && dy !== undefined && !this.#checkInsidePolygon(pos)) {
+      if (closest && !this.#checkInsidePolygon(pos)) {
         const factor = { x: 1, y: 1 },
           diameter = radius * double,
           inverse = -1;
@@ -606,10 +602,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return true;
       }
     } else if (options.type === PolygonMaskType.inline) {
-      const dist = getDistance(particle.initialPosition, particle.getPosition()),
+      const distanceSq = getDistanceSq(particle.initialPosition, particle.getPosition()),
+        radius = this.#moveRadius,
         { velocity } = particle;
 
-      if (dist > this.#moveRadius) {
+      if (distanceSq > radius * Math.abs(radius)) {
         velocity.x = velocity.y * half - velocity.x;
         velocity.y = velocity.x * half - velocity.y;
 

@@ -1,4 +1,4 @@
-import { type Container, tsParticles } from "@tsparticles/engine";
+import { type Container, type IPlugin, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { Engine } from "../../../../engine/src/Core/Engine.js";
 import { TestWindow } from "../Fixture/Window.js";
@@ -46,6 +46,57 @@ describe("container load ordering", () => {
     release();
     await Promise.all([first, second]);
     expect(calls).to.equal(1);
+  });
+
+  it("keeps registration open when a loader starts another initialization", async () => {
+    const engine = new Engine(),
+      manager = engine.pluginManager;
+    let nestedInitialization: Promise<void> | undefined, initializedInsideLoader: boolean | undefined;
+
+    await manager.register(e => {
+      nestedInitialization = e.init();
+      initializedInsideLoader = manager.initialized;
+    });
+
+    await engine.init();
+    await nestedInitialization;
+
+    expect(initializedInsideLoader).toBe(false);
+    expect(manager.initialized).toBe(true);
+  });
+
+  it("resolves init calls awaited by loaders and permits later scene loads", async () => {
+    const engine = new Engine();
+    let loaderContinued = false,
+      firstLoaderEngine: Engine | undefined;
+
+    await engine.pluginManager.register(async e => {
+      firstLoaderEngine = e;
+      await e.init();
+      loaderContinued = true;
+    });
+    await engine.pluginManager.register(e => {
+      expect(e).to.equal(firstLoaderEngine);
+      // This compares method identity; neither reference is called without its owning Engine.
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      expect(e.load).to.equal(firstLoaderEngine?.load);
+    });
+
+    await engine.init();
+
+    expect(loaderContinued).toBe(true);
+    expect(engine.pluginManager.initialized).toBe(true);
+
+    const container = await engine.load({
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      options: { autoPlay: false, particles: { number: { value: noParticles } } },
+    });
+
+    try {
+      expect(container).toBeDefined();
+    } finally {
+      container?.destroy();
+    }
   });
 
   it("waits for a loader registered while initialization is in flight", async () => {
@@ -156,6 +207,98 @@ describe("container load ordering", () => {
     await engine.init();
 
     expect(attempts).to.equal(2);
+  });
+
+  it("allows a retained loader engine to retry initialization after failure", async () => {
+    const engine = new Engine(),
+      failure = new Error("controlled loader failure");
+    let attempts = 0,
+      retainedEngine: Engine | undefined;
+
+    await engine.pluginManager.register(e => {
+      retainedEngine = e;
+      attempts++;
+
+      if (attempts === 1) {
+        throw failure;
+      }
+    });
+
+    await expect(engine.init()).rejects.toBe(failure);
+
+    if (!retainedEngine) {
+      throw new Error("The loader engine was not retained");
+    }
+
+    await retainedEngine.init();
+
+    expect(attempts).to.equal(2);
+    expect(engine.pluginManager.initialized).toBe(true);
+  });
+
+  it("accepts plugins from registered loaders and rejects additions after initialization", async () => {
+    const engine = new Engine(),
+      manager = engine.pluginManager,
+      plugin: IPlugin = {
+        id: "registered-plugin",
+        getPlugin: () => Promise.resolve({}),
+        loadOptions: () => {
+          // This fixture has no options.
+        },
+        needsPlugin: () => true,
+      },
+      registrationError = /TSP-1003|Registration APIs must be called before engine initialization/;
+
+    expect(() => {
+      manager.addPlugin(plugin);
+    }).toThrow(registrationError);
+
+    await manager.register(async e => {
+      await Promise.resolve();
+      e.pluginManager.addPlugin(plugin);
+    });
+
+    expect(manager.plugins).toEqual([]);
+
+    await engine.init();
+
+    expect(manager.getPlugin(plugin.id)).toBe(plugin);
+    expect(() => {
+      manager.addPlugin(plugin);
+    }).toThrow(registrationError);
+    expect(() => {
+      manager.addConfig({ name: "late-config" });
+    }).toThrow(registrationError);
+    await expect(
+      manager.register(e => {
+        e.pluginManager.addPlugin(plugin);
+      }),
+    ).rejects.toThrow(registrationError);
+    expect(() => Object.defineProperty(manager.plugins, "1", { value: plugin })).toThrow(TypeError);
+    expect(manager.plugins).toEqual([plugin]);
+  });
+
+  it("prevents direct additions to the container plugin lists", async () => {
+    globalThis.window = TestWindow;
+
+    const container = await loadContainer("read-only-plugin-lists");
+
+    try {
+      if (!container) {
+        throw new Error("Expected a container");
+      }
+
+      for (const plugins of [
+        container.plugins,
+        container.particleCreatedPlugins,
+        container.particleDestroyedPlugins,
+        container.particlePositionPlugins,
+      ]) {
+        expect(() => Object.defineProperty(plugins, "0", { value: {} })).toThrow(TypeError);
+      }
+    } finally {
+      container?.destroy();
+    }
   });
 
   it("keeps anonymous DOM hosts independent and reuses their identity", async () => {

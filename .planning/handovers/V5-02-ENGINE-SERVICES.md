@@ -54,7 +54,8 @@ preserve other contributors' changes.
 - Change or reset A's RNG and verify B is unaffected. Test boundary semantics.
 - Test partial loggers, defaults for other levels, preserved messages and codes,
   and unchanged inputs and other engines. Cover async errors and destroy while waiting.
-- Check browser/lazy and generators for residual dependencies on global services.
+- Check browser and ESM/CJS lazy entrypoints, plus generators, for residual
+  dependencies on global services.
 - If the scheduler migrates, pause and destroy cancel only the owning engine's handles.
 - Run the full suite, lint and formatting checks, and all affected consumer
   builds. Record the service cost in the intermediate bundle report.

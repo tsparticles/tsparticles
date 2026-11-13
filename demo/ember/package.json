@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember-demo",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "private": true,
   "description": "Ember demo for @tsparticles/ember",
   "repository": {
@@ -58,7 +58,7 @@
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-qunit": "^8.2.6",
     "loader.js": "^4.7.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "qunit": "^2.26.0",
     "qunit-dom": "^3.6.0",
     "typescript": "^6.0.3",

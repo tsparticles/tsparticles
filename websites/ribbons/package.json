@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons-website",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles ribbons webpage",
   "private": true,
   "type": "module",
@@ -44,7 +44,7 @@
     "eslint-plugin-prettier": "^5.5.7",
     "gh-pages": "^6.3.0",
     "globals": "^17.13.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "vite": "^8.3.5"
   },
   "nx": {

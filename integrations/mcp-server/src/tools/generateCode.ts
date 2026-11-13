@@ -1557,11 +1557,13 @@ function angularCode(
   if (typescript) {
     return `import { Component, OnInit } from "@angular/core";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
-import { NgParticlesService } from "@tsparticles/angular";
+import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 ${imports.join("\n")}
 
 @Component({
   selector: "app-particles",
+  standalone: true,
+  imports: [NgxParticlesModule],
   template: \`<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>\`,
 })
 export class ParticlesComponent implements OnInit {
@@ -1584,11 +1586,13 @@ ${calls}
   }
 
   return `import { Component, inject } from "@angular/core";
-import { NgParticlesService } from "@tsparticles/angular";
+import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 ${imports.join("\n")}
 
 @Component({
   selector: "app-particles",
+  standalone: true,
+  imports: [NgxParticlesModule],
   template: \`<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>\`,
 })
 export class ParticlesComponent {
@@ -1700,6 +1704,10 @@ function buildNotes(
     notes.push(
       `Generated for ${label} — ensure ${FRAMEWORK_PACKAGES[framework]} is compatible with your ${label} version.`,
     );
+
+    if (framework === "angular") {
+      notes.push("The generated component uses Angular standalone APIs.");
+    }
   }
 
   const hasInteractivity = mentions(keywords, lower, INTERACTIVITY_WORDS),

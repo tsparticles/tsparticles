@@ -7,7 +7,6 @@ import {
   ParticleOutType,
   Vector,
   calculateBounds,
-  getDistances,
   getRandom,
   minDistance,
   minVelocity,
@@ -65,7 +64,8 @@ export class OutOutMode implements IOutModeManager {
 
     updateVector.addTo(particle.moveCenter);
 
-    const { dx, dy } = getDistances(particle.position, updateVector);
+    const dx = particle.position.x - updateVector.x,
+      dy = particle.position.y - updateVector.y;
 
     if (
       (vx <= minVelocity && dx >= minDistance) ||
@@ -90,7 +90,8 @@ export class OutOutMode implements IOutModeManager {
       }),
     );
 
-    const { dx: newDx, dy: newDy } = getDistances(particle.position, particle.moveCenter);
+    const newDx = particle.position.x - particle.moveCenter.x,
+      newDy = particle.position.y - particle.moveCenter.y;
 
     particle.direction = Math.atan2(-newDy, -newDx);
     particle.velocity.angle = particle.direction;
@@ -171,7 +172,8 @@ export class OutOutMode implements IOutModeManager {
         }),
       ) + particle.moveCenter.y;
 
-    const { dx, dy } = getDistances(particle.position, particle.moveCenter);
+    const dx = particle.position.x - particle.moveCenter.x,
+      dy = particle.position.y - particle.moveCenter.y;
 
     if (particle.moveCenter.radius) {
       particle.direction = Math.atan2(dy, dx);

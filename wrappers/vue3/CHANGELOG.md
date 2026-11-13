@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
+
+### Bug Fixes
+
+* fixes after AI reviews ([5ea587f](https://github.com/tsparticles/tsparticles/commit/5ea587f8134782c7a5b31f7e741d696765e1c4dc))
+
+## [Unreleased]
+
+### Bug Fixes
+
+- isolate the canvas when the scene id changes during a pending load
+
 ## [4.5.4](https://github.com/tsparticles/tsparticles/compare/v4.5.3...v4.5.4) (2026-11-11)
 
 **Note:** Version bump only for package @tsparticles/vue3

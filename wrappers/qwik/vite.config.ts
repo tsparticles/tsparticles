@@ -6,6 +6,9 @@ export default defineConfig(() => {
   return {
     build: {
       target: "es2020",
+      rollupOptions: {
+        external: ["@tsparticles/engine"],
+      },
       lib: {
         entry: "./src/index.ts",
         formats: ["es", "cjs"],

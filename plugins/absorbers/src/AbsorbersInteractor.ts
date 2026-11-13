@@ -9,7 +9,7 @@ import {
 import {
   type IDelta,
   type RecursivePartial,
-  getDistance,
+  getDistanceSq,
   isArray,
   isInArray,
   itemFromArray,
@@ -20,8 +20,7 @@ import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 const absorbersMode = "absorbers",
-  absorberSplitMode = "absorber-split",
-  defaultIndex = 0;
+  absorberSplitMode = "absorber-split";
 
 /**
  * Handles the interaction between particles and absorbers, including click-to-add and dragging
@@ -59,11 +58,17 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
           return;
         }
 
-        const candidates = instancesManager
-            .getArray(container)
-            .filter(t => getDistance(t.position, clickPosition) < t.size)
-            .sort((a, b) => getDistance(a.position, clickPosition) - getDistance(b.position, clickPosition)),
-          target = candidates[defaultIndex];
+        let target: AbsorberInstance | undefined,
+          nearestDistanceSq = Infinity;
+
+        for (const absorber of instancesManager.getArray(container)) {
+          const distanceSq = getDistanceSq(absorber.position, clickPosition);
+
+          if (absorber.size > 0 && distanceSq < absorber.size * absorber.size && distanceSq < nearestDistanceSq) {
+            target = absorber;
+            nearestDistanceSq = distanceSq;
+          }
+        }
 
         if (target?.options.split.enable) {
           this.#instancesManager.splitAbsorber(container, target);
@@ -79,7 +84,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       if (clickPosition) {
         const existingAbsorber = instancesManager
           .getArray(container)
-          .some(t => getDistance(t.position, clickPosition) < t.size);
+          .some(t => t.size > 0 && getDistanceSq(t.position, clickPosition) < t.size * t.size);
 
         if (existingAbsorber) {
           return;
@@ -124,9 +129,10 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
 
       if (mouse.clicking && mouse.downPosition) {
         if (!this.#dragging) {
-          const mouseDist = getDistance(absorber.position, mouse.downPosition);
-
-          if (mouseDist <= absorber.size) {
+          if (
+            absorber.size >= 0 &&
+            getDistanceSq(absorber.position, mouse.downPosition) <= absorber.size * absorber.size
+          ) {
             this.#dragging = true;
             this.#draggingAbsorber = absorber;
           }

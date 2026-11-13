@@ -1,6 +1,7 @@
 import { LitElement, html, PropertyValues } from "lit";
 import { property, customElement } from "lit/decorators.js";
-import { Container, Engine, ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { keyed } from "lit/directives/keyed.js";
+import { Container, Engine, ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
@@ -98,22 +99,43 @@ export class LitParticles extends LitElement {
 
   #renderId = 0;
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.requestUpdate();
+  }
+
   update(changedProperties: PropertyValues) {
     super.update(changedProperties);
 
-    if (this.#firstUpdate || changedProperties.has("options") || changedProperties.has("url") || changedProperties.has("id")) {
+    if (!this.isConnected) {
+      return;
+    }
+
+    if (
+      this.#firstUpdate ||
+      changedProperties.has("options") ||
+      changedProperties.has("url") ||
+      changedProperties.has("id")
+    ) {
       this.#firstUpdate = false;
 
-      void this.#loadParticles(++this.#renderId);
+      const renderId = ++this.#renderId;
+
+      void this.#loadParticles(renderId).catch((error: unknown) => {
+        if (renderId === this.#renderId) {
+          getLogger().error("LitParticles: error loading particles", error);
+        }
+      });
     }
 
     if (changedProperties.has("theme") && this.container) {
-      (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+      void this.#loadTheme(this.container);
     }
   }
 
   disconnectedCallback(): void {
     this.#renderId++;
+    this.#firstUpdate = true;
     this.container?.destroy();
     this.container = undefined;
 
@@ -123,6 +145,10 @@ export class LitParticles extends LitElement {
   async #loadParticles(currentRenderId: number): Promise<void> {
     await waitForParticlesEngineInitialization();
 
+    if (currentRenderId !== this.#renderId) {
+      return;
+    }
+
     if (!isParticlesEngineInitialized()) {
       throw new Error("initParticlesEngine(...) must be called once before rendering <lit-particles /> components.");
     }
@@ -130,6 +156,7 @@ export class LitParticles extends LitElement {
     const id = this.id ?? "tsparticles";
 
     this.container?.destroy();
+    this.container = undefined;
 
     let container: Container | undefined;
 
@@ -151,7 +178,7 @@ export class LitParticles extends LitElement {
 
     if (container) {
       if (this.theme) {
-        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+        void this.#loadTheme(container);
       }
 
       this.dispatchEvent(
@@ -164,9 +191,22 @@ export class LitParticles extends LitElement {
     }
   }
 
+  async #loadTheme(container: Container): Promise<void> {
+    try {
+      await (container as Container & { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+    } catch (error: unknown) {
+      if (this.container === container) {
+        getLogger().error("LitParticles: error loading theme", error);
+      }
+    }
+  }
+
   render() {
-    return html`<div id=${this.id}>
-      <canvas></canvas>
-    </div>`;
+    return html`${keyed(
+      this.id,
+      html`<div id=${this.id}>
+        <canvas></canvas>
+      </div>`,
+    )}`;
   }
 }

@@ -10,6 +10,9 @@ interface RangeBounds {
   minY: number;
 }
 
+const sparseQueryCellRatio = 16,
+  sparseQueryMinArea = 64;
+
 /**
  * SpatialHashGrid for fast particle lookup
  */
@@ -81,7 +84,7 @@ export class SpatialHashGrid {
   query(range: BaseRange, check?: (particle: Particle) => boolean, out: Particle[] = []): Particle[] {
     const bounds = this.#getRangeBounds(range);
 
-    if (!bounds) {
+    if (!bounds || !this.#cells.size) {
       return out;
     }
 
@@ -89,6 +92,45 @@ export class SpatialHashGrid {
       maxCellX = Math.floor(bounds.maxX / this.#cellSize),
       minCellY = Math.floor(bounds.minY / this.#cellSize),
       maxCellY = Math.floor(bounds.maxY / this.#cellSize);
+
+    if (
+      !Number.isSafeInteger(minCellX) ||
+      !Number.isSafeInteger(maxCellX) ||
+      !Number.isSafeInteger(minCellY) ||
+      !Number.isSafeInteger(maxCellY) ||
+      minCellX > maxCellX ||
+      minCellY > maxCellY
+    ) {
+      return out;
+    }
+
+    // Predicates can modify the grid as it is traversed, so keep live lookups for them.
+    if (
+      !check &&
+      (maxCellX - minCellX + 1) * (maxCellY - minCellY + 1) >
+        Math.max(sparseQueryMinArea, this.#cells.size * sparseQueryCellRatio)
+    ) {
+      const occupied: ICoordinates[] = [];
+
+      for (const key of this.#cells.keys()) {
+        const separator = key.indexOf("_"),
+          x = Number(key.slice(0, separator)),
+          y = Number(key.slice(separator + 1));
+
+        if (x >= minCellX && x <= maxCellX && y >= minCellY && y <= maxCellY) {
+          occupied.push({ x, y });
+        }
+      }
+
+      // Keep the same cell order as the coordinate scan.
+      occupied.sort((a, b) => (a.x === b.x ? a.y - b.y : a.x - b.x));
+
+      for (const { x, y } of occupied) {
+        this.#queryCell(x, y, range, undefined, out);
+      }
+
+      return out;
+    }
 
     for (let cx = minCellX; cx <= maxCellX; cx++) {
       for (let cy = minCellY; cy <= maxCellY; cy++) {

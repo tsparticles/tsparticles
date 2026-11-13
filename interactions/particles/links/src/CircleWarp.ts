@@ -26,24 +26,25 @@ export class CircleWarp extends Circle {
    * @returns true if point is inside the range, false otherwise
    */
   override contains(point: ICoordinates): boolean {
-    if (super.contains(point)) {
+    const center = this.position,
+      dx = point.x - center.x,
+      dy = point.y - center.y,
+      dxSq = dx * dx,
+      dySq = dy * dy,
+      radiusSq = this.radius * this.radius;
+
+    if (dxSq + dySq <= radiusSq) {
       return true;
     }
 
     const { width, height } = this.#canvasSize,
-      { x, y } = point;
+      left = point.x - width - center.x,
+      right = point.x + width - center.x,
+      top = point.y - height - center.y,
+      bottom = point.y + height - center.y;
 
-    /* Check phantom positions in all neighboring virtual sectors */
-    return (
-      super.contains({ x: x - width, y }) ||
-      super.contains({ x: x + width, y }) ||
-      super.contains({ x, y: y - height }) ||
-      super.contains({ x, y: y + height }) ||
-      super.contains({ x: x - width, y: y - height }) ||
-      super.contains({ x: x + width, y: y + height }) ||
-      super.contains({ x: x - width, y: y + height }) ||
-      super.contains({ x: x + width, y: y - height })
-    );
+    // Each axis wraps independently, including when the shortest path crosses a corner.
+    return Math.min(dxSq, left * left, right * right) + Math.min(dySq, top * top, bottom * bottom) <= radiusSq;
   }
 
   /**

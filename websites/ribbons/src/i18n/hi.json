@@ -1,77 +1,77 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
-  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "हिन्दी",
+  "title": "tsParticles Ribbons | वेबसाइट के लिए JavaScript रिबन एनिमेशन",
+  "description": "किसी भी वेबसाइट के लिए हल्के और अनुकूलित रिबन एनिमेशन बनाएँ। React, Vue, Angular और Svelte समर्थित हैं। निःशुल्क और ओपन सोर्स।",
+  "ogTitle": "tsParticles Ribbons | वेबसाइट के लिए JavaScript रिबन एनिमेशन",
+  "ogDescription": "किसी भी वेबसाइट के लिए हल्के और अनुकूलित रिबन एनिमेशन बनाएँ। React, Vue, Angular और Svelte समर्थित हैं। निःशुल्क और ओपन सोर्स।",
+  "twitterTitle": "tsParticles Ribbons | वेबसाइट के लिए JavaScript रिबन एनिमेशन",
+  "twitterDescription": "किसी भी वेबसाइट के लिए हल्के और अनुकूलित रिबन एनिमेशन बनाएँ। React, Vue, Angular और Svelte समर्थित हैं। निःशुल्क और ओपन सोर्स।",
   "header": {
-    "about": "About",
-    "blog": "Blog",
-    "cookie": "Cookie",
-    "privacy": "Privacy",
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitConfetti": "Visit tsParticles confetti website",
-    "visitConfettiAria": "Visit tsParticles confetti website",
-    "language": "Language"
+    "about": "परिचय",
+    "blog": "ब्लॉग",
+    "cookie": "कुकी",
+    "privacy": "गोपनीयता",
+    "switchTheme": "थीम बदलें",
+    "visitGitHub": "GitHub देखें",
+    "viewSource": "GitHub पर स्रोत देखें",
+    "joinDiscord": "Discord से जुड़ें",
+    "joinDiscordAria": "tsParticles Discord से जुड़ें",
+    "visitReddit": "Reddit देखें",
+    "visitRedditAria": "Reddit पर tsParticles देखें",
+    "visitWebsite": "tsParticles वेबसाइट देखें",
+    "visitWebsiteAria": "tsParticles वेबसाइट देखें",
+    "visitConfetti": "tsParticles Confetti वेबसाइट देखें",
+    "visitConfettiAria": "tsParticles Confetti वेबसाइट देखें",
+    "language": "भाषा"
   },
   "intro": {
-    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
-    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+    "lead": "कुछ पंक्तियों के JavaScript से अपनी वेबसाइट के लिए बहती रिबन एनिमेशन बनाएँ। tsParticles Ribbons हल्के डायनामिक इफेक्ट जोड़ता है और साइट को धीमा नहीं करता।",
+    "sub": "चाहे उत्सव हो, इंटरैक्टिव बैकग्राउंड या हल्का एनिमेशन, रिबन हर जगह काम करने वाला सुंदर समाधान हैं: बिना प्लगइन या Flash के, केवल HTML5 Canvas।"
   },
   "features": {
-    "title": "Why Choose tsParticles Ribbons?",
+    "title": "tsParticles Ribbons क्यों चुनें?",
     "lightweight": {
-      "title": "Lightweight & Fast",
-      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+      "title": "हल्का और तेज़",
+      "text": "कंप्रेस किया हुआ Ribbons bundle कुछ ही किलोबाइट का है। हार्डवेयर-एक्सेलरेटेड Canvas एनिमेशन मोबाइल पर भी 60 fps पर चलते हैं।"
     },
     "zeroDependencies": {
-      "title": "Zero Dependencies",
-      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+      "title": "कोई निर्भरता नहीं",
+      "text": "साधारण script टैग से उपयोग करें या npm से इंस्टॉल करें। jQuery, React या build tools की ज़रूरत नहीं, फिर भी प्रमुख फ्रेमवर्क से एकीकृत होता है।"
     },
     "customizable": {
-      "title": "Fully Customizable",
-      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+      "title": "पूरी तरह अनुकूलित",
+      "text": "रंग, भौतिकी, स्थान और समय नियंत्रित करें। कुछ विकल्पों से हल्के बैकग्राउंड से लेकर शानदार उत्सवी इफेक्ट बनाएँ।"
     },
     "crossBrowser": {
-      "title": "Cross-Browser Compatible",
-      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+      "title": "सभी ब्राउज़र में अनुकूल",
+      "text": "Chrome, Firefox, Safari और Edge जैसे आधुनिक ब्राउज़र में काम करता है। पुराने ब्राउज़र के लिए fallback साइट को उपयोगी रखता है।"
     },
     "frameworkSupport": {
-      "title": "Framework Support",
-      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+      "title": "फ्रेमवर्क समर्थन",
+      "text": "React, Vue.js, Angular और Svelte के आधिकारिक पैकेज उपलब्ध हैं। कंपोनेंट canvas का जीवनचक्र अपने आप संभालते हैं।"
     },
     "openSource": {
-      "title": "Open Source",
-      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+      "title": "ओपन सोर्स",
+      "text": "MIT लाइसेंस और tsParticles समुदाय का समर्थन। GitHub पर पूरा स्रोत, दस्तावेज़ और उदाहरण उपलब्ध हैं।"
     }
   },
   "usecases": {
-    "title": "Perfect For",
-    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
-    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
-    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
-    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
-    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
-    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+    "title": "इनके लिए बढ़िया",
+    "launches": "उत्पाद लॉन्च और घोषणाएँ: ध्यान खींचने वाले रिबन से नई रिलीज़ का जश्न मनाएँ।",
+    "holidays": "त्योहार और मौसम: छुट्टियों, सेल और खास अवसरों पर उत्सवी एनिमेशन जोड़ें।",
+    "backgrounds": "इंटरैक्टिव बैकग्राउंड: ऐसा माहौल बनाएँ जो उपयोगकर्ता की क्रियाओं पर प्रतिक्रिया दे और सामग्री से ध्यान न हटाए।",
+    "gamification": "गेमिफिकेशन और पुरस्कार: उपयोगकर्ता के काम पूरा करने, उपलब्धि पाने या लक्ष्य तक पहुँचने पर रिबन चलाएँ।",
+    "portfolio": "पोर्टफोलियो और रचनात्मक साइट: अपने पोर्टफोलियो को अलग दिखाने वाला खास दृश्य तत्व जोड़ें।",
+    "ecommerce": "ई-कॉमर्स और कन्वर्ज़न: खास ऑफ़र, छूट और सफल खरीदारी को उत्सवी इफेक्ट से उभारें।"
   },
   "quickstart": {
-    "title": "Quick Start",
-    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
-    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+    "title": "त्वरित शुरुआत",
+    "intro": "एक मिनट से भी कम समय में किसी वेबसाइट पर रिबन जोड़ें। स्क्रिप्ट शामिल करें और एक फ़ंक्शन कॉल करें:",
+    "outroHtml": "बस इतना ही! रिबन पेज के ऊपर यादृच्छिक जगहों से गिरेंगे। उन्हें अनुकूलित करने के लिए नीचे दिए उदाहरण देखें या <a href=\"/blog/customization-guide.html\">कस्टमाइज़ेशन गाइड</a> पढ़ें।"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "यह पेज साझा करें",
+    "share": "साझा करें",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -79,72 +79,64 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "लिंक कॉपी करें"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "चलाएँ",
+  "copied": "कॉपी हो गया",
   "footer": {
-    "about": "About",
-    "blog": "Blog",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "about": "परिचय",
+    "blog": "ब्लॉग",
+    "cookiePolicy": "कुकी नीति",
+    "privacyPolicy": "गोपनीयता नीति",
+    "with": "के साथ",
+    "by": "द्वारा",
+    "cookiePreferences": "कुकी प्राथमिकताएँ"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "गोपनीयता सेटिंग",
+    "text": "चुनें कि यह साइट विश्लेषण और विज्ञापन तकनीकों का उपयोग कैसे कर सकती है। विश्लेषण कुकी बंद होने पर भी गुमनाम, कुकी-रहित मापन चालू रहता है।",
+    "cookiePolicy": "कुकी नीति",
+    "analytics": "विश्लेषण कुकी",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "सभी अस्वीकार करें",
+    "saveChoices": "चयन सहेजें",
+    "acceptAll": "सभी स्वीकार करें"
   },
   "modes": {
     "basic": {
-      "name": "Basic Ribbons",
-      "description": [
-        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
-      ]
+      "name": "बेसिक रिबन",
+      "description": ["डिफ़ॉल्ट मोड: रिबन मानक रंगों और भौतिकी के साथ पेज के ऊपर यादृच्छिक जगहों से गिरते हैं।"]
     },
     "colors": {
-      "name": "Custom Colors",
+      "name": "कस्टम रंग",
       "description": [
-        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
-        "🔥 Ocean to flame color transition! 🔥"
+        "अपने ब्रांड या थीम से मेल खाने वाले रंग चुनें। HEX, RGB या रंग का नाम इस्तेमाल करें।",
+        "🔥 समुद्र से आग तक रंग परिवर्तन! 🔥"
       ]
     },
     "multiple": {
-      "name": "Multiple Bursts",
-      "description": [
-        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
-      ]
+      "name": "कई बौछारें",
+      "description": ["परतदार प्रभाव के लिए अलग-अलग समय पर कई रिबन बौछारें चलाएँ।"]
     },
     "continuous": {
-      "name": "Continuous Fall",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
-      ]
+      "name": "लगातार गिरना",
+      "description": ["यादृच्छिक जगहों से 8 सेकंड तक लगातार रिबन चलाएँ।"]
     },
     "fixedPosition": {
-      "name": "Fixed Position",
+      "name": "निश्चित स्थान",
       "description": [
-        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
+        "एक तय बिंदु (x: 50, y: 0) से रिबन चलाएँ; बटन या खास एलिमेंट से ट्रिगर करने के लिए उपयोगी।"
       ]
     },
     "customCanvas": {
-      "name": "Custom Canvas",
-      "description": [
-        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
-      ]
+      "name": "कस्टम Canvas",
+      "description": ["अपना canvas एलिमेंट देकर रिबन को पेज के किसी खास हिस्से तक सीमित करें."]
     },
     "ribbonsConfetti": {
-      "name": "Ribbons + Confetti",
+      "name": "कंफ़ेटी और रिबन",
       "description": [
-        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "🎉 Double the celebration! 🎉"
+        "कंफ़ेटी और रिबन मिलाकर दोगुना जश्न मनाएँ: कंफ़ेटी ऊपर से बरसेगी और रिबन स्क्रीन पर लहराएँगे। लॉन्च, उपलब्धियों और शुभकामनाओं के लिए बढ़िया।",
+        "दोगुना जश्न!"
       ]
     }
   }

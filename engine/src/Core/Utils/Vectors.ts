@@ -1,5 +1,5 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import { inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
+import { inverseFactorNumerator, none, originPoint } from "./Constants.js";
 
 /**
  * @param source - the vector to get the z coordinate from
@@ -146,7 +146,7 @@ export class Vector3d implements ICoordinates3d {
    * @returns the squared length value
    */
   getLengthSq(): number {
-    return this.x ** squareExp + this.y ** squareExp;
+    return this.x * this.x + this.y * this.y;
   }
 
   /**

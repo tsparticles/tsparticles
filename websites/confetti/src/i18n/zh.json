@@ -1,28 +1,28 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
-  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
-  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
-  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "简体中文",
+  "title": "tsParticles Confetti | 网站彩纸、粒子和烟花动画",
+  "description": "创建可自定义的彩纸、粒子和烟花动画，用作网站动态背景。提供适用于 React、Vue、Angular、Svelte、jQuery、Preact 和 Inferno 的组件。",
+  "ogTitle": "tsParticles Confetti | 网站彩纸、粒子和烟花动画",
+  "ogDescription": "使用 tsParticles 创建彩纸、粒子和烟花效果。交互式 Playground 内置代码编辑器，支持 React、Vue、Angular 和 Svelte。",
+  "twitterTitle": "tsParticles Confetti | 网站彩纸、粒子和烟花动画",
+  "twitterDescription": "使用 tsParticles 创建彩纸、粒子和烟花效果。交互式 Playground 内置代码编辑器。",
   "header": {
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitRibbons": "Visit tsParticles ribbons website",
-    "visitRibbonsAria": "Visit tsParticles ribbons website",
-    "language": "Language"
+    "switchTheme": "切换主题",
+    "visitGitHub": "访问 GitHub",
+    "viewSource": "在 GitHub 查看源码",
+    "joinDiscord": "加入 Discord",
+    "joinDiscordAria": "加入 tsParticles Discord",
+    "visitReddit": "访问 Reddit",
+    "visitRedditAria": "在 Reddit 访问 tsParticles",
+    "visitWebsite": "访问 tsParticles 网站",
+    "visitWebsiteAria": "访问 tsParticles 网站",
+    "visitRibbons": "访问 tsParticles Ribbons 网站",
+    "visitRibbonsAria": "访问 tsParticles Ribbons 网站",
+    "language": "语言"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "分享此页面",
+    "share": "分享",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -30,113 +30,86 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "复制链接"
   },
   "usage": {
-    "title": "Usage",
-    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+    "title": "用法",
+    "description": "如果使用原生 HTML/JS，请先引入脚本："
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "运行",
+  "copied": "已复制",
   "footer": {
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "with": "由",
+    "by": "来自",
+    "cookiePreferences": "Cookie 偏好设置"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "隐私设置",
+    "text": "选择此网站如何使用分析和广告技术。停用分析 Cookie 后，匿名无 Cookie 测量仍会启用。",
+    "cookiePolicy": "Cookie 政策",
+    "analytics": "分析 Cookie",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "全部拒绝",
+    "saveChoices": "保存选择",
+    "acceptAll": "全部接受"
   },
   "modes": {
     "cannon": {
-      "name": "Basic Cannon",
-      "description": [
-        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
-      ]
+      "name": "基础礼花炮",
+      "description": ["默认模式：普通的彩纸喷发，简单但依然有趣。"]
     },
     "random": {
-      "name": "Random Direction",
-      "description": [
-        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
-      ]
+      "name": "随机方向",
+      "description": ["向随机方向发射随机数量的彩纸，可以多次点击。"]
     },
     "realistic": {
-      "name": "Realistic Look",
-      "description": [
-        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
-      ]
+      "name": "逼真效果",
+      "description": ["粒子很多时，均匀的圆锥形会显得不自然。组合几种效果，让彩纸更真实。"]
     },
     "hearts": {
-      "name": "Valentine's Day",
-      "description": [
-        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
-        "❤️ Happy Valentine's Day! ❤️"
-      ]
+      "name": "情人节",
+      "description": ["使用心形彩纸制作情人节效果。", "❤️ 情人节快乐！❤️"]
     },
     "stars": {
-      "name": "Stars",
-      "description": [
-        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
-        "✨ Celebrate with a burst of stars! ✨"
-      ]
+      "name": "星星",
+      "description": ["组合不同形状、大小和设置，并错开时间来增强效果。", "✨ 用星星雨来庆祝！✨"]
     },
     "emoji": {
-      "name": "Emoji and Unicorns",
-      "description": [
-        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
-        "🦄 Unicorns loves rainbows! 🦄"
-      ]
+      "name": "表情和独角兽",
+      "description": ["在彩虹效果中加入独角兽表情。🦄", "🦄 独角兽喜欢彩虹！🦄"]
     },
     "images": {
-      "name": "Images",
+      "name": "图片",
       "description": [
-        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
-        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+        "使用喜爱的图片制作效果，并确认尺寸适合作为彩纸形状。",
+        "🍎🥑🍌🍉🍍🍓 这些水果是不是很可爱？🍒🍑🍈🍇🍊🍋"
       ]
     },
     "fireworks": {
-      "name": "Fireworks",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
-      ]
+      "name": "烟花",
+      "description": ["从页面两侧发射彩纸，不遮挡中央内容。"]
     },
     "snow": {
-      "name": "Snow",
-      "description": [
-        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
-      ]
+      "name": "雪花",
+      "description": ["让粒子缓缓飘过整个页面，营造冬日氛围。"]
     },
     "continuous": {
-      "name": "School Pride",
-      "description": [
-        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
-        "🌰 Go Buckeyes! 🌰"
-      ]
+      "name": "校园荣誉",
+      "description": ["在页面两侧各放一个礼花炮，展示你的颜色。", "🌰 Buckeyes 加油！🌰"]
     },
     "customShapes": {
-      "name": "Custom Shapes",
-      "description": [
-        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
-        "🎃🎄💜"
-      ]
+      "name": "自定义形状",
+      "description": ["用任意 SVG 路径创建节日主题形状，尽情发挥创意！", "🎃🎄💜"]
     },
     "custom": {
-      "name": "Custom Canvas",
-      "description": [
-        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
-      ]
+      "name": "自定义画布",
+      "description": ["指定自己的 canvas 元素，限定彩纸显示范围。"]
     },
     "confettiRibbons": {
-      "name": "Confetti + Ribbons",
+      "name": "彩纸与飘带",
       "description": [
-        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "Double the celebration!"
+        "结合彩纸和飘带，带来双倍庆祝效果，适合发布、里程碑和节日问候。",
+        "双倍庆祝！"
       ]
     }
   }

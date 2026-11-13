@@ -562,11 +562,13 @@ describe("framework codegen", () => {
     expect(result.installPackages).toContain("@tsparticles/engine");
   });
 
-  it("generates Angular code with @Component and ngx-particles", () => {
-    const result = generateCode({ description: "particle animation", framework: "angular" });
+  it.each([false, true])("generates a standalone Angular component with its module (typescript: %s)", typescript => {
+    const result = generateCode({ description: "particle animation", framework: "angular", typescript });
     expect(result.code).toContain("@Component");
     expect(result.code).toContain("<ngx-particles");
-    expect(result.code).toContain("NgParticlesService");
+    expect(result.code).toContain("standalone: true");
+    expect(result.code).toContain("imports: [NgxParticlesModule]");
+    expect(result.code).toContain('import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular"');
     expect(result.installPackages).toContain("@tsparticles/angular");
     expect(result.installPackages).toContain("@tsparticles/engine");
   });

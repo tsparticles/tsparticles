@@ -1,8 +1,18 @@
 import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { NoSerialize } from "@builder.io/qwik";
-import { type Container, tsParticles } from "@tsparticles/engine";
+import { type Container, getLogger, tsParticles } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+async function loadTheme(container: Container, theme: string, isCurrent: () => boolean): Promise<void> {
+  try {
+    await (container as Container & { loadTheme?: (name: string) => Promise<void> }).loadTheme?.(theme);
+  } catch (error: unknown) {
+    if (isCurrent()) {
+      getLogger().error("Particles: error loading theme", error);
+    }
+  }
+}
 
 const Particles = component$<IParticlesProps>(props => {
   const librarySig = useSignal<NoSerialize<Container | undefined>>();
@@ -15,42 +25,49 @@ const Particles = component$<IParticlesProps>(props => {
     const options = track(() => props.options);
     const url = track(() => props.url);
 
-    // A cancellation flag keeps a superseded load from publishing its result
-    // and overwriting the container of a newer load for the same id.
     let cancelled = false;
+    let owned: NoSerialize<Container> | undefined;
 
     cleanup(() => {
-      const c = librarySig.value;
-      if (c) {
-        c.destroy();
-        librarySig.value = undefined;
-      }
-
       cancelled = true;
-    });
 
-    void (async () => {
-      await waitForParticlesEngineInitialization();
-
-      if (!isParticlesEngineInitialized()) {
-        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
-      }
-
-      if (cancelled) {
+      if (!owned) {
         return;
       }
 
-      const old = librarySig.value;
-      if (old) {
-        old.destroy();
+      if (librarySig.value === owned) {
         librarySig.value = undefined;
       }
 
-      const container = await tsParticles.load({
-        url,
-        id: trackedId,
-        options: options ?? props.params,
-      });
+      if (props.container?.value === owned) {
+        props.container.value = undefined;
+      }
+
+      owned.destroy();
+    });
+
+    void (async () => {
+      let container: Container | undefined;
+
+      try {
+        await waitForParticlesEngineInitialization();
+
+        if (cancelled) {
+          return;
+        }
+
+        if (!isParticlesEngineInitialized()) {
+          throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+        }
+
+        container = await tsParticles.load({ url, id: trackedId, options: options ?? props.params });
+      } catch (error: unknown) {
+        if (!cancelled) {
+          getLogger().error("Particles: error loading particles", error);
+        }
+
+        return;
+      }
 
       if (cancelled) {
         container?.destroy();
@@ -58,18 +75,21 @@ const Particles = component$<IParticlesProps>(props => {
         return;
       }
 
-      if (props.container) {
-        props.container.value = noSerialize(container);
-      }
+      owned = container ? noSerialize(container) : undefined;
+      librarySig.value = owned;
 
-      librarySig.value = noSerialize(container);
+      if (props.container) {
+        props.container.value = owned;
+      }
 
       if (container && props.theme) {
-        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
+        void loadTheme(container, props.theme, () => !cancelled);
       }
 
-      if (loaded) {
-        await loaded(container);
+      try {
+        await loaded?.(container);
+      } catch (error: unknown) {
+        getLogger().error("Particles: error in loaded callback", error);
       }
     })();
   });
@@ -80,12 +100,13 @@ const Particles = component$<IParticlesProps>(props => {
     const container = librarySig.value;
     if (!container || !theme) return;
 
-    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+    void loadTheme(container, theme, () => librarySig.value === container);
   });
 
   return (
     <div class={className} id={id}>
       <canvas
+        key={id}
         class={canvasClassName}
         height={height}
         width={width}

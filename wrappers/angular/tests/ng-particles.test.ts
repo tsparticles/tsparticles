@@ -2,7 +2,7 @@
 import "@angular/compiler";
 import { describe, expect, it, vi } from "vitest";
 
-const { containerMock, loadMock } = vi.hoisted(() => {
+const { containerMock, errorMock, loadMock } = vi.hoisted(() => {
   const containerMock = {
     destroy: vi.fn(),
     loadTheme: vi.fn(async () => Promise.resolve()),
@@ -10,11 +10,13 @@ const { containerMock, loadMock } = vi.hoisted(() => {
 
   return {
     containerMock,
+    errorMock: vi.fn(),
     loadMock: vi.fn(async () => containerMock),
   };
 });
 
 vi.mock("@tsparticles/engine", () => ({
+  getLogger: () => ({ error: errorMock }),
   tsParticles: {
     load: loadMock,
   },
@@ -59,6 +61,7 @@ describe("NgxParticlesComponent", () => {
 
   it("loads the engine instance with the configured id, options and url", async () => {
     loadMock.mockClear();
+    errorMock.mockClear();
 
     const { component, loaded } = createComponent(),
       options = { particles: { number: { value: 2 } } };
@@ -82,6 +85,82 @@ describe("NgxParticlesComponent", () => {
     await vi.waitFor(() => {
       expect(loaded).toHaveBeenCalledWith(containerMock);
     });
+  });
+
+  it("reports a rejected load without emitting particlesLoaded", async () => {
+    loadMock.mockClear();
+    errorMock.mockClear();
+
+    const { component, loaded } = createComponent(),
+      loadError = new Error("load failed");
+
+    loadMock.mockRejectedValueOnce(loadError);
+
+    component.ngAfterViewInit();
+
+    await vi.waitFor(() => {
+      expect(errorMock).toHaveBeenCalledWith("ng-particles: error loading particles", loadError);
+    });
+    expect(loaded).not.toHaveBeenCalled();
+  });
+
+  it.each(["id", "options"] as const)("discards an older load when %s changes", async input => {
+    loadMock.mockClear();
+
+    const { component, loaded } = createComponent(),
+      staleContainer = { destroy: vi.fn(), loadTheme: vi.fn(async () => Promise.resolve()) },
+      currentContainer = { destroy: vi.fn(), loadTheme: vi.fn(async () => Promise.resolve()) };
+
+    let resolveStale: (container: typeof staleContainer) => void = () => undefined;
+
+    loadMock.mockImplementationOnce(
+      () =>
+        new Promise(resolve => {
+          resolveStale = resolve;
+        }),
+    );
+    loadMock.mockImplementationOnce(async () => currentContainer);
+
+    component.id = "first";
+    component.ngAfterViewInit();
+
+    await vi.waitFor(() => {
+      expect(loadMock).toHaveBeenCalledTimes(1);
+    });
+
+    const previousValue = component[input];
+
+    if (input === "id") {
+      component.id = "second";
+    } else {
+      component.options = { particles: { number: { value: 2 } } };
+    }
+
+    component.ngOnChanges({
+      [input]: {
+        currentValue: component[input],
+        firstChange: false,
+        isFirstChange: () => false,
+        previousValue,
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(loaded).toHaveBeenCalledWith(currentContainer);
+    });
+
+    expect(loadMock).toHaveBeenLastCalledWith({ id: component.id, options: component.options, url: undefined });
+
+    resolveStale(staleContainer);
+
+    await vi.waitFor(() => {
+      expect(staleContainer.destroy).toHaveBeenCalledOnce();
+    });
+    expect(loaded).toHaveBeenCalledTimes(1);
+
+    component.ngOnDestroy();
+
+    expect(currentContainer.destroy).toHaveBeenCalledOnce();
   });
 
   it("destroys the container on destroy", async () => {

@@ -5,7 +5,6 @@ import {
   type OutModeDirection,
   type Particle,
   ParticleOutType,
-  getDistances,
   minVelocity,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
@@ -36,7 +35,8 @@ export class DestroyOutMode implements IOutModeManager {
 
         break;
       case ParticleOutType.inside: {
-        const { dx, dy } = getDistances(particle.position, particle.moveCenter),
+        const dx = particle.position.x - particle.moveCenter.x,
+          dy = particle.position.y - particle.moveCenter.y,
           { x: vx, y: vy } = particle.velocity;
 
         if (

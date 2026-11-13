@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-matrix",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles preset for creating Matrix-style digital rain character effects",
   "homepage": "https://particles.js.org",
   "scripts": {

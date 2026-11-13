@@ -7,8 +7,8 @@ import {
   type RecursivePartial,
   Vector,
   clamp,
-  getDistances,
   half,
+  hypot,
   isInArray,
   loadOptionProperty,
   millisecondsToSeconds,
@@ -36,7 +36,6 @@ const repulseMode = "repulse",
   minDistance = 0,
   repulseRadiusFactor = 6,
   repulseRadiusPower = 3,
-  squarePower = 2,
   minSpeed = 0,
   easingOffset = 1,
   minRestoreSpeed = 0.001,
@@ -244,24 +243,27 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         return;
       }
 
-      const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-        query = container.particles.grid.query(range, p => this.isEnabled(interactivityData, p));
+      const query = container.particles.grid.queryCircle(mouseClickPos, repulseRadius, p =>
+          this.isEnabled(interactivityData, p),
+        ),
+        forceScale = repulseRadius * repulseOptions.speed;
 
       for (const particle of query) {
-        const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
-          d = distance ** squarePower,
-          velocity = repulseOptions.speed,
-          force = d > minDistance ? (-repulseRadius * velocity) / d : minSpeed;
+        const dx = particle.position.x - mouseClickPos.x,
+          dy = particle.position.y - mouseClickPos.y,
+          distanceSq = dx * dx + dy * dy;
 
-        if (d <= repulseRadius) {
+        // Click repulse uses the same squared cutoff and inverse-square force.
+        if (distanceSq <= repulseRadius) {
           this.#trackInteractedParticle(particle);
 
           repulse.particles.push(particle);
 
-          this.#clickVec.x = dx;
-          this.#clickVec.y = dy;
+          const inverseDistance = distanceSq > minDistance ? 1 / Math.sqrt(distanceSq) : minSpeed,
+            force = distanceSq > minDistance ? forceScale / distanceSq : minSpeed;
 
-          this.#clickVec.length = force;
+          this.#clickVec.x = dx * inverseDistance * force;
+          this.#clickVec.y = dy * inverseDistance * force;
 
           particle.velocity.setTo(this.#clickVec);
         }
@@ -307,7 +309,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       velocity = (divRepulse?.speed ?? speed) * factor;
 
     for (const particle of query) {
-      const { dx, dy, distance } = getDistances(particle.position, position),
+      const dx = particle.position.x - position.x,
+        dy = particle.position.y - position.y,
+        distance = hypot(dx, dy),
         repulseFactor = clamp(easingFunc(easingOffset - distance / repulseRadius) * velocity, minSpeed, maxSpeed);
 
       this.#normVec.x = !distance ? velocity : (dx / distance) * repulseFactor;

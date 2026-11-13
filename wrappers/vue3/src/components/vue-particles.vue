@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" />
+  <div :id="id" :key="id" />
 </template>
 
 <script setup lang="ts">

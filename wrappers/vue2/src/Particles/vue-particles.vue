@@ -1,9 +1,9 @@
 <template>
-  <div :id="id" />
+  <div :id="id" :key="id" />
 </template>
 
 <script lang="ts">
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
 import Vue from "vue";
 import { isParticlesInitialized, waitForParticlesInitialization } from "./event-bus";
 
@@ -16,57 +16,66 @@ interface ParticlesInstance extends Vue {
   options?: ISourceOptions;
   url?: string;
   theme?: string;
-  particlesLoaded?: (container?: Container) => void;
+  particlesLoaded?: (container?: Container) => Promise<void> | void;
   container?: Container;
   loadGeneration: number;
   onPropChange: () => void;
   onThemeChange: (newTheme?: string) => void;
 }
 
-async function particlesInit(component: ParticlesInstance): Promise<void> {
-  if (!component.id) {
-    throw new Error("Prop 'id' is required!");
-  }
+async function particlesInit(component: ParticlesInstance, generation: number): Promise<void> {
+  let container: Container | undefined;
 
-  const generation = component.loadGeneration;
+  try {
+    await waitForParticlesInitialization();
 
-  await waitForParticlesInitialization();
-
-  if (!isParticlesInitialized()) {
-    throw new Error(
-      "@tsparticles/vue2 plugin initialization must be completed before rendering <VueParticles /> components.",
-    );
-  }
-
-  const cb = (container?: Container) => {
     if (generation !== component.loadGeneration) {
-      container?.destroy();
       return;
     }
 
-    component.container = container;
-
-    if (container && component.particlesLoaded) {
-      component.particlesLoaded(container);
+    if (!component.id) {
+      throw new Error("Prop 'id' is required!");
     }
-  };
 
-  const container = await tsParticles.load({
-    id: component.id,
-    options: component.options ?? {},
-    url: component.url,
-  });
+    if (!isParticlesInitialized()) {
+      throw new Error(
+        "@tsparticles/vue2 plugin initialization must be completed before rendering <VueParticles /> components.",
+      );
+    }
+
+    container = await tsParticles.load({
+      id: component.id,
+      options: component.options ?? {},
+      url: component.url,
+    });
+  } catch (error: unknown) {
+    if (generation === component.loadGeneration) {
+      getLogger().error("VueParticles: error loading particles", error);
+    }
+
+    return;
+  }
 
   if (generation !== component.loadGeneration) {
     container?.destroy();
     return;
   }
 
-  if (container && component.theme) {
-    (container as ThemeableContainer).loadTheme?.(component.theme);
+  component.container = container;
+
+  if (!container) {
+    return;
   }
 
-  cb(container);
+  if (component.theme) {
+    component.onThemeChange(component.theme);
+  }
+
+  try {
+    await component.particlesLoaded?.(container);
+  } catch (error: unknown) {
+    getLogger().error("VueParticles: error in particlesLoaded callback", error);
+  }
 }
 
 export default Vue.extend({
@@ -113,27 +122,39 @@ export default Vue.extend({
     },
   },
   mounted(this: ParticlesInstance): void {
+    const generation = ++this.loadGeneration;
+
     this.$nextTick(() => {
-      void particlesInit(this);
+      void particlesInit(this, generation);
     });
   },
   beforeDestroy(this: ParticlesInstance): void {
     this.loadGeneration++;
     this.container?.destroy();
+    this.container = undefined;
   },
   methods: {
     onPropChange(this: ParticlesInstance): void {
       this.container?.destroy();
       this.container = undefined;
-      this.loadGeneration++;
-      void particlesInit(this);
+      void particlesInit(this, ++this.loadGeneration);
     },
     onThemeChange(this: ParticlesInstance, newTheme?: string): void {
-      if (!this.container) {
+      const container = this.container;
+
+      if (!container) {
         return;
       }
 
-      (this.container as ThemeableContainer).loadTheme?.(newTheme);
+      void (async () => {
+        try {
+          await (container as ThemeableContainer).loadTheme?.(newTheme);
+        } catch (error: unknown) {
+          if (this.container === container) {
+            getLogger().error("VueParticles: error loading theme", error);
+          }
+        }
+      })();
     },
   },
 });

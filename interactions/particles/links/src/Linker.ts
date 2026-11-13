@@ -1,10 +1,8 @@
 import {
-  type ICoordinates,
   type IDimension,
   type IRgb,
   type PluginManager,
   type RecursivePartial,
-  getDistances,
   getLinkColor,
   getLinkRandomColor,
   loadOptionProperty,
@@ -18,23 +16,20 @@ import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 const opacityOffset = 1,
   minDistance = 0;
 
-/* calculates the shortest distance between two points considering canvas wrap */
 /**
- * calculates the shortest distance between two points considering canvas wrap
- * @param pos1 - the first point
- * @param pos2 - the second point
+ * Calculates the squared distance allowing wrap on either canvas axis.
+ * @param dx - the horizontal delta
+ * @param dy - the vertical delta
  * @param canvasSize - the canvas size
- * @returns shortest distance between two points considering canvas wrap
+ * @returns the squared distance with canvas wrapping
  */
-function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDimension): number {
-  const { dx, dy } = getDistances(pos1, pos2),
-    absDiffs = { x: Math.abs(dx), y: Math.abs(dy) },
-    warpDistances = {
-      x: Math.min(absDiffs.x, canvasSize.width - absDiffs.x),
-      y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
-    };
+function getWarpDistanceSq(dx: number, dy: number, canvasSize: IDimension): number {
+  const absX = Math.abs(dx),
+    absY = Math.abs(dy),
+    x = Math.min(absX, canvasSize.width - absX),
+    y = Math.min(absY, canvasSize.height - absY);
 
-  return Math.hypot(warpDistances.x, warpDistances.y);
+  return x * x + y * y;
 }
 
 /** Particles link interactor */
@@ -84,6 +79,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     const linkOpt1 = p1.options.links,
       optOpacity = linkOpt1.opacity,
       optDistance = p1.retina.linksDistance ?? minDistance,
+      optDistanceSq = optDistance * Math.abs(optDistance),
       warp = linkOpt1.warp,
       query = (
         warp
@@ -114,15 +110,18 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       }
 
       /* check both direct and warped distances */
-      const distDirect = getDistances(pos1, pos2).distance,
-        distWarp = warp && linkOpt2.warp ? getWarpDistance(pos1, pos2, canvasSize) : distDirect,
-        distance = Math.min(distDirect, distWarp);
+      const dx = pos1.x - pos2.x,
+        dy = pos1.y - pos2.y,
+        distDirectSq = dx * dx + dy * dy,
+        distWarpSq = warp && linkOpt2.warp ? getWarpDistanceSq(dx, dy, canvasSize) : distDirectSq,
+        distanceSq = Math.min(distDirectSq, distWarpSq);
 
-      if (distance > optDistance) {
+      if (distanceSq > optDistanceSq) {
         continue;
       }
 
-      const opacityLine = (opacityOffset - distance / optDistance) * optOpacity;
+      const distance = Math.sqrt(distanceSq),
+        opacityLine = (opacityOffset - distance / optDistance) * optOpacity;
 
       this.#setColor(p1);
 
@@ -131,7 +130,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
         opacity: opacityLine,
         color: this.#getLinkColor(p1, p2),
         /* the link is warped if the shortest path crosses boundaries */
-        isWarped: distWarp < distDirect,
+        isWarped: distWarpSq < distDirectSq,
       });
     }
   }

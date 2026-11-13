@@ -1,9 +1,9 @@
 {
   "package": {
     "dependencies": {
-      "@tsparticles/engine": "^4.5.4",
-      "@tsparticles/slim": "^4.5.4",
-      "@tsparticles/confetti": "^4.5.4"
+      "@tsparticles/engine": "^4.6.0",
+      "@tsparticles/slim": "^4.6.0",
+      "@tsparticles/confetti": "^4.6.0"
     },
     "devDependencies": {
       "typescript": "^6.0.3",

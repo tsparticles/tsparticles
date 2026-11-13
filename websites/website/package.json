@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "4.5.4",
+    "version": "4.6.0",
     "private": true,
     "description": "tsParticles Website (VitePress)",
     "main": "docs/index.md",
@@ -257,7 +257,7 @@
         "tsparticles": "workspace:*"
     },
     "devDependencies": {
-        "prettier": "^3.9.10",
+        "prettier": "^3.10.1",
         "typedoc": "^0.28.20",
         "typedoc-plugin-clarity": "^1.6.0",
         "typedoc-plugin-coverage": "^4.0.3",

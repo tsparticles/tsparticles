@@ -1,3 +1,4 @@
+import type * as TypeScript from "typescript";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { readFile } from "node:fs/promises";
@@ -80,6 +81,38 @@ async function readConfig(basePath: string, file: string): Promise<string | unde
 }
 
 /**
+ * @param ts - The TypeScript compiler
+ * @param basePath - The package directory
+ * @param options - The CommonJS compiler options
+ * @returns A compiler host that uses the output package type for local sources
+ */
+function createCommonJsHost(
+  ts: typeof TypeScript,
+  basePath: string,
+  options: TypeScript.CompilerOptions,
+): TypeScript.CompilerHost {
+  const host = ts.createCompilerHost(options),
+    manifest = host.getCanonicalFileName(path.resolve(basePath, "package.json")),
+    readFile = host.readFile.bind(host);
+
+  host.readFile = fileName => {
+    const contents = readFile(fileName);
+
+    if (!contents || host.getCanonicalFileName(path.resolve(fileName)) !== manifest) {
+      return contents;
+    }
+
+    // NodeNext uses the nearest package manifest to choose emit and resolution conditions.
+    // Only this compilation sees the CommonJS package type that dist/cjs will declare.
+    const packageInfo = JSON.parse(contents) as Record<string, unknown>;
+
+    return JSON.stringify({ ...packageInfo, type: "commonjs" });
+  };
+
+  return host;
+}
+
+/**
  * @param basePath - The basePath
  * @param type - The type
  * @param silent - The silent
@@ -139,7 +172,8 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
     };
   }
 
-  const program = ts.createProgram(parsed.fileNames, parsed.options),
+  const host = type === "cjs" ? createCommonJsHost(ts, basePath, parsed.options) : undefined,
+    program = ts.createProgram(parsed.fileNames, parsed.options, host),
     emitResult = program.emit(),
     allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 

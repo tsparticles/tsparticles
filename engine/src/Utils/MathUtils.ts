@@ -193,16 +193,27 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 /**
- * Gets the distance between two coordinates
+ * Calculates the length of a two-dimensional vector with canvas-scale components.
+ * @param x - The horizontal component
+ * @param y - The vertical component
+ * @returns the vector length
+ */
+export function hypot(x: number, y: number): number {
+  return Math.sqrt(x * x + y * y);
+}
+
+/**
+ * Gets the signed deltas and Euclidean distance between two coordinates.
+ * Use {@link getDistanceSq} for squared distance comparisons.
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
- * @returns the all the distance values between the two coordinates
+ * @returns the signed deltas and distance between the two coordinates
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
   const dx = pointA.x - pointB.x,
     dy = pointA.y - pointB.y;
 
-  return { dx: dx, dy: dy, distance: Math.hypot(dx, dy) };
+  return { dx, dy, distance: Math.hypot(dx, dy) };
 }
 
 /**

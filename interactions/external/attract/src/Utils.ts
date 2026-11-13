@@ -6,7 +6,7 @@ import {
   type PluginManager,
   Vector,
   clamp,
-  getDistances,
+  hypot,
   identity,
   minRadius,
 } from "@tsparticles/engine";
@@ -44,7 +44,9 @@ function processAttract(
   const query = container.particles.grid.query(area, queryCb);
 
   for (const particle of query) {
-    const { dx, dy, distance } = getDistances(particle.position, position),
+    const dx = particle.position.x - position.x,
+      dy = particle.position.y - position.y,
+      distance = hypot(dx, dy),
       velocity = attractOptions.speed * attractOptions.factor,
       attractFactor = clamp(
         pluginManager.getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,

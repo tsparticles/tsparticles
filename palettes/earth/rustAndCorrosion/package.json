@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-rust-and-corrosion",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles rust & corrosion palette",
   "homepage": "https://particles.js.org",
   "scripts": {

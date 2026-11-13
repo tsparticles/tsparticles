@@ -407,7 +407,7 @@ export class ParticlesManager {
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.round(Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount),
-      particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
+      particlesCount = this.#countGroup(group);
 
     if (group === undefined) {
       this.#limit = numberOptions.limit.value * densityFactor;
@@ -481,7 +481,7 @@ export class ParticlesManager {
     const groupLimitEntry = group === undefined ? undefined : this.#groupLimits.get(group);
 
     if (groupLimitEntry && groupLimitEntry.limit > minLimit && groupLimitEntry.mode === LimitMode.wait) {
-      const groupCount = this.filter(t => t.group === group).length;
+      const groupCount = this.#countGroup(group);
 
       if (groupCount >= groupLimitEntry.limit) {
         return true;
@@ -489,7 +489,7 @@ export class ParticlesManager {
     }
 
     if (groupLimitEntry && groupLimitEntry.limit > minLimit && groupLimitEntry.mode === LimitMode.delete) {
-      const groupCountToRemove = this.filter(t => t.group === group).length + countOffset - groupLimitEntry.limit;
+      const groupCountToRemove = this.#countGroup(group) + countOffset - groupLimitEntry.limit;
 
       if (groupCountToRemove > minCount) {
         this.removeQuantity(groupCountToRemove, group);
@@ -505,6 +505,18 @@ export class ParticlesManager {
     }
 
     return false;
+  }
+
+  #countGroup(group: string | undefined): number {
+    let count = 0;
+
+    for (const particle of this.#array) {
+      if (particle.group === group) {
+        count++;
+      }
+    }
+
+    return count;
   }
 
   #createBuckets(zLayers: number): Particle[][] {

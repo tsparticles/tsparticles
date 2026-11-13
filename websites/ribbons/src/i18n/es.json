@@ -1,77 +1,77 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
-  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "Español",
+  "title": "tsParticles Ribbons | Animaciones JavaScript de cintas para tu web",
+  "description": "Crea animaciones de cintas ligeras y personalizables para cualquier web. Compatible con React, Vue, Angular y Svelte. Gratis y de código abierto.",
+  "ogTitle": "tsParticles Ribbons | Animaciones JavaScript de cintas para tu web",
+  "ogDescription": "Crea animaciones de cintas ligeras y personalizables para cualquier web. Compatible con React, Vue, Angular y Svelte. Gratis y de código abierto.",
+  "twitterTitle": "tsParticles Ribbons | Animaciones JavaScript de cintas para tu web",
+  "twitterDescription": "Crea animaciones de cintas ligeras y personalizables para cualquier web. Compatible con React, Vue, Angular y Svelte. Gratis y de código abierto.",
   "header": {
-    "about": "About",
+    "about": "Acerca de",
     "blog": "Blog",
-    "cookie": "Cookie",
-    "privacy": "Privacy",
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitConfetti": "Visit tsParticles confetti website",
-    "visitConfettiAria": "Visit tsParticles confetti website",
-    "language": "Language"
+    "cookie": "Cookies",
+    "privacy": "Privacidad",
+    "switchTheme": "Cambiar tema",
+    "visitGitHub": "Visitar GitHub",
+    "viewSource": "Ver el código en GitHub",
+    "joinDiscord": "Unirse a Discord",
+    "joinDiscordAria": "Unirse al Discord de tsParticles",
+    "visitReddit": "Visitar Reddit",
+    "visitRedditAria": "Visitar tsParticles en Reddit",
+    "visitWebsite": "Visitar el sitio de tsParticles",
+    "visitWebsiteAria": "Visitar el sitio de tsParticles",
+    "visitConfetti": "Visitar el sitio Confetti de tsParticles",
+    "visitConfettiAria": "Visitar el sitio Confetti de tsParticles",
+    "language": "Idioma"
   },
   "intro": {
-    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
-    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+    "lead": "Crea animaciones fluidas de cintas para tu web con unas pocas líneas de JavaScript. tsParticles Ribbons añade efectos dinámicos y ligeros que realzan el sitio sin ralentizarlo.",
+    "sub": "Para una celebración, un fondo interactivo o una animación sutil, las cintas son una solución elegante que funciona en todas partes: sin plugins ni Flash, solo Canvas HTML5."
   },
   "features": {
-    "title": "Why Choose tsParticles Ribbons?",
+    "title": "¿Por qué elegir tsParticles Ribbons?",
     "lightweight": {
-      "title": "Lightweight & Fast",
-      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+      "title": "Ligero y rápido",
+      "text": "El bundle de Ribbons comprimido ocupa solo unos pocos kilobytes. Las animaciones Canvas aceleradas por hardware funcionan a 60 fps, incluso en móviles."
     },
     "zeroDependencies": {
-      "title": "Zero Dependencies",
-      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+      "title": "Sin dependencias",
+      "text": "Úsalo con una etiqueta script o instálalo con npm. No necesitas jQuery, React ni herramientas de compilación, aunque se integra con los principales frameworks."
     },
     "customizable": {
-      "title": "Fully Customizable",
-      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+      "title": "Totalmente personalizable",
+      "text": "Controla colores, física, posición y tiempos. Crea efectos de fondo sutiles o celebraciones espectaculares con pocas opciones."
     },
     "crossBrowser": {
-      "title": "Cross-Browser Compatible",
-      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+      "title": "Compatible con navegadores",
+      "text": "Funciona en navegadores modernos como Chrome, Firefox, Safari y Edge. Incluye una alternativa para que los navegadores antiguos sigan funcionando."
     },
     "frameworkSupport": {
-      "title": "Framework Support",
-      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+      "title": "Compatible con frameworks",
+      "text": "Hay paquetes oficiales para React, Vue.js, Angular y Svelte. Los componentes gestionan automáticamente el ciclo de vida del canvas."
     },
     "openSource": {
-      "title": "Open Source",
-      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+      "title": "Código abierto",
+      "text": "Con licencia MIT y el apoyo de la comunidad tsParticles. El código está en GitHub junto con documentación y ejemplos."
     }
   },
   "usecases": {
-    "title": "Perfect For",
-    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
-    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
-    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
-    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
-    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
-    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+    "title": "Ideal para",
+    "launches": "Lanzamientos y anuncios: celebra novedades con ráfagas de cintas que llaman la atención.",
+    "holidays": "Fiestas y temporadas: añade animaciones festivas para celebraciones, rebajas y ocasiones especiales.",
+    "backgrounds": "Fondos interactivos: crea efectos ambientales que responden a la interacción sin distraer del contenido.",
+    "gamification": "Gamificación y recompensas: activa las cintas cuando los usuarios completan acciones o alcanzan objetivos.",
+    "portfolio": "Portfolios y sitios creativos: añade un detalle visual que hace destacar tu portfolio.",
+    "ecommerce": "Comercio electrónico y conversiones: destaca ofertas, descuentos y compras completadas con efectos festivos."
   },
   "quickstart": {
-    "title": "Quick Start",
-    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
-    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+    "title": "Inicio rápido",
+    "intro": "Añade cintas a cualquier web en menos de un minuto. Incluye el script y llama a una función:",
+    "outroHtml": "¡Listo! Las cintas caerán desde posiciones aleatorias en la parte superior. Para personalizarlas, consulta los ejemplos interactivos o la <a href=\"/blog/customization-guide.html\">guía de personalización</a>."
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "Compartir esta página",
+    "share": "Compartir",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -79,72 +79,70 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "Copiar enlace"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "Ejecutar",
+  "copied": "Copiado",
   "footer": {
-    "about": "About",
+    "about": "Acerca de",
     "blog": "Blog",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "cookiePolicy": "Política de cookies",
+    "privacyPolicy": "Política de privacidad",
+    "with": "con",
+    "by": "por",
+    "cookiePreferences": "Preferencias de cookies"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "Configuración de privacidad",
+    "text": "Elige cómo puede usar este sitio las tecnologías de análisis y publicidad. Si desactivas las cookies de análisis, se mantiene la medición anónima sin cookies.",
+    "cookiePolicy": "política de cookies",
+    "analytics": "Cookies de análisis",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "Rechazar todo",
+    "saveChoices": "Guardar opciones",
+    "acceptAll": "Aceptar todo"
   },
   "modes": {
     "basic": {
-      "name": "Basic Ribbons",
+      "name": "Cintas básicas",
       "description": [
-        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
+        "Modo predeterminado: las cintas caen desde la parte superior con los colores y la física estándar."
       ]
     },
     "colors": {
-      "name": "Custom Colors",
+      "name": "Colores personalizados",
       "description": [
-        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
-        "🔥 Ocean to flame color transition! 🔥"
+        "Personaliza los colores para que coincidan con tu marca o tema. Usa colores hexadecimales, RGB o con nombre.",
+        "🔥 ¡Transición de color del océano a la llama! 🔥"
       ]
     },
     "multiple": {
-      "name": "Multiple Bursts",
+      "name": "Ráfagas múltiples",
       "description": [
-        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
+        "Genera varias ráfagas con tiempos escalonados para crear un efecto en cascada."
       ]
     },
     "continuous": {
-      "name": "Continuous Fall",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
-      ]
+      "name": "Caída continua",
+      "description": ["Genera cintas sin parar durante 8 segundos desde posiciones aleatorias."]
     },
     "fixedPosition": {
-      "name": "Fixed Position",
+      "name": "Posición fija",
       "description": [
-        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
+        "Una ráfaga desde un punto fijo (x: 50, y: 0), útil para activarla desde un botón o elemento concreto."
       ]
     },
     "customCanvas": {
-      "name": "Custom Canvas",
+      "name": "Canvas personalizado",
       "description": [
-        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
+        "Limita las cintas a una sección concreta proporcionando tu propio elemento canvas."
       ]
     },
     "ribbonsConfetti": {
-      "name": "Ribbons + Confetti",
+      "name": "Confeti y cintas",
       "description": [
-        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "🎉 Double the celebration! 🎉"
+        "Combina confeti y cintas para celebrar por partida doble: el confeti cae desde arriba y las cintas cruzan la pantalla. Ideal para lanzamientos, hitos y felicitaciones.",
+        "¡El doble de celebración!"
       ]
     }
   }

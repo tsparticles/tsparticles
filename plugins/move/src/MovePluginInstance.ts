@@ -6,14 +6,14 @@ import {
   getItemMapFromInitializer,
   getRangeValue,
   half,
+  identity,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
 import type { MoveParticle, MovePluginManager } from "./Types.js";
 import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
-const defaultSizeFactor = 1,
-  defaultDeltaFactor = 1;
+const defaultSizeFactor = 1;
 
 export class MovePluginInstance implements IContainerPlugin {
   /** Available path generators from the engine */
@@ -107,12 +107,11 @@ export class MovePluginInstance implements IContainerPlugin {
       moveDrift = particle.retina.moveDrift,
       maxSize = particle.size.max,
       sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
-      deltaFactor = delta.factor || defaultDeltaFactor,
-      moveSpeed = baseSpeed * sizeFactor * slowFactor * deltaFactor * half,
+      moveSpeed = baseSpeed * sizeFactor * slowFactor * half,
       maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
-      spin(container, particle, moveSpeed, reduceFactor);
+      spin(container, particle, moveSpeed * (delta.factor || identity), reduceFactor);
     } else {
       move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, reduceFactor, delta);
     }

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-bubbles",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "description": "tsParticles preset for creating floating, rising bubble particle effects",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -10,6 +10,7 @@ import {
   defaultRatio,
   double,
   getDistance,
+  getDistanceSq,
   half,
   isInArray,
   itemFromSingleOrMultiple,
@@ -210,9 +211,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    const query = container.particles.grid.queryCircle(mouseClickPos, distance, p =>
-        this.isEnabled(interactivityData, p),
-      ),
+    const distanceSq = distance * distance,
+      query = container.particles.grid.queryCircle(mouseClickPos, distance, p => this.isEnabled(interactivityData, p)),
       { bubble } = container;
 
     for (const particle of query) {
@@ -226,7 +226,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       mod.inRange = !bubble.durationEnd;
 
       const pos = particle.getPosition(),
-        distMouse = getDistance(pos, mouseClickPos),
+        mouseDistanceSq = getDistanceSq(pos, mouseClickPos),
         timeSpent =
           (performance.now() - (interactivityData.mouse.clickTime ?? defaultClickTime)) / millisecondsToSeconds;
 
@@ -251,7 +251,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         type: ProcessBubbleType.size,
       };
 
-      this.#process(particle, distMouse, timeSpent, sizeData);
+      this.#process(particle, mouseDistanceSq, timeSpent, sizeData);
 
       const opacityData: Interfaces = {
         bubbleObj: {
@@ -265,10 +265,10 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         type: ProcessBubbleType.opacity,
       };
 
-      this.#process(particle, distMouse, timeSpent, opacityData);
+      this.#process(particle, mouseDistanceSq, timeSpent, opacityData);
 
-      if (!bubble.durationEnd && distMouse <= distance) {
-        this.#hoverBubbleColor(particle, distMouse);
+      if (!bubble.durationEnd && mouseDistanceSq <= distanceSq) {
+        this.#hoverBubbleColor(particle, Math.sqrt(mouseDistanceSq));
       } else {
         mod.fillColor = undefined;
         mod.strokeColor = undefined;
@@ -403,7 +403,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   }
 
-  #process(particle: Particle, distMouse: number, timeSpent: number, data: Interfaces): void {
+  #process(particle: Particle, mouseDistanceSq: number, timeSpent: number, data: Interfaces): void {
     const container = this.container,
       bubbleParam = data.bubbleObj.optValue,
       options = container.actualOptions,
@@ -439,7 +439,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
       }
     } else {
-      if (distMouse <= bubbleDistance) {
+      if (mouseDistanceSq <= bubbleDistance * bubbleDistance) {
         const obj = pObjBubble ?? pObj;
 
         if (obj !== bubbleParam) {

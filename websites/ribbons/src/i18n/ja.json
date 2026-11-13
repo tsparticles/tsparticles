@@ -1,77 +1,77 @@
 {
-  "languageName": "English",
-  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
-  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
-  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
-  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "languageName": "日本語",
+  "title": "tsParticles Ribbons | Web サイト向け JavaScript リボンアニメーション",
+  "description": "軽量でカスタマイズ可能なリボンアニメーションを作成できます。React、Vue、Angular、Svelte に対応。無料のオープンソースです。",
+  "ogTitle": "tsParticles Ribbons | Web サイト向け JavaScript リボンアニメーション",
+  "ogDescription": "軽量でカスタマイズ可能なリボンアニメーションを作成できます。React、Vue、Angular、Svelte に対応。無料のオープンソースです。",
+  "twitterTitle": "tsParticles Ribbons | Web サイト向け JavaScript リボンアニメーション",
+  "twitterDescription": "軽量でカスタマイズ可能なリボンアニメーションを作成できます。React、Vue、Angular、Svelte に対応。無料のオープンソースです。",
   "header": {
-    "about": "About",
-    "blog": "Blog",
+    "about": "概要",
+    "blog": "ブログ",
     "cookie": "Cookie",
-    "privacy": "Privacy",
-    "switchTheme": "Switch Theme",
-    "visitGitHub": "Visit on GitHub",
-    "viewSource": "View source on Github",
-    "joinDiscord": "Join Discord",
-    "joinDiscordAria": "Join tsParticles Discord",
-    "visitReddit": "Visit Reddit",
-    "visitRedditAria": "Visit tsParticles on Reddit",
-    "visitWebsite": "Visit tsParticles website",
-    "visitWebsiteAria": "Visit tsParticles website",
-    "visitConfetti": "Visit tsParticles confetti website",
-    "visitConfettiAria": "Visit tsParticles confetti website",
-    "language": "Language"
+    "privacy": "プライバシー",
+    "switchTheme": "テーマを切り替える",
+    "visitGitHub": "GitHub を開く",
+    "viewSource": "GitHub でソースを表示",
+    "joinDiscord": "Discord に参加",
+    "joinDiscordAria": "tsParticles Discord に参加",
+    "visitReddit": "Reddit を開く",
+    "visitRedditAria": "Reddit で tsParticles を見る",
+    "visitWebsite": "tsParticles サイトを開く",
+    "visitWebsiteAria": "tsParticles サイトを開く",
+    "visitConfetti": "tsParticles Confetti サイトを開く",
+    "visitConfettiAria": "tsParticles Confetti サイトを開く",
+    "language": "言語"
   },
   "intro": {
-    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
-    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+    "lead": "数行の JavaScript で、Web サイトに流れるリボンアニメーションを追加できます。tsParticles Ribbons は軽快なエフェクトでサイトを彩り、速度を損ないません。",
+    "sub": "お祝い、インタラクティブな背景、控えめな演出など、リボンはどこでも使える上品な方法です。プラグインや Flash は不要で、HTML5 Canvas のみを使用します。"
   },
   "features": {
-    "title": "Why Choose tsParticles Ribbons?",
+    "title": "tsParticles Ribbons を選ぶ理由",
     "lightweight": {
-      "title": "Lightweight & Fast",
-      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+      "title": "軽量で高速",
+      "text": "圧縮後の Ribbons bundle はわずか数キロバイトです。ハードウェアアクセラレーション対応の Canvas 描画で、モバイルでも 60 fps を実現します。"
     },
     "zeroDependencies": {
-      "title": "Zero Dependencies",
-      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+      "title": "依存関係なし",
+      "text": "script タグで読み込むか npm でインストールできます。jQuery、React、ビルドツールは不要ですが、主要なフレームワークとも連携できます。"
     },
     "customizable": {
-      "title": "Fully Customizable",
-      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+      "title": "自由にカスタマイズ",
+      "text": "色、物理挙動、位置、タイミングを調整できます。少ない設定で控えめな背景から華やかな演出まで作成できます。"
     },
     "crossBrowser": {
-      "title": "Cross-Browser Compatible",
-      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+      "title": "クロスブラウザー対応",
+      "text": "Chrome、Firefox、Safari、Edge などの最新ブラウザーで動作します。古いブラウザーにもフォールバックがあり、サイトの機能を保てます。"
     },
     "frameworkSupport": {
-      "title": "Framework Support",
-      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+      "title": "フレームワーク対応",
+      "text": "React、Vue.js、Angular、Svelte の公式パッケージを提供します。専用コンポーネントが canvas のライフサイクルを管理します。"
     },
     "openSource": {
-      "title": "Open Source",
-      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+      "title": "オープンソース",
+      "text": "MIT ライセンスで、tsParticles コミュニティが支援しています。GitHub でソース、ドキュメント、例を確認できます。"
     }
   },
   "usecases": {
-    "title": "Perfect For",
-    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
-    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
-    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
-    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
-    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
-    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+    "title": "こんな用途に",
+    "launches": "製品公開やお知らせ：目を引くリボンで新しいリリースをお祝いできます。",
+    "holidays": "祝日や季節の演出：祝日、セール、特別な機会に合わせたアニメーションを追加できます。",
+    "backgrounds": "インタラクティブな背景：コンテンツの邪魔をせず、操作に反応する雰囲気のある演出を作れます。",
+    "gamification": "ゲーミフィケーションと報酬：操作の完了、実績の獲得、目標達成時にリボンを表示できます。",
+    "portfolio": "ポートフォリオやクリエイティブサイト：作品を際立たせる独自の視覚要素を追加できます。",
+    "ecommerce": "EC とコンバージョン：特別オファー、割引、購入完了を華やかなエフェクトで演出できます。"
   },
   "quickstart": {
-    "title": "Quick Start",
-    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
-    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+    "title": "クイックスタート",
+    "intro": "1 分以内に Web サイトへリボンを追加できます。スクリプトを読み込み、関数を 1 つ呼び出します。",
+    "outroHtml": "完了です！ページ上部のランダムな位置からリボンが落ちます。カスタマイズするには、下の例または<a href=\"/blog/customization-guide.html\">カスタマイズガイド</a>をご覧ください。"
   },
   "share": {
-    "shareThisPage": "Share this page",
-    "share": "Share",
+    "shareThisPage": "このページを共有",
+    "share": "共有",
     "facebook": "Facebook",
     "x": "X",
     "linkedin": "LinkedIn",
@@ -79,72 +79,66 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyLink": "Copy link"
+    "copyLink": "リンクをコピー"
   },
-  "run": "Run",
-  "copied": "Copied",
+  "run": "実行",
+  "copied": "コピーしました",
   "footer": {
-    "about": "About",
-    "blog": "Blog",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "with": "with",
-    "by": "by",
-    "cookiePreferences": "Cookie preferences"
+    "about": "概要",
+    "blog": "ブログ",
+    "cookiePolicy": "Cookie ポリシー",
+    "privacyPolicy": "プライバシーポリシー",
+    "with": "提供",
+    "by": "作成",
+    "cookiePreferences": "Cookie の設定"
   },
   "cookie": {
-    "title": "Privacy settings",
-    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
-    "cookiePolicy": "cookie policy",
-    "analytics": "Analytics cookies",
+    "title": "プライバシー設定",
+    "text": "このサイトでの分析および広告技術の使用方法を選択してください。分析 Cookie を無効にしても、Cookie を使用しない匿名測定は有効です。",
+    "cookiePolicy": "Cookie ポリシー",
+    "analytics": "分析 Cookie",
     "adsense": "Google AdSense",
-    "rejectAll": "Reject all",
-    "saveChoices": "Save choices",
-    "acceptAll": "Accept all"
+    "rejectAll": "すべて拒否",
+    "saveChoices": "選択を保存",
+    "acceptAll": "すべて許可"
   },
   "modes": {
     "basic": {
-      "name": "Basic Ribbons",
+      "name": "基本のリボン",
       "description": [
-        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
+        "デフォルトモードでは、標準の色と物理挙動でページ上部のランダムな位置からリボンが落ちます。"
       ]
     },
     "colors": {
-      "name": "Custom Colors",
+      "name": "カスタムカラー",
       "description": [
-        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
-        "🔥 Ocean to flame color transition! 🔥"
+        "ブランドやテーマに合わせて色を変更できます。HEX、RGB、色名を指定できます。",
+        "🔥 海から炎へ移り変わるカラー！🔥"
       ]
     },
     "multiple": {
-      "name": "Multiple Bursts",
-      "description": [
-        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
-      ]
+      "name": "複数のバースト",
+      "description": ["タイミングをずらして複数のバーストを発生させ、重なり合う演出を作れます。"]
     },
     "continuous": {
-      "name": "Continuous Fall",
-      "description": [
-        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
-      ]
+      "name": "連続落下",
+      "description": ["ランダムな位置から 8 秒間リボンを連続して発生させます。"]
     },
     "fixedPosition": {
-      "name": "Fixed Position",
+      "name": "固定位置",
       "description": [
-        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
+        "固定点 (x: 50, y: 0) から一度に発生します。ボタンや特定の要素からの起動に便利です。"
       ]
     },
     "customCanvas": {
-      "name": "Custom Canvas",
-      "description": [
-        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
-      ]
+      "name": "カスタム Canvas",
+      "description": ["独自の canvas 要素を指定して、リボンをページ内の特定の領域に限定できます。"]
     },
     "ribbonsConfetti": {
-      "name": "Ribbons + Confetti",
+      "name": "紙吹雪とリボン",
       "description": [
-        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
-        "🎉 Double the celebration! 🎉"
+        "紙吹雪とリボンを組み合わせてお祝いを盛り上げます。紙吹雪が上から舞い、リボンが画面を流れます。製品公開、節目、季節の挨拶に最適です。",
+        "お祝いを2倍に！"
       ]
     }
   }

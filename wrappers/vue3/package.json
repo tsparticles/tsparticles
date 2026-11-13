@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue3",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "type": "module",
   "main": "dist/particles.es.js",
   "types": "dist/index.d.ts",
@@ -137,7 +137,7 @@
     "eslint-plugin-vue": "^10.12.0",
     "globals": "^17.14.0",
     "jsdom": "^31.0.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "typescript": "^6.0.3",
     "vite": "^8.3.5",
     "vite-plugin-dts": "^5.1.2",
