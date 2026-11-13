@@ -1,0 +1,105 @@
+{
+  "status": "Initial measured payload budgets; unmeasured scenario budgets pending",
+  "budgets": [
+    {
+      "scenario": "helper",
+      "condition": "import",
+      "ratio": 1,
+      "gzip": 189,
+      "brotli": 166
+    },
+    {
+      "scenario": "singleton",
+      "condition": "import",
+      "ratio": 1.02,
+      "gzip": 23118,
+      "brotli": 20453
+    },
+    {
+      "scenario": "initialization",
+      "condition": "import",
+      "ratio": 1.02,
+      "gzip": 23118,
+      "brotli": 20473
+    },
+    {
+      "scenario": "minimal",
+      "condition": "import",
+      "ratio": 0.95,
+      "gzip": 27028,
+      "brotli": 24087
+    },
+    {
+      "scenario": "singleton-lazy",
+      "condition": "import",
+      "ratio": 1.02,
+      "gzip": 23133,
+      "brotli": 20470
+    },
+    {
+      "scenario": "helper",
+      "condition": "browser",
+      "ratio": 1,
+      "gzip": 189,
+      "brotli": 166
+    },
+    {
+      "scenario": "singleton",
+      "condition": "browser",
+      "ratio": 1.02,
+      "gzip": 23129,
+      "brotli": 20484
+    },
+    {
+      "scenario": "initialization",
+      "condition": "browser",
+      "ratio": 1.02,
+      "gzip": 23125,
+      "brotli": 20484
+    },
+    {
+      "scenario": "minimal",
+      "condition": "browser",
+      "ratio": 0.95,
+      "gzip": 27043,
+      "brotli": 24106
+    },
+    {
+      "scenario": "singleton-lazy",
+      "condition": "browser",
+      "ratio": 1.02,
+      "gzip": 23139,
+      "brotli": 20496
+    },
+    {
+      "scenario": "engine/dist/tsparticles.engine.min.js",
+      "ratio": 1.02,
+      "gzip": 25164,
+      "brotli": 22392
+    },
+    {
+      "scenario": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "ratio": 1.02,
+      "gzip": 30873,
+      "brotli": 27283
+    },
+    {
+      "scenario": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+      "ratio": 0.95,
+      "gzip": 45147,
+      "brotli": 39169
+    },
+    {
+      "scenario": "bundles/full/dist/tsparticles.bundle.min.js",
+      "ratio": 1.02,
+      "gzip": 60133,
+      "brotli": 51734
+    },
+    {
+      "scenario": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "ratio": 1.02,
+      "gzip": 118266,
+      "brotli": 96434
+    }
+  ]
+}

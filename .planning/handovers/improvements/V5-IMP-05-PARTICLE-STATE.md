@@ -62,3 +62,11 @@ Provide measurements per particle and phase, new templates or caches and their
 invalidation, affected API consumers, and bundle deltas. Test reset/pool,
 overrides, modifiers, Retina, HDR, and two engines. Close T1–T4 in 07 and
 verify extensions in 08.
+
+## Related architecture contracts
+
+See [ARCH-01 — Particle](../architecture/V5-ARCH-01-PARTICLE-MODEL.md) and
+[ARCH-03 — Options](../architecture/V5-ARCH-03-OPTIONS.md). Use T1–T3 to
+compare classes, snapshots, plain state, normalization pipelines, and
+resolved templates. Define serializability and immutability as explicit
+contracts before relying on them.

@@ -355,7 +355,9 @@ describe("generateOptions", () => {
     const result = generateCode({ description });
 
     expect(result.options).toHaveProperty("splitCount", 500);
-    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes).toContain(
+      `Requested fireworks splitCount of ${description === "fireworks count: 2,000" || description === "fireworks split count: 2,000" ? "2,000" : "2000"} exceeds the maximum of 500; using 500.`,
+    );
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 

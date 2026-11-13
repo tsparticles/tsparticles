@@ -56,8 +56,9 @@
 
 ## v5 planning overlay — verified 2026-11-03
 
-Current runtime remains 4.5.1. The sections below are the April architecture audit
-with targeted entrypoint corrections; other claims require checking before use.
+This overlay was verified against runtime 4.5.1. The sections below are the April
+architecture audit with targeted entrypoint corrections. Check these observations
+against the current 4.6.0 checkout before using them.
 The target architecture is [the v5 handover plan](../handovers/README.md), not an
 already implemented state.
 

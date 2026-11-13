@@ -1,6 +1,8 @@
 # V5-03 — Domain folders and a minimal public API surface
 
-Status pending. Requires completion of 02 and stable signatures.
+Status pending. Start inventories in E0; execute contracts and internal boundaries
+in E3 after E2. Physical package extraction is evaluated here and finalized in E9.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -97,7 +99,8 @@ files where the domain boundary warrants it. Record final names in STRUCTURE.
 
 ## Deliverables
 
-Complete `V5-ENGINE-AUDIT.md` with ownership and review status for every file.
+Complete `V5-ENGINE-AUDIT.md` with ownership and current review status for every
+file, extending the inventory started in E0. Later owners close their reviews.
 
 Provide the public/internal matrix, domain graph, enforced rules, API removal list,
 and measurements. Update ARCHITECTURE/STRUCTURE and status. Later handovers use the
@@ -107,3 +110,27 @@ new paths. References to original names identify ownership.
 
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Architecture evaluations
+
+Consult all four [architecture plans](V5-ARCHITECTURE.md). Draft coordinated
+Particle state, option, and extension capability contracts before changing
+them. Compare internal boundaries, subpaths, and separate packages. Record
+initial decisions and constraints for 04–08 with alternatives and real
+consumers. Revisit contracts explicitly when later verification reveals
+incompatibilities.
+
+## Required color migration
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In C0/C1, define units, alpha,
+color manager contracts, h/c/l animation, legacy input, and conversion boundaries
+before propagating types. Coordinate ARCH-01/03/04 and give 05 the necessary
+Particle contracts.
+
+## Source-review acceptance additions
+
+Apply G2/G4/G7 from the [source review](V5-CODE-REVIEW.md). Decide container-level
+path-generator disposal separately from per-particle reset, numeric validation
+boundaries, public mutable collections and engine lifetime. Preserve existing
+option merge semantics and externally owned resource references. Carry G1–G7
+into the full-engine audit matrix started in E0.

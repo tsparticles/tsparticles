@@ -1,6 +1,7 @@
 # V5-10 — Size, migration, and release readiness gates
 
-Status pending. Requires verified completion of 01–09.
+Status pending. Execute in E10 after verified E0–E9 gates and completion of
+all technical handovers 01–09. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -58,6 +59,7 @@ for compatibility claims. Files or packages without an outcome keep the gate ope
       for affected CLI/generators/consumers, and `pnpm run build:ci`.
 - [ ] Real browser smoke tests pass and guides/demos/templates/generated code work.
 - [ ] Breaking-change changelog and migration guide are complete, with English and translations aligned.
+- [ ] V5-LEG retirement, V5-ARCH evaluations, and V5-COLOR migration gates pass.
 
 ## Deliverables
 
@@ -73,8 +75,40 @@ Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.
 
 ## Consumers installed outside the monorepo
 
-Reuse fixtures from the [v4 wrapper, CLI, and MCP plan](../v4-review/WRAPPER-CLI-MCP.md)
-when available. Verify wrapper mount, errors, and teardown against the v5
+Reuse the v4 wrapper, CLI, and MCP regression fixtures where applicable.
+Verify wrapper mount, errors, and teardown against the v5
 contract, scaffolding commands from the publishable package, and compilation of
 MCP snippets in consumer projects. Include an isolated install to catch
 undeclared direct imports and templates that build only in the workspace.
+
+## Architecture evaluations
+
+Collect `V5-ARCHITECTURE-DECISIONS.md` from the
+[architecture plan](V5-ARCHITECTURE.md). Each ARCH-01–04 item needs a decision,
+alternatives, evidence, consumer impact, and outcome. Explain retained
+implementations and deferred rewrites. Required v5 gates still apply.
+Verify migration guidance for actual changes to Particle state/methods,
+packages/subpaths, options, and extensions. Incomplete evaluation keeps this gate open.
+
+## Required color migration
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Require C0–C5 completion,
+`V5-COLOR-DECISIONS.md`, and `V5-COLOR-REPORT.md`. Verify the package matrix,
+numerical and browser tests, budgets, and breaking migration guidance for
+managers, animation, and offsets. Unverified gamut or HDR keeps V5-COLOR open.
+
+## Legacy support retirement
+
+Close [V5-LEG](../REQUIREMENTS.md) using the inventory and Browserslist evidence
+from 09. Verify that retired Vue 2, Nuxt 2, and Nuxt 3 integrations are absent
+from the workspace, distribution, demos, templates, installer, active docs,
+translations, and bundles. Check migration guidance for retired deprecated APIs
+and browser coverage. Confirm remaining supported fallback paths in built artifacts.
+
+## Source-review acceptance additions
+
+Collect G1–G7 dispositions from the [source review](V5-CODE-REVIEW.md), including
+failure/lifecycle, timing/numeric, sampling and spatial regression evidence.
+Unresolved mandatory checks keep E10 open. The [optional E11 backlog](V5-11-OPTIONAL-PLUGINS.md)
+is explicitly excluded from release-readiness completion; if later investigation
+finds a correctness defect, return it to the responsible mandatory gate.

@@ -1,6 +1,8 @@
 # V5-05 — CanvasManager, rendering, and other core costs
 
-Status pending. Requires completion of 04.
+Status pending. Color/output migration runs in E5 with 07/08 after E4.
+Complete rendering optimizations and the remaining full review in E7, after E6.
+See the [execution sequence](V5-EXECUTION.md); this handover has two checkpoints.
 
 ## Ownership
 
@@ -48,7 +50,7 @@ preserve other agents' changes.
 
 Include a custom updater with private state in parity tests. Init, update, and
 draw must use the same instance within each cycle, including after redraw and
-refresh, as described in [V4-B05](../v4-review/CORRECTNESS.md#v4-b05--p1--particle-initialization-and-drawing-use-different-updater-instances).
+refresh (V4-B05).
 
 ## Deliverables
 
@@ -60,3 +62,17 @@ Update ARCHITECTURE/STRUCTURE, the changelog as needed, and the index.
 
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md) and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Required color migration
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In E5, coordinate C1–C4
+with 07/08, including complete canonical runtime and affected-consumer integration. Cover conversion without early clipping, OKLCH/P3 output and
+fallbacks, separate gamut/precision/HDR capabilities, intermediate surfaces,
+and numerical and browser tests. The full Particle review belongs to 07 in the same E5 stage; optimization follows in E7.
+
+## Source-review acceptance additions
+
+Apply G3/G4 from the [source review](V5-CODE-REVIEW.md) to resource/setup failures,
+zero-size canvases, effective capabilities, media export and late asset completion.
+Verify resource ownership during E5 output migration and E7 canvas review. Optional
+asset/drawing tuning in E11 does not defer these lifecycle checks.

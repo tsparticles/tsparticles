@@ -7,34 +7,52 @@
 | 1   | GIF Shape, Background Canvas, BgMask Dynamic, Draw Layer System, Particle Modifier, HDR Precision                             | 4.3.0         | ✅ Released |
 | 2   | HDR Color Fix & Rendering Modes, Code Review Fixes                                                                            | 4.4.0         | ✅ Released |
 | 3   | Fluid Particle Interaction, MCP `generate_code` tool, Emitter Draw/Drag, Absorber Split, Error Codes, Workspace Test Coverage | 4.5.0 / 4.5.1 | ✅ Released |
-| 4   | Close the v4 review findings and verify package, browser, and integration contracts                                           | 4.6.0         | Planned     |
+| 4   | Close the v4 review findings and verify package, browser, and integration contracts                                           | 4.6.0         | ✅ Released |
 
-## Current execution — v4.6.0 minor release
+## v4.6.0 release and follow-up
 
-**Goal:** close or explicitly disposition every finding in the [v4 review](v4-review/README.md) before beginning v5 runtime implementation. The nine core runtime fixes are in the released 4.5.4 patch; remaining integration, distribution, measurement, and real-browser gates are tracked in [the 4.6.0 release plan](v4-review/RELEASE-4.6.md).
+The 4.6.0 release is included in `v5` through merge `201b8e8d33` from `main`.
+Collect the pending V4-S01 Rollup baseline and CDN engine-plus-feature
+measurements with the [v5 baseline](handovers/README.md#required-baseline-before-the-first-runtime-change).
+V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
-Do not start v5 runtime changes until each v4 finding has a verified outcome: fixed and covered, reproduced as not fixed, or deferred with evidence and an explicit compatibility reason. Performance and bundle experiments may close without code changes when measurements show no worthwhile compatible improvement.
+## Current execution — v5 major
 
-## Next major — v5
+**Status.** Planned on branch `v5`, with package version `4.6.0`.
+Follow the [handover index](handovers/README.md) and capture a clean baseline
+from the actual starting commit before removing the singleton.
 
-**Status:** planned on dedicated branch `v5`; runtime work follows the 4.6.0 closure gate. Existing handovers were prepared against `4.5.1` and must be reconciled with the final v4 baseline before execution.
-The first runtime change removes the singleton. Measurement of the unmodified
-baseline precedes that change. Follow [handover index](handovers/README.md).
+Use the [dependency-driven E0–E10 sequence](handovers/V5-EXECUTION.md).
+Handover filenames retain their original topic IDs; they are not chronological.
 
-| Step | Scope                                                               | Handover                                        |
-| ---- | ------------------------------------------------------------------- | ----------------------------------------------- |
-| 1    | Explicit engines, initial plugin audit and working browser contract | [01](handovers/V5-01-ENGINE-INSTANCES.md)       |
-| 2    | Per-engine services and shared-state audit                          | [02](handovers/V5-02-ENGINE-SERVICES.md)        |
-| 3    | Full engine inventory, domain boundaries and review ownership       | [03](handovers/V5-03-CORE-BOUNDARIES.md)        |
-| 4    | Container and events                                                | [04](handovers/V5-04-CONTAINER.md)              |
-| 5    | CanvasManager and RenderManager                                     | [05](handovers/V5-05-CANVAS-RENDERING.md)       |
-| 6    | ParticlesManager and SpatialHashGrid                                | [06](handovers/V5-06-PARTICLES-MANAGER.md)      |
-| 7    | Particle and Retina                                                 | [07](handovers/V5-07-PARTICLE.md)               |
-| 8    | Ecosystem plugin impact and compatibility audit                     | [08](handovers/V5-08-PLUGIN-IMPACT.md)          |
-| 9    | Browser/CDN distribution refinement                                 | [09](handovers/V5-09-BROWSER-BUNDLES.md)        |
-| 10   | Complete coverage, budget and migration gate                        | [10](handovers/V5-10-SIZE-MIGRATION-RELEASE.md) |
+1. **E0:** capture baseline/budgets, inventory consumers, define retirement and browser scope.
+2. **E1:** remove singleton, migrate supported consumers and working browser bootstrap.
+3. **E2:** isolate RNG/loggers and audit scheduler/caches per engine.
+4. **E3:** decide Particle/options/extensions/color contracts, then establish internal boundaries.
+5. **E4:** stabilize Container lifecycle, refresh, cancellation and hooks.
+6. **E5:** implement Particle/options and OKLCH end to end, including affected plugins/output.
+7. **E6:** review and optimize collections, pooling, update phases and spatial indexing.
+8. **E7:** complete canvas review and optimize rendering against the final model.
+9. **E8:** close ecosystem compatibility coverage accumulated throughout implementation.
+10. **E9:** finalize packaging/CDN/lazy composition and verify legacy cleanup.
+11. **E10:** close budgets, full verification, migration documentation and release readiness.
 
-Performance and bundle-size candidates are tracked in [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md) and enter implementation only when the relevant measurements support them.
+The sequence includes difficulty, impact and exit gates. [Architecture evaluations](handovers/V5-ARCHITECTURE.md)
+feed E3 contracts; [OKLCH C1–C4](handovers/V5-COLORS-OKLCH.md) form the coordinated E5
+migration. [Performance candidates](handovers/V5-IMPROVEMENTS.md) require measured
+benefits on stable contracts. Existing handover acceptance checks remain required.
+
+Vue 2, Nuxt 2 and Nuxt 3 retirement is scoped in E0 and performed before migrating
+retained integrations in E1. Remove deprecated APIs with their owning contract
+changes. Record browser targets and usage threshold in E0 before removing support;
+preserve fallbacks required by supported browsers. E9/E10 verify all workspace,
+package, installer, template, documentation and translation cleanup.
+
+The [source-based coverage review](handovers/V5-CODE-REVIEW.md) adds explicit
+G1–G7 checks to the relevant E1–E8 stages, closed in E10. It covers resource
+ownership, async failures, timing/numeric domains, spatial snapshots and sampling.
+After E10, [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) profiles and evaluates
+additional plugin optimizations. It does not block v5 or defer mandatory fixes.
 
 No implementation step is complete yet. Historical fluid references to “v5” below
 identify a solver-plan revision, not this product major release.

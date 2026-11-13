@@ -903,10 +903,18 @@ function extractLabeledCount(
   skipSplitCount: boolean,
   countPattern: RegExp = GROUPED_INTEGER_COUNT_PATTERN,
 ): string | undefined {
+  const splitCountIndexes = new Set<number>();
+
+  if (skipSplitCount) {
+    for (const match of text.matchAll(/\bsplit\s*count\b/gi)) {
+      splitCountIndexes.add(match.index + match[0].length - "count".length);
+    }
+  }
+
   for (const labelMatch of text.matchAll(labelPattern)) {
     const labelIndex = labelMatch.index;
 
-    if (skipSplitCount && /\bsplit\s*$/i.test(text.slice(0, labelIndex))) {
+    if (splitCountIndexes.has(labelIndex)) {
       continue;
     }
 
@@ -947,9 +955,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const splitCount = extractLabeledCount(text, /\bsplit\s*count\b/gi, false);
 
   if (splitCount !== undefined) {
-    const raw = normalizeCountString(splitCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return { ambiguous: false, raw: splitCount, value: Number(normalizeCountString(splitCount)) };
   }
 
   const explicitSparkCount = new RegExp(
@@ -966,9 +972,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const labeledCount = extractLabeledCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
-    const raw = normalizeCountString(labeledCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return { ambiguous: false, raw: labeledCount, value: Number(normalizeCountString(labeledCount)) };
   }
 
   const sparkCountAfterHeading = extractSparkCountAfterHeading(text);

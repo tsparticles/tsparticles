@@ -1,7 +1,8 @@
 # V5-09 — Refine browser distribution without a singleton
 
-Status pending. Define the minimum contract and make migration work in 01.
-Refine and verify distribution after 08. Fix build failures when they arise.
+Status pending. Define support scope in E0 and make browser migration work in E1.
+Refine and verify distribution in E9 after E8. Fix build failures when they arise.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -79,3 +80,32 @@ includes this matrix.
 
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Architecture evaluations
+
+Verify [ARCH-02 — Engine packages](architecture/V5-ARCH-02-ENGINE-PACKAGES.md)
+and [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) outcomes.
+Check adopted packages/subpaths, selective loaders and capabilities, and
+duplicate runtime copies and registries in browser/CDN/lazy composition.
+Compare total payload for the same scene, including changed entries and chunks.
+
+## Required color migration
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In C5, verify bundles, loaders,
+and facades. Canonical OKLCH rendering works without the OKLCH parser plugin
+when another manager resolves the color. Test sRGB/P3 SDR/HDR in real contexts
+and consumers installed from built packages.
+
+## Legacy support retirement
+
+Apply [V5-LEG](../REQUIREMENTS.md). Define the inventory and browser policy in E0;
+remove retired integrations before supported-consumer migration in E1. In E9,
+verify the completed removal of Vue 2, Nuxt 2, and Nuxt 3 wrappers
+and related demos, starter templates, installer detection, package references,
+docs, and translations. Inventory APIs marked `@deprecated` with documented
+supported replacements and record their migration paths.
+
+Before changing shared browser configuration, record the Browserslist data
+version, evaluated targets, and usage threshold for the agreed 5–6 year
+window. Retain detection and fallbacks needed by supported browsers. Verify
+browser outputs and hand off the removal inventory and evidence to 10.

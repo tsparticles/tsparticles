@@ -1,7 +1,8 @@
 # V5-08 — Audit plugins after singleton removal
 
-Status pending. An initial audit is required in 01/02. This handover completes
-verification after 07, once core contracts are stable.
+Status pending. Start the inventory in E0 and migrate affected consumers with
+every breaking change in E1–E7, including color closure in E5. Complete the
+independent coverage audit in E8. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -58,3 +59,29 @@ issues. An unchanged package is a valid result with verification evidence.
 
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Architecture evaluations
+
+Close [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) using
+the contracts from 03 and verification in 04–07. Evaluate common registration
+and lifecycle with typed capabilities while preserving specialized pipelines.
+Audit [ARCH-01](architecture/V5-ARCH-01-PARTICLE-MODEL.md) and
+[ARCH-03](architecture/V5-ARCH-03-OPTIONS.md) consumers for Particle fields
+and methods, optional snapshots and codecs, option classes, precedence,
+and mutability. Require evidence before adopting serialization or broad rewrites.
+
+## Required color migration
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C4 for all managers and
+consumers in the color matrix, including links, bubble, gradient, split,
+trail coordinates, emitters, images/SVG, and backgrounds. Verify accuracy,
+alpha, and wide gamut beyond compilation.
+
+## Source-review acceptance additions
+
+Close G1–G7 consumer rows from the [source review](V5-CODE-REVIEW.md), including
+emitter shapes, noise/path generators, motion, Poisson, image/GIF, media exports
+and sampling consumers. Mandatory fixes accompany their core stages. Record
+per-capability worker support and lifecycle results. The separate
+[E11 backlog](V5-11-OPTIONAL-PLUGINS.md) covers optional performance experiments,
+not compatibility work deferred from this handover.

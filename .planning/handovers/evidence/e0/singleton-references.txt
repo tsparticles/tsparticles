@@ -1,0 +1,1096 @@
+engine/src/index.ts:1:import { initEngine } from "./initEngine.js";
+engine/src/index.ts:4: * Shared tsParticles engine instance.
+engine/src/index.ts:6:const tsParticles = initEngine();
+engine/src/index.ts:11:export { tsParticles };
+engine/src/index.lazy.ts:1:import { initEngine } from "./initEngine.js";
+engine/src/index.lazy.ts:4: * Shared tsParticles engine instance for lazy/global builds.
+engine/src/index.lazy.ts:6:const tsParticles = initEngine();
+engine/src/index.lazy.ts:8:globalThis.tsParticles = tsParticles;
+engine/src/index.lazy.ts:13:export { tsParticles };
+bundles/slim/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/slim/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/slim/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/slim/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+engine/src/browser.ts:3:import { tsParticles } from "./index.js";
+engine/src/browser.ts:6:  __tsParticlesInternals?: Record<string, unknown>;
+engine/src/browser.ts:12:  tsParticles?: typeof tsParticles;
+engine/src/browser.ts:15:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+engine/src/browser.ts:16:globalObject.tsParticles = tsParticles;
+bundles/slim/src/index.ts:33: * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
+bundles/slim/src/index.ts:34: * This function must be called to make tsParticles Slim work.
+engine/src/Utils/ErrorCodes.ts:21:  /** Plugins can only be registered before `tsParticles.load()` (`PluginManager`) */
+engine/src/Utils/ErrorCodes.ts:36: * A stable tsParticles error code, e.g. `"TSP-1001"`.
+engine/src/Utils/ErrorMessages.ts:13:    "The tsParticles version is different from the loaded plugins version. Engine version: {0}. Plugin version: {1}",
+templates/login/README.md:3:tsParticles login page template. Use with `create-tsparticles-app` to scaffold a new login page project with animated particle background.
+bundles/slim/src/index.lazy.ts:6: * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
+bundles/slim/src/index.lazy.ts:7: * This function must be called to make tsParticles Slim work.
+bundles/slim/package.json:4:  "description": "Slim tsParticles bundle — core engine with essential plugins, presets, and interactions for lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/build-tsc/src/tsc.ts:7:tscCommand.description("Build the TypeScript files for tsParticles library");
+engine/src/Utils/LogUtils.ts:2:const errorPrefix = "tsParticles - Error",
+engine/src/Utils/LogUtils.ts:5:   * e.g. `[tsParticles Error TSP-1001] https://particles.js.org/errors/#TSP-1001`.
+engine/src/Utils/LogUtils.ts:7:  codedErrorPattern = /^\[tsParticles Error (TSP-\d+)\]\s*/,
+engine/src/Utils/LogUtils.ts:11:/** Logger interface for tsParticles */
+engine/src/Utils/LogUtils.ts:57:            `tsParticles - ${match[codeIndex]} - ${message.slice(match[fullMatchIndex].length)}`,
+wrappers/angular-confetti/package.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+bundles/slim/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/slim/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/full/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/full/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/full/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/full/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+bundles/slim/README.md:3:# tsParticles Slim Bundle
+bundles/slim/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) slim bundle loads some of the most used features to
+bundles/slim/README.md:104:2. Call the package loader function(s) before `tsParticles.load(...)`
+bundles/slim/README.md:105:3. Apply the package options in your `tsParticles.load(...)` config
+bundles/slim/README.md:114:- One is a file including just the `loadSlim` function to load the tsParticles slim preset, all dependencies must be
+bundles/slim/README.md:119:Including the `tsparticles.slim.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
+bundles/slim/README.md:133:Once the scripts are loaded you can set up `tsParticles` like this:
+bundles/slim/README.md:137:  await loadSlim(tsParticles);
+bundles/slim/README.md:139:  await tsParticles.load({
+bundles/slim/README.md:161:  // this customizes the component tsParticles installation
+bundles/slim/README.md:163:    // this adds the bundle to tsParticles
+bundles/slim/README.md:186:  // this customizes the component tsParticles installation
+bundles/slim/README.md:188:    // this adds the bundle to tsParticles
+bundles/slim/README.md:253:- Calling `tsParticles.load(...)` before `loadSlim(...)`
+bundles/slim/package.dist.json:4:  "description": "Slim tsParticles bundle — core engine with essential plugins, presets, and interactions for lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/build-tsc/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-tsc/eslint.config.js:5:  tsParticlesESLintConfig,
+engine/src/Utils/ErrorUtils.ts:85:    return `[tsParticles Error ${code}] https://particles.js.org/errors/#${code}`;
+bundles/full/src/index.ts:19: * Loads the full bundle with all plugins needed for running the tsParticles package.
+bundles/full/src/index.ts:20: * This function must be called to make tsParticles work.
+bundles/slim/typedoc.json:5:    "name": "tsParticles Slim Bundle",
+cli/commands/build-tsc/package.json:73:  "description": "tsParticles CLI",
+bundles/slim/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/slim/eslint.config.js:5:    tsParticlesESLintConfig,
+bundles/full/src/index.lazy.ts:6: * Loads the full bundle with all plugins needed for running the tsParticles package.
+bundles/full/src/index.lazy.ts:7: * This function must be called to make tsParticles work.
+cli/commands/build-tsc/README.md:3:# tsParticles CLI
+bundles/full/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/full/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/confetti/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/confetti/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/confetti/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/confetti/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+cli/commands/build-prettier/src/prettier.ts:8:prettierCommand.description("Prepare the dist files for tsParticles library");
+cli/commands/create-effect/src/effect.ts:6:effectCreateCommand.description("Create a new tsParticles effect");
+bundles/full/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/full/eslint.config.js:5:    tsParticlesESLintConfig,
+bundles/full/typedoc.json:7:  "name": "tsParticles Full Bundle",
+cli/commands/build-prettier/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-prettier/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/commands/create-effect/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-effect/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/full/package.json:4:  "description": "Full-featured tsParticles bundle — create stunning particle, confetti and fireworks animations with all official plugins and presets included. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+bundles/confetti/src/confetti.lazy.ts:2:import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+bundles/confetti/src/confetti.lazy.ts:120:  await initPlugins(tsParticles);
+bundles/confetti/src/confetti.lazy.ts:132:  return setConfetti(tsParticles, {
+bundles/confetti/src/confetti.lazy.ts:148:  await initPlugins(tsParticles);
+bundles/confetti/src/confetti.lazy.ts:154:  await setConfetti(tsParticles, {
+bundles/confetti/src/confetti.lazy.ts:174:    return setConfetti(tsParticles, {
+bundles/confetti/src/confetti.lazy.ts:184:  await initPlugins(tsParticles);
+cli/commands/build-prettier/package.json:74:  "description": "tsParticles CLI",
+templates/login/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/login/template/vanilla/src/main.ts:109:  await loadSlim(tsParticles);
+templates/login/template/vanilla/src/main.ts:111:  await tsParticles.load({
+cli/commands/create-effect/package.json:61:  "description": "tsParticles CLI Create Effect command",
+bundles/confetti/src/confetti.ts:2:import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+bundles/confetti/src/confetti.ts:95:  await initPlugins(tsParticles);
+bundles/confetti/src/confetti.ts:107:  return setConfetti(tsParticles, {
+bundles/confetti/src/confetti.ts:123:  await initPlugins(tsParticles);
+bundles/confetti/src/confetti.ts:129:  await setConfetti(tsParticles, {
+bundles/confetti/src/confetti.ts:149:    return setConfetti(tsParticles, {
+bundles/confetti/src/confetti.ts:159:  await initPlugins(tsParticles);
+cli/commands/create-utils/src/create-project.ts:104:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create-utils/src/create-project.ts:108:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/create-utils/src/create-project.ts:124:${reexportEngine ? 'export { tsParticles } from "@tsparticles/engine";' : ""}
+cli/commands/create-utils/src/create-project.ts:128:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create-utils/src/create-project.ts:132:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/create-utils/src/create-project.ts:145:  return `tsParticles ${description} ${kindLabel}`;
+cli/commands/create-utils/src/create-project.ts:209:import { tsParticles } from "@tsparticles/engine";
+cli/commands/create-utils/src/create-project.ts:212:await ${config.loadFunction}(tsParticles);
+cli/commands/build-prettier/README.md:3:# tsParticles CLI
+bundles/full/package.dist.json:4:  "description": "Full-featured tsParticles bundle — create stunning particle, confetti and fireworks animations with all official plugins and presets included. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+wrappers/angular-confetti/projects/ng-confetti/package.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/angular-confetti/projects/ng-confetti/package.dist.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+cli/commands/create-utils/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-utils/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/confetti/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/confetti/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/full/README.md:3:# tsParticles Full Bundle
+bundles/full/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) full bundle loads all the v1 features to
+bundles/full/README.md:76:2. Call the package loader function(s) before `tsParticles.load(...)`
+bundles/full/README.md:77:3. Apply the package options in your `tsParticles.load(...)` config
+bundles/full/README.md:86:- One is a file including just the `loadFull` function to load the tsParticles full preset, all dependencies must be
+bundles/full/README.md:91:Including the `tsparticles.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
+bundles/full/README.md:108:Once the scripts are loaded you can set up `tsParticles` like this:
+bundles/full/README.md:112:  await loadFull(tsParticles);
+bundles/full/README.md:114:  await tsParticles.load({
+bundles/full/README.md:136:  // this customizes the component tsParticles installation
+bundles/full/README.md:138:    // this adds the bundle to tsParticles
+bundles/full/README.md:161:  // this customizes the component tsParticles installation
+bundles/full/README.md:163:    // this adds the bundle to tsParticles
+bundles/full/README.md:228:- Calling `tsParticles.load(...)` before `loadFull(...)`
+templates/login/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+bundles/confetti/src/utils.ts:139: * Converts confetti options to tsParticles source options
+bundles/confetti/src/utils.ts:289: * @returns the tsParticles Container for more customizations
+bundles/pjs/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/pjs/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/pjs/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/pjs/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+cli/commands/create-bundle/src/bundle.ts:6:bundleCreateCommand.description("Create a new tsParticles bundle");
+bundles/pjs/src/index.ts:15:   * @deprecated this method is obsolete, please use the new `tsParticles.load`
+bundles/pjs/src/index.ts:20:     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
+bundles/pjs/src/index.ts:25:     * @deprecated this method is obsolete, please use the new `tsParticles.load`
+cli/commands/create/src/create.ts:15:createCommand.description("Create a new tsParticles project");
+bundles/pjs/src/index.lazy.ts:13:   * @deprecated this method is obsolete, please use the new `tsParticles.load`
+bundles/pjs/src/index.lazy.ts:18:     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
+bundles/pjs/src/index.lazy.ts:23:     * @deprecated this method is obsolete, please use the new `tsParticles.load`
+cli/commands/create-bundle/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-bundle/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/confetti/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/confetti/eslint.config.js:5:    tsParticlesESLintConfig,
+bundles/pjs/src/VincentGarreau/particles.ts:129:     * @deprecated this method is obsolete, please use the new `tsParticles.load`
+bundles/pjs/src/VincentGarreau/particles.ts:135:     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
+bundles/pjs/src/VincentGarreau/particles.ts:142:     * @deprecated this method is obsolete, please use the new tsParticles.load
+bundles/pjs/src/VincentGarreau/particles.ts:297:     * @deprecated this method is obsolete, please use the new tsParticles.load
+bundles/pjs/src/VincentGarreau/particles.ts:316:     * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
+bundles/pjs/src/VincentGarreau/particles.ts:326:     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
+cli/commands/create/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/pjs/package.dist.json:4:  "description": "tsParticles particles.js compatibility layer — drop-in replacement for particles.js with full API compatibility and enhanced features. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+bundles/pjs/src/VincentGarreau/IParticlesJS.ts:5: * @deprecated this interface is obsolete, please use the new tsParticles options format
+bundles/pjs/src/VincentGarreau/IParticlesJS.ts:153:   * @deprecated this method is obsolete, please use the new tsParticles.load
+bundles/pjs/src/VincentGarreau/IParticlesJS.ts:163:   * @deprecated this method is obsolete, please use the new tsParticles.load
+bundles/pjs/src/VincentGarreau/IParticlesJS.ts:172:   * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
+templates/login/template/webcomponents/src/main.ts:1:import { tsParticles } from "@tsparticles/engine";
+templates/login/template/webcomponents/src/main.ts:7:globalThis.tsParticles = tsParticles;
+cli/commands/create-bundle/package.json:61:  "description": "tsParticles CLI Create Bundle command",
+bundles/confetti/typedoc.json:7:  "name": "tsParticles Confetti Bundle",
+bundles/pjs/README.md:3:# tsParticles Particles.js Compatibility Package
+bundles/pjs/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) particles.js compatibility library.
+bundles/pjs/README.md:12:> Prefer direct `tsParticles` APIs for new code.
+bundles/pjs/README.md:84:import { tsParticles } from "@tsparticles/engine";
+bundles/pjs/README.md:87:await initPjs(tsParticles);
+bundles/pjs/README.md:99:After loading the bundle, call `initPjs(tsParticles)` once, then use legacy globals.
+bundles/pjs/README.md:119:})(tsParticles);
+bundles/pjs/README.md:129:})(tsParticles);
+bundles/pjs/README.md:136:| `particlesJS` | particles.js-compatible loader function (plus `.load` and `.setOnClickHandler`)                      | `tsParticles.load`, `tsParticles.loadJSON`, `tsParticles.setOnClickHandler` |
+bundles/pjs/README.md:137:| `pJSDom`      | array of loaded containers                                                                           | `tsParticles.dom`                                                           |
+bundles/pjs/README.md:138:| `Particles`   | `marcbruederlin/particles.js` style wrapper (`init`, `pauseAnimation`, `resumeAnimation`, `destroy`) | direct `tsParticles.load` + container methods                               |
+bundles/pjs/README.md:180:- It may be removed in v5, so migration to direct `tsParticles` APIs is strongly recommended.
+bundles/pjs/README.md:188:- Mixing new `tsParticles` and legacy particles.js options in one config object
+bundles/pjs/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/pjs/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/confetti/package.json:4:  "description": "tsParticles confetti bundle — easily create confetti, confetti cannon, confetti explosions, confetti falling, and confetti parade animations with presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+engine/src/Core/Container.ts:221:    /* tsParticles variables with default values */
+engine/src/Core/Container.ts:225:    /* ---------- tsParticles - start ------------ */
+bundles/pjs/src/marcbruederlin/Particles.ts:7:  tsParticles,
+bundles/pjs/src/marcbruederlin/Particles.ts:46:  /** The tsParticles container instance */
+bundles/pjs/src/marcbruederlin/Particles.ts:127:    })(tsParticles);
+bundles/confetti/package.dist.json:4:  "description": "tsParticles confetti bundle — easily create confetti, confetti cannon, confetti explosions, confetti falling, and confetti parade animations with presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/create/files/create-shape/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create/files/create-shape/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/pjs/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/pjs/eslint.config.js:5:    tsParticlesESLintConfig,
+bundles/pjs/package.json:4:  "description": "tsParticles particles.js compatibility layer — drop-in replacement for particles.js with full API compatibility and enhanced features. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/create/files/create-shape/src/ShapeDrawer.ts:12:        // pixelRatio is the canvas ratio used by the tsParticles instance, you may need it for density-independent shapes
+bundles/confetti/README.md:3:# tsParticles Confetti Bundle
+bundles/confetti/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) confetti bundle to create confetti effects with a single API.
+bundles/confetti/README.md:91:`@tsparticles/confetti` does not expose `tsParticles` from its main entrypoint.
+bundles/confetti/README.md:212:- Assuming `tsParticles` is exported by `@tsparticles/confetti` main entrypoint
+cli/commands/build-clear/src/clear.ts:7:clearCommand.description("Clear the build of tsParticles library");
+cli/commands/create/files/create-shape/README.md:3:# tsParticles Template Shape
+cli/commands/create/files/create-shape/README.md:9:[tsParticles](https://github.com/matteobruni/tsparticles) additional template shape.
+cli/commands/create/files/create-shape/README.md:25:Once the scripts are loaded you can set up `tsParticles` and the shape like this:
+cli/commands/create/files/create-shape/README.md:29:  await loadTemplateShape(tsParticles);
+cli/commands/create/files/create-shape/README.md:31:  await tsParticles.load({
+cli/commands/create/files/create-shape/README.md:58:const { tsParticles } = require("@tsparticles/engine");
+cli/commands/create/files/create-shape/README.md:62:  await loadTemplateShape(tsParticles);
+cli/commands/create/files/create-shape/README.md:69:import { tsParticles } from "@tsparticles/engine";
+cli/commands/create/files/create-shape/README.md:73:  await loadTemplateShape(tsParticles);
+bundles/pjs/typedoc.json:7:  "name": "tsParticles Particles.js integration",
+engine/src/Core/Utils/PluginManager.ts:176:   * addEffect adds effect to tsParticles, it will be available to all future instances created
+engine/src/Core/Utils/PluginManager.ts:226:   * addPreset adds preset to tsParticles, it will be available to all future instances created
+engine/src/Core/Utils/PluginManager.ts:242:   * addShape adds shape to tsParticles, it will be available to all future instances created
+engine/src/Core/Engine.ts:207:      /* launch tsParticles */
+engine/src/Core/Engine.ts:237:   * Reloads all existing tsParticles loaded instances
+cli/commands/create-interaction/src/interaction.ts:6:interactionCreateCommand.description("Create a new tsParticles interaction");
+cli/commands/build-clear/README.md:3:# tsParticles CLI
+templates/react/package.json:5:  "description": "Official React tsParticles template",
+cli/commands/build-clear/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-clear/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/particles/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/particles/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/particles/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/particles/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+templates/react/README.md:5:This is the official template for [React tsParticles](https://github.com/tsparticles/tsparticles) [Create React App](https://github.com/facebook/create-react-app).
+templates/react/README.md:23:- [Particles Guide](https://github.com/tsparticles/tsparticles) - How to customize tsParticles options.
+templates/react/README.md:24:- [Particles Demo](https://particles.js.org) - tsParticles demo website.
+cli/commands/create-interaction/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-interaction/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/commands/create/files/create-plugin/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create/files/create-plugin/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/build-clear/package.json:72:  "description": "tsParticles CLI",
+bundles/particles/src/particles.lazy.ts:1:import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+bundles/particles/src/particles.lazy.ts:86:  await initPlugins(tsParticles);
+bundles/particles/src/particles.lazy.ts:98:  return getParticlesInstance(tsParticles, id, options);
+bundles/particles/src/particles.lazy.ts:111:  await initPlugins(tsParticles);
+bundles/particles/src/particles.lazy.ts:115:  return getParticlesInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+bundles/particles/src/particles.lazy.ts:120:  await initPlugins(tsParticles);
+wrappers/react/lib/ParticlesProvider.tsx:2:import { tsParticles } from "@tsparticles/engine";
+wrappers/react/lib/ParticlesProvider.tsx:35:        await init(tsParticles);
+cli/commands/create-utils/files/empty-project/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-utils/files/empty-project/eslint.config.js:5:    tsParticlesESLintConfig,
+cli/commands/create-interaction/package.json:61:  "description": "tsParticles CLI Create Interaction command",
+wrappers/react/lib/Particles.tsx:3:import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
+wrappers/react/lib/Particles.tsx:20:    void tsParticles
+cli/commands/create/files/create-plugin/README.md:3:# tsParticles Template Plugin
+cli/commands/create/files/create-plugin/README.md:9:[tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles template.
+cli/commands/create/files/create-plugin/README.md:25:Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
+cli/commands/create/files/create-plugin/README.md:29:  await loadTemplatePlugin(tsParticles);
+cli/commands/create/files/create-plugin/README.md:31:  await tsParticles.load({
+cli/commands/create/files/create-plugin/README.md:57:const { tsParticles } = require("@tsparticles/engine");
+cli/commands/create/files/create-plugin/README.md:61:  await loadTemplatePlugin(tsParticles);
+cli/commands/create/files/create-plugin/README.md:68:import { tsParticles } from "@tsparticles/engine";
+cli/commands/create/files/create-plugin/README.md:72:  await loadTemplatePlugin(tsParticles);
+wrappers/react/package.json:4:  "description": "Official tsParticles React Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+cli/commands/create-utils/files/empty-project/package.json:6:  "description": "tsParticles empty template",
+engine/src/initEngine.ts:4:  var tsParticles: Engine;
+engine/src/initEngine.ts:10:export function initEngine(): Engine {
+engine/src/initEngine.ts:17:  const existing = globalThis.tsParticles as Engine | undefined;
+cli/commands/create-utils/files/empty-project/package.dist.json:7:  "description": "tsParticles empty template",
+engine/src/Options/Interfaces/IOptions.ts:11: * The Options interface, defines all the options that can be used by `tsParticles`
+cli/commands/build-distfiles/src/distfiles.ts:7:distFilesCommand.description("Prepare the dist files for tsParticles library");
+engine/src/Options/Interfaces/FullScreen/IFullScreen.ts:10:   * This is really helpful since there's no need to write CSS code to have a full size tsParticles instance.
+cli/commands/create/files/create-preset/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+cli/commands/create/files/create-preset/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create/files/create-preset/src/bundle.ts:9:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/create/files/create-preset/src/bundle.ts:12:export { loadTemplatePreset, tsParticles };
+bundles/particles/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/particles/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+bundles/particles/src/particles.ts:1:import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+bundles/particles/src/particles.ts:79:  await initPlugins(tsParticles);
+bundles/particles/src/particles.ts:91:  return getParticlesInstance(tsParticles, id, options);
+bundles/particles/src/particles.ts:104:  await initPlugins(tsParticles);
+bundles/particles/src/particles.ts:108:  return getParticlesInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+bundles/particles/src/particles.ts:113:  await initPlugins(tsParticles);
+cli/commands/create-utils/files/empty-project/README.md:3:Minimal empty template for tsParticles packages. Used internally by the `tsparticles-create` CLI to scaffold new packages.
+cli/commands/build-distfiles/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-distfiles/eslint.config.js:5:  tsParticlesESLintConfig,
+wrappers/react/README.md:7:Official [tsParticles](https://github.com/tsparticles/tsparticles) ReactJS component
+wrappers/react/README.md:13:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/react/README.md:39:[@tsparticles/engine](https://npmjs.com/package/@tsparticles/engine) is the core package for [tsParticles](https://particles.js.org), it contains useful types like `ISourceOptions`, `Engine` or `Container`.
+wrappers/react/README.md:341:options [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html).
+cli/commands/create/files/create-preset/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+cli/commands/create/files/create-preset/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/build-distfiles/package.json:72:  "description": "tsParticles CLI",
+wrappers/react/tests/react.test.tsx:20:  tsParticles: {
+cli/commands/create-path/src/path.ts:6:pathCreateCommand.description("Create a new tsParticles path plugin");
+bundles/particles/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/particles/eslint.config.js:5:    tsParticlesESLintConfig,
+templates/login/template/nuxt2/pages/index.vue:139:              const { tsParticles } = await import("@tsparticles/engine");
+templates/login/template/nuxt2/pages/index.vue:140:              await loadSlim(tsParticles);
+cli/commands/create/files/create-preset/README.md:3:# tsParticles Template Preset
+cli/commands/create/files/create-preset/README.md:7:[tsParticles](https://github.com/matteobruni/tsparticles) preset template.
+cli/commands/create/files/create-preset/README.md:17:The first step is installing [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for
+cli/commands/create/files/create-preset/README.md:28:This script **MUST** be placed after the `tsParticles` one.
+cli/commands/create/files/create-preset/README.md:40:Once the scripts are loaded you can set up `tsParticles` like this:
+cli/commands/create/files/create-preset/README.md:44:    await tsParticles.load("tsparticles", {
+cli/commands/create/files/create-preset/README.md:53:You can override all the options defining the properties like in any standard `tsParticles` installation.
+cli/commands/create/files/create-preset/README.md:57:    await tsParticles.load("tsparticles", {
+cli/commands/create/files/create-preset/README.md:82:  // this customizes the component tsParticles installation
+cli/commands/create/files/create-preset/README.md:84:    // this adds the preset to tsParticles, you can safely use the
+cli/commands/build-distfiles/README.md:3:# tsParticles CLI
+cli/commands/create-path/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-path/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/particles/typedoc.json:7:  "name": "tsParticles Particles Bundle",
+cli/commands/create-app/src/app.ts:7:appCreateCommand.description("Create a new tsParticles app from a template");
+cli/commands/create-utils/package.json:68:  "description": "tsParticles CLI Utils",
+bundles/particles/package.json:4:  "description": "Minimal tsParticles particles bundle — lightweight particle engine without confetti or fireworks extras. Perfect for pure particle backgrounds. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/create-path/package.json:61:  "description": "tsParticles CLI Create Path command",
+cli/commands/create/package.json:75:  "description": "tsParticles CLI",
+wrappers/astro/src/Particles.astro:26:  import { tsParticles } from "@tsparticles/engine";
+wrappers/astro/src/Particles.astro:97:        container = await tsParticles.load({
+wrappers/astro/src/Particles.astro:102:        container = await tsParticles.load({
+cli/commands/create/README.md:3:# tsParticles CLI
+bundles/particles/package.dist.json:4:  "description": "Minimal tsParticles particles bundle — lightweight particle engine without confetti or fireworks extras. Perfect for pure particle backgrounds. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+wrappers/astro/src/initParticlesEngine.js:1:import { tsParticles } from "@tsparticles/engine";
+wrappers/astro/src/initParticlesEngine.js:29:      await init(tsParticles);
+wrappers/astro/src/initParticlesEngine.js:33:    if (typeof tsParticles.init === "function") {
+wrappers/astro/src/initParticlesEngine.js:34:      await tsParticles.init();
+cli/commands/create-app/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-app/eslint.config.js:5:  tsParticlesESLintConfig,
+wrappers/astro/src/initParticlesEngine.ts:1:import { tsParticles, type Engine } from "@tsparticles/engine";
+wrappers/astro/src/initParticlesEngine.ts:27:      await init(tsParticles);
+wrappers/astro/src/initParticlesEngine.ts:31:    if (typeof (tsParticles as any).init === "function") {
+wrappers/astro/src/initParticlesEngine.ts:32:      await (tsParticles as any).init();
+cli/commands/build/src/build.ts:53:buildCommand.description("Build the tsParticles library using TypeScript");
+bundles/particles/README.md:3:# tsParticles Particles Bundle
+bundles/particles/README.md:7:tsParticles `particles` bundle to create simple particle effects with a focused API.
+bundles/particles/README.md:36:`@tsparticles/particles` does not expose `tsParticles` from its main entrypoint.
+bundles/particles/README.md:106:- Assuming `tsParticles` is exported by `@tsparticles/particles` main entrypoint
+cli/commands/create-app/package.json:72:  "description": "tsParticles CLI Create App command",
+cli/commands/create-shape/src/shape.ts:6:shapeCreateCommand.description("Create a new tsParticles shape");
+cli/commands/create-shape/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-shape/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/commands/build-bundle-webpack/src/bundle-webpack.ts:7:bundleWebpackCommand.description("Bundle the tsParticles library using Webpack");
+cli/commands/build/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build/eslint.config.js:5:  tsParticlesESLintConfig,
+wrappers/astro/typedoc.json:7:  "name": "tsParticles Angular Component",
+cli/commands/build/package.json:88:  "description": "tsParticles CLI",
+templates/react-ts/package.json:5:  "description": "Official TypeScript React tsParticles template",
+cli/commands/build/README.md:3:# tsParticles CLI
+cli/commands/build-bundle-webpack/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-bundle-webpack/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/commands/create-shape/package.json:61:  "description": "tsParticles CLI Create Shape command",
+templates/404/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/404/template/vanilla/src/main.ts:6:  await loadSlim(tsParticles);
+templates/404/template/vanilla/src/main.ts:8:  await tsParticles.load({
+templates/react-ts/README.md:5:This is the official TypeScript template for [React tsParticles](https://github.com/tsparticles/tsparticles) with [Create React App](https://github.com/facebook/create-react-app).
+templates/react-ts/README.md:23:- [Particles Guide](https://github.com/tsparticles/tsparticles) - How to customize tsParticles options.
+templates/react-ts/README.md:24:- [Particles Demo](https://particles.js.org) - tsParticles demo website.
+wrappers/astro/package.json:4:  "description": "Official tsParticles Astro Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React.js, Riot.js, Solid.js, Inferno.",
+cli/commands/build-bundle-webpack/package.json:78:  "description": "tsParticles CLI",
+wrappers/astro/package.dist.json:4:  "description": "Official tsParticles Astro Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React.js, Riot.js, Solid.js, Inferno.",
+bundles/all/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/all/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/all/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/all/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+cli/commands/build-bundle-webpack/README.md:3:# tsParticles CLI
+bundles/all/src/index.ts:84: * Loads the slime bundle with all plugins needed for running the tsParticles All package.
+bundles/all/src/index.ts:85: * This function must be called to make tsParticles All work.
+wrappers/astro/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) Astro component
+wrappers/astro/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/astro/README.md:131:options [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html).
+bundles/all/src/index.lazy.ts:6: * Loads the slime bundle with all plugins needed for running the tsParticles All package.
+bundles/all/src/index.lazy.ts:7: * This function must be called to make tsParticles All work.
+templates/404/template/vanilla/README.md:3:A tsParticles 404 error page scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+engine/src/Options/Classes/FullScreen/FullScreen.ts:15:   * This is really helpful since there's no need to write CSS code to have a full size tsParticles instance.
+templates/particles/README.md:3:tsParticles base particles template. Use with `create-tsparticles-app` to scaffold a new project with a full-screen particle animation.
+bundles/all/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/all/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+wrappers/astro/tests/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/astro/tests/init-particles-engine.test.ts:24:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/astro/tests/init-particles-engine.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/astro/tests/init-particles-engine.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/astro/tests/init-particles-engine.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+cli/commands/build-eslint/src/eslint.ts:6:esLintCommand.description("ESLint for tsParticles library");
+templates/confetti/README.md:3:tsParticles confetti project template. Use with `create-tsparticles-app` to scaffold a new confetti animation project.
+bundles/all/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/all/eslint.config.js:5:    tsParticlesESLintConfig,
+cli/commands/create-plugin/src/plugin.ts:6:pluginCreateCommand.description("Create a new tsParticles plugin");
+cli/commands/build-eslint/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-eslint/eslint.config.js:5:  tsParticlesESLintConfig,
+templates/login/template/jquery/src/main.ts:3:import { tsParticles } from "@tsparticles/engine";
+templates/login/template/jquery/src/main.ts:91:  await loadSlim(tsParticles);
+bundles/all/typedoc.json:5:    "name": "tsParticles All Bundle",
+templates/particles/template/angular-confetti/src/app/app.component.html:2:  <h1>tsParticles</h1>
+bundles/all/package.json:4:  "description": "All-inclusive tsParticles bundle — all engine packages, plugins, interactions, presets, shapes, updaters, effects, paths, emitters, sounds, and palettes in one dependency. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/commands/create-plugin/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-plugin/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/commands/build-eslint/package.json:73:  "description": "tsParticles CLI",
+templates/scaffold/README.md:3:tsParticles scaffold template. Use with `create-tsparticles-app` to scaffold a new tsParticles project.
+cli/commands/build-eslint/README.md:3:# tsParticles CLI
+cli/commands/create-plugin/package.json:61:  "description": "tsParticles CLI Create Plugin command",
+bundles/all/package.dist.json:4:  "description": "All-inclusive tsParticles bundle — all engine packages, plugins, interactions, presets, shapes, updaters, effects, paths, emitters, sounds, and palettes in one dependency. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+wrappers/nextjs/package.json:4:  "description": "Official tsParticles Next.js Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/particles/template/react/src/App.tsx:33:        <h1>tsParticles</h1>
+bundles/all/README.md:3:# tsParticles All Bundle
+bundles/all/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) all bundle loads all the features to a `@tsparticles/engine` instance.
+bundles/all/README.md:209:2. Call the package loader function(s) before `tsParticles.load(...)`
+bundles/all/README.md:210:3. Apply the package options in your `tsParticles.load(...)` config
+bundles/all/README.md:219:- One is a file including just the `loadAll` function to load the tsParticles all preset, all dependencies must be
+bundles/all/README.md:224:Including the `tsparticles.all.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
+bundles/all/README.md:238:Once the scripts are loaded you can set up `tsParticles` like this:
+bundles/all/README.md:242:  await loadAll(tsParticles);
+bundles/all/README.md:244:  await tsParticles.load({
+bundles/all/README.md:266:  // this customizes the component tsParticles installation
+bundles/all/README.md:268:    // this adds the bundle to tsParticles
+bundles/all/README.md:291:  // this customizes the component tsParticles installation
+bundles/all/README.md:293:    // this adds the bundle to tsParticles
+bundles/all/README.md:358:- Calling `tsParticles.load(...)` before `loadAll(...)`
+templates/particles/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/particles/template/vanilla/src/main.ts:8:  await tsParticles.load({
+cli/commands/build-circular-deps/src/circular-deps.ts:7:circularDepsCommand.description("Checks the circular dependencies in the tsParticles library");
+templates/scaffold/template/vue2/src/App.vue:4:      <h1>Hello, tsParticles!</h1>
+cli/commands/build-diststats/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-diststats/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/basic/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/basic/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/basic/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/basic/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+wrappers/qwik/src/components/particles/particles.tsx:3:import { type Container, getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/qwik/src/components/particles/particles.tsx:63:        container = await tsParticles.load({ url, id: trackedId, options: options ?? props.params });
+templates/scaffold/template/angular-confetti/src/app/app.component.html:2:  <h1>Hello, tsParticles!</h1>
+cli/commands/build-circular-deps/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-circular-deps/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/basic/src/index.ts:16: * Loads the slime bundle with all plugins needed for running the tsParticles Basic package.
+bundles/basic/src/index.ts:17: * This function must be called to make tsParticles Basic work.
+wrappers/qwik/src/components/particles/initParticlesEngine.ts:2:import { tsParticles } from "@tsparticles/engine";
+wrappers/qwik/src/components/particles/initParticlesEngine.ts:29:      await init(tsParticles);
+wrappers/qwik/src/components/particles/initParticlesEngine.ts:32:    if (typeof (tsParticles as any).init === "function") {
+wrappers/qwik/src/components/particles/initParticlesEngine.ts:33:      await (tsParticles as any).init();
+cli/commands/build-diststats/package.json:66:  "description": "tsParticles CLI",
+templates/particles/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+bundles/basic/src/index.lazy.ts:6: * Loads the slime bundle with all plugins needed for running the tsParticles Basic package.
+bundles/basic/src/index.lazy.ts:7: * This function must be called to make tsParticles Basic work.
+templates/confetti/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/commands/build-circular-deps/package.json:72:  "description": "tsParticles CLI",
+cli/commands/build-diststats/README.md:3:# tsParticles CLI
+templates/particles/template/vanilla/index.html:10:      <h1>tsParticles</h1>
+bundles/basic/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/basic/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/build-circular-deps/README.md:3:# tsParticles CLI
+templates/scaffold/template/vue2/README.md:3:A tsParticles Vue 2 project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+bundles/basic/README.md:3:# tsParticles Basic Bundle
+bundles/basic/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) basic bundle loads the minimum features to a `@tsparticles/engine` instance for having dots moving in the canvas.
+bundles/basic/README.md:64:2. Call the package loader function(s) before `tsParticles.load(...)`
+bundles/basic/README.md:65:3. Apply the package options in your `tsParticles.load(...)` config
+bundles/basic/README.md:74:- One is a file including just the `loadBasic` function to load the tsParticles basic preset, all dependencies must be
+bundles/basic/README.md:79:Including the `tsparticles.basic.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
+bundles/basic/README.md:93:Once the scripts are loaded you can set up `tsParticles` like this:
+bundles/basic/README.md:97:  await loadBasic(tsParticles);
+bundles/basic/README.md:99:  await tsParticles.load({
+bundles/basic/README.md:121:  // this customizes the component tsParticles installation
+bundles/basic/README.md:123:    // this adds the bundle to tsParticles
+bundles/basic/README.md:146:  // this customizes the component tsParticles installation
+bundles/basic/README.md:148:    // this adds the bundle to tsParticles
+bundles/basic/README.md:213:- Calling `tsParticles.load(...)` before `loadBasic(...)`
+bundles/basic/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/basic/eslint.config.js:5:    tsParticlesESLintConfig,
+wrappers/qwik/package.json:4:  "description": "Official tsParticles Qwik Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/angular-confetti/README.md:3:A tsParticles Angular Confetti project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/particles/template/astro/src/pages/index.astro:28:    <title>tsParticles</title>
+templates/particles/template/astro/src/pages/index.astro:43:      <h1>tsParticles</h1>
+wrappers/qwik/README.md:8:Official Qwik component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
+wrappers/qwik/README.md:30:Initialize tsParticles once in your app bootstrap, then use `<Particles />` wherever needed.
+wrappers/ember/addon/utils/init-particles-engine.ts:2:import { tsParticles } from '@tsparticles/engine';
+wrappers/ember/addon/utils/init-particles-engine.ts:32:      await init(tsParticles);
+wrappers/ember/addon/utils/init-particles-engine.ts:35:    await tsParticles.init();
+bundles/basic/typedoc.json:5:    "name": "tsParticles Basic Bundle",
+bundles/basic/package.json:4:  "description": "Basic tsParticles bundle — minimal core engine with only the essential features for fast, lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+wrappers/qwik/tests/lifecycle.test.ts:24:  tsParticles: { load: loadMock },
+cli/commands/create-preset/src/preset.ts:6:presetCreateCommand.description("Create a new tsParticles preset");
+wrappers/ember/addon/modifiers/particles.ts:4:import { tsParticles } from '@tsparticles/engine';
+wrappers/ember/addon/modifiers/particles.ts:57:    const container = await tsParticles.load({
+bundles/fireworks/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/fireworks/src/bundle.ts:5:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/fireworks/src/bundle.ts:7:  tsParticles?: typeof tsParticles;
+bundles/fireworks/src/bundle.ts:11:globalObject.tsParticles = tsParticles;
+cli/commands/build-bundle-rollup/src/bundle-rollup.ts:7:bundleRollupCommand.description("Bundle the tsParticles library using Rollup");
+wrappers/qwik/tests/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/qwik/tests/init-particles-engine.test.ts:24:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/qwik/tests/init-particles-engine.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/qwik/tests/init-particles-engine.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/qwik/tests/init-particles-engine.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+templates/particles/template/nextjs/src/app/page.tsx:34:        <h1>tsParticles</h1>
+templates/scaffold/template/preact/src/App.tsx:38:        <h1>Hello, tsParticles!</h1>
+bundles/basic/package.dist.json:4:  "description": "Basic tsParticles bundle — minimal core engine with only the essential features for fast, lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+wrappers/ember/typedoc.json:7:  "name": "tsParticles Angular Component",
+cli/commands/create-preset/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-preset/eslint.config.js:5:  tsParticlesESLintConfig,
+wrappers/ember/package.json:4:  "description": "Official tsParticles Ember.js Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+templates/scaffold/template/react/src/App.tsx:13:        <h1>Hello, tsParticles!</h1>
+wrappers/ember/package.dist.json:4:  "description": "Ember.js component for using tsParticles",
+cli/commands/create-preset/package.json:61:  "description": "tsParticles CLI Create Preset command",
+bundles/fireworks/src/browser.ts:4:  __tsParticlesInternals?: Record<string, unknown>;
+bundles/fireworks/src/browser.ts:8:globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+cli/commands/build-bundle-rollup/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-bundle-rollup/eslint.config.js:5:  tsParticlesESLintConfig,
+wrappers/ember/README.md:7:Official Ember component for [tsParticles](https://github.com/tsparticles/tsparticles).
+bundles/fireworks/src/utils.ts:51: * Converts firework options to tsParticles source options
+bundles/fireworks/src/utils.ts:54: * @returns the options for the tsParticles instance
+cli/commands/create-updater/src/updater.ts:6:updaterCreateCommand.description("Create a new tsParticles updater");
+templates/scaffold/template/preact/README.md:3:A tsParticles Preact project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/particles/template/ember/app/templates/application.hbs:2:  <h1>tsParticles</h1>
+cli/commands/build-bundle-rollup/package.json:74:  "description": "tsParticles CLI",
+wrappers/solid/src/Particles.tsx:1:import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
+wrappers/solid/src/Particles.tsx:34:        newContainer = await tsParticles.load({ id, options, url });
+bundles/fireworks/src/fireworks.ts:1:import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+bundles/fireworks/src/fireworks.ts:90:  await initPlugins(tsParticles);
+bundles/fireworks/src/fireworks.ts:102:  return getFireworksInstance(tsParticles, id, options);
+bundles/fireworks/src/fireworks.ts:115:  await initPlugins(tsParticles);
+bundles/fireworks/src/fireworks.ts:119:  return getFireworksInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+bundles/fireworks/src/fireworks.ts:124:  await initPlugins(tsParticles);
+wrappers/solid/src/initParticlesEngine.ts:2:import { tsParticles } from "@tsparticles/engine";
+wrappers/solid/src/initParticlesEngine.ts:28:      await init(tsParticles);
+wrappers/solid/src/initParticlesEngine.ts:32:    if (typeof (tsParticles as any).init === "function") {
+wrappers/solid/src/initParticlesEngine.ts:33:      await (tsParticles as any).init();
+wrappers/ember/tests-vitest/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/ember/tests-vitest/init-particles-engine.test.ts:24:    const { tsParticles } = await import('@tsparticles/engine');
+wrappers/ember/tests-vitest/init-particles-engine.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/ember/tests-vitest/init-particles-engine.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/ember/tests-vitest/init-particles-engine.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+cli/commands/build-bundle-rollup/README.md:3:# tsParticles CLI - Build Bundle Rollup
+bundles/fireworks/src/FireworksInstance.ts:4:/** Fireworks instance wrapping a tsParticles container */
+cli/commands/create-updater/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-updater/eslint.config.js:5:  tsParticlesESLintConfig,
+templates/scaffold/template/react/README.md:3:A tsParticles React project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/commands/create-updater/package.json:61:  "description": "tsParticles CLI Create Updater command",
+templates/particles/template/angular-fireworks/src/app/app.component.html:2:  <h1>tsParticles</h1>
+bundles/fireworks/src/fireworks.lazy.ts:1:import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+bundles/fireworks/src/fireworks.lazy.ts:103:  await initPlugins(tsParticles);
+bundles/fireworks/src/fireworks.lazy.ts:115:  return getFireworksInstance(tsParticles, id, options);
+bundles/fireworks/src/fireworks.lazy.ts:128:  await initPlugins(tsParticles);
+bundles/fireworks/src/fireworks.lazy.ts:132:  return getFireworksInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+bundles/fireworks/src/fireworks.lazy.ts:137:  await initPlugins(tsParticles);
+templates/scaffold/template/nuxt2/pages/index.vue:3:    <h1>Hello, tsParticles!</h1>
+bundles/fireworks/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/fireworks/eslint.config.js:5:    tsParticlesESLintConfig,
+wrappers/solid/typedoc.json:7:  "name": "tsParticles Angular Component",
+templates/particles/template/stencil/src/components/app-home/app-home.tsx:57:          <h1>tsParticles</h1>
+templates/scaffold/template/nuxt2/README.md:3:A tsParticles Nuxt 2 project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/particles/template/vue3/src/App.vue:26:    <h1>tsParticles</h1>
+cli/commands/create-palette/src/palette.ts:6:paletteCreateCommand.description("Create a new tsParticles palette");
+wrappers/ember/tests/integration/components/particles-test.ts:11:import { tsParticles } from '@tsparticles/engine';
+wrappers/ember/tests/integration/components/particles-test.ts:53:    const loadSpy = sinon.spy(tsParticles, 'load');
+wrappers/ember/tests/integration/components/particles-test.ts:61:    const loadSpy = sinon.stub(tsParticles, 'load');
+templates/scaffold/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/scaffold/template/vanilla/src/main.ts:7:  await loadSlim(tsParticles);
+templates/scaffold/template/vanilla/src/main.ts:13:  await tsParticles.load({ id: "tsparticles", options });
+bundles/fireworks/typedoc.json:7:  "name": "tsParticles Fireworks Bundle",
+cli/commands/create-palette/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/create-palette/eslint.config.js:5:  tsParticlesESLintConfig,
+bundles/fireworks/package.json:4:  "description": "tsParticles fireworks bundle — easily create spectacular fireworks and fountain particle effects with built-in presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/packages/create-tsparticles/package.json:4:  "description": "Scaffold a tsParticles project — npm create tsparticles",
+templates/particles/template/lit/src/my-app.ts:59:        <h1>tsParticles</h1>
+wrappers/solid/package.json:4:  "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
+cli/commands/create-palette/package.json:61:  "description": "tsParticles CLI Create Palette command",
+templates/scaffold/template/nuxt2/nuxt.config.js:3:  // The tsParticles v4 packages expose their entry points through "exports",
+templates/scaffold/template/nuxt2/nuxt.config.js:9:    // tsParticles v4 builds, so they are transpiled down to the configured
+cli/packages/create-tsparticles/README.md:3:Scaffold a tsParticles project.
+wrappers/solid/package.dist.json:4:  "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
+templates/particles/template/vue2/src/App.vue:3:    <h1>tsParticles</h1>
+bundles/fireworks/package.dist.json:4:  "description": "tsParticles fireworks bundle — easily create spectacular fireworks and fountain particle effects with built-in presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+templates/scaffold/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/particles/template/riot/src/app.riot:3:    <h1>tsParticles</h1>
+wrappers/solid/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) solid component
+wrappers/solid/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/solid/README.md:92:| particlesLoaded | `(container?: Container) => Promise<void>` |                 | Callback fired after `tsParticles.load()` resolves. The container may be undefined on failure. |
+wrappers/solid/README.md:118:The `particlesLoaded` callback fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+templates/scaffold/template/vanilla/index.html:10:      <h1>Hello, tsParticles!</h1>
+bundles/fireworks/README.md:3:# tsParticles Fireworks Bundle
+bundles/fireworks/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) fireworks bundle to create fireworks effects with a focused API.
+bundles/fireworks/README.md:81:`@tsparticles/fireworks` does not expose `tsParticles` from its main entrypoint.
+bundles/fireworks/README.md:200:- Assuming `tsParticles` is exported by `@tsparticles/fireworks` main entrypoint
+templates/particles/template/preact/src/App.tsx:36:        <h1>tsParticles</h1>
+templates/particles/template/svelte/src/App.svelte:44:<h1>tsParticles</h1>
+templates/scaffold/template/qwik/src/App.tsx:38:        <h1>Hello, tsParticles!</h1>
+cli/commands/build-bundle-rolldown/src/bundle-rolldown.ts:7:bundleRolldownCommand.description("Bundle the tsParticles library using Rolldown");
+templates/scaffold/template/astro/src/pages/index.astro:23:      <h1>Hello, tsParticles!</h1>
+wrappers/solid/test/setup.ts:14:  tsParticles: {
+templates/particles/template/nuxt2/pages/index.vue:3:    <h1>tsParticles</h1>
+wrappers/solid/test/contract.test.tsx:2:import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
+wrappers/solid/test/contract.test.tsx:8:const loadMock = vi.mocked(tsParticles.load);
+cli/commands/build-bundle-rolldown/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/commands/build-bundle-rolldown/eslint.config.js:5:  tsParticlesESLintConfig,
+templates/scaffold/template/astro/README.md:3:A tsParticles Astro project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/commands/build-bundle-rolldown/package.json:74:  "description": "tsParticles CLI",
+templates/scaffold/template/qwik/README.md:3:A tsParticles Qwik project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/commands/build-bundle-rolldown/README.md:3:# tsParticles CLI - Build Bundle Rolldown
+templates/particles/template/webcomponents/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/particles/template/webcomponents/src/main.ts:7:globalThis.tsParticles = tsParticles;
+bundles/ribbons/src/bundle.ts:2:import { tsParticles } from "@tsparticles/engine";
+bundles/ribbons/src/bundle.ts:6:  tsParticles?: typeof tsParticles;
+bundles/ribbons/src/bundle.ts:10:globalObject.tsParticles = tsParticles;
+templates/particles/template/qwik/src/App.tsx:46:        <h1>tsParticles</h1>
+wrappers/angular/typedoc.json:7:  "name": "tsParticles Angular Component",
+templates/particles/template/inferno/src/App.tsx:35:          <h1>tsParticles</h1>
+templates/scaffold/template/solid/src/App.tsx:38:        <h1>Hello, tsParticles!</h1>
+wrappers/angular/package.json:4:  "description": "Official tsParticles Angular Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/particles/template/solid/src/App.tsx:54:        <h1>tsParticles</h1>
+cli/packages/cli-build/package.json:36:  "description": "tsParticles CLI - Build command only (no circular dependencies)",
+templates/scaffold/template/nextjs/README.md:3:A tsParticles Next.js project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/packages/cli-build/README.md:3:Minimal CLI for building tsParticles packages. This is a thin wrapper around `@tsparticles/cli-command-build` with no external dependencies to avoid circular dependency issues.
+templates/tictactoe/README.md:3:tsParticles tic-tac-toe game template. Use with `create-tsparticles-app` to scaffold a new tic-tac-toe game project with animated particles.
+wrappers/angular/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
+wrappers/angular/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/angular/README.md:148:| `particlesLoaded` | `EventEmitter<Container \| undefined>` | Emitted after `tsParticles.load` resolves with the container. |
+bundles/ribbons/src/utils.ts:123: * Converts ribbons options to tsParticles source options
+bundles/ribbons/src/utils.ts:223: * @returns the tsParticles Container for more customizations
+templates/scaffold/template/solid/README.md:3:A tsParticles Solid project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/angular/tests/ng-particles.test.ts:20:  tsParticles: {
+templates/particles/template/nuxt3/app.vue:33:      <h1>tsParticles</h1>
+bundles/ribbons/src/ribbons.lazy.ts:1:import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+bundles/ribbons/src/ribbons.lazy.ts:90:  await initPlugins(tsParticles);
+bundles/ribbons/src/ribbons.lazy.ts:102:  return setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.lazy.ts:118:  await initPlugins(tsParticles);
+bundles/ribbons/src/ribbons.lazy.ts:120:  const id = getRibbonsId(tsParticles, canvas);
+bundles/ribbons/src/ribbons.lazy.ts:124:  await setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.lazy.ts:144:    return setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.lazy.ts:154:  await initPlugins(tsParticles);
+cli/packages/cli-build/bin/tsparticles-build.cjs:23:  program.description("tsParticles Build CLI");
+templates/particles/template/angular/src/app/app.component.html:2:  <h1>tsParticles</h1>
+bundles/ribbons/src/ribbons.ts:1:import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+bundles/ribbons/src/ribbons.ts:81:  await initPlugins(tsParticles);
+bundles/ribbons/src/ribbons.ts:93:  return setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.ts:109:  await initPlugins(tsParticles);
+bundles/ribbons/src/ribbons.ts:111:  const id = getRibbonsId(tsParticles, canvas);
+bundles/ribbons/src/ribbons.ts:115:  await setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.ts:135:    return setRibbons(tsParticles, {
+bundles/ribbons/src/ribbons.ts:145:  await initPlugins(tsParticles);
+templates/scaffold/template/ember/README.md:3:A tsParticles Ember project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts:14:import { getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts:92:      const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+templates/particles/template/nuxt4/app.vue:33:      <h1>tsParticles</h1>
+bundles/ribbons/eslint.config.js:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+bundles/ribbons/eslint.config.js:4:export default defineConfig([tsParticlesESLintConfig]);
+cli/packages/cli-create/package.json:36:  "description": "tsParticles CLI - Create command only",
+wrappers/angular/projects/ng-particles/src/lib/ng-particles.service.ts:2:import { Engine, tsParticles } from "@tsparticles/engine";
+wrappers/angular/projects/ng-particles/src/lib/ng-particles.service.ts:42:        await particlesInit(tsParticles);
+wrappers/angular/projects/ng-particles/src/lib/ng-particles.service.ts:45:      await tsParticles.init();
+cli/packages/cli-create/README.md:3:Minimal CLI for scaffolding tsParticles packages. This is a thin wrapper around `@tsparticles/cli-command-create`.
+templates/particles/template/jquery/src/main.ts:4:import { tsParticles } from "@tsparticles/engine";
+templates/particles/template/jquery/src/main.ts:8:  await loadSlim(tsParticles);
+bundles/ribbons/typedoc.json:7:  "name": "tsParticles Ribbons Bundle",
+templates/confetti/template/svelte/src/App.svelte:54:<h1>tsParticles Confetti</h1>
+bundles/ribbons/package.json:4:  "description": "tsParticles ribbons bundle — easily create animated ribbons, ribbon bursts and ribbon falling effects. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+templates/scaffold/template/angular/src/app/app.component.html:2:  <h1>Hello, tsParticles!</h1>
+bundles/ribbons/package.dist.json:4:  "description": "tsParticles ribbons bundle — easily create animated ribbons, ribbon bursts and ribbon falling effects. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+cli/packages/cli-create/bin/tsparticles-create.cjs:23:  program.description("tsParticles Create CLI");
+wrappers/angular/projects/ng-particles/package.json:4:  "description": "Official tsParticles Angular Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/angular/projects/ng-particles/package.dist.json:4:  "description": "Official tsParticles Angular Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/ember/app/templates/application.hbs:5:  <h1>Hello, tsParticles!</h1>
+bundles/ribbons/README.md:3:# tsParticles Ribbons Bundle
+bundles/ribbons/README.md:7:[tsParticles](https://github.com/tsparticles/tsparticles) ribbons bundle to create animated ribbons effects with a single API.
+templates/confetti/template/webcomponents/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/confetti/template/webcomponents/src/main.ts:6:globalThis.tsParticles = tsParticles;
+wrappers/angular/projects/ng-particles/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
+wrappers/angular/projects/ng-particles/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/angular/projects/ng-particles/README.md:148:| `particlesLoaded` | `EventEmitter<Container \| undefined>` | Emitted after `tsParticles.load` resolves with the container. |
+templates/tictactoe/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/tictactoe/template/vanilla/src/main.ts:31:  await loadSlim(tsParticles);
+templates/tictactoe/template/vanilla/src/main.ts:33:  await tsParticles.load({
+templates/scaffold/template/jquery/src/main.ts:3:import { tsParticles } from "@tsparticles/engine";
+templates/scaffold/template/jquery/src/main.ts:8:  await loadSlim(tsParticles);
+templates/scaffold/template/angular/README.md:3:A tsParticles Angular project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/scaffold/template/jquery/README.md:3:A tsParticles jQuery project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/scaffold/template/stencil/src/components/app-home/app-home.tsx:18:        <h1>Hello, tsParticles!</h1>
+cli/README.md:3:# tsParticles CLI
+templates/scaffold/template/jquery/index.html:10:      <h1>Hello, tsParticles!</h1>
+templates/tictactoe/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/angular-fireworks/package.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/nuxt3/README.md:3:A tsParticles Nuxt 3 project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/scaffold/template/angular-fireworks/README.md:3:A tsParticles Angular Fireworks project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/nuxt3/lib/index.ts:20:const tsParticlesNuxtModule: TsParticlesNuxtModule = defineNuxtModule<ITsParticlesNuxtOptions>({
+wrappers/nuxt3/lib/index.ts:55:export default tsParticlesNuxtModule;
+cli/utils/rolldown-plugin/src/index.ts:7: * Generates Rolldown-ready configurations (input + separate outputs) for tsParticles packages.
+templates/scaffold/template/stencil/README.md:3:A tsParticles Stencil project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/nuxt3/package.json:4:  "description": "Official tsParticles Nuxt 3 Module - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+templates/scaffold/template/nuxt4/README.md:3:A tsParticles Nuxt 4 project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+cli/utils/rolldown-plugin/src/buildMap.ts:33:    banner: ({ version }) => `tsParticles v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:34:    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? ""} v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:39:    minBanner: ({ version, effectName }) => `tsParticles ${effectName} Effect v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:43:    banner: ({ version }) => `tsParticles Engine v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:44:    minBanner: ({ version }) => `tsParticles Engine v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:74:    minBanner: ({ version, pluginName }) => `tsParticles ${pluginName} Plugin v${version}`,
+cli/utils/rolldown-plugin/src/buildMap.ts:116:    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? "Utility"} v${version}`,
+cli/packages/nx-plugin/src/canonical-targets.ts:12:export const tsParticlesAliasDefinitions: readonly TsParticlesAliasDefinition[] = [
+cli/packages/nx-plugin/src/canonical-targets.ts:16:    description: "Canonical tsParticles clean target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:21:    description: "Canonical tsParticles source formatting target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:26:    description: "Canonical tsParticles CI formatting target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:31:    description: "Canonical tsParticles TypeScript build target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:36:    description: "Canonical tsParticles Webpack bundle target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:41:    description: "Canonical tsParticles Rollup bundle target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:46:    description: "Canonical tsParticles Rolldown bundle target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:51:    description: "Canonical tsParticles dist files target.",
+cli/packages/nx-plugin/src/canonical-targets.ts:83:  for (const definition of tsParticlesAliasDefinitions) {
+templates/scaffold/template/angular-fireworks/src/app/app.component.html:2:  <h1>Hello, tsParticles!</h1>
+templates/scaffold/template/nuxt3/app.vue:3:    <h1>Hello, tsParticles!</h1>
+cli/packages/nx-plugin/src/create-nodes.ts:83:            ...(fallbackTargetNames.length > emptyCount ? { "tsParticles Nx fallback": fallbackTargetNames } : {}),
+cli/packages/nx-plugin/src/create-nodes.ts:84:            ...(aliasTargetNames.length > emptyCount ? { "tsParticles Nx aliases": aliasTargetNames } : {}),
+templates/scaffold/template/nuxt4/app.vue:3:    <h1>Hello, tsParticles!</h1>
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:6:  internalRoot = "__tsParticlesInternals",
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:95:    // Util packages use the moduleName as-is (dots as separators), e.g. "canvas.utils" -> "__tsParticlesInternals.canvas.utils"
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:127:      // @tsparticles/plugin-export-image -> __tsParticlesInternals.plugins.image
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:259:        let currentPath = "g.__tsParticlesInternals";
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:272:    `(function(g){g.__tsParticlesInternals=g.__tsParticlesInternals||{};${namespacesBootstrap}` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:274:    `g.__tsParticlesInternals.bundles=__tsProxyFactory(g.__tsParticlesInternals.bundles);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:275:    `g.__tsParticlesInternals.effects=__tsProxyFactory(g.__tsParticlesInternals.effects);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:276:    `g.__tsParticlesInternals.interactions=__tsProxyFactory(g.__tsParticlesInternals.interactions);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:277:    `g.__tsParticlesInternals.palettes=__tsProxyFactory(g.__tsParticlesInternals.palettes);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:278:    `g.__tsParticlesInternals.paths=__tsProxyFactory(g.__tsParticlesInternals.paths);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:279:    `g.__tsParticlesInternals.plugins=__tsProxyFactory(g.__tsParticlesInternals.plugins);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:280:    `g.__tsParticlesInternals.plugins.emittersShapes=__tsProxyFactory(g.__tsParticlesInternals.plugins.emittersShapes);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:281:    `g.__tsParticlesInternals.presets=__tsProxyFactory(g.__tsParticlesInternals.presets);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:282:    `g.__tsParticlesInternals.shapes=__tsProxyFactory(g.__tsParticlesInternals.shapes);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:283:    `g.__tsParticlesInternals.updaters=__tsProxyFactory(g.__tsParticlesInternals.updaters);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:284:    `g.__tsParticlesInternals.utils=__tsProxyFactory(g.__tsParticlesInternals.utils);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:285:    `g.__tsParticlesInternals.canvas=__tsProxyFactory(g.__tsParticlesInternals.canvas);` +
+cli/utils/rolldown-plugin/src/config/iifePolicy.ts:286:    `g.__tsParticlesInternals.path=__tsProxyFactory(g.__tsParticlesInternals.path);` +
+wrappers/angular-fireworks/projects/ng-fireworks/src/lib/ng-fireworks.module.ts:12:    /* Register fireworks plugins before tsParticles.init() is called */
+templates/scaffold/template/vue3/src/App.vue:29:    <h1>Hello, tsParticles!</h1>
+wrappers/lit/src/lit-tsparticles.ts:4:import { Container, Engine, ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/lit/src/lit-tsparticles.ts:30:      await init(tsParticles);
+wrappers/lit/src/lit-tsparticles.ts:33:    if (typeof (tsParticles as any).init === "function") {
+wrappers/lit/src/lit-tsparticles.ts:34:      await (tsParticles as any).init();
+wrappers/lit/src/lit-tsparticles.ts:65:   * Render into light DOM so tsParticles can find the container element by id.
+wrappers/lit/src/lit-tsparticles.ts:164:      container = await tsParticles.load({ id, element: this, options: this.options });
+wrappers/lit/src/lit-tsparticles.ts:166:      container = await tsParticles.load({ id, element: this, url: this.url });
+cli/utils/rolldown-plugin/src/config/externals.ts:55:    // function with the first segment of `output.name` (e.g. "__tsParticlesInternals") to build the
+wrappers/webcomponents/src/web-particles.ts:3:// Runtime engine instance is read from globalThis.tsParticles. We avoid a
+wrappers/webcomponents/src/web-particles.ts:7:// engine on globalThis.tsParticles (see README).
+wrappers/webcomponents/src/web-particles.ts:9:  return (globalThis as any).tsParticles as Engine | undefined;
+wrappers/webcomponents/src/web-particles.ts:39:      "tsParticles engine not found. Load @tsparticles/engine (or the tsparticles bundle) and assign it to globalThis.tsParticles before calling initParticlesEngine().",
+wrappers/webcomponents/src/web-particles.ts:67:  // or a global tsParticles instance is present (the full bundle sets
+wrappers/webcomponents/src/web-particles.ts:68:  // globalThis.tsParticles). This makes the wrapper tolerant when the
+cli/packages/nx-plugin/eslint.config.js:2:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/packages/nx-plugin/eslint.config.js:5:  tsParticlesESLintConfig,
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:25:      engine: "tsParticles",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:31:      // Bundles expose load* functions AND the tsParticles instance (needed for bundle users)
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:32:      return exports.filter(t => /^load[A-Z]/.test(t) || t === "tsParticles");
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:50:      engine: "tsParticles",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:69:    // For bundle/package: only load* (and tsParticles for bundle) are allowed on window
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:70:    const invalid = publicExports.filter(t => !/^load[A-Z]/.test(t) && t !== "tsParticles");
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:74:        `UMD public export policy violated: only load* exports (and tsParticles for bundles) are allowed on window, found ${invalid.join(", ")}`,
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:82:   * Rollup roots namespaced IIFE output on `this` (e.g. `this.__tsParticlesInternals = ...`) and reads
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:87:   * every `this.__tsParticlesInternals` reference (namespace setup, exports target and external deps)
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:88:   * is retargeted to `g.__tsParticlesInternals`.
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:93:    const body = code.replaceAll("this.__tsParticlesInternals", "g.__tsParticlesInternals");
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:99:   * Reads from globalThis.__tsParticlesInternals.<scope>.<export> after the factory has run.
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:120:      `globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};\n` +
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:121:      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.tsParticles) {\n` +
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:122:      `  globalThis.__tsParticlesInternals.engine = globalThis.${iifePolicy.scope} || {};\n` +
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:194:        [...new Set(iifePolicy.kind === "bundle" ? [...lazyExports, "tsParticles"] : lazyExports)],
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:197:      needsEngineExports = publicExports.includes("tsParticles") || iifePolicy.kind === "bundle",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:199:        .filter(exp => exp !== "tsParticles")
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:205:      tsParticlesExport = publicExports.includes("tsParticles") ? "const tsParticles = engineExports.tsParticles;" : "",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:209:            "globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:210:            "globalThis.__tsParticlesInternals.engine = globalThis.__tsParticlesInternals.engine || engineExports;",
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:225:${tsParticlesExport}
+cli/utils/rolldown-plugin/src/config/createSingleConfig.ts:273:        // 1) Rollup writes the exports directly into __tsParticlesInternals.<scope> thanks to
+cli/packages/nx-plugin/package.json:53:  "description": "tsParticles Nx plugin",
+wrappers/angular-fireworks/projects/ng-fireworks/package.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+cli/packages/nx-plugin/README.md:3:# tsParticles Nx Plugin
+cli/packages/nx-plugin/README.md:5:Internal Nx plugin used by the `tsParticles CLI` workspace.
+cli/packages/nx-plugin/README.md:9:The plugin augments package-based Nx projects under `commands/*`, `packages/*`, and `utils/*` with canonical tsParticles build-step aliases.
+wrappers/lit/typedoc.json:7:  "name": "tsParticles Angular Component",
+templates/scaffold/template/lit/README.md:3:A tsParticles Lit project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/scaffold/template/vue3/README.md:3:A tsParticles Vue 3 project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx:2:import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx:152:      container = await tsParticles.load(loadParams);
+wrappers/nuxt4/lib/index.ts:20:const tsParticlesNuxtModule: TsParticlesNuxtModule = defineNuxtModule<ITsParticlesNuxtOptions>({
+wrappers/nuxt4/lib/index.ts:55:export default tsParticlesNuxtModule;
+wrappers/angular-fireworks/projects/ng-fireworks/package.dist.json:4:  "description": "Official tsParticles Angular Confetti Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/lit/package.json:4:  "description": "Official tsParticles Lit Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Angular, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/nuxt4/package.json:4:  "description": "Official tsParticles Nuxt 4 Module - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+wrappers/webcomponents/typedoc.json:7:  "name": "tsParticles Angular Component",
+cli/packages/nx-plugin/tests/create-nodes.test.ts:6:  it("creates aliases for canonical tsParticles Nx targets", () => {
+cli/utils/rolldown-plugin/package.json:4:  "description": "Rolldown build utilities for tsParticles",
+wrappers/stencil/src/initParticlesEngine.ts:1:import { Engine, tsParticles } from "@tsparticles/engine";
+wrappers/stencil/src/initParticlesEngine.ts:27:      await init(tsParticles);
+wrappers/stencil/src/initParticlesEngine.ts:30:    if (typeof (tsParticles as { init?: () => Promise<void> }).init === "function") {
+wrappers/stencil/src/initParticlesEngine.ts:31:      await (tsParticles as { init: () => Promise<void> }).init();
+templates/scaffold/template/lit/index.html:10:      <h1>Hello, tsParticles!</h1>
+wrappers/lit/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) Lit web component.
+wrappers/lit/README.md:52:| `options`   | `object` | —                | The tsParticles options configuration             |
+wrappers/webcomponents/package.json:4:  "description": "Official tsParticles Web Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/lit/tests/lifecycle.test.ts:8:  tsParticles: { load: loadMock },
+wrappers/webcomponents/tests/web-particles.test.ts:12:  tsParticles?: { init: typeof initMock; load: typeof loadMock };
+wrappers/webcomponents/tests/web-particles.test.ts:26:  globalWithEngine.tsParticles = { init: initMock, load: loadMock };
+wrappers/webcomponents/tests/web-particles.test.ts:30:  delete globalWithEngine.tsParticles;
+wrappers/webcomponents/tests/web-particles.test.ts:41:    expect(init).toHaveBeenCalledWith(globalWithEngine.tsParticles);
+cli/utils/rolldown-plugin/README.md:3:Utility package that generates Rolldown configurations for tsParticles engine, bundles, plugins, presets, shapes, paths, interactions, effects, templates, palettes, updaters, and utils.
+wrappers/webcomponents/package.dist.json:4:  "description": "Official tsParticles Web Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/lit/tests/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/lit/tests/init-particles-engine.test.ts:26:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/lit/tests/init-particles-engine.test.ts:28:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/lit/tests/init-particles-engine.test.ts:36:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/lit/tests/init-particles-engine.test.ts:37:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+cli/utils/rolldown-plugin/eslint.config.ts:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/utils/rolldown-plugin/eslint.config.ts:3:export default tsParticlesESLintConfig;
+templates/tictactoe/template/jquery/src/main.ts:5:import { tsParticles } from "@tsparticles/engine";
+templates/tictactoe/template/jquery/src/main.ts:112:  await loadSlim(tsParticles);
+wrappers/webcomponents/README.md:7:Official [tsParticles](https://github.com/tsparticles/tsparticles) Web Component.
+wrappers/webcomponents/README.md:24:import { tsParticles } from "@tsparticles/engine";
+wrappers/webcomponents/README.md:28:globalThis.tsParticles = tsParticles;
+wrappers/jquery/src/particles.ts:1:import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+wrappers/jquery/src/particles.ts:3:export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+wrappers/jquery/src/particles.ts:27:      await init(tsParticles);
+wrappers/jquery/src/particles.ts:30:    await tsParticles.init();
+wrappers/jquery/src/particles.ts:106:        const container = await tsParticles.load({ element, options });
+wrappers/jquery/src/particles.ts:132:        const container = await tsParticles.load({ element, url: jsonUrl });
+templates/scaffold/template/riot/src/app.riot:3:    <h1>Hello, tsParticles!</h1>
+wrappers/stencil/package.json:4:  "description": "Official tsParticles Stencil Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+wrappers/vue3/src/components/particles-provider.ts:1:import { type Engine, tsParticles } from "@tsparticles/engine";
+wrappers/vue3/src/components/particles-provider.ts:66:      await init(tsParticles);
+wrappers/vue3/src/components/particles-provider.ts:69:    await tsParticles.init();
+wrappers/stencil/package.dist.json:4:  "description": "Official tsParticles Stencil Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+wrappers/vue3/src/components/vue-particles.vue:6:import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/vue3/src/components/vue-particles.vue:32:      const newContainer = await tsParticles.load({
+wrappers/riot/src/riot-particles.riot:3:        import { tsParticles } from "@tsparticles/engine";
+wrappers/riot/src/riot-particles.riot:27:                    await cb(tsParticles);
+wrappers/riot/src/riot-particles.riot:30:                await tsParticles.init();
+wrappers/riot/src/riot-particles.riot:61:            const newContainer = await tsParticles.load({
+wrappers/stencil/README.md:7:Official [tsParticles](https://github.com/tsparticles/tsparticles) Stencil wrapper.
+wrappers/stencil/README.md:65:- `container-id`: container id used by `tsParticles.load`
+wrappers/jquery/typedoc.json:7:  "name": "tsParticles Angular Component",
+wrappers/vue3/vite.config.ts:23:                    "@tsparticles/engine": "tsParticles",
+wrappers/jquery/package.json:4:  "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/riot/typedoc.json:7:  "name": "tsParticles Angular Component",
+wrappers/stencil/tests/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/stencil/tests/init-particles-engine.test.ts:24:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/stencil/tests/init-particles-engine.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/stencil/tests/init-particles-engine.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/stencil/tests/init-particles-engine.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+templates/scaffold/template/riot/README.md:3:A tsParticles Riot project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/jquery/package.dist.json:4:  "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/riot/package.json:4:  "description": "Official tsParticles Riot Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
+wrappers/jquery/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
+wrappers/jquery/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/jquery/README.md:30:<!-- first include any tsParticles plugin needed -->
+wrappers/jquery/README.md:47:<!-- tsParticles engine bundle -->
+wrappers/jquery/README.md:116:  `$.particles.init(callback)`. The `callback` receives the tsParticles
+wrappers/inferno/src/Particles.tsx:3:import { type Container, tsParticles, getLogger } from "@tsparticles/engine";
+wrappers/inferno/src/Particles.tsx:75:			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+wrappers/vue3/typedoc.json:7:  "name": "tsParticles Vue 3.x Component",
+wrappers/riot/package.dist.json:4:  "description": "Official tsParticles Riot Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
+wrappers/vue3/package.json:13:  "description": "Official tsParticles Vue.js 3.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 2.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+cli/utils/depcruise-config/README.md:3:Shared Dependency Cruiser configuration for tsParticles packages.
+wrappers/inferno/src/initParticlesEngine.ts:1:import { tsParticles, type Engine } from "@tsparticles/engine";
+wrappers/inferno/src/initParticlesEngine.ts:24:			await init(tsParticles);
+wrappers/inferno/src/initParticlesEngine.ts:27:		await tsParticles.init();
+wrappers/svelte/src/lib/Particles.svelte:6:	import { getLogger, tsParticles } from '@tsparticles/engine';
+wrappers/svelte/src/lib/Particles.svelte:86:				const container = await tsParticles.load({
+wrappers/riot/README.md:7:Official [tsParticles](https://github.com/tsparticles/tsparticles) Riot component.
+wrappers/jquery/tests/jquery.test.ts:19:  tsParticles: {
+cli/utils/depcruise-config/eslint.config.ts:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/utils/depcruise-config/eslint.config.ts:3:export default tsParticlesESLintConfig;
+wrappers/vue3/package.dist.json:4:  "description": "Official tsParticles Vue.js 3.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 2.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/svelte/src/App.svelte:29:  <h1>Hello, tsParticles!</h1>
+wrappers/svelte/src/lib/utils.ts:2:import { tsParticles } from '@tsparticles/engine';
+wrappers/svelte/src/lib/utils.ts:28:			await init(tsParticles);
+wrappers/svelte/src/lib/utils.ts:31:		if (typeof (tsParticles as any).init === 'function') {
+wrappers/svelte/src/lib/utils.ts:32:			await (tsParticles as any).init();
+wrappers/riot/tests/riot.test.ts:14:  tsParticles: {
+wrappers/riot/tests/riot.test.ts:53:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/riot/tests/riot.test.ts:55:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/riot/tests/riot.test.ts:63:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/riot/tests/riot.test.ts:64:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+wrappers/vue3/README.md:8:Official Vue 3 component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
+wrappers/vue3/README.md:101:The `@particles-loaded` event fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+templates/tictactoe/template/riot/src/app.riot:24:    import { tsParticles } from "@tsparticles/engine";
+templates/tictactoe/template/riot/src/app.riot:105:        await loadSlim(tsParticles);
+templates/tictactoe/template/riot/src/app.riot:106:        await tsParticles.load({
+wrappers/jquery/tests/jquery.test.js:13:    tsParticles: {
+wrappers/wordpress/src/view.js:1:import { tsParticles } from "@tsparticles/engine";
+wrappers/wordpress/src/view.js:18:	await loadWordpressParticles(tsParticles, plugins);
+wrappers/wordpress/src/view.js:22:			await tsParticles.load({
+wrappers/vue3/tests/lifecycle.test.ts:9:  tsParticles: { load: loadMock },
+wrappers/inferno/typedoc.json:7:  "name": "tsParticles Angular Component",
+wrappers/vue3/tests/vue3.test.ts:6:  tsParticles: {
+wrappers/vue3/tests/vue3.test.ts:19:    engine = (await import("@tsparticles/engine")).tsParticles as unknown as { init: ReturnType<typeof vi.fn> };
+wrappers/inferno/package.json:4:  "description": "Official tsParticles Inferno Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js.",
+cli/utils/eslint-config/package.json:4:  "description": "tsParticles default ESLint Configuration (ESLint 10 + Flat Config)",
+wrappers/inferno/package.dist.json:4:  "description": "Official tsParticles Inferno Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js.",
+cli/utils/eslint-config/README.md:3:Shared ESLint 10 flat configuration for tsParticles TypeScript projects.
+wrappers/inferno/README.md:8:Official Inferno component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
+wrappers/inferno/README.md:30:Initialize tsParticles once in your app entry, then render one or more `<Particles />` components.
+templates/scaffold/template/svelte/README.md:3:A tsParticles Svelte project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/wordpress/typedoc.json:7:  "name": "tsParticles Angular Component",
+wrappers/svelte/package.json:4:	"description": "Official tsParticles Svelte Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/svelte/package.dist.json:4:  "description": "Official tsParticles Svelte Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/wordpress/package.json:4:  "description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.",
+wrappers/inferno/tests/init-particles-engine.test.ts:9:	tsParticles: {
+wrappers/inferno/tests/init-particles-engine.test.ts:24:		const { tsParticles } = await import("@tsparticles/engine");
+wrappers/inferno/tests/init-particles-engine.test.ts:26:		(tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/inferno/tests/init-particles-engine.test.ts:34:		expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/inferno/tests/init-particles-engine.test.ts:35:		expect(tsParticles.init).toHaveBeenCalledTimes(1);
+wrappers/vue2/src/Particles/event-bus.ts:1:import { tsParticles } from "@tsparticles/engine";
+wrappers/vue2/src/Particles/event-bus.ts:3:export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+wrappers/vue2/src/Particles/event-bus.ts:23:  initPromise = Promise.resolve(init?.(tsParticles))
+wrappers/vue2/src/Particles/event-bus.ts:25:      return tsParticles.init();
+wrappers/wordpress/wordpress-particles.php:3: * Plugin Name:       tsParticles WP Block
+wrappers/wordpress/wordpress-particles.php:5: * Description:       Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.
+wrappers/svelte/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS component
+wrappers/svelte/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/svelte/README.md:62:		// you can use main to customize the tsParticles instance adding presets or custom shapes
+wrappers/svelte/README.md:127:The `on:particlesLoaded` event fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+wrappers/svelte/README.md:194:		// you can use main to customize the tsParticles instance adding presets or custom shapes
+wrappers/inferno/tests/particles.test.ts:10:	tsParticles: { load: loadMock },
+wrappers/wordpress/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) WordPress block.
+wrappers/vue2/src/Particles/vue-particles.vue:6:import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/vue2/src/Particles/vue-particles.vue:46:    container = await tsParticles.load({
+wrappers/svelte/tests/lifecycle.test.ts:10:	tsParticles: { load: loadMock }
+cli/utils/webpack-config/src/bundles/buildBundle.ts:27:    minBanner = `tsParticles ${fixBundleName}v${version} by Matteo Bruni`,
+templates/tictactoe/template/webcomponents/src/main.ts:3:import { tsParticles } from "@tsparticles/engine";
+templates/tictactoe/template/webcomponents/src/main.ts:116:  await loadSlim(tsParticles);
+templates/tictactoe/template/webcomponents/src/main.ts:117:  await tsParticles.load({
+wrappers/wordpress/languages/tsparticles-block.pot:5:"Project-Id-Version: tsParticles WP Block 2.5.3\n"
+wrappers/wordpress/languages/tsparticles-block.pot:18:msgid "tsParticles WP Block"
+wrappers/wordpress/languages/tsparticles-block.pot:26:msgid "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website."
+wrappers/svelte/tests/particles.test.ts:10:	tsParticles: {
+wrappers/svelte/tests/particles.test.ts:27:			{ tsParticles } = await import('@tsparticles/engine'),
+wrappers/svelte/tests/particles.test.ts:30:		(tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/svelte/tests/particles.test.ts:35:		expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/svelte/tests/particles.test.ts:36:		expect(tsParticles.init).toHaveBeenCalledTimes(1);
+templates/scaffold/template/webcomponents/src/main.ts:1:import { tsParticles } from "@tsparticles/engine";
+templates/scaffold/template/webcomponents/src/main.ts:6:globalThis.tsParticles = tsParticles;
+wrappers/preact/src/Particles.tsx:3:import { Container, getLogger, tsParticles } from "@tsparticles/engine";
+wrappers/preact/src/Particles.tsx:170:      container = await tsParticles.load({
+cli/utils/webpack-config/src/palettes/buildPalette.ts:25:    minBanner = `tsParticles ${paletteName} Palette v${version} by Matteo Bruni`;
+wrappers/preact/src/initParticlesEngine.ts:2:import { tsParticles } from "@tsparticles/engine";
+wrappers/preact/src/initParticlesEngine.ts:28:      await init(tsParticles);
+wrappers/preact/src/initParticlesEngine.ts:32:    if (typeof (tsParticles as any).init === "function") {
+wrappers/preact/src/initParticlesEngine.ts:33:      await (tsParticles as any).init();
+wrappers/vue2/vite.config.ts:19:          "@tsparticles/engine": "tsParticles",
+wrappers/wordpress/src/edit.js:17:import { tsParticles } from "@tsparticles/engine";
+wrappers/wordpress/src/edit.js:49:				await loadWordpressParticles(tsParticles, selectedPlugins);
+wrappers/wordpress/src/edit.js:50:				await tsParticles.load({
+wrappers/wordpress/src/plugins/bundles.js:8:			description: 'tsParticles',
+wrappers/wordpress/src/plugins/bundles.js:18:			description: `tsParticles ${__('Slim')}`,
+wrappers/wordpress/src/plugins/bundles.js:28:			description: `tsParticles ${__('Basic')}`,
+wrappers/wordpress/src/plugins/bundles.js:38:			description: `tsParticles ${__('All')}`,
+wrappers/wordpress/src/plugins/bundles.js:48:			description: `tsParticles-Particles.js ${__('interoperability')}`,
+cli/utils/webpack-config/src/engine/buildEngine.ts:17:    banner = `tsParticles Engine v${version}
+cli/utils/webpack-config/src/engine/buildEngine.ts:25:    minBanner = `tsParticles Engine v${version} by Matteo Bruni`;
+wrappers/wordpress/src/block.json:6:	"title": "tsParticles WP Block",
+wrappers/wordpress/src/block.json:9:	"description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+wrappers/wordpress/readme.txt:1:=== tsParticles WP Block ===
+wrappers/wordpress/readme.txt:16:Official tsParticles WordPress Plugin
+wrappers/wordpress/readme.txt:21:Official tsParticles website with options editor: <https://particles.js.org>
+wrappers/wordpress/readme.txt:28:- [Reddit](https://www.reddit.com/r/tsParticles/)
+wrappers/wordpress/readme.txt:29:- [Twitter](https://www.twitter.com/r/tsParticles/)
+wrappers/wordpress/readme.txt:40:Go to the official tsParticles website <https://particles.js.org> and export options using the editor.
+wrappers/wordpress/readme.txt:46:- [Official tsParticles GitHub](https://github.com/matteobruni/tsparticles)
+wrappers/wordpress/readme.txt:47:- [Official tsParticles Discord](https://discord.gg/hACwv45Hme)
+wrappers/wordpress/readme.txt:48:- [Official tsParticles Telegram](https://t.me/tsparticles)
+wrappers/wordpress/readme.txt:49:- [Official tsParticles Reddit](https://www.reddit.com/r/tsParticles/)
+wrappers/wordpress/readme.txt:64:This major update migrates tsParticles from v3 to v4, adding full compatibility with the new engine architecture. All packages are now sourced from the monorepo using `workspace:*` references.
+wrappers/wordpress/readme.txt:94:- Removed all tsParticles `load` methods to keep only a single one using a single `object` parameter
+wrappers/wordpress/readme.txt:125:- Pjs package now supports all the legacy pjs options only. This will make this package a wrapper for old pjs users. You can't use tsParticles options in pjs calls.
+wrappers/wordpress/readme.txt:200:If you want to customize the log of `tsParticles` you can call `setLogger(logger)` function, passing a `ILogger` object.
+wrappers/wordpress/readme.txt:224:getLogger().log("tsParticles is awesome");
+wrappers/wordpress/readme.txt:454:- Added the particles pool for reusing destroyed particles, every tsParticles instance will have its own pool
+templates/scaffold/template/webcomponents/README.md:3:A tsParticles Web Components project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/vue2/typedoc.json:7:  "name": "tsParticles Vue 2.x Component",
+cli/utils/webpack-config/src/effects/buildEffect.ts:25:    minBanner = `tsParticles ${effectName} Effect v${version} by Matteo Bruni`;
+wrappers/vue2/package.json:15:  "description": "Official tsParticles Vue.js 2.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/webcomponents/index.html:10:      <h1>Hello, tsParticles!</h1>
+wrappers/preact/typedoc.json:7:  "name": "tsParticles Angular Component",
+cli/utils/webpack-config/src/presets/buildPreset.ts:25:    minBanner = `tsParticles ${presetName} Preset v${version} by Matteo Bruni`;
+wrappers/vue2/package.dist.json:4:  "description": "Official tsParticles Vue.js 2.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+wrappers/preact/package.json:4:  "description": "Official tsParticles Preact Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Riot.js, Solid.js, Inferno.",
+templates/scaffold/template/inferno/README.md:3:A tsParticles Inferno project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+wrappers/vue2/README.md:8:Official Vue 2 component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
+wrappers/vue2/README.md:106:The `particlesLoaded` prop fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+wrappers/preact/README.md:7:Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact component
+wrappers/preact/README.md:11:[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+wrappers/preact/README.md:48:      // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+wrappers/preact/README.md:90:      // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+wrappers/preact/tests/init-particles-engine.test.ts:9:  tsParticles: {
+wrappers/preact/tests/init-particles-engine.test.ts:24:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/preact/tests/init-particles-engine.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/preact/tests/init-particles-engine.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/preact/tests/init-particles-engine.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+cli/utils/webpack-config/src/templates/buildTemplate.ts:25:    minBanner = `tsParticles ${templateName} Template v${version} by Matteo Bruni`;
+wrappers/vue2/tests/lifecycle.test.ts:10:  tsParticles: { init: vi.fn(), load: loadMock },
+templates/ribbons/README.md:3:tsParticles ribbons template. Use with `create-tsparticles-app` to scaffold a new ribbons animation project.
+wrappers/preact/tests/particles.test.ts:11:  tsParticles: { load: loadMock },
+templates/scaffold/template/inferno/src/App.tsx:9:        <h1>Hello, tsParticles!</h1>
+wrappers/vue2/tests/vue2.test.ts:9:  tsParticles: {
+wrappers/vue2/tests/vue2.test.ts:24:    const { tsParticles } = await import("@tsparticles/engine");
+wrappers/vue2/tests/vue2.test.ts:26:    (tsParticles.init as ReturnType<typeof vi.fn>).mockClear();
+wrappers/vue2/tests/vue2.test.ts:34:    expect(init).toHaveBeenCalledWith(tsParticles);
+wrappers/vue2/tests/vue2.test.ts:35:    expect(tsParticles.init).toHaveBeenCalledTimes(1);
+cli/utils/webpack-config/README.md:3:Utility package that generates webpack configurations for tsParticles engine, bundles, plugins, presets, shapes, paths, interactions, effects, templates, palettes, and updaters.
+cli/utils/webpack-config/src/updaters/buildUpdater.ts:25:    minBanner = `tsParticles ${updaterName} Updater v${version} by Matteo Bruni`;
+wrappers/nuxt2/package.json:4:  "description": "Official tsParticles Nuxt 2 Module - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+cli/utils/webpack-config/eslint.config.ts:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/utils/webpack-config/eslint.config.ts:3:export default tsParticlesESLintConfig;
+cli/utils/webpack-config/src/shapes/buildShape.ts:25:    minBanner = `tsParticles ${shapeName} Shape v${version} by Matteo Bruni`;
+cli/utils/webpack-config/src/plugins/easings/buildEasing.ts:26:    minBanner = `tsParticles Easing ${pluginName} Plugin v${version} by Matteo Bruni`;
+cli/utils/README.md:1:# tsParticles Utils Monorepo
+cli/utils/README.md:3:Shared build and tooling utilities used across the [tsParticles ecosystem](https://github.com/matteobruni/tsparticles).
+cli/utils/README.md:12:- [`@tsparticles/webpack-plugin`](./webpack-config/README.md): helper functions to generate tsParticles webpack configs
+cli/utils/webpack-config/src/paths/buildPath.ts:25:    minBanner = `tsParticles ${pluginName} Path v${version} by Matteo Bruni`;
+cli/utils/rollup-plugin/eslint.config.ts:1:import tsParticlesESLintConfig from "@tsparticles/eslint-config";
+cli/utils/rollup-plugin/eslint.config.ts:3:export default tsParticlesESLintConfig;
+templates/portfolio/README.md:3:tsParticles portfolio template. Use with `create-tsparticles-app` to scaffold a new portfolio project with animated particle background.
+cli/utils/webpack-config/src/plugins/exports/buildExport.ts:26:    minBanner = `tsParticles Export ${pluginName} Plugin v${version} by Matteo Bruni`;
+cli/utils/webpack-config/src/interactions/external/buildInteractionExternal.ts:25:    minBanner = `tsParticles ${pluginName} External Interaction v${version} by Matteo Bruni`;
+cli/utils/rollup-plugin/src/buildMap.ts:33:    banner: ({ version }) => `tsParticles v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:34:    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? ""} v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:39:    minBanner: ({ version, effectName }) => `tsParticles ${effectName} Effect v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:43:    banner: ({ version }) => `tsParticles Engine v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:44:    minBanner: ({ version }) => `tsParticles Engine v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:74:    minBanner: ({ version, pluginName }) => `tsParticles ${pluginName} Plugin v${version}`,
+cli/utils/rollup-plugin/src/buildMap.ts:116:    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? "Utility"} v${version}`,
+cli/utils/webpack-config/src/plugins/emittersShapes/buildEmittersShape.ts:26:    minBanner = `tsParticles Emitters Shape ${pluginName} Plugin v${version} by Matteo Bruni`;
+cli/utils/tsconfig/package.json:4:  "description": "tsParticles default TypeScript Compiler Configuration",
+cli/utils/webpack-config/src/interactions/particles/buildInteractionParticles.ts:25:    minBanner = `tsParticles ${pluginName} Particles Interaction v${version} by Matteo Bruni`;
+cli/utils/browserslist-config/package.json:4:  "description": "tsParticles default Browserslist configuration",
+cli/utils/webpack-config/src/plugins/buildPlugin.ts:26:    minBanner = `tsParticles ${pluginName} Plugin v${version} by Matteo Bruni`;
+cli/utils/tsconfig/README.md:3:Shared TypeScript configuration presets for tsParticles packages.
+cli/utils/browserslist-config/README.md:3:Shared Browserslist targets for tsParticles packages.
+cli/utils/webpack-config/src/interactions/buildInteraction.ts:25:    minBanner = `tsParticles ${pluginName} Interaction v${version} by Matteo Bruni`;
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:6:  internalRoot = "__tsParticlesInternals",
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:95:    // Util packages use the moduleName as-is (dots as separators), e.g. "canvas.utils" -> "__tsParticlesInternals.canvas.utils"
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:127:      // @tsparticles/plugin-export-image -> __tsParticlesInternals.plugins.image
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:259:        let currentPath = "g.__tsParticlesInternals";
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:272:    `(function(g){g.__tsParticlesInternals=g.__tsParticlesInternals||{};${namespacesBootstrap}` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:274:    `g.__tsParticlesInternals.bundles=__tsProxyFactory(g.__tsParticlesInternals.bundles);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:275:    `g.__tsParticlesInternals.effects=__tsProxyFactory(g.__tsParticlesInternals.effects);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:276:    `g.__tsParticlesInternals.interactions=__tsProxyFactory(g.__tsParticlesInternals.interactions);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:277:    `g.__tsParticlesInternals.palettes=__tsProxyFactory(g.__tsParticlesInternals.palettes);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:278:    `g.__tsParticlesInternals.paths=__tsProxyFactory(g.__tsParticlesInternals.paths);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:279:    `g.__tsParticlesInternals.plugins=__tsProxyFactory(g.__tsParticlesInternals.plugins);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:280:    `g.__tsParticlesInternals.plugins.emittersShapes=__tsProxyFactory(g.__tsParticlesInternals.plugins.emittersShapes);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:281:    `g.__tsParticlesInternals.presets=__tsProxyFactory(g.__tsParticlesInternals.presets);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:282:    `g.__tsParticlesInternals.shapes=__tsProxyFactory(g.__tsParticlesInternals.shapes);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:283:    `g.__tsParticlesInternals.updaters=__tsProxyFactory(g.__tsParticlesInternals.updaters);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:284:    `g.__tsParticlesInternals.utils=__tsProxyFactory(g.__tsParticlesInternals.utils);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:285:    `g.__tsParticlesInternals.canvas=__tsProxyFactory(g.__tsParticlesInternals.canvas);` +
+cli/utils/rollup-plugin/src/config/iifePolicy.ts:286:    `g.__tsParticlesInternals.path=__tsProxyFactory(g.__tsParticlesInternals.path);` +
+cli/utils/prettier-config/package.json:4:  "description": "tsParticles default Prettier Configuration",
+cli/utils/prettier-config/README.md:3:Shared Prettier configuration for tsParticles projects.
+cli/utils/rollup-plugin/src/config/externals.ts:55:    // function with the first segment of `output.name` (e.g. "__tsParticlesInternals") to build the
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:26:      engine: "tsParticles",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:32:      // Bundles expose load* functions AND the tsParticles instance (needed for bundle users)
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:33:      return exports.filter(t => /^load[A-Z]/.test(t) || t === "tsParticles");
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:51:      engine: "tsParticles",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:70:    // For bundle/package: only load* (and tsParticles for bundle) are allowed on window
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:71:    const invalid = publicExports.filter(t => !/^load[A-Z]/.test(t) && t !== "tsParticles");
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:75:        `UMD public export policy violated: only load* exports (and tsParticles for bundles) are allowed on window, found ${invalid.join(", ")}`,
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:83:   * Rollup roots namespaced IIFE output on `this` (e.g. `this.__tsParticlesInternals = ...`) and reads
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:88:   * every `this.__tsParticlesInternals` reference (namespace setup, exports target and external deps)
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:89:   * is retargeted to `g.__tsParticlesInternals`.
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:94:    const body = code.replaceAll("this.__tsParticlesInternals", "g.__tsParticlesInternals");
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:100:   * Reads from globalThis.__tsParticlesInternals.<scope>.<export> after the factory has run.
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:121:      `globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};\n` +
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:122:      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.tsParticles) {\n` +
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:123:      `  globalThis.__tsParticlesInternals.engine = globalThis.${iifePolicy.scope} || {};\n` +
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:195:        [...new Set(iifePolicy.kind === "bundle" ? [...lazyExports, "tsParticles"] : lazyExports)],
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:198:      needsEngineExports = publicExports.includes("tsParticles") || iifePolicy.kind === "bundle",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:200:        .filter(exp => exp !== "tsParticles")
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:206:      tsParticlesExport = publicExports.includes("tsParticles") ? "const tsParticles = engineExports.tsParticles;" : "",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:210:            "globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:211:            "globalThis.__tsParticlesInternals.engine = globalThis.__tsParticlesInternals.engine || engineExports;",
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:226:${tsParticlesExport}
+cli/utils/rollup-plugin/src/config/createSingleConfig.ts:274:        // 1) Rollup writes the exports directly into __tsParticlesInternals.<scope> thanks to
+templates/ribbons/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/ribbons/template/svelte/src/App.svelte:9:<h1>tsParticles Ribbons</h1>
+cli/utils/rollup-plugin/package.json:4:  "description": "Rollup build utilities for tsParticles",
+templates/landing/README.md:3:tsParticles landing page template. Use with `create-tsparticles-app` to scaffold a new landing page project with animated particle background.
+cli/utils/rollup-plugin/README.md:3:Utility package that generates Rollup configurations for tsParticles engine, bundles, plugins, presets, shapes, paths, interactions, effects, templates, palettes, updaters, and utils.
+templates/portfolio/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/portfolio/template/vanilla/src/main.ts:7:  await loadSlim(tsParticles);
+templates/portfolio/template/vanilla/src/main.ts:12:  await tsParticles.load({
+templates/landing/template/riot/src/app.riot:75:    import { tsParticles } from "@tsparticles/engine";
+templates/landing/template/riot/src/app.riot:97:        await loadSlim(tsParticles);
+templates/landing/template/riot/src/app.riot:98:        await tsParticles.load({
+templates/portfolio/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).
+templates/portfolio/template/webcomponents/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/portfolio/template/webcomponents/src/main.ts:8:globalThis.tsParticles = tsParticles;
+templates/portfolio/template/jquery/src/main.ts:6:import { tsParticles } from "@tsparticles/engine";
+templates/portfolio/template/jquery/src/main.ts:9:  await loadSlim(tsParticles);
+templates/landing/template/webcomponents/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/landing/template/webcomponents/src/main.ts:7:globalThis.tsParticles = tsParticles;
+templates/landing/template/vanilla/src/main.ts:2:import { tsParticles } from "@tsparticles/engine";
+templates/landing/template/vanilla/src/main.ts:6:  await loadSlim(tsParticles);
+templates/landing/template/vanilla/src/main.ts:8:  await tsParticles.load({
+templates/portfolio/template/stencil/src/components/app-home/app-home.tsx:3:import { tsParticles, type ISourceOptions } from "@tsparticles/engine";
+templates/portfolio/template/stencil/src/components/app-home/app-home.tsx:38:    await loadSlim(tsParticles);
+templates/landing/template/stencil/src/components/app-home/app-home.tsx:4:import { tsParticles } from "@tsparticles/engine";
+templates/landing/template/stencil/src/components/app-home/app-home.tsx:32:    await loadSlim(tsParticles);
+templates/landing/template/vanilla/README.md:3:A tsParticles project scaffolded with [tsparticles-create](https://github.com/tsparticles/tsparticles).

@@ -12,6 +12,7 @@ export default class Particles extends Component<IParticlesProps> {
 	_cancelled = false;
 	_loadId = 0;
 	_themeLoadId = 0;
+	_themeLoads = new WeakMap<Container, Promise<void>>();
 	_themePlaybackStates = new WeakMap<Container, { activeRequests: number; wasPlaying: boolean }>();
 
 	componentDidMount() {
@@ -87,6 +88,20 @@ export default class Particles extends Component<IParticlesProps> {
 				await this.loadTheme(newContainer, theme, () => !this._cancelled && loadId === this._loadId);
 			}
 
+			if (newContainer) {
+				let pending = this._themeLoads.get(newContainer);
+
+				while (pending) {
+					await pending;
+					const latest = this._themeLoads.get(newContainer);
+
+					if (latest === pending) {
+						break;
+					}
+					pending = latest;
+				}
+			}
+
 			if (this._cancelled || loadId !== this._loadId) {
 				newContainer?.destroy();
 
@@ -106,7 +121,15 @@ export default class Particles extends Component<IParticlesProps> {
 		}
 	}
 
-	async loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
+	loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
+		const pending = this.refreshTheme(container, theme, isCurrent);
+
+		this._themeLoads.set(container, pending);
+
+		return pending;
+	}
+
+	async refreshTheme(container: Container, theme: string, isCurrent: () => boolean): Promise<void> {
 		const themeLoadId = ++this._themeLoadId,
 			isCurrentRequest = () => themeLoadId === this._themeLoadId && isCurrent();
 		let playbackState = this._themePlaybackStates.get(container);

@@ -16,9 +16,12 @@ Savings have yet to be demonstrated.
 
 ## Execution and tracking
 
-Run the IMP work within the [main handovers](README.md) according to ownership
-and dependencies. Owners read their assigned plans before starting. IMP numbers
-identify technical topics. The main handovers define the execution sequence.
+Run the IMP work in the [E0–E10 execution sequence](V5-EXECUTION.md).
+IMP-01 starts in E0; IMP-02 analysis starts in E3 and closes in E9; IMP-05
+runs on the final Particle/color state in E5; IMP-03/04 run in E6; IMP-06
+splits lifecycle work in E4 from final rendering work in E7. Owners read their
+assigned plans before starting. IMP and handover numbers identify technical
+topics; E0–E10 defines execution order.
 
 Record a decision for every B/P/S/T/R candidate: implemented and verified,
 rejected with evidence, or deferred with rationale and budget impact.
@@ -29,3 +32,20 @@ rejecting an optimization.
 Initial evidence comes from the reviewed 4.5.1 checkout. Recheck it against the
 current code. An earlier phase may have removed a cost or changed a contract.
 Reuse existing refactors and tests.
+
+## Links to architecture decisions
+
+The four [architecture evaluations](V5-ARCHITECTURE.md) use IMP evidence
+to compare alternatives. IMP-05 informs ARCH-01/03 (Particle and options),
+IMP-02 informs ARCH-02 (packages), and IMP-06 informs ARCH-04 (extension
+lifecycle). Record decisions in the architecture log and reuse implementations
+and measurements across plans.
+
+## Source review and optional extension experiments
+
+The [coverage review](V5-CODE-REVIEW.md) adds mandatory correctness/contract checks
+to existing owners. Performance candidates discovered outside the original six
+IMP plans are tracked in [optional E11](V5-11-OPTIONAL-PLUGINS.md): links, external
+interactions, movement/absorbers/emitters, noise/paths, masks/sampling, collision
+consumers, assets and the remaining extension families. E11 starts after E10 and
+is excluded from the requirement to close every mandatory IMP at gate 10.

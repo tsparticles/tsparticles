@@ -86,6 +86,18 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
     for (const color of colorValues) {
       if (typeof color !== "string") {
+        if (color && typeof color === "object" && !Array.isArray(color)) {
+          const value = color as Record<string, unknown>,
+            rgb = value.rgb ?? value,
+            hsl = value.hsl ?? value;
+
+          if (typeof rgb === "object" && "r" in rgb && "g" in rgb && "b" in rgb) {
+            matched.add("@tsparticles/plugin-rgb-color");
+          }
+          if (typeof hsl === "object" && "h" in hsl && "s" in hsl && "l" in hsl) {
+            matched.add("@tsparticles/plugin-hsl-color");
+          }
+        }
         continue;
       }
 
@@ -276,6 +288,13 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
    */
   function addSourceParticlePlugins(): void {
     for (const sourceOptions of optionSources) {
+      const backgroundColor = getOptionValue(sourceOptions, "background.color");
+
+      addColorPlugins(
+        backgroundColor && typeof backgroundColor === "object" && "value" in backgroundColor
+          ? backgroundColor.value
+          : backgroundColor,
+      );
       addParticleOptions(sourceOptions);
     }
   }

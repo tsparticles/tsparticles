@@ -258,10 +258,10 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     if (!strictBounds) {
       return (
-        position.x + radius >= minBound &&
-        position.y + radius >= minBound &&
-        position.x - radius <= canvasSize.width &&
-        position.y - radius <= canvasSize.height
+        bouncePosition.x + radius >= minBound &&
+        bouncePosition.y + radius >= minBound &&
+        bouncePosition.x - radius <= canvasSize.width &&
+        bouncePosition.y - radius <= canvasSize.height
       );
     }
 

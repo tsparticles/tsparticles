@@ -1,6 +1,7 @@
 # V5-04 — Simplify Container while preserving its lifecycle
 
-Status pending. Requires completion of 03.
+Status pending. Execute in E4 after the E3 shared-contract gate.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -42,12 +43,12 @@ necessary signature adaptations and preserve other contributors' changes.
 
 ## Regressions to carry forward from v4
 
-Carry the startup contract verified in [V4-B01–B04](../v4-review/CORRECTNESS.md)
-into the state model. Each engine's registry must complete before its concurrent
+Carry the startup contract verified in V4-B01–B04 into the state model. Each
+engine's registry must complete before its concurrent
 loads proceed. A canceled transition must leave no late events or rescheduled
 frames. Verify one pending frame per container and smoke-test an explicit
 OffscreenCanvas in a dedicated worker without DOM dependencies in the core path.
-Reuse v4 regression tests once available.
+Reuse the v4 regression tests.
 
 ## Deliverables
 
@@ -59,3 +60,10 @@ architecture docs, the changelog for API changes, and index status.
 
 See [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Source-review acceptance additions
+
+Apply G2/G3/G4/G7 from the [source review](V5-CODE-REVIEW.md). Integrate path,
+motion and Poisson cleanup, partial-init rollback and promise settlement. Add
+clock/FPS/long-gap/error-recovery scenarios and preserve EventDispatcher snapshots.
+Count listeners/handles across refresh, stop/start and destroy, including workers.
