@@ -91,3 +91,10 @@ where possible. Record pipeline compilation costs and rebuild points.
 Record the ARCH-04 decision, lifecycle equivalence matrix, typed API/prototype,
 measurements, and migration per family. Require consistent composition and
 policy while preserving runtime differences.
+
+## Resource lifetime decision required by source review
+
+[G2](../V5-CODE-REVIEW.md) identifies path-generator and motion listener ownership
+that a particle reset hook cannot cover. Define init/reinit/dispose semantics at
+container scope and integrate actual consumers in E4. Preserve specialized update
+pipelines; a unified extension rewrite is not required to provide reliable cleanup.

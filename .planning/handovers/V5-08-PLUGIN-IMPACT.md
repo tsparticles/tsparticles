@@ -76,3 +76,12 @@ Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C4 for all managers an
 consumers in the color matrix, including links, bubble, gradient, split,
 trail coordinates, emitters, images/SVG, and backgrounds. Verify accuracy,
 alpha, and wide gamut beyond compilation.
+
+## Source-review acceptance additions
+
+Close G1–G7 consumer rows from the [source review](V5-CODE-REVIEW.md), including
+emitter shapes, noise/path generators, motion, Poisson, image/GIF, media exports
+and sampling consumers. Mandatory fixes accompany their core stages. Record
+per-capability worker support and lifecycle results. The separate
+[E11 backlog](V5-11-OPTIONAL-PLUGINS.md) covers optional performance experiments,
+not compatibility work deferred from this handover.

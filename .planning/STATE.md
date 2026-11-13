@@ -6,6 +6,19 @@ See: .planning/PROJECT.md (initialized)
 
 **Current focus.** v5 major planning on branch `v5`, with package version `4.6.0`.
 
+## Session status — 2026-11-13 — source-based coverage check
+
+- Reviewed current source at `6ef62b21869b2e08de8f80911e1f9192c18d451c`, with
+  Nx project discovery and selected existing regression tests. Added
+  [G1–G7](handovers/V5-CODE-REVIEW.md) to the mandatory stage acceptance checks.
+- Concrete ownership targets include the shared emitter-shape registry and
+  noise/motion listeners. Added explicit async failure, time/numeric, sampling,
+  spatial-snapshot and public-lifetime decisions, preserving existing tests.
+- Appended [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) after E10 for
+  measured plugin improvements. Mandatory fixes remain in E1–E8/E10.
+- Source review and planning only; no implementation, runtime verification or
+  performance result claimed. Full per-file audit and E0 baseline remain pending.
+
 ## Session status — 2026-11-13 — v5 execution reordering
 
 - Added the authoritative [E0–E10 sequence](handovers/V5-EXECUTION.md), with

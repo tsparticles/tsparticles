@@ -76,3 +76,10 @@ Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). Complete C3 for `IOklch`,
 `IParticleOklchAnimation`, fill/stroke/back color, modifiers, reset/pool,
 paint/gradient, and h/c/l animation. Use explicit legacy animation migration
 and the C0 alpha contract, with one persistent particle color model.
+
+## Source-review acceptance additions
+
+Apply G3/G4/G6/G7 from the [source review](V5-CODE-REVIEW.md). Cover asynchronous
+asset completion after particle reuse, numeric domains and RNG sampling lifetime.
+Preserve drawable/callback references and option semantics; extend existing
+movement/shape/option regressions rather than treating them as absent.

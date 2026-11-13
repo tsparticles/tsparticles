@@ -37,6 +37,10 @@ implementation and the clean bundle baseline are pending.
       options resolution and a common capability architecture for extensions;
       record decisions and evidence in the [architecture plan](handovers/V5-ARCHITECTURE.md).
 
+The [source review](handovers/V5-CODE-REVIEW.md) refines mandatory acceptance
+checks for these requirements. [E11](handovers/V5-11-OPTIONAL-PLUGINS.md) is an
+optional post-E10 plugin performance backlog, with no required new packages.
+
 ### Historical initialization backlog (not the v5 execution plan)
 
 - [ ] DEV-01: Stabilize build & CI across the monorepo (consistent Node/pnpm + Nx pipelines)

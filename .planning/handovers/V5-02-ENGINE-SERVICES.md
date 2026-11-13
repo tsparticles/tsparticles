@@ -64,3 +64,10 @@ preserve other contributors' changes.
 
 Provide an old-to-new API map, helper convention, test results, and a justified
 inventory of remaining shared state. Update the index and public documentation.
+
+## Source-review acceptance additions
+
+Apply G1/G4/G6 from the [source review](V5-CODE-REVIEW.md). Include mutable
+registries in emitters and noise/runtime utilities; define invalid RNG results,
+seed/random-call semantics and scheduler time domains. Immutable definitions and
+browser resources need distinct ownership rules, not automatic per-engine copies.

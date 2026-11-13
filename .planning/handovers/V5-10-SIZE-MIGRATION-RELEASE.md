@@ -104,3 +104,11 @@ from 09. Verify that retired Vue 2, Nuxt 2, and Nuxt 3 integrations are absent
 from the workspace, distribution, demos, templates, installer, active docs,
 translations, and bundles. Check migration guidance for retired deprecated APIs
 and browser coverage. Confirm remaining supported fallback paths in built artifacts.
+
+## Source-review acceptance additions
+
+Collect G1–G7 dispositions from the [source review](V5-CODE-REVIEW.md), including
+failure/lifecycle, timing/numeric, sampling and spatial regression evidence.
+Unresolved mandatory checks keep E10 open. The [optional E11 backlog](V5-11-OPTIONAL-PLUGINS.md)
+is explicitly excluded from release-readiness completion; if later investigation
+finds a correctness defect, return it to the responsible mandatory gate.

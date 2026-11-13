@@ -65,3 +65,20 @@ Public changes require migration consistent with the v5 contract and owning hand
 Report measured values and label estimates as such. Evidence can close a rejected
 candidate. Missing measurements keep it open. Gate 10 checks that every IMP has
 an outcome and that global budgets remain satisfied.
+
+## Additional coverage scenarios from the source review
+
+Extend relevant baseline fixtures for [G1–G7](../V5-CODE-REVIEW.md). Keep deterministic
+correctness tests separate from performance measurements:
+
+| Scenario                    | Required coverage                                                              | Measurement dimensions                                       |
+| --------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Clock/long-gap lifecycle    | First/zero delta, irregular ticks, FPS caps, pause/resume and hook failure     | Simulated elapsed time, callbacks and queued frames          |
+| Resource churn              | Noise/motion refresh, queued resize, late image/GIF completion, media teardown | Live listeners/handles, retained assets and settled promises |
+| Spatial mutation            | Position changes across cell boundaries, predicate-driven sparse queries       | Visited cells, tested/accepted neighbors, result order       |
+| Numeric/sampling boundaries | Small/invalid grid sizes, empty masks, finite work, deterministic permutations | Termination and distribution contracts, RNG draw count       |
+
+For optional E11 only, extend the verified E10 benchmark set with edge/triangle
+counts and churn, pointer-selected candidates, absorber counts, noise field
+cells/layers, mask dimensions/occupancy and decode/surface memory. These optional
+profiles are not new prerequisites for closing E10.

@@ -126,3 +126,11 @@ Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In C0/C1, define units, alpha,
 color manager contracts, h/c/l animation, legacy input, and conversion boundaries
 before propagating types. Coordinate ARCH-01/03/04 and give 05 the necessary
 Particle contracts.
+
+## Source-review acceptance additions
+
+Apply G2/G4/G7 from the [source review](V5-CODE-REVIEW.md). Decide container-level
+path-generator disposal separately from per-particle reset, numeric validation
+boundaries, public mutable collections and engine lifetime. Preserve existing
+option merge semantics and externally owned resource references. Carry G1–G7
+into the full-engine audit matrix started in E0.

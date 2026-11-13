@@ -62,6 +62,15 @@ not merely an optional performance experiment.
 Numeric budgets are set from a clean baseline before size refactoring; source line
 counts and moved chunks do not satisfy V5-SIZE. See index for the comparison matrix.
 
+### Source-review acceptance clarification — 2026-11-13
+
+[G1–G7](handovers/V5-CODE-REVIEW.md) refine the existing requirements, without
+asserting that implementations or tests are complete: G1 supports ENG/SVC/PLG;
+G2/G3/G7 support ENG/CTR/ARCH/PLG/MIG; G4/G6 support SVC/PAR/PLG; G5 supports
+PMG/PLG. Record outcomes under their owning stages and close them in E10.
+[Optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) is not a new mandatory release
+requirement. New plugins are conditional proposals, not assumed missing features.
+
 ## Historical v1 Requirements (auto-initialized, not revalidated)
 
 ### Developer Experience

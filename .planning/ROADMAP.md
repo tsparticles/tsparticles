@@ -48,6 +48,12 @@ changes. Record browser targets and usage threshold in E0 before removing suppor
 preserve fallbacks required by supported browsers. E9/E10 verify all workspace,
 package, installer, template, documentation and translation cleanup.
 
+The [source-based coverage review](handovers/V5-CODE-REVIEW.md) adds explicit
+G1–G7 checks to the relevant E1–E8 stages, closed in E10. It covers resource
+ownership, async failures, timing/numeric domains, spatial snapshots and sampling.
+After E10, [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) profiles and evaluates
+additional plugin optimizations. It does not block v5 or defer mandatory fixes.
+
 No implementation step is complete yet. Historical fluid references to “v5” below
 identify a solver-plan revision, not this product major release.
 

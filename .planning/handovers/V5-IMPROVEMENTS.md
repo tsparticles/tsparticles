@@ -40,3 +40,12 @@ to compare alternatives. IMP-05 informs ARCH-01/03 (Particle and options),
 IMP-02 informs ARCH-02 (packages), and IMP-06 informs ARCH-04 (extension
 lifecycle). Record decisions in the architecture log and reuse implementations
 and measurements across plans.
+
+## Source review and optional extension experiments
+
+The [coverage review](V5-CODE-REVIEW.md) adds mandatory correctness/contract checks
+to existing owners. Performance candidates discovered outside the original six
+IMP plans are tracked in [optional E11](V5-11-OPTIONAL-PLUGINS.md): links, external
+interactions, movement/absorbers/emitters, noise/paths, masks/sampling, collision
+consumers, assets and the remaining extension families. E11 starts after E10 and
+is excluded from the requirement to close every mandatory IMP at gate 10.

@@ -25,6 +25,18 @@ High impact means many consumers must migrate together; high difficulty can also
 come from local numerical, lifecycle, or ordering correctness. Smaller independent
 changes should remain separate even when they belong to the same stage.
 
+## Source review additions
+
+The [source-based coverage review](V5-CODE-REVIEW.md) adds G1–G7 to the existing
+stages: non-core registries, extension disposal, async failure boundaries, clock
+and numeric domains, spatial snapshots, sampling and public lifetime/mutability.
+Capture these rows in E0 and close them with their owning stage. Existing tests
+and optimizations cited in the review remain regression requirements.
+
+The mandatory sequence still ends at E10. [E11](V5-11-OPTIONAL-PLUGINS.md) is an
+optional follow-up for measured plugin improvements after E10; it does not defer
+mandatory fixes or make new plugins a release prerequisite.
+
 ## Stages and exit gates
 
 Follow E0–E10 in order. Within each stage, use the subdivisions below. A gate is
@@ -160,6 +172,15 @@ decision logs, runs the prescribed CI checks and validates the migration guide.
 Missed mandatory budgets, unsupported evidence or unresolved requirements keep the
 gate open. Versioning, commits and publication follow their separate authorization.
 
+### E11 — Optional plugin improvements after E10
+
+Select candidates from [the optional backlog](V5-11-OPTIONAL-PLUGINS.md) using the
+verified E10 baseline. Initial priorities are links/triangles, external interaction
+allocations and movement/absorber/emitter calculations, followed by profiling of
+noise, masks, fluid, assets and remaining extensions. Each item has difficulty,
+impact, source evidence and acceptance constraints. Implement only measured wins;
+new capability packages need a separate demonstrated consumer benefit.
+
 ## Rules shared by every stage
 
 - Migrate affected plugins, wrappers, manifests, tests and examples with each
@@ -191,3 +212,7 @@ gate open. Versioning, commits and publication follow their separate authorizati
 
 Next action: E0. No runtime change, benchmark result or completed implementation
 is implied by this planning revision.
+
+Optional follow-up (not part of E10 completion):
+
+- [ ] E11 — Select, profile and evaluate plugin improvements if pursued.

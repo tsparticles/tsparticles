@@ -212,6 +212,17 @@ deprecated APIs with documented replacements, and browser support under the
 agreed age and usage policy. Define scope and browser policy in E0, retire obsolete integrations before
 adapting supported consumers in E1, and verify cleanup in E9/E10. Preserve fallbacks needed by supported browsers.
 
+## Source review and optional follow-up
+
+The [2026-11-13 code review](V5-CODE-REVIEW.md) identifies G1–G7 acceptance gaps
+and maps them into E1–E8, with final verification in E10. Read it with the owning
+handover before implementation. It preserves existing regression coverage and
+adds explicit resource, numeric, clock, spatial and sampling contracts.
+
+After E10, [optional E11](V5-11-OPTIONAL-PLUGINS.md) evaluates existing plugin
+performance beyond the mandatory migration. Its candidates need profiling;
+there are no claimed savings or mandatory new visual plugins.
+
 ## Plan status
 
 - [x] Review the critical areas and update planning documentation.

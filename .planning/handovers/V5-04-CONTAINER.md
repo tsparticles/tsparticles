@@ -60,3 +60,10 @@ architecture docs, the changelog for API changes, and index status.
 
 See [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Source-review acceptance additions
+
+Apply G2/G3/G4/G7 from the [source review](V5-CODE-REVIEW.md). Integrate path,
+motion and Poisson cleanup, partial-init rollback and promise settlement. Add
+clock/FPS/long-gap/error-recovery scenarios and preserve EventDispatcher snapshots.
+Count listeners/handles across refresh, stop/start and destroy, including workers.

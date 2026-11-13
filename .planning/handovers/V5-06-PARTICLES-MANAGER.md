@@ -76,3 +76,10 @@ and [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) before
 changing collections and pipelines. Agree with 07 on state, helper, and
 manager boundaries. ParticlesManager owns collections, pools, and phase
 coordination. Define snapshot restore invariants only if the capability is adopted.
+
+## Source-review acceptance additions
+
+Apply G4/G5 from the [source review](V5-CODE-REVIEW.md). Specify phase snapshots
+and cell membership after plugin movement, including fluid re-queries. Preserve
+the existing sparse path and reentrant/live predicates. Add independent geometry
+fixtures, finite cell-size validation and predicate-driven sparse workloads.

@@ -82,3 +82,10 @@ until 02 is complete. The checkout must build and consumers must work.
 
 See [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md) and [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Source-review acceptance additions
+
+Apply G1/G3/G7 from the [source review](V5-CODE-REVIEW.md). Cover emitter-shape
+registration isolation, same-ID loads across engines, failures during canvas
+acquisition/setup before start, and engine lifetime/pending-load ownership.
+Reuse LoadOrdering tests; define cleanup and public items/listener behavior.
