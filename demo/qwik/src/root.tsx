@@ -1,13 +1,16 @@
 import { Particles, initParticlesEngine } from "../../../wrappers/qwik/src/components/particles";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { Engine } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 import { loadFull } from "tsparticles";
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 export default component$(() => {
+  const readyEngine = useSignal<typeof engine>();
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(engine, async (engine: Engine) => {
       await loadFull(engine);
     });
+    readyEngine.value = noSerialize(engine);
   });
   return (
     <>

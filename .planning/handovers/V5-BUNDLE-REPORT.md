@@ -2,7 +2,7 @@
 
 ## E0 checkpoint — 2026-11-13
 
-**Status: in progress, gate open. E1–E10 have not started.** No runtime change, singleton removal, retirement, performance gain or v5 compatibility is claimed. E11 is excluded.
+**Status: E0 complete; E1 retirement verified, factory migration pending.** Baseline measurements precede retirement. No singleton removal, performance gain or complete v5 compatibility is claimed. E11 is excluded.
 
 Baseline: `1944fa0f5c202b8af82841b5de9b2315f758a258`, branch `v5`, initially clean. Package version 4.6.0. The preparation patch only corrects import ordering and a no-op logger mock in an existing BackgroundMask test; see `evidence/e0/baseline.patch`. No commit or publication.
 
@@ -59,7 +59,7 @@ Unminified counterparts and external-loader distributions are also recorded in t
 - Root and `/lazy` resolve under import, require and browser conditions without DOM globals. The actual paths and global writes are recorded in `package-conditions.json`. Root ESM/CJS create the singleton without adding globals; ESM/CJS lazy add `tsParticles`; browser adds the singleton plus service globals. These are observed v4 behaviors to remove in E1/E2, not passing v5 purity checks.
 - Classic engine-plus-features minimal scene: 9 scripts, 123376 raw bytes, 35441 gzip bytes, 31633 Brotli bytes. Cold and warm smoke tests both load 100 particles, render and leave zero containers. Nine warm responses came from browser cache. See `cdn-candidate.json` and `cdn-browser.json`.
 - Representative Rollup reports contain 112 retained module identities across that closure and zero duplicated identities. This does not detect copied algorithm text; the identity scope and reports are in `cdn-modules.json`.
-- Standard Rollup currently sets `includeLazy: false` in both branches of `createParticlesBuild.ts`. There is no freshly built classic lazy CDN entry to measure from the standard command. Package `/lazy` is measured separately. Do not fabricate a CDN lazy baseline or compare stale artifacts. E0 still needs a disposition for the documented lazy CDN product and complete CJS consumer payload accounting.
+- Standard Rollup currently sets `includeLazy: false` in both branches of `createParticlesBuild.ts`. There is no freshly built classic lazy CDN entry to measure from the standard command. Package `/lazy` is measured separately. Do not fabricate a CDN lazy baseline or compare stale artifacts. The completion evidence below records the product disposition and installed CJS accounting.
 
 ## Runtime baseline
 
@@ -88,7 +88,7 @@ The table reports median across the three per-run medians, in milliseconds. Indi
 | M8       |  500 |            0.700 |                             0.700 |
 | M8       | 1000 |            1.300 |                             1.300 |
 
-M3 is moving circles, M4 links/classic collisions, M5 fluid, M6 manual add/remove churn, M7 randomized depth, M8 background mask. M6 does **not yet** cover emitter/absorber churn and heap retention. M8 does **not yet** cover HDR rendering, resize and all layers. M9 cannot use a public factory on the baseline and has no invented result.
+M3 is moving circles, M4 links/classic collisions, M5 fluid, M6 manual add/remove churn, M7 randomized depth, M8 background mask. The additional emitter/absorber, retention, HDR/layers/resize and color scenarios are recorded in the continuation evidence below. M9 cannot use a public factory on the baseline and has no invented result.
 
 Chrome reports P3/float16 2D context attributes and OffscreenCanvas support; this is capability evidence, not proof of physical HDR output. `color-reference.png` was visually inspected after correcting the fixture: red/green/blue/yellow circles on a dark background. It is an initial SDR reference, not complete color/gamut/alpha/HDR coverage.
 
@@ -103,8 +103,94 @@ Chrome reports P3/float16 2D context attributes and OffscreenCanvas support; thi
 - [x] Engine file, package and consumer ownership matrices created; G1–G7 assigned, not closed.
 - [x] Retirement list and browser age/share policy recorded without performing removals.
 - [x] Factory, loader, wrapper and bootstrap contract outline recorded.
-- [ ] Complete missing CJS payload, documented CDN lazy disposition and installed-package baseline checks.
-- [ ] Complete M6 emitter/absorber/retention and M8 HDR/layers/resize baseline fixtures, memory/GC and long-frame evidence; set applicable runtime budgets after valid measurements.
-- [ ] Complete color/visual baseline coverage beyond the initial SDR reference.
+- [x] Complete missing CJS payload, documented CDN lazy disposition and installed-package baseline checks.
+- [x] Complete M6 emitter/absorber/retention and M8 HDR/layers/resize baseline fixtures, memory/GC and long-frame evidence; set applicable runtime budgets after valid measurements.
+- [x] Complete color/visual baseline coverage beyond the initial SDR reference.
 
-E0 remains open because these are required evidence gaps. Continue with those measurements before E1; do not reinterpret partial fixtures as completed scenarios. Later stages and their exit criteria remain pending.
+The initial evidence gaps above are closed by the additive continuation evidence below. Later stages and their exit criteria remain pending.
+
+## E0 completion evidence — continuation at `f17e249212`
+
+The continuation commit contains the prior evidence checkpoint and test-only lint correction; engine and extension runtime sources still match the original baseline. New artifacts are additive and the earlier payload/runtime records remain intact.
+
+- **Installed package and CJS:** `check-installed.mjs` packs the built engine with pnpm, installs its tarball offline outside the workspace, and verifies six root/lazy import/require/browser resolutions. No repository symlinks or lifecycle hooks are used by the installed consumer. `installed-package.json` records archive SHA-256, pack contents and paths. Root and lazy require/init each retain 67 CJS modules. Root totals: raw 125392 B; per-file minified 81861 B, gzip 29995 B, Brotli 25958 B. Lazy totals: raw 125430 B; minified 81896 B, gzip 30006 B, Brotli 25964 B. Complete shipped CJS: raw 239326 B; minified 137213 B, gzip 53150 B, Brotli 45546 B. Per-file CJS compression is intentionally distinct from browser tree-shaken bundles.
+- **Classic CDN lazy disposition:** the standard Rollup factory explicitly disables classic lazy generation; the targeted current engine/bundle/template documentation search found no `.lazy.js` CDN product. Mark this baseline scenario unavailable, retain package ESM/CJS `/lazy` support, and do not introduce a new classic lazy product in E1. E9 must verify that no stale generated/documented classic lazy URLs survive. This is a supported-product disposition, not a measured zero-byte result.
+- **Extended M6/M8:** 18 measured runs, plus two warm-up and 30 retention cycles, exercise emitters, absorbers, grouped churn, HDR-requested fallback, background callback/mask layers and resize from 800×600 to 640×480. Real contexts, explicit ticks and zero remaining engine containers verified. Per-run init/update/render/frame p95, long-frame counts and resize costs are in `runtime-extended.json`. Media-listener instrumentation uses only query-string counters and stores no listener or container references.
+
+| Scenario             |    N | Median update ms | Median render ms | Median frame p95 ms |
+| -------------------- | ---: | ---------------: | ---------------: | ------------------: |
+| M6-extensions        |  100 |            0.200 |            0.200 |               0.600 |
+| M6-extensions        |  500 |            0.800 |            0.700 |               1.700 |
+| M6-extensions        | 1000 |            1.700 |            1.500 |               3.700 |
+| M8-hdr-layers-resize |  100 |            0.100 |            0.100 |               0.400 |
+| M8-hdr-layers-resize |  500 |            0.600 |            0.700 |               1.500 |
+| M8-hdr-layers-resize | 1000 |            1.300 |            1.300 |               3.000 |
+
+**Observed baseline defect (G2 / E4):** after warm-up, 18 scene lifecycles increase live DOM listeners from 5 to 23. Three further batches of ten increase them to 33, 43 and 53. The counters identify `(prefers-reduced-motion: reduce)` registrations (2 → 20 → 30 → 40 → 50) while HDR/P3 listeners return to zero. Forced-GC heap grows from about 4.5 MB to 63.9 MB after the varied workloads and another ~7.15 MB per ten M6 cycles. DOM nodes grow by one per lifecycle. This corroborates MotionPluginInstance’s unpaired listener and is an E4 correctness target, **not** a permitted regression budget. E0 captures the defect; E4 must demonstrate cleanup and refresh behavior before its gate can close.
+
+**Color/visual evidence:** `color-matrix.png` was inspected and `color-matrix.json` contains input values, particle colors, actual context attributes and pixel readback for hex, HSL, RGB, in-gamut/wide OKLCH, parser alpha and separate fill opacity. The baseline ignores the RGBA/OKLCH alpha in particle fill while separate fill opacity visibly blends; retain this as an E5 migration fixture, not a desired v5 result. Natural HDR detection falls back to sRGB on this display. Forced media-capability detection exercises real display-p3/float16 Canvas2D output; screenshot/readback remains SDR and makes no physical HDR luminance claim. E5/E7 must repeat both detection/fallback and real-context paths.
+
+**Runtime budgets:** compare three repetitions on the same machine/browser, including p95 and dispersion. Median update/render and frame p95 ceilings are baseline ×1.10 or baseline +0.1 ms, whichever is larger, to accommodate timer resolution. Values are saved in `runtime-budgets.json` for original and extended scenarios. After E4, the 30-cycle retention check must add zero live media listeners and zero detached scene nodes; allow at most 1 MiB post-warm-up heap drift, with investigation required above that threshold. Forced-GC values are retention signals, not allocation volume or conclusive leak proofs.
+
+**E0 exit: complete.** Reproducible size/runtime/visual evidence, numeric budgets, owner matrices, retirement/support scope and unavailable-product dispositions are recorded. Known runtime defects remain assigned to E1–E8/G1–G7; no mandatory fix is deferred to E11. E1 consumer retirement is now verified; next is explicit engine creation and cohesive consumer migration.
+
+### Supplemental E0 forced-HDR timing
+
+Captured before the first engine runtime edit: `runtime-extended-hdr.json` adds
+18 runs using forced media capability detection and actual display-p3/float16
+contexts in both M6 and M8. Each group has three repetitions with identical RNG
+counts, zero remaining engine containers and no page errors. This measures real
+canvas CPU submission, not physical display luminance. Separate `forceHdr: true`
+budgets prevent comparison with the natural SDR fallback as if they were one mode.
+
+| Scenario             |    N | Update median ms | Render median ms | Frame p95 ms |
+| -------------------- | ---: | ---------------: | ---------------: | -----------: |
+| M6-extensions        |  100 |            0.200 |            0.200 |        0.500 |
+| M6-extensions        |  500 |            0.800 |            0.700 |        1.700 |
+| M6-extensions        | 1000 |            1.500 |            1.400 |        3.200 |
+| M8-hdr-layers-resize |  100 |            0.100 |            0.100 |        0.400 |
+| M8-hdr-layers-resize |  500 |            0.600 |            0.600 |        1.400 |
+| M8-hdr-layers-resize | 1000 |            1.400 |            1.300 |        2.900 |
+
+Retention again reaches 53 DOM listeners/57 nodes after the measured workloads
+and 30 further lifecycles, with ~85.3 MB retained heap. Reduced-motion listener
+counts rise to 50; HDR/P3 listeners return to zero. The E4/G2 defect remains open.
+
+## E1 factory checkpoint — working tree, acceptance in progress (2026-11-14)
+
+The factory increment follows the verified retirement checkpoint. Retirement did
+not change runtime artifacts, so E0 is also the preceding runtime baseline.
+Current evidence is under `evidence/e1`; measurements explicitly identify the
+working tree. Artifact hashes are recorded separately. No release/commit made.
+
+| Consumer, import condition                        | E0 gzip | E1 gzip | Delta |
+| ------------------------------------------------- | ------: | ------: | ----: |
+| Pure clamp helper                                 |     189 |     189 |     0 |
+| Engine acquisition (singleton → explicit factory) |  22,665 |  22,673 |    +8 |
+| Explicit initialization                           |  22,665 |  22,682 |   +17 |
+| Minimal scene                                     |  28,451 |  28,547 |   +96 |
+| Lazy engine acquisition                           |  22,680 |  22,680 |     0 |
+
+Source: `evidence/e1/bundle-sizes.json`. Root/lazy installed ESM/CJS/browser
+probes pass; `installed-package.json` records physical CJS closure separately.
+Classic external CDN composition loads 100 particles at cold and warm cache,
+then returns to zero containers. Separate basic/slim copies reject simultaneous
+canvas owners and reuse a transferred canvas after destruction. All four
+convenience bundles initialize two separate engines and accept an external emoji
+plugin without a preceding engine script. See `factory-browser.json` and
+`cdn-browser.json`. No service isolation is claimed before E2.
+
+Runtime: 54 main runs, 18 extended SDR runs, 18 forced-HDR runs, no browser
+errors. `runtime-comparison.json` compares three-repetition medians with frozen
+E0 ceilings. One first-pass exceedance requires investigation: SDR M6 extensions,
+500 particles, frame p95 1.90 ms vs 1.87 ms ceiling (E0 1.70 ms). A second independent run also measures 1.90 ms; deterministic particle counts
+and RNG-call counts match E0. The first run is retained in
+`runtime-extended-first.json`; the repeat is in `runtime-extended.json`.
+Remaining measured timing ceilings pass. This is not an E10 performance acceptance.
+
+Retention remains open for E4: reduced-motion listeners rise 2 → 50 through
+workloads and retention cycles, total listeners 5 → 53. Heap reaches about
+85.3 MB. DOM nodes reach 107; the new canvas ownership closure retains both
+canvas resources while the existing Motion listener retains the container.
+Fixing the root listener lifetime and verifying resource return to baseline are
+mandatory; the extra retained DOM nodes are not dismissed as an optimization.

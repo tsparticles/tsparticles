@@ -1,10 +1,12 @@
 /* eslint-disable */
-import { type Container, tsParticles } from "@tsparticles/engine";
-import { ImageData as CanvasImageData } from "@napi-rs/canvas";
+import { type Container, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
+import { ImageData as CanvasImageData } from "@napi-rs/canvas";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadGifShape } from "@tsparticles/shape-gif";
+
+const tsParticles = createEngine();
 
 const gifSrc = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH/C05FVFNDQVBFMi4wAwEAAAAsAAAAAAEAAQAAAgJEAQA7";
 const flushRounds = 12;

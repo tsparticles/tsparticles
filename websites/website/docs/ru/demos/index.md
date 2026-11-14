@@ -5,7 +5,8 @@
 ## Запуск/остановка базового шаблона (без автозапуска)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;
@@ -60,4 +61,4 @@ export function resume(): void {
 Монорепо также включает в себя работоспособные демо-версии интеграции:
 
 - Исходная папка: <https://github.com/tsparticles/tsparticles/tree/main/demo>.
-- Доступные демоверсии: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- Доступные демоверсии: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue3`, `webcomponents`.

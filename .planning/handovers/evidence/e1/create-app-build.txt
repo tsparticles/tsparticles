@@ -1,0 +1,65 @@
+
+ NX   Running target build:ci for project @tsparticles/cli-command-create-app:
+
+- @tsparticles/cli-command-create-app
+
+
+
+> nx run @tsparticles/cli-command-create-app:"build:ci"
+
+(node:79619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79621) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile:ci && pnpm run prettify:ci:readme
+(node:79700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rimraf ./dist
+(node:79732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79734) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --check ./src/*
+(node:79763) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Checking formatting...
+All matched files use Prettier code style!
+(node:79767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --cache --cache-location .cache/eslint/.eslintcache --cache-strategy metadata
+(node:79797) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[0m
+[4m/Users/matteo/Projects/GitHub/tsparticles/tsparticles/cli/commands/create-app/src/prompts.ts[24m
+  [2m77:4[22m  [33mwarning[39m  tsdoc-param-tag-with-invalid-name: The @param block should be followed by a valid parameter name: The identifier cannot non-word characters  [2mtsdoc/syntax[22m
+  [2m78:4[22m  [33mwarning[39m  tsdoc-param-tag-with-invalid-name: The @param block should be followed by a valid parameter name: The identifier cannot non-word characters  [2mtsdoc/syntax[22m
+  [2m79:4[22m  [33mwarning[39m  tsdoc-param-tag-with-invalid-name: The @param block should be followed by a valid parameter name: The identifier cannot non-word characters  [2mtsdoc/syntax[22m
+
+[33m[1m✖ 3 problems (0 errors, 3 warnings)[22m[39m
+[0m
+(node:79828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run build:ts
+(node:79857) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run build:ts:cjs
+(node:79886) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc -p src
+(node:79936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --check ./README.md
+(node:79965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Checking formatting...
+All matched files use Prettier code style!
+
+
+
+ NX   Successfully ran target build:ci for project @tsparticles/cli-command-create-app
+
+
+  Run duration:      5.6s
+  Cache:             0/1 hit (0%)
+  Critical path:     5.6s (1 task)
+  Recoverable time:  <1ms

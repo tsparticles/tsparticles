@@ -5,7 +5,8 @@
 ## 模式基础开始/停止（无自动播放）
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;

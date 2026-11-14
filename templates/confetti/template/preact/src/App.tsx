@@ -1,6 +1,8 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
-import { confetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 import "./App.css";
 
 function randomInRange(min: number, max: number): number {
@@ -11,7 +13,7 @@ export default function App() {
   const [mode, setMode] = useState("cannon");
 
   useEffect(() => {
-    void initParticlesEngine(() => Promise.resolve());
+    void initParticlesEngine(engine, () => Promise.resolve());
   }, []);
 
   function fireConfetti() {
@@ -49,14 +51,14 @@ export default function App() {
         <h1>Confetti!</h1>
         <div class="controls">
           <button onClick={fireConfetti}>Fire Confetti</button>
-          <select value={mode} onChange={(e) => setMode((e.target as HTMLSelectElement).value)}>
+          <select value={mode} onChange={e => setMode((e.target as HTMLSelectElement).value)}>
             <option value="cannon">Cannon</option>
             <option value="waterfall">Waterfall</option>
             <option value="random">Random</option>
           </select>
         </div>
       </div>
-      <Particles id="tsparticles" options={{}} />
+      <Particles engine={engine} id="tsparticles" options={{}} />
     </div>
   );
 }

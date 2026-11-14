@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-squares
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSquaresPreset } from "@tsparticles/preset-squares";
 import type { Container } from "@tsparticles/engine";
 

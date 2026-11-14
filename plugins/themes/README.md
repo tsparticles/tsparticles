@@ -69,7 +69,8 @@ const { loadThemesPlugin } = require("@tsparticles/plugin-themes");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadThemesPlugin } from "@tsparticles/plugin-themes";
 
 (async () => {

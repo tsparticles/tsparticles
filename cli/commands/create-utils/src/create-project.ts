@@ -1,7 +1,3 @@
-/* eslint-disable sort-imports */
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { camelize, capitalize, dash } from "./string-utils.js";
 import {
   type IProjectMetadata,
   copyEmptyTemplateFiles,
@@ -10,6 +6,9 @@ import {
   updatePackageDistFile,
   updatePackageFile,
 } from "./template-utils.js";
+import { camelize, capitalize, dash } from "./string-utils.js";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 export type CreateProjectKind =
   "bundle" | "effect" | "interaction" | "palette" | "path" | "plugin" | "preset" | "shape" | "updater";
@@ -121,7 +120,7 @@ export * from "./index.js";
 function getBundleFile(loadFunction: string, reexportEngine: boolean): string {
   return `import { ${loadFunction} } from "./index.js";
 
-${reexportEngine ? 'export { tsParticles } from "@tsparticles/engine";' : ""}
+${reexportEngine ? 'export { createEngine } from "@tsparticles/engine";' : ""}
 export { ${loadFunction} } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
@@ -206,7 +205,9 @@ npm install ${config.packageSuffix}
 ## Usage
 
 \`\`\`ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 import { ${config.loadFunction} } from "${config.packageSuffix}";
 
 await ${config.loadFunction}(tsParticles);

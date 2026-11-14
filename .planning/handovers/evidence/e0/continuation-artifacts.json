@@ -1,0 +1,10 @@
+[
+  {
+    "file": "engine/dist/tsparticles.engine.min.js",
+    "sha256": "6336b7c8048fae49f1ba49e228364fb5e9b86b8e55df933e2cacba59b9cb81bb"
+  },
+  {
+    "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+    "sha256": "4f3d0c23c5d79586b594bcba24ccd361f66b1b7778722242d55ebf7cb2beb63e"
+  }
+]

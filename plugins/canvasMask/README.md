@@ -69,7 +69,8 @@ const { loadCanvasMaskPlugin } = require("@tsparticles/plugin-canvas-mask");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 
 (async () => {

@@ -41,6 +41,8 @@ yarn add @tsparticles/react tsparticles
 The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useCallback, useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -75,7 +77,7 @@ export default function App() {
   );
 
   return (
-    <ParticlesProvider init={particlesInit}>
+    <ParticlesProvider engine={particlesEngine} init={particlesInit}>
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
     </ParticlesProvider>
   );
@@ -375,6 +377,8 @@ const btnStyle = (active) => ({
 Use `ParticlesProvider` to initialize the engine once at the app root. This is the recommended approach when you have multiple particle components or use custom presets.
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 // App.jsx
 import { ParticlesProvider } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -390,7 +394,7 @@ const engineInit = async (engine) => {
 
 export default function App() {
   return (
-    <ParticlesProvider load={engineInit}>
+    <ParticlesProvider engine={particlesEngine} load={engineInit}>
       <Home />
     </ParticlesProvider>
   );

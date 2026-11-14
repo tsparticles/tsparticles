@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, expect, it, vi } from "vitest";
+import type { IParticlesProps } from "../src/components/particles/IParticlesProps";
 import Particles from "../src/components/particles/particles";
 import { initParticlesEngine } from "../src/components/particles/initParticlesEngine";
-import type { IParticlesProps } from "../src/components/particles/IParticlesProps";
 
 type Task = (context: { cleanup: (callback: () => void) => void; track: <T>(read: () => T) => T }) => void;
 
@@ -10,6 +10,11 @@ const { errorMock, loadMock, tasks } = vi.hoisted(() => ({
   loadMock: vi.fn(),
   tasks: [] as Task[],
 }));
+
+const engine = {
+  load: loadMock,
+  init: vi.fn(async () => undefined),
+} as unknown as import("@tsparticles/engine").Engine;
 
 vi.mock("@builder.io/qwik", async importOriginal => ({
   ...(await importOriginal<typeof import("@builder.io/qwik")>()),
@@ -25,7 +30,7 @@ vi.mock("@tsparticles/engine", () => ({
 }));
 
 beforeAll(async () => {
-  await initParticlesEngine();
+  await initParticlesEngine(engine);
 });
 
 beforeEach(() => {
@@ -35,7 +40,7 @@ beforeEach(() => {
 });
 
 function start(loaded: ReturnType<typeof vi.fn>): () => () => void {
-  Particles({ loaded: loaded as unknown as NonNullable<IParticlesProps["loaded"]> });
+  Particles({ engine, loaded: loaded as unknown as NonNullable<IParticlesProps["loaded"]> });
 
   return () => {
     let cleanup: () => void = () => undefined;
@@ -101,6 +106,6 @@ it("disposes a result that arrives after the task was replaced", async () => {
 
 it("keys the canvas by the scene id", () => {
   for (const id of ["first", "second"]) {
-    expect(Particles({ id })).toMatchObject({ children: { key: id } });
+    expect(Particles({ engine, id })).toMatchObject({ children: { key: id } });
   }
 });

@@ -4,9 +4,15 @@
     <div id="app">
       <h1>Tic-Tac-Toe</h1>
       <div class="scoreboard">
-        <span>X: <strong>{{ scores.X }}</strong></span>
-        <span>Draws: <strong>{{ scores.draw }}</strong></span>
-        <span>O: <strong>{{ scores.O }}</strong></span>
+        <span
+          >X: <strong>{{ scores.X }}</strong></span
+        >
+        <span
+          >Draws: <strong>{{ scores.draw }}</strong></span
+        >
+        <span
+          >O: <strong>{{ scores.O }}</strong></span
+        >
       </div>
       <div class="turn">{{ status }}</div>
       <div class="board">
@@ -25,13 +31,21 @@
 </template>
 
 <script setup>
+import { engine } from "./particlesEngine";
+
 import { reactive, computed } from "vue";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 const state = reactive({
@@ -55,7 +69,7 @@ function checkWin(board) {
       return { winner: board[a], winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) return { winner: "draw", winLine: [] };
+  if (board.every(cell => cell !== null)) return { winner: "draw", winLine: [] };
   return null;
 }
 

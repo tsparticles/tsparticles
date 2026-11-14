@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { useEffect, useState } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 import "./App.css";
 
 async function init(engine: Engine): Promise<void> {
@@ -46,7 +47,7 @@ export default function App() {
   }, [theme]);
 
   function toggleTheme() {
-    setTheme((t) => (t === "dark" ? "light" : "dark"));
+    setTheme(t => (t === "dark" ? "light" : "dark"));
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -92,14 +93,14 @@ export default function App() {
 
   function toggleMode(e: React.MouseEvent) {
     e.preventDefault();
-    setLoginMode((m) => !m);
+    setLoginMode(m => !m);
     setEmailErr("");
     setPassErr("");
     setConfirmErr("");
   }
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <Particles id="tsparticles" options={options} />
       <div className="auth-container">
         <div className="auth-card">
@@ -112,18 +113,38 @@ export default function App() {
           <form onSubmit={handleSubmit} noValidate>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
               <span className="error">{emailErr}</span>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input id="password" type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
               <span className="error">{passErr}</span>
             </div>
             {!loginMode && (
               <div className="form-group">
                 <label htmlFor="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" type="password" placeholder="Confirm password" value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm password"
+                  value={confirm}
+                  onChange={e => setConfirm(e.target.value)}
+                />
                 <span className="error">{confirmErr}</span>
               </div>
             )}
@@ -131,7 +152,9 @@ export default function App() {
           </form>
           <p className="toggle-text">
             <span>{loginMode ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick={toggleMode}>{loginMode ? "Register" : "Login"}</a>
+            <a href="#" onClick={toggleMode}>
+              {loginMode ? "Register" : "Login"}
+            </a>
           </p>
         </div>
       </div>

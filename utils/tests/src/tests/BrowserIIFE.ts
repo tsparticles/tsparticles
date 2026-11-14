@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import type { Engine } from "@tsparticles/engine";
 import { JSDOM } from "jsdom";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -19,8 +20,8 @@ type EngineBundleWindow = Window & {
   loadEmojiShape?: (engine: unknown) => Promise<void>;
   loadSlim?: (engine: unknown) => Promise<void>;
   tsParticles?: {
-    checkVersion: (version: string) => void;
-    init: (options: unknown) => Promise<unknown>;
+    createEngine: () => Engine;
+    loadSlim?: (engine: Engine) => Promise<void>;
   } & Record<string, unknown>;
 };
 
@@ -39,7 +40,7 @@ describe("Browser IIFE bundles", () => {
     evalInWindow(window, engineBundle);
 
     expect(window.tsParticles).toBeDefined();
-    expect(window.tsParticles?.checkVersion).toBeTypeOf("function");
+    expect(window.tsParticles?.createEngine).toBeTypeOf("function");
   });
 
   it("merges slim into the shared __tsParticlesInternals namespace and exposes loadSlim on window", () => {
@@ -51,7 +52,9 @@ describe("Browser IIFE bundles", () => {
     expect(window.loadSlim).toBeTypeOf("function");
     expect(internals).toBeDefined();
     expect((internals?.bundles as Record<string, unknown> | undefined)?.slim).toBeDefined();
-    expect((internals?.engine as { tsParticles?: unknown } | undefined)?.tsParticles).toBe(window.tsParticles);
+    expect((internals?.engine as { createEngine?: unknown } | undefined)?.createEngine).toBe(
+      window.tsParticles?.createEngine,
+    );
   });
 
   it("loads a shape plugin resolving @tsparticles/engine and @tsparticles/utils globals", async () => {
@@ -61,9 +64,20 @@ describe("Browser IIFE bundles", () => {
 
     expect(window.loadEmojiShape).toBeTypeOf("function");
 
-    const engine: unknown = window.tsParticles;
+    const namespace = window.tsParticles;
+
+    if (!namespace) {
+      throw new Error("Factory namespace was not installed");
+    }
+
+    const engine = namespace.createEngine(),
+      other = namespace.createEngine();
+
+    expect(engine).not.toBe(other);
 
     await window.loadSlim?.(engine);
     await window.loadEmojiShape?.(engine);
+    await window.loadSlim?.(other);
+    expect(engine.pluginManager).not.toBe(other.pluginManager);
   });
 });

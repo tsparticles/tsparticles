@@ -74,7 +74,9 @@ bc --> u
 The package API is centered on `confetti`.
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 // Main API
 await confetti(options);
@@ -102,7 +104,9 @@ pnpm add @tsparticles/confetti
 ### ESM / TypeScript
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 await confetti({
   count: 80,
@@ -115,7 +119,9 @@ await confetti({
 With explicit canvas id:
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 await confetti("tsparticles", {
   count: 50,
@@ -127,7 +133,9 @@ await confetti("tsparticles", {
 ### Custom canvas via `confetti.create`
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
 const localConfetti = await confetti.create(canvas, { count: 30 });

@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type CustomEventArgs, EventType, tsParticles } from "@tsparticles/engine";
+import { type CustomEventArgs, EventType, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { EventDispatcher } from "../../../../engine/src/Utils/EventDispatcher.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 describe("event listener removal during dispatch", () => {
   it("notifies remaining listeners when a one-shot listener removes itself", async () => {

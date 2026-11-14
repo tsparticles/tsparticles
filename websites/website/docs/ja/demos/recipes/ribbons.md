@@ -13,7 +13,9 @@ pnpm add @tsparticles/engine @tsparticles/ribbons
 ## すぐに使える（全ページ）
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   count: 5,
@@ -24,7 +26,9 @@ await ribbons({
 ## 特定のキャンバスに限定
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 import type { Container } from "@tsparticles/engine";
 
 const canvas = document.getElementById("ribbons-canvas") as HTMLCanvasElement;
@@ -54,7 +58,9 @@ export function resume(): void {
 デフォルトでは、各リボン粒子はキャンバス幅全体のランダムなx位置に生成されます。`emitterSize`を使用して生成領域を制御します — `{ width: 0, height: 0 }`に設定すると、すべてのリボンが同じ点から始まります：
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   positionX: 50,

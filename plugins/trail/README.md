@@ -69,7 +69,8 @@ const { loadTrailPlugin } = require("@tsparticles/plugin-trail");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTrailPlugin } from "@tsparticles/plugin-trail";
 
 (async () => {

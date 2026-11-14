@@ -35,10 +35,11 @@ const tsParticlesNuxtModule: TsParticlesNuxtModule = defineNuxtModule<ITsParticl
       filename: "tsparticles.client.mjs",
       getContents: () => `import { defineNuxtPlugin } from "#app";
 import VueParticles from "@tsparticles/vue3";
-import { registerParticles } from "${initPath}";
+import { engine, registerParticles } from "${initPath}";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueParticles, {
+    engine,
     init: registerParticles,
   });
   });

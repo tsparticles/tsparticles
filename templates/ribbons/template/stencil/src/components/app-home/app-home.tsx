@@ -1,5 +1,7 @@
 import { Component, h } from "@stencil/core";
-import { ribbons } from "@tsparticles/ribbons";
+import { createRibbons } from "@tsparticles/ribbons";
+import { engine } from "../../../particlesEngine";
+const ribbons = createRibbons(engine);
 
 @Component({
   tag: "app-home",

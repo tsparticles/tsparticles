@@ -8,11 +8,13 @@ import {
   OptionsColor,
   OutMode,
   type RecursivePartial,
+  createEngine,
   itemFromSingleOrMultiple,
-  tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+
+const tsParticles = createEngine();
 
 /**
  * Returns the first paint entry configured for particles, if available.

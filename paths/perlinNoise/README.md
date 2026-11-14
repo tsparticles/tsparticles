@@ -69,7 +69,8 @@ const { loadPerlinNoisePath } = require("@tsparticles/path-perlin-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
 
 (async () => {

@@ -1,20 +1,23 @@
-import "./style.css";
 import $ from "jquery";
-import "@tsparticles/jquery";
-import { loadSlim } from "@tsparticles/slim";
+import "./style.css";
 import configs from "@tsparticles/configs";
-import { tsParticles } from "@tsparticles/engine";
+import "@tsparticles/jquery";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  await loadSlim(tsParticles);
+  await loadSlim(engine);
 
   const keys = Object.keys(configs);
   const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
 
-  $("#tsparticles").particles().load({
-    ...configs[randomKey],
-    fullScreen: { enable: true, zIndex: -1 },
-  });
+  await $.particles(engine).init();
+  $("#tsparticles")
+    .particles(engine)
+    .load({
+      ...configs[randomKey],
+      fullScreen: { enable: true, zIndex: -1 },
+    });
 
   $(".nav-link").on("click", function (e) {
     e.preventDefault();
@@ -25,7 +28,7 @@ import { tsParticles } from "@tsparticles/engine";
   });
 
   const contactForm = document.getElementById("contactForm") as HTMLFormElement;
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener("submit", e => {
     e.preventDefault();
     alert("Message sent! (demo)");
     contactForm.reset();

@@ -69,7 +69,8 @@ const { loadTiltUpdater } = require("@tsparticles/updater-tilt");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 
 (async () => {

@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type Container, type ISourceOptions, setAnimationFunctions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine, setAnimationFunctions } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 describe("Container lifecycle", () => {
   globalThis.window = TestWindow;

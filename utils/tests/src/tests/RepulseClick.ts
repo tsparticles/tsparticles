@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { type IInteractivityData, loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
-import { type Particle, Vector, tsParticles } from "@tsparticles/engine";
+import { type Particle, Vector, createEngine } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { Repulse } from "../../../../interactions/external/repulse/src/Options/Classes/Repulse.js";
 import type { RepulseContainer } from "../../../../interactions/external/repulse/src/Types.js";
@@ -8,6 +8,8 @@ import { Repulser } from "../../../../interactions/external/repulse/src/Repulser
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadMovePlugin } from "@tsparticles/plugin-move";
+
+const tsParticles = createEngine();
 
 globalThis.window = TestWindow;
 

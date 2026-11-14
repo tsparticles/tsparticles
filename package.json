@@ -57,7 +57,7 @@
     "browserslist": "^4.29.5",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
@@ -83,5 +83,5 @@
     "webpack-cli": "^7.3.1",
     "yargs": "^18.2.0"
   },
-  "packageManager": "pnpm@12.20.0"
+  "packageManager": "pnpm@12.21.0"
 }

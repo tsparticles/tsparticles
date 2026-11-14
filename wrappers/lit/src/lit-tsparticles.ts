@@ -1,57 +1,61 @@
-import { LitElement, html, PropertyValues } from "lit";
-import { property, customElement } from "lit/decorators.js";
+import { Container, Engine, ISourceOptions, getLogger } from "@tsparticles/engine";
+import { LitElement, PropertyValues, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import { keyed } from "lit/directives/keyed.js";
-import { Container, Engine, ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
-let initialized = false;
-let initPromise: Promise<void> | undefined;
-let initCallback: ParticlesPluginRegistrar | undefined;
+type InitializationState = {
+  loaded: boolean;
+  started: boolean;
+  promise: Promise<void>;
+  resolve: () => void;
+  reject: (error: unknown) => void;
+};
 
-export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
-  if (initialized) {
-    return;
+const states = new WeakMap<Engine, InitializationState>();
+
+function getInitializationState(engine: Engine): InitializationState {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing;
   }
-
-  if (initPromise) {
-    if (initCallback !== init) {
-      throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-    }
-
-    await initPromise;
-
-    return;
-  }
-
-  initCallback = init;
-  initPromise = (async () => {
-    if (init) {
-      await init(tsParticles);
-    }
-
-    if (typeof (tsParticles as any).init === "function") {
-      await (tsParticles as any).init();
-    }
-
-    initialized = true;
-  })().catch((error: unknown) => {
-    initPromise = undefined;
-    initCallback = undefined;
-    initialized = false;
-
-    throw error;
+  let resolve = (): void => {},
+    reject: (error: unknown) => void = () => {};
+  const promise = new Promise<void>((onResolve, onReject) => {
+    resolve = onResolve;
+    reject = onReject;
   });
-
-  await initPromise;
+  const state = { loaded: false, started: false, promise, resolve, reject };
+  states.set(engine, state);
+  return state;
 }
 
-export function isParticlesEngineInitialized(): boolean {
-  return initialized;
+export async function initParticlesEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+  const state = getInitializationState(engine);
+  if (!state.started) {
+    state.started = true;
+    void Promise.resolve()
+      .then(async () => {
+        await init?.(engine);
+        await engine.init();
+        state.loaded = true;
+        state.resolve();
+      })
+      .catch((error: unknown) => {
+        states.delete(engine);
+        state.reject(error);
+      });
+  }
+  return state.promise;
 }
 
-export async function waitForParticlesEngineInitialization(): Promise<void> {
-  await (initPromise ?? Promise.resolve());
+export function isParticlesEngineInitialized(engine: Engine): boolean {
+  return states.get(engine)?.loaded ?? false;
+}
+
+export async function waitForParticlesEngineInitialization(engine: Engine): Promise<void> {
+  await getInitializationState(engine).promise;
 }
 
 /**
@@ -61,6 +65,8 @@ export async function waitForParticlesEngineInitialization(): Promise<void> {
  */
 @customElement("lit-particles")
 export class LitParticles extends LitElement {
+  @property({ attribute: false })
+  engine?: Engine;
   /**
    * Render into light DOM so tsParticles can find the container element by id.
    * @returns The result
@@ -113,6 +119,7 @@ export class LitParticles extends LitElement {
 
     if (
       this.#firstUpdate ||
+      changedProperties.has("engine") ||
       changedProperties.has("options") ||
       changedProperties.has("url") ||
       changedProperties.has("id")
@@ -143,13 +150,17 @@ export class LitParticles extends LitElement {
   }
 
   async #loadParticles(currentRenderId: number): Promise<void> {
-    await waitForParticlesEngineInitialization();
+    const engine = this.engine;
+    if (!engine) {
+      return;
+    }
+    await waitForParticlesEngineInitialization(engine);
 
     if (currentRenderId !== this.#renderId) {
       return;
     }
 
-    if (!isParticlesEngineInitialized()) {
+    if (!isParticlesEngineInitialized(engine)) {
       throw new Error("initParticlesEngine(...) must be called once before rendering <lit-particles /> components.");
     }
 
@@ -161,9 +172,9 @@ export class LitParticles extends LitElement {
     let container: Container | undefined;
 
     if (this.options) {
-      container = await tsParticles.load({ id, element: this, options: this.options });
+      container = await engine.load({ id, element: this, options: this.options });
     } else if (this.url) {
-      container = await tsParticles.load({ id, element: this, url: this.url });
+      container = await engine.load({ id, element: this, url: this.url });
     } else {
       throw new Error("No options or url provided");
     }

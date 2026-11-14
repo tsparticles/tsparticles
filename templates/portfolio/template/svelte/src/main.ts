@@ -1,9 +1,10 @@
-import { mount } from "svelte";
+import App from "./App.svelte";
+import { engine } from "../particlesEngine";
 import { initParticlesEngine } from "@tsparticles/svelte";
 import { loadSlim } from "@tsparticles/slim";
-import App from "./App.svelte";
+import { mount } from "svelte";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 

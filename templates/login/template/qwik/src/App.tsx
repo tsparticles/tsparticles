@@ -1,7 +1,8 @@
-import { component$, useVisibleTask$, useSignal, $ } from "@builder.io/qwik";
+import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 function validateEmail(val: string): boolean {
   return /^[^\s@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(val);
@@ -26,6 +27,7 @@ const options: ISourceOptions = {
 };
 
 export default component$(() => {
+  const readyEngine = useSignal<typeof engine>();
   const isLogin = useSignal(true);
   const theme = useSignal("dark");
   const email = useSignal("");
@@ -36,8 +38,8 @@ export default component$(() => {
   const confirmErr = useSignal("");
 
   // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    void initParticlesEngine(async (engine) => {
+  useVisibleTask$(async () => {
+    await initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
     theme.value = localStorage.getItem("theme") || "dark";
@@ -105,23 +107,51 @@ export default component$(() => {
         <div class="auth-card">
           <div class="auth-header">
             <h1>{isLogin.value ? "Login" : "Register"}</h1>
-            <button class="theme-btn" onClick$={toggleTheme} aria-label="Toggle theme">{theme.value === "dark" ? "🌙" : "☀️"}</button>
+            <button class="theme-btn" onClick$={toggleTheme} aria-label="Toggle theme">
+              {theme.value === "dark" ? "🌙" : "☀️"}
+            </button>
           </div>
           <form onSubmit$={handleSubmit} preventdefault:submit noValidate>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" value={email.value} onInput$={(e: InputEvent) => { email.value = (e.target as HTMLInputElement).value; }} required />
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email.value}
+                onInput$={(e: InputEvent) => {
+                  email.value = (e.target as HTMLInputElement).value;
+                }}
+                required
+              />
               <span class="error">{emailErr.value}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input id="password" type="password" placeholder="Enter password" value={password.value} onInput$={(e: InputEvent) => { password.value = (e.target as HTMLInputElement).value; }} required />
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                value={password.value}
+                onInput$={(e: InputEvent) => {
+                  password.value = (e.target as HTMLInputElement).value;
+                }}
+                required
+              />
               <span class="error">{passErr.value}</span>
             </div>
             {!isLogin.value && (
               <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" type="password" placeholder="Confirm password" value={confirm.value} onInput$={(e: InputEvent) => { confirm.value = (e.target as HTMLInputElement).value; }} />
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm password"
+                  value={confirm.value}
+                  onInput$={(e: InputEvent) => {
+                    confirm.value = (e.target as HTMLInputElement).value;
+                  }}
+                />
                 <span class="error">{confirmErr.value}</span>
               </div>
             )}
@@ -129,11 +159,13 @@ export default component$(() => {
           </form>
           <p class="toggle-text">
             <span>{isLogin.value ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick$={toggleMode}>{isLogin.value ? "Register" : "Login"}</a>
+            <a href="#" onClick$={toggleMode}>
+              {isLogin.value ? "Register" : "Login"}
+            </a>
           </p>
         </div>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={readyEngine.value} id="tsparticles" options={options} />
     </div>
   );
 });

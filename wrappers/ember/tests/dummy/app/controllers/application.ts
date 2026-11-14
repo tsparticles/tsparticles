@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { createEngine } from '@tsparticles/engine';
 import type { Container, Engine } from '@tsparticles/engine';
 import { loadSnowPreset } from '@tsparticles/preset-snow';
 import { tracked } from '@glimmer/tracking';
@@ -7,6 +8,7 @@ import { loadFull } from 'tsparticles';
 import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 
 export default class ApplicationController extends Controller {
+  engine = createEngine();
   @tracked isConfettiVisible = false;
 
   options = LINK_OPTIONS;
@@ -16,7 +18,7 @@ export default class ApplicationController extends Controller {
   constructor(...args: never[]) {
     super(...args);
 
-    void initParticlesEngine(async (engine: Engine) => {
+    void initParticlesEngine(this.engine, async (engine: Engine) => {
       await loadFull(engine);
       await loadSnowPreset(engine);
     });

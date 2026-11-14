@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "./particlesEngine";
 
 const options: ISourceOptions = {
   background: { color: { value: "transparent" } },
@@ -101,31 +102,63 @@ export class MyApp extends LitElement {
 
   render() {
     return html`
-      <lit-particles id="tsparticles" .options=${options}></lit-particles>
+      <lit-particles .engine=${engine} id="tsparticles" .options=${options}></lit-particles>
       <div class="auth-container">
         <div class="auth-card">
           <div class="auth-header">
             <h1>${this.isLogin ? "Login" : "Register"}</h1>
-            <button class="theme-btn" @click=${this.toggleTheme} aria-label="Toggle theme">${this.theme === "dark" ? "🌙" : "☀️"}</button>
+            <button class="theme-btn" @click=${this.toggleTheme} aria-label="Toggle theme">
+              ${this.theme === "dark" ? "🌙" : "☀️"}
+            </button>
           </div>
           <form @submit=${this.handleSubmit} novalidate>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" .value=${this.email} @input=${(e: InputEvent) => { this.email = (e.target as HTMLInputElement).value; }} required />
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                .value=${this.email}
+                @input=${(e: InputEvent) => {
+                  this.email = (e.target as HTMLInputElement).value;
+                }}
+                required
+              />
               <span class="error">${this.emailErr}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input id="password" type="password" placeholder="Enter password" .value=${this.password} @input=${(e: InputEvent) => { this.password = (e.target as HTMLInputElement).value; }} required />
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                .value=${this.password}
+                @input=${(e: InputEvent) => {
+                  this.password = (e.target as HTMLInputElement).value;
+                }}
+                required
+              />
               <span class="error">${this.passErr}</span>
             </div>
-            ${!this.isLogin ? html`
-              <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" type="password" placeholder="Confirm password" .value=${this.confirm} @input=${(e: InputEvent) => { this.confirm = (e.target as HTMLInputElement).value; }} />
-                <span class="error">${this.confirmErr}</span>
-              </div>
-            ` : ""}
+            ${
+              !this.isLogin
+                ? html`
+                    <div class="form-group">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <input
+                        id="confirmPassword"
+                        type="password"
+                        placeholder="Confirm password"
+                        .value=${this.confirm}
+                        @input=${(e: InputEvent) => {
+                          this.confirm = (e.target as HTMLInputElement).value;
+                        }}
+                      />
+                      <span class="error">${this.confirmErr}</span>
+                    </div>
+                  `
+                : ""
+            }
             <button type="submit">${this.isLogin ? "Sign In" : "Create Account"}</button>
           </form>
           <p class="toggle-text">

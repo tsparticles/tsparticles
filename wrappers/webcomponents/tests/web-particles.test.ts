@@ -8,13 +8,10 @@ const initMock = vi.fn(async () => Promise.resolve()),
   loadThemeMock = vi.fn(async () => Promise.resolve()),
   loadMock = vi.fn(async () => ({ destroy: destroyMock, loadTheme: loadThemeMock }));
 
-const globalWithEngine = globalThis as typeof globalThis & {
-  tsParticles?: { init: typeof initMock; load: typeof loadMock };
-};
+let engine: import("@tsparticles/engine").Engine;
 
 async function loadModule(): Promise<WebcomponentsModule> {
-  vi.resetModules();
-
+  // Keep the module that owns the registered custom element; each test uses a fresh engine.
   return await import("../src/web-particles.js");
 }
 
@@ -23,33 +20,31 @@ beforeEach(() => {
   loadMock.mockClear();
   loadThemeMock.mockClear();
   destroyMock.mockClear();
-  globalWithEngine.tsParticles = { init: initMock, load: loadMock };
+  engine = { init: initMock, load: loadMock } as unknown as import("@tsparticles/engine").Engine;
 });
 
 afterEach(() => {
-  delete globalWithEngine.tsParticles;
+  document.body.replaceChildren();
 });
 
 describe("webcomponents initParticlesEngine", () => {
-  it("calls the init callback with the global engine and initializes it", async () => {
+  it("calls the init callback with the supplied engine and initializes it", async () => {
     const module = await loadModule(),
       init = vi.fn(async () => Promise.resolve());
 
-    await module.initParticlesEngine(init);
+    await module.initParticlesEngine(engine, init);
 
     expect(init).toHaveBeenCalledTimes(1);
-    expect(init).toHaveBeenCalledWith(globalWithEngine.tsParticles);
+    expect(init).toHaveBeenCalledWith(engine);
     expect(initMock).toHaveBeenCalledTimes(1);
-    expect(module.isParticlesEngineInitialized()).toBe(true);
+    expect(module.isParticlesEngineInitialized(engine)).toBe(true);
   });
 
-  it("throws when the init callback changes across the app lifecycle", async () => {
+  it("shares the first registration while initialization is pending", async () => {
     const module = await loadModule(),
-      first = module.initParticlesEngine(async () => Promise.resolve());
+      first = module.initParticlesEngine(engine, async () => Promise.resolve());
 
-    await expect(module.initParticlesEngine(async () => Promise.resolve())).rejects.toThrow(
-      /stable across the app lifecycle/i,
-    );
+    await expect(module.initParticlesEngine(engine, async () => Promise.resolve())).resolves.toBeUndefined();
 
     await first;
   });
@@ -60,13 +55,17 @@ describe("webcomponents Particles element", () => {
     const module = await loadModule(),
       options = { particles: { number: { value: 4 } } };
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>;
 
+    element.engine = engine;
     element.id = "web-particles-test";
+    element.engine = engine;
     element.options = options;
 
+    element.engine = engine;
     document.body.appendChild(element);
 
     await vi.waitFor(() => {
@@ -86,12 +85,15 @@ describe("webcomponents Particles element", () => {
   it("destroys the container on disconnect", async () => {
     const module = await loadModule();
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>;
 
+    element.engine = engine;
     element.options = { particles: { number: { value: 1 } } };
 
+    element.engine = engine;
     document.body.appendChild(element);
 
     await vi.waitFor(() => {
@@ -116,12 +118,14 @@ describe("webcomponents Particles element", () => {
       return { destroy: destroyMock, loadTheme: loadThemeMock };
     });
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>;
 
     element.setAttribute("options", JSON.stringify({ particles: { number: { value: 1 } } }));
     element.setAttribute("data-theme", "dark");
+    element.engine = engine;
     document.body.appendChild(element);
 
     await vi.waitFor(() => {
@@ -136,6 +140,7 @@ describe("webcomponents Particles element", () => {
       expect(loadThemeMock).toHaveBeenCalledWith("light");
     });
 
+    element.engine = engine;
     element.options = { particles: { number: { value: 2 } } };
 
     await vi.waitFor(() => {
@@ -158,14 +163,17 @@ describe("webcomponents Particles element", () => {
       });
     });
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
       loaded = vi.fn();
 
     element.addEventListener("particlesLoaded", loaded);
+    element.engine = engine;
     element.options = { particles: { number: { value: 1 } } };
     element.setAttribute("data-theme", "dark");
+    element.engine = engine;
     document.body.appendChild(element);
 
     await vi.waitFor(() => {
@@ -192,14 +200,17 @@ describe("webcomponents Particles element", () => {
       });
     });
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
       loaded = vi.fn();
 
     element.addEventListener("particlesLoaded", loaded);
+    element.engine = engine;
     element.options = { particles: { number: { value: 1 } } };
     element.setAttribute("data-theme", "dark");
+    element.engine = engine;
     document.body.appendChild(element);
 
     await vi.waitFor(() => {
@@ -222,6 +233,7 @@ describe("webcomponents Particles element", () => {
 
     loadThemeMock.mockRejectedValueOnce(new Error("theme refresh failed"));
 
+    await module.initParticlesEngine(engine);
     module.defineParticlesElement();
 
     const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
@@ -230,8 +242,10 @@ describe("webcomponents Particles element", () => {
 
     element.addEventListener("particlesError", error);
     element.addEventListener("particlesLoaded", loaded);
+    element.engine = engine;
     element.options = { particles: { number: { value: 1 } } };
     element.setAttribute("data-theme", "dark");
+    element.engine = engine;
     document.body.appendChild(element);
 
     try {

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { engine } from "../particlesEngine";
+
   import Particles from "@tsparticles/svelte";
   import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -125,35 +127,20 @@
     <form onsubmit={handleSubmit}>
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="your@email.com"
-          bind:value={email}
-        />
+        <input id="email" type="email" placeholder="your@email.com" bind:value={email} />
         <span class="error">{emailError}</span>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter password"
-          bind:value={password}
-        />
+        <input id="password" type="password" placeholder="Enter password" bind:value={password} />
         <span class="error">{passwordError}</span>
       </div>
 
       {#if !isLogin}
         <div class="form-group">
           <label for="confirmPassword">Confirm Password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm password"
-            bind:value={confirmPassword}
-          />
+          <input id="confirmPassword" type="password" placeholder="Confirm password" bind:value={confirmPassword} />
           <span class="error">{confirmError}</span>
         </div>
       {/if}
@@ -168,7 +155,7 @@
   </div>
 </div>
 
-<Particles id="tsparticles" options={options} />
+<Particles {engine} id="tsparticles" {options} />
 
 <style>
   :global(:root) {
@@ -199,7 +186,9 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    transition: background 0.3s, color 0.3s;
+    transition:
+      background 0.3s,
+      color 0.3s;
   }
 
   .auth-container {

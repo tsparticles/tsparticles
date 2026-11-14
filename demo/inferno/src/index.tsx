@@ -1,6 +1,7 @@
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { render, version } from "inferno";
 import { Incrementer } from "./components/Incrementer";
-import { Particles, ParticlesProvider } from "@tsparticles/inferno";
+import { engine } from "../particlesEngine";
 import "./main.css";
 
 // Render the app inside the ParticlesProvider from the wrapper. The
@@ -10,6 +11,7 @@ const container = document.getElementById("app");
 function App() {
 	return (
 		<ParticlesProvider
+			engine={engine}
 			init={async engine => {
 				// register the full feature set on the engine then return
 				// (the provider will call initParticlesEngine internally)
@@ -20,6 +22,7 @@ function App() {
 		>
 			<div>
 				<Particles
+					engine={engine}
 					id="tsparticles"
 					options={{
 						particles: {

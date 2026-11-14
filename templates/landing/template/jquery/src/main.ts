@@ -1,14 +1,17 @@
-import "./style.css";
 import $ from "jquery";
+import "./style.css";
+import { engine } from "../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
 import "@tsparticles/jquery";
 
 $(() => {
-  $.particles().init(async (engine) => {
+  $.particles(engine).init(async engine => {
     await loadSlim(engine);
   });
 
-  $("#tsparticles").particles().load({
+  $("#tsparticles")
+    .particles(engine)
+    .load({
       fullScreen: { enable: true, zIndex: -1 },
       background: { color: { value: "#080818" } },
       fpsLimit: 60,
@@ -43,7 +46,7 @@ $(() => {
         },
       },
       detectRetina: true,
-  });
+    });
 });
 
 $("body").html(`

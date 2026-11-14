@@ -1,7 +1,9 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { particles } from "@tsparticles/particles";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(engine);
+import { engine } from "../particlesEngine";
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },
@@ -13,7 +15,14 @@ const options: ISourceOptions = {
     opacity: { value: 0.5 },
     size: { value: { min: 1, max: 5 } },
     links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-    move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: false,
+      straight: false,
+      outModes: { default: "bounce" },
+    },
   },
   interactivity: {
     events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
@@ -23,10 +32,12 @@ const options: ISourceOptions = {
 };
 
 export default component$(() => {
-  useVisibleTask$(() => {
-    void initParticlesEngine(async () => {
+  const readyEngine = useSignal<typeof engine>();
+  useVisibleTask$(async () => {
+    await initParticlesEngine(engine, async () => {
       await particles.init();
     });
+    readyEngine.value = noSerialize(engine);
   });
 
   return (
@@ -45,7 +56,7 @@ export default component$(() => {
       <div id="app">
         <h1>tsParticles</h1>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={readyEngine.value} id="tsparticles" options={options} />
     </>
   );
 });

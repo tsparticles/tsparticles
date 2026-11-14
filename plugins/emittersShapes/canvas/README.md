@@ -72,7 +72,8 @@ const { loadEmittersShapeCanvasPlugin } = require("@tsparticles/plugin-emitters-
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapeCanvasPlugin } from "@tsparticles/plugin-emitters-shape-canvas";
 

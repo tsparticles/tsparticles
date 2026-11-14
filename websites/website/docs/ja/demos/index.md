@@ -5,7 +5,8 @@
 ## パターンベースの開始/停止 (自動再生なし)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;

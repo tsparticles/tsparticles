@@ -1,10 +1,12 @@
 /* eslint-disable */
-import { type Container, type IDelta, type IMouseData, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 import { type AbsorberContainer, loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { type Container, type IDelta, type IMouseData, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+
+const tsParticles = createEngine();
 
 globalThis.window = TestWindow;
 

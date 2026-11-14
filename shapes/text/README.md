@@ -72,7 +72,8 @@ const { loadTextShape } = require("@tsparticles/shape-text");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTextShape } from "@tsparticles/shape-text";
 
 (async () => {

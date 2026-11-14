@@ -116,7 +116,7 @@
     "@types/node": "^26.6.6",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsdoc": "^64.0.2",
     "eslint-plugin-prefer-arrow": "^1.2.3",

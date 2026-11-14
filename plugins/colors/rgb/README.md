@@ -69,7 +69,8 @@ const { loadRgbColorPlugin } = require("@tsparticles/plugin-rgb-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
 (async () => {

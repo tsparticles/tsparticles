@@ -1,15 +1,23 @@
+import { engine } from "../../particlesEngine";
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { tracked } from "@glimmer/tracking";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 export default class ApplicationController extends Controller {
+  engine = engine;
   @tracked board = Array(9).fill(null);
   @tracked currentPlayer = "X";
   @tracked winner = null;
@@ -26,7 +34,14 @@ export default class ApplicationController extends Controller {
       shape: { type: "circle" },
       opacity: { value: 0.2, random: true },
       size: { value: { min: 1, max: 2 } },
-      move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      move: {
+        enable: true,
+        speed: 0.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
     },
     detectRetina: true,
   };
@@ -48,7 +63,7 @@ export default class ApplicationController extends Controller {
         return { winner: board[a], winLine: pattern };
       }
     }
-    if (board.every((cell) => cell !== null)) return { winner: "draw", winLine: [] };
+    if (board.every(cell => cell !== null)) return { winner: "draw", winLine: [] };
     return null;
   }
 

@@ -1,15 +1,22 @@
-import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
+import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { loadSlim } from "@tsparticles/slim";
-import { confetti } from "@tsparticles/confetti";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
+import { loadSlim } from "@tsparticles/slim";
 
 type Player = "X" | "O";
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine: number[] } | null {
@@ -19,7 +26,7 @@ function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine:
       return { winner: board[a] as Player, winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) return { winner: "draw" as const, winLine: [] };
+  if (board.every(cell => cell !== null)) return { winner: "draw" as const, winLine: [] };
   return null;
 }
 
@@ -60,10 +67,12 @@ interface GameState {
 }
 
 export default component$(() => {
-  useVisibleTask$(() => {
-    void initParticlesEngine(async (engine) => {
+  const readyEngine = useSignal<typeof engine>();
+  useVisibleTask$(async () => {
+    await initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
+    readyEngine.value = noSerialize(engine);
   });
 
   const state = useSignal<GameState>({
@@ -102,18 +111,26 @@ export default component$(() => {
   });
 
   const status = state.value.winner
-    ? state.value.winner === "draw" ? "It's a draw!" : `${state.value.winner} wins!`
+    ? state.value.winner === "draw"
+      ? "It's a draw!"
+      : `${state.value.winner} wins!`
     : `${state.value.currentPlayer}'s turn`;
 
   return (
     <>
-      <Particles id="tsparticles" options={particlesOptions} />
+      <Particles engine={readyEngine.value} id="tsparticles" options={particlesOptions} />
       <div id="app">
         <h1>Tic-Tac-Toe</h1>
         <div class="scoreboard">
-          <span>X: <strong>{state.value.scores.X}</strong></span>
-          <span>Draws: <strong>{state.value.scores.draw}</strong></span>
-          <span>O: <strong>{state.value.scores.O}</strong></span>
+          <span>
+            X: <strong>{state.value.scores.X}</strong>
+          </span>
+          <span>
+            Draws: <strong>{state.value.scores.draw}</strong>
+          </span>
+          <span>
+            O: <strong>{state.value.scores.O}</strong>
+          </span>
         </div>
         <div class="turn">{status}</div>
         <div class="board">
@@ -127,7 +144,9 @@ export default component$(() => {
             </div>
           ))}
         </div>
-        <button class="reset-btn" onClick$={handleReset}>New Game</button>
+        <button class="reset-btn" onClick$={handleReset}>
+          New Game
+        </button>
       </div>
     </>
   );

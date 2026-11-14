@@ -1,14 +1,21 @@
+import { createConfetti } from "@tsparticles/confetti";
 import "./style.css";
-import { confetti } from "@tsparticles/confetti";
-import { tsParticles } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
+
 import { loadSlim } from "@tsparticles/slim";
 
 type Player = "X" | "O";
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 interface GameState {
@@ -34,7 +41,7 @@ function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine:
       return { winner: board[a] as Player, winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) return { winner: "draw" as const, winLine: [] };
+  if (board.every(cell => cell !== null)) return { winner: "draw" as const, winLine: [] };
   return null;
 }
 
@@ -101,7 +108,7 @@ function handleReset(): void {
   render();
 }
 
-document.getElementById("board")?.addEventListener("click", (e) => {
+document.getElementById("board")?.addEventListener("click", e => {
   const cell = (e.target as HTMLElement).closest(".cell") as HTMLElement | null;
   if (!cell) return;
   const index = parseInt(cell.dataset.index ?? "", 10);
@@ -113,8 +120,8 @@ document.getElementById("resetBtn")?.addEventListener("click", handleReset);
 render();
 
 (async () => {
-  await loadSlim(tsParticles);
-  await tsParticles.load({
+  await loadSlim(engine);
+  await engine.load({
     id: "tsparticles",
     options: {
       fullScreen: { enable: true, zIndex: -1 },
@@ -126,7 +133,14 @@ render();
         shape: { type: "circle" },
         opacity: { value: 0.2, random: true },
         size: { value: { min: 1, max: 2 } },
-        move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+        move: {
+          enable: true,
+          speed: 0.5,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" },
+        },
       },
       detectRetina: true,
     },

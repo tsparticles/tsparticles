@@ -1,0 +1,22 @@
+
+> nx run @tsparticles/tests:"lint:ci"
+
+(node:84922) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84923) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint --ext .js,.jsx,.ts,.tsx src
+(node:84949) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84949) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+ NX   Successfully ran target lint:ci for project @tsparticles/tests
+
+
+  Run duration:      7.5s
+  Cache:             0/1 hit (0%)
+  Critical path:     7.5s (1 task)
+  Recoverable time:  <1ms

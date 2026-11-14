@@ -69,7 +69,8 @@ const { loadBackgroundMaskPlugin } = require("@tsparticles/plugin-background-mas
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
 
 (async () => {

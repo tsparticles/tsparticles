@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { engine } from '../../particlesEngine';
+
 	import Counter from './Counter.svelte';
 	import welcome from '#lib/images/svelte-welcome.webp';
 	import welcome_fallback from '#lib/images/svelte-welcome.png';
@@ -37,7 +39,7 @@
 				const { initParticlesEngine } = module;
 				const { loadFull } = await import('tsparticles');
 
-				await initParticlesEngine(async (engine) => {
+				await initParticlesEngine(engine, async (engine) => {
 					await loadFull(engine);
 				});
 

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { AnimationStatus, type Container, type ISourceOptions, OutMode, tsParticles } from "@tsparticles/engine";
+import { AnimationStatus, type Container, type ISourceOptions, OutMode, createEngine } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -11,6 +11,8 @@ import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
 import { loadPaintUpdater } from "@tsparticles/updater-paint";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSizeUpdater } from "@tsparticles/updater-size";
+
+const tsParticles = createEngine();
 
 let containerId = 0;
 

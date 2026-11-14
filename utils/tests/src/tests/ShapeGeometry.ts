@@ -1,38 +1,40 @@
 /* eslint-disable */
-import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import {
   type Container,
   type IShapeDrawData,
   type IShapeDrawer,
   type Particle,
+  createEngine,
   doublePI,
   percentDenominator,
   setRandom,
-  tsParticles,
 } from "@tsparticles/engine";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { SegmentType } from "@tsparticles/path-utils";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-import { SegmentType } from "@tsparticles/path-utils";
-import { loadCircleShape } from "@tsparticles/shape-circle";
-import { loadSquareShape } from "@tsparticles/shape-square";
-import { loadLineShape } from "@tsparticles/shape-line";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
-import { loadStarShape } from "@tsparticles/shape-star";
+import { loadCardsShape } from "@tsparticles/shape-cards";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadCogShape } from "@tsparticles/shape-cog";
+import { loadEmojiShape } from "@tsparticles/shape-emoji";
+import { loadHeartShape } from "@tsparticles/shape-heart";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadInfinityShape } from "@tsparticles/shape-infinity";
+import { loadLineShape } from "@tsparticles/shape-line";
+import { loadMatrixShape } from "@tsparticles/shape-matrix";
+import { loadPathShape } from "@tsparticles/shape-path";
 import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRibbonShape } from "@tsparticles/shape-ribbon";
 import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
 import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
-import { loadSquircleShape } from "@tsparticles/shape-squircle";
-import { loadCogShape } from "@tsparticles/shape-cog";
-import { loadHeartShape } from "@tsparticles/shape-heart";
-import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
-import { loadRibbonShape } from "@tsparticles/shape-ribbon";
-import { loadMatrixShape } from "@tsparticles/shape-matrix";
-import { loadCardsShape } from "@tsparticles/shape-cards";
-import { loadPathShape } from "@tsparticles/shape-path";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadSquircleShape } from "@tsparticles/shape-squircle";
+import { loadStarShape } from "@tsparticles/shape-star";
 import { loadTextShape } from "@tsparticles/shape-text";
-import { loadEmojiShape } from "@tsparticles/shape-emoji";
-import { loadImageShape } from "@tsparticles/shape-image";
+
+const tsParticles = createEngine();
 
 type Call = [string, ...unknown[]];
 

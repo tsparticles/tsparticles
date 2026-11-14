@@ -1,12 +1,11 @@
-import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
-import { loadSlim } from "@tsparticles/slim";
+
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 import "./style.css";
 
-globalThis.tsParticles = tsParticles;
-
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 
@@ -112,12 +111,12 @@ function toggleMode(): void {
   confirmError.textContent = "";
 }
 
-toggleAuth.addEventListener("click", (e) => {
+toggleAuth.addEventListener("click", e => {
   e.preventDefault();
   toggleMode();
 });
 
-authForm.addEventListener("submit", (e) => {
+authForm.addEventListener("submit", e => {
   e.preventDefault();
 
   if (!validate()) return;
@@ -131,3 +130,7 @@ authForm.addEventListener("submit", (e) => {
 
   authForm.reset();
 });
+
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

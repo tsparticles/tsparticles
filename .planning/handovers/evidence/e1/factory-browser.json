@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-14T00:05:54.398Z",
+  "browser": "Chrome/157.0.8103.52",
+  "result": {
+    "distinctFactories": true,
+    "distinctEngines": true,
+    "rejected": true,
+    "reusedTransfer": true,
+    "bAliveAfterDestroyA": true,
+    "bAliveAfterRefresh": true,
+    "counts": [
+      5,
+      5
+    ],
+    "remaining": [
+      0,
+      0
+    ]
+  },
+  "convenience": [
+    {
+      "name": "confetti",
+      "independent": true,
+      "containers": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "fireworks",
+      "independent": true,
+      "containers": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "particles",
+      "independent": true,
+      "containers": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ribbons",
+      "independent": true,
+      "containers": [
+        0,
+        0
+      ]
+    }
+  ],
+  "errors": []
+}

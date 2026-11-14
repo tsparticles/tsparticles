@@ -69,7 +69,8 @@ const { loadSimplexNoisePath } = require("@tsparticles/path-simplex-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 
 (async () => {

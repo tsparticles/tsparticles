@@ -1,4 +1,4 @@
-import { type ISourceOptions, tsParticles } from "@tsparticles/engine/lazy";
+import type { Engine, ISourceOptions } from "@tsparticles/engine/lazy";
 import a from "./a/index.js";
 import b from "./b/index.js";
 import c from "./c/index.js";
@@ -26,16 +26,6 @@ import w from "./w/index.js";
 import x from "./x/index.js";
 import y from "./y/index.js";
 import z from "./z/index.js";
-
-for (const key of Object.keys(palettes)) {
-  const palette = palettes[key];
-
-  if (!palette) {
-    continue;
-  }
-
-  tsParticles.pluginManager.addPalette(key, palette);
-}
 
 const configs = {
   ...a,
@@ -66,14 +56,29 @@ const configs = {
   ...z,
 };
 
-for (const key of Object.keys(configs)) {
-  const config = (configs as Record<string, ISourceOptions>)[key];
+/** Registers the published configurations and palettes on an explicit engine.
+ * @param engine - the application-owned engine
+ */
+export function loadConfigs(engine: Engine): void {
+  for (const key of Object.keys(palettes)) {
+    const palette = palettes[key];
 
-  if (!config) {
-    continue;
+    if (!palette) {
+      continue;
+    }
+
+    engine.pluginManager.addPalette(key, palette);
   }
 
-  tsParticles.pluginManager.addConfig(config);
+  for (const key of Object.keys(configs)) {
+    const config = (configs as Record<string, ISourceOptions>)[key];
+
+    if (!config) {
+      continue;
+    }
+
+    engine.pluginManager.addConfig(config);
+  }
 }
 
 export default configs;

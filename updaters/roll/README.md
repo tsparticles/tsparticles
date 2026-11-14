@@ -69,7 +69,8 @@ const { loadRollUpdater } = require("@tsparticles/updater-roll");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRollUpdater } from "@tsparticles/updater-roll";
 
 (async () => {

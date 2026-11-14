@@ -69,7 +69,8 @@ const { loadPathUtilsPath } = require("@tsparticles/path-utils");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPathUtilsPath } from "@tsparticles/path-utils";
 
 (async () => {

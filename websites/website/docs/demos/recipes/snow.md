@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-snow
 ## Ready-to-use (manual start/stop)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSnowPreset } from "@tsparticles/preset-snow";
 import type { Container } from "@tsparticles/engine";
 

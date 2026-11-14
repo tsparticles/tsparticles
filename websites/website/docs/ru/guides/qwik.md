@@ -20,6 +20,8 @@ TypeScript declarations are included — no additional type packages required.
 In Qwik, the engine must be initialized inside a `useVisibleTask$` block to ensure it runs only on the client (never during SSR). Use a signal to track readiness:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine } from "@tsparticles/engine";
@@ -29,13 +31,13 @@ export default component$(() => {
   const engineReady = useSignal(false);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
   });
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={{}} />}</>;
+  return <>{engineReady.value && <Particles engine={particlesEngine} id="tsparticles" options={{}} />}</>;
 });
 ```
 
@@ -44,6 +46,8 @@ export default component$(() => {
 Once the engine is ready, render the `<Particles>` component with your configuration:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine } from "@tsparticles/engine";
@@ -53,7 +57,7 @@ export default component$(() => {
   const engineReady = useSignal(false);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -80,7 +84,7 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{engineReady.value && <Particles engine={particlesEngine} id="tsparticles" options={options} />}</>;
 });
 ```
 
@@ -89,6 +93,8 @@ export default component$(() => {
 The `engineReady` signal pattern ensures the `<Particles>` component is only mounted after the engine is fully initialized. This prevents hydration mismatches between server and client:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine } from "@tsparticles/engine";
@@ -99,7 +105,7 @@ export default component$(() => {
   const loading = useSignal(true);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -123,6 +129,7 @@ export default component$(() => {
       )}
       {engineReady.value && (
         <Particles
+          engine={particlesEngine}
           id="tsparticles"
           options={{
             background: { color: "#0d1117" },
@@ -146,6 +153,8 @@ export default component$(() => {
 Enable hover and click interactions by adding the `interactivity` section to your options:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine } from "@tsparticles/engine";
@@ -155,7 +164,7 @@ export default component$(() => {
   const engineReady = useSignal(false);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -185,7 +194,7 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{engineReady.value && <Particles engine={particlesEngine} id="tsparticles" options={options} />}</>;
 });
 ```
 
@@ -194,6 +203,8 @@ export default component$(() => {
 A complete configuration with animations, multiple colors, and rich interactivity:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
@@ -203,7 +214,7 @@ export default component$(() => {
   const engineReady = useSignal(false);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -281,7 +292,7 @@ export default component$(() => {
     detectRetina: true,
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{engineReady.value && <Particles engine={particlesEngine} id="tsparticles" options={options} />}</>;
 });
 ```
 
@@ -290,6 +301,8 @@ export default component$(() => {
 The `@tsparticles/qwik` package exports full types. Use `ISourceOptions` for type-safe configurations and `Engine` for the initialization callback:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
@@ -299,7 +312,7 @@ export default component$(() => {
   const engineReady = useSignal(false);
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -313,7 +326,7 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{engineReady.value && <Particles engine={particlesEngine} id="tsparticles" options={options} />}</>;
 });
 ```
 
@@ -354,6 +367,8 @@ export default component$(() => {
 Use the `$` suffix convention for Qwik-optimized event handlers when wiring callbacks:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine, Container } from "@tsparticles/engine";
@@ -364,7 +379,7 @@ export default component$(() => {
   const containerRef = useSignal<Container | undefined>();
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
+    await initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     });
     engineReady.value = true;
@@ -379,6 +394,7 @@ export default component$(() => {
     <>
       {engineReady.value && (
         <Particles
+          engine={particlesEngine}
           id="tsparticles"
           options={{ background: { color: "#0d1117" } }}
           particlesLoaded={handleParticlesLoaded}

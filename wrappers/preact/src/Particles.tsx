@@ -1,12 +1,12 @@
+import { Container, getLogger } from "@tsparticles/engine";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
-import { Container, getLogger, tsParticles } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
-import { deepCompare } from "./Utils";
 import React from "preact/compat";
-import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+import { deepCompare } from "./Utils";
 
 /**
  * @param {IParticlesProps}
@@ -16,7 +16,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
   #loadId = 0;
   #mounted = false;
 
-  static defaultProps: IParticlesProps = {
+  static defaultProps: Partial<IParticlesProps> = {
     width: "100%",
     height: "100%",
     options: {},
@@ -28,7 +28,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     super(props);
 
     this.state = {
-      init: isParticlesEngineInitialized(),
+      init: isParticlesEngineInitialized(this.props.engine),
       library: undefined,
     };
   }
@@ -54,6 +54,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     return (
       nextState.init !== this.state.init ||
       nextProps.url !== this.props.url ||
+      nextProps.engine !== this.props.engine ||
       nextProps.id !== this.props.id ||
       nextProps.canvasClassName !== this.props.canvasClassName ||
       nextProps.className !== this.props.className ||
@@ -75,6 +76,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
     if (
       prevProps.url !== this.props.url ||
+      prevProps.engine !== this.props.engine ||
       prevProps.id !== this.props.id ||
       prevProps.canvasClassName !== this.props.canvasClassName ||
       prevProps.className !== this.props.className ||
@@ -103,9 +105,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
     void (async () => {
       if (!this.state.init) {
-        await waitForParticlesEngineInitialization();
+        await waitForParticlesEngineInitialization(this.props.engine);
 
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(this.props.engine)) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
       }
@@ -167,7 +169,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     let container: Container | undefined;
 
     try {
-      container = await tsParticles.load({
+      container = await this.props.engine.load({
         url: this.props.url,
         options: this.props.options,
         id: this.props.id,

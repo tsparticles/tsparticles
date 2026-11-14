@@ -9,3 +9,15 @@ export type ConfettiFunc = (
   idOrOptions: ConfettiFirstParam,
   confettiOptions?: RecursivePartial<IConfettiOptions>,
 ) => Promise<Container | undefined>;
+
+/** Animation API bound to an application-owned engine. */
+export type ConfettiApi = ConfettiFunc & {
+  /** Creates a confetti animation bound to a specific canvas */
+  create: (canvas?: HTMLCanvasElement | null, options?: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+
+  /** Initializes the confetti plugins */
+  init: () => Promise<void>;
+
+  /** The confetti bundle version */
+  version: string;
+};

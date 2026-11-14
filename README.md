@@ -3,7 +3,7 @@
 # tsParticles - TypeScript Particles
 
 **A lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with
-React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components**
+React.js, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components**
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni?style=for-the-badge)](https://github.com/sponsors/matteobruni)
 [![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/tsparticles?style=for-the-badge)](https://www.jsdelivr.com/package/npm/tsparticles)
@@ -65,11 +65,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
       - [`@tsparticles/solid`](#tsparticlessolid)
     - [Svelte](#svelte)
       - [`@tsparticles/svelte`](#tsparticlessvelte)
-    - [VueJS 2.x](#vuejs-2x)
-      - [`@tsparticles/nuxt2`](#tsparticlesnuxt2)
-      - [`@tsparticles/vue2`](#tsparticlesvue2)
     - [VueJS 3.x](#vuejs-3x)
-      - [`@tsparticles/nuxt3`](#tsparticlesnuxt3)
       - [`@tsparticles/nuxt4`](#tsparticlesnuxt4)
       - [`@tsparticles/vue3`](#tsparticlesvue3)
     - [Web Components](#web-components)
@@ -146,7 +142,8 @@ If you are new to tsParticles, this path is usually the fastest:
 3. Start with a small config and iterate
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);
@@ -284,7 +281,8 @@ const tsParticles = require("@tsparticles/engine");
 
 // or
 
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 ```
 
 The imported `tsParticles` is the same instance you have when including the script in the page using the `<script>` tag.
@@ -466,27 +464,7 @@ Instructions available [here](https://github.com/tsparticles/tsparticles/tree/ma
 
 Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme)
 
-### VueJS 2.x
-
-#### `@tsparticles/nuxt2`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme)
-
-#### `@tsparticles/vue2`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme)
-
 ### VueJS 3.x
-
-#### `@tsparticles/nuxt3`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme)
 
 #### `@tsparticles/nuxt4`
 

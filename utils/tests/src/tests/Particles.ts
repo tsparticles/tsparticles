@@ -3,15 +3,17 @@ import {
   type Container,
   type ICoordinates3d,
   type ISourceOptions,
-  type Particle,
   LimitMode,
+  type Particle,
+  createEngine,
   getLogger,
   getRandom,
-  tsParticles,
 } from "@tsparticles/engine";
 import { beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 /**
  * Loads a fresh container with the given options and a deterministic canvas size.

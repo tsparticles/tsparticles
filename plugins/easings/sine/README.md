@@ -69,7 +69,8 @@ const { loadEasingSinePlugin } = require("@tsparticles/plugin-easing-sine");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingSinePlugin } from "@tsparticles/plugin-easing-sine";
 
 (async () => {

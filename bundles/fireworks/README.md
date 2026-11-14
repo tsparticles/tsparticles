@@ -64,7 +64,9 @@ bf --> u
 The package API is centered on `fireworks`.
 
 ```ts
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+const fireworks = createFireworks(createEngine());
 
 // Main API
 const instance = await fireworks();
@@ -92,7 +94,9 @@ pnpm add @tsparticles/fireworks
 ### ESM / TypeScript
 
 ```ts
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+const fireworks = createFireworks(createEngine());
 
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000"],
@@ -107,7 +111,9 @@ instance?.stop();
 With explicit canvas id:
 
 ```ts
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+const fireworks = createFireworks(createEngine());
 
 await fireworks("tsparticles", {
   rate: 3,
@@ -118,7 +124,9 @@ await fireworks("tsparticles", {
 ### Custom canvas via `fireworks.create`
 
 ```ts
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+const fireworks = createFireworks(createEngine());
 
 const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
 await fireworks.create(canvas, { sounds: true });

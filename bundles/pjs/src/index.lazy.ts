@@ -7,56 +7,29 @@ import { MBParticles } from "./marcbruederlin/Particles.js";
 import { initParticlesJS } from "./VincentGarreau/particles.js";
 
 declare const __VERSION__: string;
-
-declare global {
-  /**
-   * @deprecated this method is obsolete, please use the new `tsParticles.load`
-   * The particles.js compatibility object
-   */
-  var Particles: typeof MBParticles,
-    /**
-     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
-     * The particles.js compatibility dom array
-     */
-    pJSDom: Container[],
-    /**
-     * @deprecated this method is obsolete, please use the new `tsParticles.load`
-     * The particles.js compatibility instance
-     */
-    particlesJS: IParticlesJS;
-}
-
 /**
  * Initializes particles.js compatibility to the given engine
  * @param engine - the engine that requires particles.js compatibility
  * @returns the particles.js compatibility object
  */
-const initPjs = async (engine: Engine): Promise<void> => {
+export async function initPjs(engine: Engine): Promise<{
+  Particles: { init: (options: Parameters<typeof MBParticles.init>[1]) => MBParticles };
+  particlesJS: IParticlesJS;
+  pJSDom: Container[];
+}> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(async e => {
-    const [
-      { loadFull },
-      { loadResponsivePlugin },
-    ] = await Promise.all([
-      import("tsparticles"),
-      import("@tsparticles/plugin-responsive"),
+    const [{ loadFull }, { loadResponsivePlugin }] = await Promise.all([
+      import("tsparticles/lazy"),
+      import("@tsparticles/plugin-responsive/lazy"),
     ]);
 
-    await loadFull(e);
-
-    await loadResponsivePlugin(e);
+    await Promise.all([loadFull(e), loadResponsivePlugin(e)]);
   });
 
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   const { particlesJS, pJSDom } = initParticlesJS(engine);
 
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  globalThis.particlesJS = particlesJS;
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  globalThis.pJSDom = pJSDom;
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  globalThis.Particles = MBParticles;
-};
-
-export { initPjs };
+  return { particlesJS, pJSDom, Particles: { init: options => MBParticles.init(engine, options) } };
+}

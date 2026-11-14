@@ -13,7 +13,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFireflyPreset } from "@tsparticles/preset-firefly";
 import type { Container } from "@tsparticles/engine";
 

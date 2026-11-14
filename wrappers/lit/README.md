@@ -27,10 +27,12 @@ yarn add @tsparticles/lit @tsparticles/engine
 Before using the `<lit-particles>` component, you must initialize the engine once:
 
 ```ts
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/lit";
 import { loadFull } from "tsparticles"; // or loadSlim / custom bundle
 
-void initParticlesEngine((engine) => {
+void initParticlesEngine(particlesEngine, engine => {
   loadFull(engine);
 });
 ```
@@ -46,18 +48,18 @@ void initParticlesEngine((engine) => {
 
 ### Properties
 
-| Property    | Type     | Default          | Description                                       |
-|-------------|----------|------------------|---------------------------------------------------|
-| `id`        | `string` | `"tsparticles"`  | The DOM id for the particle container             |
-| `options`   | `object` | —                | The tsParticles options configuration             |
-| `url`       | `string` | —                | A URL to a JSON configuration file                |
-| `theme`     | `string` | —                | The theme name (requires `@tsparticles/plugin-themes`) |
+| Property  | Type     | Default         | Description                                            |
+| --------- | -------- | --------------- | ------------------------------------------------------ |
+| `id`      | `string` | `"tsparticles"` | The DOM id for the particle container                  |
+| `options` | `object` | —               | The tsParticles options configuration                  |
+| `url`     | `string` | —               | A URL to a JSON configuration file                     |
+| `theme`   | `string` | —               | The theme name (requires `@tsparticles/plugin-themes`) |
 
 ### Events
 
-| Event              | Detail      | Description                                       |
-|--------------------|-------------|---------------------------------------------------|
-| `particlesLoaded`  | `Container` | Fired after the container is fully loaded         |
+| Event             | Detail      | Description                               |
+| ----------------- | ----------- | ----------------------------------------- |
+| `particlesLoaded` | `Container` | Fired after the container is fully loaded |
 
 ### Reactivity
 

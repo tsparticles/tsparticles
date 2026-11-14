@@ -1,6 +1,7 @@
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 async function init(engine: Engine): Promise<void> {
   await loadSlim(engine);
@@ -8,7 +9,7 @@ async function init(engine: Engine): Promise<void> {
 
 export default function App() {
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <div id="app">
         <h1>Hello, tsParticles!</h1>
       </div>

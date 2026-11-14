@@ -1,0 +1,439 @@
+
+ NX   Running target test for 12 projects:
+
+- @tsparticles/inferno
+- @tsparticles/preact
+- @tsparticles/solid
+- @tsparticles/astro
+- @tsparticles/ember
+- @tsparticles/lit
+- @tsparticles/webcomponents
+- @tsparticles/jquery
+- @tsparticles/qwik
+- @tsparticles/stencil
+- @tsparticles/svelte
+- @tsparticles/riot
+
+
+
+> nx run @tsparticles/riot:test
+
+(node:62012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62023) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/riot
+
+(node:62211) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  00:59:56
+   Duration  2.99s (environment 60%, import 16%, transform 14%, tests 10%)
+
+
+> nx run @tsparticles/solid:test
+
+(node:62011) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ concurrently pnpm:test:*
+(node:62157) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[ssr] (node:62210) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[ssr] (Use `node --trace-warnings ...` to show where the warning was created)
+[client] (node:62209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[client] (Use `node --trace-warnings ...` to show where the warning was created)
+[ssr] $ pnpm run test:client --mode ssr
+[client] $ vitest
+[ssr] (node:62269) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[ssr] (Use `node --trace-warnings ...` to show where the warning was created)
+[client] (node:62270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[client] (Use `node --trace-warnings ...` to show where the warning was created)
+[ssr] $ vitest --mode ssr
+[ssr] (node:62301) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[ssr] (Use `node --trace-warnings ...` to show where the warning was created)
+[client] 
+[client]  RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid
+[client] 
+[ssr] 
+[ssr]  RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid
+[ssr] 
+[client] (node:62308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[client] (Use `node --trace-warnings ...` to show where the warning was created)
+[client] (node:62307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[client] (Use `node --trace-warnings ...` to show where the warning was created)
+[ssr] (node:62309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[ssr] (Use `node --trace-warnings ...` to show where the warning was created)
+[ssr] 
+[ssr]  Test Files  1 passed (1)
+[ssr]       Tests  2 passed (2)
+[ssr]    Start at  00:59:58
+[ssr]    Duration  1.06s (transform 89%, import 10%, worker 1%)
+[ssr] 
+[ssr] pnpm run test:ssr exited with code 0
+[client] 
+[client]  Test Files  2 passed (2)
+[client]       Tests  10 passed (10)
+[client]    Start at  00:59:58
+[client]    Duration  1.77s (environment 64%, setup 29%, transform 5%, tests 2%, import 1%)
+[client] 
+[client] pnpm run test:client exited with code 0
+
+> nx run @tsparticles/svelte:test
+
+(node:62010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62025) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62159) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/svelte
+
+(node:62305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  00:59:57
+   Duration  2.75s (environment 65%, transform 26%, tests 4%, import 4%)
+
+
+> nx run @tsparticles/inferno:test
+
+(node:62351) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/inferno
+
+(node:62542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62541) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  01:00:01
+   Duration  761ms (tests 84%, transform 9%, import 6%, worker 1%)
+
+
+> nx run @tsparticles/lit:test
+
+(node:62335) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/lit
+
+(node:62531) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  01:00:00
+   Duration  1.79s (environment 70%, tests 15%, transform 10%, import 4%)
+
+
+> nx run @tsparticles/preact:test
+
+(node:62558) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62687) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact
+
+(node:62692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  01:00:03
+   Duration  447ms (tests 45%, transform 30%, import 20%, worker 5%)
+
+
+> nx run @tsparticles/jquery:test
+
+(node:62548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62559) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/jquery
+
+(node:62690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  01:00:03
+   Duration  1.30s (environment 92%, tests 5%, import 2%, transform 1%)
+
+
+> nx run @tsparticles/ember:test
+
+(node:62724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run test:vitest
+(node:62865) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/ember
+
+(node:63062) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  01:00:05
+   Duration  189ms (transform 61%, import 21%, tests 9%, worker 8%)
+
+
+> nx run @tsparticles/stencil:test
+
+(node:62901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63042) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:63093) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/stencil
+
+(node:63271) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  01:00:05
+   Duration  249ms (transform 56%, import 26%, worker 11%, tests 7%)
+
+
+> nx run @tsparticles/astro:test
+
+(node:63178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:63448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/astro
+
+(node:63483) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  01:00:06
+   Duration  185ms (transform 64%, import 20%, worker 8%, tests 8%)
+
+
+> nx run @tsparticles/webcomponents:test
+
+(node:62334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62349) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:62403) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/webcomponents
+
+(node:62530) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/web-particles.test.ts (8 tests | 5 failed) 5087ms
+   ❯ webcomponents Particles element (6)
+     × destroys the container on disconnect 1006ms
+     × applies the current data-theme to each loaded container 1002ms
+     × waits for the theme refresh before dispatching particlesLoaded 1003ms
+     × does not dispatch particlesLoaded when a load becomes stale during the theme refresh 1002ms
+     × reports theme refresh failures through particlesError 1002ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/web-particles.test.ts > webcomponents Particles element > destroys the container on disconnect
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ tests/web-particles.test.ts:101:24
+     99|
+    100|     await vi.waitFor(() => {
+    101|       expect(loadMock).toHaveBeenCalled();
+       |                        ^
+    102|     });
+    103|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/web-particles.test.ts > webcomponents Particles element > applies the current data-theme to each loaded container
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/web-particles.test.ts:133:24
+    131|
+    132|     await vi.waitFor(() => {
+    133|       expect(loadMock).toHaveBeenCalledTimes(1);
+       |                        ^
+    134|     });
+    135|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/web-particles.test.ts > webcomponents Particles element > waits for the theme refresh before dispatching particlesLoaded
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'dark' ]
+
+Number of calls: 0
+
+ ❯ tests/web-particles.test.ts:181:29
+    179|
+    180|     await vi.waitFor(() => {
+    181|       expect(loadThemeMock).toHaveBeenCalledWith("dark");
+       |                             ^
+    182|     });
+    183|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/web-particles.test.ts > webcomponents Particles element > does not dispatch particlesLoaded when a load becomes stale during the theme refresh
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'dark' ]
+
+Number of calls: 0
+
+ ❯ tests/web-particles.test.ts:218:29
+    216|
+    217|     await vi.waitFor(() => {
+    218|       expect(loadThemeMock).toHaveBeenCalledWith("dark");
+       |                             ^
+    219|     });
+    220|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/web-particles.test.ts > webcomponents Particles element > reports theme refresh failures through particlesError
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ tests/web-particles.test.ts:254:23
+    252|     try {
+    253|       await vi.waitFor(() => {
+    254|         expect(error).toHaveBeenCalledOnce();
+       |                       ^
+    255|       });
+    256|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 3 passed (8)
+   Start at  01:00:00
+   Duration  6.39s (tests 82%, environment 17%)
+
+[ELIFECYCLE] Test failed. See above for more details.
+
+> nx run @tsparticles/qwik:test
+
+(node:63385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63451) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:63480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▲ [WARNING] The condition "types" here will never be used as it comes after both "import" and "require" [package.json]
+
+    package.json:48:6:
+      48 │       "types": "./lib-types/index.d.ts"
+         ╵       ~~~~~~~
+
+  The "import" condition comes earlier and will be used for all "import" statements:
+
+    package.json:46:6:
+      46 │       "import": "./lib/index.qwik.mjs",
+         ╵       ~~~~~~~~
+
+  The "require" condition comes earlier and will be used for all "require" calls:
+
+    package.json:47:6:
+      47 │       "require": "./lib/index.qwik.cjs",
+         ╵       ~~~~~~~~~
+
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/qwik
+
+(node:63513) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  01:00:06
+   Duration  475ms (tests 68%, transform 22%, import 8%, worker 2%)
+
+
+
+
+ NX   Running target test for 12 projects failed
+
+Failed tasks:
+
+- @tsparticles/webcomponents:test
+
+  Run duration:      11.4s
+  Cache:             Skipped (--skip-nx-cache)
+  Critical path:     7.3s (1 task)
+  Recoverable time:  4.1s (36% of the run)

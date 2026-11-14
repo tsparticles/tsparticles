@@ -1,5 +1,6 @@
 ---
-import { ribbons } from "@tsparticles/ribbons";
+import {  createRibbons  } from "@tsparticles/ribbons";
+const ribbons = createRibbons(engine);
 ---
 <!doctype html>
 <html lang="en">
@@ -17,7 +18,10 @@ import { ribbons } from "@tsparticles/ribbons";
     </div>
 
     <script>
-      import { ribbons } from "@tsparticles/ribbons";
+import { engine } from "../../particlesEngine";
+
+      import {  createRibbons  } from "@tsparticles/ribbons";
+const ribbons = createRibbons(engine);
 
       document.getElementById("fireBtn")!.addEventListener("click", () => {
         ribbons();

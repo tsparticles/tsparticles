@@ -14,15 +14,19 @@ Check the following:
 1. **Engine not initialized** — You must call a `load*` function (e.g. `loadFull`, `loadSlim`, `loadBasic`) before `tsParticles.load()`. Without it the engine has no shapes, moves, or interactions registered.
 
    ```typescript
-   import { tsParticles } from "@tsparticles/engine";
-   import { loadBasic } from "@tsparticles/basic";
-
-   await loadBasic(tsParticles);
-   await tsParticles.load({
-     id: "tsparticles",
-     options: {/* ... */},
-   });
+   import { createEngine } from "@tsparticles/engine";
    ```
+
+const tsParticles = createEngine();
+import { loadBasic } from "@tsparticles/basic";
+
+await loadBasic(tsParticles);
+await tsParticles.load({
+id: "tsparticles",
+options: {/* ... */},
+});
+
+````
 
 2. **Container element missing** — The element with the `id` you pass must exist in the DOM _before_ you call `load`.
 
@@ -39,7 +43,7 @@ an error is surfaced in one of two ways:
 
 - **Development / non-minified builds** throw the full, formatted message.
 - **Minified / production builds** throw a compact code plus a link to the reference page, e.g.
-  `[tsParticles Error TSP-1203] https://particles.js.org/errors/#TSP-1203`.
+`[tsParticles Error TSP-1203] https://particles.js.org/errors/#TSP-1203`.
 
 Look up every code in the [Errors reference](/errors/): the catalog is stable and a code is never
 reused after a release. The first digits identify the area (`TSP-100x` engine core, `TSP-200x` image
@@ -77,7 +81,7 @@ Install the engine types as a dev dependency:
 
 ```bash
 npm install @tsparticles/engine --save-dev
-```
+````
 
 Then import types from the engine:
 

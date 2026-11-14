@@ -1,12 +1,13 @@
-import { onMount } from "solid-js";
+import type { ISourceOptions } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadSlim } from "@tsparticles/slim";
-import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
+import { onMount } from "solid-js";
 
 export default function App() {
   onMount(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   });
@@ -30,16 +31,28 @@ export default function App() {
   return (
     <>
       <nav id="navbar">
-        <a href="#hero" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#hero" class="nav-link">
+          Home
+        </a>
+        <a href="#about" class="nav-link">
+          About
+        </a>
+        <a href="#projects" class="nav-link">
+          Projects
+        </a>
+        <a href="#skills" class="nav-link">
+          Skills
+        </a>
+        <a href="#contact" class="nav-link">
+          Contact
+        </a>
       </nav>
 
       <section id="hero" class="section">
         <div class="hero-content">
-          <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+          <h1>
+            Hello, I'm <span class="highlight">Your Name</span>
+          </h1>
           <p class="subtitle">Full-Stack Developer &amp; Designer</p>
         </div>
       </section>
@@ -47,7 +60,10 @@ export default function App() {
       <section id="about" class="section content-section">
         <div class="container">
           <h2>About Me</h2>
-          <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+          <p>
+            A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+            JavaScript frameworks, cloud infrastructure, and UI/UX design.
+          </p>
         </div>
       </section>
 
@@ -74,10 +90,30 @@ export default function App() {
       <section id="skills" class="section content-section">
         <div class="container">
           <h2>Skills</h2>
-          <div class="skill-bar"><span class="skill-name">TypeScript</span><div class="bar"><div class="fill" style="width: 90%"></div></div></div>
-          <div class="skill-bar"><span class="skill-name">React</span><div class="bar"><div class="fill" style="width: 85%"></div></div></div>
-          <div class="skill-bar"><span class="skill-name">Node.js</span><div class="bar"><div class="fill" style="width: 80%"></div></div></div>
-          <div class="skill-bar"><span class="skill-name">CSS</span><div class="bar"><div class="fill" style="width: 88%"></div></div></div>
+          <div class="skill-bar">
+            <span class="skill-name">TypeScript</span>
+            <div class="bar">
+              <div class="fill" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <span class="skill-name">React</span>
+            <div class="bar">
+              <div class="fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <span class="skill-name">Node.js</span>
+            <div class="bar">
+              <div class="fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <span class="skill-name">CSS</span>
+            <div class="bar">
+              <div class="fill" style="width: 88%"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -93,7 +129,7 @@ export default function App() {
         </div>
       </section>
 
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </>
   );
 }

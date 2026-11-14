@@ -38,7 +38,8 @@ pnpm add @tsparticles/engine @tsparticles/slim
 Then in your code:
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
@@ -160,7 +161,8 @@ pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
 ```
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 import "@tsparticles/configs";
 

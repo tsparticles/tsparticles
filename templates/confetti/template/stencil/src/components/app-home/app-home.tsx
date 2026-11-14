@@ -1,5 +1,7 @@
-import { Component, State, h, type JSX } from "@stencil/core";
-import { confetti } from "@tsparticles/confetti";
+import { Component, type JSX, State, h } from "@stencil/core";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../../particlesEngine";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;

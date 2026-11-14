@@ -1,10 +1,15 @@
-import { isValidElement } from "preact";
 import { beforeAll, beforeEach, expect, it, vi } from "vitest";
-import Particles from "../src/Particles";
 import type { IParticlesProps } from "../src/IParticlesProps";
+import Particles from "../src/Particles";
 import { initParticlesEngine } from "../src/initParticlesEngine";
+import { isValidElement } from "preact";
 
 const { errorMock, loadMock } = vi.hoisted(() => ({ errorMock: vi.fn(), loadMock: vi.fn() }));
+
+const engine = {
+  load: loadMock,
+  init: vi.fn(async () => undefined),
+} as unknown as import("@tsparticles/engine").Engine;
 
 vi.mock("@tsparticles/engine", () => ({
   getLogger: () => ({ error: errorMock }),
@@ -12,7 +17,7 @@ vi.mock("@tsparticles/engine", () => ({
 }));
 
 beforeAll(async () => {
-  await initParticlesEngine();
+  await initParticlesEngine(engine);
 });
 
 beforeEach(() => {
@@ -20,8 +25,8 @@ beforeEach(() => {
   loadMock.mockReset();
 });
 
-function mount(props: IParticlesProps): Particles {
-  const component = new Particles(props);
+function mount(props: Omit<IParticlesProps, "engine">): Particles {
+  const component = new Particles({ ...props, engine });
 
   // Run the mount callback without a DOM renderer.
   vi.spyOn(component, "setState").mockImplementation((_state, callback) => callback?.());
@@ -43,7 +48,7 @@ it("reports engine and consumer callback failures separately and can load again"
   await vi.waitFor(() => expect(errorMock).toHaveBeenCalledWith("Particles: error loading particles", loadFailure));
   expect(loaded).not.toHaveBeenCalled();
 
-  component.componentDidUpdate({ id: "previous", particlesLoaded: loaded });
+  component.componentDidUpdate({ engine, id: "previous", particlesLoaded: loaded });
 
   await vi.waitFor(() => {
     expect(errorMock).toHaveBeenCalledWith("Particles: error in particlesLoaded callback", callbackFailure);
@@ -71,7 +76,7 @@ it("disposes a result arriving after unmount without publishing it", async () =>
 
 it("keys the canvas by the scene id", () => {
   for (const id of ["first", "second"]) {
-    const host = new Particles({ id }).render();
+    const host = new Particles({ engine, id }).render();
 
     if (!isValidElement(host)) {
       throw new Error("Expected a particles host");

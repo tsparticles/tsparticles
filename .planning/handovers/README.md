@@ -2,9 +2,9 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**E0 in progress, with major runtime implementation pending and the measurement
-baseline partially captured**. See [the evidence report](V5-BUNDLE-REPORT.md)
-for measured budgets and remaining exit criteria. The original `4.5.1` reconnaissance and later `4.5.2` architecture
+**E0 complete; E1 retirement verified, engine migration pending**. See
+[the evidence report](V5-BUNDLE-REPORT.md) and [E1 checkpoint](V5-E1-RETIREMENT.md)
+for measurements, limitations and remaining exit criteria. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.
 
 ## Goals and sequence
@@ -47,7 +47,7 @@ handovers before editing source. Preserve other contributors' changes and record
 files, decisions, commands and results. Commits, publishing and releases require
 separate authorization.
 
-## Checkout evidence
+## Original checkout evidence (E0, before implementation)
 
 - `engine/src/index.ts` and `index.lazy.ts` call `initEngine()` at import time.
 - `initEngine.ts` reuses `globalThis.tsParticles` if it finds `pluginManager`.
@@ -133,16 +133,15 @@ duplicate modules for the entry, the first scene, and the full output graph.
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | Import a pure helper      | Consumer bundle for one function without engine or DOM                                                                                          |
 | Acquire the singleton     | Existing consumer measurement importing and re-exporting `tsParticles` from `@tsparticles/engine`; record separately with its measured revision |
-| Acquire a factory engine  | Unavailable until `@tsparticles/engine` exports `createEngine()`; no buildable factory baseline exists yet                                      |
+| Acquire a factory engine  | E1 consumer importing `createEngine()` and exporting one created engine; compare separately against E0 singleton acquisition                    |
 | Minimal scene             | Engine and only the required loaders, using identical options                                                                                   |
 | Basic / slim / full / all | Supported minified distribution bundles                                                                                                         |
 | ESM/CJS lazy and CDN      | Separate package `/lazy` and documented CDN consumers; record entry and every chunk needed to start the same scene                              |
 
 For singleton acquisition, import and re-export `tsParticles` so the bundler
 retains the acquired engine. Record this existing measurement separately from
-factory acquisition. The current package exports the singleton and does not
-export `createEngine()`, so mark the factory-consumer scenario unavailable.
-Once the factory is exported, build a separate entry that imports `createEngine`
+factory acquisition. E0 has no factory scenario; E1 exports `createEngine()`.
+Build a separate E1 entry that imports `createEngine`
 and exports the result of one call. Measure explicit initialization and scene
 loading in separate consumer entries using `engine.init()` and
 `engine.load({ id, options })` on the acquired engine. Use the same ID, options,
@@ -228,7 +227,7 @@ there are no claimed savings or mandatory new visual plugins.
 
 - [x] Review the critical areas and update planning documentation.
 - [x] Prepare handovers 01–10.
-- [ ] Complete the baseline and numeric budgets — initial Rollup/consumer/CDN and runtime evidence recorded in [V5-BUNDLE-REPORT.md](V5-BUNDLE-REPORT.md); E0 remains open.
+- [x] Complete the baseline and numeric budgets — Rollup, installed consumers, CDN, runtime, retention and color evidence recorded in [V5-BUNDLE-REPORT.md](V5-BUNDLE-REPORT.md).
 - [ ] Implement and verify E0–E10, covering the full engine and the plugin and browser audits.
 
 Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in

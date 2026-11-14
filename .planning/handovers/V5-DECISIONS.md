@@ -41,14 +41,68 @@
 
 ## Experiment register
 
-| Plan   | Current status      | Evidence / next gate                                          |
-| ------ | ------------------- | ------------------------------------------------------------- |
-| IMP-01 | Under analysis      | Fresh builds, inventories, measurement harness; E0 not closed |
-| IMP-02 | Pending measurement | Consumer graph and CDN totals before E9 changes               |
-| IMP-03 | Pending measurement | Collections after E5 model contracts                          |
-| IMP-04 | Pending measurement | Spatial fixtures and predicate/snapshot measurements in E6    |
-| IMP-05 | Pending measurement | Particle state after canonical OKLCH in E5                    |
-| IMP-06 | Pending measurement | Lifecycle E4 and rendering E7                                 |
+| Plan   | Current status      | Evidence / next gate                                        |
+| ------ | ------------------- | ----------------------------------------------------------- |
+| IMP-01 | Under analysis      | E0 baseline and budgets complete; final comparisons pending |
+| IMP-02 | Pending measurement | Consumer graph and CDN totals before E9 changes             |
+| IMP-03 | Pending measurement | Collections after E5 model contracts                        |
+| IMP-04 | Pending measurement | Spatial fixtures and predicate/snapshot measurements in E6  |
+| IMP-05 | Pending measurement | Particle state after canonical OKLCH in E5                  |
+| IMP-06 | Pending measurement | Lifecycle E4 and rendering E7                               |
 
 G1–G7 remain open in `V5-ENGINE-AUDIT.md` and apply to the package matrix.
 ARCH-01–04 and C0–C5 have no implementation decision or completion claim yet.
+
+## Continuation decisions — 2026-11-14
+
+- **D0.7 — E0 closure.** Installed tarball conditions/CJS accounting and extended
+  runtime/color evidence close E0. Classic CDN lazy is unavailable in the current
+  standard Rollup product (`includeLazy: false`); preserve package `/lazy`, do not
+  introduce a classic lazy product during E1, and recheck documentation/artifacts
+  in E9. Physical HDR luminance is outside headless measurement capability;
+  actual P3/float16 rendering and natural sRGB fallback are both recorded.
+- **D0.8 — Observed defects are not acceptable budgets.** The measured listener
+  growth is the Motion reduced-motion query, not the HDR queries. E4/G2 must
+  close its lifetime/reset behavior. Parser alpha versus fill opacity fixtures
+  capture v4 behavior for E5; they are not a v5 visual-parity requirement.
+- **D1.1 — Retire before adaptation.** Remove the six framework/demo projects,
+  24 template variants, obsolete docs/navigation/marketing claims, Vue 2 patches
+  and dependency overrides. Preserve historical changelogs and E0 inventories.
+  The installer retains only Vue 3/Nuxt 4 suggestions, handles common semver
+  prefixes, and no longer contains the malformed duplicate Vue wrapper entry
+  that interrupted subsequent framework detection.
+- **D1.2 — Dependency synchronization.** Refresh the lockfile through pnpm:
+  493 package-version entries removed, none introduced. Existing peer-context
+  combinations are recalculated. Offline metadata was in the old pnpm layout;
+  registry metadata access and a frozen-lockfile install restored the workspace.
+  Installation scripts were disabled; no release/version/commit hooks were run.
+  Test/build runs resumed only after installation completed.
+
+E1 remains open: the factory and engine/browser/wrapper APIs are being migrated;
+see V5-E1-ENGINE.md for current verification. E2–E10 and all corresponding acceptance gates remain pending.
+
+- **D1.3 — Explicit ownership.** `createEngine()` is synchronous; no default engine.
+  Keep `Engine` type-only. Applications own engine lifetime: destroy their containers
+  and await pending loads before releasing an engine; no new engine disposal API in E1.
+  Preserve the existing items array contract for now; direct mutation is not a
+  cleanup operation and does not release browser resources. E3/G7 reviews mutability.
+- **D1.4 — Convenience and wrappers.** `createConfetti`, `createFireworks`,
+  `createParticles`, `createRibbons` bind to a supplied engine. `initPjs` returns
+  compatibility APIs. Providers/props/service initialization require caller-owned
+  engines. Same-engine wrapper initialization shares the first pending registrar;
+  retry after rejection is supported. Separate engines never share init promises.
+  Nuxt imports the application's `engine` export from its configured init module;
+  custom elements receive an engine property, Qwik receives a client-only value.
+- **D1.5 — Canvas failures.** Reject an occupied canvas before replacing a scene;
+  destruction releases its symbol ownership. Once replacement begins, failed setup
+  or start destroys/removes the new scene; the old scene is not resurrected. A shared
+  symbol on the canvas handles duplicate CDN module copies without a default engine.
+
+- **D1.6 — Wrapper registration ordering.** A mounted component waits for its
+  explicitly supplied engine's wrapper initialization. It must not initialize
+  an empty engine and suppress a later application registrar. Waiting before
+  initialization, concurrent calls, independent engines and retry are tested.
+- **D1.7 — Transferred canvas lifetime.** Cache the transferred OffscreenCanvas
+  on its source HTML canvas with a shared symbol; module-local caches fail across
+  independent CDN copies. Release active ownership on both resources on destroy;
+  retain the transfer association for the browser resource's lifetime.

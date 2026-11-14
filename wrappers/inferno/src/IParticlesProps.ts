@@ -1,6 +1,7 @@
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 
 export interface IParticlesProps {
+	engine: Engine;
 	id?: string;
 	width?: string;
 	height?: string;

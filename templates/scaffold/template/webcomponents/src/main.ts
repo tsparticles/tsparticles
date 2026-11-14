@@ -1,12 +1,14 @@
-import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
+
+import { engine } from "../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
 import "./style.css";
 
-globalThis.tsParticles = tsParticles;
-
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 
 defineParticlesElement();
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

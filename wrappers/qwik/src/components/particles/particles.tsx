@@ -1,8 +1,8 @@
+import { type Container, getLogger } from "@tsparticles/engine";
 import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
-import type { NoSerialize } from "@builder.io/qwik";
-import { type Container, getLogger, tsParticles } from "@tsparticles/engine";
-import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+import type { IParticlesProps } from "./IParticlesProps";
+import type { NoSerialize } from "@builder.io/qwik";
 
 async function loadTheme(container: Container, theme: string, isCurrent: () => boolean): Promise<void> {
   try {
@@ -22,6 +22,10 @@ const Particles = component$<IParticlesProps>(props => {
 
   useVisibleTask$(function Initializer({ track, cleanup }) {
     const trackedId = track(() => props.id) ?? "tsparticles";
+    const engine = track(() => props.engine);
+    if (!engine) {
+      return;
+    }
     const options = track(() => props.options);
     const url = track(() => props.url);
 
@@ -50,17 +54,17 @@ const Particles = component$<IParticlesProps>(props => {
       let container: Container | undefined;
 
       try {
-        await waitForParticlesEngineInitialization();
+        await waitForParticlesEngineInitialization(engine);
 
         if (cancelled) {
           return;
         }
 
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
 
-        container = await tsParticles.load({ url, id: trackedId, options: options ?? props.params });
+        container = await engine.load({ url, id: trackedId, options: options ?? props.params });
       } catch (error: unknown) {
         if (!cancelled) {
           getLogger().error("Particles: error loading particles", error);

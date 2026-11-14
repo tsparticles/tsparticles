@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/engine.svg)](https://www.npmjs.com/package/@tsparticles/engine)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/engine)](https://www.npmjs.com/package/@tsparticles/engine) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) is a lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components.
+[tsParticles](https://github.com/tsparticles/tsparticles) is a lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with React.js, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components.
 
 **This is the core engine package that all other features depend on.**
 
@@ -40,7 +40,8 @@ pnpm install @tsparticles/engine
 ### Basic Usage
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 
 await tsParticles.load({
   id: "tsparticles",
@@ -71,7 +72,8 @@ await tsParticles.load({
 To extend the engine with more capabilities, load additional packages:
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim"; // or other bundles
 
 await loadSlim(tsParticles); // Load preset features

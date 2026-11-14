@@ -74,7 +74,8 @@ const { loadExternalRemoveInteraction } = require("@tsparticles/interaction-exte
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalRemoveInteraction } from "@tsparticles/interaction-external-remove";
 

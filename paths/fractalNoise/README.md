@@ -69,7 +69,8 @@ const { loadFractalNoisePath } = require("@tsparticles/path-fractal-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFractalNoisePath } from "@tsparticles/path-fractal-noise";
 
 (async () => {

@@ -44,12 +44,18 @@ const options: ISourceOptions = {
     </div>
     <Particles id="tsparticles" options={options} client:load />
     <script>
-      import { initParticlesEngine } from "@tsparticles/astro";
-      import { particles } from "@tsparticles/particles";
+import { engine } from "../../particlesEngine";
 
-      void initParticlesEngine(async () => {
+      import { initParticlesEngine } from "@tsparticles/astro";
+      import {  createParticles  } from "@tsparticles/particles";
+const particles = createParticles(engine);
+
+      void initParticlesEngine(engine, async () => {
         await particles.init();
       });
-    </script>
+    for (const element of document.querySelectorAll("astro-particles")) {
+    (element as HTMLElement & { engine: typeof engine }).engine = engine;
+  }
+</script>
   </body>
 </html>

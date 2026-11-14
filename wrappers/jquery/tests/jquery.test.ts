@@ -1,6 +1,6 @@
 /* eslint-disable */
-import jQuery from "jquery";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import jQuery from "jquery";
 
 type JQueryModule = typeof import("../src/particles.js");
 
@@ -13,6 +13,8 @@ const { initMock, loadMock, loadThemeMock } = vi.hoisted(() => {
     loadThemeMock: loadTheme,
   };
 });
+
+const engine = { init: initMock, load: loadMock } as never;
 
 vi.mock("@tsparticles/engine", () => ({
   getRandom: () => 0,
@@ -38,9 +40,9 @@ beforeEach(() => {
 });
 
 describe("jquery $.particles", () => {
-  it("initializes the engine through $.particles().init(registrar)", async () => {
+  it("initializes the engine through $.particles(engine).init(registrar)", async () => {
     const module = await loadModule(),
-      staticApi = jQuery.particles(),
+      staticApi = jQuery.particles(engine),
       registrar = vi.fn(async () => Promise.resolve());
 
     await staticApi.init(registrar);
@@ -55,10 +57,10 @@ describe("jquery $.particles", () => {
   it("loads particles on the selected elements", async () => {
     await loadModule();
 
-    await jQuery.particles().init();
+    await jQuery.particles(engine).init();
 
     const container = await jQuery('<div id="jquery-particles"></div>')
-      .particles()
+      .particles(engine)
       .load({
         particles: { number: { value: 3 } },
       });
@@ -76,11 +78,11 @@ describe("jquery $.particles", () => {
   it("keeps anonymous selected elements independent", async () => {
     await loadModule();
 
-    await jQuery.particles().init();
+    await jQuery.particles(engine).init();
 
     const hosts = jQuery("<div></div><div></div>");
 
-    await hosts.particles().load({ particles: { number: { value: 1 } } });
+    await hosts.particles(engine).load({ particles: { number: { value: 1 } } });
 
     expect(loadMock).toHaveBeenCalledTimes(2);
     expect(loadMock).toHaveBeenNthCalledWith(
@@ -98,9 +100,9 @@ describe("jquery $.particles", () => {
   it("loads particles from a url through ajax", async () => {
     await loadModule();
 
-    await jQuery.particles().init();
+    await jQuery.particles(engine).init();
 
-    await jQuery('<div id="jquery-ajax"></div>').particles().ajax("https://example.com/particles.json");
+    await jQuery('<div id="jquery-ajax"></div>').particles(engine).ajax("https://example.com/particles.json");
 
     expect(loadMock).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -113,9 +115,9 @@ describe("jquery $.particles", () => {
   it("applies a theme to the loaded container", async () => {
     await loadModule();
 
-    await jQuery.particles().init();
+    await jQuery.particles(engine).init();
 
-    const result = jQuery('<div id="jquery-theme"></div>').particles();
+    const result = jQuery('<div id="jquery-theme"></div>').particles(engine);
 
     await result.load({ particles: { number: { value: 1 } } });
     await result.setTheme("dark");

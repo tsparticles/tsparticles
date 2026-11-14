@@ -5,7 +5,8 @@ Ces recettes utilisent les préréglages officiels disponibles dans l'espace de 
 ## Démarrage/arrêt de la base du modèle (pas de lecture automatique)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;
@@ -60,4 +61,4 @@ Pour les tester immédiatement dans l'interface utilisateur, utilisez le [`Playg
 Le monorepo comprend également des démos d'intégration exécutables :
 
 - Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Les démos disponibles incluent : `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- Les démos disponibles incluent : `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue3`, `webcomponents`.

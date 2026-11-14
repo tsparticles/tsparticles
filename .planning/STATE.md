@@ -1,10 +1,40 @@
+> 2026-11-14 continuation: E1 factory and consumer migration are implemented in
+> the working tree, with acceptance still open. Main suite: 686 tests; installed
+> ESM/CJS/browser purity and real Chrome two-bundle canvas ownership pass.
+> Final combined tests pass: 23 projects / 1,099 tests. Rebuild failures were
+> corrected; consumer/distribution closure and one repeated timing exceedance
+> remain open before accepting E1.
+> E2–E10 remain pending; E11 excluded. No commits or publications.
+> See [current engine work](handovers/V5-E1-ENGINE.md). Earlier retirement-only
+> results below describe the preceding verified checkpoint.
+
 ## Project Reference
 
 See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus.** v5 E0 baseline execution on branch `v5`, with package version `4.6.0`.
+**Current focus.** v5 E1 explicit-engine migration on branch `v5`, with package version `4.6.0`.
+
+## Session status — 2026-11-14 — E0 closed, E1 retirement verified
+
+- Resumed at `f17e249212` (the preceding checkpoint was committed outside this
+  execution). No commits or publications performed by this agent.
+- Closed E0 with installed-tarball/CJS accounting, 18 additional runtime runs,
+  30 retention cycles and inspected SDR/P3/float16 color fixtures. Recorded the
+  absent classic lazy product and fixed payload/runtime budgets.
+- Confirmed one leaked reduced-motion listener per container lifecycle and
+  corresponding retained heap; assigned to E4/G2. Alpha fixtures record the
+  v4 parser-alpha loss for required E5 migration.
+- E1 first increment removes Vue 2/Nuxt 2/Nuxt 3 integrations: six Nx projects,
+  24 starter variants and active references. pnpm removes 493 package versions;
+  no new package-version entries. Nine packed template archives retain supported
+  variants and exclude retired ones.
+- Main suite: 50 files / 680 tests passed; create-app: 11 tests, CI build passed;
+  primary test-package lint passed. New installer tests cover semver prefixes,
+  retired frameworks, existing wrappers and continued detection.
+- Next: factory/entrypoint and supported-consumer migration in E1. The singleton
+  is still present. E1 is not complete; E2–E10 pending; E11 excluded.
 
 ## Session status — 2026-11-13 — E0 execution checkpoint
 

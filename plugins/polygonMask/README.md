@@ -69,7 +69,8 @@ const { loadPolygonMaskPlugin } = require("@tsparticles/plugin-polygon-mask");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 
 (async () => {

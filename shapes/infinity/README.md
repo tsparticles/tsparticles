@@ -72,7 +72,8 @@ const { loadInfinityShape } = require("@tsparticles/shape-infinity");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 
 (async () => {

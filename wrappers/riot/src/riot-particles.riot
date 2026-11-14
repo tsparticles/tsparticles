@@ -1,53 +1,42 @@
 <riot-particles>
     <script>
-        import { tsParticles } from "@tsparticles/engine";
-
-        let initialized = false;
-        let initPromise;
-        let initCallback;
-
-        export async function initParticlesEngine(cb) {
-            if (initialized) {
-                return;
-            }
-
-            if (initPromise) {
-                if (initCallback !== cb) {
-                    throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-                }
-
-                await initPromise;
-
-                return;
-            }
-
-            initCallback = cb;
-            initPromise = (async () => {
-                if (cb) {
-                    await cb(tsParticles);
-                }
-
-                await tsParticles.init();
-                initialized = true;
-            })().catch((error) => {
-                initPromise = undefined;
-                initCallback = undefined;
-                initialized = false;
-
-                throw error;
-            });
-
-            await initPromise;
-        }
-
-        export function isParticlesEngineInitialized() {
-            return initialized;
-        }
-
-        export async function waitForParticlesEngineInitialization() {
-            await (initPromise ? initPromise : Promise.resolve());
-        }
-
+const states = new WeakMap();
+function getInitializationState(engine) {
+    const existing = states.get(engine);
+    if (existing) {
+        return existing;
+    }
+    let resolve = () => { }, reject = (_error) => { };
+    const promise = new Promise((onResolve, onReject) => {
+        resolve = onResolve;
+        reject = onReject;
+    });
+    const state = { loaded: false, started: false, promise, resolve, reject };
+    states.set(engine, state);
+    return state;
+}
+export async function initParticlesEngine(engine, init) {
+    const state = getInitializationState(engine);
+    if (!state.started) {
+        state.started = true;
+        void Promise.resolve().then(async () => {
+            await init?.(engine);
+            await engine.init();
+            state.loaded = true;
+            state.resolve();
+        }).catch((error) => {
+            states.delete(engine);
+            state.reject(error);
+        });
+    }
+    return state.promise;
+}
+export function isParticlesEngineInitialized(engine) {
+    return states.get(engine)?.loaded ?? false;
+}
+export async function waitForParticlesEngineInitialization(engine) {
+    await getInitializationState(engine).promise;
+}
         async function loadParticles(tag, props) {
             const currentLoadId = ++tag.loadId;
 
@@ -58,7 +47,7 @@
                 return;
             }
 
-            const newContainer = await tsParticles.load({
+            const newContainer = await props.engine.load({
                 id: props.id,
                 options: props.options,
                 url: props.url,
@@ -70,6 +59,7 @@
             }
 
             tag.container = newContainer;
+            tag.prevEngine = props.engine;
             tag.prevId = props.id;
             tag.prevOptions = props.options;
             tag.prevUrl = props.url;
@@ -86,9 +76,9 @@
 
         export default {
             async onMounted(props) {
-                await waitForParticlesEngineInitialization();
+                await waitForParticlesEngineInitialization(props.engine);
 
-                if (!isParticlesEngineInitialized()) {
+                if (!isParticlesEngineInitialized(props.engine)) {
                     throw new Error("initParticlesEngine(...) must be called once before mounting <riot-particles /> components.");
                 }
 
@@ -119,7 +109,7 @@
                 const urlChanged = props.url !== this.prevUrl;
                 const themeChanged = props.theme !== this.prevTheme;
 
-                if (idChanged || optionsChanged || urlChanged) {
+                if (props.engine !== this.prevEngine || idChanged || optionsChanged || urlChanged) {
                     this.container?.destroy();
                     this.container = undefined;
 

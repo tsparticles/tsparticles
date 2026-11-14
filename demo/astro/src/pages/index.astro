@@ -34,9 +34,11 @@ const options: ISourceOptions = {
 <Layout title="Welcome to Astro.">
     <main>
         <script>
+import { engine } from "../../particlesEngine";
+
             import { initParticlesEngine } from "@tsparticles/astro";
 
-            void initParticlesEngine(async (engine) => {
+            void initParticlesEngine(engine, async (engine) => {
                 const { loadFull } = await import("tsparticles");
 
                 await loadFull(engine);
@@ -57,7 +59,10 @@ const options: ISourceOptions = {
                 currentConfig = 1 - currentConfig;
                 el.setAttribute("data-options", JSON.stringify(configs[currentConfig]));
             };
-        </script>
+        for (const element of document.querySelectorAll("astro-particles")) {
+    (element as HTMLElement & { engine: typeof engine }).engine = engine;
+  }
+</script>
 
         <Particles id="tsparticles" options={options} />
         <button onclick="switchConfig()" style="position:fixed;bottom:1rem;right:1rem;z-index:999;padding:0.5rem 1rem;cursor:pointer;">Switch Config</button>

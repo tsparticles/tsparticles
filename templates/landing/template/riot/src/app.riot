@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="./style.css">
 
   <div>
-    <riot-particles id="tsparticles"></riot-particles>
+    <riot-particles engine={engine} id="tsparticles"></riot-particles>
     <section id="hero" class="section">
       <div class="hero-content">
         <h1>Build Faster.<br /><span class="gradient-text">Go Further.</span></h1>
@@ -71,8 +71,10 @@
   </div>
 
   <script>
+import { engine } from "../particlesEngine";
+
     import { loadSlim } from "@tsparticles/slim";
-    import { tsParticles } from "@tsparticles/engine";
+
     import "@tsparticles/riot";
 
     export default {
@@ -94,8 +96,8 @@
         ],
       },
       async onMounted() {
-        await loadSlim(tsParticles);
-        await tsParticles.load({
+        await loadSlim(engine);
+        await engine.load({
           id: "tsparticles",
           options: {
             fullScreen: { enable: true, zIndex: -1 },

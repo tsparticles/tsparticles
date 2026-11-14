@@ -5,7 +5,8 @@ A preset bundles a full set of options into a single named configuration that us
 ## Quick app-local creation
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 
 export async function loadAppPreset(): Promise<void> {
   tsParticles.addPreset("app-hero", {

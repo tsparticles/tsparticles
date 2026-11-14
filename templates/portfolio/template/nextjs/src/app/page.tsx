@@ -1,9 +1,10 @@
 "use client";
 
-import { NextParticles } from "@tsparticles/nextjs";
-import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { NextParticles } from "@tsparticles/nextjs";
 import { ParticlesProvider } from "./providers";
+import configs from "@tsparticles/configs";
+import { engine } from "../../particlesEngine";
 
 const keys = Object.keys(configs);
 const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
@@ -35,30 +36,37 @@ export default function Home() {
   }
 
   return (
-    <ParticlesProvider>
+    <ParticlesProvider engine={engine}>
       <NextParticles id="tsparticles" options={options} />
       <nav id="navbar">
-        {navItems.map((item) => (
-          <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">{item}</a>
+        {navItems.map(item => (
+          <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
+            {item}
+          </a>
         ))}
       </nav>
       <section id="hero" className="section">
         <div className="hero-content">
-          <h1>Hello, I'm <span className="highlight">Your Name</span></h1>
+          <h1>
+            Hello, I'm <span className="highlight">Your Name</span>
+          </h1>
           <p className="subtitle">Full-Stack Developer &amp; Designer</p>
         </div>
       </section>
       <section id="about" className="section content-section">
         <div className="container">
           <h2>About Me</h2>
-          <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+          <p>
+            A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+            JavaScript frameworks, cloud infrastructure, and UI/UX design.
+          </p>
         </div>
       </section>
       <section id="projects" className="section content-section">
         <div className="container">
           <h2>Projects</h2>
           <div className="project-grid">
-            {projects.map((p) => (
+            {projects.map(p => (
               <div key={p.title} className="project-card">
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
@@ -70,10 +78,12 @@ export default function Home() {
       <section id="skills" className="section content-section">
         <div className="container">
           <h2>Skills</h2>
-          {skills.map((s) => (
+          {skills.map(s => (
             <div key={s.name} className="skill-bar">
               <span className="skill-name">{s.name}</span>
-              <div className="bar"><div className="fill" style={{ width: `${s.pct}%` }}></div></div>
+              <div className="bar">
+                <div className="fill" style={{ width: `${s.pct}%` }}></div>
+              </div>
             </div>
           ))}
         </div>

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, getLogger } from "@tsparticles/engine";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useParticlesProvider } from "./particles-provider";
 
@@ -29,7 +29,7 @@ const props = defineProps<{
     container = undefined;
 
     try {
-      const newContainer = await tsParticles.load({
+      const newContainer = await provider.engine.load({
         id: props.id,
         url: props.url,
         options: props.options,

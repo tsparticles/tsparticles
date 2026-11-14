@@ -1,27 +1,23 @@
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
-import configs from "@tsparticles/configs";
-import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 import { NgxConfettiModule } from "angular-confetti";
 import { NgxFireworksModule } from "angular-fireworks";
+import { RouterModule } from "@angular/router";
+import configs from "@tsparticles/configs";
+import { engine } from "../../particlesEngine";
+import { loadFull } from "tsparticles";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgxParticlesModule,
-    NgxConfettiModule,
-    NgxFireworksModule,
-  ],
+  imports: [CommonModule, RouterModule, NgxParticlesModule, NgxConfettiModule, NgxFireworksModule],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
+  readonly engine = engine;
   title = "angular";
   id = "tsparticles";
   fire = 0;
@@ -64,7 +60,7 @@ export class AppComponent {
   constructor(private ngParticlesService: NgParticlesService) {}
 
   ngOnInit(): void {
-    void this.ngParticlesService.init(async (engine: Engine) => {
+    void this.ngParticlesService.init(engine, async (engine: Engine) => {
       console.log("init", engine);
 
       await loadFull(engine);

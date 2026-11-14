@@ -1,0 +1,550 @@
+
+ NX   Running target build for 13 projects:
+
+- @tsparticles/inferno
+- @tsparticles/preact
+- @tsparticles/solid
+- @tsparticles/astro
+- @tsparticles/ember
+- @tsparticles/lit
+- @tsparticles/webcomponents
+- @tsparticles/jquery
+- @tsparticles/qwik
+- @tsparticles/stencil
+- @tsparticles/svelte
+- @tsparticles/riot
+- @tsparticles/mcp-server
+
+
+
+> nx run @tsparticles/solid:build
+
+(node:2739) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2741) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify && pnpm run lint && tsup && node ../../scripts/resolve-dist-package.cjs
+(node:2822) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write "src/**/*.{js,ts,json,css,tsx,jsx}" "README.md"
+(node:2881) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/index.tsx 14ms (unchanged)
+src/initParticlesEngine.ts 15ms (unchanged)
+src/IParticlesProps.ts 3ms (unchanged)
+src/Particles.tsx 16ms (unchanged)
+README.md 38ms (unchanged)
+(node:2889) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ concurrently "pnpm:lint:code --fix" pnpm:lint:types
+(node:2918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[lint:code] (node:2920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[lint:code] (Use `node --trace-warnings ...` to show where the warning was created)
+[lint:types] (node:2921) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[lint:types] (Use `node --trace-warnings ...` to show where the warning was created)
+[lint:code] $ eslint --max-warnings 0 src/**/*.{ts,tsx} --fix
+[lint:types] $ tsc --noEmit
+[lint:code] (node:2980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[lint:code] (Use `node --trace-warnings ...` to show where the warning was created)
+[lint:types] pnpm run lint:types exited with code 0
+[lint:code] pnpm run lint:code --fix exited with code 0
+(node:3061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+CLI Building entry: {"index":"src/index.tsx"}
+CLI Using tsconfig: tsconfig.json
+CLI Building entry: {"index":"src/index.tsx"}
+CLI Using tsconfig: tsconfig.json
+CLI Building entry: {"dev":"src/index.tsx"}
+CLI Using tsconfig: tsconfig.json
+CLI Building entry: {"dev":"src/index.tsx"}
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Using tsup config: /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid/tsup.config.ts
+CLI tsup v8.5.1
+CLI Using tsup config: /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid/tsup.config.ts
+CLI tsup v8.5.1
+CLI Using tsup config: /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid/tsup.config.ts
+CLI tsup v8.5.1
+CLI Using tsup config: /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/solid/tsup.config.ts
+CLI Target: esnext
+CLI Target: esnext
+ESM Build start
+CLI Target: esnext
+ESM Build start
+CLI Target: esnext
+ESM Build start
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.jsx 3.59 KB
+ESM ⚡️ Build success in 215ms
+ESM dist/dev.jsx 3.59 KB
+ESM ⚡️ Build success in 211ms
+ESM dist/index.js 4.39 KB
+ESM ⚡️ Build success in 244ms
+ESM dist/dev.js 4.39 KB
+ESM ⚡️ Build success in 253ms
+(node:3061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+DTS Build start
+DTS ⚡️ Build success in 597ms
+DTS dist/index.d.ts 868.00 B
+
+> nx run @tsparticles/svelte:build
+
+(node:2737) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run format && vite build && npm run package
+(node:2821) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write .
+(node:2880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+.prettierrc 14ms (unchanged)
+eslint.config.js 7ms (unchanged)
+package.json 2ms (unchanged)
+README.md 98ms (unchanged)
+src/app.d.ts 2ms (unchanged)
+src/app.html 2ms (unchanged)
+src/lib/index.ts 1ms (unchanged)
+src/lib/Particles.svelte 25ms (unchanged)
+src/lib/utils.ts 6ms
+src/routes/+page.svelte 2ms (unchanged)
+tests/lifecycle.test.ts 6ms (unchanged)
+tests/particles.test.ts 5ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+(node:2884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 145 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/server/.vite/manifest.json                   4.14 kB │ gzip:  0.55 kB
+.svelte-kit/output/server/env.js                                0.31 kB │ gzip:  0.19 kB │ map:   0.57 kB
+.svelte-kit/output/server/entries/pages/_page.svelte.js         0.43 kB │ gzip:  0.30 kB │ map:   0.37 kB
+.svelte-kit/output/server/entries/fallbacks/layout.svelte.js    0.46 kB │ gzip:  0.32 kB │ map:   0.48 kB
+.svelte-kit/output/server/entries/fallbacks/error.svelte.js     1.35 kB │ gzip:  0.51 kB │ map:   2.87 kB
+.svelte-kit/output/server/index.js                              2.41 kB │ gzip:  1.00 kB │ map:   3.47 kB
+.svelte-kit/output/server/chunks/uneval.js                     19.43 kB │ gzip:  5.37 kB │ map:  40.88 kB
+.svelte-kit/output/server/chunks/server-errors.js              24.29 kB │ gzip:  4.61 kB │ map:  35.02 kB
+.svelte-kit/output/server/chunks/server.js                     44.47 kB │ gzip: 12.08 kB │ map: 127.59 kB
+.svelte-kit/output/server/remote-entry.js                      55.39 kB │ gzip: 11.94 kB │ map:  90.78 kB
+.svelte-kit/output/server/chunks/internal.js                  111.12 kB │ gzip: 29.11 kB │ map: 239.73 kB
+.svelte-kit/output/server/chunks/instance.js                  131.60 kB │ gzip: 34.81 kB │ map: 261.38 kB
+
+✓ built in 89ms
+Analysing routes
+(node:2884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Building app
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 173 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                          0.02 kB │ gzip:  0.04 kB
+.svelte-kit/output/client/.vite/manifest.json                        4.60 kB │ gzip:  0.65 kB
+.svelte-kit/output/client/_app/immutable/entry/payload.DSmR2FwN.js   0.06 kB │ gzip:  0.07 kB
+.svelte-kit/output/client/_app/immutable/nodes/0.CAwo-19v.js         0.14 kB │ gzip:  0.14 kB
+.svelte-kit/output/client/_app/immutable/nodes/1.BAD0BHdi.js         0.32 kB │ gzip:  0.24 kB
+.svelte-kit/output/client/_app/immutable/nodes/2.Fjk0xFvT.js         0.36 kB │ gzip:  0.27 kB
+.svelte-kit/output/client/_app/immutable/entry/start.vIsJa0nZ.js     0.52 kB │ gzip:  0.31 kB
+.svelte-kit/output/client/_app/immutable/entry/app.Cex5bVoV.js       1.06 kB │ gzip:  0.53 kB
+.svelte-kit/output/client/_app/immutable/chunks/Bjy-W4x2.js          1.36 kB │ gzip:  0.65 kB
+.svelte-kit/output/client/_app/immutable/chunks/CRzLMJPS.js          1.53 kB │ gzip:  0.80 kB
+.svelte-kit/output/client/_app/immutable/chunks/BjkBNA4T.js          4.29 kB │ gzip:  1.93 kB
+.svelte-kit/output/client/_app/immutable/chunks/DjUlL1jv.js         32.16 kB │ gzip: 12.51 kB
+.svelte-kit/output/client/_app/immutable/chunks/Cig5C8Hu.js         39.71 kB │ gzip: 14.66 kB
+
+✓ built in 109ms
+(node:2884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Run npm run preview to preview your production build locally.
+
+> Using @sveltejs/adapter-auto
+Could not detect a supported production environment. See https://svelte.dev/docs/kit/adapters to learn how to configure your app to run on the platform of your choosing
+✔ done
+npm notice run @tsparticles/svelte@4.6.0 package
+npm notice run svelte-kit sync && svelte-package && node ../../scripts/resolve-dist-package.cjs && publint
+(node:3059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/lib -> dist
+(node:3148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Running publint v0.3.25 for @tsparticles/svelte...
+Packing files with `pnpm pack`...
+Linting...
+All good!
+
+> nx run @tsparticles/ember:build
+
+(node:2738) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ ember build
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Building
+Environment: development
+building... 
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+tests/dummy/app/controllers/application.ts:19:30 - error TS2345: Argument of type '(engine: Engine) => Promise<void>' is not assignable to parameter of type 'Engine'.
+
+19     void initParticlesEngine(async (engine: Engine) => {
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tests/integration/components/particles-test.ts:11:10 - error TS2724: '"@tsparticles/engine"' has no exported member named 'tsParticles'. Did you mean 'Particle'?
+
+11 import { tsParticles } from '@tsparticles/engine';
+            ~~~~~~~~~~~
+
+tests/integration/components/particles-test.ts:33:31 - error TS2345: Argument of type '(engine: Engine) => Promise<void>' is not assignable to parameter of type 'Engine'.
+
+33     await initParticlesEngine(async (engine: Engine) => {
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tests/dummy/app/controllers/application.ts:19:30 - error TS2345: Argument of type '(engine: Engine) => Promise<void>' is not assignable to parameter of type 'Engine'.
+
+19     void initParticlesEngine(async (engine: Engine) => {
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tests/integration/components/particles-test.ts:11:10 - error TS2724: '"@tsparticles/engine"' has no exported member named 'tsParticles'. Did you mean 'Particle'?
+
+11 import { tsParticles } from '@tsparticles/engine';
+            ~~~~~~~~~~~
+
+tests/integration/components/particles-test.ts:33:31 - error TS2345: Argument of type '(engine: Engine) => Promise<void>' is not assignable to parameter of type 'Engine'.
+
+33     await initParticlesEngine(async (engine: Engine) => {
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+cleaning up
+cleaning up...
+Built project successfully. Stored in "dist/".
+
+> nx run @tsparticles/preact:build
+
+(node:3089) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run lint && cross-env NODE_ENV=production webpack && pnpm run prettify:readme
+(node:3116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:3145) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/IParticlesProps.ts 15ms (unchanged)
+src/IParticlesState.ts 1ms (unchanged)
+src/Particles.tsx 29ms (unchanged)
+src/Utils.ts 6ms (unchanged)
+src/index.ts 2ms (unchanged)
+src/initParticlesEngine.ts 6ms (unchanged)
+(node:3150) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:3189) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+asset particles.js 6.41 KiB [compared for emit] [minimized] (name: main)
+orphan modules 12.1 KiB [orphan] 5 modules
+runtime modules 883 bytes 4 modules
+./src/index.ts + 5 modules 12.3 KiB [not cacheable] [built] [code generated]
+webpack 5.112.2 compiled successfully in 1715 ms
+
+asset particles.js 6.83 KiB [compared for emit] [minimized] (name: main)
+runtime modules 883 bytes 4 modules
+orphan modules 12 KiB [orphan] 3 modules
+built modules 12.3 KiB [built]
+  ./src/index.ts + 3 modules 12.2 KiB [built] [code generated]
+  external {"commonjs":"@tsparticles/engine","commonjs2":"@tsparticles/engine","am...(truncated) 42 bytes [built] [code generated]
+  external "preact/compat" 42 bytes [built] [code generated]
+webpack 5.112.2 compiled successfully in 1675 ms
+(node:3395) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:3424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 74ms (unchanged)
+
+> nx run @tsparticles/jquery:build
+
+(node:3192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme && node ../../scripts/resolve-dist-package.cjs
+(node:3237) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:3266) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/particles.ts 46ms (unchanged)
+(node:3277) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:3314) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3329) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc
+(node:3426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rollup -c
+babelHelpers: 'bundled' option was used by default. It is recommended to configure this option explicitly, read more here: https://github.com/rollup/plugins/tree/master/packages/babel#babelhelpers
+
+dist/particles.js → dist/jquery.particles.js...
+(node:3455) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) If you do not supply "output.name", you may not be able to access the exports of an IIFE bundle.
+https://rollupjs.org/configuration-options/#output-name
+created dist/jquery.particles.js in 68ms
+(node:3485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map "filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'"
+(node:3553) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:3608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 69ms (unchanged)
+
+> nx run @tsparticles/astro:build
+
+(node:3459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3549) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run prettify:readme && tsc --noEmit
+(node:3578) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --plugin=prettier-plugin-astro --write "./src/**/*.{js,ts,css,astro,md}"
+(node:3636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/.env.d.ts 8ms (unchanged)
+src/initParticlesEngine.js 13ms (unchanged)
+src/initParticlesEngine.ts 13ms (unchanged)
+src/Particles.astro 56ms (unchanged)
+(node:3643) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:3673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 73ms (unchanged)
+
+> nx run @tsparticles/inferno:build
+
+(node:3457) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3458) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run lint && webpack --mode production && pnpm run build:types && node ../../scripts/resolve-dist-package.cjs
+(node:3486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:3547) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Usage of builders starting with an uppercase letter such as `StringLiteral` has been deprecated, please migrate to `stringLiteral`
+    at Module.<anonymous> (file:///Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/@babel+types@8.0.0/node_modules/@babel/types/lib/index.js:8830:5)
+    at getVNodeType (/Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/babel-plugin-inferno@6.9.0_@babel+core@8.1.0/node_modules/babel-plugin-inferno/lib/index.js:115:16)
+clean-webpack-plugin: removed dist/index.d.ts
+clean-webpack-plugin: removed dist/initParticlesEngine.d.ts
+clean-webpack-plugin: removed dist/IParticlesProps.d.ts
+clean-webpack-plugin: removed dist/IParticlesState.d.ts
+clean-webpack-plugin: removed dist/package.json
+clean-webpack-plugin: removed dist/Particles.d.ts
+clean-webpack-plugin: removed dist/particles.js
+clean-webpack-plugin: removed dist/ParticlesProvider.d.ts
+asset particles.js 68.6 KiB [emitted] [minimized] (name: main)
+orphan modules 109 KiB [orphan] 24 modules
+runtime modules 991 bytes 3 modules
+cacheable modules 179 KiB
+  modules by path ../../engine/dist/esm/Options/Classes/ 27.1 KiB 29 modules
+  modules by path ../../engine/dist/esm/Enums/ 3.9 KiB 13 modules
+  modules by path ../../engine/dist/esm/Utils/*.js 42.3 KiB
+    ../../engine/dist/esm/Utils/ErrorUtils.js + 2 modules 2.49 KiB [built] [code generated]
+    ../../engine/dist/esm/Utils/Utils.js 11.1 KiB [built] [code generated]
+    + 7 modules
+  modules by path ../../engine/dist/esm/Core/ 106 KiB
+    ../../engine/dist/esm/Core/Utils/Constants.js 1.55 KiB [built] [code generated]
+    ../../engine/dist/esm/Core/Utils/Vectors.js 2.81 KiB [built] [code generated]
+    + 3 modules
+./src/index.ts + 13 modules 24.6 KiB [not cacheable] [built] [code generated]
+webpack 5.112.2 compiled successfully in 1049 ms
+(node:3788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc -p tsconfig.types.json
+
+> nx run @tsparticles/webcomponents:build
+
+(node:3644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run prettify:readme && ts-node -O '{ "module": "commonjs" }' build.ts && node ../../scripts/resolve-dist-package.cjs
+(node:3719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:3748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/web-particles.ts 56ms (unchanged)
+(node:3752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:3781) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 65ms (unchanged)
+(node:3789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Rollup warning:  [plugin typescript] @rollup/plugin-typescript TS5107: Option 'moduleResolution=node10' is deprecated and will stop functioning in TypeScript 7.0. Specify compilerOption '"ignoreDeprecations": "6.0"' to silence this error.
+  Visit https://aka.ms/ts6 for migration information.
+
+> nx run @tsparticles/riot:build
+
+(node:3823) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && rollup -c && node ../../scripts/resolve-dist-package.cjs
+(node:3896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:3925) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/riot-particles.riot 16ms (unchanged)
+
+src/riot-particles.riot → dist/riot-particles.cjs...
+(node:3938) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+created dist/riot-particles.cjs in 70ms
+
+src/riot-particles.riot → dist/riot-particles.esm.js...
+created dist/riot-particles.esm.js in 19ms
+
+> nx run @tsparticles/lit:build
+
+(node:3937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc
+
+> nx run @tsparticles/stencil:build
+
+(node:3821) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ stencil build
+[09:23.4]  @stencil/core
+[09:23.6]  v4.43.5 🍐
+[09:24.6]  build, tsparticlesstencil, prod mode, started ...
+[09:24.6]  transpile started ...
+[09:25.1]  transpile finished in 568 ms
+[09:25.1]  generate lazy started ...
+[09:25.3]  generate lazy finished in 180 ms
+[09:25.3]  copy started ...
+[09:25.3]  updated readme docs: stencil-particles
+[09:25.3]  copy finished (0 files) in 9 ms
+[09:25.3]  build finished in 787 ms
+
+
+> nx run @tsparticles/mcp-server:build
+
+(node:4047) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc --project tsconfig.build.json
+
+> nx run @tsparticles/qwik:build
+
+(node:3969) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run build.lib && pnpm run build.types
+(node:3996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/**/*
+(node:4027) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/components/particles/index.ts 12ms (unchanged)
+src/components/particles/initParticlesEngine.ts 14ms (unchanged)
+src/components/particles/IParticlesProps.ts 3ms (unchanged)
+src/components/particles/particles.tsx 13ms (unchanged)
+(node:4075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vite build --mode lib
+(node:4105) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▲ [WARNING] The condition "types" here will never be used as it comes after both "import" and "require" [package.json]
+
+    package.json:48:6:
+      48 │       "types": "./lib-types/index.d.ts"
+         ╵       ~~~~~~~
+
+  The "import" condition comes earlier and will be used for all "import" statements:
+
+    package.json:46:6:
+      46 │       "import": "./lib/index.qwik.mjs",
+         ╵       ~~~~~~~~
+
+  The "require" condition comes earlier and will be used for all "require" calls:
+
+    package.json:47:6:
+      47 │       "require": "./lib/index.qwik.cjs",
+         ╵       ~~~~~~~~~
+
+vite v7.3.6 building client environment for lib...
+transforming...
+✓ 4 modules transformed.
+rendering chunks...
+computing gzip size...
+lib/index.qwik.mjs  4.06 kB │ gzip: 1.24 kB
+lib/index.qwik.cjs  4.23 kB │ gzip: 1.31 kB
+✓ built in 557ms
+(node:4113) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc --emitDeclarationOnly
+
+
+
+ NX   Successfully ran target build for 13 projects
+
+
+  Run duration:      18.6s
+  Cache:             Skipped (--skip-nx-cache)
+  Critical path:     11.1s (1 task)
+  Recoverable time:  7.6s (41% of the run)

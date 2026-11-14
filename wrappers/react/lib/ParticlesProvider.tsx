@@ -1,70 +1,71 @@
+import { type FC, type PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { Engine } from "@tsparticles/engine";
-import { tsParticles } from "@tsparticles/engine";
-import { createContext, type FC, type PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void>;
 
+const states = new WeakMap<Engine, { loaded: boolean; promise: Promise<void> }>();
+
+async function initializeEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing.promise;
+  }
+  const state = { loaded: false, promise: Promise.resolve() };
+  states.set(engine, state);
+  state.promise = Promise.resolve()
+    .then(async () => {
+      await init?.(engine);
+      await engine.init();
+      state.loaded = true;
+    })
+    .catch((error: unknown) => {
+      states.delete(engine);
+      throw error;
+    });
+  return state.promise;
+}
+
 export interface IParticlesProviderProps extends PropsWithChildren {
-  init: ParticlesPluginRegistrar;
+  engine: Engine;
+  init?: ParticlesPluginRegistrar;
 }
 
 interface IParticlesProviderContext {
+  engine: Engine;
   loaded: boolean;
 }
 
-let initialized = false;
-let initPromise: Promise<void> | undefined;
-let initCallback: ParticlesPluginRegistrar | undefined;
+const ParticlesProviderContext = createContext<IParticlesProviderContext | undefined>(undefined);
 
-const ParticlesProviderContext = createContext<IParticlesProviderContext>({ loaded: false });
-
-export const ParticlesProvider: FC<IParticlesProviderProps> = ({ children, init }) => {
-  const [loaded, setLoaded] = useState(initialized);
+export const ParticlesProvider: FC<IParticlesProviderProps> = ({ children, engine, init }) => {
+  const [readyEngine, setReadyEngine] = useState<Engine>();
 
   useEffect(() => {
     let cancelled = false;
-
-    if (initialized) {
+    if (states.get(engine)?.loaded) {
+      setReadyEngine(engine);
       return;
     }
+    setReadyEngine(undefined);
 
-    if (!initPromise) {
-      initCallback = init;
-
-      initPromise = (async () => {
-        await init(tsParticles);
-
-        initialized = true;
-      })().catch(error => {
-        initPromise = undefined;
-        initCallback = undefined;
-
-        throw error;
-      });
-    } else if (initCallback && initCallback !== init) {
-      throw new Error("ParticlesProvider init callback must be stable across the app lifecycle.");
-    }
-
-    initPromise
-      .then(() => {
-        if (!cancelled) {
-          setLoaded(true);
-        }
-      })
-      .catch(() => {
-        if (cancelled) {
-          return;
-        }
-
-        setLoaded(false);
-      });
+    void (async () => {
+      await initializeEngine(engine, init);
+      if (!cancelled) {
+        setReadyEngine(engine);
+      }
+    })().catch(() => {
+      if (!cancelled) {
+        setReadyEngine(undefined);
+      }
+    });
 
     return () => {
       cancelled = true;
     };
-  }, [init]);
+  }, [engine, init]);
 
-  const value = useMemo<IParticlesProviderContext>(() => ({ loaded }), [loaded]);
+  const loaded = readyEngine === engine;
+  const value = useMemo<IParticlesProviderContext>(() => ({ engine, loaded }), [engine, loaded]);
 
   return (
     <ParticlesProviderContext.Provider value={value}>{loaded ? children : null}</ParticlesProviderContext.Provider>
@@ -72,5 +73,9 @@ export const ParticlesProvider: FC<IParticlesProviderProps> = ({ children, init 
 };
 
 export function useParticlesProvider(): IParticlesProviderContext {
-  return useContext(ParticlesProviderContext);
+  const context = useContext(ParticlesProviderContext);
+  if (!context) {
+    throw new Error("Particles requires a ParticlesProvider with an explicit engine.");
+  }
+  return context;
 }

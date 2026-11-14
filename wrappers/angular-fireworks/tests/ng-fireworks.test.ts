@@ -15,17 +15,48 @@ const { fireworksMock, instanceMock } = vi.hoisted(() => {
 });
 
 vi.mock("@tsparticles/fireworks", () => ({
-  fireworks: fireworksMock,
+  createFireworks: () => fireworksMock,
   default: fireworksMock,
 }));
 
 import { NgxFireworksComponent } from "../projects/ng-fireworks/src/lib/ng-fireworks.component.js";
 
 function createComponent(platformId = "browser"): NgxFireworksComponent {
-  return new NgxFireworksComponent(platformId);
+  const component = new NgxFireworksComponent(platformId);
+  component.engine = {} as never;
+  return component;
 }
 
 describe("NgxFireworksComponent", () => {
+  it("discards a pending result when the engine changes", async () => {
+    fireworksMock.mockClear();
+    let resolveOld: (value: any) => void = () => {};
+    const oldResult = new Promise<any>(resolve => {
+      resolveOld = resolve;
+    });
+    const oldContainer = { destroy: vi.fn(), play: vi.fn() };
+    const nextContainer = { destroy: vi.fn(), play: vi.fn() };
+    fireworksMock.mockReturnValueOnce(oldResult).mockResolvedValueOnce(nextContainer);
+    const component = createComponent();
+    component.ngAfterViewInit();
+    const previousEngine = component.engine;
+    component.engine = {} as never;
+    component.ngOnChanges({
+      engine: {
+        previousValue: previousEngine,
+        currentValue: component.engine,
+        firstChange: false,
+        isFirstChange: () => false,
+      },
+    });
+    await vi.waitFor(() => expect(fireworksMock).toHaveBeenCalledTimes(2));
+    resolveOld(oldContainer);
+    await vi.waitFor(() => expect(oldContainer.destroy).toHaveBeenCalledTimes(1));
+    expect(nextContainer.destroy).not.toHaveBeenCalled();
+    component.ngOnDestroy();
+    expect(nextContainer.destroy).toHaveBeenCalledTimes(1);
+  });
+
   it("does not start on the server platform", () => {
     fireworksMock.mockClear();
 

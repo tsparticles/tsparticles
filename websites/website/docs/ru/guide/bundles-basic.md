@@ -42,7 +42,8 @@ pnpm add @tsparticles/engine @tsparticles/basic
 ```
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBasic } from "@tsparticles/basic";
 
 await loadBasic(tsParticles);

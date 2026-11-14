@@ -1,8 +1,8 @@
 /* eslint-disable */
 import {
+  AnimatableColor,
   AnimationOptions,
   AnimationValueWithRandom,
-  AnimatableColor,
   Background,
   ColorAnimation,
   Fill,
@@ -35,13 +35,15 @@ import {
   Stroke,
   ValueWithRandom,
   ZIndex,
+  createEngine,
   loadProperty,
   loadRangeProperty,
-  tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 interface TestPropertyTarget {
   value?: unknown;

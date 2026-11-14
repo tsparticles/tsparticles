@@ -69,7 +69,8 @@ const { loadOpacityUpdater } = require("@tsparticles/updater-opacity");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
 
 (async () => {

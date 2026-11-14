@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti-falling
 ## Prêt à l'emploi (démarrage/arrêt manuel)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiFallingPreset } from "@tsparticles/preset-confetti-falling";
 import type { Container } from "@tsparticles/engine";
 

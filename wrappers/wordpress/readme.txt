@@ -16,7 +16,7 @@ Example block scaffolded with Create Block tool.
 Official tsParticles WordPress Plugin
 
 Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.
-Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.
+Ready to use components available also for Web Components, Vue.js 3.x, Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.
 
 Official tsParticles website with options editor: <https://particles.js.org>
 

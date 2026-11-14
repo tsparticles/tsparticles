@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ## Betriebsbereit (manueller Start/Stopp)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSeaAnemonePreset } from "@tsparticles/preset-sea-anemone";
 import type { Container } from "@tsparticles/engine";
 

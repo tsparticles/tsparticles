@@ -6,3 +6,5 @@ export type RibbonsOptions = RecursivePartial<IRibbonsOptions>;
 
 export * from "./ribbons.js";
 export type * from "./RibbonsParams.js";
+
+export type { RibbonsApi } from "./types.js";

@@ -1,11 +1,12 @@
-import { onMount } from "solid-js";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
+import { onMount } from "solid-js";
 
 export default function App() {
   onMount(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   });
@@ -37,7 +38,7 @@ export default function App() {
       <div id="app-content">
         <h1>Hello, tsParticles!</h1>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </>
   );
 }

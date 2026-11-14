@@ -1,4 +1,4 @@
-import { defineConfig, type DefaultTheme } from "vitepress";
+import { type DefaultTheme, defineConfig } from "vitepress";
 import { loadEnv } from "vite";
 
 const base = process.env.VITEPRESS_BASE ?? "/";
@@ -7,15 +7,15 @@ const hostname = "https://particles.js.org";
 const buildLocalesOnly = process.env.VITEPRESS_LOCALES_ONLY === "true";
 
 const srcExclude = process.env.VITEPRESS_EXCLUDE
-  ? process.env.VITEPRESS_EXCLUDE.split(",").map((p) => p.trim()).filter(Boolean)
+  ? process.env.VITEPRESS_EXCLUDE.split(",")
+      .map((p) => p.trim())
+      .filter(Boolean)
   : [];
 
 const ignoreDeadLinks: Array<RegExp | string> = [/^\/docs\//];
 
 if (buildLocalesOnly) {
-  ignoreDeadLinks.push(
-    /^\/(?:api|demos|guide|guides|migrations|options|playground|showcase)(?:\/|$)/,
-  );
+  ignoreDeadLinks.push(/^\/(?:api|demos|guide|guides|migrations|options|playground|showcase)(?:\/|$)/);
 }
 
 const loadedEnv = loadEnv("", process.cwd(), "VITE_");
@@ -74,10 +74,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Svelte", link: "/guide/wrappers-svelte" },
         { text: "Vue", link: "/guide/wrappers-vue3" },
         { text: "Next.js", link: "/guide/wrappers-nextjs" },
-        { text: "Nuxt 2", link: "/guide/wrappers-nuxt2" },
-        { text: "Nuxt 3", link: "/guide/wrappers-nuxt3" },
         { text: "Nuxt 4", link: "/guide/wrappers-nuxt4" },
-        { text: "Vue 2", link: "/guide/wrappers-vue2" },
         { text: "Vue 3", link: "/guide/wrappers-vue3" },
         { text: "Angular Confetti", link: "/guide/wrappers-angular-confetti" },
         { text: "Angular Fireworks", link: "/guide/wrappers-angular-fireworks" },
@@ -159,10 +156,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Svelte", link: "/guide/wrappers-svelte" },
         { text: "Vue", link: "/guide/wrappers-vue3" },
         { text: "Next.js", link: "/guide/wrappers-nextjs" },
-        { text: "Nuxt 2", link: "/guide/wrappers-nuxt2" },
-        { text: "Nuxt 3", link: "/guide/wrappers-nuxt3" },
         { text: "Nuxt 4", link: "/guide/wrappers-nuxt4" },
-        { text: "Vue 2", link: "/guide/wrappers-vue2" },
         { text: "Vue 3", link: "/guide/wrappers-vue3" },
         { text: "Angular Confetti", link: "/guide/wrappers-angular-confetti" },
         { text: "Angular Fireworks", link: "/guide/wrappers-angular-fireworks" },

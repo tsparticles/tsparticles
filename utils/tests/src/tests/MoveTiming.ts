@@ -1,12 +1,14 @@
-import { beforeAll, describe, expect, it } from "vitest";
+import { type ISourceOptions, createEngine, defaultFps, millisecondsToSeconds } from "@tsparticles/engine";
 // Keep workspace imports grouped after external packages per repository convention.
-// eslint-disable-next-line sort-imports
-import { type ISourceOptions, defaultFps, millisecondsToSeconds, tsParticles } from "@tsparticles/engine";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-// eslint-disable-next-line sort-imports
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-// eslint-disable-next-line sort-imports
+
+import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+import { loadMovePlugin } from "@tsparticles/plugin-move";
+
+const tsParticles = createEngine();
 
 type MoveOptions = NonNullable<NonNullable<ISourceOptions["particles"]>["move"]>;
 

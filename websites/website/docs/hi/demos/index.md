@@ -5,7 +5,8 @@
 ## पैटर्न बेस स्टार्ट/स्टॉप (कोई ऑटोप्ले नहीं)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;
@@ -60,4 +61,4 @@ export function resume(): void {
 मोनोरेपो में चलाने योग्य एकीकरण डेमो भी शामिल हैं:
 
 - स्रोत फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- उपलब्ध डेमो में शामिल हैं: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`।
+- उपलब्ध डेमो में शामिल हैं: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue3`, `webcomponents`।

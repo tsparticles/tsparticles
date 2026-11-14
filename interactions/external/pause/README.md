@@ -74,7 +74,8 @@ const { loadExternalPauseInteraction } = require("@tsparticles/interaction-exter
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalPauseInteraction } from "@tsparticles/interaction-external-pause";
 

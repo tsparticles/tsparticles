@@ -72,7 +72,8 @@ const { loadShadowEffect } = require("@tsparticles/effect-shadow");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadShadowEffect } from "@tsparticles/effect-shadow";
 
 (async () => {

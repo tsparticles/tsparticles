@@ -20,10 +20,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
 ### Vue ecosystem
 
-- [`Vue 2`](/guide/wrappers-vue2)
 - [`Vue 3`](/guide/wrappers-vue3)
-- [`Nuxt 2`](/guide/wrappers-nuxt2)
-- [`Nuxt 3`](/guide/wrappers-nuxt3)
 - [`Nuxt 4`](/guide/wrappers-nuxt4)
 
 ### Others (alphabetical)
@@ -72,10 +69,6 @@ Ordering rule for this section:
   Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - local guide: [`/guide/wrappers-lit`](/guide/wrappers-lit)
 - `@tsparticles/nextjs`: Next.js wrapper around `@tsparticles/react`  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - local guide: [`/guide/wrappers-nextjs`](/guide/wrappers-nextjs)
-- `@tsparticles/nuxt2`: Nuxt 2 module (client-side registration)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - local guide: [`/guide/wrappers-nuxt2`](/guide/wrappers-nuxt2)
-- `@tsparticles/nuxt3`: Nuxt 3 module (client-side registration)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - local guide: [`/guide/wrappers-nuxt3`](/guide/wrappers-nuxt3)
 - `@tsparticles/nuxt4`: Nuxt 4 module (client-side registration)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - local guide: [`/guide/wrappers-nuxt4`](/guide/wrappers-nuxt4)
 - `@tsparticles/preact`: Preact component wrapper  
@@ -92,8 +85,6 @@ Ordering rule for this section:
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - local guide: [`/guide/wrappers-stencil`](/guide/wrappers-stencil)
 - `@tsparticles/svelte`: Svelte component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - local guide: [`/guide/wrappers-svelte`](/guide/wrappers-svelte)
-- `@tsparticles/vue2`: Vue 2 component wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - local guide: [`/guide/wrappers-vue2`](/guide/wrappers-vue2)
 - `@tsparticles/vue3`: Vue 3 component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - local guide: [`/guide/wrappers-vue3`](/guide/wrappers-vue3)
 - `@tsparticles/webcomponents`: Web Components wrapper (`<web-particles />`)  
@@ -132,8 +123,6 @@ Source demos folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
 | `@tsparticles/jquery`        | `demo/jquery`                                         |
 | `@tsparticles/lit`           | `demo/lit`                                            |
 | `@tsparticles/nextjs`        | `demo/nextjs`, `demo/nextjs-legacy`                   |
-| `@tsparticles/nuxt2`         | `demo/nuxt2`                                          |
-| `@tsparticles/nuxt3`         | `demo/nuxt3`                                          |
 | `@tsparticles/nuxt4`         | `demo/nuxt4`                                          |
 | `@tsparticles/preact`        | `demo/preact`                                         |
 | `@tsparticles/qwik`          | `demo/qwik`                                           |
@@ -142,7 +131,6 @@ Source demos folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
 | `@tsparticles/solid`         | `demo/solid`                                          |
 | `@tsparticles/stencil`       | `demo/stencil`                                        |
 | `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                      |
-| `@tsparticles/vue2`          | `demo/vue2`                                           |
 | `@tsparticles/vue3`          | `demo/vue3`                                           |
 | `@tsparticles/webcomponents` | `demo/webcomponents`                                  |
 | `@tsparticles/wordpress`     | not applicable (requires full WordPress installation) |
@@ -158,6 +146,8 @@ Source demos folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
 > The `init` callback runs only once for the entire app lifecycle.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import type { Engine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
@@ -168,7 +158,7 @@ const init = async (engine: Engine): Promise<void> => {
 
 export function Background() {
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={particlesEngine} init={init}>
       <Particles id="tsparticles" options={{ particles: { move: { enable: true } } }} />
     </ParticlesProvider>
   );

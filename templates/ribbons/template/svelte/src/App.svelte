@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { ribbons } from "@tsparticles/ribbons";
+  import { engine } from "../particlesEngine";
+
+  import { createRibbons } from "@tsparticles/ribbons";
+  const ribbons = createRibbons(engine);
 
   function fire(): void {
     ribbons();

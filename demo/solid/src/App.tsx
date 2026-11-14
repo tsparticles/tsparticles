@@ -1,14 +1,15 @@
-import configs from "@tsparticles/configs";
-import type { Container } from "@tsparticles/engine";
 import type { Component } from "solid-js";
+import type { Container } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
 import { createSignal } from "solid-js";
-import { loadFull } from "tsparticles";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
+import { loadFull } from "tsparticles";
 
 type ConfigKey = keyof typeof configs;
 const configKeys = Object.keys(configs) as ConfigKey[];
 
-initParticlesEngine(async engine => {
+initParticlesEngine(engine, async engine => {
   await loadFull(engine);
 }).catch(e => console.error("Failed to initialize particles engine:", e));
 
@@ -32,7 +33,7 @@ const App: Component = () => {
           </span>
         ))}
       </div>
-      <Particles id="tsparticles" options={options()} particlesLoaded={particlesLoaded} />
+      <Particles engine={engine} id="tsparticles" options={options()} particlesLoaded={particlesLoaded} />
       <div class="footer">Click a config pill above to switch particle options at runtime.</div>
     </main>
   );

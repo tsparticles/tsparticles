@@ -30,11 +30,13 @@ yarn add @tsparticles/inferno @tsparticles/engine
 Initialize tsParticles once in your app entry, then render one or more `<Particles />` components.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { Component } from "inferno";
 import { Particles, initParticlesEngine } from "@tsparticles/inferno";
 import type { Container, Engine } from "@tsparticles/engine";
 
-void initParticlesEngine(async (engine: Engine) => {
+void initParticlesEngine(particlesEngine, async (engine: Engine) => {
   const [{ loadSlim }] = await Promise.all([import("@tsparticles/slim")]);
 
   await loadSlim(engine);
@@ -48,6 +50,7 @@ export default class App extends Component {
   render() {
     return (
       <Particles
+        engine={particlesEngine}
         id="tsparticles"
         options={{
           fullScreen: {
@@ -74,20 +77,20 @@ export default class App extends Component {
 
 ## Props
 
-| Prop            | Type                                                                                                                                     | Definition                                                                                                                                                         |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| id              | string                                                                                                                                   | The id of the element.                                                                                                                                             |
-| width           | string                                                                                                                                   | The width of the canvas.                                                                                                                                           |
-| height          | string                                                                                                                                   | The height of the canvas.                                                                                                                                          |
-| options         | object                                                                                                                                   | The options of the particles instance.                                                                                                                             |
-| url             | string                                                                                                                                   | The remote options url, called using an AJAX request                                                                                                               |
-| style           | object                                                                                                                                   | The style of the canvas element.                                                                                                                                   |
-| className       | string                                                                                                                                   | The class name of the canvas wrapper.                                                                                                                              |
-| canvasClassName | string                                                                                                                                   | The class name of the canvas.                                                                                                                                      |
-| container       | object                                                                                                                                   | A ref-like object (`{ current?: Container }`) that receives the particles [container](https://particles.js.org/docs/modules/Core_Container.html) instance on load. |
-| loaded          | function                                                                                                                                 | Callback invoked when particles are correctly loaded in canvas, receives `(container?: Container)`.                                                                |
-| particlesLoaded | function                                                                                                                                 | Alias for `loaded`, receives `(container?: Container)`.                                                                                                            |
-| theme           | string                                                                                                                                   | Theme name to apply. Requires `@tsparticles/plugin-themes` to be registered. Without the plugin, setting this prop is a safe no-op.                                |
+| Prop            | Type     | Definition                                                                                                                                                         |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id              | string   | The id of the element.                                                                                                                                             |
+| width           | string   | The width of the canvas.                                                                                                                                           |
+| height          | string   | The height of the canvas.                                                                                                                                          |
+| options         | object   | The options of the particles instance.                                                                                                                             |
+| url             | string   | The remote options url, called using an AJAX request                                                                                                               |
+| style           | object   | The style of the canvas element.                                                                                                                                   |
+| className       | string   | The class name of the canvas wrapper.                                                                                                                              |
+| canvasClassName | string   | The class name of the canvas.                                                                                                                                      |
+| container       | object   | A ref-like object (`{ current?: Container }`) that receives the particles [container](https://particles.js.org/docs/modules/Core_Container.html) instance on load. |
+| loaded          | function | Callback invoked when particles are correctly loaded in canvas, receives `(container?: Container)`.                                                                |
+| particlesLoaded | function | Alias for `loaded`, receives `(container?: Container)`.                                                                                                            |
+| theme           | string   | Theme name to apply. Requires `@tsparticles/plugin-themes` to be registered. Without the plugin, setting this prop is a safe no-op.                                |
 
 ### Reactivity
 

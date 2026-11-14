@@ -1,8 +1,9 @@
-/**
- * Engine class for creating the singleton on globalThis.
- * It's a singleton class for initializing {@link Container} instances
- */
 import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
+/**
+ * An application-owned engine with independent containers and registrations.
+ * Initializes {@link Container} instances
+ */
+import { canvasOwner, transferredCanvasKey } from "./Utils/CanvasOwnership.js";
 import { getCanvasFromContainer, getDataFromUrl, getDomContainer, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
@@ -13,11 +14,18 @@ import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import { PluginManager } from "./Utils/PluginManager.js";
 import { getRandom } from "../Utils/MathUtils.js";
 
+interface CanvasOwnership {
+  [canvasOwner]?: Container;
+  [transferredCanvasKey]?: OffscreenCanvas & CanvasOwnership;
+}
+
 declare const __VERSION__: string;
 
+type OwnedCanvas = (HTMLCanvasElement | OffscreenCanvas) & CanvasOwnership;
+
 /**
- * Engine class for creating the singleton on globalThis.
- * It's a singleton class for initializing {@link Container} instances,
+ * An application-owned engine with independent containers and registrations.
+ * Initializes {@link Container} instances,
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
@@ -159,6 +167,18 @@ export class Engine {
         return undefined;
       }
 
+      const sourceCanvas: OwnedCanvas =
+          typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
+            ? params.element
+            : getCanvasFromContainer(getDomContainer(id, domSourceElement)),
+        owner = sourceCanvas[canvasOwner] ?? sourceCanvas[transferredCanvasKey]?.[canvasOwner];
+
+      if (owner && !owner.destroyed && (!this.items.includes(owner) || owner.id.description !== id)) {
+        throw new Error("This canvas is already owned by another engine.");
+      }
+
+      let ownedRenderCanvas: OwnedCanvas | undefined;
+
       /* elements */
       const currentOptions = itemFromSingleOrMultiple(options, index),
         { items } = this,
@@ -169,6 +189,14 @@ export class Engine {
           },
           id,
           onDestroy: (remove): void => {
+            if (sourceCanvas[canvasOwner] === newItem) {
+              Reflect.deleteProperty(sourceCanvas, canvasOwner);
+            }
+
+            if (ownedRenderCanvas?.[canvasOwner] === newItem) {
+              Reflect.deleteProperty(ownedRenderCanvas, canvasOwner);
+            }
+
             if (!remove) {
               return;
             }
@@ -197,15 +225,14 @@ export class Engine {
         items.push(newItem);
       }
 
-      const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
-        typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
-          ? params.element
-          : getCanvasFromContainer(getDomContainer(id, domSourceElement));
-
-      newItem.canvas.loadCanvas(sourceCanvas);
-
-      /* launch tsParticles */
+      /* Canvas setup and start share the same failure cleanup boundary. */
       try {
+        sourceCanvas[canvasOwner] = newItem;
+        newItem.canvas.loadCanvas(sourceCanvas);
+        ownedRenderCanvas = newItem.canvas.renderCanvas;
+        if (ownedRenderCanvas) {
+          ownedRenderCanvas[canvasOwner] = newItem;
+        }
         await newItem.start();
       } catch (error) {
         newItem.destroy(false);

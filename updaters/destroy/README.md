@@ -69,7 +69,8 @@ const { loadDestroyUpdater } = require("@tsparticles/updater-destroy");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 
 (async () => {

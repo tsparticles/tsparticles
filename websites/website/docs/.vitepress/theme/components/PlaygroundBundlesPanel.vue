@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { confetti, type ConfettiOptions } from "@tsparticles/confetti";
-import { tsParticles, type Container } from "@tsparticles/engine";
-import { fireworks, type FireworkOptions } from "@tsparticles/fireworks";
-import { particles, type ParticlesOptions } from "@tsparticles/particles";
-import { ribbons, type RibbonsOptions } from "@tsparticles/ribbons";
+import type { ConfettiOptions } from "@tsparticles/confetti";
+import type { Container } from "@tsparticles/engine";
+import type { FireworkOptions } from "@tsparticles/fireworks";
+import type { ParticlesOptions } from "@tsparticles/particles";
+import type { RibbonsOptions } from "@tsparticles/ribbons";
 import { reactive, ref } from "vue";
+import { confetti, engine, fireworks, particles, ribbons } from "./playgroundLoaders";
 
 type BundleKey = "confetti" | "fireworks" | "particles" | "ribbons";
 
@@ -108,7 +109,7 @@ const ribbonsContainer = ref<Container | undefined>();
 const ribbonsRunning = ref(false);
 
 function getContainerById(id: string): Container | undefined {
-  return tsParticles.items.find((container) => String(container.id) === id);
+  return engine.items.find((container) => String(container.id) === id);
 }
 
 function destroyById(id: string): void {

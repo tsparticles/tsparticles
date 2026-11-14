@@ -25,12 +25,14 @@ yarn add @tsparticles/astro
 ## How to use
 
 ```astro
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 ---
 import Particles, { initParticlesEngine } from "@tsparticles/astro";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
 
-await initParticlesEngine(async (engine) => {
+await initParticlesEngine(particlesEngine, async (engine) => {
     await loadSlim(engine);
 });
 
@@ -78,19 +80,21 @@ Recommended minimal pattern (client-side) — place this in your page before the
 
 ```html
 <script type="importmap">
+    import { createEngine } from "@tsparticles/engine";
+  const particlesEngine = createEngine();
   {
-    "imports": {
-      "@tsparticles/astro": "/node_modules/@tsparticles/astro/dist/index.client.js",
-      "tsparticles": "/node_modules/tsparticles/esm/index.js"
+      "imports": {
+        "@tsparticles/astro": "/node_modules/@tsparticles/astro/dist/index.client.js",
+        "tsparticles": "/node_modules/tsparticles/esm/index.js"
+      }
     }
-  }
 </script>
 
 <script type="module">
   import { initParticlesEngine } from "@tsparticles/astro";
 
   // Initialize the engine before the web component upgrades.
-  initParticlesEngine(async engine => {
+  initParticlesEngine(particlesEngine, async engine => {
     const { loadFull } = await import("tsparticles");
     await loadFull(engine);
   }).catch(console.error);

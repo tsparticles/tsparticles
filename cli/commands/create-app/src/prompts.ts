@@ -12,8 +12,6 @@ export type Framework =
   | "jquery"
   | "lit"
   | "nextjs"
-  | "nuxt2"
-  | "nuxt3"
   | "nuxt4"
   | "preact"
   | "qwik"
@@ -23,7 +21,6 @@ export type Framework =
   | "stencil"
   | "svelte"
   | "vanilla"
-  | "vue2"
   | "vue3"
   | "webcomponents";
 
@@ -49,8 +46,6 @@ const initialFrameworkIndex = 0,
     { title: "jQuery", value: "jquery" },
     { title: "Lit", value: "lit" },
     { title: "Next.js", value: "nextjs" },
-    { title: "Nuxt 2", value: "nuxt2" },
-    { title: "Nuxt 3", value: "nuxt3" },
     { title: "Nuxt 4", value: "nuxt4" },
     { title: "Preact", value: "preact" },
     { title: "Qwik", value: "qwik" },
@@ -60,7 +55,6 @@ const initialFrameworkIndex = 0,
     { title: "Stencil", value: "stencil" },
     { title: "Svelte", value: "svelte" },
     { title: "Vanilla (Vite + TypeScript)", value: "vanilla" },
-    { title: "Vue 2", value: "vue2" },
     { title: "Vue 3", value: "vue3" },
     { title: "Web Components", value: "webcomponents" },
   ],

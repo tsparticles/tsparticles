@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-links
 ## Ready-to-use (manual start/stop)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import type { Container } from "@tsparticles/engine";
 

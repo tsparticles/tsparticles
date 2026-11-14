@@ -1,5 +1,5 @@
 {
-  "status": "Initial measured payload budgets; unmeasured scenario budgets pending",
+  "status": "E0 payload budgets fixed before runtime changes",
   "budgets": [
     {
       "scenario": "helper",
@@ -100,6 +100,30 @@
       "ratio": 1.02,
       "gzip": 118266,
       "brotli": 96434
+    },
+    {
+      "scenario": "cjs-root-acquisition",
+      "ratio": 1.02,
+      "gzip": 30594,
+      "brotli": 26477
+    },
+    {
+      "scenario": "cjs-lazy-acquisition",
+      "ratio": 1.02,
+      "gzip": 30606,
+      "brotli": 26483
+    },
+    {
+      "scenario": "cjs-full-shipped",
+      "ratio": 1.02,
+      "gzip": 54213,
+      "brotli": 46456
+    },
+    {
+      "scenario": "cdn-minimal-page",
+      "ratio": 1.02,
+      "gzip": 36149,
+      "brotli": 32265
     }
   ]
 }

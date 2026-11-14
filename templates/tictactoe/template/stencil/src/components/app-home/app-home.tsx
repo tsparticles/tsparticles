@@ -1,14 +1,21 @@
 import { Component, State, h } from "@stencil/core";
-import { confetti } from "@tsparticles/confetti";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
+import { engine } from "../../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 type Player = "X" | "O";
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine: number[] } | null {
@@ -18,7 +25,7 @@ function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine:
       return { winner: board[a] as Player, winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) return { winner: "draw" as const, winLine: [] };
+  if (board.every(cell => cell !== null)) return { winner: "draw" as const, winLine: [] };
   return null;
 }
 
@@ -101,6 +108,7 @@ export class AppHome {
     return (
       <div>
         <stencil-particles
+          engine={engine}
           container-id="tsparticles"
           init={this.particlesInit.bind(this)}
           options={particlesOptions}
@@ -108,9 +116,15 @@ export class AppHome {
         <div id="app">
           <h1>Tic-Tac-Toe</h1>
           <div class="scoreboard">
-            <span>X: <strong>{this.scores.X}</strong></span>
-            <span>Draws: <strong>{this.scores.draw}</strong></span>
-            <span>O: <strong>{this.scores.O}</strong></span>
+            <span>
+              X: <strong>{this.scores.X}</strong>
+            </span>
+            <span>
+              Draws: <strong>{this.scores.draw}</strong>
+            </span>
+            <span>
+              O: <strong>{this.scores.O}</strong>
+            </span>
           </div>
           <div class="turn">{this.status}</div>
           <div class="board">
@@ -123,7 +137,9 @@ export class AppHome {
               </div>
             ))}
           </div>
-          <button class="reset-btn" onClick={() => this.handleReset()}>New Game</button>
+          <button class="reset-btn" onClick={() => this.handleReset()}>
+            New Game
+          </button>
         </div>
       </div>
     );

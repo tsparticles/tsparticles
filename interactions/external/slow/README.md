@@ -74,7 +74,8 @@ const { loadExternalSlowInteraction } = require("@tsparticles/interaction-extern
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalSlowInteraction } from "@tsparticles/interaction-external-slow";
 

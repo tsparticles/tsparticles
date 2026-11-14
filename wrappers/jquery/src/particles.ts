@@ -1,52 +1,58 @@
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type Engine, type ISourceOptions } from "@tsparticles/engine";
 
-export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
-let initialized = false;
-let initPromise: Promise<void> | undefined;
-let initCallback: ParticlesPluginRegistrar | undefined;
+type InitializationState = {
+  loaded: boolean;
+  started: boolean;
+  promise: Promise<void>;
+  resolve: () => void;
+  reject: (error: unknown) => void;
+};
 
-async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
-  if (initialized) {
-    return;
+const states = new WeakMap<Engine, InitializationState>();
+
+function getInitializationState(engine: Engine): InitializationState {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing;
   }
-
-  if (initPromise) {
-    if (initCallback !== init) {
-      throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-    }
-
-    await initPromise;
-
-    return;
-  }
-
-  initCallback = init;
-  initPromise = (async () => {
-    if (init) {
-      await init(tsParticles);
-    }
-
-    await tsParticles.init();
-
-    initialized = true;
-  })().catch((error: unknown) => {
-    initPromise = undefined;
-    initCallback = undefined;
-    initialized = false;
-
-    throw error;
+  let resolve = (): void => {},
+    reject: (error: unknown) => void = () => {};
+  const promise = new Promise<void>((onResolve, onReject) => {
+    resolve = onResolve;
+    reject = onReject;
   });
-
-  await initPromise;
+  const state = { loaded: false, started: false, promise, resolve, reject };
+  states.set(engine, state);
+  return state;
 }
 
-function isParticlesEngineInitialized(): boolean {
-  return initialized;
+export async function initParticlesEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+  const state = getInitializationState(engine);
+  if (!state.started) {
+    state.started = true;
+    void Promise.resolve()
+      .then(async () => {
+        await init?.(engine);
+        await engine.init();
+        state.loaded = true;
+        state.resolve();
+      })
+      .catch((error: unknown) => {
+        states.delete(engine);
+        state.reject(error);
+      });
+  }
+  return state.promise;
 }
 
-async function waitForParticlesEngineInitialization(): Promise<void> {
-  await (initPromise ?? Promise.resolve());
+export function isParticlesEngineInitialized(engine: Engine): boolean {
+  return states.get(engine)?.loaded ?? false;
+}
+
+export async function waitForParticlesEngineInitialization(engine: Engine): Promise<void> {
+  await getInitializationState(engine).promise;
 }
 
 const containers = new WeakMap<Element, Container>();
@@ -71,39 +77,30 @@ declare global {
     /**
      * Extension of the example plugin.
      */
-    particles: () => StaticParticlesResult;
+    particles: (engine: Engine) => StaticParticlesResult;
   }
 
   interface JQuery {
     /**
      * Extension of the example plugin.
      */
-    particles: () => ParticlesResult;
+    particles: (engine: Engine) => ParticlesResult;
   }
 }
 
-$.fn.particles = function (): ParticlesResult {
+$.fn.particles = function (engine: Engine): ParticlesResult {
   const load = (options: IParticlesProps): Promise<Container | undefined> => {
     const promises: Promise<Container | undefined>[] = [];
 
     this.each((index, element) => {
       const p = (async () => {
-        // If the wrapper hasn't been initialized yet, attempt a safe
-        // default initialization (no registrar). This avoids throwing
-        // when consumers forget to call $.particles.init(...) while
-        // preserving the ability for apps to call init explicitly.
-        if (!initPromise) {
-          // start initialization (will set initPromise)
-          initParticlesEngine();
-        }
+        await waitForParticlesEngineInitialization(engine);
 
-        await waitForParticlesEngineInitialization();
-
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        const container = await tsParticles.load({ element, options });
+        const container = await engine.load({ element, options });
 
         if (container) {
           containers.set(element, container);
@@ -123,13 +120,13 @@ $.fn.particles = function (): ParticlesResult {
 
     this.each((index, element) => {
       const p = (async () => {
-        await waitForParticlesEngineInitialization();
+        await waitForParticlesEngineInitialization(engine);
 
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        const container = await tsParticles.load({ element, url: jsonUrl });
+        const container = await engine.load({ element, url: jsonUrl });
 
         if (container) {
           containers.set(element, container);
@@ -157,10 +154,10 @@ $.fn.particles = function (): ParticlesResult {
   return { load, ajax, setTheme };
 };
 
-$.particles = function (): StaticParticlesResult {
+$.particles = function (engine: Engine): StaticParticlesResult {
   // $.particles().init(callback?) initializes the engine; callback is the
   // plugin registrar that receives the engine object and can register plugins.
-  const init = (init?: ParticlesPluginRegistrar) => initParticlesEngine(init);
+  const init = (init?: ParticlesPluginRegistrar) => initParticlesEngine(engine, init);
 
   return { init };
 };

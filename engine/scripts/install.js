@@ -43,7 +43,7 @@ const ERR_INCOMPATIBLE = "incompatible-package-found",
     },
     {
       package: "vue2-particles",
-      replacement: "@tsparticles/vue2",
+      replacement: "@tsparticles/vue3 (requires upgrading the application to Vue 3)",
       message: "The package vue2-particles has been deprecated and is not supported anymore.",
     },
   ],
@@ -81,7 +81,7 @@ const ERR_INCOMPATIBLE = "incompatible-package-found",
 
         const version = deps["vue"];
 
-        return version && parseInt(version) > 2;
+        return getMajorVersion(version) >= 3;
       },
       wrapper: "@tsparticles/vue3",
       message:
@@ -89,64 +89,12 @@ const ERR_INCOMPATIBLE = "incompatible-package-found",
       url: "https://github.com/tsparticles/vue3/#readme",
     },
     {
-      framework: "vue2",
-      detector: deps => {
-        if (deps["nuxt"]) {
-          return false;
-        }
-
-        const version = deps["vue"];
-
-        return version && parseInt(version) === 2;
-      },
-      wrapper: "@tsparticles/vue2",
+      framework: "nuxt4",
+      detector: deps => getMajorVersion(deps["nuxt"]) >= 4,
+      wrapper: "@tsparticles/nuxt4",
       message:
-        "Found Vue 2.x installed. Please install @tsparticles/vue2 to use tsParticles with a component ready to use and easier to configure.",
-      url: "https://github.com/tsparticles/vue2/#readme",
-    },
-    {
-      wrapper: "@tsparticles/vue3",
-      message:
-        "Found Vue 3.x installed. Please install @tsparticles/vue3 to use tsParticles with a component ready to use and easier to configure.",
-      url: "https://github.com/tsparticles/vue3/#readme",
-    },
-    {
-      framework: "vue2",
-      detector: deps => {
-        const vue = deps["vue"],
-          nuxt = deps["nuxt"],
-          version = vue || nuxt;
-
-        return version && parseInt(version) === 2;
-      },
-      wrapper: "@tsparticles/vue2",
-      message:
-        "Found Vue 2.x installed. Please install @tsparticles/vue2 to use tsParticles with a component ready to use and easier to configure.",
-      url: "https://github.com/tsparticles/vue2/#readme",
-    },
-    {
-      framework: "nuxt",
-      detector: deps => deps["nuxt"],
-      wrapper: null,
-      dynamic: true,
-      nuxtWrappers: [
-        { minVersion: 4, wrapper: "@tsparticles/nuxt4", url: "https://github.com/tsparticles/nuxt4/#readme" },
-        { minVersion: 3, wrapper: "@tsparticles/nuxt3", url: "https://github.com/tsparticles/nuxt3/#readme" },
-        { minVersion: 0, wrapper: "@tsparticles/nuxt2", url: "https://github.com/tsparticles/nuxt2/#readme" },
-      ],
-      message: version => {
-        const major = parseInt(version);
-
-        if (major >= 4) {
-          return "Found Nuxt 4.x installed. Please install @tsparticles/nuxt4 to use tsParticles with a component optimized for Nuxt 4.";
-        }
-
-        if (major >= 3) {
-          return "Found Nuxt 3.x installed. Please install @tsparticles/nuxt3 to use tsParticles with a component optimized for Nuxt 3.";
-        }
-
-        return "Found Nuxt 2.x installed. Please install @tsparticles/nuxt2 to use tsParticles with a component optimized for Nuxt 2.";
-      },
+        "Found Nuxt 4.x installed. Please install @tsparticles/nuxt4 to use tsParticles with a component optimized for Nuxt 4.",
+      url: "https://github.com/tsparticles/nuxt4/#readme",
     },
     {
       framework: "svelte",
@@ -273,6 +221,16 @@ function checkDeprecated(dependencies) {
   }
 }
 
+function getMajorVersion(version) {
+  if (typeof version !== "string") {
+    return undefined;
+  }
+
+  const match = version.match(/^(?:[~^]|>=?)?\s*(\d+)/u);
+
+  return match ? Number(match[1]) : undefined;
+}
+
 function checkWrappers(dependencies) {
   for (const w of wrappers) {
     if (!w.detector(dependencies)) {
@@ -280,29 +238,6 @@ function checkWrappers(dependencies) {
     }
 
     if (w.alwaysSuggest && dependencies[w.wrapper]) {
-      continue;
-    }
-
-    if (w.dynamic && w.nuxtWrappers) {
-      const nuxtVersion = dependencies["nuxt"],
-        major = parseInt(nuxtVersion) || 0;
-
-      let match;
-
-      for (const nw of w.nuxtWrappers) {
-        if (major >= nw.minVersion) {
-          match = nw;
-          break;
-        }
-      }
-
-      if (match) {
-        if (!dependencies[match.wrapper]) {
-          logWarn(w.message(nuxtVersion));
-          logInfo(`You can read more here: ${match.url}`);
-        }
-      }
-
       continue;
     }
 

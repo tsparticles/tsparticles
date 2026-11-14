@@ -13,7 +13,9 @@ pnpm add @tsparticles/engine @tsparticles/ribbons
 ## Ready-to-use (full page)
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   count: 5,
@@ -24,7 +26,9 @@ await ribbons({
 ## Scoped to a specific canvas
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 import type { Container } from "@tsparticles/engine";
 
 const canvas = document.getElementById("ribbons-canvas") as HTMLCanvasElement;
@@ -52,7 +56,9 @@ Perfect for decorative flowing backgrounds, celebratory cascades, and colorful a
 By default each ribbon particle spawns at a random x position across the full canvas width. Use `emitterSize` to control the spawn area — set it to `{ width: 0, height: 0 }` to make all ribbons start from the same point:
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   positionX: 50,

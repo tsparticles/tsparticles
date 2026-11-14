@@ -1,15 +1,17 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, doublePI, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine, doublePI } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
+import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadRollUpdater } from "@tsparticles/updater-roll";
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
+
+const tsParticles = createEngine();
 
 let containerId = 0;
 

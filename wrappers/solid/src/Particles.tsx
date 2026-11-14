@@ -1,7 +1,7 @@
-import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
+import { type Container, getLogger } from "@tsparticles/engine";
 import { For, JSX, createEffect, createMemo, createSignal, mergeProps, onCleanup, untrack } from "solid-js";
-import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+import type { IParticlesProps } from "./IParticlesProps";
 
 const Particles = (props: IParticlesProps): JSX.Element => {
   const merged = mergeProps({ id: "tsparticles" }, props);
@@ -10,13 +10,14 @@ const Particles = (props: IParticlesProps): JSX.Element => {
   let loadId = 0;
 
   const loadParams = createMemo(() => ({
+    engine: props.engine,
     id: props.id ?? "tsparticles",
     options: props.options ?? props.params,
     url: props.url,
   }));
 
   createEffect(() => {
-    const { id, options, url } = loadParams();
+    const { engine, id, options, url } = loadParams();
     const currentLoadId = ++loadId;
 
     void (async () => {
@@ -25,13 +26,13 @@ const Particles = (props: IParticlesProps): JSX.Element => {
       let newContainer: Container | undefined;
 
       try {
-        await waitForParticlesEngineInitialization();
+        await waitForParticlesEngineInitialization(engine);
 
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
 
-        newContainer = await tsParticles.load({ id, options, url });
+        newContainer = await engine.load({ id, options, url });
       } catch (error: unknown) {
         if (currentLoadId === loadId) {
           getLogger().error("Particles: error loading particles", error);

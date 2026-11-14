@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ## Ready-to-use (manual start/stop)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import type { Container } from "@tsparticles/engine";
 

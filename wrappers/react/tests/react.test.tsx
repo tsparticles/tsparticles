@@ -1,6 +1,6 @@
-import { act } from "react";
-import { createRoot, type Root } from "react-dom/client";
+import { type Root, createRoot } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { act } from "react";
 
 const { containerMock, errorMock, loadMock } = vi.hoisted(() => {
   const containerMock = {
@@ -14,6 +14,11 @@ const { containerMock, errorMock, loadMock } = vi.hoisted(() => {
     loadMock: vi.fn(async () => containerMock),
   };
 });
+
+const engine = {
+  load: loadMock,
+  init: vi.fn(async () => undefined),
+} as unknown as import("@tsparticles/engine").Engine;
 
 vi.mock("@tsparticles/engine", () => ({
   getLogger: () => ({ error: errorMock }),
@@ -69,7 +74,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles id="my-particles" options={options} url="https://example.com/config.json" />
         </ParticlesProvider>,
       );
@@ -92,7 +97,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -113,7 +118,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -127,7 +132,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 2 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -150,7 +155,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -170,7 +175,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles />
         </ParticlesProvider>,
       );
@@ -202,7 +207,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={init}>
+        <ParticlesProvider engine={engine} init={init}>
           <Particles id="old-scene" />
         </ParticlesProvider>,
       );
@@ -214,7 +219,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={init}>
+        <ParticlesProvider engine={engine} init={init}>
           <Particles id="new-scene" />
         </ParticlesProvider>,
       );
@@ -248,7 +253,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -257,7 +262,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 2 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -304,7 +309,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={async () => Promise.resolve()}>
+        <ParticlesProvider engine={engine} init={async () => Promise.resolve()}>
           <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
         </ParticlesProvider>,
       );
@@ -338,7 +343,7 @@ describe("Particles", () => {
 
     await act(async () => {
       root!.render(
-        <ParticlesProvider init={init}>
+        <ParticlesProvider engine={engine} init={init}>
           <Particles />
         </ParticlesProvider>,
       );
@@ -346,5 +351,33 @@ describe("Particles", () => {
     });
 
     expect(init).toHaveBeenCalledTimes(1);
+  });
+  it("keeps two providers independent when one is unmounted", async () => {
+    const { Particles, ParticlesProvider } = await loadModules();
+    const firstContainer = { destroy: vi.fn() },
+      secondContainer = { destroy: vi.fn() };
+    const first = { init: vi.fn(async () => undefined), load: vi.fn(async () => firstContainer) } as never;
+    const second = { init: vi.fn(async () => undefined), load: vi.fn(async () => secondContainer) } as never;
+    root = createRoot(host!);
+    const render = (includeFirst: boolean) => (
+      <>
+        {includeFirst && (
+          <ParticlesProvider key="first" engine={first}>
+            <Particles id="first" />
+          </ParticlesProvider>
+        )}
+        <ParticlesProvider key="second" engine={second}>
+          <Particles id="second" />
+        </ParticlesProvider>
+      </>
+    );
+    await act(async () => {
+      root!.render(render(true));
+    });
+    await act(async () => {
+      root!.render(render(false));
+    });
+    expect(firstContainer.destroy).toHaveBeenCalledOnce();
+    expect(secondContainer.destroy).not.toHaveBeenCalled();
   });
 });

@@ -1,6 +1,8 @@
 import { LitElement, html } from "lit";
+import { createRibbons } from "@tsparticles/ribbons";
 import { customElement } from "lit/decorators.js";
-import { ribbons } from "@tsparticles/ribbons";
+import { engine } from "./particlesEngine";
+const ribbons = createRibbons(engine);
 
 @customElement("my-app")
 export class MyApp extends LitElement {

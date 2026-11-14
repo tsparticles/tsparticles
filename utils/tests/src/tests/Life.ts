@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, setRandom, tsParticles } from "@tsparticles/engine";
+import { type Container, createEngine, setRandom } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { Life } from "../../../../updaters/life/src/Options/Classes/Life.js";
 import type { LifeParticle } from "../../../../updaters/life/src/Types.js";
 import { LifeUpdater } from "../../../../updaters/life/src/LifeUpdater.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 interface LifeFixture {
   container: Container;

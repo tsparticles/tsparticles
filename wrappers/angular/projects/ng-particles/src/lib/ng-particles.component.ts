@@ -10,11 +10,11 @@ import {
   PLATFORM_ID,
   SimpleChanges,
 } from "@angular/core";
-import { isPlatformServer } from "@angular/common";
-import { getLogger, tsParticles } from "@tsparticles/engine";
 import type { Container } from "@tsparticles/engine";
 import { IParticlesProps } from "./ng-particles.module";
 import { NgParticlesService } from "./ng-particles.service";
+import { getLogger } from "@tsparticles/engine";
+import { isPlatformServer } from "@angular/common";
 
 @Component({
   selector: "ngx-particles",
@@ -89,7 +89,7 @@ export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestro
 
       this.#container?.destroy();
 
-      const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+      const container = await this.#particlesService.engine.load({ id: this.id, options: this.options, url: this.url });
 
       if (loadId !== this.#loadId) {
         /* a newer load has been requested with the latest inputs, so this container is not the current one */

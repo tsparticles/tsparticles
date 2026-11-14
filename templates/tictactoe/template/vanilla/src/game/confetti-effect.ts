@@ -1,4 +1,6 @@
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../particlesEngine";
+const confetti = createConfetti(engine);
 
 export function fireConfetti(): void {
   const count = 200;

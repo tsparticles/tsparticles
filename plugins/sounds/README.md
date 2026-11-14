@@ -69,7 +69,8 @@ const { loadSoundsPlugin } = require("@tsparticles/plugin-sounds");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 
 (async () => {

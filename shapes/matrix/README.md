@@ -72,7 +72,8 @@ const { loadMatrixShape } = require("@tsparticles/shape-matrix");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadMatrixShape } from "@tsparticles/shape-matrix";
 
 (async () => {

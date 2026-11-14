@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiExplosionsPreset } from "@tsparticles/preset-confetti-explosions";
 import type { Container } from "@tsparticles/engine";
 

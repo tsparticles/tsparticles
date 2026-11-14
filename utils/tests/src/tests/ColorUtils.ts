@@ -6,6 +6,7 @@ import {
   type IHsla,
   type IRgb,
   colorToRgb,
+  createEngine,
   getRandomRgbColor,
   getStyleFromHsl,
   getStyleFromRgb,
@@ -13,13 +14,14 @@ import {
   hslaToRgba,
   stringToAlpha,
   stringToRgb,
-  tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
 import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
+
+const tsParticles = createEngine();
 
 describe("ColorUtils", async () => {
   const pluginManager = tsParticles.pluginManager;
@@ -378,12 +380,7 @@ describe("ColorUtils", async () => {
     });
 
     it("keeps all channels within the display headroom for every mode", () => {
-      for (const mode of [
-        HdrMode.natural,
-        HdrMode.vivid,
-        HdrMode.cinematic,
-        HdrMode.dynamic,
-      ]) {
+      for (const mode of [HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic]) {
         const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, mode)),
           maxChannel = Math.max(1, 400 / referenceWhiteNits);
 

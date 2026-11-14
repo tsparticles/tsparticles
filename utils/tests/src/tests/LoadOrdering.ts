@@ -1,10 +1,11 @@
-import { type Container, type IPlugin, tsParticles } from "@tsparticles/engine";
+import { type Container, type IPlugin, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { Engine } from "../../../../engine/src/Core/Engine.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
-const canvasWidth = 400,
+const tsParticles = createEngine(),
+  canvasWidth = 400,
   canvasHeight = 300,
   noParticles = 0;
 

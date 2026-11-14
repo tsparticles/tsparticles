@@ -1,92 +1,59 @@
-import { type Engine, tsParticles } from "@tsparticles/engine";
-import { inject, reactive, type App, type InjectionKey } from "vue";
+import { type App, type InjectionKey, inject, markRaw, reactive } from "vue";
+import type { Engine } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
+const states = new WeakMap<Engine, { loaded: boolean; promise: Promise<void> }>();
+
+async function initializeEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing.promise;
+  }
+  const state = { loaded: false, promise: Promise.resolve() };
+  states.set(engine, state);
+  state.promise = Promise.resolve()
+    .then(async () => {
+      await init?.(engine);
+      await engine.init();
+      state.loaded = true;
+    })
+    .catch((error: unknown) => {
+      states.delete(engine);
+      throw error;
+    });
+  return state.promise;
+}
+
 export interface IParticlesProviderOptions {
+  engine: Engine;
   init?: ParticlesPluginRegistrar;
 }
 
 export interface IParticlesProviderContext {
+  engine: Engine;
   loaded: boolean;
 }
 
 export const particlesProviderKey: InjectionKey<IParticlesProviderContext> = Symbol("particles-provider");
 
-interface IParticlesInitializationState {
-  callback?: ParticlesPluginRegistrar;
-  loaded: boolean;
-  promise?: Promise<void>;
+export function createParticlesProviderContext(engine: Engine): IParticlesProviderContext {
+  return reactive({ engine: markRaw(engine), loaded: false });
 }
 
-const globalStateKey = "__tsparticles_vue3_init_state__";
-
-function getGlobalInitializationState(): IParticlesInitializationState {
-  const globalStore = globalThis as typeof globalThis & {
-    [globalStateKey]?: IParticlesInitializationState;
-  };
-
-  globalStore[globalStateKey] ??= {
-    loaded: false,
-  };
-
-  return globalStore[globalStateKey];
-}
-
-export function createParticlesProviderContext(): IParticlesProviderContext {
-  return reactive<IParticlesProviderContext>({ loaded: false });
-}
-
-export function initParticlesProvider(
+export async function initParticlesProvider(
   _app: App,
   context: IParticlesProviderContext,
   init?: ParticlesPluginRegistrar,
 ): Promise<void> {
-  const state = getGlobalInitializationState();
-
-  if (state.promise && state.callback !== init && !state.loaded) {
-    throw new Error("@tsparticles/vue3 init callback must be stable across the app lifecycle.");
-  }
-
-  if (state.loaded) {
-    context.loaded = true;
-
-    return Promise.resolve();
-  }
-
-  if (state.promise) {
-    return state.promise.then(() => {
-      context.loaded = true;
-    });
-  }
-
-  state.callback = init;
-  state.promise = (async () => {
-    if (init) {
-      await init(tsParticles);
-    }
-
-    await tsParticles.init();
-
-    state.loaded = true;
-    context.loaded = true;
-  })().catch(error => {
-    state.promise = undefined;
-    state.callback = undefined;
-    state.loaded = false;
-
-    throw error;
-  });
-
-  return state.promise;
+  await initializeEngine(context.engine, init);
+  context.loaded = true;
 }
 
 export function useParticlesProvider(): IParticlesProviderContext {
   const context = inject(particlesProviderKey, undefined);
-
   if (!context) {
-    throw new Error("@tsparticles/vue3 plugin is required. Register it with app.use(Particles, { init }).");
+    throw new Error("@tsparticles/vue3 requires app.use(Particles, { engine, init }).");
   }
-
   return context;
 }

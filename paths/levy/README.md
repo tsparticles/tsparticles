@@ -69,7 +69,8 @@ const { loadLevyPath } = require("@tsparticles/path-levy");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLevyPath } from "@tsparticles/path-levy";
 
 (async () => {

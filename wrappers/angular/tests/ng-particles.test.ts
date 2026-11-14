@@ -22,11 +22,12 @@ vi.mock("@tsparticles/engine", () => ({
   },
 }));
 
-import { NgxParticlesComponent } from "../projects/ng-particles/src/lib/ng-particles.component.js";
 import type { NgParticlesService } from "../projects/ng-particles/src/lib/ng-particles.service.js";
+import { NgxParticlesComponent } from "../projects/ng-particles/src/lib/ng-particles.component.js";
 
 function createService(): NgParticlesService {
   return {
+    engine: { load: loadMock },
     assertInitialized: vi.fn(),
     init: vi.fn(async () => Promise.resolve()),
     loaded: true,

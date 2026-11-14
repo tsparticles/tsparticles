@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-14",
+  "environment": {
+    "CI": "true",
+    "NX_DAEMON": "false",
+    "NX_ISOLATE_PLUGINS": "false",
+    "NX_NO_CLOUD": "true"
+  },
+  "command": "pnpm nx run-many -t build --projects=<all excluding cli, website, palette> --skipNxCache --outputStyle=static --parallel=6",
+  "executed": 450,
+  "initialFailures": [
+    "@tsparticles/jquery:build",
+    "@tsparticles/preact:build",
+    "@tsparticles/inferno:build",
+    "@tsparticles/electron-demo:build"
+  ],
+  "followup": "All four reported failures corrected; six follow-up consumer builds passed. Thirteen wrapper/tool builds passed, but Ember diagnostics required an additional fixture migration; final Ember rebuild is clean. Final tests: 23 projects, 1099 tests. Electron client compiled; packaging skipped existing output, so fresh packaging not verified."
+}

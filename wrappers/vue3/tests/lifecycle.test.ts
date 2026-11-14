@@ -5,6 +5,11 @@ import { particlesProviderKey } from "../src/components/particles-provider.js";
 
 const { loadMock } = vi.hoisted(() => ({ loadMock: vi.fn() }));
 
+const engine = {
+  load: loadMock,
+  init: vi.fn(async () => undefined),
+} as unknown as import("@tsparticles/engine").Engine;
+
 vi.mock("@tsparticles/engine", () => ({
   tsParticles: { load: loadMock },
 }));
@@ -19,7 +24,7 @@ it("replaces the host when its id changes during a pending load", async () => {
     app = createApp(() => h(Particles, { id: id.value, onParticlesLoaded: loaded }));
 
   loadMock.mockReturnValueOnce(pending.promise).mockResolvedValueOnce(current);
-  app.provide(particlesProviderKey, { loaded: true });
+  app.provide(particlesProviderKey, { engine, loaded: true });
   app.mount(host);
 
   try {

@@ -1,12 +1,11 @@
-import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
+import "./style.css";
+
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
-globalThis.tsParticles = tsParticles;
-
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 
@@ -164,3 +163,7 @@ document.body.innerHTML = `
 const particlesEl = document.getElementById("tsparticles");
 
 (particlesEl as unknown as { options: ISourceOptions }).options = options;
+
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

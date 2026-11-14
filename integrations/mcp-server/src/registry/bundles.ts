@@ -166,7 +166,7 @@ export const bundles: BundleInfo[] = [
     name: "@tsparticles/confetti",
     description:
       "Confetti-focused bundle. Extends basic with emitters, motion plugin, decorative shapes, and celebration updaters.",
-    loadFunction: "doInitPlugins",
+    loadFunction: "createConfetti",
     extends: "@tsparticles/basic",
     packages: [
       "@tsparticles/basic",
@@ -190,7 +190,7 @@ export const bundles: BundleInfo[] = [
     name: "@tsparticles/fireworks",
     description:
       "Fireworks-focused bundle. Extends basic with line shape, emitters, sounds, and firework-related updaters.",
-    loadFunction: "doInitPlugins",
+    loadFunction: "createFireworks",
     extends: "@tsparticles/basic",
     packages: [
       "@tsparticles/basic",
@@ -208,7 +208,7 @@ export const bundles: BundleInfo[] = [
   {
     name: "@tsparticles/particles",
     description: "Lightweight general particle system. Extends basic with interactivity, collisions, and links.",
-    loadFunction: "doInitPlugins",
+    loadFunction: "createParticles",
     extends: "@tsparticles/basic",
     packages: [
       "@tsparticles/basic",
@@ -220,7 +220,7 @@ export const bundles: BundleInfo[] = [
   {
     name: "@tsparticles/ribbons",
     description: "Ribbons effect bundle. Extends basic with motion, emitters, ribbon shape, and life updater.",
-    loadFunction: "doInitPlugins",
+    loadFunction: "createRibbons",
     extends: "@tsparticles/basic",
     packages: [
       "@tsparticles/basic",
@@ -235,11 +235,8 @@ export const bundles: BundleInfo[] = [
     name: "@tsparticles/pjs",
     description:
       "particles.js compatibility layer. Drop-in replacement for particles.js with full API compatibility. Wraps the full tsparticles bundle.",
-    loadFunction: "doInitPlugins",
+    loadFunction: "initPjs",
     extends: "tsparticles",
-    packages: [
-      "tsparticles",
-      "@tsparticles/plugin-responsive",
-    ],
+    packages: ["tsparticles", "@tsparticles/plugin-responsive"],
   },
 ];

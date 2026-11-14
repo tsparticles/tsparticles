@@ -1,0 +1,303 @@
+
+ NX   Running target build for 6 projects:
+
+- @tsparticles/jquery
+- @tsparticles/preact
+- @tsparticles/inferno
+- @tsparticles/rollup-plugin
+- @tsparticles/rolldown-plugin
+- @tsparticles/mcp-server
+
+
+
+> nx run @tsparticles/jquery:build
+
+(node:82349) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82353) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme && node ../../scripts/resolve-dist-package.cjs
+(node:82432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:82518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/particles.ts 47ms (unchanged)
+(node:82572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:82604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82677) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc
+(node:83257) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rollup -c
+babelHelpers: 'bundled' option was used by default. It is recommended to configure this option explicitly, read more here: https://github.com/rollup/plugins/tree/master/packages/babel#babelhelpers
+
+dist/particles.js → dist/jquery.particles.js...
+(node:83286) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(!) If you do not supply "output.name", you may not be able to access the exports of an IIFE bundle.
+https://rollupjs.org/configuration-options/#output-name
+created dist/jquery.particles.js in 67ms
+(node:83291) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map "filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'"
+(node:83352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:83411) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 77ms (unchanged)
+
+> nx run @tsparticles/preact:build
+
+(node:82350) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82351) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run lint && cross-env NODE_ENV=production webpack && pnpm run prettify:readme
+(node:82430) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:82519) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/IParticlesProps.ts 15ms (unchanged)
+src/IParticlesState.ts 2ms (unchanged)
+src/Particles.tsx 33ms (unchanged)
+src/Utils.ts 6ms (unchanged)
+src/index.ts 1ms (unchanged)
+src/initParticlesEngine.ts 5ms (unchanged)
+(node:82573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:82633) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+asset particles.js 6.41 KiB [emitted] [minimized] (name: main)
+orphan modules 12.1 KiB [orphan] 5 modules
+runtime modules 883 bytes 4 modules
+./src/index.ts + 5 modules 12.3 KiB [not cacheable] [built] [code generated]
+webpack 5.112.2 compiled successfully in 2039 ms
+
+asset particles.js 6.83 KiB [emitted] [minimized] (name: main)
+runtime modules 883 bytes 4 modules
+orphan modules 12 KiB [orphan] 3 modules
+built modules 12.3 KiB [built]
+  ./src/index.ts + 3 modules 12.2 KiB [built] [code generated]
+  external {"commonjs":"@tsparticles/engine","commonjs2":"@tsparticles/engine","am...(truncated) 42 bytes [built] [code generated]
+  external "preact/compat" 42 bytes [built] [code generated]
+webpack 5.112.2 compiled successfully in 2072 ms
+(node:83432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:83463) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 71ms (unchanged)
+
+> nx run @tsparticles/rollup-plugin:build
+
+(node:82348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run clean && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run prettify:readme
+(node:82431) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rimraf ./dist
+(node:82517) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82523) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:82552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/buildMap.ts 34ms (unchanged)
+src/config/createConfig.ts 6ms (unchanged)
+src/config/createSingleConfig.ts 44ms (unchanged)
+src/config/entry.ts 3ms (unchanged)
+src/config/externals.ts 6ms (unchanged)
+src/config/iifePolicy.ts 12ms (unchanged)
+src/createParticlesBuild.ts 3ms (unchanged)
+src/index.ts 3ms (unchanged)
+src/types.ts 3ms (unchanged)
+(node:82603) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:82663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run compile:rollup
+(node:83351) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rollup -c rollup.config.ts
+
+src/index.ts → dist/index.js, dist/index.cjs...
+created dist/index.js, dist/index.cjs in 712ms
+(node:83526) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:83581) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 41ms (unchanged)
+
+> nx run @tsparticles/mcp-server:build
+
+(node:83524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc --project tsconfig.build.json
+
+> nx run @tsparticles/inferno:build
+
+(node:83462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83466) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run lint && webpack --mode production && pnpm run build:types && node ../../scripts/resolve-dist-package.cjs
+(node:83493) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:83522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83643) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Usage of builders starting with an uppercase letter such as `StringLiteral` has been deprecated, please migrate to `stringLiteral`
+    at Module.<anonymous> (file:///Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/@babel+types@8.0.0/node_modules/@babel/types/lib/index.js:8830:5)
+    at getVNodeType (/Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/babel-plugin-inferno@6.9.0_@babel+core@8.1.0/node_modules/babel-plugin-inferno/lib/index.js:115:16)
+clean-webpack-plugin: removed dist/index.d.ts
+clean-webpack-plugin: removed dist/initParticlesEngine.d.ts
+clean-webpack-plugin: removed dist/IParticlesProps.d.ts
+clean-webpack-plugin: removed dist/IParticlesState.d.ts
+clean-webpack-plugin: removed dist/package.json
+clean-webpack-plugin: removed dist/Particles.d.ts
+clean-webpack-plugin: removed dist/particles.js
+clean-webpack-plugin: removed dist/ParticlesProvider.d.ts
+asset particles.js 68.6 KiB [emitted] [minimized] (name: main)
+orphan modules 109 KiB [orphan] 24 modules
+runtime modules 991 bytes 3 modules
+cacheable modules 179 KiB
+  modules by path ../../engine/dist/esm/Options/Classes/ 27.1 KiB 29 modules
+  modules by path ../../engine/dist/esm/Enums/ 3.9 KiB 13 modules
+  modules by path ../../engine/dist/esm/Utils/*.js 42.3 KiB
+    ../../engine/dist/esm/Utils/ErrorUtils.js + 2 modules 2.49 KiB [built] [code generated]
+    ../../engine/dist/esm/Utils/Utils.js 11.1 KiB [built] [code generated]
+    + 7 modules
+  modules by path ../../engine/dist/esm/Core/ 106 KiB
+    ../../engine/dist/esm/Core/Utils/Constants.js 1.55 KiB [built] [code generated]
+    ../../engine/dist/esm/Core/Utils/Vectors.js 2.81 KiB [built] [code generated]
+    + 3 modules
+./src/index.ts + 13 modules 24.6 KiB [not cacheable] [built] [code generated]
+webpack 5.112.2 compiled successfully in 1188 ms
+(node:83794) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsc -p tsconfig.types.json
+
+> nx run @tsparticles/rolldown-plugin:build
+
+(node:83645) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83646) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run clean && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run prettify:readme
+(node:83672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rimraf ./dist
+(node:83701) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:83733) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/buildMap.ts 35ms (unchanged)
+src/config/createConfig.ts 6ms (unchanged)
+src/config/createSingleConfig.ts 46ms (unchanged)
+src/config/entry.ts 5ms (unchanged)
+src/config/externals.ts 7ms (unchanged)
+src/config/iifePolicy.ts 13ms (unchanged)
+src/createParticlesBuild.ts 3ms (unchanged)
+src/createParticlesRolldown.ts 1ms (unchanged)
+src/index.ts 5ms (unchanged)
+src/types.ts 3ms (unchanged)
+(node:83763) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:83792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:83903) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ rolldown -c rolldown.config.ts
+(node:83941) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[log] <DIR>/config/createConfig.d.ts            asset │ size:  0.18 kB
+[log] <DIR>/config/createConfig.d.ts.map        asset │ size:  0.24 kB
+[log] <DIR>/config/entry.d.ts                   asset │ size:  0.28 kB
+[log] <DIR>/createParticlesBuild.d.ts           asset │ size:  0.29 kB
+[log] <DIR>/createParticlesRolldown.d.ts        asset │ size:  0.30 kB
+[log] <DIR>/createParticlesBuild.d.ts.map       asset │ size:  0.32 kB
+[log] <DIR>/createParticlesRolldown.d.ts.map    asset │ size:  0.32 kB
+[log] <DIR>/config/createSingleConfig.d.ts      asset │ size:  0.32 kB
+[log] <DIR>/config/createSingleConfig.d.ts.map  asset │ size:  0.35 kB
+[log] <DIR>/config/iifePolicy.d.ts              asset │ size:  0.39 kB
+[log] <DIR>/config/iifePolicy.d.ts.map          asset │ size:  0.39 kB
+[log] <DIR>/config/entry.d.ts.map               asset │ size:  0.40 kB
+[log] <DIR>/config/externals.d.ts               asset │ size:  0.46 kB
+[log] <DIR>/config/externals.d.ts.map           asset │ size:  0.48 kB
+[log] <DIR>/buildMap.d.ts.map                   asset │ size:  0.61 kB
+[log] <DIR>/buildMap.d.ts                       asset │ size:  0.63 kB
+[log] <DIR>/index.d.ts.map                      asset │ size:  1.52 kB
+[log] <DIR>/types.d.ts                          asset │ size:  1.69 kB
+[log] <DIR>/types.d.ts.map                      asset │ size:  1.70 kB
+[log] <DIR>/index.d.ts                          asset │ size:  3.58 kB
+[log] <DIR>/index.js                            chunk │ size: 26.22 kB
+[log] <DIR>/config/createConfig.d.ts            asset │ size:  0.18 kB
+[log] <DIR>/config/createConfig.d.ts.map        asset │ size:  0.24 kB
+[log] <DIR>/config/entry.d.ts                   asset │ size:  0.28 kB
+[log] <DIR>/createParticlesBuild.d.ts           asset │ size:  0.29 kB
+[log] <DIR>/createParticlesRolldown.d.ts        asset │ size:  0.30 kB
+[log] <DIR>/createParticlesBuild.d.ts.map       asset │ size:  0.32 kB
+[log] <DIR>/createParticlesRolldown.d.ts.map    asset │ size:  0.32 kB
+[log] <DIR>/config/createSingleConfig.d.ts      asset │ size:  0.32 kB
+[log] <DIR>/config/createSingleConfig.d.ts.map  asset │ size:  0.35 kB
+[log] <DIR>/config/iifePolicy.d.ts              asset │ size:  0.39 kB
+[log] <DIR>/config/iifePolicy.d.ts.map          asset │ size:  0.39 kB
+[log] <DIR>/config/entry.d.ts.map               asset │ size:  0.40 kB
+[log] <DIR>/config/externals.d.ts               asset │ size:  0.46 kB
+[log] <DIR>/config/externals.d.ts.map           asset │ size:  0.48 kB
+[log] <DIR>/buildMap.d.ts.map                   asset │ size:  0.61 kB
+[log] <DIR>/buildMap.d.ts                       asset │ size:  0.63 kB
+[log] <DIR>/index.d.ts.map                      asset │ size:  1.52 kB
+[log] <DIR>/types.d.ts                          asset │ size:  1.69 kB
+[log] <DIR>/types.d.ts.map                      asset │ size:  1.70 kB
+[log] <DIR>/index.d.ts                          asset │ size:  3.58 kB
+[log] <DIR>/index.cjs                           chunk │ size: 28.45 kB
+[log]
+[success] rolldown v1.2.8 Finished in 1.03 s
+(node:83975) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:84009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 39ms (unchanged)
+
+
+
+ NX   Successfully ran target build for 6 projects
+
+
+  Run duration:      11.6s
+  Cache:             Skipped (--skip-nx-cache)
+  Critical path:     11.5s (2 tasks)
+  Recoverable time:  100ms (1% of the run)

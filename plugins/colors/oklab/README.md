@@ -69,7 +69,8 @@ const { loadOklabColorPlugin } = require("@tsparticles/plugin-oklab-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOklabColorPlugin } from "@tsparticles/plugin-oklab-color";
 
 (async () => {

@@ -72,7 +72,8 @@ const { loadHeartShape } = require("@tsparticles/shape-heart");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHeartShape } from "@tsparticles/shape-heart";
 
 (async () => {

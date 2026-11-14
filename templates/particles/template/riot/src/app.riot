@@ -2,7 +2,7 @@
   <div id="app">
     <h1>tsParticles</h1>
   </div>
-  <riot-particles id="tsparticles"></riot-particles>
+  <riot-particles engine={engine} id="tsparticles"></riot-particles>
 
   <style>
     body { margin: 0; overflow: hidden; }
@@ -21,7 +21,10 @@
   </style>
 
   <script>
-    import { particles } from "@tsparticles/particles";
+import { engine } from "../particlesEngine";
+
+    import {  createParticles  } from "@tsparticles/particles";
+const particles = createParticles(engine);
 
     this.on("mount", () => {
       void particles.init();

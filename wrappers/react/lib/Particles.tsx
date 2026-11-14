@@ -1,11 +1,11 @@
+import { type Container, getLogger } from "@tsparticles/engine";
 import { FC, useEffect, useRef } from "react";
 import type { IParticlesProps } from "./IParticlesProps";
-import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
 import { useParticlesProvider } from "./ParticlesProvider";
 
 const Particles: FC<IParticlesProps> = props => {
   const { className, id, options, particlesLoaded, style, url } = props;
-  const { loaded } = useParticlesProvider();
+  const { engine, loaded } = useParticlesProvider();
   const containerRef = useRef<Container | undefined>(undefined);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Particles: FC<IParticlesProps> = props => {
 
     let cancelled = false;
 
-    void tsParticles
+    void engine
       .load({ id: particleId, url, options })
       .then(c => {
         if (cancelled) {
@@ -60,7 +60,7 @@ const Particles: FC<IParticlesProps> = props => {
 
       containerRef.current = undefined;
     };
-  }, [id, loaded, options, particlesLoaded, url]);
+  }, [engine, id, loaded, options, particlesLoaded, url]);
 
   /* An unfinished load still owns its canvas until its cleanup completes. */
   return <div key={id ?? "tsparticles"} id={id ?? "tsparticles"} className={className} style={style}></div>;

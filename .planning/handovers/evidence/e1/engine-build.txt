@@ -1,0 +1,64 @@
+
+ NX   Running target build for project @tsparticles/engine:
+
+- @tsparticles/engine
+
+
+
+> nx run @tsparticles/engine:build:ci
+
+(node:93919) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:93920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsparticles-build
+(node:93947) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Clearing dist folder
+Clearing dist folder done
+Prettier - started on src
+Prettier - done on src
+ESLint - started on src
+
+ESLint - done on src
+Building TS files
+Building TS files for browser configuration
+TSC for browser done with exit code: '0'.
+Building TS files for cjs configuration
+TSC for cjs done with exit code: '0'.
+Building TS files for esm configuration
+TSC for esm done with exit code: '0'.
+Building TS files for types configuration
+TSC for types done with exit code: '0'.
+Building TS files done
+✅ No circular dependencies found.
+Finished checking circular dependencies.
+Rollup bundling started
+Rollup bundling completed
+Prettier - started on README.md
+Prettier - started on traductions
+Prettier - done on traductions
+Prettier - started on markdown
+Prettier - done on markdown
+Prettier - done on README.md
+Prettier - started on package.json
+Prettier - done on package.json
+Prettier - started on package.dist.json
+Prettier - done on package.dist.json
+Build - started on dist files
+package.dist.json updated for version 4.6.0
+Build - done on dist files
+Bundle size unchanged
+Size decreased from 1256028 to 1253842 (2186B)
+Files count changed from 622 to 622 (0)
+Folders count changed from 133 to 133 (0)
+
+
+
+ NX   Successfully ran target build for project @tsparticles/engine
+
+
+  Run duration:      7.8s
+  Cache:             Skipped (--skip-nx-cache)
+  Critical path:     7.7s (1 task)
+  Recoverable time:  <1ms

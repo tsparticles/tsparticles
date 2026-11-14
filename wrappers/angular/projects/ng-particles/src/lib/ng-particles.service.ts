@@ -1,62 +1,74 @@
+import type { Engine } from "@tsparticles/engine";
 import { Injectable } from "@angular/core";
-import { Engine, tsParticles } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
-
-let initialized = false;
-let initPromise: Promise<void> | undefined;
-let initCallback: ParticlesPluginRegistrar | undefined;
 
 @Injectable({
   providedIn: "root",
 })
 export class NgParticlesService {
+  #engine?: Engine;
+  #initialized = false;
+  #initPromise?: Promise<void>;
+  #initCallback?: ParticlesPluginRegistrar;
+
+  public get engine(): Engine {
+    if (!this.#engine) {
+      throw new Error("Configure NgParticlesService.init(engine, init) first.");
+    }
+    return this.#engine;
+  }
+
   public get loaded(): boolean {
-    return initialized;
+    return this.#initialized;
   }
 
   public assertInitialized(): void {
-    if (!initialized) {
+    if (!this.#initialized) {
       throw new Error("NgParticlesService.init(...) must be called once before rendering ngx-particles components.");
     }
   }
 
-  public async init(particlesInit?: ParticlesPluginRegistrar): Promise<void> {
-    if (initialized) {
+  public async init(engine: Engine, particlesInit?: ParticlesPluginRegistrar): Promise<void> {
+    if (this.#engine && this.#engine !== engine) {
+      throw new Error("Use a separate NgParticlesService provider for each engine.");
+    }
+    this.#engine = engine;
+    if (this.#initialized) {
       return;
     }
 
-    if (initPromise) {
-      if (initCallback !== particlesInit) {
+    if (this.#initPromise) {
+      if (this.#initCallback !== particlesInit) {
         throw new Error("NgParticlesService init callback must be stable across the app lifecycle.");
       }
 
-      await initPromise;
+      await this.#initPromise;
 
       return;
     }
 
-    initCallback = particlesInit;
-    initPromise = (async () => {
+    this.#initCallback = particlesInit;
+    this.#initPromise = (async () => {
       if (particlesInit) {
-        await particlesInit(tsParticles);
+        await particlesInit(engine);
       }
 
-      await tsParticles.init();
+      await engine.init();
 
-      initialized = true;
+      this.#initialized = true;
     })().catch((error: unknown) => {
-      initPromise = undefined;
-      initCallback = undefined;
-      initialized = false;
+      this.#initPromise = undefined;
+      this.#initCallback = undefined;
+      this.#initialized = false;
 
       throw error;
     });
 
-    await initPromise;
+    await this.#initPromise;
   }
 
   public async waitForInitialization(): Promise<void> {
-    await (initPromise ?? Promise.resolve());
+    await (this.#initPromise ?? Promise.resolve());
   }
 }

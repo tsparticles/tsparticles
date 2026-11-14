@@ -1,6 +1,6 @@
+import { type Container, getLogger } from "@tsparticles/engine";
 import { Component } from "inferno";
 import type { IParticlesProps } from "./IParticlesProps";
-import { type Container, tsParticles, getLogger } from "@tsparticles/engine";
 import { waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 // Class-based Particles component to avoid relying on Inferno hooks at
@@ -42,6 +42,7 @@ export default class Particles extends Component<IParticlesProps> {
 
 		// Reload the container if relevant props changed
 		if (
+			prevProps.engine !== this.props.engine ||
 			prevProps.id !== this.props.id ||
 			prevProps.url !== this.props.url ||
 			prevProps.options !== this.props.options
@@ -64,7 +65,7 @@ export default class Particles extends Component<IParticlesProps> {
 		const loadId = ++this._loadId;
 
 		try {
-			await waitForParticlesEngineInitialization();
+			await waitForParticlesEngineInitialization(this.props.engine);
 
 			if (this._cancelled || loadId !== this._loadId) {
 				return;
@@ -72,7 +73,7 @@ export default class Particles extends Component<IParticlesProps> {
 
 			const { id, url, options, loaded, particlesLoaded, container } = this.props;
 
-			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+			const newContainer = await this.props.engine.load({ id: id ?? "tsparticles", url, options });
 
 			if (this._cancelled || loadId !== this._loadId) {
 				newContainer?.destroy();

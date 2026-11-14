@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
 import { IonApp, IonRouterOutlet } from "@ionic/angular/standalone";
+import { Component } from "@angular/core";
 import { NgParticlesService } from "@tsparticles/angular";
+import { engine } from "../../particlesEngine";
 import { loadFull } from "tsparticles";
 
 @Component({
@@ -14,7 +15,7 @@ export class AppComponent {
   constructor(private ngParticlesService: NgParticlesService) {}
 
   ngOnInit(): void {
-    void this.ngParticlesService.init(async engine => {
+    void this.ngParticlesService.init(engine, async engine => {
       console.log("init", engine);
 
       await loadFull(engine);

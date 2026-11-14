@@ -14,7 +14,7 @@ import { __ } from "@wordpress/i18n";
 import { Panel, PanelBody, PanelRow, TextControl, TextareaControl, ToggleControl } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { useEffect } from "@wordpress/element";
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
 import { getAllPlugins, loadWordpressParticles } from "./load";
 
 /**
@@ -41,22 +41,33 @@ export default function Edit({ attributes, setAttributes }) {
 	const serializedPlugins = plugins.join(",");
 
 	useEffect(() => {
+		const tsParticles = createEngine();
+		let cancelled = false;
 		const loadEditorParticles = async () => {
 			const elementId = attributes.id || "tsparticles";
 			const selectedPlugins = serializedPlugins.split(",").filter(Boolean);
 
 			try {
 				await loadWordpressParticles(tsParticles, selectedPlugins);
-				await tsParticles.load({
+				const container = await tsParticles.load({
 					id: elementId,
 					options: JSON.parse(attributes.options),
 				});
+				if (cancelled) {
+					container?.destroy();
+				}
 			} catch {
 				// ignore invalid options while editing JSON
 			}
 		};
 
 		void loadEditorParticles();
+		return () => {
+			cancelled = true;
+			for (const container of [...tsParticles.items]) {
+				container.destroy();
+			}
+		};
 	}, [attributes.id, attributes.options, serializedPlugins]);
 
 	const getLoadPLuginGroup = group => {

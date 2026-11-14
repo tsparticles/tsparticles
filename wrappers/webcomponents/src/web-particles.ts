@@ -1,81 +1,76 @@
-import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
-
-// Runtime engine instance is read from globalThis.tsParticles. We avoid a
-// runtime import of the engine here so the webcomponents wrapper doesn't
-// bundle its own engine and accidentally overwrite a globally loaded
-// engine (for example the tsparticles bundle). Consumers must expose the
-// engine on globalThis.tsParticles (see README).
-function getGlobalEngine(): Engine | undefined {
-  return (globalThis as any).tsParticles as Engine | undefined;
-}
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
-let initialized = false;
-let initPromise: Promise<void> | undefined;
-let initCallback: ParticlesPluginRegistrar | undefined;
+type InitializationState = {
+  loaded: boolean;
+  started: boolean;
+  promise: Promise<void>;
+  resolve: () => void;
+  reject: (error: unknown) => void;
+};
 
-export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
-  if (initialized) {
-    return;
+const states = new WeakMap<Engine, InitializationState>();
+
+function getInitializationState(engine: Engine): InitializationState {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing;
   }
-
-  if (initPromise) {
-    if (initCallback !== init) {
-      throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-    }
-
-    await initPromise;
-
-    return;
-  }
-
-  initCallback = init;
-
-  const engine = getGlobalEngine();
-
-  if (!engine) {
-    throw new Error(
-      "tsParticles engine not found. Load @tsparticles/engine (or the tsparticles bundle) and assign it to globalThis.tsParticles before calling initParticlesEngine().",
-    );
-  }
-
-  initPromise = (async () => {
-    if (init) {
-      await init(engine);
-    }
-
-    // Some engine builds expose an async init() to complete setup (plugins, presets)
-    if (typeof (engine as any).init === "function") {
-      await (engine as any).init();
-    }
-
-    initialized = true;
-  })().catch((error: unknown) => {
-    initPromise = undefined;
-    initCallback = undefined;
-    initialized = false;
-
-    throw error;
+  let resolve = (): void => {},
+    reject: (error: unknown) => void = () => {};
+  const promise = new Promise<void>((onResolve, onReject) => {
+    resolve = onResolve;
+    reject = onReject;
   });
-
-  await initPromise;
+  const state = { loaded: false, started: false, promise, resolve, reject };
+  states.set(engine, state);
+  return state;
 }
 
-export function isParticlesEngineInitialized(): boolean {
-  // Consider the engine initialized if either initParticlesEngine completed
-  // or a global tsParticles instance is present (the full bundle sets
-  // globalThis.tsParticles). This makes the wrapper tolerant when the
-  // bundled engine is loaded via a script tag and plugins are already
-  // included.
-  return initialized || !!getGlobalEngine();
+export async function initParticlesEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+  const state = getInitializationState(engine);
+  if (!state.started) {
+    state.started = true;
+    void Promise.resolve()
+      .then(async () => {
+        await init?.(engine);
+        await engine.init();
+        state.loaded = true;
+        state.resolve();
+      })
+      .catch((error: unknown) => {
+        states.delete(engine);
+        state.reject(error);
+      });
+  }
+  return state.promise;
 }
 
-export async function waitForParticlesEngineInitialization(): Promise<void> {
-  await (initPromise ?? Promise.resolve());
+export function isParticlesEngineInitialized(engine: Engine): boolean {
+  return states.get(engine)?.loaded ?? false;
+}
+
+export async function waitForParticlesEngineInitialization(engine: Engine): Promise<void> {
+  await getInitializationState(engine).promise;
 }
 
 export class Particles extends HTMLElement {
+  #engine?: Engine;
+  get engine(): Engine | undefined {
+    return this.#engine;
+  }
+  set engine(value: Engine | undefined) {
+    if (value === this.#engine) {
+      return;
+    }
+    this.#engine = value;
+    this.container.current?.destroy();
+    if (this.isConnected) {
+      void this.#loadParticles(++this.#loadId);
+    }
+  }
+
   // Observe 'url' and 'options' attributes so consumers can use setAttribute
   // (common in plain HTML demos) and the element updates its properties.
   static get observedAttributes(): string[] {
@@ -194,22 +189,6 @@ export class Particles extends HTMLElement {
       } catch {}
     }
     this.#url = this.getAttribute("url");
-
-    // If a global engine is already present (the full bundle was loaded via
-    // a script tag), start initialization automatically so the element can
-    // proceed without the app having to call initParticlesEngine() explicitly.
-    // This is a best-effort convenience for the demo pages.
-    try {
-      const engine = getGlobalEngine();
-
-      if (engine && !initialized && !initPromise) {
-        // fire-and-forget; loadParticles will await the initPromise when it runs
-        void initParticlesEngine();
-      }
-    } catch (e) {
-      // swallow: initialization is optional here and will be handled by the
-      // consumer when needed
-    }
   }
 
   connectedCallback() {
@@ -232,15 +211,11 @@ export class Particles extends HTMLElement {
     // entering loadParticles
 
     try {
-      await waitForParticlesEngineInitialization();
-
-      // Prefer a global engine if present, otherwise fail if the library hasn't
-      // been initialized via initParticlesEngine().
-      const engine = getGlobalEngine();
-
-      if (!isParticlesEngineInitialized() && !engine) {
-        throw new Error("initParticlesEngine(...) must be called once before rendering <web-particles /> components.");
+      const engine = this.engine;
+      if (!engine) {
+        return;
       }
+      await waitForParticlesEngineInitialization(engine);
 
       if (!this.isConnected) {
         return;

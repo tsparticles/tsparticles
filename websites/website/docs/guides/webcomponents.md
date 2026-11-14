@@ -30,11 +30,13 @@ import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcom
 Before the `<web-particles>` element can render, the engine must be initialized with the features you need. Call `initParticlesEngine` with a callback that loads the desired plugins:
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/webcomponents";
 
 const { loadFull } = await import("tsparticles");
 
-await initParticlesEngine(async (engine) => {
+await initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 ```
@@ -58,6 +60,7 @@ This registers the `web-particles` tag with the browser's `CustomElementRegistry
 Once both `initParticlesEngine` and `defineParticlesElement` have run, use the element directly in HTML:
 
 ```html
+import { createEngine } from "@tsparticles/engine"; const particlesEngine = createEngine();
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,7 +76,7 @@ Once both `initParticlesEngine` and `defineParticlesElement` have run, use the e
 
       const { loadFull } = await import("tsparticles");
 
-      await initParticlesEngine(async (engine) => {
+      await initParticlesEngine(particlesEngine, async (engine) => {
         await loadFull(engine);
       });
 
@@ -158,11 +161,13 @@ el.options = {
 You can create `<web-particles>` elements entirely in JavaScript and add them to the DOM at any time:
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
 
 const { loadFull } = await import("tsparticles");
 
-await initParticlesEngine(async (engine) => {
+await initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 
@@ -197,11 +202,13 @@ const particles = createParticles(document.body, {
 You can subclass `ParticlesElement` to create your own custom element with built-in configuration:
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine, ParticlesElement } from "@tsparticles/webcomponents";
 
 const { loadFull } = await import("tsparticles");
 
-await initParticlesEngine(async (engine) => {
+await initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 

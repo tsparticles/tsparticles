@@ -2,9 +2,11 @@
   <div id="app-content">
     <h1>Hello, tsParticles!</h1>
   </div>
-  <riot-particles id="tsparticles" options={ state.options }></riot-particles>
+  <riot-particles engine={engine} id="tsparticles" options={ state.options }></riot-particles>
 
   <script>
+import { engine } from "../particlesEngine";
+
     import { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
@@ -33,7 +35,7 @@
         }
       },
       onMounted() {
-        void initParticlesEngine(async (engine) => {
+        void initParticlesEngine(engine, async (engine) => {
           await loadSlim(engine);
         });
       }

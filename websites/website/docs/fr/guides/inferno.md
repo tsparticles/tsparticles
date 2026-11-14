@@ -38,6 +38,8 @@ npm install @tsparticles/slim
 The `@tsparticles/inferno` package exports two items: `ParticlesProvider` and `Particles`. Wrap your particle components with `ParticlesProvider` which accepts an `init` callback for engine setup, then use `<Particles>` to render the particle canvas.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { render } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
@@ -71,6 +73,7 @@ const options = {
 function App() {
   return (
     <ParticlesProvider
+      engine={particlesEngine}
       init={async (engine) => {
         await loadSlim(engine);
       }}
@@ -92,20 +95,22 @@ render(<App />, document.getElementById("app"));
 The `ParticlesProvider` accepts an `init` prop that receives the engine instance. This is where you load the features, shapes, presets, or updaters your app needs.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 // Lightweight — circle particles, basic movement, links
-<ParticlesProvider init={async engine => {
+<ParticlesProvider engine={particlesEngine} init={async engine => {
   const { loadSlim } = await import("@tsparticles/slim");
   await loadSlim(engine);
 }}>
 
 // Full feature set — all shapes, interactions, effects
-<ParticlesProvider init={async engine => {
+<ParticlesProvider engine={particlesEngine} init={async engine => {
   const { loadFull } = await import("tsparticles");
   await loadFull(engine);
 }}>
 
 // Preset-specific — confetti, fireworks, snow, stars
-<ParticlesProvider init={async engine => {
+<ParticlesProvider engine={particlesEngine} init={async engine => {
   const { loadConfettiPreset } = await import("@tsparticles/preset-confetti");
   await loadConfettiPreset(engine);
 }}>
@@ -120,6 +125,8 @@ Using dynamic `import()` inside the callback enables code splitting: the preset 
 Below is a fully featured configuration with interactivity, multiple shape types, and a dark gradient background.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { render } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -175,6 +182,7 @@ const options: ISourceOptions = {
 function App() {
   return (
     <ParticlesProvider
+      engine={particlesEngine}
       init={async (engine) => {
         const { loadSlim } = await import("@tsparticles/slim");
         await loadSlim(engine);
@@ -195,6 +203,8 @@ render(<App />, document.getElementById("app"));
 The `@tsparticles/configs` package offers pre-built configurations that you can pass straight to the `options` prop. Combine them with the corresponding preset loader in the `ParticlesProvider` init callback.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { render } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import configs from "@tsparticles/configs";
@@ -202,6 +212,7 @@ import configs from "@tsparticles/configs";
 function App() {
   return (
     <ParticlesProvider
+      engine={particlesEngine}
       init={async (engine) => {
         const { loadFull } = await import("tsparticles");
         await loadFull(engine);
@@ -224,6 +235,8 @@ You can swap `configs.confetti` with any available preset: `configs.basic`, `con
 For larger applications, structure your particle logic into a dedicated component with a `particlesLoaded` callback for accessing the `Container` instance.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { render, Component } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
@@ -273,6 +286,7 @@ class ParticlesBackground extends Component {
   render() {
     return (
       <ParticlesProvider
+        engine={particlesEngine}
         init={async (engine) => {
           const { loadSlim } = await import("@tsparticles/slim");
           await loadSlim(engine);
@@ -303,6 +317,8 @@ render(<App />, document.getElementById("app"));
 Here is a complete, typed Inferno application with a responsive particle configuration and full-screen background.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { render } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
@@ -355,7 +371,7 @@ function handleParticlesLoaded(container?: Container): void {
 
 function App() {
   return (
-    <ParticlesProvider init={handleInit}>
+    <ParticlesProvider engine={particlesEngine} init={handleInit}>
       <div style={{ position: "relative", zIndex: 1, color: "#fff", textAlign: "center", paddingTop: "2rem" }}>
         <h1>tsParticles + Inferno</h1>
         <p>Full TypeScript integration</p>

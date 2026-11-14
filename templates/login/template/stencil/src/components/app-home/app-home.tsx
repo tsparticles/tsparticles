@@ -1,6 +1,7 @@
-import { Component, State, h, type JSX } from "@stencil/core";
-import { loadSlim } from "@tsparticles/slim";
+import { Component, type JSX, State, h } from "@stencil/core";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 const options: ISourceOptions = {
   background: { color: { value: "transparent" } },
@@ -125,23 +126,45 @@ export class AppHome {
           <div class="auth-card">
             <div class="auth-header">
               <h1>{this.isLogin ? "Login" : "Register"}</h1>
-              <button class="theme-btn" onClick={this.toggleTheme} aria-label="Toggle theme">{this.theme === "dark" ? "🌙" : "☀️"}</button>
+              <button class="theme-btn" onClick={this.toggleTheme} aria-label="Toggle theme">
+                {this.theme === "dark" ? "🌙" : "☀️"}
+              </button>
             </div>
             <form onSubmit={this.handleSubmit} noValidate>
               <div class="form-group">
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" placeholder="you@example.com" value={this.email} onInput={this.handleEmailInput} required />
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={this.email}
+                  onInput={this.handleEmailInput}
+                  required
+                />
                 <span class="error">{this.emailErr}</span>
               </div>
               <div class="form-group">
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" placeholder="Enter password" value={this.password} onInput={this.handlePasswordInput} required />
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Enter password"
+                  value={this.password}
+                  onInput={this.handlePasswordInput}
+                  required
+                />
                 <span class="error">{this.passErr}</span>
               </div>
               {!this.isLogin && (
                 <div class="form-group">
                   <label htmlFor="confirmPassword">Confirm Password</label>
-                  <input id="confirmPassword" type="password" placeholder="Confirm password" value={this.confirm} onInput={this.handleConfirmInput} />
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    value={this.confirm}
+                    onInput={this.handleConfirmInput}
+                  />
                   <span class="error">{this.confirmErr}</span>
                 </div>
               )}
@@ -149,11 +172,14 @@ export class AppHome {
             </form>
             <p class="toggle-text">
               <span>{this.isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-              <a href="#" onClick={this.toggleMode}>{this.isLogin ? "Register" : "Login"}</a>
+              <a href="#" onClick={this.toggleMode}>
+                {this.isLogin ? "Register" : "Login"}
+              </a>
             </p>
           </div>
         </div>
         <stencil-particles
+          engine={engine}
           container-id="tsparticles"
           init={this.particlesInit.bind(this)}
           options={options}

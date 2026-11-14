@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { engine } from "../particlesEngine";
+
   import Particles from "@tsparticles/svelte";
   import type { ISourceOptions } from "@tsparticles/engine";
   import configs from "@tsparticles/configs";
@@ -38,9 +40,8 @@
   <div class="container">
     <h2>About Me</h2>
     <p>
-      I'm a passionate developer with experience building modern web applications.
-      I love creating elegant solutions to complex problems, and I'm always
-      exploring new technologies to stay at the cutting edge.
+      I'm a passionate developer with experience building modern web applications. I love creating elegant solutions to
+      complex problems, and I'm always exploring new technologies to stay at the cutting edge.
     </p>
   </div>
 </section>
@@ -103,7 +104,7 @@
   </div>
 </section>
 
-<Particles id="tsparticles" options={options} />
+<Particles {engine} id="tsparticles" {options} />
 
 <style>
   :global(*) {
@@ -210,7 +211,9 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
-    transition: transform 0.2s, border-color 0.2s;
+    transition:
+      transform 0.2s,
+      border-color 0.2s;
   }
 
   .project-card:hover {

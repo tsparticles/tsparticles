@@ -1,9 +1,10 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, state } from "lit/decorators.js";
+import type { ISourceOptions } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
+import { engine } from "./particlesEngine";
 import { initParticlesEngine } from "@tsparticles/lit";
 import { loadSlim } from "@tsparticles/slim";
-import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
 import style from "./style.css?inline";
 
 const keys = Object.keys(configs);
@@ -36,7 +37,7 @@ export class MyApp extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   }
@@ -49,12 +50,10 @@ export class MyApp extends LitElement {
 
   render() {
     return html`
-      <lit-particles id="tsparticles" .options=${options}></lit-particles>
+      <lit-particles .engine=${engine} id="tsparticles" .options=${options}></lit-particles>
 
       <nav id="navbar">
-        ${this.navItems.map(
-          (item) => html`<a href="#${item.toLowerCase()}" class="nav-link">${item}</a>`
-        )}
+        ${this.navItems.map(item => html`<a href="#${item.toLowerCase()}" class="nav-link">${item}</a>`)}
       </nav>
 
       <section id="hero" class="section">
@@ -67,7 +66,10 @@ export class MyApp extends LitElement {
       <section id="about" class="section content-section">
         <div class="container">
           <h2>About Me</h2>
-          <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+          <p>
+            A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+            JavaScript frameworks, cloud infrastructure, and UI/UX design.
+          </p>
         </div>
       </section>
 
@@ -76,12 +78,12 @@ export class MyApp extends LitElement {
           <h2>Projects</h2>
           <div class="project-grid">
             ${this.projects.map(
-              (p) => html`
+              p => html`
                 <div class="project-card">
                   <h3>${p.title}</h3>
                   <p>${p.desc}</p>
                 </div>
-              `
+              `,
             )}
           </div>
         </div>
@@ -91,12 +93,12 @@ export class MyApp extends LitElement {
         <div class="container">
           <h2>Skills</h2>
           ${this.skills.map(
-            (s) => html`
+            s => html`
               <div class="skill-bar">
                 <span class="skill-name">${s.name}</span>
                 <div class="bar"><div class="fill" style="width: ${s.pct}%"></div></div>
               </div>
-            `
+            `,
           )}
         </div>
       </section>

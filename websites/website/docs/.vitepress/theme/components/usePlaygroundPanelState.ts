@@ -1,7 +1,8 @@
-import { tsParticles, type Container, type ISourceOptions } from "@tsparticles/engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { computed, nextTick, onMounted, ref } from "vue";
 import {
   getPlaygroundFeaturesInitState,
+  engine,
   initPlaygroundFeaturesOnce,
   playgroundFeaturesInfo,
 } from "./playgroundLoaders";
@@ -151,7 +152,7 @@ export function usePlaygroundPanelState({ mode, demoPresets, paletteGroupDefinit
       return;
     }
 
-    particlesInstance = tsParticles;
+    particlesInstance = engine;
   }
 
   async function startDemo(): Promise<void> {

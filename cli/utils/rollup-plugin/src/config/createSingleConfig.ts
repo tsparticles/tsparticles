@@ -22,15 +22,15 @@ const EMPTY_SIZE = 0,
   // Public export predicate per kind
   getPublicExports = (exports: string[], kind: IifeBuildKind): string[] => {
     const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
-      confetti: "confetti",
-      engine: "tsParticles",
-      fireworks: "fireworks",
+      confetti: "createConfetti",
+      engine: "createEngine",
+      fireworks: "createFireworks",
       pjs: "initPjs",
     };
 
     if (kind === "bundle") {
-      // Bundles expose load* functions AND the tsParticles instance (needed for bundle users)
-      return exports.filter(t => /^load[A-Z]/.test(t) || t === "tsParticles");
+      // Bundles expose loader and factory definitions without creating an engine.
+      return exports.filter(t => /^load[A-Z]/.test(t) || /^create[A-Z]/.test(t));
     }
 
     if (kind === "package") {
@@ -47,9 +47,9 @@ const EMPTY_SIZE = 0,
   },
   validatePublicExports = (publicExports: string[], allExports: string[], kind: IifeBuildKind): void => {
     const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
-      confetti: "confetti",
-      engine: "tsParticles",
-      fireworks: "fireworks",
+      confetti: "createConfetti",
+      engine: "createEngine",
+      fireworks: "createFireworks",
       pjs: "initPjs",
     };
 
@@ -68,7 +68,7 @@ const EMPTY_SIZE = 0,
     }
 
     // For bundle/package: only load* (and tsParticles for bundle) are allowed on window
-    const invalid = publicExports.filter(t => !/^load[A-Z]/.test(t) && t !== "tsParticles");
+    const invalid = publicExports.filter(t => !/^load[A-Z]/.test(t) && !/^create[A-Z]/.test(t));
 
     if (invalid.length > EMPTY_SIZE) {
       throw new Error(
@@ -109,17 +109,17 @@ const EMPTY_SIZE = 0,
 
     const assignments = publicExports.map(exp => `${exp}: (globalThis.${scope} || {}).${exp}`).join(", ");
 
-    return `Object.assign(globalThis.window || globalThis, { ${assignments} });\n`;
+    return `Object.assign(globalThis.tsParticles = globalThis.tsParticles || {}, { ${assignments} });\n`;
   },
   buildBundleEngineAliasCode = (iifePolicy: IifePolicyData): string => {
-    if (iifePolicy.kind !== "bundle") {
+    if (iifePolicy.kind === "engine" || iifePolicy.kind === "package") {
       return "";
     }
 
     // Keep backward compatibility for packages that still resolve engine externals from internals.engine.
     return (
       `globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};\n` +
-      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.tsParticles) {\n` +
+      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.createEngine) {\n` +
       `  globalThis.__tsParticlesInternals.engine = globalThis.${iifePolicy.scope} || {};\n` +
       `}\n`
     );
@@ -265,7 +265,7 @@ export { ${namedExports} };
           const assignments = exports.map(t => `${t}: ${t}`).join(", ");
 
           return {
-            code: `${code}\nObject.assign(globalThis.window || globalThis, { ${assignments} });\n`,
+            code: `${code}\nObject.assign(globalThis.tsParticles = globalThis.tsParticles || {}, { ${assignments} });\n`,
             map: null,
           };
         }

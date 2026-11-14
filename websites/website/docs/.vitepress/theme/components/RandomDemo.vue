@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
-import { tsParticles } from "@tsparticles/engine";
 import { loadAll } from "@tsparticles/all";
 import configs from "@tsparticles/configs";
+import { engine } from "./playgroundLoaders";
 
 const excludedKeys: readonly string[] = ["test", "bubble", "stars", "polygonMask", "shadow"];
 const excludedPrefixes: readonly string[] = ["palette-"];
@@ -37,11 +37,11 @@ const currentTitle = computed(() => toTitleCase(currentKey.value));
 
 async function loadAndStart(key: string) {
   if (!initialized) {
-    await loadAll(tsParticles);
+    await loadAll(engine);
     initialized = true;
   }
 
-  const container = tsParticles.items.find((c) => c.id === containerId);
+  const container = engine.items.find((c) => c.id === containerId);
   if (container) {
     container.destroy();
   }
@@ -56,7 +56,7 @@ async function loadAndStart(key: string) {
     resize: { enable: false },
   };
 
-  await tsParticles.load({
+  await engine.load({
     id: containerId,
     element: canvasRef.value ?? undefined,
     options: options as any,
@@ -106,7 +106,7 @@ onUnmounted(() => {
     cycleTimer = undefined;
   }
 
-  const container = tsParticles.items.find((c) => c.id === containerId);
+  const container = engine.items.find((c) => c.id === containerId);
   if (container) container.destroy();
 });
 </script>

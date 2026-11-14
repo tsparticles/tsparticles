@@ -51,7 +51,7 @@
   "devDependencies": {
     "@tsparticles/eslint-config": "workspace:*",
     "@types/node": "^26.6.6",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"
   }

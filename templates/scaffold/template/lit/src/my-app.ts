@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { customElement } from "lit/decorators.js";
+import { engine } from "./particlesEngine";
 
 const options: ISourceOptions = {
   fullScreen: { enable: true, zIndex: -1 },
@@ -27,8 +28,6 @@ const options: ISourceOptions = {
 @customElement("my-app")
 export class MyApp extends LitElement {
   render() {
-    return html`
-      <lit-particles id="tsparticles" .options=${options}></lit-particles>
-    `;
+    return html` <lit-particles .engine=${engine} id="tsparticles" .options=${options}></lit-particles> `;
   }
 }

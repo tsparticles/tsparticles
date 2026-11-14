@@ -10,6 +10,7 @@ import type { IDimension } from "./Interfaces/IDimension.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { RenderManager } from "./RenderManager.js";
 import { toEnumValue } from "../Utils/TypeUtils.js";
+import { transferredCanvasKey } from "./Utils/CanvasOwnership.js";
 
 /**
  * Returns the canvas to use for rendering.
@@ -20,9 +21,10 @@ import { toEnumValue } from "../Utils/TypeUtils.js";
  * @param canvas - The canvas source to use for rendering.
  * @returns The render canvas instance.
  */
-const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
-  getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
-    const transferredCanvas = transferredCanvases.get(canvas);
+const getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
+    const transferredCanvas = (canvas as HTMLCanvasElement & { [transferredCanvasKey]?: OffscreenCanvas })[
+      transferredCanvasKey
+    ];
 
     if (transferredCanvas) {
       return transferredCanvas;
@@ -35,7 +37,7 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
     try {
       const offscreenCanvas = canvas.transferControlToOffscreen();
 
-      transferredCanvases.set(canvas, offscreenCanvas);
+      Object.defineProperty(canvas, transferredCanvasKey, { value: offscreenCanvas });
 
       return offscreenCanvas;
     } catch {

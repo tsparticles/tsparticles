@@ -1,10 +1,11 @@
 /* eslint-disable */
-import { act } from "react";
-import { type ReactNode } from "react";
-import { createRoot, type Root } from "react-dom/client";
+import { type ReactNode, act } from "react";
+
+import { type Root, createRoot } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const providerSpy = vi.fn();
+const engine = {} as import("@tsparticles/engine").Engine;
 
 vi.mock("next/dynamic", () => ({
   default: () => {
@@ -17,8 +18,16 @@ vi.mock("next/dynamic", () => ({
 }));
 
 vi.mock("@tsparticles/react", () => ({
-  ParticlesProvider: ({ children, init }: { children?: ReactNode; init?: () => Promise<void> }): ReactNode => {
-    providerSpy(init);
+  ParticlesProvider: ({
+    children,
+    engine,
+    init,
+  }: {
+    children?: ReactNode;
+    engine: unknown;
+    init?: () => Promise<void>;
+  }): ReactNode => {
+    providerSpy(engine, init);
 
     return <div data-testid="particles-provider">{children}</div>;
   },
@@ -66,13 +75,13 @@ describe("nextjs wrapper", () => {
 
     act(() => {
       root.render(
-        <module.NextParticlesProvider init={init}>
+        <module.NextParticlesProvider engine={engine} init={init}>
           <span>child</span>
         </module.NextParticlesProvider>,
       );
     });
 
-    expect(providerSpy).toHaveBeenCalledWith(init);
+    expect(providerSpy).toHaveBeenCalledWith(engine, init);
     expect(container.querySelector('[data-testid="particles-provider"]')).not.toBeNull();
     expect(container.textContent).toContain("child");
   });

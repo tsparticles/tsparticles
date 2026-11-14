@@ -37,6 +37,8 @@ yarn add @tsparticles/nextjs @tsparticles/react @tsparticles/engine
 ```tsx
 "use client";
 
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { NextParticles, NextParticlesProvider } from "@tsparticles/nextjs";
 import type { Engine } from "@tsparticles/engine";
 
@@ -51,7 +53,7 @@ const init = async (engine: Engine): Promise<void> => {
 
 export default function Page() {
   return (
-    <NextParticlesProvider init={init}>
+    <NextParticlesProvider engine={particlesEngine} init={init}>
       <NextParticles id="tsparticles" options={{ fullScreen: { zIndex: -1 } }} />
     </NextParticlesProvider>
   );
@@ -61,6 +63,8 @@ export default function Page() {
 ## Usage (Pages Router)
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import type { AppProps } from "next/app";
 import { NextParticlesProvider } from "@tsparticles/nextjs";
 import type { Engine } from "@tsparticles/engine";
@@ -76,7 +80,7 @@ const init = async (engine: Engine): Promise<void> => {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <NextParticlesProvider init={init}>
+    <NextParticlesProvider engine={particlesEngine} init={init}>
       <Component {...pageProps} />
     </NextParticlesProvider>
   );

@@ -1,7 +1,9 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "./particlesEngine";
 import { initParticlesEngine } from "@tsparticles/lit";
-import { confetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
@@ -14,7 +16,7 @@ export class MyApp extends LitElement {
 
   constructor() {
     super();
-    void initParticlesEngine(() => Promise.resolve());
+    void initParticlesEngine(engine, () => Promise.resolve());
   }
 
   private fireConfetti(): void {

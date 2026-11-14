@@ -1,12 +1,18 @@
 "use client";
 
-import { NextParticlesProvider } from "@tsparticles/nextjs";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
+import { NextParticlesProvider } from "@tsparticles/nextjs";
+import { engine } from "../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 export function ParticlesProvider({ children }: { children: React.ReactNode }) {
   return (
-    <NextParticlesProvider init={async (engine: Engine): Promise<void> => { await loadSlim(engine); }}>
+    <NextParticlesProvider
+      engine={engine}
+      init={async (engine: Engine): Promise<void> => {
+        await loadSlim(engine);
+      }}
+    >
       {children}
     </NextParticlesProvider>
   );

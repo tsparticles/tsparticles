@@ -69,7 +69,8 @@ const { loadNamedColorPlugin } = require("@tsparticles/plugin-named-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
 
 (async () => {

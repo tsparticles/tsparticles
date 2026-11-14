@@ -31,27 +31,31 @@ Examples:
 _Remote url_
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
 
-initParticlesEngine(async engine => {
+initParticlesEngine(particlesEngine, async engine => {
   // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
   // starting from v2 you can add only the features you need reducing the bundle size
   await loadFull(engine);
 });
 
 function App() {
-  return <Particles id="tsparticles" url="https://foo.bar/particles.json" />;
+  return <Particles engine={particlesEngine} id="tsparticles" url="https://foo.bar/particles.json" />;
 }
 ```
 
 _Options object_
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
 
-initParticlesEngine(async engine => {
+initParticlesEngine(particlesEngine, async engine => {
   // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
   // starting from v2 you can add only the features you need reducing the bundle size
   await loadFull(engine);
@@ -60,6 +64,7 @@ initParticlesEngine(async engine => {
 function App() {
   return (
     <Particles
+      engine={particlesEngine}
       id="tsparticles"
       options={{
         background: {

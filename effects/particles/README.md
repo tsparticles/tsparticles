@@ -72,7 +72,8 @@ const { loadParticlesEffect } = require("@tsparticles/effect-particles");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadParticlesEffect } from "@tsparticles/effect-particles";
 
 (async () => {

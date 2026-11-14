@@ -1,4 +1,3 @@
-import { isPlatformServer } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -9,7 +8,9 @@ import {
   PLATFORM_ID,
   SimpleChanges,
 } from "@angular/core";
-import { FireworkOptions, fireworks } from "@tsparticles/fireworks";
+import { FireworkOptions, createFireworks } from "@tsparticles/fireworks";
+import type { Engine } from "@tsparticles/engine";
+import { isPlatformServer } from "@angular/common";
 
 @Component({
   selector: "ngx-fireworks",
@@ -18,11 +19,24 @@ import { FireworkOptions, fireworks } from "@tsparticles/fireworks";
   styles: [],
 })
 export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestroy {
+  @Input() engine!: Engine;
   @Input() options?: FireworkOptions;
   @Input() id = "tsparticles";
 
-  #fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
+  #api?: ReturnType<typeof createFireworks>;
+  #apiEngine?: Engine;
+
+  #getApi(): ReturnType<typeof createFireworks> {
+    if (!this.#api || this.#apiEngine !== this.engine) {
+      this.#api = createFireworks(this.engine);
+      this.#apiEngine = this.engine;
+    }
+    return this.#api;
+  }
+
+  #fireworksInstance?: Awaited<ReturnType<ReturnType<typeof createFireworks>>>;
   #destroyed = false;
+  #viewReady = false;
   #loadId = 0;
 
   constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
@@ -32,6 +46,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
       return;
     }
 
+    this.#viewReady = true;
     void this.#startFireworks();
   }
 
@@ -40,11 +55,11 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
       return;
     }
 
-    if (this.#destroyed || !this.#fireworksInstance) {
+    if (this.#destroyed || !this.#viewReady) {
       return;
     }
 
-    if (changes["options"] || changes["id"]) {
+    if (changes["engine"] || changes["options"] || changes["id"]) {
       void this.#startFireworks();
     }
   }
@@ -63,7 +78,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
     this.#fireworksInstance = undefined;
 
     const currentLoadId = ++this.#loadId;
-    const instance = await fireworks(this.id, this.options);
+    const instance = await this.#getApi()(this.id, this.options);
 
     if (currentLoadId !== this.#loadId) {
       instance?.destroy();

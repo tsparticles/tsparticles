@@ -14,17 +14,50 @@ const { confettiMock, containerMock } = vi.hoisted(() => {
 });
 
 vi.mock("@tsparticles/confetti", () => ({
-  confetti: confettiMock,
+  createConfetti: () => confettiMock,
   default: confettiMock,
 }));
 
 import { NgxConfettiComponent } from "../projects/ng-confetti/src/lib/ng-confetti.component.js";
 
+const sharedEngine = {} as never;
+
 function createComponent(platformId = "browser"): NgxConfettiComponent {
-  return new NgxConfettiComponent(platformId);
+  const component = new NgxConfettiComponent(platformId);
+  component.engine = sharedEngine;
+  return component;
 }
 
 describe("NgxConfettiComponent", () => {
+  it("discards a pending result when the engine changes", async () => {
+    confettiMock.mockClear();
+    let resolveOld: (value: any) => void = () => {};
+    const oldResult = new Promise<any>(resolve => {
+      resolveOld = resolve;
+    });
+    const oldContainer = { destroy: vi.fn(), play: vi.fn() };
+    const nextContainer = { destroy: vi.fn(), play: vi.fn() };
+    confettiMock.mockReturnValueOnce(oldResult).mockResolvedValueOnce(nextContainer);
+    const component = createComponent();
+    component.ngAfterViewInit();
+    const previousEngine = component.engine;
+    component.engine = {} as never;
+    component.ngOnChanges({
+      engine: {
+        previousValue: previousEngine,
+        currentValue: component.engine,
+        firstChange: false,
+        isFirstChange: () => false,
+      },
+    });
+    await vi.waitFor(() => expect(confettiMock).toHaveBeenCalledTimes(2));
+    resolveOld(oldContainer);
+    await vi.waitFor(() => expect(oldContainer.destroy).toHaveBeenCalledTimes(1));
+    expect(nextContainer.destroy).not.toHaveBeenCalled();
+    component.ngOnDestroy();
+    expect(nextContainer.destroy).toHaveBeenCalledTimes(1);
+  });
+
   it("does not fire on the server platform", () => {
     confettiMock.mockClear();
 

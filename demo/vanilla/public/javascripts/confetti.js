@@ -1,3 +1,6 @@
+const engine = tsParticles.createEngine();
+const confetti = tsParticles.createConfetti(engine);
+
 const end = Date.now() + 15 * 1000,
   colors = ["#bb0000", "#ffffff"];
 

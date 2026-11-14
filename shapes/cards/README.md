@@ -73,7 +73,8 @@ const { loadCardsShape } = require("@tsparticles/shape-cards");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCardsShape } from "@tsparticles/shape-cards";
 
 (async () => {

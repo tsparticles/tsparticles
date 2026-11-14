@@ -20,10 +20,12 @@ The `@tsparticles/preact` package ships with TypeScript declarations. No additio
 Before you can render particles, you must initialize the engine with the plugins you need. Call `initParticlesEngine` once, before your app renders.
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 ```
@@ -31,11 +33,13 @@ void initParticlesEngine(async (engine) => {
 For smaller bundles, load only the features you need:
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/preact";
 import { loadBasic } from "@tsparticles/basic";
 import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   await loadBasic(engine);
   await loadPolygonMaskPlugin(engine);
 });
@@ -98,6 +102,8 @@ Using a `key` prop forces Preact to remount the component, fully restarting the 
 For class-based components, initialize the engine in `componentDidMount` and manage state in `componentDidUpdate`:
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { Component } from "preact";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
@@ -113,7 +119,7 @@ export default class ParticlesApp extends Component {
   }
 
   componentDidMount() {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(particlesEngine, async (engine) => {
       await loadFull(engine);
     }).then(() => {
       this.setState({ engineReady: true });
@@ -139,7 +145,7 @@ export default class ParticlesApp extends Component {
           <option value="snow">Snow</option>
           <option value="stars">Stars</option>
         </select>
-        {engineReady && <Particles id="tsparticles" options={options} />}
+        {engineReady && <Particles engine={particlesEngine} id="tsparticles" options={options} />}
       </div>
     );
   }
@@ -151,6 +157,8 @@ export default class ParticlesApp extends Component {
 With hooks, use `useState` and `useEffect` to initialize the engine and manage configuration:
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useState, useEffect } from "preact/hooks";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
@@ -160,12 +168,12 @@ export default function App() {
   const [engineReady, setEngineReady] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(particlesEngine, async (engine) => {
       await loadFull(engine);
     }).then(() => setEngineReady(true));
   }, []);
 
-  return <div>{engineReady && <Particles id="tsparticles" options={configs.snow} />}</div>;
+  return <div>{engineReady && <Particles engine={particlesEngine} id="tsparticles" options={configs.snow} />}</div>;
 }
 ```
 
@@ -174,6 +182,8 @@ export default function App() {
 Define a full configuration object directly instead of using presets:
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useState, useEffect } from "preact/hooks";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
@@ -182,7 +192,7 @@ export default function App() {
   const [engineReady, setEngineReady] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(particlesEngine, async (engine) => {
       await loadFull(engine);
     }).then(() => setEngineReady(true));
   }, []);
@@ -241,7 +251,7 @@ export default function App() {
     },
   };
 
-  return <>{engineReady && <Particles id="tsparticles" options={options} />}</>;
+  return <>{engineReady && <Particles engine={particlesEngine} id="tsparticles" options={options} />}</>;
 }
 ```
 
@@ -250,6 +260,8 @@ export default function App() {
 Use the `particlesLoaded` callback to access the tsParticles `Container` instance after particles are fully rendered:
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useCallback, useState, useEffect } from "preact/hooks";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
@@ -259,7 +271,7 @@ export default function App() {
   const [engineReady, setEngineReady] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(particlesEngine, async (engine) => {
       await loadFull(engine);
     }).then(() => setEngineReady(true));
   }, []);
@@ -271,7 +283,14 @@ export default function App() {
 
   return (
     <div>
-      {engineReady && <Particles id="tsparticles" options={configs.basic} particlesLoaded={handleParticlesLoaded} />}
+      {engineReady && (
+        <Particles
+          engine={particlesEngine}
+          id="tsparticles"
+          options={configs.basic}
+          particlesLoaded={handleParticlesLoaded}
+        />
+      )}
     </div>
   );
 }

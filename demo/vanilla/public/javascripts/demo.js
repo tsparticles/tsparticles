@@ -1,359 +1,360 @@
 (async () => {
-    const initParticles = async (engine) => {
-        await loadAll(engine);
+  const engine = globalThis.tsParticles.createEngine();
+  globalThis.tsParticles.loadConfigs(engine);
+  const initParticles = async engine => {
+    await loadAll(engine);
+  };
+
+  const stats = new Stats({
+    glass: false,
+    defaultPanelMode: "hardcore",
+  });
+
+  console.log(stats);
+
+  for (const panel of stats._panels) {
+    panel.thresholds = [];
+    panel.mode = "hardcore";
+  }
+
+  const countPanel = stats.addPanel("count", "#994", 0, () => {
+    const container = engine.item(0);
+
+    if (container) {
+      maxParticles = Math.max(container.particles.count, maxParticles);
+
+      return {
+        value: container.particles.count,
+        maxValue: maxParticles,
+      };
+    }
+  });
+
+  countPanel.mode = "hardcore";
+
+  let maxParticles = 0;
+  stats.showPanel(0);
+  stats.dom.style.position = "absolute";
+  stats.dom.style.left = "3px";
+  stats.dom.style.top = "3px";
+  stats.dom.id = "stats-graph";
+
+  let initStats = function () {
+    const update = function () {
+      stats.begin();
+      stats.end();
+
+      requestAnimationFrame(update);
     };
 
-    const stats = new Stats({
-        glass: false,
-        defaultPanelMode: "hardcore",
-    });
+    requestAnimationFrame(update);
+  };
 
-    console.log(stats);
+  const particlesCount = document.getElementById("particles-count");
 
-    for (const panel of stats._panels) {
-        panel.thresholds = [];
-        panel.mode = "hardcore";
+  setInterval(() => {
+    if (!window.tsParticles) {
+      return;
     }
 
-    const countPanel = stats.addPanel("count", "#994", 0, () => {
-        const container = tsParticles.item(0);
+    const container = engine.item(0);
 
-        if (container) {
-            maxParticles = Math.max(container.particles.count, maxParticles);
+    if (container) {
+      particlesCount.innerText = `${container.particles.count}`;
+    }
+  }, 100);
 
-            return {
-                value: container.particles.count,
-                maxValue: maxParticles
-            };
-        }
+  let updateParticles = async editor => {
+    let presetId = localStorage.presetId || "basic";
+
+    if (presetId === "divEvents") {
+      document.querySelectorAll(".bubble").forEach(elem => {
+        elem.classList.add("d-block");
+        elem.classList.remove("d-none");
+      });
+      document.querySelectorAll(".repulse").forEach(elem => {
+        elem.classList.add("d-block");
+        elem.classList.remove("d-none");
+      });
+      document.querySelectorAll(".bounce").forEach(elem => {
+        elem.classList.add("d-block");
+        elem.classList.remove("d-none");
+      });
+    } else {
+      document.querySelectorAll(".bubble").forEach(elem => {
+        elem.classList.add("d-none");
+        elem.classList.remove("d-block");
+      });
+      document.querySelectorAll(".repulse").forEach(elem => {
+        elem.classList.add("d-none");
+        elem.classList.remove("d-block");
+      });
+      document.querySelectorAll(".bounce").forEach(elem => {
+        elem.classList.add("d-none");
+        elem.classList.remove("d-block");
+      });
+    }
+
+    const particles = await engine.load({
+      id: "tsparticles",
+      options: engine.pluginManager.configs[presetId],
     });
 
-    countPanel.mode = "hardcore";
+    localStorage.presetId = presetId;
 
-    let maxParticles = 0;
-    stats.showPanel(0);
-    stats.dom.style.position = "absolute";
-    stats.dom.style.left = "3px";
-    stats.dom.style.top = "3px";
-    stats.dom.id = "stats-graph";
-
-    let initStats = function () {
-        const update = function () {
-            stats.begin();
-            stats.end();
-
-            requestAnimationFrame(update);
-        };
-
-        requestAnimationFrame(update);
+    const omit = obj => {
+      return _.omitBy(obj, (value, key) => {
+        return _.startsWith(key, "_");
+      });
     };
 
-    const particlesCount = document.getElementById("particles-count");
-
-    setInterval(() => {
-        if (!window.tsParticles) {
-            return;
-        }
-
-        const container = window.tsParticles.item(0);
-
-        if (container) {
-            particlesCount.innerText = `${container.particles.count}`;
-        }
-    }, 100);
-
-    let updateParticles = async (editor) => {
-        let presetId = localStorage.presetId || "basic";
-
-        if (presetId === "divEvents") {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
+    const transform = obj => {
+      return _.transform(omit(obj), function (result, value, key) {
+        if (_.isArray(value)) {
+          result[key] = value.map(item => {
+            return _.isArray(item) ? transform(item) : _.isObject(item) ? transform(omit(item)) : item;
+          });
+        } else if (_.isObject(value)) {
+          result[key] = transform(omit(value));
         } else {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
+          result[key] = value;
         }
-
-        const particles = await tsParticles.load({
-          id: "tsparticles",
-          options: tsParticles.pluginManager.configs[presetId],
-        });
-
-        localStorage.presetId = presetId;
-
-        const omit = obj => {
-            return _.omitBy(obj, (value, key) => {
-                return _.startsWith(key, "_");
-            });
-        };
-
-        const transform = obj => {
-            return _.transform(omit(obj), function (result, value, key) {
-                if (_.isArray(value)) {
-                    result[key] = value.map(item => {
-                        return _.isArray(item) ? transform(item) : _.isObject(item) ? transform(omit(item)) : item;
-                    });
-                } else if (_.isObject(value)) {
-                    result[key] = transform(omit(value));
-                } else {
-                    result[key] = value;
-                }
-            });
-        };
-
-        editor.update(transform(particles.options));
-        editor.expandAll();
+      });
     };
 
-    const omit = (obj, keys) => {
-        if (!keys.length) return obj;
-        const key = keys.pop();
-        const parts = key.split(".");
-        if (parts.length > 1) {
-            const { [parts[0]]: todo, ...rest } = obj;
-            return {
-                ...omit(rest, keys),
-                [parts[0]]: omit(todo, [ parts[1] ])
-            };
-        }
-        const { [key]: omitted, ...rest } = obj;
-        return omit(rest, keys);
+    editor.update(transform(particles.options));
+    editor.expandAll();
+  };
+
+  const omit = (obj, keys) => {
+    if (!keys.length) return obj;
+    const key = keys.pop();
+    const parts = key.split(".");
+    if (parts.length > 1) {
+      const { [parts[0]]: todo, ...rest } = obj;
+      return {
+        ...omit(rest, keys),
+        [parts[0]]: omit(todo, [parts[1]]),
+      };
+    }
+    const { [key]: omitted, ...rest } = obj;
+    return omit(rest, keys);
+  };
+
+  let initSidebar = function () {
+    const rightCaret = document.body.querySelector(".caret-right");
+    const leftCaret = document.body.querySelector(".caret-left");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarHidden = sidebar.hasAttribute("hidden");
+
+    if (sidebarHidden) {
+      leftCaret.setAttribute("hidden", "");
+      rightCaret.removeAttribute("hidden");
+    } else {
+      rightCaret.setAttribute("hidden", "");
+      leftCaret.removeAttribute("hidden");
+    }
+  };
+
+  let toggleSidebar = function () {
+    const rightCaret = document.body.querySelector(".caret-right");
+    const leftCaret = document.body.querySelector(".caret-left");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarHidden = sidebar.hasAttribute("hidden");
+
+    if (sidebarHidden) {
+      rightCaret.setAttribute("hidden", "");
+      leftCaret.removeAttribute("hidden");
+      sidebar.removeAttribute("hidden");
+    } else {
+      leftCaret.setAttribute("hidden", "");
+      rightCaret.removeAttribute("hidden");
+      sidebar.setAttribute("hidden", "");
+    }
+
+    engine.item(0).refresh();
+  };
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    await initParticles(engine);
+
+    for (const presetId in engine.pluginManager.configs) {
+      const preset = engine.pluginManager.configs[presetId];
+
+      const option = document.createElement("option");
+      option.value = presetId;
+      option.text = preset.name || presetId;
+
+      document.getElementById("presets").appendChild(option);
+    }
+
+    const element = document.getElementById("editor"),
+      options = {
+        mode: "form",
+        modes: ["code", "form", "view", "preview", "text"], // allowed modes
+        onError: function (err) {
+          alert(err.toString());
+        },
+        onModeChange: function (newMode, oldMode) {},
+        onChange: function () {},
+      };
+    const editor = new JSONEditor(element, options);
+
+    const cmbPresets = document.getElementById("presets");
+
+    cmbPresets.onchange = async () => {
+      localStorage.presetId = cmbPresets.value;
+
+      try {
+        await updateParticles(editor);
+      } catch (e) {
+        console.error(e);
+      }
     };
 
-    let initSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+    if (!localStorage.presetId) {
+      localStorage.presetId = "basic";
+    }
 
-        if (sidebarHidden) {
-            leftCaret.setAttribute("hidden", "");
-            rightCaret.removeAttribute("hidden");
-        } else {
-            rightCaret.setAttribute("hidden", "");
-            leftCaret.removeAttribute("hidden");
-        }
+    cmbPresets.value = localStorage.presetId;
+
+    // Create a new 'change' event
+    const event = new Event("change");
+
+    // Dispatch it.
+    cmbPresets.dispatchEvent(event);
+
+    const btnUpdate = document.getElementById("btnUpdate");
+
+    btnUpdate.onclick = function () {
+      const particles = engine.item(0);
+
+      particles.reset().then(() => {
+        particles.options.load(editor.get());
+        particles.refresh().then(() => {
+          // do nothing
+        });
+      });
     };
 
-    let toggleSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+    document.body.querySelector("#stats").appendChild(stats.dom);
 
-        if (sidebarHidden) {
-            rightCaret.setAttribute("hidden", "");
-            leftCaret.removeAttribute("hidden");
-            sidebar.removeAttribute("hidden");
-        } else {
-            leftCaret.setAttribute("hidden", "");
-            rightCaret.removeAttribute("hidden");
-            sidebar.setAttribute("hidden", "");
-        }
+    const statsToggler = document.body.querySelector("#toggle-stats");
 
-        tsParticles.item(0).refresh();
-    };
+    statsToggler.addEventListener("click", function () {
+      const statsEl = document.body.querySelector("#stats");
+      if (statsEl.hasAttribute("hidden")) {
+        statsEl.removeAttribute("hidden");
+      } else {
+        statsEl.setAttribute("hidden", "");
+      }
+    });
 
-    document.addEventListener("DOMContentLoaded", async () => {
-        await initParticles(tsParticles);
+    const sidebarToggler = document.body.querySelector(".toggle-sidebar");
 
-        for (const presetId in tsParticles.pluginManager.configs) {
-          const preset = tsParticles.pluginManager.configs[presetId];
+    sidebarToggler.addEventListener("click", function () {
+      toggleSidebar();
+    });
 
-          const option = document.createElement("option");
-          option.value = presetId;
-          option.text = preset.name || presetId;
+    document.getElementById("export-image").addEventListener("click", function () {
+      const container = engine.item(0);
 
-          document.getElementById("presets").appendChild(option);
-        }
+      if (container) {
+        container.export("image").then(function (blob) {
+          const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
-        const element = document.getElementById("editor"), options = {
-            mode: "form",
-            modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
-            onError: function (err) {
-                alert(err.toString());
-            },
-            onModeChange: function (newMode, oldMode) {
-            },
-            onChange: function () {
-            }
-        };
-        const editor = new JSONEditor(element, options);
+          modalBody.innerHTML = "";
+          modalBody.style.backgroundColor = container.canvas.domElement.style.backgroundColor;
+          modalBody.style.backgroundImage = container.canvas.domElement.style.backgroundImage;
+          modalBody.style.backgroundPosition = container.canvas.domElement.style.backgroundPosition;
+          modalBody.style.backgroundRepeat = container.canvas.domElement.style.backgroundRepeat;
+          modalBody.style.backgroundSize = container.canvas.domElement.style.backgroundSize;
 
-        const cmbPresets = document.getElementById("presets");
+          const image = document.createElement("img");
 
-        cmbPresets.onchange = async () => {
-            localStorage.presetId = cmbPresets.value;
+          image.className = "img-fluid";
+          image.onload = () => URL.revokeObjectURL(image.src);
+          image.src = URL.createObjectURL(blob);
 
-            try {
-                await updateParticles(editor);
-            } catch (e) {
-                console.error(e);
-            }
-        };
+          modalBody.appendChild(image);
 
-        if (!localStorage.presetId) {
-            localStorage.presetId = "basic";
-        }
+          const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
-        cmbPresets.value = localStorage.presetId;
-
-        // Create a new 'change' event
-        const event = new Event("change");
-
-        // Dispatch it.
-        cmbPresets.dispatchEvent(event);
-
-        const btnUpdate = document.getElementById("btnUpdate");
-
-        btnUpdate.onclick = function () {
-            const particles = tsParticles.item(0);
-
-            particles.reset().then(() => {
-                particles.options.load(editor.get());
-                particles.refresh().then(() => {
-                    // do nothing
-                });
-            });
-        };
-
-        document.body.querySelector("#stats").appendChild(stats.dom);
-
-        const statsToggler = document.body.querySelector("#toggle-stats");
-
-        statsToggler.addEventListener("click", function () {
-            const statsEl = document.body.querySelector("#stats");
-            if (statsEl.hasAttribute("hidden")) {
-                statsEl.removeAttribute("hidden");
-            } else {
-                statsEl.setAttribute("hidden", "");
-            }
+          exportModal.show();
         });
+      }
+    });
 
-        const sidebarToggler = document.body.querySelector(".toggle-sidebar");
+    document.getElementById("export-video").addEventListener("click", function () {
+      const container = engine.item(0);
 
-        sidebarToggler.addEventListener("click", function () {
-            toggleSidebar();
+      if (container) {
+        container.export("video").then(function (blob) {
+          const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+
+          modalBody.innerHTML = "";
+          modalBody.style.backgroundColor = container.canvas.domElement.style.backgroundColor;
+          modalBody.style.backgroundImage = container.canvas.domElement.style.backgroundImage;
+          modalBody.style.backgroundPosition = container.canvas.domElement.style.backgroundPosition;
+          modalBody.style.backgroundRepeat = container.canvas.domElement.style.backgroundRepeat;
+          modalBody.style.backgroundSize = container.canvas.domElement.style.backgroundSize;
+
+          const downloadLink = document.createElement("a");
+
+          downloadLink.className = "btn btn-primary";
+          downloadLink.download = "particles.mp4";
+          downloadLink.href = URL.createObjectURL(blob);
+          downloadLink.innerText = "Download";
+
+          const video = document.createElement("video");
+
+          video.className = "img-fluid";
+          video.onload = () => URL.revokeObjectURL(image.src);
+          video.autoplay = true;
+          video.controls = true;
+          video.loop = true;
+          video.src = URL.createObjectURL(blob);
+          video.load();
+
+          modalBody.appendChild(video);
+          modalBody.appendChild(downloadLink);
+
+          const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+
+          exportModal.show();
         });
+      }
+    });
 
-        document.getElementById("export-image").addEventListener("click", function () {
-            const container = tsParticles.item(0);
+    document.getElementById("export-config").addEventListener("click", function () {
+      const container = engine.item(0);
 
-            if (container) {
-                container.export("image").then(function (blob) {
-                    const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+      if (container) {
+        container.export("json").then(function (blob) {
+          blob.text().then(function (json) {
+            const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
-                    modalBody.innerHTML = "";
-                    modalBody.style.backgroundColor = container.canvas.domElement.style.backgroundColor;
-                    modalBody.style.backgroundImage = container.canvas.domElement.style.backgroundImage;
-                    modalBody.style.backgroundPosition = container.canvas.domElement.style.backgroundPosition;
-                    modalBody.style.backgroundRepeat = container.canvas.domElement.style.backgroundRepeat;
-                    modalBody.style.backgroundSize = container.canvas.domElement.style.backgroundSize;
+            modalBody.innerHTML = `<pre>${json}</pre>`;
 
-                    const image = document.createElement("img");
+            const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
-                    image.className = "img-fluid";
-                    image.onload = () => URL.revokeObjectURL(image.src);
-                    image.src = URL.createObjectURL(blob);
-
-                    modalBody.appendChild(image);
-
-                    const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
-
-                    exportModal.show();
-                });
-            }
+            exportModal.show();
+          });
         });
+      }
+    });
 
-        document.getElementById("export-video").addEventListener("click", function () {
-            const container = tsParticles.item(0);
+    document.getElementById("codepen-export").addEventListener("click", function () {
+      const container = engine.item(0);
 
-            if (container) {
-                container.export("video").then(function (blob) {
-                    const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
-
-                    modalBody.innerHTML = "";
-                    modalBody.style.backgroundColor = container.canvas.domElement.style.backgroundColor;
-                    modalBody.style.backgroundImage = container.canvas.domElement.style.backgroundImage;
-                    modalBody.style.backgroundPosition = container.canvas.domElement.style.backgroundPosition;
-                    modalBody.style.backgroundRepeat = container.canvas.domElement.style.backgroundRepeat;
-                    modalBody.style.backgroundSize = container.canvas.domElement.style.backgroundSize;
-
-                    const downloadLink = document.createElement("a");
-
-                    downloadLink.className = "btn btn-primary";
-                    downloadLink.download = "particles.mp4";
-                    downloadLink.href = URL.createObjectURL(blob);
-                    downloadLink.innerText = "Download";
-
-                    const video = document.createElement("video");
-
-                    video.className = "img-fluid";
-                    video.onload = () => URL.revokeObjectURL(image.src);
-                    video.autoplay = true;
-                    video.controls = true;
-                    video.loop = true;
-                    video.src = URL.createObjectURL(blob);
-                    video.load();
-
-                    modalBody.appendChild(video);
-                    modalBody.appendChild(downloadLink);
-
-                    const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
-
-                    exportModal.show();
-                });
-            }
-        });
-
-        document.getElementById("export-config").addEventListener("click", function () {
-            const container = tsParticles.item(0);
-
-            if (container) {
-                container.export("json").then(function (blob) {
-                    blob.text().then(function (json) {
-                        const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
-
-                        modalBody.innerHTML = `<pre>${json}</pre>`;
-
-                        const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
-
-                        exportModal.show();
-                    });
-                });
-            }
-        });
-
-        document.getElementById("codepen-export").addEventListener("click", function () {
-            const container = tsParticles.item(0);
-
-            if (container) {
-                const form = document.getElementById("code-pen-form");
-                const inputData = document.getElementById("code-pen-data");
-                const particlesContainer = document.getElementById("tsparticles");
-                const data = {
-                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
+      if (container) {
+        const form = document.getElementById("code-pen-form");
+        const inputData = document.getElementById("code-pen-data");
+        const particlesContainer = document.getElementById("tsparticles");
+        const data = {
+          html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
 <div id="tsparticles"></div>`,
-                    css: `/* ---- reset ---- */
+          css: `/* ---- reset ---- */
 body {
     margin: 0;
     font: normal 75% Arial, Helvetica, sans-serif;
@@ -374,21 +375,21 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
-                    js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
-                    title: "tsParticles example",
-                    description: "This pen was created with tsParticles from https://particles.js.org",
-                    tags: "tsparticles, javascript, typescript, design, animation",
-                    editors: "001"
-                };
+          js: `const engine = tsParticles.createEngine(); await loadAll(engine); await engine.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
+          js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
+          title: "tsParticles example",
+          description: "This pen was created with tsParticles from https://particles.js.org",
+          tags: "tsparticles, javascript, typescript, design, animation",
+          editors: "001",
+        };
 
-                inputData.value = JSON.stringify(data).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+        inputData.value = JSON.stringify(data).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 
-                form.submit();
-            }
-        });
-
-        initSidebar();
-        initStats();
+        form.submit();
+      }
     });
+
+    initSidebar();
+    initStats();
+  });
 })();

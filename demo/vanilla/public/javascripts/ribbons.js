@@ -1,3 +1,6 @@
+const engine = tsParticles.createEngine();
+const ribbons = tsParticles.createRibbons(engine);
+
 const end = Date.now() + 8 * 1000,
   colors = ["#ff0055", "#00d1ff", "#ffd23f", "#61ff7e", "#b284ff"];
 

@@ -1,6 +1,7 @@
 import $ from "jquery";
+import { engine } from "../particlesEngine";
 import "@tsparticles/jquery";
-import { tsParticles } from "@tsparticles/engine";
+
 import { loadSlim } from "@tsparticles/slim";
 import "./style.css";
 
@@ -67,12 +68,12 @@ function toggleMode(): void {
   $("#confirmError").text("");
 }
 
-$("#toggleAuth").on("click", (e) => {
+$("#toggleAuth").on("click", e => {
   e.preventDefault();
   toggleMode();
 });
 
-$("#authForm").on("submit", (e) => {
+$("#authForm").on("submit", e => {
   e.preventDefault();
 
   if (!validate()) return;
@@ -88,23 +89,33 @@ $("#authForm").on("submit", (e) => {
 });
 
 (async () => {
-  await loadSlim(tsParticles);
+  await loadSlim(engine);
 
-  $("#tsparticles").particles().load({
-    background: { color: { value: "transparent" } },
-    fpsLimit: 60,
-    particles: {
-      number: { value: 60, density: { enable: true } },
-      color: { value: ["#6c5ce7", "#a29bfe", "#fd79a8", "#00cec9"] },
-      shape: { type: "circle" },
-      opacity: { value: 0.5, random: true },
-      size: { value: { min: 1, max: 3 }, random: true },
-      move: { enable: true, speed: 1, direction: "none", random: true, straight: false, outModes: { default: "out" } },
-    },
-    interactivity: {
-      events: { onHover: { enable: true, mode: "bubble" } },
-      modes: { bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8 } },
-    },
-    detectRetina: true,
-  });
+  await $.particles(engine).init();
+  $("#tsparticles")
+    .particles(engine)
+    .load({
+      background: { color: { value: "transparent" } },
+      fpsLimit: 60,
+      particles: {
+        number: { value: 60, density: { enable: true } },
+        color: { value: ["#6c5ce7", "#a29bfe", "#fd79a8", "#00cec9"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: { min: 1, max: 3 }, random: true },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" },
+        },
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "bubble" } },
+        modes: { bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8 } },
+      },
+      detectRetina: true,
+    });
 })();

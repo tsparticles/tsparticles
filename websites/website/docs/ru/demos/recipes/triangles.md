@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ## Готов к использованию (ручной запуск/остановка)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTrianglesPreset } from "@tsparticles/preset-triangles";
 import type { Container } from "@tsparticles/engine";
 

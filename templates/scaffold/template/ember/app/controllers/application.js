@@ -1,8 +1,10 @@
+import { engine } from "../../particlesEngine";
 import Controller from "@ember/controller";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadSlim } from "@tsparticles/slim";
 
 export default class ApplicationController extends Controller {
+  engine = engine;
   options = {
     fullScreen: { enable: true, zIndex: -1 },
     background: { color: { value: "#1a1a2e" } },
@@ -28,7 +30,7 @@ export default class ApplicationController extends Controller {
   constructor() {
     super();
 
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   }

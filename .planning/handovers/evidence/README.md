@@ -45,3 +45,30 @@ Its baseline revision and ownership assignments describe this checkpoint.
 
 A failed or missing measurement is never zero. See `V5-BUNDLE-REPORT.md` for gate
 status and numeric budgets; no savings have yet been claimed.
+
+## E0 continuation and E1 retirement
+
+Additional baseline commands (run before changing runtime):
+
+```sh
+node .planning/handovers/evidence/tools/check-installed.mjs
+node .planning/handovers/evidence/tools/measure-runtime-extended.mjs
+node .planning/handovers/evidence/tools/measure-runtime-extended.mjs --force-hdr
+node .planning/handovers/evidence/tools/capture-colors.mjs
+```
+
+The extended benchmark must run without other CPU-heavy verification jobs.
+The final saved run used isolated timing and media listener counters. The color
+matrix forces media capability detection for its third row only; rendering uses
+real browser float16 contexts, and SDR readback is explicitly labeled.
+
+E1 archive verification:
+
+```sh
+node .planning/handovers/evidence/tools/check-retired-templates.mjs
+```
+
+`e1/` contains test/build outputs with `.txt` extensions so they are not excluded
+by the repository's log ignore rule. Earlier `.log` references describe local
+execution logs; machine-readable baseline outputs and the main report preserve
+the verified results independently of those logs.

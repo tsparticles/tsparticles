@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ## すぐに使用可能 (手動開始/停止)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBubblesPreset } from "@tsparticles/preset-bubbles";
 import type { Container } from "@tsparticles/engine";
 

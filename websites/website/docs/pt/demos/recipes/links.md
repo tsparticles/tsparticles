@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-links
 ## Pronto para uso (partida/parada manual)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import type { Container } from "@tsparticles/engine";
 

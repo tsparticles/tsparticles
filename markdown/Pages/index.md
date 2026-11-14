@@ -20,7 +20,8 @@ If this is your first time with tsParticles:
 ## Minimal start example
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);

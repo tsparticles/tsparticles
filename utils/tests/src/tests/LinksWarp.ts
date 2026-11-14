@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type ICoordinates, tsParticles } from "@tsparticles/engine";
+import { type ICoordinates, createEngine } from "@tsparticles/engine";
 import type { LinkContainer, LinkParticle } from "../../../../interactions/particles/links/src/Types.js";
 import { describe, expect, it } from "vitest";
 import { CircleWarp } from "../../../../interactions/particles/links/src/CircleWarp.js";
@@ -7,6 +7,8 @@ import { Linker } from "../../../../interactions/particles/links/src/Linker.js";
 import { Links } from "../../../../interactions/particles/links/src/Options/Classes/Links.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 let id = 0;
 const width = 800,

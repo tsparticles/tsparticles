@@ -1,21 +1,23 @@
 /* eslint-disable */
 import {
-  OutMode,
-  OutModeDirection,
   type Container,
   type ISourceOptions,
+  OutMode,
+  OutModeDirection,
+  createEngine,
   millisecondsToSeconds,
-  tsParticles,
 } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadFilterEffect } from "@tsparticles/effect-filter";
+import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadParticlesEffect } from "@tsparticles/effect-particles";
 import { loadShadowEffect } from "@tsparticles/effect-shadow";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
-import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
+
+const tsParticles = createEngine();
 
 let containerId = 0;
 

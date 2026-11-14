@@ -26,10 +26,15 @@ const id = "tsparticles";
 </html>
 
 <script>
+import { engine } from "../../particlesEngine";
+
   import { initParticlesEngine } from "@tsparticles/astro";
   import { loadSlim } from "@tsparticles/slim";
 
-  await initParticlesEngine(async (engine) => {
+  await initParticlesEngine(engine, async (engine) => {
     await loadSlim(engine);
   });
+for (const element of document.querySelectorAll("astro-particles")) {
+    (element as HTMLElement & { engine: typeof engine }).engine = engine;
+  }
 </script>

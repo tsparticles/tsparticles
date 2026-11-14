@@ -1,7 +1,8 @@
-import { createSignal, createEffect, onMount } from "solid-js";
+import { createEffect, createSignal, onMount } from "solid-js";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
 
 export default function App() {
   const [isLogin, setIsLogin] = createSignal(true);
@@ -18,7 +19,7 @@ export default function App() {
   });
 
   onMount(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   });
@@ -125,7 +126,7 @@ export default function App() {
                 id="email"
                 placeholder="you@example.com"
                 value={email()}
-                onInput={(e) => setEmail(e.currentTarget.value)}
+                onInput={e => setEmail(e.currentTarget.value)}
                 required
               />
               <span class="error">{emailError()}</span>
@@ -137,7 +138,7 @@ export default function App() {
                 id="password"
                 placeholder="Enter password"
                 value={password()}
-                onInput={(e) => setPassword(e.currentTarget.value)}
+                onInput={e => setPassword(e.currentTarget.value)}
                 required
               />
               <span class="error">{passwordError()}</span>
@@ -149,7 +150,7 @@ export default function App() {
                 id="confirmPassword"
                 placeholder="Confirm password"
                 value={confirm()}
-                onInput={(e) => setConfirm(e.currentTarget.value)}
+                onInput={e => setConfirm(e.currentTarget.value)}
               />
               <span class="error">{confirmError()}</span>
             </div>
@@ -157,13 +158,19 @@ export default function App() {
           </form>
           <p class="toggle-text">
             <span>{isLogin() ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick={(e) => { e.preventDefault(); toggleMode(); }}>
+            <a
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                toggleMode();
+              }}
+            >
               {isLogin() ? "Register" : "Login"}
             </a>
           </p>
         </div>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </>
   );
 }

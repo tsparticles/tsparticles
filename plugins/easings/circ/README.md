@@ -69,7 +69,8 @@ const { loadEasingCircPlugin } = require("@tsparticles/plugin-easing-circ");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingCircPlugin } from "@tsparticles/plugin-easing-circ";
 
 (async () => {

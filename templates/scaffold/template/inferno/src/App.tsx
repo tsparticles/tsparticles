@@ -1,14 +1,21 @@
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 export default function App() {
   return (
-    <ParticlesProvider init={async (engine: Engine): Promise<void> => { await loadSlim(engine); }}>
+    <ParticlesProvider
+      engine={engine}
+      init={async (engine: Engine): Promise<void> => {
+        await loadSlim(engine);
+      }}
+    >
       <div id="app">
         <h1>Hello, tsParticles!</h1>
       </div>
       <Particles
+        engine={engine}
         id="tsparticles"
         options={{
           fullScreen: { enable: true, zIndex: -1 },

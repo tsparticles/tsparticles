@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
-import { type Container, type ICoordinates3d, type ISourceOptions, LimitMode, tsParticles } from "@tsparticles/engine";
+import { type Container, type ICoordinates3d, type ISourceOptions, LimitMode, createEngine } from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
-const width = 1920,
+const tsParticles = createEngine(),
+  width = 1920,
   height = 1080;
 
 /**

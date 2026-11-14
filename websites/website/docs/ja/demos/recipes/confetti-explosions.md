@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ## すぐに使用可能 (手動開始/停止)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiExplosionsPreset } from "@tsparticles/preset-confetti-explosions";
 import type { Container } from "@tsparticles/engine";
 

@@ -79,11 +79,7 @@ npm install @tsparticles/preset-fireworks
   };
 </script>
 
-<Particles
-  id="tsparticles"
-  options={options}
-  on:init={particlesInit}
-/>
+<Particles id="tsparticles" {options} on:init={particlesInit} />
 ```
 
 ---
@@ -104,17 +100,15 @@ Pass an `on:init` event handler to load the plugins and presets your app needs:
   };
 </script>
 
-<Particles
-  id="tsparticles"
-  options={options}
-  on:init={handleInit}
-/>
+<Particles id="tsparticles" {options} on:init={handleInit} />
 ```
 
 Alternatively, use the `initParticlesEngine` utility before mounting:
 
 ```svelte
 <script lang="ts">
+  import { createEngine } from "@tsparticles/engine";
+  const particlesEngine = createEngine();
   import Particles, { initParticlesEngine } from "@tsparticles/svelte";
   import { loadFull } from "tsparticles";
   import { onMount } from "svelte";
@@ -122,7 +116,7 @@ Alternatively, use the `initParticlesEngine` utility before mounting:
   let ready = false;
 
   onMount(async () => {
-    await initParticlesEngine(async (engine) => {
+    await initParticlesEngine(particlesEngine, async (engine) => {
       await loadFull(engine);
     });
     ready = true;
@@ -130,7 +124,7 @@ Alternatively, use the `initParticlesEngine` utility before mounting:
 </script>
 
 {#if ready}
-  <Particles id="tsparticles" options={options} />
+  <Particles engine={particlesEngine} id="tsparticles" {options} />
 {/if}
 ```
 
@@ -160,11 +154,7 @@ npm install @tsparticles/preset-snow
   };
 </script>
 
-<Particles
-  id="snow"
-  {options}
-  on:init={handleInit}
-/>
+<Particles id="snow" {options} on:init={handleInit} />
 ```
 
 Customise the preset behaviour by merging additional options:
@@ -176,10 +166,10 @@ Customise the preset behaviour by merging additional options:
     background: { color: "#0f0f23" },
     particles: {
       move: {
-        speed: 1.5,  // slower snowfall
+        speed: 1.5, // slower snowfall
       },
       opacity: {
-        value: 0.8,  // more visible flakes
+        value: 0.8, // more visible flakes
       },
     },
   };
@@ -212,11 +202,7 @@ npm install @tsparticles/preset-stars
   };
 </script>
 
-<Particles
-  id="stars"
-  {options}
-  on:init={handleInit}
-/>
+<Particles id="stars" {options} on:init={handleInit} />
 ```
 
 ---
@@ -281,11 +267,7 @@ Add mouse hover and click interactivity:
   };
 </script>
 
-<Particles
-  id="interactive"
-  {options}
-  on:init={handleInit}
-/>
+<Particles id="interactive" {options} on:init={handleInit} />
 ```
 
 ---
@@ -320,12 +302,7 @@ Add mouse hover and click interactivity:
   <button on:click={destroy}>Destroy</button>
 </div>
 
-<Particles
-  id="tsparticles"
-  options={options}
-  on:init={handleInit}
-  on:particlesLoaded={handleLoaded}
-/>
+<Particles id="tsparticles" {options} on:init={handleInit} on:particlesLoaded={handleLoaded} />
 ```
 
 | Event                | Detail                   | Fires                              |
@@ -343,11 +320,7 @@ Full typed component:
 <script lang="ts">
   import Particles from "@tsparticles/svelte";
   import { loadFull } from "tsparticles";
-  import type {
-    Container,
-    Engine,
-    ISourceOptions,
-  } from "@tsparticles/engine";
+  import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 
   let particlesContainer: Container | undefined;
 
@@ -406,12 +379,7 @@ Full typed component:
   };
 </script>
 
-<Particles
-  id="tsparticles"
-  {options}
-  on:init={handleInit}
-  on:particlesLoaded={handleLoaded}
-/>
+<Particles id="tsparticles" {options} on:init={handleInit} on:particlesLoaded={handleLoaded} />
 ```
 
 ---
@@ -466,11 +434,7 @@ Reactive options update the particles by destroying and reloading with the new c
   </label>
 </div>
 
-<Particles
-  id="dynamic"
-  {options}
-  on:init={handleInit}
-/>
+<Particles id="dynamic" {options} on:init={handleInit} />
 ```
 
 The `$:` reactive declaration recomputes `options` whenever `color` changes, and the `Particles` component picks up the new configuration automatically.
@@ -550,7 +514,7 @@ In SvelteKit, the canvas requires the browser environment. Disable SSR for the c
 </script>
 
 {#if Component}
-  <svelte:component this={Component} id="tsparticles" options={options} />
+  <svelte:component this={Component} id="tsparticles" {options} />
 {/if}
 ```
 

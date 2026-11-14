@@ -31,6 +31,7 @@
   "homepage": "https://confetti.js.org",
   "dependencies": {
     "@tsparticles/confetti": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
     "@tsparticles/ribbons": "workspace:*",
     "ace-builds": "^1.45.2",
     "dompurify": "^3.4.17",
@@ -38,7 +39,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "gh-pages": "^6.3.0",

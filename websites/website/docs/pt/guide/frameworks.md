@@ -28,6 +28,8 @@ For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Sol
 > The `init` callback runs only once for the entire app lifecycle.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import type { Engine } from "@tsparticles/engine";
@@ -49,7 +51,7 @@ export function ParticlesBackground() {
   );
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={particlesEngine} init={init}>
       <Particles id="tsparticles" options={options} />
     </ParticlesProvider>
   );

@@ -1,0 +1,429 @@
+{
+  "browser": "Chrome/157.0.8103.52",
+  "rows": [
+    {
+      "mode": "SDR",
+      "hdr": false,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "pixels": [
+        {
+          "name": "hex",
+          "value": "#ff0000",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "HSL",
+          "value": "hsl(120, 100%, 50%)",
+          "srgbPixel": [
+            0,
+            255,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGB",
+          "value": "rgb(0, 0, 255)",
+          "srgbPixel": [
+            0,
+            0,
+            255,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH in gamut",
+          "value": "oklch(0.7 0.1 40)",
+          "srgbPixel": [
+            212,
+            137,
+            110,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH wide",
+          "value": "oklch(0.7 0.4 140)",
+          "srgbPixel": [
+            0,
+            205,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGBA .5",
+          "value": "rgba(255, 0, 0, 0.5)",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH alpha",
+          "value": "oklch(0.7 0.1 40 / 0.5)",
+          "srgbPixel": [
+            212,
+            137,
+            110,
+            255
+          ]
+        },
+        {
+          "name": "fill opacity .5",
+          "value": "#ff0000",
+          "opacity": 0.5,
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            128
+          ]
+        }
+      ],
+      "particleColors": [
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 240,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 40.19607843137255
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        }
+      ]
+    },
+    {
+      "mode": "HDR requested / detected",
+      "hdr": false,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "pixels": [
+        {
+          "name": "hex",
+          "value": "#ff0000",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "HSL",
+          "value": "hsl(120, 100%, 50%)",
+          "srgbPixel": [
+            0,
+            255,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGB",
+          "value": "rgb(0, 0, 255)",
+          "srgbPixel": [
+            0,
+            0,
+            255,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH in gamut",
+          "value": "oklch(0.7 0.1 40)",
+          "srgbPixel": [
+            212,
+            137,
+            110,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH wide",
+          "value": "oklch(0.7 0.4 140)",
+          "srgbPixel": [
+            0,
+            205,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGBA .5",
+          "value": "rgba(255, 0, 0, 0.5)",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH alpha",
+          "value": "oklch(0.7 0.1 40 / 0.5)",
+          "srgbPixel": [
+            212,
+            137,
+            110,
+            255
+          ]
+        },
+        {
+          "name": "fill opacity .5",
+          "value": "#ff0000",
+          "opacity": 0.5,
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            128
+          ]
+        }
+      ],
+      "particleColors": [
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 240,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 40.19607843137255
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        }
+      ]
+    },
+    {
+      "mode": "HDR forced capability",
+      "hdr": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "pixels": [
+        {
+          "name": "hex",
+          "value": "#ff0000",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "HSL",
+          "value": "hsl(120, 100%, 50%)",
+          "srgbPixel": [
+            0,
+            255,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGB",
+          "value": "rgb(0, 0, 255)",
+          "srgbPixel": [
+            0,
+            0,
+            255,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH in gamut",
+          "value": "oklch(0.7 0.1 40)",
+          "srgbPixel": [
+            225,
+            133,
+            104,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH wide",
+          "value": "oklch(0.7 0.4 140)",
+          "srgbPixel": [
+            0,
+            209,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "RGBA .5",
+          "value": "rgba(255, 0, 0, 0.5)",
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "name": "OKLCH alpha",
+          "value": "oklch(0.7 0.1 40 / 0.5)",
+          "srgbPixel": [
+            225,
+            133,
+            104,
+            255
+          ]
+        },
+        {
+          "name": "fill opacity .5",
+          "value": "#ff0000",
+          "opacity": 0.5,
+          "srgbPixel": [
+            255,
+            0,
+            0,
+            128
+          ]
+        }
+      ],
+      "particleColors": [
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 240,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 120,
+          "s": 100,
+          "l": 40.19607843137255
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        },
+        {
+          "h": 15.882352941176464,
+          "s": 54.25531914893619,
+          "l": 63.13725490196078
+        },
+        {
+          "h": 0,
+          "s": 100,
+          "l": 50
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "notes": [
+    "Baseline observations, not intended v5 output/reference math",
+    "Third row forces HDR/P3 media detection only; real float16 Canvas2D renders all particles",
+    "Screenshots and sampled pixels are SDR readback, not physical HDR luminance",
+    "Color parser alpha and separate fill opacity are intentionally independent fixtures"
+  ]
+}

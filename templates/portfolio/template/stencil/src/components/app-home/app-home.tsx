@@ -1,7 +1,8 @@
 import { Component, State, h } from "@stencil/core";
-import { loadSlim } from "@tsparticles/slim";
-import { tsParticles, type ISourceOptions } from "@tsparticles/engine";
+import { type ISourceOptions } from "@tsparticles/engine";
 import configs from "@tsparticles/configs";
+import { engine } from "../../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 const keys = Object.keys(configs);
 const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
@@ -35,7 +36,7 @@ export class AppHome {
   ];
 
   async componentDidLoad(): Promise<void> {
-    await loadSlim(tsParticles);
+    await loadSlim(engine);
   }
 
   private handleSubmit(e: Event): void {
@@ -47,29 +48,36 @@ export class AppHome {
   render() {
     return (
       <div>
-        <stencil-particles id="tsparticles" options={options}></stencil-particles>
+        <stencil-particles engine={engine} id="tsparticles" options={options}></stencil-particles>
         <nav id="navbar">
-          {this.navItems.map((item) => (
-            <a href={`#${item.toLowerCase()}`} class="nav-link">{item}</a>
+          {this.navItems.map(item => (
+            <a href={`#${item.toLowerCase()}`} class="nav-link">
+              {item}
+            </a>
           ))}
         </nav>
         <section id="hero" class="section">
           <div class="hero-content">
-            <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+            <h1>
+              Hello, I'm <span class="highlight">Your Name</span>
+            </h1>
             <p class="subtitle">Full-Stack Developer &amp; Designer</p>
           </div>
         </section>
         <section id="about" class="section content-section">
           <div class="container">
             <h2>About Me</h2>
-            <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+            <p>
+              A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+              JavaScript frameworks, cloud infrastructure, and UI/UX design.
+            </p>
           </div>
         </section>
         <section id="projects" class="section content-section">
           <div class="container">
             <h2>Projects</h2>
             <div class="project-grid">
-              {this.projects.map((p) => (
+              {this.projects.map(p => (
                 <div class="project-card">
                   <h3>{p.title}</h3>
                   <p>{p.desc}</p>
@@ -81,10 +89,12 @@ export class AppHome {
         <section id="skills" class="section content-section">
           <div class="container">
             <h2>Skills</h2>
-            {this.skills.map((s) => (
+            {this.skills.map(s => (
               <div class="skill-bar">
                 <span class="skill-name">{s.name}</span>
-                <div class="bar"><div class="fill" style={{ width: `${s.pct}%` }}></div></div>
+                <div class="bar">
+                  <div class="fill" style={{ width: `${s.pct}%` }}></div>
+                </div>
               </div>
             ))}
           </div>

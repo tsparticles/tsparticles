@@ -72,7 +72,8 @@ const { loadImageShape } = require("@tsparticles/shape-image");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadImageShape } from "@tsparticles/shape-image";
 
 (async () => {

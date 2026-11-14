@@ -1,0 +1,74 @@
+{
+  "status": "Candidate closure; see separate cdn-browser.json for verification",
+  "requestCount": 9,
+  "files": [
+    {
+      "root": "engine",
+      "file": "engine/dist/tsparticles.engine.min.js",
+      "raw": 79111,
+      "gzip": 24816,
+      "brotli": 22063
+    },
+    {
+      "root": "utils/animationUtils",
+      "file": "utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "raw": 4928,
+      "gzip": 1070,
+      "brotli": 967
+    },
+    {
+      "root": "shapes/circle",
+      "file": "shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "raw": 3727,
+      "gzip": 802,
+      "brotli": 702
+    },
+    {
+      "root": "plugins/move",
+      "file": "plugins/move/dist/tsparticles.plugin.move.min.js",
+      "raw": 8394,
+      "gzip": 2452,
+      "brotli": 2258
+    },
+    {
+      "root": "plugins/colors/hex",
+      "file": "plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "raw": 4011,
+      "gzip": 883,
+      "brotli": 759
+    },
+    {
+      "root": "updaters/paint",
+      "file": "updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "raw": 4986,
+      "gzip": 1142,
+      "brotli": 1012
+    },
+    {
+      "root": "updaters/size",
+      "file": "updaters/size/dist/tsparticles.updater.size.min.js",
+      "raw": 4509,
+      "gzip": 1076,
+      "brotli": 959
+    },
+    {
+      "root": "updaters/opacity",
+      "file": "updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "raw": 4476,
+      "gzip": 1056,
+      "brotli": 942
+    },
+    {
+      "root": "updaters/outModes",
+      "file": "updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "raw": 9544,
+      "gzip": 2301,
+      "brotli": 2098
+    }
+  ],
+  "total": {
+    "raw": 123686,
+    "gzip": 35598,
+    "brotli": 31760
+  }
+}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { engine } from "../particlesEngine";
+
   import Particles from "@tsparticles/svelte";
   import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -43,7 +45,7 @@
 
 <h1>tsParticles</h1>
 
-<Particles id="tsparticles" options={options} />
+<Particles {engine} id="tsparticles" {options} />
 
 <style>
   :global(body) {

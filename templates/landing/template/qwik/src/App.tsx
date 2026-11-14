@@ -1,17 +1,20 @@
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
-import { Particles, initParticlesEngine } from "@tsparticles/qwik";
+import { engine } from "../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
 
 export default component$(() => {
+  const readyEngine = useSignal<typeof engine>();
   const init = useSignal(false);
 
-  useVisibleTask$(() => {
-    initParticlesEngine(async (engine) => {
+  useVisibleTask$(async () => {
+    initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     }).then(() => {
       init.value = true;
     });
+    readyEngine.value = noSerialize(engine);
   });
 
   const options: ISourceOptions = {
@@ -25,7 +28,14 @@ export default component$(() => {
       opacity: { value: 0.4, random: true },
       size: { value: { min: 1, max: 4 }, random: true },
       links: { enable: true, distance: 150, color: "#6c5ce7", opacity: 0.15, width: 1 },
-      move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
     },
     interactivity: {
       events: { onHover: { enable: true, mode: "grab" } },
@@ -36,14 +46,22 @@ export default component$(() => {
 
   return (
     <>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={readyEngine.value} id="tsparticles" options={options} />
       <section id="hero" class="section">
         <div class="hero-content">
-          <h1>Build Faster.<br /><span class="gradient-text">Go Further.</span></h1>
+          <h1>
+            Build Faster.
+            <br />
+            <span class="gradient-text">Go Further.</span>
+          </h1>
           <p class="hero-subtitle">The platform that helps teams ship products at the speed of light.</p>
           <div class="hero-cta">
-            <a href="#features" class="btn btn-primary">Learn More</a>
-            <a href="#cta" class="btn btn-secondary">Get Started</a>
+            <a href="#features" class="btn btn-primary">
+              Learn More
+            </a>
+            <a href="#cta" class="btn btn-secondary">
+              Get Started
+            </a>
           </div>
         </div>
       </section>
@@ -80,35 +98,47 @@ export default component$(() => {
           <div class="pricing-grid">
             <div class="pricing-card">
               <h3>Starter</h3>
-              <p class="price">$9<span>/mo</span></p>
+              <p class="price">
+                $9<span>/mo</span>
+              </p>
               <ul>
                 <li>Up to 5 projects</li>
                 <li>Basic analytics</li>
                 <li>Email support</li>
               </ul>
-              <a href="#" class="btn btn-secondary">Choose Plan</a>
+              <a href="#" class="btn btn-secondary">
+                Choose Plan
+              </a>
             </div>
             <div class="pricing-card featured">
               <h3>Pro</h3>
-              <p class="price">$29<span>/mo</span></p>
+              <p class="price">
+                $29<span>/mo</span>
+              </p>
               <ul>
                 <li>Unlimited projects</li>
                 <li>Advanced analytics</li>
                 <li>Priority support</li>
                 <li>Custom integrations</li>
               </ul>
-              <a href="#" class="btn btn-primary">Choose Plan</a>
+              <a href="#" class="btn btn-primary">
+                Choose Plan
+              </a>
             </div>
             <div class="pricing-card">
               <h3>Enterprise</h3>
-              <p class="price">$99<span>/mo</span></p>
+              <p class="price">
+                $99<span>/mo</span>
+              </p>
               <ul>
                 <li>Everything in Pro</li>
                 <li>Dedicated support</li>
                 <li>SLA guarantee</li>
                 <li>Custom deployment</li>
               </ul>
-              <a href="#" class="btn btn-secondary">Contact Sales</a>
+              <a href="#" class="btn btn-secondary">
+                Contact Sales
+              </a>
             </div>
           </div>
         </div>
@@ -132,12 +162,14 @@ export default component$(() => {
         <div class="container cta-content">
           <h2>Ready to Get Started?</h2>
           <p>Join thousands of teams already building with us.</p>
-          <a href="#" class="btn btn-primary btn-large">Start Free Trial</a>
+          <a href="#" class="btn btn-primary btn-large">
+            Start Free Trial
+          </a>
         </div>
       </section>
       <footer id="footer">
         <div class="container footer-content">
-          <p>&copy; 2026 {{projectName}}. All rights reserved.</p>
+          <p>&copy; 2026 {{ projectName }}. All rights reserved.</p>
           <div class="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

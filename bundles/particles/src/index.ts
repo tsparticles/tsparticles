@@ -5,3 +5,5 @@ import type { RecursivePartial } from "@tsparticles/engine";
 export type ParticlesOptions = RecursivePartial<IParticlesOptions>;
 
 export * from "./particles.js";
+
+export type { ParticlesApi } from "./types.js";

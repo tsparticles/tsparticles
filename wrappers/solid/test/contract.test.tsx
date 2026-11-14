@@ -1,11 +1,12 @@
+import { type Container, getLogger } from "@tsparticles/engine";
 /* eslint-disable */
-import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
-import { createSignal } from "solid-js";
-import { render } from "solid-js/web";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { Particles } from "../src";
+import { createSignal } from "solid-js";
+import { engine } from "./setup";
+import { render } from "solid-js/web";
 
-const loadMock = vi.mocked(tsParticles.load);
+const loadMock = vi.mocked(engine.load);
 
 const tick = async (): Promise<void> => {
   await new Promise(resolve => setTimeout(resolve, 0));
@@ -27,7 +28,7 @@ describe("Particles contract", () => {
     document.body.appendChild(host);
 
     dispose = render(
-      () => <Particles id="my-particles" options={options} url="https://example.com/config.json" />,
+      () => <Particles engine={engine} id="my-particles" options={options} url="https://example.com/config.json" />,
       host,
     );
 
@@ -49,7 +50,7 @@ describe("Particles contract", () => {
 
     document.body.appendChild(host);
 
-    dispose = render(() => <Particles particlesLoaded={particlesLoaded} />, host);
+    dispose = render(() => <Particles engine={engine} particlesLoaded={particlesLoaded} />, host);
 
     await tick();
 
@@ -73,7 +74,13 @@ describe("Particles contract", () => {
     vi.mocked(logger.error).mockClear();
 
     dispose = render(
-      () => <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />,
+      () => (
+        <Particles
+          engine={engine}
+          options={{ particles: { number: { value: 1 } } }}
+          particlesLoaded={particlesLoaded}
+        />
+      ),
       host,
     );
 
@@ -85,7 +92,13 @@ describe("Particles contract", () => {
     dispose();
     dispose = undefined;
     dispose = render(
-      () => <Particles options={{ particles: { number: { value: 2 } } }} particlesLoaded={particlesLoaded} />,
+      () => (
+        <Particles
+          engine={engine}
+          options={{ particles: { number: { value: 2 } } }}
+          particlesLoaded={particlesLoaded}
+        />
+      ),
       host,
     );
 
@@ -107,7 +120,7 @@ describe("Particles contract", () => {
     document.body.appendChild(host);
     vi.mocked(logger.error).mockClear();
 
-    dispose = render(() => <Particles particlesLoaded={particlesLoaded} />, host);
+    dispose = render(() => <Particles engine={engine} particlesLoaded={particlesLoaded} />, host);
 
     await tick();
 
@@ -135,7 +148,7 @@ describe("Particles contract", () => {
     loadMock.mockImplementationOnce(async () => currentContainer);
     document.body.appendChild(host);
 
-    dispose = render(() => <Particles options={options()} particlesLoaded={particlesLoaded} />, host);
+    dispose = render(() => <Particles engine={engine} options={options()} particlesLoaded={particlesLoaded} />, host);
 
     await tick();
     expect(loadMock).toHaveBeenCalledTimes(1);
@@ -171,7 +184,7 @@ describe("Particles contract", () => {
         }),
     );
     document.body.appendChild(host);
-    dispose = render(() => <Particles id={id()} />, host);
+    dispose = render(() => <Particles engine={engine} id={id()} />, host);
 
     await tick();
 
@@ -197,7 +210,7 @@ describe("Particles contract", () => {
 
     document.body.appendChild(host);
 
-    dispose = render(() => <Particles theme="dark" />, host);
+    dispose = render(() => <Particles engine={engine} theme="dark" />, host);
 
     await tick();
 
@@ -215,7 +228,7 @@ describe("Particles contract", () => {
 
     document.body.appendChild(host);
 
-    dispose = render(() => <Particles />, host);
+    dispose = render(() => <Particles engine={engine} />, host);
 
     await tick();
 

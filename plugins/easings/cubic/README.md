@@ -69,7 +69,8 @@ const { loadEasingCubicPlugin } = require("@tsparticles/plugin-easing-cubic");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingCubicPlugin } from "@tsparticles/plugin-easing-cubic";
 
 (async () => {

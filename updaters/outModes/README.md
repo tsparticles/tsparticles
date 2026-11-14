@@ -69,7 +69,8 @@ const { loadOutModesUpdater } = require("@tsparticles/updater-out-modes");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
 
 (async () => {

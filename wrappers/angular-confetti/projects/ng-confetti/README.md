@@ -35,13 +35,14 @@ export class AppModule {}
 ### Template usage
 
 ```html
-<ngx-confetti [id]="id" [options]="confettiOptions" [fire]="fire"></ngx-confetti>
+<ngx-confetti [engine]="engine" [id]="id" [options]="confettiOptions" [fire]="fire"></ngx-confetti>
 ```
 
 ### Component usage
 
 ```ts
 import { Component } from "@angular/core";
+import { createEngine } from "@tsparticles/engine";
 import type { ConfettiOptions } from "@tsparticles/confetti";
 
 @Component({
@@ -49,6 +50,7 @@ import type { ConfettiOptions } from "@tsparticles/confetti";
   templateUrl: "./app.component.html",
 })
 export class AppComponent {
+  public readonly engine = createEngine();
   public id = "tsparticles";
   public fire = true;
 

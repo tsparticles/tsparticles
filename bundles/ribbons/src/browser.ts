@@ -1,9 +1,9 @@
-import { ribbons } from "./index.js";
+import { createRibbons } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
-  ribbons?: typeof ribbons;
+  createRibbons?: typeof createRibbons;
 };
 
-globalObject.ribbons = ribbons;
+globalObject.createRibbons = createRibbons;
 
 export * from "./index.js";

@@ -13,7 +13,9 @@ Demo website: <https://ribbons.js.org>
 The package API is centered on `ribbons`.
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons(options);
 await ribbons("canvas-id", options);
@@ -34,7 +36,9 @@ pnpm add @tsparticles/ribbons
 ## How to use it
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   count: 5,
@@ -45,7 +49,9 @@ await ribbons({
 With advanced ribbon shape customization:
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   ribbonOptions: {

@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { type Container, tsParticles } from "@tsparticles/engine";
 import {
   Absorber,
   AbsorberLife,
@@ -8,6 +7,11 @@ import {
   AbsorberSplit,
   loadAbsorbersPlugin,
 } from "@tsparticles/plugin-absorbers";
+import { type Container, createEngine } from "@tsparticles/engine";
+import { Zoom, loadZoomPlugin } from "@tsparticles/plugin-zoom";
+import { beforeAll, describe, expect, it, vi } from "vitest";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
@@ -23,10 +27,8 @@ import { loadResponsivePlugin } from "@tsparticles/plugin-responsive";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadThemesPlugin } from "@tsparticles/plugin-themes";
 import { loadTrailPlugin } from "@tsparticles/plugin-trail";
-import { Zoom, loadZoomPlugin } from "@tsparticles/plugin-zoom";
-import { beforeAll, describe, expect, it, vi } from "vitest";
-import { TestWindow } from "../Fixture/Window.js";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 type AnyOptions = Record<string, any>;
 

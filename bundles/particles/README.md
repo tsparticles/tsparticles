@@ -19,7 +19,9 @@ tsParticles `particles` bundle to create simple particle effects with a focused 
 The package API is centered on `particles`.
 
 ```ts
-import { particles } from "@tsparticles/particles";
+import { createEngine } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(createEngine());
 
 // Main API
 const instance = await particles();
@@ -51,7 +53,9 @@ import { particles } from "@tsparticles/particles/lazy";
 ## How to use it
 
 ```ts
-import { particles } from "@tsparticles/particles";
+import { createEngine } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(createEngine());
 
 const instance = await particles({
   count: 120,
@@ -71,7 +75,9 @@ instance?.stop();
 ### Custom canvas via `particles.create`
 
 ```ts
-import { particles } from "@tsparticles/particles";
+import { createEngine } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(createEngine());
 
 const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
 await particles.create(canvas, { links: true });

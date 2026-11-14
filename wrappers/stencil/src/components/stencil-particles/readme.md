@@ -5,13 +5,14 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                        | Default     |
-| ------------- | -------------- | ----------- | ------------------------------------------- | ----------- |
-| `containerId` | `container-id` |             | `string`                                    | `undefined` |
-| `init`        | --             |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
-| `options`     | --             |             | `IOptions`                                  | `undefined` |
-| `theme`       | `theme`        |             | `string`                                    | `undefined` |
-| `url`         | `url`          |             | `string`                                    | `undefined` |
+| Property              | Attribute      | Description | Type                                        | Default     |
+| --------------------- | -------------- | ----------- | ------------------------------------------- | ----------- |
+| `containerId`         | `container-id` |             | `string`                                    | `undefined` |
+| `engine` _(required)_ | --             |             | `Engine`                                    | `undefined` |
+| `init`                | --             |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
+| `options`             | --             |             | `IOptions`                                  | `undefined` |
+| `theme`               | `theme`        |             | `string`                                    | `undefined` |
+| `url`                 | `url`          |             | `string`                                    | `undefined` |
 
 
 ## Events

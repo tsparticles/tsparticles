@@ -1,14 +1,13 @@
-import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
-import { loadSlim } from "@tsparticles/slim";
-import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
+import "./style.css";
 
-globalThis.tsParticles = tsParticles;
+import type { ISourceOptions } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  await initParticlesEngine(async (engine) => {
+  await initParticlesEngine(engine, async engine => {
     await loadSlim(engine);
   });
 
@@ -26,8 +25,8 @@ globalThis.tsParticles = tsParticles;
   (particlesEl as unknown as Record<string, unknown>).options = options;
   document.body.appendChild(particlesEl);
 
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", (e) => {
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", e => {
       e.preventDefault();
       const target = document.querySelector((e.target as HTMLAnchorElement).getAttribute("href")!);
       if (target) target.scrollIntoView({ behavior: "smooth" });
@@ -35,9 +34,13 @@ globalThis.tsParticles = tsParticles;
   });
 
   const contactForm = document.getElementById("contactForm") as HTMLFormElement;
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener("submit", e => {
     e.preventDefault();
     alert("Message sent! (demo)");
     contactForm.reset();
   });
 })();
+
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

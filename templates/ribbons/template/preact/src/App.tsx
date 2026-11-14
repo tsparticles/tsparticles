@@ -1,4 +1,6 @@
-import { ribbons } from "@tsparticles/ribbons";
+import { createRibbons } from "@tsparticles/ribbons";
+import { engine } from "../particlesEngine";
+const ribbons = createRibbons(engine);
 import "./App.css";
 
 export default function App() {

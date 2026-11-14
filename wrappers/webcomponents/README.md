@@ -21,13 +21,15 @@ yarn add @tsparticles/webcomponents @tsparticles/engine
 ## Usage
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+const particlesEngine = createEngine();
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 
 globalThis.tsParticles = tsParticles;
 
-await initParticlesEngine(async engine => {
+await initParticlesEngine(particlesEngine, async engine => {
   await loadSlim(engine);
 });
 ```

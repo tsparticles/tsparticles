@@ -57,7 +57,8 @@ pnpm add @tsparticles/engine @tsparticles/slim
 ```
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);

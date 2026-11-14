@@ -1,23 +1,25 @@
 /* eslint-disable */
-import { type Container, type IDelta, type Particle, Vector, tsParticles } from "@tsparticles/engine";
+import { type Container, type IDelta, type Particle, Vector, createEngine } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it, vi } from "vitest";
-import { TestWindow } from "../Fixture/Window.js";
 import { branchingPathName, loadBranchesPath } from "@tsparticles/path-branches";
 import { brownianPathName, loadBrownianPath } from "@tsparticles/path-brownian";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { curlNoisePathName, loadCurlNoisePath } from "@tsparticles/path-curl-noise";
 import { curvesPathName, loadCurvesPath } from "@tsparticles/path-curves";
 import { fractalNoisePathName, loadFractalNoisePath } from "@tsparticles/path-fractal-noise";
 import { gridPathName, loadGridPath } from "@tsparticles/path-grid";
 import { levyPathName, loadLevyPath } from "@tsparticles/path-levy";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
 import { loadPerlinNoisePath, perlinNoisePathName } from "@tsparticles/path-perlin-noise";
 import { loadPolygonPath, polygonPathName } from "@tsparticles/path-polygon";
 import { loadRandomPath, randomPathName } from "@tsparticles/path-random";
+import { loadSVGPath, svgPathName } from "@tsparticles/path-svg";
 import { loadSimplexNoisePath, simplexNoisePathName } from "@tsparticles/path-simplex-noise";
 import { loadSpiralPath, spiralPathName } from "@tsparticles/path-spiral";
-import { loadSVGPath, svgPathName } from "@tsparticles/path-svg";
 import { loadZigZagPath, zigZagPathName } from "@tsparticles/path-zig-zag";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
+
+const tsParticles = createEngine();
 
 type PathGen = {
   generate: (...args: unknown[]) => Vector;

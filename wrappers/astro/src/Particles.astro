@@ -23,13 +23,25 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 </astro-particles>
 
 <script>
-  import { tsParticles } from "@tsparticles/engine";
+  import type { Engine } from "@tsparticles/engine";
 
   function getGlobalStore() {
     return window;
   }
 
   class AstroParticles extends HTMLElement {
+    #engine?: Engine;
+    get engine(): Engine | undefined {
+      return this.#engine;
+    }
+    set engine(value: Engine | undefined) {
+      this.#engine = value;
+      this.#container?.destroy();
+      if (this.isConnected) {
+        void this.#loadParticles(++this.#loadId);
+      }
+    }
+
     #container;
     #loadId = 0;
 
@@ -74,18 +86,11 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
     async #loadParticles(currentLoadId) {
       const { isParticlesEngineInitialized, waitForParticlesEngineInitialization } = await import("@tsparticles/astro");
 
-      await waitForParticlesEngineInitialization();
-
-      if (!isParticlesEngineInitialized()) {
-        for (let i = 0; i < 20 && !isParticlesEngineInitialized(); i++) {
-          await new Promise((resolve) => setTimeout(resolve, 0));
-          await waitForParticlesEngineInitialization();
-        }
+      const engine = this.engine;
+      if (!engine) {
+        return;
       }
-
-      if (!isParticlesEngineInitialized()) {
-        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
-      }
+      await waitForParticlesEngineInitialization(engine);
 
       if (currentLoadId !== this.#loadId) return;
 
@@ -94,12 +99,12 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
       let container;
 
       if (this.dataset.url) {
-        container = await tsParticles.load({
+        container = await engine.load({
           id: this.dataset.id,
           url: this.dataset.url,
         });
       } else if (this.dataset.options) {
-        container = await tsParticles.load({
+        container = await engine.load({
           id: this.dataset.id,
           options: JSON.parse(this.dataset.options),
         });

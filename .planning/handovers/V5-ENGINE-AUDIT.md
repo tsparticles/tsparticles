@@ -171,3 +171,19 @@ Owner means the technical handover and execution stage; implementation owner is 
 | G5     | 06/08; E6             | SpatialHashGrid, Ranges, fluid; SpatialHashGrid.ts                                       | Geometry fixtures and spatial mutation semantics                             |
 | G6     | 02/07/08; E2,E5       | GridPathGenerator, canvasMask shuffle                                                    | Deterministic permutations, draw budgets                                     |
 | G7     | 01/03/04; E1,E3,E4    | Engine/items, EventDispatcher, deepExtend; lifecycle/options tests                       | Lifetime, public mutation, external-resource preservation                    |
+
+## E1 reviewed implementation surfaces
+
+- `engine/src/createEngine.ts` replaces retired `initEngine.ts`: synchronous fresh
+  instance, no ambient lookup or initialization; installed-condition probes pass.
+- `engine/src/Core/Utils/CanvasOwnership.ts` is new: shared symbol definitions,
+  no engine retained. HTML source and transferred render resources carry ownership.
+- `Engine.load` and canvas acquisition reviewed for overlapping owners, same-ID
+  isolation, failure cleanup and cross-copy canvas reuse. Covered by EngineInstances
+  and real Chrome evidence. Remaining lifecycle, items mutability, services and
+  full CanvasManager review stay assigned to E2–E7.
+- Root/lazy/browser entrypoints and package browser conditions migrated. Six
+  installed root/lazy import/require/browser probes pass.
+
+These entries close only the E1 portions of those source reviews. The complete
+engine audit and all other inventory rows remain open.

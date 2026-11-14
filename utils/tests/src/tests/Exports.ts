@@ -1,11 +1,13 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
+
+const tsParticles = createEngine();
 
 const exporterIds = ["export-json", "export-image", "export-video"],
   bootParticles = {

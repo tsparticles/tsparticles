@@ -69,7 +69,8 @@ const { loadZigZagPath } = require("@tsparticles/path-zigzag");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadZigZagPath } from "@tsparticles/path-zigzag";
 
 (async () => {
