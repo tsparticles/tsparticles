@@ -22,7 +22,8 @@ import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { InteractivityContainer } from "./types.js";
 import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
-const touchDelay = 500;
+const touchDelay = 500,
+  tapMaxDuration = 300;
 
 interface IInteractionManager {
   handleClickMode: (mode: string) => void;
@@ -74,6 +75,11 @@ export class InteractivityEventListeners {
         this.#mouseTouchMove(e);
       },
       mouseUp: (e): void => {
+        /* touch pointers fire touchend right after, which handles the click with tap detection */
+        if ((e as PointerEvent).pointerType === "touch") {
+          return;
+        }
+
         this.#mouseTouchClick(e);
       },
       touchStart: (e): void => {
@@ -386,11 +392,24 @@ export class InteractivityEventListeners {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
+    let isTap = true;
+
     for (const touch of touches) {
+      const startTime = this.#touches.get(touch.identifier);
+
+      if (startTime !== undefined && performance.now() - startTime >= tapMaxDuration) {
+        isTap = false;
+      }
+
       this.#touches.delete(touch.identifier);
     }
 
-    this.#mouseTouchClick(e);
+    if (isTap) {
+      this.#mouseTouchClick(e);
+    } else {
+      /* a long tap behaves like a movement: finish without firing click events */
+      this.#mouseTouchFinish();
+    }
   }
 
   #touchStart(e: Event): void {

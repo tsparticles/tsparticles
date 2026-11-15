@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/AbsorbersPluginInstance.js";
 import { EventListeners } from "../../../../engine/src/Core/Utils/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
+import { InteractivityEventListeners } from "../../../../plugins/interactivity/src/InteractivityEventListeners.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
 import { Vector } from "@tsparticles/engine";
 
@@ -111,5 +112,156 @@ describe("review regressions", () => {
 
     expect(options.background?.element).to.equal(backgroundElement);
     expect(options.backgroundMask?.cover?.element).to.equal(maskElement);
+  });
+
+  it("applies tap detection across the real pointer and touch event sequence", () => {
+    const el = document.createElement("canvas"),
+      handleClickMode = vi.fn(),
+      makeListeners = (): InteractivityEventListeners => {
+        const container = {
+            actualOptions: {
+              interactivity: {
+                detectsOn: "canvas",
+                events: {
+                  onClick: {
+                    enable: true,
+                    mode: "push",
+                  },
+                },
+              },
+            },
+            canvas: {
+              domElement: el,
+              setPointerEvents: (): void => undefined,
+            },
+            plugins: [],
+            retina: {
+              pixelRatio: 1,
+            },
+          },
+          interactionManager = {
+            handleClickMode,
+            interactivityData: {
+              mouse: {
+                clicking: false,
+                inside: false,
+                position: { x: 50, y: 50 },
+              },
+            },
+          };
+
+        return new InteractivityEventListeners(container as never, interactionManager);
+      },
+      dispatchTouch = (type: string, identifier: number): void => {
+        const event = new Event(type);
+
+        Object.defineProperty(event, "touches", {
+          value: [{ clientX: 10, clientY: 10, identifier }],
+        });
+        Object.defineProperty(event, "changedTouches", {
+          value: [{ clientX: 10, clientY: 10, identifier }],
+        });
+
+        el.dispatchEvent(event);
+      },
+      dispatchPointer = (type: string, pointerType: string): void => {
+        const event = new Event(type);
+
+        Object.defineProperty(event, "pointerType", { value: pointerType });
+
+        el.dispatchEvent(event);
+      },
+      quickTapMs = 100,
+      longTapMs = 500,
+      nowSpy = vi.spyOn(performance, "now"),
+      time = { now: 1000 };
+
+    nowSpy.mockImplementation(() => time.now);
+
+    try {
+      /* quick touch fires the click mode */
+      let listeners = makeListeners();
+
+      listeners.addListeners();
+      dispatchTouch("touchstart", 1);
+      time.now += quickTapMs;
+      dispatchTouch("touchend", 1);
+
+      expect(handleClickMode).toHaveBeenCalledWith("push");
+
+      listeners.removeListeners();
+      handleClickMode.mockClear();
+
+      /* held touch is a movement, not a tap: no click mode, finished state */
+      listeners = makeListeners();
+      listeners.addListeners();
+      dispatchTouch("touchstart", 2);
+      time.now += longTapMs;
+      dispatchTouch("touchend", 2);
+
+      expect(handleClickMode).not.toHaveBeenCalled();
+
+      listeners.removeListeners();
+      handleClickMode.mockClear();
+
+      /* held touch, real event order: pointerup must not click before the touchend guard */
+      listeners = makeListeners();
+      listeners.addListeners();
+      dispatchPointer("pointerdown", "touch");
+      dispatchTouch("touchstart", 1);
+      time.now += longTapMs;
+      dispatchPointer("pointerup", "touch");
+      dispatchTouch("touchend", 1);
+
+      expect(handleClickMode).not.toHaveBeenCalled();
+
+      listeners.removeListeners();
+      handleClickMode.mockClear();
+
+      /* quick touch, real event order: exactly one click, fired by touchend */
+      listeners = makeListeners();
+      listeners.addListeners();
+      dispatchPointer("pointerdown", "touch");
+      dispatchTouch("touchstart", 1);
+      time.now += quickTapMs;
+      dispatchPointer("pointerup", "touch");
+      dispatchTouch("touchend", 1);
+
+      expect(handleClickMode).toHaveBeenCalledTimes(1);
+      expect(handleClickMode).toHaveBeenCalledWith("push");
+
+      listeners.removeListeners();
+      handleClickMode.mockClear();
+
+      /* mouse and pen pointerups keep firing the click mode directly */
+      listeners = makeListeners();
+      listeners.addListeners();
+      dispatchPointer("pointerdown", "mouse");
+      dispatchPointer("pointerup", "mouse");
+
+      expect(handleClickMode).toHaveBeenCalledWith("push");
+
+      handleClickMode.mockClear();
+      dispatchPointer("pointerdown", "pen");
+      dispatchPointer("pointerup", "pen");
+
+      expect(handleClickMode).toHaveBeenCalledWith("push");
+
+      listeners.removeListeners();
+      handleClickMode.mockClear();
+
+      /* a cancelled touch never fires the click mode */
+      listeners = makeListeners();
+      listeners.addListeners();
+      dispatchTouch("touchstart", 1);
+      time.now += quickTapMs;
+      dispatchTouch("touchcancel", 1);
+
+      expect(handleClickMode).not.toHaveBeenCalled();
+
+      listeners.removeListeners();
+    } finally {
+      nowSpy.mockRestore();
+    }
   });
 });
