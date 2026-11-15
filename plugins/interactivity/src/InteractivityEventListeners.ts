@@ -51,6 +51,7 @@ export class InteractivityEventListeners {
   readonly #container;
   readonly #handlers: InteractivityEventListenersHandlers;
   readonly #interactionManager: IInteractionManager;
+  #touchEndTimeout?: ReturnType<typeof setTimeout>;
   readonly #touches: Map<number, number>;
 
   /**
@@ -116,7 +117,16 @@ export class InteractivityEventListeners {
    * Removing all listeners
    */
   removeListeners(): void {
+    this.#clearTouchEndTimeout();
     this.#manageListeners(false);
+  }
+
+  #clearTouchEndTimeout(): void {
+    if (this.#touchEndTimeout !== undefined) {
+      clearTimeout(this.#touchEndTimeout);
+
+      this.#touchEndTimeout = undefined;
+    }
   }
 
   /**
@@ -151,7 +161,10 @@ export class InteractivityEventListeners {
     }
 
     if (e.type === "touchend") {
-      setTimeout(() => {
+      this.#clearTouchEndTimeout();
+
+      this.#touchEndTimeout = setTimeout(() => {
+        this.#clearTouchEndTimeout();
         this.#mouseTouchFinish();
       }, touchDelay);
     }
@@ -270,6 +283,8 @@ export class InteractivityEventListeners {
    * Mouse/Touch event finish
    */
   #mouseTouchFinish(): void {
+    this.#clearTouchEndTimeout();
+
     const { interactivityData } = this.#interactionManager,
       { mouse } = interactivityData;
 
@@ -394,6 +409,8 @@ export class InteractivityEventListeners {
   }
 
   #touchStart(e: Event): void {
+    this.#clearTouchEndTimeout();
+
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 

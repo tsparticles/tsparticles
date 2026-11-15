@@ -3,7 +3,11 @@ import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/Absor
 import { EventListeners } from "../../../../engine/src/Core/Utils/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
-import { Vector } from "@tsparticles/engine";
+import { InteractivityEventListeners } from "../../../../plugins/interactivity/src/InteractivityEventListeners.js";
+import { TestWindow } from "../Fixture/Window.js";
+import { TestOffscreenCanvas, installTransferControlToOffscreen } from "../Fixture/OffscreenCanvas.js";
+import { loadInteractivityPlugin } from "../../../../plugins/interactivity/src/index.js";
+import { Vector, tsParticles } from "@tsparticles/engine";
 
 const testOrbitRadius = 10;
 
@@ -111,5 +115,166 @@ describe("review regressions", () => {
 
     expect(options.background?.element).to.equal(backgroundElement);
     expect(options.backgroundMask?.cover?.element).to.equal(maskElement);
+  });
+
+  it("cancels pending touchend finish timer on listener removal and rapid touchstart", () => {
+    const el = document.createElement("canvas"),
+      container = {
+        actualOptions: {
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+            },
+          },
+        },
+        canvas: {
+          domElement: el,
+          setPointerEvents: (): void => undefined,
+        },
+        plugins: [],
+        retina: {
+          pixelRatio: 1,
+        },
+      },
+      interactionManager = {
+        handleClickMode: (): void => undefined,
+        interactivityData: {
+          mouse: {
+            position: { x: 50, y: 50 },
+          },
+        },
+      },
+      listeners = new InteractivityEventListeners(container as never, interactionManager as never),
+      clearTimeoutSpy = vi.spyOn(globalThis, "clearTimeout"),
+      setTimeoutSpy = vi.spyOn(globalThis, "setTimeout");
+
+    try {
+      listeners.addListeners();
+
+      const touchEndEvent = new Event("touchend");
+
+      Object.defineProperty(touchEndEvent, "changedTouches", {
+        value: [{ identifier: 1 }],
+      });
+
+      el.dispatchEvent(touchEndEvent);
+
+      expect(setTimeoutSpy).toHaveBeenCalled();
+
+      const lastTimerId = setTimeoutSpy.mock.results.at(-1)?.value as ReturnType<typeof setTimeout>;
+
+      listeners.removeListeners();
+
+      expect(clearTimeoutSpy).toHaveBeenCalledWith(lastTimerId);
+
+      /* Rapid touchstart test */
+      clearTimeoutSpy.mockClear();
+      listeners.addListeners();
+      el.dispatchEvent(touchEndEvent);
+
+      const rapidTimerId = setTimeoutSpy.mock.results.at(-1)?.value as ReturnType<typeof setTimeout>,
+        touchStartEvent = new Event("touchstart");
+
+      Object.defineProperty(touchStartEvent, "touches", {
+        value: [{ clientX: 10, clientY: 10, identifier: 2 }],
+      });
+      Object.defineProperty(touchStartEvent, "changedTouches", {
+        value: [{ clientX: 10, clientY: 10, identifier: 2 }],
+      });
+
+      el.dispatchEvent(touchStartEvent);
+
+      expect(clearTimeoutSpy).toHaveBeenCalledWith(rapidTimerId);
+    } finally {
+      listeners.removeListeners();
+      clearTimeoutSpy.mockRestore();
+      setTimeoutSpy.mockRestore();
+    }
+  });
+
+  it("cancels pending touchend timer when container is destroyed", async () => {
+    globalThis.window = TestWindow;
+    (globalThis as { __VERSION__?: string }).__VERSION__ = "4.6.0";
+
+    await loadInteractivityPlugin(tsParticles);
+
+    const canvas = document.createElement("canvas");
+
+    installTransferControlToOffscreen(canvas);
+
+    const container = await tsParticles.load({
+        id: "test-touch-leak-cleanup",
+        element: canvas,
+        options: {
+          autoPlay: false,
+          interactivity: {
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+            },
+          },
+        },
+      });
+
+    if (!container) {
+      throw new Error("Container not initialized");
+    }
+
+    await container.start();
+
+    const interactivityContainer = container as {
+      interactionManager?: {
+        interactivityData: {
+          mouse: {
+            clicking: boolean;
+            inside: boolean;
+            position?: { x: number; y: number };
+          };
+        };
+      };
+    };
+
+    if (interactivityContainer.interactionManager) {
+      interactivityContainer.interactionManager.interactivityData.mouse.position = { x: 50, y: 50 };
+    }
+
+    const clearTimeoutSpy = vi.spyOn(globalThis, "clearTimeout"),
+      setTimeoutSpy = vi.spyOn(globalThis, "setTimeout");
+
+    try {
+      const targetEl =
+        (interactivityContainer.interactionManager?.interactivityData.element as HTMLElement | undefined) ??
+        container.canvas.domElement ??
+        canvas;
+
+      const touchEndEvent = new Event("touchend");
+
+      Object.defineProperty(touchEndEvent, "changedTouches", {
+        value: [{ identifier: 1 }],
+      });
+
+      targetEl.dispatchEvent(touchEndEvent);
+
+      expect(setTimeoutSpy).toHaveBeenCalled();
+
+      const lastTimerId = setTimeoutSpy.mock.results.at(-1)?.value as ReturnType<typeof setTimeout>;
+
+      container.destroy();
+
+      expect(clearTimeoutSpy).toHaveBeenCalledWith(lastTimerId);
+    } finally {
+      if (!container.destroyed) {
+        container.destroy();
+      }
+
+      clearTimeoutSpy.mockRestore();
+      setTimeoutSpy.mockRestore();
+    }
   });
 });
