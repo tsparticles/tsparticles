@@ -1,4 +1,4 @@
-import { Container, Engine, ISourceOptions, getLogger } from "@tsparticles/engine";
+import { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import { LitElement, PropertyValues, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { keyed } from "lit/directives/keyed.js";
@@ -130,7 +130,7 @@ export class LitParticles extends LitElement {
 
       void this.#loadParticles(renderId).catch((error: unknown) => {
         if (renderId === this.#renderId) {
-          getLogger().error("LitParticles: error loading particles", error);
+          this.engine?.getLogger().error("LitParticles: error loading particles", error);
         }
       });
     }
@@ -207,7 +207,7 @@ export class LitParticles extends LitElement {
       await (container as Container & { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
     } catch (error: unknown) {
       if (this.container === container) {
-        getLogger().error("LitParticles: error loading theme", error);
+        container.engine.getLogger().error("LitParticles: error loading theme", error);
       }
     }
   }

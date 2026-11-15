@@ -18,6 +18,12 @@ const hsvRegex = /hsva?\(\s*(\d+)°\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s
 
 /** HSV color manager */
 export class HsvColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with hsv
    * @param input - The input value
@@ -57,9 +63,9 @@ export class HsvColorManager implements IColorManager {
     }
 
     return hsvToRgb({
-      h: getRangeValue(hsvColor.h),
-      s: getRangeValue(hsvColor.s),
-      v: getRangeValue(hsvColor.v),
+      h: getRangeValue(hsvColor.h, this.#random),
+      s: getRangeValue(hsvColor.s, this.#random),
+      v: getRangeValue(hsvColor.v, this.#random),
     });
   }
 

@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0 is complete; E1 consumer retirement is verified and engine migration remains in progress. E2–E10 remain pending. This is the
+Replanned on 2026-11-13. E0 is complete; E1 consumer retirement is verified and engine migration remains in progress. E2 implementation and acceptance are complete. E3–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -200,7 +200,7 @@ new capability packages need a separate demonstrated consumer benefit.
 
 - [x] E0 — Baseline and scope — see [completed evidence and limitations](V5-BUNDLE-REPORT.md)
 - [ ] E1 — Explicit engines — retirement verified; factory and consumer migration implemented, acceptance in progress
-- [ ] E2 — Isolated services
+- [x] E2 — Isolated services — engine ownership, consumer migration, entrypoints and tests accepted; see [E2 evidence](V5-02-ENGINE-SERVICES.md)
 - [ ] E3 — Contracts and boundaries
 - [ ] E4 — Lifecycle
 - [ ] E5 — Particle/options and OKLCH

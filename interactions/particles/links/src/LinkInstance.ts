@@ -86,13 +86,13 @@ export class LinkInstance implements IContainerPlugin {
         colorLine = link.color;
 
       const twinkleRgb =
-        twinkle?.enable && getRandom() < twinkle.frequency
+        twinkle?.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency
           ? rangeColorToRgb(this.#pluginManager, twinkle.color)
           : undefined;
 
       if (twinkle && twinkleRgb) {
         colorLine = twinkleRgb;
-        opacity = getRangeValue(twinkle.opacity);
+        opacity = getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn());
       }
 
       if (!colorLine) {
@@ -259,10 +259,10 @@ export class LinkInstance implements IContainerPlugin {
   }
 
   #getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
-    return setLinkFrequency([p1, p2], this.#freqs.links);
+    return setLinkFrequency([p1, p2], this.#freqs.links, this.#container.engine.getRandomFn());
   }
 
   #getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
-    return setLinkFrequency([p1, p2, p3], this.#freqs.triangles);
+    return setLinkFrequency([p1, p2, p3], this.#freqs.triangles, this.#container.engine.getRandomFn());
   }
 }

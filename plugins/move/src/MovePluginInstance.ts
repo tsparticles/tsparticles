@@ -58,8 +58,9 @@ export class MovePluginInstance implements IContainerPlugin {
       gravityOptions = moveOptions.gravity,
       pathOptions = moveOptions.path;
 
-    particle.moveDecay = decayOffset - getRangeValue(moveOptions.decay);
-    particle.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
+    particle.moveDecay = decayOffset - getRangeValue(moveOptions.decay, this.#container.engine.getRandomFn());
+    particle.pathDelay =
+      getRangeValue(pathOptions.delay.value, this.#container.engine.getRandomFn()) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
       let pathGenerator = this.pathGenerators.get(pathOptions.generator);
@@ -79,7 +80,7 @@ export class MovePluginInstance implements IContainerPlugin {
 
     particle.gravity = {
       enable: gravityOptions.enable,
-      acceleration: getRangeValue(gravityOptions.acceleration),
+      acceleration: getRangeValue(gravityOptions.acceleration, this.#container.engine.getRandomFn()),
       inverse: gravityOptions.inverse,
     };
 

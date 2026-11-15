@@ -30,7 +30,7 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
   getSidesCount(particle: Particle): number {
     const star = particle.shapeData as IStarShape | undefined;
 
-    return Math.round(getRangeValue(star?.sides ?? defaultSides));
+    return Math.round(getRangeValue(star?.sides ?? defaultSides, particle.container.engine.getRandomFn()));
   }
 
   /**
@@ -38,9 +38,9 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
    * @param _container - The container to handle
    * @param particle - The particle to process
    */
-  particleInit(_container: Container, particle: StarParticle): void {
+  particleInit(container: Container, particle: StarParticle): void {
     const star = particle.shapeData as IStarShape | undefined;
 
-    particle.starInset = getRangeValue(star?.inset ?? defaultInset);
+    particle.starInset = getRangeValue(star?.inset ?? defaultInset, container.engine.getRandomFn());
   }
 }

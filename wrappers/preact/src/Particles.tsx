@@ -1,4 +1,4 @@
-import { Container, getLogger } from "@tsparticles/engine";
+import { Container } from "@tsparticles/engine";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
@@ -102,12 +102,13 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
   componentDidMount(): void {
     this.#mounted = true;
+    const engine = this.props.engine;
 
     void (async () => {
       if (!this.state.init) {
-        await waitForParticlesEngineInitialization(this.props.engine);
+        await waitForParticlesEngineInitialization(engine);
 
-        if (!isParticlesEngineInitialized(this.props.engine)) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
       }
@@ -126,7 +127,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       );
     })().catch((error: unknown) => {
       if (this.#mounted) {
-        getLogger().error("Particles: error initializing engine", error);
+        engine.getLogger().error("Particles: error initializing engine", error);
       }
     });
   }
@@ -165,18 +166,19 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       return;
     }
 
-    const loadId = ++this.#loadId;
+    const loadId = ++this.#loadId,
+      engine = this.props.engine;
     let container: Container | undefined;
 
     try {
-      container = await this.props.engine.load({
+      container = await engine.load({
         url: this.props.url,
         options: this.props.options,
         id: this.props.id,
       });
     } catch (error: unknown) {
       if (loadId === this.#loadId) {
-        getLogger().error("Particles: error loading particles", error);
+        engine.getLogger().error("Particles: error loading particles", error);
       }
 
       return;
@@ -204,7 +206,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       try {
         await this.props.particlesLoaded?.(container);
       } catch (error: unknown) {
-        getLogger().error("Particles: error in particlesLoaded callback", error);
+        (container?.engine ?? engine).getLogger().error("Particles: error in particlesLoaded callback", error);
       }
     }
   }
@@ -214,7 +216,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       await (container as Container & { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
     } catch (error: unknown) {
       if (this.#container === container) {
-        getLogger().error("Particles: error loading theme", error);
+        container.engine.getLogger().error("Particles: error loading theme", error);
       }
     }
   }

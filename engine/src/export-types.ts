@@ -1,4 +1,5 @@
 export type * from "./Core/Interfaces/Colors.js";
+export type * from "./Utils/LogUtils.js";
 export type * from "./Core/Interfaces/IBounds.js";
 
 export type * from "./Core/Interfaces/ICircleBouncer.js";

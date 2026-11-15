@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, createEngine, setRandom } from "@tsparticles/engine";
+import { type Container, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { Life } from "../../../../updaters/life/src/Options/Classes/Life.js";
 import type { LifeParticle } from "../../../../updaters/life/src/Types.js";
@@ -74,10 +74,10 @@ async function run(test: (value: Fixture) => void, ...args: Parameters<typeof fi
   const value = await fixture(...args);
 
   try {
-    setRandom(() => 0.75);
+    value.container.engine.setRandom(() => 0.75);
     test(value);
   } finally {
-    setRandom();
+    value.container.engine.setRandom();
     value.container.destroy();
   }
 }
@@ -121,10 +121,10 @@ describe("Life respawn canvas bounds", () => {
   });
 
   it("draws the two coordinates independently", async () => {
-    await run(({ particle, updater }) => {
+    await run(({ container, particle, updater }) => {
       const values = [0.25, 0.875];
 
-      setRandom(() => values.shift() ?? 0.5);
+      container.engine.setRandom(() => values.shift() ?? 0.5);
       updater.update(particle, delta);
       expect(particle.position.x).toBe(200);
       expect(particle.position.y).toBe(175);
@@ -133,8 +133,8 @@ describe("Life respawn canvas bounds", () => {
 
   for (const random of [0, 0.999999]) {
     it(`keeps a respawn in bounds at random ${random}`, async () => {
-      await run(({ particle, updater }) => {
-        setRandom(() => random);
+      await run(({ container, particle, updater }) => {
+        container.engine.setRandom(() => random);
         updater.update(particle, delta);
         expect(particle.position.x).toBe(800 * random);
         expect(particle.position.y).toBe(200 * random);

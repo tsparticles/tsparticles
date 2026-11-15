@@ -8,7 +8,6 @@ import {
   type Particle,
   PixelMode,
   Vector,
-  getLogger,
   getPosition,
   getRandom,
   half,
@@ -116,13 +115,26 @@ export class SVGPathGenerator implements IMovePathGenerator {
     const container = this.#container,
       pxRatio = container.retina.pixelRatio;
 
-    particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
-    particle.svgPathIndex ??= Math.floor(getRandom() * this.#paths.length);
+    particle.svgDirection ??=
+      getRandom(this.#container.engine.getRandomFn()) > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
+    particle.svgPathIndex ??= Math.floor(getRandom(this.#container.engine.getRandomFn()) * this.#paths.length);
     particle.svgSpeed ??= particle.velocity.mult(particle.retina.moveSpeed * half).length;
-    particle.svgStep ??= randomInRangeValue({ min: 0, max: this.#paths[particle.svgPathIndex]!.length }) * pxRatio;
+    particle.svgStep ??=
+      randomInRangeValue(
+        { min: 0, max: this.#paths[particle.svgPathIndex]!.length },
+        this.#container.engine.getRandomFn(),
+      ) * pxRatio;
     particle.svgOffset ??= {
-      width: randomInRangeValue({ min: -this.#width * half, max: this.#width * half }) * pxRatio,
-      height: randomInRangeValue({ min: -this.#width * half, max: this.#width * half }) * pxRatio,
+      width:
+        randomInRangeValue(
+          { min: -this.#width * half, max: this.#width * half },
+          this.#container.engine.getRandomFn(),
+        ) * pxRatio,
+      height:
+        randomInRangeValue(
+          { min: -this.#width * half, max: this.#width * half },
+          this.#container.engine.getRandomFn(),
+        ) * pxRatio,
     };
     particle.svgInitialPosition ??= particle.position.copy();
     particle.velocity.x = 0;
@@ -230,7 +242,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
           this.#size.height = size.height;
         } catch (error) {
           if (requestId === this.#requestId) {
-            getLogger().error("error loading SVG path", error);
+            this.#container.engine.getLogger().error("error loading SVG path", error);
           }
         }
       })();

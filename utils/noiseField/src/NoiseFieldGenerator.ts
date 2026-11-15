@@ -238,7 +238,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     options.factor.length = factor?.length ?? defaultOptions.factor.length;
     options.seed = sourceOptions["seed"] as number | undefined;
 
-    this.noiseGen.seed(options.seed ?? getRandom());
+    this.noiseGen.seed(options.seed ?? getRandom(container.engine.getRandomFn()));
 
     options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
     options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;

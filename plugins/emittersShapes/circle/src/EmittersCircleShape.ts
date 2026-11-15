@@ -30,14 +30,14 @@ export class EmittersCircleShape extends EmitterShapeBase {
     // nothing to do
   }
 
-  randomPosition(): IRandomPositionData {
+  randomPosition(random: () => number = Math.random): IRandomPositionData {
     const size = this.size,
       fill = this.fill,
       position = this.position,
       generateTheta = (x: number, y: number): number => {
-        const u = getRandom() * quarter,
+        const u = getRandom(random) * quarter,
           theta = Math.atan((y / x) * Math.tan(doublePI * u)),
-          v = getRandom();
+          v = getRandom(random);
 
         if (v < quarter) {
           return theta;
@@ -54,7 +54,7 @@ export class EmittersCircleShape extends EmitterShapeBase {
       [a, b] = [size.width * half, size.height * half],
       randomTheta = generateTheta(a, b),
       maxRadius = radius(a, b, randomTheta),
-      randomRadius = fill ? maxRadius * Math.sqrt(getRandom()) : maxRadius;
+      randomRadius = fill ? maxRadius * Math.sqrt(getRandom(random)) : maxRadius;
 
     return {
       position: {

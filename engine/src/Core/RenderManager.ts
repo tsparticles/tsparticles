@@ -23,7 +23,6 @@ import type { IShapeDrawData } from "./Interfaces/IShapeDrawData.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { Particle } from "./Particle.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
-import { getLogger } from "../Utils/LogUtils.js";
 
 const fColorIndex = 0,
   sColorIndex = 1;
@@ -841,7 +840,7 @@ export class RenderManager {
     if (!this.#backgroundWarnings.has(key)) {
       this.#backgroundWarnings.add(key);
 
-      getLogger().warning(message);
+      this.#container.engine.getLogger().warning(message);
     }
   }
 }

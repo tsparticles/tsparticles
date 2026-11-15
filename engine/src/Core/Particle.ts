@@ -97,6 +97,7 @@ function loadEffectData(
   effectOptions: IEffect,
   id: number,
   reduceDuplicates: boolean,
+  random: () => number,
 ): IShapeValues | undefined {
   const effectData = effectOptions.options[effect];
 
@@ -104,7 +105,7 @@ function loadEffectData(
     {
       close: effectOptions.close,
     },
-    itemFromSingleOrMultiple(effectData, id, reduceDuplicates),
+    itemFromSingleOrMultiple(effectData, id, reduceDuplicates, random),
   ) as IShapeValues;
 }
 
@@ -121,6 +122,7 @@ function loadShapeData(
   shapeOptions: IShape,
   id: number,
   reduceDuplicates: boolean,
+  random: () => number,
 ): IShapeValues | undefined {
   const shapeData = shapeOptions.options[shape];
 
@@ -128,7 +130,7 @@ function loadShapeData(
     {
       close: shapeOptions.close,
     },
-    itemFromSingleOrMultiple(shapeData, id, reduceDuplicates),
+    itemFromSingleOrMultiple(shapeData, id, reduceDuplicates, random),
   ) as IShapeValues;
 }
 
@@ -215,10 +217,11 @@ function resolveParticleOptions(
 ): ParticlesOptions {
   const mainOptions = container.actualOptions,
     particlesOptions = loadParticlesOptions(pluginManager, container, mainOptions.particles),
-    reduceDuplicates = particlesOptions.reduceDuplicates;
+    reduceDuplicates = particlesOptions.reduceDuplicates,
+    random = container.engine.getRandomFn();
 
-  particle.effect = itemFromSingleOrMultiple(particlesOptions.effect.type, particle.id, reduceDuplicates);
-  particle.shape = itemFromSingleOrMultiple(particlesOptions.shape.type, particle.id, reduceDuplicates);
+  particle.effect = itemFromSingleOrMultiple(particlesOptions.effect.type, particle.id, reduceDuplicates, random);
+  particle.shape = itemFromSingleOrMultiple(particlesOptions.shape.type, particle.id, reduceDuplicates, random);
 
   const effectOptions = particlesOptions.effect,
     shapeOptions = particlesOptions.shape;
@@ -228,7 +231,7 @@ function resolveParticleOptions(
       const overrideEffectType = overrideOptions.effect.type;
 
       if (overrideEffectType && overrideEffectType !== particle.effect) {
-        const effect = itemFromSingleOrMultiple(overrideEffectType, particle.id, reduceDuplicates);
+        const effect = itemFromSingleOrMultiple(overrideEffectType, particle.id, reduceDuplicates, random);
 
         if (effect) {
           particle.effect = effect;
@@ -242,7 +245,7 @@ function resolveParticleOptions(
       const overrideShapeType = overrideOptions.shape.type;
 
       if (overrideShapeType && overrideShapeType !== particle.shape) {
-        const shape = itemFromSingleOrMultiple(overrideShapeType, particle.id, reduceDuplicates);
+        const shape = itemFromSingleOrMultiple(overrideShapeType, particle.id, reduceDuplicates, random);
 
         if (shape) {
           particle.shape = shape;
@@ -256,20 +259,20 @@ function resolveParticleOptions(
   if (particle.effect === randomColorValue) {
     const availableEffects = [...container.effectDrawers.keys()];
 
-    particle.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
+    particle.effect = availableEffects[Math.floor(getRandom(container.engine.getRandomFn()) * availableEffects.length)];
   }
 
   if (particle.shape === randomColorValue) {
     const availableShapes = [...container.shapeDrawers.keys()];
 
-    particle.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
+    particle.shape = availableShapes[Math.floor(getRandom(container.engine.getRandomFn()) * availableShapes.length)];
   }
 
   particle.effectData = particle.effect
-    ? loadEffectData(particle.effect, effectOptions, particle.id, reduceDuplicates)
+    ? loadEffectData(particle.effect, effectOptions, particle.id, reduceDuplicates, random)
     : undefined;
   particle.shapeData = particle.shape
-    ? loadShapeData(particle.shape, shapeOptions, particle.id, reduceDuplicates)
+    ? loadShapeData(particle.shape, shapeOptions, particle.id, reduceDuplicates, random)
     : undefined;
 
   particlesOptions.load(overrideOptions);
@@ -376,6 +379,9 @@ export class Particle {
    * Particles back color
    */
   backColor?: IHsl;
+
+  /** The container that owns this particle and its engine services. */
+  readonly container: Container;
 
   /**
    * Checks if the particle is destroyed
@@ -580,8 +586,6 @@ export class Particle {
     d: 1,
   };
 
-  readonly #container;
-
   readonly #modifiers: IParticleModifier[] = [];
 
   /**
@@ -592,7 +596,7 @@ export class Particle {
 
   constructor(pluginManager: PluginManager, container: Container) {
     this.#pluginManager = pluginManager;
-    this.#container = container;
+    this.container = container;
   }
 
   /**
@@ -623,7 +627,7 @@ export class Particle {
     this.destroyed = true;
     this.clearModifiers();
 
-    const container = this.#container,
+    const container = this.container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
@@ -636,7 +640,7 @@ export class Particle {
       updater.particleDestroyed?.(this, override);
     }
 
-    this.#container.dispatchEvent(EventType.particleDestroyed, {
+    this.container.dispatchEvent(EventType.particleDestroyed, {
       particle: this,
     });
   }
@@ -646,7 +650,7 @@ export class Particle {
    * @param delta - The delta time
    */
   draw(delta: IDelta): void {
-    const container = this.#container,
+    const container = this.container,
       render = container.canvas.render;
 
     render.drawParticlePlugins(this, delta);
@@ -694,7 +698,7 @@ export class Particle {
     const zIndexOptions = this.options.zIndex,
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-      baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity),
+      baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity, this.container.engine.getRandomFn()),
       modifierOpacity = this.#applyModifiers<number | undefined>(undefined, m => m.opacity),
       opacity = modifierOpacity ?? baseOpacity;
 
@@ -780,7 +784,7 @@ export class Particle {
     overrideOptions?: RecursivePartial<IParticlesOptions>,
     group?: string,
   ): void {
-    const container = this.#container;
+    const container = this.container;
 
     initParticleState(this, id, group);
 
@@ -887,7 +891,7 @@ export class Particle {
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
-    for (const updater of this.#container.particleUpdaters) {
+    for (const updater of this.container.particleUpdaters) {
       updater.reset?.(this);
     }
   }
@@ -912,7 +916,7 @@ export class Particle {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-    const container = this.#container,
+    const container = this.container,
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
@@ -927,10 +931,13 @@ export class Particle {
         }
       }
 
-      const exactPosition = calcExactPositionOrRandomFromSize({
-          size: canvasSize,
-          position: posVec,
-        }),
+      const exactPosition = calcExactPositionOrRandomFromSize(
+          {
+            size: canvasSize,
+            position: posVec,
+          },
+          container.engine.getRandomFn(),
+        ),
         pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex);
 
       /* check position - into the canvas */
@@ -968,19 +975,20 @@ export class Particle {
       return res;
     }
 
-    const rad = degToRad(getRangeValue(moveOptions.angle.value)),
-      radOffset = degToRad(getRangeValue(moveOptions.angle.offset)),
+    const random = this.container.engine.getRandomFn(),
+      rad = degToRad(getRangeValue(moveOptions.angle.value, random)),
+      radOffset = degToRad(getRangeValue(moveOptions.angle.offset, random)),
       range = {
         left: radOffset - rad * half,
         right: radOffset + rad * half,
       };
 
     if (!moveOptions.straight) {
-      res.angle += randomInRangeValue(setRangeValue(range.left, range.right));
+      res.angle += randomInRangeValue(setRangeValue(range.left, range.right), random);
     }
 
     if (moveOptions.random && typeof moveOptions.speed === "number") {
-      res.length *= getRandom();
+      res.length *= getRandom(random);
     }
 
     return res;
@@ -991,7 +999,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.x,
-      maxCoord: this.#container.canvas.size.width,
+      maxCoord: this.container.canvas.size.width,
       setCb: (value: number) => (pos.x += value),
       radius,
     });
@@ -1002,7 +1010,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.y,
-      maxCoord: this.#container.canvas.size.height,
+      maxCoord: this.container.canvas.size.height,
       setCb: (value: number) => (pos.y += value),
       radius,
     });
@@ -1019,7 +1027,7 @@ export class Particle {
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsResult {
     const radius = this.getRadius(),
-      canvasSize = this.#container.canvas.size,
+      canvasSize = this.container.canvas.size,
       isBounce = outMode === OutMode.bounce || outMode === OutMode.split,
       position = isBounce ? this.getPosition() : this.position;
 
@@ -1072,7 +1080,7 @@ export class Particle {
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsData {
     return {
-      canvasSize: this.#container.canvas.size,
+      canvasSize: this.container.canvas.size,
       direction,
       outMode,
       particle: this,
@@ -1091,7 +1099,7 @@ export class Particle {
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsResult {
     const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode),
-      container = this.#container,
+      container = this.container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
       effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;
 
@@ -1142,8 +1150,8 @@ export class Particle {
   }
 
   #initPosition(position?: ICoordinates): void {
-    const container = this.#container,
-      zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value)),
+    const container = this.container,
+      zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value, container.engine.getRandomFn())),
       initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
     if (!initialPosition) {
@@ -1161,7 +1169,12 @@ export class Particle {
       mode: this.options.move.center.mode,
     };
 
-    this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+    this.direction = getParticleDirectionAngle(
+      this.options.move.direction,
+      this.position,
+      this.moveCenter,
+      container.engine.getRandomFn(),
+    );
 
     switch (this.options.move.direction) {
       case MoveDirection.inside:

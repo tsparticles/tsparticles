@@ -17,10 +17,10 @@ export class SquircleDrawer implements IShapeDrawer<SquircleParticle> {
    * @param _container - The container to handle
    * @param particle - The particle to process
    */
-  particleInit(_container: Container, particle: SquircleParticle): void {
+  particleInit(container: Container, particle: SquircleParticle): void {
     const shapeData = particle.shapeData;
 
-    particle.squircleExponent = getRangeValue(shapeData?.exponent ?? defaultExponent);
-    particle.squircleSteps = getRangeValue(shapeData?.steps ?? defaultSteps);
+    particle.squircleExponent = getRangeValue(shapeData?.exponent ?? defaultExponent, container.engine.getRandomFn());
+    particle.squircleSteps = getRangeValue(shapeData?.steps ?? defaultSteps, container.engine.getRandomFn());
   }
 }

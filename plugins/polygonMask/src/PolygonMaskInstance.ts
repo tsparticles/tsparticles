@@ -224,8 +224,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     const canvasSize = container.canvas.size,
-      x = position?.x ?? getRandom() * canvasSize.width,
-      y = position?.y ?? getRandom() * canvasSize.height,
+      x = position?.x ?? getRandom(this.#container.engine.getRandomFn()) * canvasSize.width,
+      y = position?.y ?? getRandom(this.#container.engine.getRandomFn()) * canvasSize.height,
       indexOffset = 1;
 
     let inside = false;
@@ -415,7 +415,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
       throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
-    const coords = itemFromArray(this.raw);
+    const coords = itemFromArray(this.raw, undefined, true, this.#container.engine.getRandomFn());
 
     if (!coords) {
       return;
@@ -439,14 +439,14 @@ export class PolygonMaskInstance implements IContainerPlugin {
       throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
-    const path = itemFromArray(this.paths);
+    const path = itemFromArray(this.paths, undefined, true, this.#container.engine.getRandomFn());
 
     if (!path) {
       return;
     }
 
     const offset = 1,
-      distance = Math.floor(getRandom() * path.length) + offset,
+      distance = Math.floor(getRandom(this.#container.engine.getRandomFn()) * path.length) + offset,
       point = path.element.getPointAtLength(distance),
       scale = this.#scale;
 
@@ -647,8 +647,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
       const canvasSize = container.canvas.size;
 
       position = {
-        x: getRandom() * canvasSize.width,
-        y: getRandom() * canvasSize.height,
+        x: getRandom(this.#container.engine.getRandomFn()) * canvasSize.width,
+        y: getRandom(this.#container.engine.getRandomFn()) * canvasSize.height,
       };
     }
 

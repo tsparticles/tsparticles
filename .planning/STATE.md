@@ -4,9 +4,17 @@
 > Final combined tests pass: 23 projects / 1,099 tests. Rebuild failures were
 > corrected; consumer/distribution closure and one repeated timing exceedance
 > remain open before accepting E1.
-> E2–E10 remain pending; E11 excluded. No commits or publications.
+> E2 is complete; E1 acceptance and E3–E10 remain open; E11 excluded. No commits or publications.
 > See [current engine work](handovers/V5-E1-ENGINE.md). Earlier retirement-only
 > results below describe the preceding verified checkpoint.
+
+## Session status — 2026-11-15 — E2 accepted
+
+- Completed E2 engine-owned runtime services after the ongoing E1 consumer migration. RNG, logging and animation scheduling now resolve from the owning engine; runtime callsites across core, plugins, shapes, paths, updaters and interactions were migrated.
+- Updated migration guidance and all localized plugin-customization pages. Added targeted engine-isolation, logger, scheduler, boundary and consumer regressions.
+- Engine build passes and direct builds succeeded for all 75 changed library packages, the Lit/Angular/Web Components wrappers and demo, and website docs. The primary suite passes (51 files / 688 tests), including 127 focused E2 tests and async logger ownership coverage. Installed ESM/CJS/lazy/browser package probes passed; changed package lint/format checks and final changed-file Prettier passed. Nx stalls before task output, so direct package builds were used. The engine-only bundle delta is recorded. See [E2 acceptance](handovers/V5-02-ENGINE-SERVICES.md).
+- Shared caches/registries were classified. The sounds user-activation latch is intentionally realm-scoped browser state, shared by engines in one window and isolated across windows. E2 is complete. No commits or publications.
+- Downstream Nx follow-up fixed remaining framework wrappers using the removed global logger. The requested build graph passed 199/199 tasks; wrapper tests passed 10/10 targets and the primary suite remained green at 688 tests. See the follow-up in [E2 acceptance](handovers/V5-02-ENGINE-SERVICES.md).
 
 ## Project Reference
 

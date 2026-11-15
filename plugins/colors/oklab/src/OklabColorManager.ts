@@ -22,6 +22,12 @@ const oklabRegex =
 
 /** OKLAB color manager */
 export class OklabColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with oklab
    * @param input - The input value
@@ -61,9 +67,9 @@ export class OklabColorManager implements IColorManager {
     }
 
     return oklabToRgb({
-      l: getRangeValue(oklabColor.l),
-      aAxis: getRangeValue(oklabColor.aAxis),
-      bAxis: getRangeValue(oklabColor.bAxis),
+      l: getRangeValue(oklabColor.l, this.#random),
+      aAxis: getRangeValue(oklabColor.aAxis, this.#random),
+      bAxis: getRangeValue(oklabColor.bAxis, this.#random),
     });
   }
 

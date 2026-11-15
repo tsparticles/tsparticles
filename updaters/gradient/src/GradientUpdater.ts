@@ -100,7 +100,12 @@ export class GradientUpdater implements IParticleUpdater {
    * @param particle - The particle to process
    */
   init(particle: GradientParticle): void {
-    const gradient = itemFromSingleOrMultiple(particle.options.gradient);
+    const gradient = itemFromSingleOrMultiple(
+      particle.options.gradient,
+      undefined,
+      undefined,
+      this.#container.engine.getRandomFn(),
+    );
 
     if (!gradient) {
       return;
@@ -113,11 +118,13 @@ export class GradientUpdater implements IParticleUpdater {
 
     particle.gradient = {
       angle: {
-        value: getRangeValue(angle.value),
+        value: getRangeValue(angle.value, this.#container.engine.getRandomFn()),
         enable: angle.animation.enable,
-        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * container.retina.reduceFactor,
-        decay: delayOffset - getRangeValue(angle.animation.decay),
-        delayTime: getRangeValue(angle.animation.delay) * millisecondsToSeconds,
+        velocity:
+          (getRangeValue(angle.animation.speed, this.#container.engine.getRandomFn()) / speedFactor) *
+          container.retina.reduceFactor,
+        decay: delayOffset - getRangeValue(angle.animation.decay, this.#container.engine.getRandomFn()),
+        delayTime: getRangeValue(angle.animation.delay, this.#container.engine.getRandomFn()) * millisecondsToSeconds,
         max: doublePI,
         min: 0,
         time: 0,
@@ -129,7 +136,10 @@ export class GradientUpdater implements IParticleUpdater {
     let rotateDirection = gradient.angle.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      rotateDirection = getRandom() > half ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+      rotateDirection =
+        getRandom(this.#container.engine.getRandomFn()) > half
+          ? RotateDirection.counterClockwise
+          : RotateDirection.clockwise;
     }
 
     switch (rotateDirection) {
@@ -164,11 +174,16 @@ export class GradientUpdater implements IParticleUpdater {
                 max: getRangeMax(grColor.opacity.value),
                 min: getRangeMin(grColor.opacity.value),
                 status: AnimationStatus.increasing,
-                value: getRangeValue(grColor.opacity.value),
+                value: getRangeValue(grColor.opacity.value, this.#container.engine.getRandomFn()),
                 velocity:
-                  (getRangeValue(grColor.opacity.animation.speed) / percentDenominator) * container.retina.reduceFactor,
-                decay: delayOffset - getRangeValue(grColor.opacity.animation.decay),
-                delayTime: getRangeValue(grColor.opacity.animation.delay) * millisecondsToSeconds,
+                  (getRangeValue(grColor.opacity.animation.speed, this.#container.engine.getRandomFn()) /
+                    percentDenominator) *
+                  container.retina.reduceFactor,
+                decay:
+                  delayOffset - getRangeValue(grColor.opacity.animation.decay, this.#container.engine.getRandomFn()),
+                delayTime:
+                  getRangeValue(grColor.opacity.animation.delay, this.#container.engine.getRandomFn()) *
+                  millisecondsToSeconds,
                 time: 0,
               }
             : undefined,
@@ -198,8 +213,11 @@ export class GradientUpdater implements IParticleUpdater {
 
           case StartValueType.random:
           default:
-            addOpacity.value = randomInRangeValue(addOpacity);
-            addOpacity.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+            addOpacity.value = randomInRangeValue(addOpacity, this.#container.engine.getRandomFn());
+            addOpacity.status =
+              getRandom(this.#container.engine.getRandomFn()) >= half
+                ? AnimationStatus.increasing
+                : AnimationStatus.decreasing;
 
             break;
         }

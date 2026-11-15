@@ -28,6 +28,12 @@ const rgbRegex =
 
 /** RGB color manager */
 export class RgbColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with rgb
    * @param input - The input value
@@ -67,9 +73,9 @@ export class RgbColorManager implements IColorManager {
     }
 
     return {
-      r: getRangeValue(rgbColor.r),
-      g: getRangeValue(rgbColor.g),
-      b: getRangeValue(rgbColor.b),
+      r: getRangeValue(rgbColor.r, this.#random),
+      g: getRangeValue(rgbColor.g, this.#random),
+      b: getRangeValue(rgbColor.b, this.#random),
     };
   }
 

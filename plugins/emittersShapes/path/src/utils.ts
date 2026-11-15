@@ -15,13 +15,14 @@ export function generateRandomPointWithinPath(
   path: Path2D,
   center: ICoordinates,
   size: IDimension,
+  random: () => number = Math.random,
 ): ICoordinates | null {
   let randomPoint: ICoordinates | null = null;
 
   for (let attempts = 0; attempts < maxAttempts; attempts++) {
     const tmpPoint: ICoordinates = {
-      x: center.x + getRandom() * size.width - size.width * half,
-      y: center.y + getRandom() * size.height - size.height * half,
+      x: center.x + getRandom(random) * size.width - size.width * half,
+      y: center.y + getRandom(random) * size.height - size.height * half,
     };
 
     if (ctx.isPointInPath(path, tmpPoint.x, tmpPoint.y)) {
@@ -47,13 +48,14 @@ export function generateRandomPointOnPathPerimeter(
   path: Path2D,
   center: ICoordinates,
   size: IDimension,
+  random: () => number = Math.random,
 ): ICoordinates | null {
   let randomPoint: ICoordinates | null = null;
 
   for (let attempts = 0; attempts < maxAttempts; attempts++) {
     const tmpPoint: ICoordinates = {
-      x: center.x + getRandom() * size.width - size.width * half,
-      y: center.y + getRandom() * size.height - size.height * half,
+      x: center.x + getRandom(random) * size.width - size.width * half,
+      y: center.y + getRandom(random) * size.height - size.height * half,
     };
 
     if (ctx.isPointInStroke(path, tmpPoint.x, tmpPoint.y)) {

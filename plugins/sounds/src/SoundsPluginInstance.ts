@@ -4,7 +4,6 @@ import {
   type IContainerPlugin,
   clamp,
   executeOnSingleOrMultiple,
-  getLogger,
   isArray,
   isNumber,
   itemFromArray,
@@ -400,7 +399,12 @@ export class SoundsPluginInstance implements IContainerPlugin {
           const defaultNoteIndex = 0;
 
           if (event.audio) {
-            const audio = itemFromSingleOrMultiple(event.audio);
+            const audio = itemFromSingleOrMultiple(
+              event.audio,
+              undefined,
+              undefined,
+              this.#container.engine.getRandomFn(),
+            );
 
             if (!audio) {
               return;
@@ -408,7 +412,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
             this.#playBuffer(audio);
           } else if (event.melodies) {
-            const melody = itemFromArray(event.melodies);
+            const melody = itemFromArray(event.melodies, undefined, true, this.#container.engine.getRandomFn());
 
             if (!melody) {
               return;
@@ -422,7 +426,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
               await this.#playNote(melody.notes, defaultNoteIndex, melody.loop);
             }
           } else if (event.notes) {
-            const note = itemFromArray(event.notes);
+            const note = itemFromArray(event.notes, undefined, true, this.#container.engine.getRandomFn());
 
             if (!note) {
               return;
@@ -580,7 +584,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
       await this.#playFrequency(freq, note.duration);
     } catch (e) {
-      getLogger().error(e);
+      this.#container.engine.getLogger().error(e);
     }
   }
 

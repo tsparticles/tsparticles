@@ -1,7 +1,7 @@
 # V5 migration guide — implementation draft
 
-Status: E0 complete; E1 retirement verified and engine/consumer migration in progress. The engine/convenience APIs below are implemented in the working tree;
-consumer verification is ongoing and E2 service APIs remain planned. Do not publish these instructions as a
+Status: E0 complete; E1 retirement verified and engine/consumer migration in progress; E2 service APIs and acceptance checks are complete. The engine/convenience APIs below are implemented in the working tree;
+consumer verification is ongoing. Do not publish these instructions as a
 completed v5 release guide until installed-consumer checks pass in E1/E9/E10.
 
 ## Engine ownership
@@ -13,8 +13,9 @@ called `tsParticles`. Component teardown owns its container; it must not destroy
 unrelated containers using the same engine. Exact wrapper signatures and the
 CDN bootstrap namespace remain pending implementation and tests.
 
-Random/logger customization moves onto that instance in E2. Until then, factory
-creation alone must not be described as complete runtime isolation.
+Random/logger customization and animation scheduling are now instance-owned in
+the E2 implementation. Keep custom plugins on `container.engine` (or
+`container.pluginManager.engine`) so runtime services follow the owning engine.
 
 ## Retired framework integrations
 
@@ -89,7 +90,27 @@ Qwik supplies an engine on the client via `noSerialize`, after loading its plugi
 
 Component teardown destroys only its owned container. Applications own shared engine
 lifetime and must settle pending loads and destroy containers before discarding it.
-RNG/logger isolation is **not implemented yet**; it is the next E2 stage.
+Runtime services are owned by each engine. Configure them before loading a
+container:
+
+```ts
+const engine = createEngine();
+engine.setRandom(myRandomFn);
+engine.setLogger(myLogger);
+engine.setAnimationFunctions(requestFrame, cancelFrame);
+const container = await engine.load({ id: "particles", options });
+```
+
+The former global `setParticlesRandom`, `getParticlesRandom`,
+`getParticlesRandomFn`, `setParticlesLogger`, and `getParticlesLogger` APIs
+have been removed. Migrate those calls to `engine.setRandom`,
+`engine.getRandom`, `engine.getRandomFn`, `engine.setLogger`, and
+`engine.getLogger`. Custom plugins can access the owner via
+`container.engine` or `container.pluginManager.engine`. Runtime helpers accept
+an explicit random provider; use the owning engine's stable `getRandomFn()`
+provider so later source changes take effect without affecting other engines.
+Animation scheduling is also per engine; existing container frames are
+cancelled by the scheduler that created them.
 
 ### Initialization ordering
 

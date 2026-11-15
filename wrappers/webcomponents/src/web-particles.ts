@@ -209,9 +209,9 @@ export class Particles extends HTMLElement {
 
   async #loadParticles(currentLoadId: number): Promise<void> {
     // entering loadParticles
+    const engine = this.engine;
 
     try {
-      const engine = this.engine;
       if (!engine) {
         return;
       }
@@ -263,14 +263,6 @@ export class Particles extends HTMLElement {
     } catch (err) {
       // Prevent an unhandled rejection by catching load errors and exposing
       // them via events so the embedding page can surface diagnostics.
-      const engine = (() => {
-        try {
-          return getGlobalEngine();
-        } catch {
-          return undefined;
-        }
-      })();
-
       const diagnostic = {
         message: err && (err as any).message ? (err as any).message : String(err),
         name: err && (err as any).name ? (err as any).name : undefined,

@@ -22,6 +22,12 @@ const oklchRegex =
 
 /** OKLCH color manager */
 export class OklchColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with oklch
    * @param input - The input value
@@ -61,9 +67,9 @@ export class OklchColorManager implements IColorManager {
     }
 
     return oklchToRgb({
-      l: getRangeValue(oklchColor.l),
-      c: getRangeValue(oklchColor.c),
-      h: getRangeValue(oklchColor.h),
+      l: getRangeValue(oklchColor.l, this.#random),
+      c: getRangeValue(oklchColor.c, this.#random),
+      h: getRangeValue(oklchColor.h, this.#random),
     });
   }
 

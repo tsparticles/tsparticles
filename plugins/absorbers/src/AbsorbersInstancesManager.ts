@@ -144,7 +144,7 @@ export class AbsorbersInstancesManager {
     const particleSize = (size * splitMassRatio) / quantity / container.retina.pixelRatio;
 
     for (let i = defaultIndex; i < quantity; i++) {
-      const angle = getRandom() * doublePI;
+      const angle = getRandom(this.#pluginManager.engine.getRandomFn()) * doublePI;
 
       // the particles are released on the rim the absorber was covering, which is the shape a
       // split is expected to have

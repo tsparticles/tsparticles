@@ -18,6 +18,12 @@ const labRegex = /lab\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/
 
 /** LAB color manager */
 export class LabColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with lab
    * @param input - The input value
@@ -57,9 +63,9 @@ export class LabColorManager implements IColorManager {
     }
 
     return labToRgb({
-      l: getRangeValue(labColor.l),
-      aAxis: getRangeValue(labColor.aAxis),
-      bAxis: getRangeValue(labColor.bAxis),
+      l: getRangeValue(labColor.l, this.#random),
+      aAxis: getRangeValue(labColor.aAxis, this.#random),
+      bAxis: getRangeValue(labColor.bAxis, this.#random),
     });
   }
 

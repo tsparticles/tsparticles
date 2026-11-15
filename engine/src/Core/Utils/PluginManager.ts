@@ -122,6 +122,11 @@ export class PluginManager {
     return res;
   }
 
+  /** The engine that owns this registry and its runtime services. */
+  get engine(): Engine {
+    return this.#engine;
+  }
+
   get initialized(): boolean {
     return this.#initialized;
   }

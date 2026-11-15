@@ -151,7 +151,8 @@ export class AbsorberInstance {
     this.name = this.options.name;
     this.opacity = this.options.opacity;
     this.orbits = this.options.orbits;
-    this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
+    this.size =
+      getRangeValue(this.options.size.value, this.#container.engine.getRandomFn()) * container.retina.pixelRatio;
     this.mass = this.size * this.options.size.density * container.retina.reduceFactor;
 
     this.#initialSize = this.size;
@@ -176,7 +177,8 @@ export class AbsorberInstance {
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+          millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
   }
@@ -329,7 +331,8 @@ export class AbsorberInstance {
           this.position = this.#calcPosition();
 
           this.#spawnDelay = this.#container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+                millisecondsToSeconds) /
               this.#container.retina.reduceFactor
             : Infinity;
         }
@@ -388,7 +391,10 @@ export class AbsorberInstance {
    * @internal
    */
   #prepareToDie(): void {
-    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+    const duration =
+        this.options.life.duration !== undefined
+          ? getRangeValue(this.options.life.duration, this.#container.engine.getRandomFn())
+          : undefined,
       minDuration = 0;
 
     if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {

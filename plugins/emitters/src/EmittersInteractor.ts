@@ -75,7 +75,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
           const usedIndexes = new Set<number>();
 
           for (let i = 0; i < modeEmitters.random.count; i++) {
-            const idx = Math.floor(getRandom() * modeEmitters.value.length);
+            const idx = Math.floor(getRandom(container.engine.getRandomFn()) * modeEmitters.value.length);
 
             if (usedIndexes.has(idx) && usedIndexes.size < modeEmittersCount) {
               i--;

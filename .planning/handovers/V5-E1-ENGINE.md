@@ -47,6 +47,10 @@ E2–E10 are pending and E11 is excluded. No commit or publication performed.
   same-ID scenes on different canvases, occupied-canvas rejection, ownership
   release, reuse of the transferred OffscreenCanvas, and unaffected second scene
   on destroy/refresh all pass. See [browser evidence](evidence/e1/factory-browser.json).
+- Web Components now uses the element's explicitly assigned engine in load-error
+  diagnostics; its README and English/Italian guide examples, plus the classic
+  bundle demo, create and assign an engine without the removed default singleton.
+  Wrapper tests (9), wrapper CI build, demo CI build and Prettier checks pass.
 - Extended rebuild executed 436 tasks and exposed seven failures. Generator import
   corruption, test lint, Electron extension and Lit source placement are corrected.
   Generator/Lit and Angular component rebuilds pass. Electron client build passes.
@@ -62,8 +66,9 @@ Both source and render canvas carry the active owner, which destruction releases
 
 ## Open acceptance work
 
-- Finish supported consumer and generated-code migration, including custom-element
-  engine property binding and wrapper regression suites with distinct engines.
+- Finish the remaining supported consumer and generated-code migration, then run
+  wrapper regression suites with distinct engines. Web Components binding is
+  covered by its current tests, but its real-browser demo smoke check remains open.
 - Installed ESM/CJS/browser purity, multi-bundle bootstrap and external/standalone
   checks on final artifacts; remeasure E1 size/runtime against E0.
 - Review remaining supported template/docs and alternative-bundler bootstrap paths.

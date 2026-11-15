@@ -8,10 +8,10 @@ const { loadMock, loggerError } = vi.hoisted(() => ({
 const engine = {
 	load: loadMock,
 	init: vi.fn(async () => undefined),
+	getLogger: () => ({ error: loggerError }),
 } as unknown as import("@tsparticles/engine").Engine;
 
 vi.mock("@tsparticles/engine", () => ({
-	getLogger: () => ({ error: loggerError }),
 	tsParticles: { load: loadMock },
 }));
 
@@ -162,6 +162,7 @@ describe("Inferno Particles component", () => {
 		const error = new Error("theme refresh failed"),
 			loaded = vi.fn(),
 			container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed: false,
 				animationStatus: true,
@@ -184,6 +185,7 @@ describe("Inferno Particles component", () => {
 			rejectSecondTheme: ((error: Error) => void) | undefined,
 			isPlaying = true;
 		const container = {
+			engine,
 			destroy: vi.fn(),
 			destroyed: false,
 			get animationStatus() {
@@ -241,6 +243,7 @@ describe("Inferno Particles component", () => {
 		{ animationStatus: true, destroyed: true, name: "destroyed" },
 	])("does not recover a $name container after its theme load rejects", async ({ animationStatus, destroyed }) => {
 		const container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed,
 				animationStatus,
@@ -258,6 +261,7 @@ describe("Inferno Particles component", () => {
 		const themeError = new Error("theme refresh failed"),
 			recoveryError = new Error("container refresh failed"),
 			container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed: false,
 				animationStatus: true,
@@ -291,6 +295,7 @@ describe("Inferno Particles component", () => {
 		const error = new Error("theme refresh failed");
 		let rejectFirstTheme: ((error: Error) => void) | undefined, resolveSecondTheme: (() => void) | undefined;
 		const container = {
+			engine,
 			destroy: vi.fn(),
 			destroyed: false,
 			animationStatus: true,

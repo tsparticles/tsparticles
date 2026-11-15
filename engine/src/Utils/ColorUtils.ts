@@ -241,7 +241,7 @@ export function rangeColorToRgb(
   }
 
   if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex);
+    const value = itemFromArray(color.value, index, useIndex, pluginManager.engine.getRandomFn());
 
     if (!value) {
       return;
@@ -284,11 +284,13 @@ export function colorToRgb(
   const color = isString(input) ? { value: input } : input;
 
   if (isString(color.value)) {
-    return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(pluginManager, color.value);
+    return color.value === randomColorValue
+      ? getRandomRgbColor(undefined, undefined, pluginManager.engine.getRandomFn())
+      : stringToRgb(pluginManager, color.value);
   }
 
   if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex);
+    const value = itemFromArray(color.value, index, useIndex, pluginManager.engine.getRandomFn());
 
     if (!value) {
       return;
@@ -520,19 +522,19 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @param hdr - the HDR flag
  * @returns the random ({@link IRgb}) color
  */
-export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
+export function getRandomRgbColor(min?: number, hdr?: boolean, random?: () => number): IRgb {
   const fixedMin = min ?? defaultRgbMin;
 
   if (hdr) {
     return {
-      r: getRandomInRange(fixedMin, rgbMax),
-      g: getRandomInRange(fixedMin, rgbMax),
-      b: getRandomInRange(fixedMin, rgbMax),
+      r: getRandomInRange(fixedMin, rgbMax, random),
+      g: getRandomInRange(fixedMin, rgbMax, random),
+      b: getRandomInRange(fixedMin, rgbMax, random),
     };
   }
 
   const fixedMax = rgbMax + identity,
-    getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
+    getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax, random));
 
   return {
     b: getRgbInRangeValue(),
@@ -741,7 +743,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  */
 export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb, hdr?: boolean): IRgb | undefined {
   if (linkColor === randomColorValue) {
-    return getRandomRgbColor();
+    return getRandomRgbColor(undefined, undefined, p1.container.engine.getRandomFn());
   } else if (linkColor === midColorValue) {
     const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
       destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
@@ -825,6 +827,7 @@ export function getHslAnimationFromHsl(
   hsl: IHsl,
   animationOptions: HslAnimation | undefined,
   reduceFactor: number,
+  random?: () => number,
 ): IParticleHslAnimation {
   /* color */
   const resColor: IParticleHslAnimation = {
@@ -849,9 +852,9 @@ export function getHslAnimationFromHsl(
   };
 
   if (animationOptions) {
-    setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
-    setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
-    setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+    setColorAnimation(resColor.h, animationOptions.h, reduceFactor, random);
+    setColorAnimation(resColor.s, animationOptions.s, reduceFactor, random);
+    setColorAnimation(resColor.l, animationOptions.l, reduceFactor, random);
   }
 
   return resColor;
@@ -866,23 +869,24 @@ function setColorAnimation(
   colorValue: IParticleColorAnimation,
   colorAnimation: IColorAnimation,
   reduceFactor: number,
+  random?: () => number,
 ): void {
   colorValue.enable = colorAnimation.enable;
   colorValue.min = colorAnimation.min;
   colorValue.max = colorAnimation.max;
 
   if (colorValue.enable) {
-    colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
-    colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
+    colorValue.velocity = (getRangeValue(colorAnimation.speed, random) / percentDenominator) * reduceFactor;
+    colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay, random);
     colorValue.status = AnimationStatus.increasing;
     colorValue.loops = defaultLoops;
-    colorValue.maxLoops = getRangeValue(colorAnimation.count);
+    colorValue.maxLoops = getRangeValue(colorAnimation.count, random);
     colorValue.time = defaultTime;
-    colorValue.delayTime = getRangeValue(colorAnimation.delay) * millisecondsToSeconds;
+    colorValue.delayTime = getRangeValue(colorAnimation.delay, random) * millisecondsToSeconds;
 
     if (!colorAnimation.sync) {
-      colorValue.velocity *= getRandom();
-      colorValue.value *= getRandom();
+      colorValue.velocity *= getRandom(random);
+      colorValue.value *= getRandom(random);
     }
 
     colorValue.initialValue = colorValue.value;
@@ -904,6 +908,7 @@ export function updateColorValue(
   decrease: boolean,
   delta: IDelta,
   _hdr?: boolean,
+  random?: () => number,
 ): void {
   const minLoops = 0,
     minDelay = 0,
@@ -929,7 +934,7 @@ export function updateColorValue(
     return;
   }
 
-  const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
+  const offset = data.offset ? randomInRangeValue(data.offset, random) : minOffset,
     velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
     decay = data.decay ?? identity,
     max = data.max,
@@ -972,16 +977,21 @@ export function updateColorValue(
  * @param delta - the frame delta time
  * @param hdr - the HDR flag
  */
-export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta, hdr?: boolean): void {
+export function updateColor(
+  color: IParticleHslAnimation | undefined,
+  delta: IDelta,
+  hdr?: boolean,
+  random?: () => number,
+): void {
   if (!color) {
     return;
   }
 
   const { h, s, l } = color;
 
-  updateColorValue(h, false, delta, hdr);
-  updateColorValue(s, true, delta, hdr);
-  updateColorValue(l, true, delta, hdr);
+  updateColorValue(h, false, delta, hdr, random);
+  updateColorValue(s, true, delta, hdr, random);
+  updateColorValue(l, true, delta, hdr, random);
 }
 
 /**

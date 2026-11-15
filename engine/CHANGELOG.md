@@ -12,6 +12,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [Unreleased]
 
+### Breaking Changes
+
+* move random, logger and animation scheduler configuration from module-level APIs to `Engine` instances;
+  see the v5 migration guide for replacements
+
 ### Bug Fixes
 
 - share engine initialization with calls made from plugin loaders

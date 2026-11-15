@@ -40,7 +40,12 @@ export class PaintUpdater implements IParticleUpdater {
   init(particle: PaintParticle): void {
     const container = this.#container,
       options = particle.options,
-      paint = itemFromSingleOrMultiple(options.paint, particle.id, options.reduceDuplicates);
+      paint = itemFromSingleOrMultiple(
+        options.paint,
+        particle.id,
+        options.reduceDuplicates,
+        this.#container.engine.getRandomFn(),
+      );
 
     this.#initFill(paint, particle, container);
     this.#initStroke(paint, particle, container);
@@ -77,8 +82,8 @@ export class PaintUpdater implements IParticleUpdater {
       return;
     }
 
-    updateColor(particle.fillColor, delta, this.#container.hdr);
-    updateColor(particle.strokeColor, delta, this.#container.hdr);
+    updateColor(particle.fillColor, delta, this.#container.hdr, this.#container.engine.getRandomFn());
+    updateColor(particle.strokeColor, delta, this.#container.hdr, this.#container.engine.getRandomFn());
   }
 
   #initFill(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
@@ -101,7 +106,7 @@ export class PaintUpdater implements IParticleUpdater {
     );
 
     particle.fillEnabled = fill.enable;
-    particle.fillOpacity = getRangeValue(fill.opacity);
+    particle.fillOpacity = getRangeValue(fill.opacity, this.#container.engine.getRandomFn());
     particle.fillAnimation = fillColor.animation;
 
     const fillHslColor = rangeColorToHsl(this.#pluginManager, fillColor);
@@ -132,8 +137,9 @@ export class PaintUpdater implements IParticleUpdater {
       stroke.color,
     );
 
-    particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
-    particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
+    particle.strokeWidth =
+      getRangeValue(stroke.width, this.#container.engine.getRandomFn()) * container.retina.pixelRatio;
+    particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity, this.#container.engine.getRandomFn());
     particle.strokeAnimation = strokeColor.animation;
 
     const strokeHslColor = rangeColorToHsl(this.#pluginManager, strokeColor) ?? particle.getFillColor();

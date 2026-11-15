@@ -109,7 +109,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     this.pixelData = pixelData;
   }
 
-  randomPosition(): IRandomPositionData | null {
+  randomPosition(random: () => number = Math.random): IRandomPositionData | null {
     const { height, width } = this.pixelData,
       data = this.pixelData,
       position = this.position,
@@ -120,7 +120,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
       };
 
     for (let i = 0; i < maxRetries; i++) {
-      const nextIndex = Math.floor(getRandom() * width * height),
+      const nextIndex = Math.floor(getRandom(random) * width * height),
         pixelPos = {
           x: nextIndex % width,
           y: Math.floor(nextIndex / width),

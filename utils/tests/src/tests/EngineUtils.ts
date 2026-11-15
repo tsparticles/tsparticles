@@ -12,6 +12,7 @@ import {
   checkDistance,
   clamp,
   colorMix,
+  createEngine,
   deepExtend,
   degToRad,
   executeOnSingleOrMultiple,
@@ -21,7 +22,6 @@ import {
   getParticleBaseVelocity,
   getParticleDirectionAngle,
   getRandom,
-  getRandomFn,
   getRandomInRange,
   getRangeMax,
   getRangeMin,
@@ -37,48 +37,111 @@ import {
   parseAlpha,
   randomInRangeValue,
   rgbToHsl,
-  setRandom,
   setRangeValue,
 } from "@tsparticles/engine";
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+import { getDataFromUrl } from "../../../../engine/src/Utils/Utils.js";
 
 describe("EngineUtils", () => {
   globalThis.window = TestWindow;
 
-  afterEach(() => {
-    setRandom();
-  });
-
   describe("getRandom, getRandomInRange and getRandomFn", () => {
     it("clamps the injected random source into [0, 1)", () => {
-      setRandom(() => 1);
-      expect(getRandom()).to.equal(1 - Number.EPSILON);
-
-      setRandom(() => -1);
-      expect(getRandom()).to.equal(0);
+      expect(getRandom(() => 1)).to.equal(1 - Number.EPSILON);
+      expect(getRandom(() => -1)).to.equal(0);
+      expect(getRandom(() => Number.NaN)).to.equal(0);
+      expect(getRandom(() => Number.POSITIVE_INFINITY)).to.equal(0);
     });
 
     it("passes through a deterministic random source", () => {
-      setRandom(() => 0.5);
-      expect(getRandom()).to.equal(0.5);
+      expect(getRandom(() => 0.5)).to.equal(0.5);
     });
 
     it("maps a deterministic source between the given bounds", () => {
-      setRandom(() => 0.5);
-      expect(getRandomInRange(-10, 10)).to.equal(0);
-      expect(getRandomInRange(10, 20)).to.equal(15);
-      expect(getRandomInRange(0, 0)).to.equal(0);
+      const random = (): number => 0.5;
+
+      expect(getRandomInRange(-10, 10, random)).to.equal(0);
+      expect(getRandomInRange(10, 20, random)).to.equal(15);
+      expect(getRandomInRange(0, 0, random)).to.equal(0);
     });
 
-    it("exposes the currently installed random function", () => {
-      const fn = (): number => 0.25;
+    it("keeps random sequences independent across engine instances", () => {
+      const engineA = createEngine(),
+        engineB = createEngine(),
+        sequenceA = [0.25, 0.75],
+        sequenceB = [0.9, 0.1];
 
-      setRandom(fn);
-      expect(getRandomFn()).to.equal(fn);
+      engineA.setRandom(() => sequenceA.shift() ?? 0.5);
+      engineB.setRandom(() => sequenceB.shift() ?? 0.5);
 
-      setRandom();
-      expect(getRandomFn()).to.equal(Math.random);
+      expect(engineA.getRandom()).to.equal(0.25);
+      expect(engineB.getRandom()).to.equal(0.9);
+      expect(engineA.getRandom()).to.equal(0.75);
+      expect(engineB.getRandom()).to.equal(0.1);
+    });
+
+    it("keeps logger overrides and animation cancellation on their owning engine", () => {
+      const engineA = createEngine(),
+        engineB = createEngine(),
+        logged: unknown[][] = [],
+        cancelledA: number[] = [],
+        cancelledB: number[] = [],
+        logger = { log: (...args: unknown[]): void => logged.push(args) };
+
+      engineA.setLogger(logger);
+      engineA.getLogger().log("engine-a");
+      expect(logged).to.eql([["engine-a"]]);
+      expect(logger).to.eql({ log: logger.log });
+      expect(engineA.getLogger()).to.not.equal(engineB.getLogger());
+
+      engineA.setAnimationFunctions(
+        () => 11,
+        handle => cancelledA.push(handle),
+      );
+      engineB.setAnimationFunctions(
+        () => 11,
+        handle => cancelledB.push(handle),
+      );
+      const handleA = engineA.animate(vi.fn()),
+        handleB = engineB.animate(vi.fn());
+
+      engineA.cancelAnimation(handleA);
+      engineA.cancelAnimation(22);
+      expect(handleB).to.equal(handleA);
+      expect(cancelledA).to.eql([11]);
+      expect(cancelledB).to.eql([]);
+    });
+  });
+
+  describe("async service ownership", () => {
+    it("logs fetch failures to the engine that started the request", async () => {
+      const engineA = createEngine(),
+        engineB = createEngine(),
+        errorsA: unknown[][] = [],
+        errorsB: unknown[][] = [],
+        originalFetch = globalThis.fetch;
+
+      engineA.setLogger({ error: (...args: unknown[]): void => errorsA.push(args) });
+      engineB.setLogger({ error: (...args: unknown[]): void => errorsB.push(args) });
+      globalThis.fetch = (): Promise<Response> => Promise.reject(new Error("engine A fetch failure"));
+
+      try {
+        const result = await getDataFromUrl({
+          fallback: undefined,
+          index: undefined,
+          logger: engineA.getLogger(),
+          random: engineA.getRandomFn(),
+          url: "https://example.test/options.json",
+        });
+
+        expect(result).to.equal(undefined);
+        expect(errorsA).to.have.lengthOf(1);
+        expect(errorsA[0]?.[0]).to.contain("engine A fetch failure");
+        expect(errorsB).to.be.empty;
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
     });
   });
 
@@ -90,8 +153,7 @@ describe("EngineUtils", () => {
     });
 
     it("getRangeValue samples an object range with the random source", () => {
-      setRandom(() => 0.5);
-      expect(getRangeValue({ min: 2, max: 4 })).to.equal(3);
+      expect(getRangeValue({ min: 2, max: 4 }, () => 0.5)).to.equal(3);
     });
 
     it("getRangeMin and getRangeMax read numbers and object bounds", () => {
@@ -102,15 +164,13 @@ describe("EngineUtils", () => {
     });
 
     it("randomInRangeValue samples the open range when min and max differ", () => {
-      setRandom(() => 0.5);
-      expect(randomInRangeValue({ min: 0, max: 10 })).to.equal(5);
-      expect(randomInRangeValue({ min: -10, max: -1 })).to.equal(-5.5);
+      expect(randomInRangeValue({ min: 0, max: 10 }, () => 0.5)).to.equal(5);
+      expect(randomInRangeValue({ min: -10, max: -1 }, () => 0.5)).to.equal(-5.5);
     });
 
     it("randomInRangeValue falls back to a zero based range when min equals max", () => {
-      setRandom(() => 0.5);
-      expect(randomInRangeValue({ min: 8, max: 8 })).to.equal(4);
-      expect(randomInRangeValue(8)).to.equal(4);
+      expect(randomInRangeValue({ min: 8, max: 8 }, () => 0.5)).to.equal(4);
+      expect(randomInRangeValue(8, () => 0.5)).to.equal(4);
     });
 
     it("setRangeValue normalizes ranges and widens them around a value", () => {
@@ -219,23 +279,22 @@ describe("EngineUtils", () => {
     });
 
     it("calcPositionOrRandomFromSize uses the random source without a position", () => {
-      setRandom(() => 0.5);
-      expect(calcPositionOrRandomFromSize({ size })).to.eql({ x: 400, y: 300 });
+      expect(calcPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({ x: 400, y: 300 });
       expect(calcPositionOrRandomFromSize({ size, position: { x: 25, y: 75 } })).to.eql({ x: 200, y: 450 });
     });
 
     it("calcPositionOrRandomFromSizeRanged samples ranged coordinates", () => {
-      setRandom(() => 0.5);
-      expect(calcPositionOrRandomFromSizeRanged({ size, position: { x: { min: 0, max: 100 }, y: 20 } })).to.eql({
+      expect(
+        calcPositionOrRandomFromSizeRanged({ size, position: { x: { min: 0, max: 100 }, y: 20 } }, () => 0.5),
+      ).to.eql({
         x: 400,
         y: 120,
       });
     });
 
     it("calcExactPositionOrRandomFromSize keeps exact coordinates or samples pixels", () => {
-      setRandom(() => 0.5);
       expect(calcExactPositionOrRandomFromSize({ size, position: { x: 10, y: 20 } })).to.eql({ x: 10, y: 20 });
-      expect(calcExactPositionOrRandomFromSize({ size })).to.eql({ x: 400, y: 300 });
+      expect(calcExactPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({ x: 400, y: 300 });
     });
   });
 
@@ -267,8 +326,7 @@ describe("EngineUtils", () => {
       expect(itemFromArray(array, 5)).to.equal(30);
       expect(itemFromArray(array, 3)).to.equal(10);
 
-      setRandom(() => 0);
-      expect(itemFromArray(array, 0, false)).to.equal(10);
+      expect(itemFromArray(array, 0, false, () => 0)).to.equal(10);
     });
 
     it("itemFromSingleOrMultiple returns the single value or picks from the array", () => {

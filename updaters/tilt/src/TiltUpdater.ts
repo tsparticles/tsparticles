@@ -63,9 +63,9 @@ export class TiltUpdater implements IParticleUpdater {
 
     particle.tilt = {
       enable: tiltOptions.enable,
-      value: degToRad(getRangeValue(tiltOptions.value)),
-      sinDirection: getRandom() >= half ? identity : -identity,
-      cosDirection: getRandom() >= half ? identity : -identity,
+      value: degToRad(getRangeValue(tiltOptions.value, this.#container.engine.getRandomFn())),
+      sinDirection: getRandom(this.#container.engine.getRandomFn()) >= half ? identity : -identity,
+      cosDirection: getRandom(this.#container.engine.getRandomFn()) >= half ? identity : -identity,
       min: 0,
       max: doublePI,
     };
@@ -73,7 +73,7 @@ export class TiltUpdater implements IParticleUpdater {
     let tiltDirection = tiltOptions.direction;
 
     if (tiltDirection === TiltDirection.random) {
-      const index = Math.floor(getRandom() * double);
+      const index = Math.floor(getRandom(this.#container.engine.getRandomFn()) * double);
 
       tiltDirection = index > minIndex ? TiltDirection.counterClockwise : TiltDirection.clockwise;
     }
@@ -94,11 +94,13 @@ export class TiltUpdater implements IParticleUpdater {
     const tiltAnimation = particle.options.tilt?.animation;
 
     if (tiltAnimation?.enable) {
-      particle.tilt.decay = identity - getRangeValue(tiltAnimation.decay);
-      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this.#container.retina.reduceFactor;
+      particle.tilt.decay = identity - getRangeValue(tiltAnimation.decay, this.#container.engine.getRandomFn());
+      particle.tilt.velocity =
+        (getRangeValue(tiltAnimation.speed, this.#container.engine.getRandomFn()) / maxAngle) *
+        this.#container.retina.reduceFactor;
 
       if (!tiltAnimation.sync) {
-        particle.tilt.velocity *= getRandom();
+        particle.tilt.velocity *= getRandom(this.#container.engine.getRandomFn());
       }
     }
   }

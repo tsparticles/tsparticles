@@ -180,6 +180,16 @@ convenience bundles initialize two separate engines and accept an external emoji
 plugin without a preceding engine script. See `factory-browser.json` and
 `cdn-browser.json`. No service isolation is claimed before E2.
 
+### E2 engine service cost — interim
+
+After the engine package build for E2, `engine/dist/tsparticles.engine.min.js`
+measures 80,406 raw / 25,089 gzip / 22,337 Brotli bytes using the E0/E1
+compression settings (gzip level 9, Brotli quality 11). Against the E1
+installed-source measurement of 79,111 / 24,816 / 22,063 bytes, the engine
+artifact delta is **+1,295 raw / +273 gzip / +274 Brotli bytes**. This is the
+engine package artifact only; consumer bundles and installed package closures
+must be rebuilt after the remaining affected packages before E2 acceptance.
+
 Runtime: 54 main runs, 18 extended SDR runs, 18 forced-HDR runs, no browser
 errors. `runtime-comparison.json` compares three-repetition medians with frozen
 E0 ceilings. One first-pass exceedance requires investigation: SDR M6 extensions,

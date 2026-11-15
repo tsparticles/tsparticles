@@ -2,7 +2,6 @@ import {
   DrawLayer,
   type IContainerPlugin,
   type PluginManager,
-  getLogger,
   getStyleFromRgb,
   originPoint,
   rangeColorToRgb,
@@ -185,7 +184,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     }
 
     this.#maskWarnings.add(key);
-    getLogger().warning(`[tsParticles BackgroundMask] ${message}`);
+    this.#container.engine.getLogger().warning(`[tsParticles BackgroundMask] ${message}`);
   };
 
   readonly #resolveMaskElement = (): void => {

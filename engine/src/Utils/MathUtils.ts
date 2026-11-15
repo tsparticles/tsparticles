@@ -21,51 +21,17 @@ import { isNumber } from "./TypeUtils.js";
 const piDeg = 180,
   degToRadFactor = Math.PI / piDeg;
 
-interface AnimationLoop {
-  cancel: (handle: number) => void;
-  nextFrame: (callback: FrameRequestCallback) => number;
-}
-
-let _random = Math.random;
-
-const _animationLoop: AnimationLoop = {
-  nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
-  cancel: (idx: number): void => {
-    cancelAnimationFrame(idx);
-  },
-};
-
 /**
- * Replaces the library random function with a custom one.
- * @param rnd - A random function that returns a number between 0 and 1.
- * @remarks
- * Also available on globalThis as `setParticlesRandom` in UMD/browser builds.
- */
-export function setRandom(rnd: () => number = Math.random): void {
-  _random = rnd;
-}
-
-/**
- * Returns the current random function used by the library.
- * @returns the current random function
- * @remarks
- * Also available on globalThis as `getParticlesRandomFn` in UMD/browser builds.
- */
-export function getRandomFn(): () => number {
-  return _random;
-}
-
-/**
- * Returns a random number between 0 and 1 using the library random function.
+ * Returns a random number between 0 and 1 using the supplied random function.
  * @returns a random number between 0 and 1
- * @remarks
- * Also available on globalThis as `getParticlesRandom` in UMD/browser builds.
+ * @param random - A random function returning a finite value; non-finite results map to 0.
  */
-export function getRandom(): number {
+export function getRandom(random: () => number = Math.random): number {
   const min = 0,
-    max = 1;
+    max = 1,
+    value = random();
 
-  return clamp(_random(), min, max - Number.EPSILON);
+  return Number.isFinite(value) ? clamp(value, min, max - Number.EPSILON) : min;
 }
 
 /**
@@ -74,38 +40,8 @@ export function getRandom(): number {
  * @param max - The maximum value of the range.
  * @returns a random number between the given range
  */
-export function getRandomInRange(min: number, max: number): number {
-  return getRandom() * (max - min) + min;
-}
-
-/**
- * Replaces the library animation functions with custom ones.
- * @param nextFrame - A function that will be called with a callback to be executed in the next frame.
- * @param cancel - A function that will be called with the handle of the frame to be canceled.
- */
-export function setAnimationFunctions(
-  nextFrame: (callback: FrameRequestCallback) => number,
-  cancel: (handle: number) => void,
-): void {
-  _animationLoop.nextFrame = nextFrame;
-  _animationLoop.cancel = cancel;
-}
-
-/**
- * Calls the next frame with the given callback.
- * @param fn - The callback to be executed in the next frame.
- * @returns the handle of the frame.
- */
-export function animate(fn: FrameRequestCallback): number {
-  return _animationLoop.nextFrame(fn);
-}
-
-/**
- * Cancels the frame with the given handle.
- * @param handle - The handle of the frame to be canceled.
- */
-export function cancelAnimation(handle: number): void {
-  _animationLoop.cancel(handle);
+export function getRandomInRange(min: number, max: number, random?: () => number): number {
+  return getRandom(random) * (max - min) + min;
 }
 
 /**
@@ -134,7 +70,7 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @param r - The red component
  * @returns the random value in the given range
  */
-export function randomInRangeValue(r: RangeValue): number {
+export function randomInRangeValue(r: RangeValue, random?: () => number): number {
   const max = getRangeMax(r),
     minOffset = 0;
 
@@ -144,15 +80,15 @@ export function randomInRangeValue(r: RangeValue): number {
     min = minOffset;
   }
 
-  return getRandomInRange(min, max);
+  return getRandomInRange(min, max, random);
 }
 
 /**
  * @param value - The value
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
-export function getRangeValue(value: RangeValue): number {
-  return isNumber(value) ? value : randomInRangeValue(value);
+export function getRangeValue(value: RangeValue, random?: () => number): number {
+  return isNumber(value) ? value : randomInRangeValue(value, random);
 }
 
 /**
@@ -268,6 +204,7 @@ export function getParticleDirectionAngle(
   direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
   position: ICoordinates,
   center: ICoordinates,
+  random?: () => number,
 ): number {
   if (isNumber(direction)) {
     return degToRad(direction);
@@ -295,7 +232,7 @@ export function getParticleDirectionAngle(
     case MoveDirection.outside:
       return Math.atan2(position.y - center.y, position.x - center.x);
     default:
-      return getRandom() * doublePI;
+      return getRandom(random) * doublePI;
   }
 }
 
@@ -343,10 +280,10 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams, random?: () => number): ICoordinates {
   return {
-    x: ((data.position?.x ?? getRandom() * percentDenominator) * data.size.width) / percentDenominator,
-    y: ((data.position?.y ?? getRandom() * percentDenominator) * data.size.height) / percentDenominator,
+    x: ((data.position?.x ?? getRandom(random) * percentDenominator) * data.size.width) / percentDenominator,
+    y: ((data.position?.y ?? getRandom(random) * percentDenominator) * data.size.height) / percentDenominator,
   };
 }
 
@@ -355,13 +292,16 @@ export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICo
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
+export function calcPositionOrRandomFromSizeRanged(
+  data: IRangedPositionFromSizeParams,
+  random?: () => number,
+): ICoordinates {
   const position = {
-    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+    x: data.position?.x !== undefined ? getRangeValue(data.position.x, random) : undefined,
+    y: data.position?.y !== undefined ? getRangeValue(data.position.y, random) : undefined,
   };
 
-  return calcPositionOrRandomFromSize({ size: data.size, position });
+  return calcPositionOrRandomFromSize({ size: data.size, position }, random);
 }
 
 /**
@@ -369,12 +309,12 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams, random?: () => number): ICoordinates {
   const { position, size } = data;
 
   return {
-    x: position?.x ?? getRandom() * size.width,
-    y: position?.y ?? getRandom() * size.height,
+    x: position?.x ?? getRandom(random) * size.width,
+    y: position?.y ?? getRandom(random) * size.height,
   };
 }
 

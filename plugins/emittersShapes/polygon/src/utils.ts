@@ -37,7 +37,10 @@ export function generateRandomPolygon(
  * @param polygon - The polygon
  * @returns a random point within the polygon
  */
-export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoordinates | null {
+export function generateRandomPointWithinPolygon(
+  polygon: ICoordinates[],
+  random: () => number = Math.random,
+): ICoordinates | null {
   const firstIndex = 0,
     firstPoint = polygon[firstIndex];
 
@@ -70,8 +73,8 @@ export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoor
 
   for (let attempts = 0; attempts < maxAttempts; attempts++) {
     const tmpPoint: ICoordinates = {
-      x: min.x + getRandom() * (max.x - min.x),
-      y: min.y + getRandom() * (max.y - min.y),
+      x: min.x + getRandom(random) * (max.x - min.x),
+      y: min.y + getRandom(random) * (max.y - min.y),
     };
 
     if (isPointInPolygon(tmpPoint, polygon)) {
@@ -89,8 +92,11 @@ export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoor
  * @param polygon - The polygon
  * @returns a random point on the perimeter of the polygon
  */
-export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): ICoordinates | undefined {
-  const sideIndex = Math.floor(getRandom() * polygon.length),
+export function generateRandomPointOnPolygonPerimeter(
+  polygon: ICoordinates[],
+  random: () => number = Math.random,
+): ICoordinates | undefined {
+  const sideIndex = Math.floor(getRandom(random) * polygon.length),
     startPoint = polygon[sideIndex];
 
   if (!startPoint) {
@@ -104,7 +110,7 @@ export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): 
     return;
   }
 
-  const t = getRandom();
+  const t = getRandom(random);
 
   return { x: startPoint.x + (endPoint.x - startPoint.x) * t, y: startPoint.y + (endPoint.y - startPoint.y) * t };
 }

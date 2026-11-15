@@ -36,7 +36,7 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     const container = this.container;
 
     if (isNull(p1.attractDistance)) {
-      const attractDistance = getRangeValue(p1.options.attract.distance);
+      const attractDistance = getRangeValue(p1.options.attract.distance, container.engine.getRandomFn());
 
       if (attractDistance > this.#maxDistance) {
         this.#maxDistance = attractDistance;

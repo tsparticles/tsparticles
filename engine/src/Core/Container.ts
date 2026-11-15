@@ -1,9 +1,9 @@
 import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
-import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "./Utils/Constants.js";
 import { getItemMapFromInitializer, getItemsFromInitializer } from "../Utils/Utils.js";
 import { CanvasManager } from "./CanvasManager.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
+import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import { HdrMode } from "../Enums/Modes/HdrMode.js";
@@ -18,7 +18,7 @@ import { Options } from "../Options/Classes/Options.js";
 import { ParticlesManager } from "./ParticlesManager.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
-import { getLogger } from "../Utils/LogUtils.js";
+import { getRangeValue } from "../Utils/MathUtils.js";
 import { loadOptions } from "../Utils/OptionLoader.js";
 import { toEnumValue } from "../Utils/TypeUtils.js";
 
@@ -26,6 +26,8 @@ import { toEnumValue } from "../Utils/TypeUtils.js";
 export interface ContainerParams {
   /** Event dispatch callback */
   dispatchCallback: (eventType: string, args?: CustomEventArgs) => void;
+  /** The owning engine and its runtime services */
+  engine: Engine;
   /** The container id */
   id: string;
   /** Destroy callback */
@@ -98,6 +100,9 @@ export class Container {
 
   /** The effect drawers map */
   effectDrawers: Map<string, IEffectDrawer>;
+
+  /** The engine that owns this container. */
+  readonly engine: Engine;
 
   /**
    * The container fps limit, coming from options
@@ -189,6 +194,7 @@ export class Container {
    * @param params - The parameters
    */
   constructor(params: ContainerParams) {
+    this.engine = params.engine;
     const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
 
     this.#pluginManager = pluginManager;
@@ -359,13 +365,13 @@ export class Container {
         return;
       }
 
-      cancelAnimation(this.#drawAnimationFrame);
+      this.engine.cancelAnimation(this.#drawAnimationFrame);
       this.#drawAnimationFrame = undefined;
     }
 
     let refreshTime = force;
 
-    this.#drawAnimationFrame = animate((timestamp: number): void => {
+    this.#drawAnimationFrame = this.engine.animate((timestamp: number): void => {
       this.#drawAnimationFrame = undefined;
 
       if (refreshTime) {
@@ -399,7 +405,7 @@ export class Container {
       return res.blob;
     }
 
-    getLogger().error(`Export plugin with type ${type} not found`);
+    this.engine.getLogger().error(`Export plugin with type ${type} not found`);
 
     return undefined;
   }
@@ -461,8 +467,8 @@ export class Container {
     this.hdrMode = toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard);
     this.peakNits = hdrOptions.peakNits;
     this.zLayers = zLayers;
-    this.#duration = getRangeValue(duration) * millisecondsToSeconds;
-    this.#delay = getRangeValue(delay) * millisecondsToSeconds;
+    this.#duration = getRangeValue(duration, this.engine.getRandomFn()) * millisecondsToSeconds;
+    this.#delay = getRangeValue(delay, this.engine.getRandomFn()) * millisecondsToSeconds;
     this.#lifeTime = 0;
     this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
     this.#smooth = smooth;
@@ -519,7 +525,7 @@ export class Container {
     }
 
     if (this.#drawAnimationFrame !== undefined) {
-      cancelAnimation(this.#drawAnimationFrame);
+      this.engine.cancelAnimation(this.#drawAnimationFrame);
 
       this.#drawAnimationFrame = undefined;
     }
@@ -820,7 +826,7 @@ export class Container {
         this.draw(false);
       }
     } catch (e) {
-      getLogger().error("error in animation loop", e);
+      this.engine.getLogger().error("error in animation loop", e);
     }
   }
 }

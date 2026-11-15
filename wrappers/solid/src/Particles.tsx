@@ -1,4 +1,4 @@
-import { type Container, getLogger } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 import { For, JSX, createEffect, createMemo, createSignal, mergeProps, onCleanup, untrack } from "solid-js";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 import type { IParticlesProps } from "./IParticlesProps";
@@ -35,7 +35,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         newContainer = await engine.load({ id, options, url });
       } catch (error: unknown) {
         if (currentLoadId === loadId) {
-          getLogger().error("Particles: error loading particles", error);
+          engine.getLogger().error("Particles: error loading particles", error);
         }
 
         return;
@@ -51,7 +51,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
       try {
         await props.particlesLoaded?.(newContainer);
       } catch (error: unknown) {
-        getLogger().error("Particles: error in particlesLoaded callback", error);
+        (newContainer?.engine ?? engine).getLogger().error("Particles: error in particlesLoaded callback", error);
       }
     })();
   });
@@ -70,7 +70,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
     if (!loadTheme) return;
 
     void loadTheme(theme).catch((error: unknown) => {
-      getLogger().error(`Particles: error loading theme "${theme}"`, error);
+      currentContainer.engine.getLogger().error(`Particles: error loading theme "${theme}"`, error);
     });
   });
 

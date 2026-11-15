@@ -16,7 +16,6 @@ const { containerMock, errorMock, loadMock } = vi.hoisted(() => {
 });
 
 vi.mock("@tsparticles/engine", () => ({
-  getLogger: () => ({ error: errorMock }),
   tsParticles: {
     load: loadMock,
   },
@@ -27,7 +26,7 @@ import { NgxParticlesComponent } from "../projects/ng-particles/src/lib/ng-parti
 
 function createService(): NgParticlesService {
   return {
-    engine: { load: loadMock },
+    engine: { load: loadMock, getLogger: () => ({ error: errorMock }) },
     assertInitialized: vi.fn(),
     init: vi.fn(async () => Promise.resolve()),
     loaded: true,

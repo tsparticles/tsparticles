@@ -1,4 +1,3 @@
-import { engine } from "../../particlesEngine";
 // Bootloader for the webcomponents demo. This mirrors the inline script
 // previously embedded in the demo view but lives in a static file so it's
 // easier to develop and avoids large inline templates.
@@ -6,19 +5,17 @@ import { engine } from "../../particlesEngine";
 import("/@tsparticles/webcomponents/web-particles.js")
   .then(async mod => {
     try {
-      // Wait for the engine global to be present. The demo includes the full
-      // UMD bundle at /tsparticles/tsparticles.bundle.min.js which sets
-      // globalThis.tsParticles.
+      // The classic full bundle exposes the factory and loader definitions.
       const waitForEngine = (timeout = 5000) =>
         new Promise(resolve => {
-          if (globalThis.tsParticles) {
+          if (globalThis.tsParticles?.createEngine && typeof globalThis.loadFull === "function") {
             resolve(true);
             return;
           }
 
           const start = Date.now();
           const poll = setInterval(() => {
-            if (globalThis.tsParticles) {
+            if (globalThis.tsParticles?.createEngine && typeof globalThis.loadFull === "function") {
               clearInterval(poll);
               resolve(true);
             } else if (Date.now() - start > timeout) {
@@ -28,24 +25,15 @@ import("/@tsparticles/webcomponents/web-particles.js")
           }, 100);
         });
 
-      await waitForEngine(5000);
+      if (!(await waitForEngine(5000))) {
+        throw new Error("The full tsParticles bundle did not expose the engine factory and loader.");
+      }
+
+      const engine = globalThis.tsParticles.createEngine();
 
       if (mod?.initParticlesEngine) {
         await mod.initParticlesEngine(engine, async engine => {
-          // If a loadFull helper exists on the page or engine, call it to
-          // register default plugins. This matches the demo's consumer
-          // usage when the full bundle is loaded via <script>.
-          try {
-            if (typeof window.loadFull === "function") {
-              await window.loadFull(engine);
-            } else if (engine && typeof engine.loadFull === "function") {
-              await engine.loadFull(engine);
-            }
-          } catch (e) {
-            // Non-fatal.
-            // eslint-disable-next-line no-console
-            console.error("loadFull failed (demo):", e);
-          }
+          await globalThis.loadFull(engine);
         });
       }
 
@@ -81,6 +69,7 @@ import("/@tsparticles/webcomponents/web-particles.js")
       // Create the element and append it to the document.
       const el = document.createElement("web-particles");
       el.id = "tsparticles";
+      el.engine = engine;
       el.setAttribute("url", "/presets/default.json");
       document.body.appendChild(el);
     } catch (err) {

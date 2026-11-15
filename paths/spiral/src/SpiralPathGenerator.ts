@@ -50,12 +50,12 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     const options = this.options;
 
     particle.spiral ??= {
-      angle: getRandom() * doublePI,
+      angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
       radius: minRadius,
       direction: SpiralDirection.positive,
-      maxRadius: getRangeValue(options.maxRadius),
-      angularSpeed: getRangeValue(options.angularSpeed) * speedFactor,
-      radialSpeed: getRangeValue(options.radialSpeed) * speedFactor,
+      maxRadius: getRangeValue(options.maxRadius, this.#container.engine.getRandomFn()),
+      angularSpeed: getRangeValue(options.angularSpeed, this.#container.engine.getRandomFn()) * speedFactor,
+      radialSpeed: getRangeValue(options.radialSpeed, this.#container.engine.getRandomFn()) * speedFactor,
     };
 
     const spiral = particle.spiral;

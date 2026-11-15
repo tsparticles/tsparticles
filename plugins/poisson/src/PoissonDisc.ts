@@ -64,6 +64,8 @@ export class PoissonDisc {
    */
   size: IDimension;
 
+  readonly #random: () => number;
+
   /**
    * Create a new disc sampler
    * @param size - Size of the display in pixels
@@ -72,7 +74,15 @@ export class PoissonDisc {
    * @param dimensions - n-dimensional grid
    * @param firstPoint - The first point position (optional)
    */
-  constructor(size: IDimension, radius: number, retries: number, dimensions: number, firstPoint?: ICoordinates) {
+  constructor(
+    size: IDimension,
+    radius: number,
+    retries: number,
+    dimensions: number,
+    firstPoint?: ICoordinates,
+    random: () => number = Math.random,
+  ) {
+    this.#random = random;
     this.size = { ...size };
     this.radius = radius;
     this.retries = retries;
@@ -121,7 +131,7 @@ export class PoissonDisc {
    * @returns Random number from min to max
    */
   getRandom(min: number, max: number): number {
-    return Math.floor(getRandom() * (max - min)) + min;
+    return Math.floor(getRandom(this.#random) * (max - min)) + min;
   }
 
   /**

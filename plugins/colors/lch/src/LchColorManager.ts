@@ -18,6 +18,12 @@ const lchRegex = /lch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/
 
 /** LCH color manager */
 export class LchColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with lch
    * @param input - The input value
@@ -57,9 +63,9 @@ export class LchColorManager implements IColorManager {
     }
 
     return lchToRgb({
-      l: getRangeValue(lchColor.l),
-      c: getRangeValue(lchColor.c),
-      h: getRangeValue(lchColor.h),
+      l: getRangeValue(lchColor.l, this.#random),
+      c: getRangeValue(lchColor.c, this.#random),
+      h: getRangeValue(lchColor.h, this.#random),
     });
   }
 

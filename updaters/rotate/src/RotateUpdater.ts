@@ -76,7 +76,7 @@ export class RotateUpdater implements IParticleUpdater {
 
     particle.rotate = {
       enable: rotateOptions.animation.enable,
-      value: degToRad(getRangeValue(rotateOptions.value)),
+      value: degToRad(getRangeValue(rotateOptions.value, this.#container.engine.getRandomFn())),
       min: 0,
       max: doublePI,
     };
@@ -86,7 +86,7 @@ export class RotateUpdater implements IParticleUpdater {
     let rotateDirection = rotateOptions.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      const index = Math.floor(getRandom() * double);
+      const index = Math.floor(getRandom(this.#container.engine.getRandomFn()) * double);
 
       rotateDirection = index > minIndex ? RotateDirection.counterClockwise : RotateDirection.clockwise;
     }
@@ -107,12 +107,13 @@ export class RotateUpdater implements IParticleUpdater {
     const rotateAnimation = rotateOptions.animation;
 
     if (rotateAnimation.enable) {
-      particle.rotate.decay = identity - getRangeValue(rotateAnimation.decay);
+      particle.rotate.decay = identity - getRangeValue(rotateAnimation.decay, this.#container.engine.getRandomFn());
       particle.rotate.velocity =
-        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this.#container.retina.reduceFactor;
+        (getRangeValue(rotateAnimation.speed, this.#container.engine.getRandomFn()) / doublePIDeg) *
+        this.#container.retina.reduceFactor;
 
       if (!rotateAnimation.sync) {
-        particle.rotate.velocity *= getRandom();
+        particle.rotate.velocity *= getRandom(this.#container.engine.getRandomFn());
       }
     }
 

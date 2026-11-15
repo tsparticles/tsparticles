@@ -1,6 +1,6 @@
 import { type IImage, shapeTypes } from "./Utils.js";
+import { type ILogger, addErrorMessages, getErrorMessage } from "@tsparticles/engine";
 import type { ImageContainer, ImageEngine } from "./types.js";
-import { addErrorMessages, getErrorMessage } from "@tsparticles/engine";
 import { ErrorCodes } from "./ErrorCodes.js";
 import { ErrorMessages } from "./ErrorMessages.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
@@ -58,7 +58,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       engine.images.set(container, containerImages);
 
-      let imageFunc: (image: IImage) => Promise<void>;
+      let imageFunc: (image: IImage, logger: ILogger) => Promise<void>;
 
       if (data.replaceColor) {
         const { downloadSvgImage } = await import("./Utils.js");
@@ -70,7 +70,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
         imageFunc = loadImage;
       }
 
-      await imageFunc(image);
+      await imageFunc(image, container.engine.getLogger());
     } catch {
       throw new Error(getErrorMessage(ErrorCodes.imageNotFound, data.name ?? data.src));
     }

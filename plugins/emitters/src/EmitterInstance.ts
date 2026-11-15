@@ -187,7 +187,8 @@ export class EmitterInstance {
     }
 
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+          millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
     this.position = this.#initialPosition ?? this.#calcPosition();
@@ -216,9 +217,18 @@ export class EmitterInstance {
 
     /* initialize the draw styles now, without waiting for particle emission, so a paused emitter
      * with draw: true still renders fillOpacity, strokeOpacity and strokeWidth */
-    this.spawnFillOpacity = spawnFill?.opacity === undefined ? defaultOpacity : getRangeValue(spawnFill.opacity);
-    this.spawnStrokeOpacity = spawnStroke?.opacity === undefined ? defaultOpacity : getRangeValue(spawnStroke.opacity);
-    this.spawnStrokeWidth = spawnStroke?.width === undefined ? defaultStrokeWidth : getRangeValue(spawnStroke.width);
+    this.spawnFillOpacity =
+      spawnFill?.opacity === undefined
+        ? defaultOpacity
+        : getRangeValue(spawnFill.opacity, this.#container.engine.getRandomFn());
+    this.spawnStrokeOpacity =
+      spawnStroke?.opacity === undefined
+        ? defaultOpacity
+        : getRangeValue(spawnStroke.opacity, this.#container.engine.getRandomFn());
+    this.spawnStrokeWidth =
+      spawnStroke?.width === undefined
+        ? defaultStrokeWidth
+        : getRangeValue(spawnStroke.width, this.#container.engine.getRandomFn());
 
     this.#paused = !this.options.autoPlay;
     this.#particlesOptions = particlesOptions;
@@ -373,7 +383,7 @@ export class EmitterInstance {
     const container = this.#container;
 
     if (this.#emitDelay === undefined) {
-      const delay = getRangeValue(this.options.rate.delay);
+      const delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn());
 
       this.#emitDelay = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
@@ -469,7 +479,8 @@ export class EmitterInstance {
           }
 
           this.#spawnDelay = container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+                millisecondsToSeconds) /
               container.retina.reduceFactor
             : Infinity;
         } else {
@@ -581,29 +592,33 @@ export class EmitterInstance {
       return;
     }
 
-    const quantity = getRangeValue(this.options.rate.quantity);
+    const quantity = getRangeValue(this.options.rate.quantity, this.#container.engine.getRandomFn());
 
     this.#emitParticles(quantity);
   }
 
   #emitParticles(quantity: number): void {
-    const singleParticlesOptions = (itemFromSingleOrMultiple(this.#particlesOptions) ??
-        {}) as RecursivePartial<IParticlesOptions>,
+    const singleParticlesOptions = (itemFromSingleOrMultiple(
+        this.#particlesOptions,
+        undefined,
+        undefined,
+        this.#container.engine.getRandomFn(),
+      ) ?? {}) as RecursivePartial<IParticlesOptions>,
       fillHslAnimation = this.options.spawn.fill?.color?.animation,
       fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
       fillOpacity =
         this.options.spawn.fill?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.fill.opacity),
+          : getRangeValue(this.options.spawn.fill.opacity, this.#container.engine.getRandomFn()),
       strokeHslAnimation = this.options.spawn.stroke?.color?.animation,
       strokeOpacity =
         this.options.spawn.stroke?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.stroke.opacity),
+          : getRangeValue(this.options.spawn.stroke.opacity, this.#container.engine.getRandomFn()),
       strokeWidth =
         this.options.spawn.stroke?.width === undefined
           ? defaultStrokeWidth
-          : getRangeValue(this.options.spawn.stroke.width),
+          : getRangeValue(this.options.spawn.stroke.width, this.#container.engine.getRandomFn()),
       reduceFactor = this.#container.retina.reduceFactor,
       needsFillColorAnimation = !!fillHslAnimation,
       needsStrokeColorAnimation = !!strokeHslAnimation,
@@ -666,7 +681,7 @@ export class EmitterInstance {
       let position: ICoordinates | null = this.position;
 
       if (this.#shape) {
-        const shapePosData = this.#shape.randomPosition();
+        const shapePosData = this.#shape.randomPosition(this.#container.engine.getRandomFn());
 
         if (shapePosData) {
           position = shapePosData.position;
@@ -697,7 +712,10 @@ export class EmitterInstance {
       return;
     }
 
-    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+    const duration =
+        this.options.life.duration !== undefined
+          ? getRangeValue(this.options.life.duration, this.#container.engine.getRandomFn())
+          : undefined,
       minDuration = 0,
       minLifeCount = 0;
 
@@ -718,12 +736,12 @@ export class EmitterInstance {
       return initValue;
     }
 
-    const colorOffset = randomInRangeValue(animation.offset),
-      delay = getRangeValue(this.options.rate.delay),
+    const colorOffset = randomInRangeValue(animation.offset, this.#container.engine.getRandomFn()),
+      delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn()),
       emitFactor = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
         : Infinity,
-      colorSpeed = getRangeValue(animation.speed);
+      colorSpeed = getRangeValue(animation.speed, this.#container.engine.getRandomFn());
 
     return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
   }

@@ -6,10 +6,10 @@ const { errorMock, loadMock } = vi.hoisted(() => ({ errorMock: vi.fn(), loadMock
 const engine = {
   load: loadMock,
   init: vi.fn(async () => undefined),
+  getLogger: () => ({ error: errorMock }),
 } as unknown as import("@tsparticles/engine").Engine;
 
 vi.mock("@tsparticles/engine", () => ({
-  getLogger: () => ({ error: errorMock }),
   tsParticles: { load: loadMock },
 }));
 

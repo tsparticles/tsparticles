@@ -96,6 +96,12 @@ function hwbaToRgba(hwba: IHwba): IRgba {
 
 /** HWB color manager */
 export class HwbColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with hwb
    * @param input - The input value
@@ -135,9 +141,9 @@ export class HwbColorManager implements IColorManager {
     }
 
     return hwbToRgb({
-      h: getRangeValue(hwbColor.h),
-      w: getRangeValue(hwbColor.w),
-      b: getRangeValue(hwbColor.b),
+      h: getRangeValue(hwbColor.h, this.#random),
+      w: getRangeValue(hwbColor.w, this.#random),
+      b: getRangeValue(hwbColor.b, this.#random),
     });
   }
 

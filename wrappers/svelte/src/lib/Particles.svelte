@@ -3,7 +3,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import type { Engine, Container, ISourceOptions } from '@tsparticles/engine';
-	import { getLogger } from '@tsparticles/engine';
 	import * as particlesEngineInitialization from './utils.js';
 
 	let cssClass = '';
@@ -105,7 +104,7 @@
 			}
 		} catch (error) {
 			if (mounted && generation === loadGeneration) {
-				getLogger().error('Particles: error loading particles', error);
+				engine.getLogger().error('Particles: error loading particles', error);
 			}
 		}
 	}

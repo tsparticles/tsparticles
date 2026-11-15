@@ -25,8 +25,13 @@ export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
     const pixelRatio = container.retina.pixelRatio,
       shapeData = particle.shapeData;
 
-    particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius) * pixelRatio;
-    particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? defaultLineSpacing) * pixelRatio;
-    particle.spiralWidthFactor = getRangeValue(shapeData?.widthFactor ?? defaultWidthFactor);
+    particle.spiralInnerRadius =
+      getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius, container.engine.getRandomFn()) * pixelRatio;
+    particle.spiralLineSpacing =
+      getRangeValue(shapeData?.lineSpacing ?? defaultLineSpacing, container.engine.getRandomFn()) * pixelRatio;
+    particle.spiralWidthFactor = getRangeValue(
+      shapeData?.widthFactor ?? defaultWidthFactor,
+      container.engine.getRandomFn(),
+    );
   }
 }

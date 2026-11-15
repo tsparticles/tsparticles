@@ -1,4 +1,4 @@
-import { type Container, getLogger } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 /* eslint-disable */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { Particles } from "../src";
@@ -67,7 +67,7 @@ describe("Particles contract", () => {
     const host = document.createElement("div"),
       particlesLoaded = vi.fn(),
       loadError = new Error("load failed"),
-      logger = getLogger();
+      logger = engine.getLogger();
 
     document.body.appendChild(host);
     loadMock.mockRejectedValueOnce(loadError);
@@ -115,7 +115,7 @@ describe("Particles contract", () => {
       particlesLoaded = vi.fn(async () => {
         throw callbackError;
       }),
-      logger = getLogger();
+      logger = engine.getLogger();
 
     document.body.appendChild(host);
     vi.mocked(logger.error).mockClear();

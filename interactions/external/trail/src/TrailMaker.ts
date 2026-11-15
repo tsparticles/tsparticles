@@ -124,7 +124,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             return Math.min(max, Math.max(min, result));
           },
           trailPaintOptions = trailOptions.particles?.paint
-            ? itemFromSingleOrMultiple(trailOptions.particles.paint)
+            ? itemFromSingleOrMultiple(
+                trailOptions.particles.paint,
+                undefined,
+                undefined,
+                this.container.engine.getRandomFn(),
+              )
             : undefined,
           fillData = trailPaintOptions?.fill,
           // Safe conversion of the particle color option to HSL structure

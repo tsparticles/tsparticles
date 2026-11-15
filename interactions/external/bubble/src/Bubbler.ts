@@ -336,7 +336,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         return;
       }
 
-      const bubbleColor = itemFromSingleOrMultiple(modeColor);
+      const bubbleColor = itemFromSingleOrMultiple(
+        modeColor,
+        undefined,
+        undefined,
+        this.container.engine.getRandomFn(),
+      );
 
       mod.finalColor = rangeColorToHsl(this.#pluginManager, bubbleColor);
     }

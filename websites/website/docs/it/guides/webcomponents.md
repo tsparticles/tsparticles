@@ -72,8 +72,10 @@ import { createEngine } from "@tsparticles/engine"; const particlesEngine = crea
     <web-particles id="tsparticles"></web-particles>
 
     <script type="module">
+      import { createEngine } from "@tsparticles/engine";
       import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
 
+      const particlesEngine = createEngine();
       const { loadFull } = await import("tsparticles");
 
       await initParticlesEngine(particlesEngine, async (engine) => {
@@ -83,6 +85,7 @@ import { createEngine } from "@tsparticles/engine"; const particlesEngine = crea
       defineParticlesElement();
 
       const el = document.getElementById("tsparticles");
+      el.engine = particlesEngine;
       el.options = {
         background: { color: "#0d47a1" },
         particles: {
@@ -181,6 +184,7 @@ function createParticles(container, config) {
   el.style.height = "100%";
   el.style.top = "0";
   el.style.left = "0";
+  el.engine = particlesEngine;
   el.options = config;
   container.appendChild(el);
   return el;
@@ -199,12 +203,12 @@ const particles = createParticles(document.body, {
 
 ## Extending the Custom Element
 
-You can subclass `ParticlesElement` to create your own custom element with built-in configuration:
+You can subclass `Particles` to create your own custom element with built-in configuration:
 
 ```javascript
 import { createEngine } from "@tsparticles/engine";
 const particlesEngine = createEngine();
-import { initParticlesEngine, ParticlesElement } from "@tsparticles/webcomponents";
+import { initParticlesEngine, Particles } from "@tsparticles/webcomponents";
 
 const { loadFull } = await import("tsparticles");
 
@@ -212,9 +216,10 @@ await initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 
-class MyParticlesBackground extends ParticlesElement {
+class MyParticlesBackground extends Particles {
   constructor() {
     super();
+    this.engine = particlesEngine;
     this.style.position = "fixed";
     this.style.top = "0";
     this.style.left = "0";
@@ -257,8 +262,8 @@ const container = el.container;
 container?.pause();
 container?.play();
 
-// Destroy and clean up
-el.dispose();
+// Destroy the current container and clean up
+el.container.current?.destroy();
 ```
 
 ## Full Example
@@ -303,20 +308,23 @@ A complete HTML page using the Web Components module with CDN scripts:
     <web-particles id="tsparticles"></web-particles>
 
     <script type="module">
+      import { createEngine } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/+esm";
+      import { loadFull } from "https://cdn.jsdelivr.net/npm/tsparticles@4/+esm";
       import {
         initParticlesEngine,
         defineParticlesElement,
-      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js";
+      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/+esm";
 
-      const tsParticles = window.tPparticles;
+      const particlesEngine = createEngine();
 
-      await initParticlesEngine(async (engine) => {
-        await tsParticles.loadFull(engine);
+      await initParticlesEngine(particlesEngine, async (engine) => {
+        await loadFull(engine);
       });
 
       defineParticlesElement();
 
       const el = document.getElementById("tsparticles");
+      el.engine = particlesEngine;
       el.options = {
         background: { color: "#0d47a1" },
         fpsLimit: 60,
@@ -359,19 +367,19 @@ A complete HTML page using the Web Components module with CDN scripts:
 The `<web-particles>` element reacts to property changes at runtime:
 
 - **`options`** change → the current container is destroyed and particles are reloaded with the new configuration.
-- **`theme`** attribute change → `loadTheme` is called on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+- **`data-theme`** attribute change → `loadTheme` is called on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
 
 ## Cleanup
 
-Call `element.dispose()` to destroy the container and free resources. When the element is removed from the DOM (`disconnectedCallback`), disposal happens automatically.
+When the element is removed from the DOM (`disconnectedCallback`), its container is destroyed automatically. To destroy it earlier, call `element.container.current?.destroy()`.
 
 ## API Reference
 
-| Export / Property               | Type                     | Description                                           |
-| ------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | Initialize the tsParticles engine with plugin loaders |
-| `defineParticlesElement()`      | `function`               | Register the `<web-particles>` custom element         |
-| `ParticlesElement`              | `class`                  | Base class you can extend for custom elements         |
-| `element.options`               | `ISourceOptions`         | Get/set the particle configuration object             |
-| `element.container`             | `Container \| undefined` | Read-only reference to the underlying `Container`     |
-| `element.dispose()`             | `function`               | Destroy the particle instance and clean up resources  |
+| Export / Property                       | Type                     | Description                                            |
+| --------------------------------------- | ------------------------ | ------------------------------------------------------ |
+| `initParticlesEngine(engine, callback)` | `function`               | Initialize the supplied engine with plugin loaders     |
+| `defineParticlesElement()`              | `function`               | Register the `<web-particles>` custom element          |
+| `Particles`                             | `class`                  | Base class you can extend for custom elements          |
+| `element.engine`                        | `Engine`                 | Engine instance used to create the element's container |
+| `element.options`                       | `ISourceOptions`         | Get/set the particle configuration object              |
+| `element.container.current`             | `Container \| undefined` | Reference to the underlying `Container`                |

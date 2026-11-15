@@ -279,12 +279,14 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     const effectData = particle.effectData;
 
     particle.trailFade = effectData?.fade ?? true;
-    particle.trailLength = getRangeValue(effectData?.length ?? defaultLength) * container.retina.pixelRatio;
+    particle.trailLength =
+      getRangeValue(effectData?.length ?? defaultLength, this.#container.engine.getRandomFn()) *
+      container.retina.pixelRatio;
     particle.trailMaxWidth = effectData?.maxWidth
-      ? getRangeValue(effectData.maxWidth) * container.retina.pixelRatio
+      ? getRangeValue(effectData.maxWidth, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
       : undefined;
     particle.trailMinWidth = effectData?.minWidth
-      ? getRangeValue(effectData.minWidth) * container.retina.pixelRatio
+      ? getRangeValue(effectData.minWidth, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
       : undefined;
     particle.trailTransform = effectData?.transform ?? false;
   }

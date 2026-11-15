@@ -136,14 +136,26 @@ function getPreviousHead(particle: RibbonParticle): Vector {
 export function createRibbonState(particle: RibbonParticle): void {
   const shapeData = particle.shapeData,
     countConfig = shapeData?.count ?? defaultPointCount,
-    count = Math.max(minPointCount, Math.round(getRangeValue(countConfig))),
-    particleDist = getRangeValue(shapeData?.particleDist ?? defaultParticleDist),
-    mass = getRangeValue(shapeData?.mass ?? defaultMass),
-    drag = getRangeValue(shapeData?.drag ?? defaultDrag),
-    velocityInherit = getRangeValue(shapeData?.velocityInherit ?? defaultVelocityInherit),
-    oscillationSpeed = getRangeValue(shapeData?.oscillationSpeed ?? defaultOscillationSpeed),
-    oscillationDistance = getRangeValue(shapeData?.oscillationDistance ?? defaultOscillationDistance),
-    angle = getRangeValue(shapeData?.angle ?? defaultAngle),
+    count = Math.max(minPointCount, Math.round(getRangeValue(countConfig, particle.container.engine.getRandomFn()))),
+    particleDist = getRangeValue(
+      shapeData?.particleDist ?? defaultParticleDist,
+      particle.container.engine.getRandomFn(),
+    ),
+    mass = getRangeValue(shapeData?.mass ?? defaultMass, particle.container.engine.getRandomFn()),
+    drag = getRangeValue(shapeData?.drag ?? defaultDrag, particle.container.engine.getRandomFn()),
+    velocityInherit = getRangeValue(
+      shapeData?.velocityInherit ?? defaultVelocityInherit,
+      particle.container.engine.getRandomFn(),
+    ),
+    oscillationSpeed = getRangeValue(
+      shapeData?.oscillationSpeed ?? defaultOscillationSpeed,
+      particle.container.engine.getRandomFn(),
+    ),
+    oscillationDistance = getRangeValue(
+      shapeData?.oscillationDistance ?? defaultOscillationDistance,
+      particle.container.engine.getRandomFn(),
+    ),
+    angle = getRangeValue(shapeData?.angle ?? defaultAngle, particle.container.engine.getRandomFn()),
     angleRad = (Math.PI / degrees) * angle,
     head = Vector.create(particle.position.x, particle.position.y),
     bounds = particle.ribbonBounds;
@@ -160,7 +172,7 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonVelocityInherit = velocityInherit;
   particle.ribbonOscillationSpeed = oscillationSpeed;
   particle.ribbonOscillationDistance = oscillationDistance;
-  particle.ribbonTime = getRandom() * randomTimeFactor;
+  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
   particle.ribbonOffsets = Vector.create(Math.cos(angleRad), Math.sin(angleRad));
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
@@ -173,7 +185,7 @@ export function createRibbonState(particle: RibbonParticle): void {
 
   for (let i = noPoint; i < count; i++) {
     const offset = i * particleDist,
-      perpNoise = (getRandom() - half) * noiseScale,
+      perpNoise = (getRandom(particle.container.engine.getRandomFn()) - half) * noiseScale,
       perpAngle = trailAngle + Math.PI * half;
 
     particle.ribbonPoints[i] = {
@@ -196,7 +208,10 @@ function resetRibbonState(particle: RibbonParticle): void {
     bounds = particle.ribbonBounds,
     width = bounds?.x ?? noDistance,
     height = bounds?.y ?? noDistance,
-    position = Vector.create(getRandom() * width, -getRandom() * height);
+    position = Vector.create(
+      getRandom(particle.container.engine.getRandomFn()) * width,
+      -getRandom(particle.container.engine.getRandomFn()) * height,
+    );
 
   if (!bounds) {
     return;
@@ -213,7 +228,7 @@ function resetRibbonState(particle: RibbonParticle): void {
   particle.ribbonHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousPosition = Vector.create(position.x, position.y);
-  particle.ribbonTime = getRandom() * randomTimeFactor;
+  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
 
   for (let i = noPoint; i < points.length; i++) {
     const point = points[i];
@@ -484,7 +499,11 @@ function resolveBackFill(
     const frontHsl = getHslFromAnimation(particle.fillColor);
 
     if (frontHsl) {
-      const altered = alterHsl(frontHsl, AlterType.darken, getRangeValue(shapeData.darken.value));
+      const altered = alterHsl(
+        frontHsl,
+        AlterType.darken,
+        getRangeValue(shapeData.darken.value, particle.container.engine.getRandomFn()),
+      );
 
       backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
     }
@@ -492,7 +511,11 @@ function resolveBackFill(
     const frontHsl = getHslFromAnimation(particle.fillColor);
 
     if (frontHsl) {
-      const altered = alterHsl(frontHsl, AlterType.enlighten, getRangeValue(shapeData.enlighten.value));
+      const altered = alterHsl(
+        frontHsl,
+        AlterType.enlighten,
+        getRangeValue(shapeData.enlighten.value, particle.container.engine.getRandomFn()),
+      );
 
       backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
     }

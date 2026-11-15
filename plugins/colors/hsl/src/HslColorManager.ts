@@ -31,6 +31,12 @@ const hslRegex = /hsla?\(\s*(\d+)\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(
 
 /** HSL color manager */
 export class HslColorManager implements IColorManager {
+  readonly #random: () => number;
+
+  constructor(random: () => number = Math.random) {
+    this.#random = random;
+  }
+
   /**
    * Checks if the input starts with hsl
    * @param input - The input value
@@ -70,9 +76,9 @@ export class HslColorManager implements IColorManager {
     }
 
     return hslToRgb({
-      h: getRangeValue(hslColor.h),
-      l: getRangeValue(hslColor.l),
-      s: getRangeValue(hslColor.s),
+      h: getRangeValue(hslColor.h, this.#random),
+      l: getRangeValue(hslColor.l, this.#random),
+      s: getRangeValue(hslColor.s, this.#random),
     });
   }
 

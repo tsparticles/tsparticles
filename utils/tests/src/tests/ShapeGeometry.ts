@@ -7,7 +7,6 @@ import {
   createEngine,
   doublePI,
   percentDenominator,
-  setRandom,
 } from "@tsparticles/engine";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { SegmentType } from "@tsparticles/path-utils";
@@ -35,6 +34,7 @@ import { loadStarShape } from "@tsparticles/shape-star";
 import { loadTextShape } from "@tsparticles/shape-text";
 
 const tsParticles = createEngine();
+let featureContainer: Container | undefined;
 
 type Call = [string, ...unknown[]];
 
@@ -100,6 +100,11 @@ function makeData(
   radius: number,
   overrides: Record<string, unknown> = {},
 ): IShapeDrawData {
+  const particleData =
+    typeof particle === "object" && particle !== null
+      ? { ...particle, container: (particle as { container?: Container }).container ?? featureContainer }
+      : particle;
+
   return {
     context: ctx,
     delta: { value: 16, factor: 0.5 },
@@ -108,7 +113,7 @@ function makeData(
     drawScale: 1,
     fill: true,
     opacity: 1,
-    particle,
+    particle: particleData,
     pixelRatio: 1,
     position: { x: 0, y: 0 },
     radius,
@@ -168,10 +173,8 @@ if (originalToString && typeof originalToString["transferToImageBitmap"] !== "fu
 describe("ShapeGeometry", async () => {
   globalThis.window = TestWindow;
 
-  let featureContainer: Container | undefined;
-
   beforeAll(() => {
-    setRandom();
+    tsParticles.setRandom();
   });
 
   const registry = tsParticles.pluginManager.initializers.shapes;
@@ -422,9 +425,9 @@ describe("ShapeGeometry", async () => {
 
   describe("star", () => {
     it("defaults to 5 sides and reads a per-particle override", () => {
-      expect(star.getSidesCount?.({} as Particle)).to.equal(5);
-      expect(star.getSidesCount?.({ shapeData: { sides: 8 } } as unknown as Particle)).to.equal(8);
-      expect(star.getSidesCount?.({ shapeData: { sides: 3.4 } } as unknown as Particle)).to.equal(3);
+      expect(star.getSidesCount?.({ container } as unknown as Particle)).to.equal(5);
+      expect(star.getSidesCount?.({ container, shapeData: { sides: 8 } } as unknown as Particle)).to.equal(8);
+      expect(star.getSidesCount?.({ container, shapeData: { sides: 3.4 } } as unknown as Particle)).to.equal(3);
     });
 
     it("particleInit sets the inset and draw records two rotations per side", () => {
@@ -454,8 +457,8 @@ describe("ShapeGeometry", async () => {
 
   describe("polygon", () => {
     it("defaults to 5 sides and places vertices at the documented angles", () => {
-      expect(polygon.getSidesCount?.({} as Particle)).to.equal(5);
-      expect(polygon.getSidesCount?.({ shapeData: { sides: 6 } } as unknown as Particle)).to.equal(6);
+      expect(polygon.getSidesCount?.({ container } as unknown as Particle)).to.equal(5);
+      expect(polygon.getSidesCount?.({ container, shapeData: { sides: 6 } } as unknown as Particle)).to.equal(6);
 
       const { calls, ctx } = createRecorder(),
         particle = { sides: 5 };
@@ -495,8 +498,8 @@ describe("ShapeGeometry", async () => {
 
   describe("rounded-polygon", () => {
     it("defaults to 5 sides and particleInit derives the border radius", () => {
-      expect(roundedPolygon.getSidesCount?.({} as Particle)).to.equal(5);
-      expect(roundedPolygon.getSidesCount?.({ shapeData: { sides: 7 } } as unknown as Particle)).to.equal(7);
+      expect(roundedPolygon.getSidesCount?.({ container } as unknown as Particle)).to.equal(5);
+      expect(roundedPolygon.getSidesCount?.({ container, shapeData: { sides: 7 } } as unknown as Particle)).to.equal(7);
 
       const particle = { shapeData: { radius: 5 } } as { borderRadius?: number; shapeData: unknown };
 
@@ -767,7 +770,7 @@ describe("ShapeGeometry", async () => {
           velocity: { angle: 0 },
         };
 
-      setRandom(() => 0.5);
+      tsParticles.setRandom(() => 0.5);
 
       ribbonDrawer.draw(makeData(ctx, particle, 8));
 
@@ -782,11 +785,11 @@ describe("ShapeGeometry", async () => {
 
   describe("matrix", () => {
     afterEach(() => {
-      setRandom();
+      tsParticles.setRandom();
     });
 
     it("records a bold font and the first matrix glyph at the origin", () => {
-      setRandom(() => 0);
+      tsParticles.setRandom(() => 0);
 
       const { calls, ctx } = createRecorder();
 
@@ -801,7 +804,7 @@ describe("ShapeGeometry", async () => {
     });
 
     it("stroke-only data records strokeText instead of fillText", () => {
-      setRandom(() => 0);
+      tsParticles.setRandom(() => 0);
 
       const { calls, ctx } = createRecorder();
 

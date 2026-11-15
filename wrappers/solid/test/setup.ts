@@ -10,10 +10,10 @@ const { containerMock, errorMock } = vi.hoisted(() => ({
 }));
 
 vi.mock("@tsparticles/engine", () => ({
-  getLogger: () => ({ error: errorMock }),
   createEngine: () => ({
     init: vi.fn(async () => undefined),
     load: vi.fn(async () => containerMock),
+    getLogger: () => ({ error: errorMock }),
   }),
 }));
 

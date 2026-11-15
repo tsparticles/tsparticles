@@ -156,6 +156,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           container.hdr,
           container.peakNits,
           container.hdrMode,
+          container.engine.getLogger(),
         );
       } else {
         imageRes = {

@@ -1,11 +1,4 @@
-import {
-  type IColor,
-  type IColorManager,
-  type IRangeColor,
-  type IRgb,
-  type IRgba,
-  getLogger,
-} from "@tsparticles/engine";
+import type { Engine, IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
 
 const namedColors = new Map<string, IRgb>([
   ["aliceblue", { r: 240, g: 248, b: 255 }],
@@ -160,6 +153,12 @@ const namedColors = new Map<string, IRgb>([
 
 /** Named CSS color manager */
 export class NamedColorManager implements IColorManager {
+  readonly #engine: Engine;
+
+  constructor(engine: Engine) {
+    this.#engine = engine;
+  }
+
   /**
    * Checks if the input is a named CSS color
    * @param input - The input value
@@ -204,7 +203,7 @@ export class NamedColorManager implements IColorManager {
     const rgbColor = namedColors.get(input.toLowerCase());
 
     if (!rgbColor) {
-      getLogger().error("Color not found", input);
+      this.#engine.getLogger().error("Color not found", input);
 
       return undefined;
     }

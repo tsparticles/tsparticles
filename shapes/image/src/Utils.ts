@@ -1,4 +1,4 @@
-import { type HdrMode, type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import { type HdrMode, type IHsl, type ILogger, type Particle, getStyleFromHsl } from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -89,7 +89,7 @@ function replaceColorSvg(
  * Loads the given image
  * @param image - the image to load
  */
-export async function loadImage(image: IImage): Promise<void> {
+export async function loadImage(image: IImage, logger: ILogger): Promise<void> {
   return new Promise<void>(resolve => {
     image.loading = true;
 
@@ -108,7 +108,7 @@ export async function loadImage(image: IImage): Promise<void> {
       image.error = true;
       image.loading = false;
 
-      getLogger().error(`Error loading image: ${image.source}`);
+      logger.error(`Error loading image: ${image.source}`);
 
       resolve();
     });
@@ -121,9 +121,9 @@ export async function loadImage(image: IImage): Promise<void> {
  * Downloads the SVG image data, using `fetch`
  * @param image - the image to download
  */
-export async function downloadSvgImage(image: IImage): Promise<void> {
+export async function downloadSvgImage(image: IImage, logger: ILogger): Promise<void> {
   if (image.type !== "svg") {
-    await loadImage(image);
+    await loadImage(image, logger);
 
     return;
   }
@@ -135,7 +135,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
   if (response.ok) {
     image.svgData = await response.text();
   } else {
-    getLogger().error("Image not found");
+    logger.error("Image not found");
 
     image.error = true;
   }
@@ -162,6 +162,7 @@ export function replaceImageColor(
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  logger?: ILogger,
 ): Promise<IParticleImage> {
   const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr, peakNits, mode),
     imageRes: IParticleImage = {
@@ -200,7 +201,9 @@ export function replaceImageColor(
       };
 
       // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-      await loadImage(img2);
+      if (logger) {
+        await loadImage(img2, logger);
+      }
 
       imageRes.loaded = true;
       imageRes.element = img2.element;

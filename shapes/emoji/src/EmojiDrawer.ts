@@ -98,7 +98,12 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       return;
     }
 
-    const emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData);
+    const emoji = itemFromSingleOrMultiple(
+      shapeData.value,
+      particle.randomIndexData,
+      undefined,
+      container.engine.getRandomFn(),
+    );
 
     if (!emoji) {
       return;

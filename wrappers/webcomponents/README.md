@@ -21,15 +21,13 @@ yarn add @tsparticles/webcomponents @tsparticles/engine
 ## Usage
 
 ```ts
-const particlesEngine = createEngine();
 import { createEngine } from "@tsparticles/engine";
-const tsParticles = createEngine();
 import { initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 
-globalThis.tsParticles = tsParticles;
+const engine = createEngine();
 
-await initParticlesEngine(particlesEngine, async engine => {
+await initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 ```
@@ -46,6 +44,7 @@ Then use the custom element:
 <script>
   const element = document.getElementById("tsparticles-options");
 
+  element.engine = engine;
   element.options = {
     background: {
       color: {
@@ -80,6 +79,9 @@ The `<web-particles>` custom element observes the following attributes for react
 | `data-theme` | `string` | The theme name to apply. Applies via `loadTheme` without a full reload. Requires `@tsparticles/plugin-themes`. |
 
 > **Note**: Theme support requires the optional `@tsparticles/plugin-themes` plugin. Without it, `data-theme` changes are silently ignored.
+
+The engine is an object property and must be assigned from JavaScript after
+creating it. It cannot be configured with an HTML attribute.
 
 ## Reactivity
 

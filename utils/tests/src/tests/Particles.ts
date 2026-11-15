@@ -6,7 +6,6 @@ import {
   LimitMode,
   type Particle,
   createEngine,
-  getLogger,
   getRandom,
 } from "@tsparticles/engine";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -249,7 +248,7 @@ describe("Particles", async () => {
 
     const logP = arr[0];
 
-    getLogger().log(logP.id);
+    container.engine.getLogger().log(logP.id);
 
     container.particles.update({
       value: ts,

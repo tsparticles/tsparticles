@@ -259,4 +259,35 @@ describe("webcomponents Particles element", () => {
       consoleError.mockRestore();
     }
   });
+
+  it("reports load failures against the element's engine", async () => {
+    const module = await loadModule(),
+      consoleError = vi.spyOn(console, "error").mockImplementation(() => {}),
+      error = vi.fn();
+
+    loadMock.mockRejectedValueOnce(new Error("load failed"));
+
+    await module.initParticlesEngine(engine);
+    module.defineParticlesElement();
+
+    const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>;
+
+    element.addEventListener("particlesError", error);
+    element.engine = engine;
+    element.options = { particles: { number: { value: 1 } } };
+    document.body.appendChild(element);
+
+    try {
+      await vi.waitFor(() => {
+        expect(error).toHaveBeenCalledOnce();
+      });
+
+      expect(error.mock.calls[0][0].detail.diagnostic).toMatchObject({
+        enginePresent: true,
+      });
+    } finally {
+      element.remove();
+      consoleError.mockRestore();
+    }
+  });
 });

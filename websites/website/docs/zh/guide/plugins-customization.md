@@ -36,35 +36,37 @@ tsParticles can be extended at runtime with custom shapes, presets, plugins, and
 - Keep a tiny config fixture while developing (faster regressions checks).
 - If a feature is missing, verify the required package is loaded (shape, interaction, updater, plugin).
 
-## Global runtime configuration
+## Engine runtime services
 
-tsParticles exposes a few utilities on the global `tsParticles` object for advanced runtime customization.
+Randomness, logging and animation scheduling belong to an engine instance. Create an engine and configure its services before loading containers:
 
 ### Custom random number generator
 
 Replace the internal random function with your own (useful for seeded/controlled randomness in custom plugins):
 
 ```js
-// Set a custom random function
-tsParticles.setParticlesRandom(() => {
-  // your custom random logic
+const engine = createEngine();
+
+engine.setRandom(() => {
+  // Return a finite number. Values are clamped to [0, 1); non-finite values become 0.
   return Math.random();
 });
 
-// Get a random number using the current random function
-const value = tsParticles.getParticlesRandom();
+const container = await engine.load({ id: "particles", options });
+const value = engine.getRandom();
 
-// Get the current random function reference
-const randomFn = tsParticles.getParticlesRandomFn();
+// Helpers can receive the stable provider; it uses the engine's current source.
+const randomFn = engine.getRandomFn();
 ```
+
+The source is called once for each random request. A fixed source sequence is useful for repeatable runs, but random call counts are not a cross-version compatibility contract.
 
 ### Custom logger
 
 Replace the internal logger with your own (useful for silent modes or custom log handling):
 
 ```js
-// Set a custom logger
-tsParticles.setParticlesLogger({
+engine.setLogger({
   debug: (msg) => {},
   error: (msg) => console.error("[myApp]", msg),
   info: (msg) => {},
@@ -74,19 +76,18 @@ tsParticles.setParticlesLogger({
   warning: (msg) => {},
 });
 
-// Get the current logger
-const logger = tsParticles.getParticlesLogger();
+const logger = engine.getLogger();
 ```
 
-When using the library via a UMD script tag, these are also available directly on `globalThis`:
+Each engine has its own logger object and frame scheduler. A service change applies to later calls from its containers. Plugins can reach the owner through `container.engine` or `container.pluginManager.engine`.
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
-<script>
-  globalThis.setParticlesRandom(myRandomFn);
-  globalThis.setParticlesLogger(myLogger);
-</script>
+Custom schedulers are configured on the engine:
+
+```ts
+engine.setAnimationFunctions(requestFrame, cancelFrame);
 ```
+
+Custom scheduler timestamps must use the same high-resolution time domain as `requestAnimationFrame`.
 
 ## Next steps
 

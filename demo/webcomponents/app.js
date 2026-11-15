@@ -11,14 +11,12 @@ const path = require("path");
 // port is already in use on the developer machine.
 const port = process.env.PORT || 3005;
 
- app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
- app.use(stylus.middleware(path.join(__dirname, "public")));
- app.use(express.static(path.join(__dirname, "public")));
-// Serve the engine bundle from the repo's bundles output so the demo works
-// without installing tsparticles into node_modules. The workspace contains
-// bundles/full/dist/tsparticles.bundle.min.js which exposes the global
-// tsParticles object the webcomponents wrapper reads at runtime.
+app.use(stylus.middleware(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
+// Serve the full bundle so the demo can create an explicit engine and load
+// the full feature set through its documented classic-script bootstrap.
 app.use("/tsparticles", express.static(path.join(__dirname, "./node_modules/tsparticles")));
 
 // Serve demo-local presets so the demo can reference /@tsparticles/configs/*
@@ -31,10 +29,7 @@ app.use(
   "/@tsparticles/webcomponents",
   express.static(path.join(__dirname, "./node_modules/@tsparticles/webcomponents")),
 );
- app.use(
-   "/webcomponentsjs",
-   express.static(path.join(__dirname, "../../node_modules/@webcomponents/webcomponentsjs/")),
- );
+app.use("/webcomponentsjs", express.static(path.join(__dirname, "../../node_modules/@webcomponents/webcomponentsjs/")));
 
 app.get("/", function (req, res) {
   res.render("index");

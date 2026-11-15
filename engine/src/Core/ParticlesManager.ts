@@ -25,7 +25,6 @@ import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOpt
 import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
-import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
 import { toEnumValue } from "../Utils/TypeUtils.js";
 
@@ -139,7 +138,7 @@ export class ParticlesManager {
 
       return particle;
     } catch (e: unknown) {
-      getLogger().warning(`error adding particle: ${e as string}`);
+      this.#container.engine.getLogger().warning(`error adding particle: ${e as string}`);
     }
 
     return undefined;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type Container, type ISourceOptions, createEngine, setAnimationFunctions } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -116,7 +116,7 @@ describe("Container lifecycle", () => {
       scheduled = new Map<number, FrameRequestCallback>();
     let nextHandle = 0;
 
-    setAnimationFunctions(
+    container.engine.setAnimationFunctions(
       callback => {
         const handle = ++nextHandle;
 
@@ -148,7 +148,7 @@ describe("Container lifecycle", () => {
       expect(scheduled.size).to.equal(0);
     } finally {
       container.destroy();
-      setAnimationFunctions(
+      container.engine.setAnimationFunctions(
         callback => requestAnimationFrame(callback),
         handle => {
           cancelAnimationFrame(handle);

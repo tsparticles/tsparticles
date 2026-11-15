@@ -30,7 +30,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
         return;
       }
 
-      const removeNb = getRangeValue(options.interactivity.modes.remove.quantity);
+      const removeNb = getRangeValue(options.interactivity.modes.remove.quantity, container.engine.getRandomFn());
 
       for (let i = 0; i < removeNb; i++) {
         container.particles.get(i)?.destroy();

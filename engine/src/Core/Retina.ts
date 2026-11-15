@@ -49,9 +49,9 @@ export class Retina {
       moveDistance = moveOptions.distance,
       props = particle.retina;
 
-    props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
-    props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
-    props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
+    props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed, this.#container.engine.getRandomFn()) * ratio;
+    props.moveDrift = getRangeValue(moveOptions.drift, this.#container.engine.getRandomFn()) * ratio;
+    props.moveSpeed = getRangeValue(moveOptions.speed, this.#container.engine.getRandomFn()) * ratio;
 
     const maxDistance = props.maxDistance;
 

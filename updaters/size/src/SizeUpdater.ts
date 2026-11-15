@@ -51,7 +51,7 @@ export class SizeUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.size.velocity *= getRandom();
+    particle.size.velocity *= getRandom(this.#container.engine.getRandomFn());
   }
 
   /**
@@ -96,9 +96,10 @@ export class SizeUpdater implements IParticleUpdater {
     }
 
     /* size */
-    particle.size = initParticleNumericAnimationValue(sizeOptions, pxRatio);
+    particle.size = initParticleNumericAnimationValue(sizeOptions, pxRatio, this.#container.engine.getRandomFn());
 
-    particle.retina.sizeAnimationSpeed = getRangeValue(sizeOptions.animation.speed) * pxRatio;
+    particle.retina.sizeAnimationSpeed =
+      getRangeValue(sizeOptions.animation.speed, this.#container.engine.getRandomFn()) * pxRatio;
   }
 
   /**

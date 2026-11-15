@@ -1,8 +1,5 @@
 import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
-/**
- * An application-owned engine with independent containers and registrations.
- * Initializes {@link Container} instances
- */
+import { type ILogger, createLogger } from "../Utils/LogUtils.js";
 import { canvasOwner, transferredCanvasKey } from "./Utils/CanvasOwnership.js";
 import { getCanvasFromContainer, getDataFromUrl, getDomContainer, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
@@ -28,6 +25,8 @@ type OwnedCanvas = (HTMLCanvasElement | OffscreenCanvas) & CanvasOwnership;
  * Initializes {@link Container} instances,
  * and for Plugins class responsible for every external feature
  */
+/* The engine surface groups its service APIs with the existing engine API. */
+/* eslint-disable @typescript-eslint/member-ordering */
 export class Engine {
   /** The plugin manager */
   readonly pluginManager = new PluginManager(this);
@@ -48,11 +47,22 @@ export class Engine {
 
   #loadSequence = 0;
 
-  /**
-   * The sequence of the latest load requested for each container id, so the loads superseded by a
-   * newer one for the same id cannot install or replace the container of the newer one
-   */
   readonly #loadSequences = new Map<string, number>();
+
+  readonly #logger: ILogger = createLogger();
+
+  #random: () => number = Math.random;
+
+  readonly #scheduledFrames = new Map<number, (handle: number) => void>();
+
+  #cancelFrame: (handle: number) => void = (handle: number): void => {
+    cancelAnimationFrame(handle);
+  };
+
+  #nextFrame: (callback: FrameRequestCallback) => number = (callback: FrameRequestCallback): number =>
+    requestAnimationFrame(callback);
+
+  readonly #randomProvider = (): number => this.getRandom();
 
   /**
    * The container instances
@@ -70,6 +80,21 @@ export class Engine {
     return __VERSION__;
   }
 
+  #getAnonymousElementId(element: HTMLElement): string {
+    let id = this.#anonymousElementIds.get(element);
+
+    if (!id) {
+      id = `tsparticles${Math.floor(this.getRandom() * loadRandomFactor).toString()}_${this.#anonymousElementId++}`;
+      this.#anonymousElementIds.set(element, id);
+    }
+
+    return id;
+  }
+
+  #getElementId(element: HTMLElement): string {
+    return element.id.length ? element.id : this.#getAnonymousElementId(element);
+  }
+
   /**
    * Adds a listener to the specified event
    * @param type - The event to listen to
@@ -77,6 +102,32 @@ export class Engine {
    */
   addEventListener(type: string, listener: CustomEventListener): void {
     this.#eventDispatcher.addEventListener(type, listener);
+  }
+
+  /** Schedules a callback using this engine's frame scheduler. */
+  animate(callback: FrameRequestCallback): number {
+    let handle = -1;
+    const cancel = this.#cancelFrame;
+
+    handle = this.#nextFrame(timestamp => {
+      this.#scheduledFrames.delete(handle);
+      callback(timestamp);
+    });
+    this.#scheduledFrames.set(handle, cancel);
+
+    return handle;
+  }
+
+  /** Cancels a frame handle owned by this engine. */
+  cancelAnimation(handle: number): void {
+    const cancel = this.#scheduledFrames.get(handle);
+
+    if (!cancel) {
+      return;
+    }
+
+    this.#scheduledFrames.delete(handle);
+    cancel(handle);
   }
 
   /**
@@ -101,6 +152,21 @@ export class Engine {
    */
   dispatchEvent(type: string, args?: CustomEventArgs): void {
     this.#eventDispatcher.dispatchEvent(type, args);
+  }
+
+  /** Returns this engine's mutable logger object. */
+  getLogger(): ILogger {
+    return this.#logger;
+  }
+
+  /** Returns a random value in [0, 1); non-finite source values map to 0. */
+  getRandom(): number {
+    return getRandom(this.#random);
+  }
+
+  /** Returns a stable provider that always uses this engine's current random source. */
+  getRandomFn(): () => number {
+    return this.#randomProvider;
   }
 
   /**
@@ -150,7 +216,7 @@ export class Engine {
     const id =
         params.id ??
         (domSourceElement ? this.#getElementId(domSourceElement) : undefined) ??
-        `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+        `tsparticles${Math.floor(this.getRandom() * loadRandomFactor).toString()}`,
       loadSequence = ++this.#loadSequence;
 
     this.#loadSequences.set(id, loadSequence);
@@ -160,7 +226,15 @@ export class Engine {
 
       const { Container } = await import("./Container.js"),
         { index, url } = params,
-        options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
+        options = url
+          ? await getDataFromUrl({
+              fallback: params.options,
+              index,
+              logger: this.getLogger(),
+              random: this.getRandomFn(),
+              url,
+            })
+          : params.options;
 
       if (this.#loadSequences.get(id) !== loadSequence) {
         /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
@@ -180,10 +254,11 @@ export class Engine {
       let ownedRenderCanvas: OwnedCanvas | undefined;
 
       /* elements */
-      const currentOptions = itemFromSingleOrMultiple(options, index),
+      const currentOptions = itemFromSingleOrMultiple(options, index, undefined, this.getRandomFn()),
         { items } = this,
         oldIndex = items.findIndex(v => v.id.description === id),
         newItem = new Container({
+          engine: this,
           dispatchCallback: (eventType, args): void => {
             this.dispatchEvent(eventType, args);
           },
@@ -281,18 +356,23 @@ export class Engine {
     this.#eventDispatcher.removeEventListener(type, listener);
   }
 
-  #getAnonymousElementId(element: HTMLElement): string {
-    let id = this.#anonymousElementIds.get(element);
-
-    if (!id) {
-      id = `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}_${this.#anonymousElementId++}`;
-      this.#anonymousElementIds.set(element, id);
-    }
-
-    return id;
+  /**
+   * Replaces the frame scheduler for this engine only. Callback timestamps must use the same high-resolution time domain as requestAnimationFrame.
+   */
+  setAnimationFunctions(nextFrame: (callback: FrameRequestCallback) => number, cancel: (handle: number) => void): void {
+    this.#nextFrame = nextFrame;
+    this.#cancelFrame = cancel;
   }
 
-  #getElementId(element: HTMLElement): string {
-    return element.id.length ? element.id : this.#getAnonymousElementId(element);
+  /** Applies logger overrides to this engine, leaving the supplied object untouched. */
+  setLogger(logger: Partial<ILogger>): void {
+    Object.assign(this.#logger, createLogger({ ...this.#logger, ...logger }));
+  }
+
+  /**
+   * Sets the random source used by this engine. It is called once per random request; call counts are not a cross-version contract. Pass undefined to restore Math.random.
+   */
+  setRandom(rnd: () => number = Math.random): void {
+    this.#random = rnd;
   }
 }

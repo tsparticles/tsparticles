@@ -46,7 +46,7 @@ export class InfectionPluginInstance implements IContainerPlugin {
 
           return infP.infection.stage === undefined;
         }),
-        infected = itemFromArray(notInfected);
+        infected = itemFromArray(notInfected, undefined, true, this.#container.engine.getRandomFn());
 
       if (!infected) {
         continue;

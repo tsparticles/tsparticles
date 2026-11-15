@@ -3,7 +3,6 @@ import {
   type IContainerPlugin,
   type IRgb,
   type PluginManager,
-  getLogger,
   getStyleFromRgb,
   inverseFactorNumerator,
   rangeColorToRgb,
@@ -75,7 +74,7 @@ export class TrailPluginInstance implements IContainerPlugin {
     try {
       await this.#initTrail();
     } catch (e) {
-      getLogger().error(e);
+      this.#container.engine.getLogger().error(e);
     }
   }
 
@@ -121,7 +120,7 @@ export class TrailPluginInstance implements IContainerPlugin {
         });
 
         img.addEventListener("error", evt => {
-          getLogger().error(evt);
+          this.#container.engine.getLogger().error(evt);
 
           reject(new Error("Error loading image"));
         });

@@ -23,7 +23,6 @@ import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { Vector } from "../Core/Utils/Vectors.js";
-import { getLogger } from "./LogUtils.js";
 
 /**
  * Checks whether a key should be rejected during object traversal.
@@ -91,8 +90,8 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
  * @param useIndex - if true, the index will be used instead of a random index
  * @returns the item found
  */
-export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T | undefined {
-  return array[index !== undefined && useIndex ? index % array.length : Math.floor(getRandom() * array.length)];
+export function itemFromArray<T>(array: T[], index?: number, useIndex = true, random?: () => number): T | undefined {
+  return array[index !== undefined && useIndex ? index % array.length : Math.floor(getRandom(random) * array.length)];
 }
 
 /**
@@ -251,8 +250,8 @@ export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
     mass: p.getMass(),
     velocity: p.velocity,
     factor: Vector.create(
-      getRangeValue(p.options.bounce.horizontal.value),
-      getRangeValue(p.options.bounce.vertical.value),
+      getRangeValue(p.options.bounce.horizontal.value, p.container.engine.getRandomFn()),
+      getRangeValue(p.options.bounce.vertical.value, p.container.engine.getRandomFn()),
     ),
   };
 }
@@ -314,8 +313,9 @@ export function itemFromSingleOrMultiple<T>(
   obj: SingleOrMultiple<T>,
   index?: number,
   useIndex?: boolean,
+  random?: () => number,
 ): T | undefined {
-  return isArray(obj) ? itemFromArray(obj, index, useIndex) : obj;
+  return isArray(obj) ? itemFromArray(obj, index, useIndex, random) : obj;
 }
 
 /**
@@ -502,7 +502,8 @@ export async function getItemMapFromInitializer<TItem, TInitializer extends Gene
 export async function getDataFromUrl(
   data: DataFromUrlParams,
 ): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
-  const url = itemFromSingleOrMultiple(data.url, data.index);
+  const { logger, random } = data,
+    url = itemFromSingleOrMultiple(data.url, data.index, undefined, random);
 
   if (!url) {
     return data.fallback;
@@ -518,12 +519,12 @@ export async function getDataFromUrl(
         return current;
       }
 
-      getLogger().error("invalid configuration data while retrieving config file");
+      logger.error("invalid configuration data while retrieving config file");
     } else {
-      getLogger().error(`${response.status.toString()} while retrieving config file`);
+      logger.error(`${response.status.toString()} while retrieving config file`);
     }
   } catch (error) {
-    getLogger().error(`error while retrieving config file: ${error as string}`);
+    logger.error(`error while retrieving config file: ${error as string}`);
   }
 
   return data.fallback;

@@ -72,7 +72,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
         infP2.destroyed ||
         infP2.spawning ||
         !(infP2.infection?.stage === undefined || infP2.infection.stage !== p1.infection.stage) ||
-        getRandom() >= infections / neighbors
+        getRandom(container.engine.getRandomFn()) >= infections / neighbors
       ) {
         continue;
       }

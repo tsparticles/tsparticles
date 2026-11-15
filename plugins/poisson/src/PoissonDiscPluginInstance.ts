@@ -98,6 +98,8 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
           ),
       poissonOptions.retries,
       poissonOptions.dimensions,
+      undefined,
+      container.engine.getRandomFn(),
     );
 
     const noSteps = 0;

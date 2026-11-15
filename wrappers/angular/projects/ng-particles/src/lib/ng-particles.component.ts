@@ -13,7 +13,6 @@ import {
 import type { Container } from "@tsparticles/engine";
 import { IParticlesProps } from "./ng-particles.module";
 import { NgParticlesService } from "./ng-particles.service";
-import { getLogger } from "@tsparticles/engine";
 import { isPlatformServer } from "@angular/common";
 
 @Component({
@@ -107,7 +106,7 @@ export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestro
       this.particlesLoaded.emit(container);
     } catch (error) {
       if (loadId === this.#loadId) {
-        getLogger().error("ng-particles: error loading particles", error);
+        this.#particlesService.engine.getLogger().error("ng-particles: error loading particles", error);
       }
     }
   }

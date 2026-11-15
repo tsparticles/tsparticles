@@ -11,6 +11,6 @@ export async function loadHwbColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("hwb", new HwbColorManager());
+    e.pluginManager.addColorManager("hwb", new HwbColorManager(e.getRandomFn()));
   });
 }

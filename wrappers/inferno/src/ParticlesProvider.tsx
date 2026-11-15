@@ -1,5 +1,5 @@
 import { Component, type InfernoNode } from "inferno";
-import { type Engine, getLogger } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { type ParticlesPluginRegistrar, initParticlesEngine } from "./initParticlesEngine";
 
 export interface IParticlesProviderProps {
@@ -36,7 +36,7 @@ export class ParticlesProvider extends Component<IParticlesProviderProps, IParti
 			}
 		} catch (error: unknown) {
 			if (generation === this.#generation) {
-				getLogger().error("ParticlesProvider: engine init failed", error);
+				engine.getLogger().error("ParticlesProvider: engine init failed", error);
 			}
 		}
 	}
