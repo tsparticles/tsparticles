@@ -1,16 +1,16 @@
-import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
-import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
-import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
-import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
-import type { Container } from "./Container.js";
-import { HdrMode } from "../Enums/Modes/HdrMode.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { ICoordinates } from "./Interfaces/ICoordinates.js";
-import type { IDimension } from "./Interfaces/IDimension.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
-import { RenderManager } from "./RenderManager.js";
-import { toEnumValue } from "../Utils/TypeUtils.js";
-import { transferredCanvasKey } from "./Utils/CanvasOwnership.js";
+import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
+import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../../Utils/Utils.js";
+import { defaultZoom, generatedAttribute, half } from "../Utils/Constants.js";
+import { getStyleFromRgb, rangeColorToRgb } from "../../Utils/ColorUtils.js";
+import type { Container } from "../Container/Container.js";
+import { HdrMode } from "../../Enums/Modes/HdrMode.js";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
+import { RenderManager } from "../Rendering/RenderManager.js";
+import { toEnumValue } from "../../Utils/TypeUtils.js";
+import { transferredCanvasKey } from "./CanvasOwnership.js";
 
 /**
  * Returns the canvas to use for rendering.

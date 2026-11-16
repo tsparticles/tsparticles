@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/AbsorbersPluginInstance.js";
-import { EventListeners } from "../../../../engine/src/Core/Utils/EventListeners.js";
+import { EventListeners } from "../../../../engine/src/Core/Container/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
 import { Vector } from "@tsparticles/engine";

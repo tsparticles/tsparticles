@@ -1,26 +1,26 @@
-import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
-import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "./Utils/Constants.js";
-import { getItemMapFromInitializer, getItemsFromInitializer } from "../Utils/Utils.js";
-import { CanvasManager } from "./CanvasManager.js";
-import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
-import type { Engine } from "./Engine.js";
-import { EventListeners } from "./Utils/EventListeners.js";
-import { EventType } from "../Enums/Types/EventType.js";
-import { HdrMode } from "../Enums/Modes/HdrMode.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
-import type { IPlugin } from "./Interfaces/IPlugin.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
-import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import { Options } from "../Options/Classes/Options.js";
-import { ParticlesManager } from "./ParticlesManager.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
+import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../../Types/EngineInitializers.js";
+import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "../Utils/Constants.js";
+import { getItemMapFromInitializer, getItemsFromInitializer } from "../../Utils/Utils.js";
+import { CanvasManager } from "../Canvas/CanvasManager.js";
+import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
+import type { Engine } from "../Engine/Engine.js";
+import { EventListeners } from "./EventListeners.js";
+import { EventType } from "../../Enums/Types/EventType.js";
+import { HdrMode } from "../../Enums/Modes/HdrMode.js";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
+import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
+import type { IPlugin } from "../Interfaces/IPlugin.js";
+import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import { Options } from "../../Options/Classes/Options.js";
+import { ParticlesManager } from "../Particles/ParticlesManager.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
 import { Retina } from "./Retina.js";
-import { getRangeValue } from "../Utils/MathUtils.js";
-import { loadOptions } from "../Utils/OptionLoader.js";
-import { toEnumValue } from "../Utils/TypeUtils.js";
+import { getRangeValue } from "../../Utils/MathUtils.js";
+import { loadOptions } from "../../Utils/OptionLoader.js";
+import { toEnumValue } from "../../Utils/TypeUtils.js";
 
 /** Container constructor parameters */
 export interface ContainerParams {

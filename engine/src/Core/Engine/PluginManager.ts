@@ -6,7 +6,7 @@ import type {
 } from "../../Types/EngineInitializers.js";
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import type { EasingFunction } from "../../Types/EasingFunction.js";
-import type { Engine } from "../Engine.js";
+import type { Engine } from "./Engine.js";
 import { EventType } from "../../Enums/Types/EventType.js";
 import type { IColorManager } from "../Interfaces/IColorManager.js";
 import type { IPalette } from "../Interfaces/IPalette.js";

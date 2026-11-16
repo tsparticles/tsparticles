@@ -1,7 +1,7 @@
 import { type BaseRange, Circle, Rectangle } from "./Ranges.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "./Particle.js";
 
 interface RangeBounds {
   maxX: number;

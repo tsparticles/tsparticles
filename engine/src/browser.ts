@@ -1,10 +1,10 @@
-import { createEngine } from "./createEngine.js";
+import * as engineExports from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
-  tsParticles?: { createEngine: typeof createEngine };
+  tsParticles?: typeof engineExports;
 };
 
-/** Classic scripts expose definitions only; applications create their engines. */
-globalObject.tsParticles = { ...globalObject.tsParticles, createEngine };
+/** Classic scripts expose engine definitions only; applications create instances. */
+globalObject.tsParticles = { ...globalObject.tsParticles, ...engineExports };
 
 export * from "./index.js";

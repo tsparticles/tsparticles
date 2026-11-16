@@ -1,0 +1,90 @@
+# V5 color decisions — C0 checkpoint
+
+Recorded 2026-11-17 for E3/C0. The decisions below set the implementation
+target for C1–C4; they do not claim those stages or real-browser output checks
+are complete. Preserve the E0 fixtures as compatibility references and reopen
+any decision that fails numerical, consumer, or browser evidence.
+
+## Canonical runtime model
+
+- Particle color and color animation use `IOklch` (`l`, `c`, `h`) as the
+  canonical runtime model. `IOklch.l` uses the normalized OKLab/OKLCH scale,
+  `c` uses the standard OKLab scale, and `h` is degrees normalized to
+  `[0, 360)`. RGB, HSL, HSV, HWB, Lab, LCH, OKLab, CSS strings, arrays, ranges,
+  and color-manager extensions remain supported inputs.
+- Runtime coordinates remain floating point. Do not quantize or clamp during
+  parsing, animation, or conversion through OKLab. Gamut handling happens once
+  at the output boundary. Invalid/non-finite option values are diagnosed at
+  load/parse boundaries rather than silently entering hot loops.
+- Alpha stays an independent opacity channel in `[0, 1]`; it is never folded
+  into lightness or chroma. Color parsing preserves explicit alpha from strings
+  and alpha-bearing objects. Particle opacity/fill/stroke opacity continue to
+  compose at their existing output boundary; animation of alpha is not added by
+  C0.
+
+## Input and compatibility
+
+- Existing color-manager extension points remain the input adapter. Built-in
+  managers convert supported formats directly to the canonical model; custom
+  managers remain supported through an adapter that does not introduce an
+  engine-to-plugin import cycle.
+- Preserve array/range selection, random sampling order, `reduceDuplicates`,
+  alpha, and the currently characterized input-format precedence. Do not add a
+  new precedence for objects containing multiple model keys until a test
+  captures existing behavior.
+- Keep HSL and RGB conversion helpers as compatibility inputs/outputs where
+  used by consumers. Remove `IHsl` from particle runtime animation contracts,
+  not from accepted option syntax or conversion APIs. Legacy animation options
+  migrate to `h`, `c`, and `l`; the C1/C2 integration change must provide the
+  documented migration and all wrapper/plugin examples together.
+
+## Animation, interpolation, and mixing
+
+- Animate OKLCH `l`, `c`, and `h` independently. Interpolate hue by the
+  shortest angular path; when one endpoint is effectively neutral, retain the
+  chromatic endpoint's hue to avoid an arbitrary gray hue spin. Alpha remains
+  separate.
+- For operations that mix arbitrary colors (links, gradients, and plugin
+  color mixing), use linear interpolation in rectangular OKLab with alpha
+  handled separately. This avoids the hue singularity at neutral colors.
+  Preserve existing timing, random samples, and interpolation endpoints.
+- Tests must establish tolerances against independent reference calculations;
+  the chosen model is not a claim of pixel identity with the old HSL pipeline.
+
+## Output gamut and precision
+
+- Convert through D65 XYZ and the target linear RGB space. Prefer Display-P3
+  only when the actual canvas/context accepts it; otherwise use sRGB. Keep the
+  canonical color unchanged when a target cannot reproduce it.
+- Map out-of-gamut output by reducing chroma at constant OKLCH lightness and
+  hue with a bounded deterministic search, then encode to the target transfer
+  function. Do not independently clamp RGB channels as the gamut mapper.
+- Keep full floating-point intermediates. Quantization is allowed only at the
+  final API/pixel format boundary. Document browser-native canvas mapping and
+  compare it with the engine fallback using explicit color-space readback.
+
+## HDR contract
+
+- Wide gamut and HDR remain separate capabilities. The canonical OKLCH input
+  uses the D65 relative scale and does not itself encode absolute luminance.
+  `HDROptions.peakNits` and the negotiated canvas format control output range;
+  203 nits remains the SDR reference white in the existing conversion path.
+- Keep extended linear values until the destination boundary. Use the chosen
+  P3/float16 or supported HDR context when available and keep a natural sRGB
+  fallback. Apply the HDR transfer/tone mapping once, after color conversion
+  and before the target's final format encoding; keep the existing HDR mode
+  names as output treatments, not alternate canonical color models.
+- E0 headless luminance limitations remain: a P3/float16 context proves the
+  format path, not physical display luminance. E5 requires real-browser pixel
+  checks for sRGB/P3 and capable HDR output; E10 records any hardware coverage
+  that cannot be automated.
+
+## C0 evidence and gates
+
+E0 color fixtures and HDR/browser evidence are retained under
+`evidence/e0/`; E1 bundle/runtime evidence records the current 4.6.0 build.
+Before C1 implementation, add independent reference vectors for conversion,
+neutral hue, alpha, gamut edges, and extended linear values. Before C2/C3, add
+characterization tests for input precedence, range/random call counts, and
+existing HSL animation inputs. C0 is a contract decision, not color rollout
+acceptance; C1–C4 and C5 remain open.

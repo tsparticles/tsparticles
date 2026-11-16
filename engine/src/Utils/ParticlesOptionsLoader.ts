@@ -1,7 +1,7 @@
-import type { Container } from "../Core/Container.js";
+import type { Container } from "../Core/Container/Container.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import type { PluginManager } from "../Core/Utils/PluginManager.js";
+import type { PluginManager } from "../Core/Engine/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { loadOptions } from "./OptionLoader.js";
 

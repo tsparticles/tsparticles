@@ -6,23 +6,23 @@ import {
   minimumSize,
   originPoint,
   zIndexFactorOffset,
-} from "./Utils/Constants.js";
-import { getStyleFromHsl, rangeColorToHsl } from "../Utils/ColorUtils.js";
-import type { CanvasManager } from "./CanvasManager.js";
-import type { Container } from "./Container.js";
-import { DrawLayer } from "../Enums/DrawLayer.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IDrawParticleParams } from "./Interfaces/IDrawParticleParams.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IHsl } from "./Interfaces/Colors.js";
-import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle.js";
-import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
-import type { IShapeDrawData } from "./Interfaces/IShapeDrawData.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
-import type { Particle } from "./Particle.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
+} from "../Utils/Constants.js";
+import { getStyleFromHsl, rangeColorToHsl } from "../../Utils/ColorUtils.js";
+import type { CanvasManager } from "../Canvas/CanvasManager.js";
+import type { Container } from "../Container/Container.js";
+import { DrawLayer } from "../../Enums/DrawLayer.js";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IDrawParticleParams } from "../Interfaces/IDrawParticleParams.js";
+import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
+import type { IHsl } from "../Interfaces/Colors.js";
+import type { IParticleColorStyle } from "../Interfaces/IParticleColorStyle.js";
+import type { IParticleTransformValues } from "../Interfaces/IParticleTransformValues.js";
+import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
+import type { IShapeDrawData } from "../Interfaces/IShapeDrawData.js";
+import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
+import type { Particle } from "../Particles/Particle.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
 
 const fColorIndex = 0,
   sColorIndex = 1;

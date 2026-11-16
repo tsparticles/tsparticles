@@ -1,6 +1,6 @@
 import { manageListener, safeDocument } from "../../Utils/Utils.js";
-import { millisecondsToSeconds, resizeEvent, visibilityChangeEvent } from "./Constants.js";
-import type { Container } from "../Container.js";
+import { millisecondsToSeconds, resizeEvent, visibilityChangeEvent } from "../Utils/Constants.js";
+import type { Container } from "./Container.js";
 
 interface EventListenersHandlers {
   readonly resize: EventListenerOrEventListenerObject;

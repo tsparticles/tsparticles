@@ -1,6 +1,6 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
-import type { Container } from "../../../Core/Container.js";
+import type { Container } from "../../../Core/Container/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import { Fill } from "./Fill.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
@@ -11,7 +11,7 @@ import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
-import type { PluginManager } from "../../../Core/Utils/PluginManager.js";
+import type { PluginManager } from "../../../Core/Engine/PluginManager.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";

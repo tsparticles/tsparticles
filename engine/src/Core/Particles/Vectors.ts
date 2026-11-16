@@ -1,5 +1,5 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import { inverseFactorNumerator, none, originPoint } from "./Constants.js";
+import { inverseFactorNumerator, none, originPoint } from "../Utils/Constants.js";
 
 /**
  * @param source - the vector to get the z coordinate from

@@ -49,8 +49,8 @@ import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
-import type { Particle } from "../Core/Particle.js";
-import type { PluginManager } from "../Core/Utils/PluginManager.js";
+import type { Particle } from "../Core/Particles/Particle.js";
+import type { PluginManager } from "../Core/Engine/PluginManager.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),

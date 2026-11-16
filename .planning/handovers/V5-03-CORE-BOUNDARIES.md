@@ -1,7 +1,9 @@
 # V5-03 — Domain folders and a minimal public API surface
 
-Status pending. Start inventories in E0; execute contracts and internal boundaries
-in E3 after E2. Physical package extraction is evaluated here and finalized in E9.
+Status accepted (2026-11-17). E0–E3 are accepted. E3 decisions, domain moves,
+source inventory, contract matrices, and acceptance evidence are recorded in
+[E3 verification](V5-E3-VERIFICATION.md). Detailed runtime reviews remain with
+their E4–E9 owners. Physical package extraction is evaluated here and finalized in E9.
 See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
@@ -134,3 +136,11 @@ path-generator disposal separately from per-particle reset, numeric validation
 boundaries, public mutable collections and engine lifetime. Preserve existing
 option merge semantics and externally owned resource references. Carry G1–G7
 into the full-engine audit matrix started in E0.
+
+## E3 implementation checkpoint — accepted 2026-11-17
+
+- Created logical domains under `engine/src/Core/{Engine,Container,Canvas,Rendering,Particles}` with selective type barrels. The moves preserve behavior and the engine remains a single package.
+- Added engine-local dependency rules for Core-to-entrypoint and Core-to-domain-barrel edges; the CLI checker now reads Dependency Cruiser v18 API output and scans from the package base directory. A temporary forbidden Core-to-root probe was rejected by the checker and removed.
+- `@tsparticles/engine:build:ci` passes, including TypeScript browser/CJS/ESM/types builds, circular-dependency check, and bundling.
+- Closed: the inventory now matches all 159 current engine source files; E3 API/boundary rows and the options/registry matrices are reviewed; a typed public consumer passes; root/lazy ESM+CJS, browser, deep-import rejection, engine CI build, and representative consumer builds pass. Existing E0 color captures remain the C0 reference baseline. See [E3 verification](V5-E3-VERIFICATION.md).
+- Later owners still close their assigned runtime behavior reviews in E4–E9; those are not E3 blockers.

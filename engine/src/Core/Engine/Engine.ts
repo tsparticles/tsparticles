@@ -1,15 +1,20 @@
-import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
-import { type ILogger, createLogger } from "../Utils/LogUtils.js";
-import { canvasOwner, transferredCanvasKey } from "./Utils/CanvasOwnership.js";
-import { getCanvasFromContainer, getDataFromUrl, getDomContainer, itemFromSingleOrMultiple } from "../Utils/Utils.js";
-import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
-import type { Container } from "./Container.js";
-import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
-import type { CustomEventListener } from "../Types/CustomEventListener.js";
-import { EventDispatcher } from "../Utils/EventDispatcher.js";
-import type { ILoadParams } from "./Interfaces/ILoadParams.js";
-import { PluginManager } from "./Utils/PluginManager.js";
-import { getRandom } from "../Utils/MathUtils.js";
+import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
+import { type ILogger, createLogger } from "../../Utils/LogUtils.js";
+import { canvasOwner, transferredCanvasKey } from "../Canvas/CanvasOwnership.js";
+import {
+  getCanvasFromContainer,
+  getDataFromUrl,
+  getDomContainer,
+  itemFromSingleOrMultiple,
+} from "../../Utils/Utils.js";
+import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "../Utils/Constants.js";
+import type { Container } from "../Container/Container.js";
+import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
+import type { CustomEventListener } from "../../Types/CustomEventListener.js";
+import { EventDispatcher } from "../../Utils/EventDispatcher.js";
+import type { ILoadParams } from "../Interfaces/ILoadParams.js";
+import { PluginManager } from "./PluginManager.js";
+import { getRandom } from "../../Utils/MathUtils.js";
 
 interface CanvasOwnership {
   [canvasOwner]?: Container;
@@ -224,7 +229,7 @@ export class Engine {
     try {
       await this.init();
 
-      const { Container } = await import("./Container.js"),
+      const { Container } = await import("../Container/Container.js"),
         { index, url } = params,
         options = url
           ? await getDataFromUrl({

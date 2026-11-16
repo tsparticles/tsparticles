@@ -1,7 +1,7 @@
 # V5 — Architecture evaluations
 
 The initial evaluations were written on 2026-11-06 against `4.5.2`.
-Implementation decisions and measurements are pending. The original `4.5.1`
+E3 implementation decisions are recorded in `V5-ARCHITECTURE-DECISIONS.md`; full audit evidence and measurements remain pending. The original `4.5.1`
 reconnaissance and these observations are historical evidence. Record the
 actual commit and package version before experiments and compare variants
 against the same baseline. See the [handover index](README.md).

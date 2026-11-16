@@ -1,7 +1,7 @@
 import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./IParticleCanvasBounds.js";
-import type { Container } from "../Container.js";
+import type { Container } from "../Container/Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /**
  * Shape drawer contract used by particle shape plugins.

@@ -51,7 +51,7 @@
 | IMP-06 | Pending measurement | Lifecycle E4 and rendering E7                               |
 
 G1–G7 remain open in `V5-ENGINE-AUDIT.md` and apply to the package matrix.
-ARCH-01–04 and C0–C5 have no implementation decision or completion claim yet.
+ARCH-01–04 and C0 decisions are recorded in the E3 decision files; their verification is still in progress. C1–C5 remain open.
 
 ## Continuation decisions — 2026-11-14
 
@@ -106,3 +106,11 @@ see V5-E1-ENGINE.md for current verification. E2–E10 and all corresponding acc
   on its source HTML canvas with a shared symbol; module-local caches fail across
   independent CDN copies. Release active ownership on both resources on destroy;
   retain the transfer association for the browser resource's lifetime.
+
+## E3 contract decisions — 2026-11-17
+
+- **D3.1 — Keep the Particle runtime facade.** No generic serialization/restore contract or collection representation rewrite in v5 without a named consumer and measured benefit. See `V5-ARCHITECTURE-DECISIONS.md`.
+- **D3.2 — Logical domains, one engine package.** Introduce internal Core domains and boundary checks; defer physical extraction/subpaths to E9 evidence.
+- **D3.3 — Preserve typed mutable option loaders.** Keep per-container resolved objects, current merge/order semantics, and plugin/updater loader extension points; E4/E5 own lifecycle and particle/reset changes.
+- **D3.4 — Keep specialized extension registries.** Document duplicate, order, ownership, and failure behavior per capability before claiming a unified lifecycle contract.
+- **D3.5 — C0 target.** OKLCH becomes the proposed canonical model with independent alpha, shortest hue interpolation, rectangular OKLab mixing, bounded chroma mapping, and explicit SDR/HDR output boundaries. This is a target contract only; C1–C5 implementation and validation remain open.

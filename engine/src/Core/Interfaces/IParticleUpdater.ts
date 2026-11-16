@@ -2,7 +2,7 @@ import type { IDelta } from "./IDelta.js";
 import type { IParticleColorStyle } from "./IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./IParticleTransformValues.js";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 

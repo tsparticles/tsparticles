@@ -1,7 +1,7 @@
-import { defaultRatio, defaultReduceFactor } from "./Utils/Constants.js";
+import { defaultRatio, defaultReduceFactor } from "../Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { Particle } from "./Particle.js";
-import { getRangeValue } from "../Utils/MathUtils.js";
+import type { Particle } from "../Particles/Particle.js";
+import { getRangeValue } from "../../Utils/MathUtils.js";
 
 /** Retina handling class for device pixel ratio adjustments */
 export class Retina {

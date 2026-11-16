@@ -1,4 +1,4 @@
-import { Engine } from "./Core/Engine.js";
+import { Engine } from "./Core/Engine/Engine.js";
 
 /**
  * Creates an independent engine without initializing plugins or accessing the DOM.

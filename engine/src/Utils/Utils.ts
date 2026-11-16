@@ -12,17 +12,17 @@ import {
 } from "../Core/Utils/Constants.js";
 import { collisionVelocity, getRandom, getRangeValue } from "./MathUtils.js";
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
-import type { Container } from "../Core/Container.js";
+import type { Container } from "../Core/Container/Container.js";
 import type { DataFromUrlParams } from "../Core/Interfaces/DataFromUrlParams.js";
 import type { GenericInitializer } from "../Types/EngineInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
-import type { Particle } from "../Core/Particle.js";
+import type { Particle } from "../Core/Particles/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
-import { Vector } from "../Core/Utils/Vectors.js";
+import { Vector } from "../Core/Particles/Vectors.js";
 
 /**
  * Checks whether a key should be rejected during object traversal.

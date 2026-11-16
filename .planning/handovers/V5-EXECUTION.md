@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0 is complete; E1 consumer retirement is verified and engine migration remains in progress. E2 implementation and acceptance are complete. E3–E10 remain pending. This is the
+Replanned on 2026-11-13. E0–E3 are complete; E4–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -199,9 +199,9 @@ new capability packages need a separate demonstrated consumer benefit.
 ## Progress
 
 - [x] E0 — Baseline and scope — see [completed evidence and limitations](V5-BUNDLE-REPORT.md)
-- [ ] E1 — Explicit engines — retirement verified; factory and consumer migration implemented, acceptance in progress
+- [x] E1 — Explicit engines — factory, supported consumers, browser bootstrap and package checks accepted; M6 budget exceedance carried to E10
 - [x] E2 — Isolated services — engine ownership, consumer migration, entrypoints and tests accepted; see [E2 evidence](V5-02-ENGINE-SERVICES.md)
-- [ ] E3 — Contracts and boundaries
+- [x] E3 — Contracts and boundaries — decisions, consumer probes, boundary rules and C0 recorded in [E3 verification](V5-E3-VERIFICATION.md)
 - [ ] E4 — Lifecycle
 - [ ] E5 — Particle/options and OKLCH
 - [ ] E6 — Collections and spatial index
@@ -210,11 +210,12 @@ new capability packages need a separate demonstrated consumer benefit.
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: close E1 consumer migration and final artifact/build measurements.
-Factory and explicit wrapper ownership are implemented in the working tree;
-main suite passes 686 tests and separate CDN copies pass real-browser isolation
-and canvas reuse checks. E1 remains open pending complete consumer closure,
-rebuild and comparable measurements. RNG/logger isolation starts in E2.
+Next action: begin E4 lifecycle work using the accepted E3 contracts. Later-stage source reviews remain assigned in the engine audit.
+E1 factory and explicit wrapper ownership are accepted; the final suite passes
+23 projects / 1,099 tests, separate CDN copies pass real-browser isolation and
+canvas reuse checks, the Web Components demo renders in Chrome, and Webpack
+standalone/external composition checks pass. E2 services are also accepted.
+The M6 frame-p95 exceedance remains an explicit E10 budget item.
 See [the current implementation checkpoint](V5-E1-ENGINE.md).
 See [the retirement checkpoint](V5-E1-RETIREMENT.md),
 [decisions](V5-DECISIONS.md), [engine audit](V5-ENGINE-AUDIT.md),

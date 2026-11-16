@@ -1,6 +1,6 @@
 export * from "./Core/Utils/Constants.js";
-export * from "./Core/Utils/Ranges.js";
-export * from "./Core/Utils/Vectors.js";
+export * from "./Core/Particles/Ranges.js";
+export * from "./Core/Particles/Vectors.js";
 
 export * from "./Enums/Directions/MoveDirection.js";
 export * from "./Enums/Directions/RotateDirection.js";

@@ -1,8 +1,8 @@
-import type { Container } from "../Container.js";
+import type { Container } from "../Container/Container.js";
 import type { IDelta } from "./IDelta.js";
 import type { IParticleColorStyle } from "./IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./IParticleTransformValues.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /**
  * Parameters used to draw a particle on the canvas.

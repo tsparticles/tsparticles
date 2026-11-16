@@ -10,23 +10,23 @@ import {
   one,
   spatialHashGridCellSize,
   squareExp,
-} from "./Utils/Constants.js";
-import type { Container } from "./Container.js";
-import { EventType } from "../Enums/Types/EventType.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { ICoordinates } from "./Interfaces/ICoordinates.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IDimension } from "./Interfaces/IDimension.js";
-import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import { LimitMode } from "../Enums/Modes/LimitMode.js";
+} from "../Utils/Constants.js";
+import type { Container } from "../Container/Container.js";
+import { EventType } from "../../Enums/Types/EventType.js";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import type { IParticlesDensity } from "../../Options/Interfaces/Particles/Number/IParticlesDensity.js";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
+import { LimitMode } from "../../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
-import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
-import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
-import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
-import { toEnumValue } from "../Utils/TypeUtils.js";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { SpatialHashGrid } from "./SpatialHashGrid.js";
+import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
+import { toEnumValue } from "../../Utils/TypeUtils.js";
 
 /**
  * Particles manager object

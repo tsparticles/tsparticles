@@ -1,5 +1,5 @@
 import type { ICoordinates } from "./ICoordinates.js";
-import type { Vector } from "../Utils/Vectors.js";
+import type { Vector } from "../Particles/Vectors.js";
 
 /** Circle bounce data used for particle-particle collision bouncing */
 export interface ICircleBouncer {

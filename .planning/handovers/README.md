@@ -2,9 +2,9 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**E0 complete; E1 retirement verified, engine migration pending**. See
-[the evidence report](V5-BUNDLE-REPORT.md) and [E1 checkpoint](V5-E1-RETIREMENT.md)
-for measurements, limitations and remaining exit criteria. The original `4.5.1` reconnaissance and later `4.5.2` architecture
+**E0–E3 complete; E4 is next**. See [E1 acceptance](V5-E1-ENGINE.md),
+[the evidence report](V5-BUNDLE-REPORT.md) and [E1 retirement checkpoint](V5-E1-RETIREMENT.md)
+for measurements and limitations. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.
 
 ## Goals and sequence
@@ -22,19 +22,19 @@ The authoritative order is [E0–E10 in the execution plan](V5-EXECUTION.md),
 which records dependencies, difficulty, impact, subdivisions and exit gates.
 Handover IDs are stable topic identifiers, not execution order.
 
-| Stage | Scope                                              | Handover ownership                           |
-| ----- | -------------------------------------------------- | -------------------------------------------- |
-| E0    | Baseline, inventories and support scope            | 01/03/08/09                                  |
-| E1    | Explicit engines and supported consumers           | [01](V5-01-ENGINE-INSTANCES.md)              |
-| E2    | Per-engine services and shared-state isolation     | [02](V5-02-ENGINE-SERVICES.md)               |
-| E3    | Shared contracts and internal boundaries           | [03](V5-03-CORE-BOUNDARIES.md)               |
-| E4    | Container lifecycle and extension integration      | [04](V5-04-CONTAINER.md)                     |
-| E5    | Particle/options and complete OKLCH migration      | [07](V5-07-PARTICLE.md), color work in 05/08 |
-| E6    | Collections, pooling and spatial index             | [06](V5-06-PARTICLES-MANAGER.md)             |
-| E7    | Rendering optimization and remaining canvas review | [05](V5-05-CANVAS-RENDERING.md)              |
-| E8    | Ecosystem audit closure                            | [08](V5-08-PLUGIN-IMPACT.md)                 |
-| E9    | Final distribution and support cleanup             | [09](V5-09-BROWSER-BUNDLES.md)               |
-| E10   | Budgets, integration and migration gates           | [10](V5-10-SIZE-MIGRATION-RELEASE.md)        |
+| Stage | Scope                                              | Handover ownership                                                    |
+| ----- | -------------------------------------------------- | --------------------------------------------------------------------- |
+| E0    | Baseline, inventories and support scope            | 01/03/08/09                                                           |
+| E1    | Explicit engines and supported consumers           | [01](V5-01-ENGINE-INSTANCES.md)                                       |
+| E2    | Per-engine services and shared-state isolation     | [02](V5-02-ENGINE-SERVICES.md)                                        |
+| E3    | Shared contracts and internal boundaries           | [03](V5-03-CORE-BOUNDARIES.md), [verification](V5-E3-VERIFICATION.md) |
+| E4    | Container lifecycle and extension integration      | [04](V5-04-CONTAINER.md)                                              |
+| E5    | Particle/options and complete OKLCH migration      | [07](V5-07-PARTICLE.md), color work in 05/08                          |
+| E6    | Collections, pooling and spatial index             | [06](V5-06-PARTICLES-MANAGER.md)                                      |
+| E7    | Rendering optimization and remaining canvas review | [05](V5-05-CANVAS-RENDERING.md)                                       |
+| E8    | Ecosystem audit closure                            | [08](V5-08-PLUGIN-IMPACT.md)                                          |
+| E9    | Final distribution and support cleanup             | [09](V5-09-BROWSER-BUNDLES.md)                                        |
+| E10   | Budgets, integration and migration gates           | [10](V5-10-SIZE-MIGRATION-RELEASE.md)                                 |
 
 The first runtime change remains singleton removal, followed immediately by
 service isolation. Particle and color contracts now precede collection and

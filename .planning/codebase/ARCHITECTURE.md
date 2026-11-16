@@ -19,7 +19,7 @@
 - Purpose: Own engine lifecycle, container orchestration, particle update/render loops, and plugin registration infrastructure.
 - Location: `engine/src/Core/*`, `engine/src/Utils/*`, `engine/src/Options/*`, `engine/src/index.ts`.
 - Contains: `Engine`, `Container`, `ParticlesManager`, `RenderManager`, options model classes, shared math/utils.
-- Depends on: Internal engine modules and browser globals (`globalThis`, canvas APIs, `fetch` in `engine/src/Core/Engine.ts`).
+- Depends on: Internal engine modules and browser globals (`globalThis`, canvas APIs, `fetch` in `engine/src/Core/Engine/Engine.ts`).
 - Used by: All workspace feature packages and all published bundles via `@tsparticles/engine`.
 
 **Feature Package Layer (Plugins / Interactions / Shapes / Updaters / Paths / Effects):**
@@ -84,9 +84,9 @@ already implemented state.
 **Runtime Initialization and Animation Flow:**
 
 1. Importing `engine/src/index.ts` creates the exported singleton via `initEngine()`, which can reuse `globalThis.tsParticles`. The standard index does not itself assign globals; `index.lazy.ts` and `browser.ts` do.
-2. Consumer calls `engine.load(...)` (implemented in `engine/src/Core/Engine.ts`), which initializes plugin manager, resolves options (including optional URL fetch), creates/replaces a `Container`, and binds/creates canvas.
-3. `Container.start()` in `engine/src/Core/Container.ts` initializes plugins/drawers/updaters, computes effective options, initializes canvas + particles, and starts draw loop.
-4. `RenderManager.drawParticles(...)` in `engine/src/Core/RenderManager.ts` clears canvas, updates particles through `ParticlesManager.update(...)`, then renders particles and plugin overlays each frame.
+2. Consumer calls `engine.load(...)` (implemented in `engine/src/Core/Engine/Engine.ts`), which initializes plugin manager, resolves options (including optional URL fetch), creates/replaces a `Container`, and binds/creates canvas.
+3. `Container.start()` in `engine/src/Core/Container/Container.ts` initializes plugins/drawers/updaters, computes effective options, initializes canvas + particles, and starts draw loop.
+4. `RenderManager.drawParticles(...)` in `engine/src/Core/Rendering/RenderManager.ts` clears canvas, updates particles through `ParticlesManager.update(...)`, then renders particles and plugin overlays each frame.
 5. Event dispatch (`EventDispatcher`, `EventType`) propagates lifecycle and particle events to plugins and consumers.
 
 **Bundle and Plugin Loading Flow:**
@@ -98,22 +98,22 @@ already implemented state.
 
 **State Management:**
 
-- Engine-level state is centralized in in-memory registries/maps: `Engine.#domArray` (`engine/src/Core/Engine.ts`) and `PluginManager` maps/sets (`engine/src/Core/Utils/PluginManager.ts`).
-- Container-level mutable state (running/paused/destroyed/options/plugins) is maintained in instance fields in `engine/src/Core/Container.ts`.
-- Particle-level state is maintained in arrays plus spatial hash grid in `engine/src/Core/ParticlesManager.ts`.
+- Engine-level state is centralized in in-memory registries/maps: `Engine.#domArray` (`engine/src/Core/Engine/Engine.ts`) and `PluginManager` maps/sets (`engine/src/Core/Utils/PluginManager.ts`).
+- Container-level mutable state (running/paused/destroyed/options/plugins) is maintained in instance fields in `engine/src/Core/Container/Container.ts`.
+- Particle-level state is maintained in arrays plus spatial hash grid in `engine/src/Core/Particles/ParticlesManager.ts`.
 
 ## Key Abstractions
 
 **Engine:**
 
 - Purpose: Global orchestrator for containers and plugin lifecycle.
-- Examples: `engine/src/Core/Engine.ts`, `engine/src/initEngine.ts`, `engine/src/index.ts`.
+- Examples: `engine/src/Core/Engine/Engine.ts`, `engine/src/initEngine.ts`, `engine/src/index.ts`.
 - Pattern: Singleton-like exported instance + reusable `Engine` class.
 
 **Container:**
 
 - Purpose: One rendering/runtime instance bound to one canvas/DOM scope.
-- Examples: `engine/src/Core/Container.ts`, `engine/src/Core/CanvasManager.ts`, `engine/src/Core/Retina.ts`.
+- Examples: `engine/src/Core/Container/Container.ts`, `engine/src/Core/CanvasManager.ts`, `engine/src/Core/Retina.ts`.
 - Pattern: Stateful lifecycle object (`init/start/play/pause/stop/destroy`).
 
 **PluginManager:**
@@ -165,9 +165,9 @@ already implemented state.
 
 **Patterns:**
 
-- Version mismatch is thrown as `Error` via `Engine.checkVersion(...)` in `engine/src/Core/Engine.ts`.
-- Runtime loop and recoverable operations use logger-based reporting (`getLogger().error/warning`) in `engine/src/Core/Container.ts`, `engine/src/Core/ParticlesManager.ts`, `engine/src/Core/Engine.ts`.
-- Optional workflows return `undefined` instead of throwing (for example `Engine.load(...)` fallback path in `engine/src/Core/Engine.ts`, particle add failures in `engine/src/Core/ParticlesManager.ts`).
+- Version mismatch is thrown as `Error` via `Engine.checkVersion(...)` in `engine/src/Core/Engine/Engine.ts`.
+- Runtime loop and recoverable operations use logger-based reporting (`getLogger().error/warning`) in `engine/src/Core/Container/Container.ts`, `engine/src/Core/Particles/ParticlesManager.ts`, `engine/src/Core/Engine/Engine.ts`.
+- Optional workflows return `undefined` instead of throwing (for example `Engine.load(...)` fallback path in `engine/src/Core/Engine/Engine.ts`, particle add failures in `engine/src/Core/Particles/ParticlesManager.ts`).
 
 ## Cross-Cutting Concerns
 
@@ -178,3 +178,15 @@ already implemented state.
 ---
 
 _Architecture analysis: 2026-04-10_
+
+## v5 E3 architecture checkpoint — 2026-11-17
+
+The engine source now uses logical `Core/Engine`, `Container`, `Canvas`,
+`Rendering`, and `Particles` folders. It remains one publishable package; internal
+Core-to-package-entrypoint and Core-to-domain-barrel rules are configured. Typed
+contract decisions for Particle, options, extension capabilities, and C0 color are
+recorded in [the E3 decisions](../handovers/V5-ARCHITECTURE-DECISIONS.md) and
+[color decisions](../handovers/V5-COLOR-DECISIONS.md). E3 is accepted with its
+source inventory, API/boundary review, options/registry matrices, public consumer
+probes, and C0 baseline recorded in [E3 verification](../handovers/V5-E3-VERIFICATION.md).
+Detailed runtime reviews remain assigned to E4–E9.

@@ -18,7 +18,7 @@ V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
 ## Current execution — v5 major
 
-**Status.** Planned on branch `v5`, with package version `4.6.0`.
+**Status.** E0–E3 complete on branch `v5`, with package version `4.6.0`.
 Follow the [handover index](handovers/README.md) and capture a clean baseline
 from the actual starting commit before removing the singleton.
 

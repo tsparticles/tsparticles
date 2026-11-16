@@ -1,10 +1,30 @@
-> 2026-11-14 continuation: E1 factory and consumer migration are implemented in
+## Session status — 2026-11-17 — E0–E3 accepted
+
+- E0–E3 are accepted. E4 is the next stage. E5–E10 remain
+  open and E11 is excluded.
+- Corrected the root and basic/slim/full/all bundle READMEs to describe explicit
+  engine creation and avoid claiming that classic bundles expose the old default
+  singleton. The root CDN example now creates an engine and loads Basic before
+  starting the scene.
+- Fixed Webpack config generation to use the package directory and omit the
+  nonexistent `bundle.lazy.js` entry. Added standalone and external-engine UMD
+  compile/runtime regressions; the Webpack CLI tests pass 6/6. Webpack plugin
+  and CLI CI builds pass.
+- The Web Components demo browser smoke passes: its custom element rendered a
+  canvas and animated particles.
+- Repeated M6 extension frame p95 is 1.90 ms vs the E0-derived 1.87 ms ceiling
+  (E0 measured 1.70 ms). This is documented as a regression and carried to E10's
+  release budget gate, not reported as passing. No workload tuning was used.
+- No commit or publication performed. See [E1 acceptance](handovers/V5-E1-ENGINE.md).
+
+> Historical checkpoint (superseded 2026-11-17): E1 factory and consumer migration are implemented in
 > the working tree, with acceptance still open. Main suite: 686 tests; installed
 > ESM/CJS/browser purity and real Chrome two-bundle canvas ownership pass.
 > Final combined tests pass: 23 projects / 1,099 tests. Rebuild failures were
 > corrected; consumer/distribution closure and one repeated timing exceedance
 > remain open before accepting E1.
-> E2 is complete; E1 acceptance and E3–E10 remain open; E11 excluded. No commits or publications.
+> At that 2026-11-14 checkpoint, E2 was complete and E1 acceptance and E3–E10
+> were still open; E11 excluded. No commits or publications.
 > See [current engine work](handovers/V5-E1-ENGINE.md). Earlier retirement-only
 > results below describe the preceding verified checkpoint.
 
@@ -336,3 +356,10 @@ Fluid-in-collisions work moved to 4.5.0.
 21. ✅ **S21 Final handoff** — done: README documentation gaps fixed for preact (reload contract + cleanup), stencil (safe no-op + reactivity + cleanup), ember (cleanup), jquery (reload + loaded callback + cleanup), angular-fireworks (lifecycle). All builds pass.
 22. ✅ **S22 EN wrapper guide audit** — completed: all 16 EN wrapper guide pages audited against wrapper READMEs. Gap matrix produced: all 16 guides have missing `theme` prop docs, missing reactivity contracts, missing cleanup docs, or stale patterns (see S22 gap matrix in conversation). Vue3.md already clean from S18. Nuxt guide has stale `@particles-init`/`@particles-destroy` events. Solid and Svelte guides have misleading reactivity descriptions.
 23. ✅ **S23 Translation alignment** — completed: all 16 EN wrapper guides fixed with `theme` prop docs, reactivity contract, cleanup docs, fixed `Container | undefined` callback types, stale Nuxt events removed, misleading Solid/Svelte descriptions corrected. Changes mirrored to all 9 translation directories (zh, ja, hi, ru, pt, fr, de, es, it) — 144 translation files updated.
+
+## Session status — 2026-11-17 — E0–E3 accepted; E4 next
+
+- E1 is accepted (see `handovers/V5-E1-ENGINE.md`); the M6 p95 exceedance remains an E10 budget issue. E0 and E2 are accepted.
+- E3 accepted: recorded ARCH-01–04 and C0 decisions, moved Core files into five logical domains, added selective type barrels and import rules, synchronized the 159-file audit inventory, and documented option/registry mutation matrices.
+- Public consumer type/runtime checks pass, including root and lazy ESM/CJS imports, browser-condition import, and rejection of consumer deep imports. Engine CI passed (20 tasks); representative consumer builds passed (158 Nx tasks, cached); the full tests passed (52 files, 695 tests); tests-package lint and format checks passed.
+- The full workspace `build:ci` command was stopped after six minutes without further output. Representative Nx consumer builds and the engine CI build passed; Nx Cloud remote cache was unavailable (`ENOTFOUND`). No commit or publication.

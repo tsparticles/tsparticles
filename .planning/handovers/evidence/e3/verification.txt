@@ -1,0 +1,40 @@
+E3 verification results (2026-11-17)
+
+Engine build:
+  NX_DAEMON=false NX_SOCKET_DIR=/private/tmp/nx pnpm nx run engine:build:ci
+  Passed: 20 Nx tasks.
+
+Representative downstream builds:
+  NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_SOCKET_DIR=/private/tmp/nx \
+    pnpm nx run-many -t build \
+    --projects=@tsparticles/plugin-absorbers,@tsparticles/react,@tsparticles/vue3,@tsparticles/all,@tsparticles/slim \
+    --c=ci
+  Passed: 158 tasks succeeded; all 158 were served from the local Nx cache.
+  Nx Cloud could not connect (ENOTFOUND).
+
+Tests:
+  pnpm --filter @tsparticles/tests test
+  Passed: 52 files, 695 tests.
+
+Public type consumer:
+  pnpm --filter @tsparticles/tests exec tsc --ignoreConfig --noEmit \
+    --target ES2022 --module NodeNext --moduleResolution NodeNext --strict \
+    --skipLibCheck --types node src/tests/PublicEngineContracts.ts
+  Passed.
+
+Public import smoke checks against engine/dist:
+  ESM root and ./lazy: passed.
+  CJS root and ./lazy: passed.
+  Browser condition root: passed.
+  @tsparticles/engine/Core/Engine/Engine.js: rejected with
+    ERR_PACKAGE_PATH_NOT_EXPORTED.
+
+Quality checks:
+  pnpm --filter @tsparticles/tests lint:ci: passed.
+  pnpm --filter @tsparticles/tests prettify:ci: passed.
+  Targeted PublicEngineContracts test: passed.
+  git diff --check: passed.
+
+The full workspace build:ci command was started, then stopped after six minutes
+without further output. The engine CI build and the representative downstream
+build graph above completed successfully.

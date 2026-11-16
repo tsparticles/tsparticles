@@ -1,8 +1,8 @@
-import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
-import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
-import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./Interfaces/IParticleCanvasBounds.js";
-import { Vector, Vector3d } from "./Utils/Vectors.js";
-import { alterHsl, getHslFromAnimation } from "../Utils/ColorUtils.js";
+import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
+import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
+import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "../Interfaces/IParticleCanvasBounds.js";
+import { Vector, Vector3d } from "./Vectors.js";
+import { alterHsl, getHslFromAnimation } from "../../Utils/ColorUtils.js";
 import {
   calcExactPositionOrRandomFromSize,
   clamp,
@@ -13,8 +13,8 @@ import {
   getRangeValue,
   randomInRangeValue,
   setRangeValue,
-} from "../Utils/MathUtils.js";
-import { deepExtend, getPosition, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils.js";
+} from "../../Utils/MathUtils.js";
+import { deepExtend, getPosition, isInArray, itemFromSingleOrMultiple } from "../../Utils/Utils.js";
 import {
   defaultAngle,
   defaultOpacity,
@@ -30,34 +30,34 @@ import {
   triple,
   tryCountIncrement,
   zIndexFactorOffset,
-} from "./Utils/Constants.js";
-import type { Container } from "./Container.js";
-import { EventType } from "../Enums/Types/EventType.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IHsl } from "./Interfaces/Colors.js";
-import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
-import type { IParticleModifier } from "./Interfaces/IParticleModifier.js";
-import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
-import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
-import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
-import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
-import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
-import type { IParticleTransformValues } from "../export-types.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
-import type { IShapeValues } from "./Interfaces/IShapeValues.js";
-import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
-import { OutMode } from "../Enums/Modes/OutMode.js";
-import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
-import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
-import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
-import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
+} from "../Utils/Constants.js";
+import type { Container } from "../Container/Container.js";
+import { EventType } from "../../Enums/Types/EventType.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IEffect } from "../../Options/Interfaces/Particles/Effect/IEffect.js";
+import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
+import type { IHsl } from "../Interfaces/Colors.js";
+import type { IParticleHslAnimation } from "../Interfaces/IParticleHslAnimation.js";
+import type { IParticleModifier } from "../Interfaces/IParticleModifier.js";
+import type { IParticleNumericValueAnimation } from "../Interfaces/IParticleValueAnimation.js";
+import type { IParticleOpacityData } from "../Interfaces/IParticleOpacityData.js";
+import type { IParticleRetinaProps } from "../Interfaces/IParticleRetinaProps.js";
+import type { IParticleRoll } from "../Interfaces/IParticleRoll.js";
+import type { IParticleRotateData } from "../Interfaces/IParticleRotateData.js";
+import type { IParticleTransformValues } from "../../export-types.js";
+import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IShape } from "../../Options/Interfaces/Particles/Shape/IShape.js";
+import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
+import type { IShapeValues } from "../Interfaces/IShapeValues.js";
+import { MoveDirection } from "../../Enums/Directions/MoveDirection.js";
+import { OutMode } from "../../Enums/Modes/OutMode.js";
+import { OutModeDirection } from "../../Enums/Directions/OutModeDirection.js";
+import { ParticleOutType } from "../../Enums/Types/ParticleOutType.js";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
 
 /**
  * @internal

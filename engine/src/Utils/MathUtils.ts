@@ -15,7 +15,7 @@ import {
 } from "../Core/Utils/Constants.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { RangeValue } from "../Types/RangeValue.js";
-import { Vector } from "../Core/Utils/Vectors.js";
+import { Vector } from "../Core/Particles/Vectors.js";
 import { isNumber } from "./TypeUtils.js";
 
 const piDeg = 180,
