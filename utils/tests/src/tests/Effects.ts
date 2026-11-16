@@ -287,6 +287,45 @@ describe("Effects", async () => {
     container.destroy(false);
   }, 30000);
 
+  it("trail effect initializes zero widths and suppresses strokes for zero maxWidth", async () => {
+    const container = await loadContainer({
+        particles: {
+          number: { value: 1 },
+          effect: {
+            type: "trail",
+            options: {
+              trail: { length: 10, maxWidth: 0, minWidth: 0 },
+            },
+          },
+        },
+      }),
+      particle = firstParticle(container),
+      drawer = container.effectDrawers.get("trail"),
+      { context, record } = createRecordingContext();
+
+    expect(particle.trailMaxWidth).to.equal(0);
+
+    particle.trail = [0, 10].map(x => ({
+      break: false,
+      color: "#000000",
+      position: { x, y: x },
+    }));
+    particle.trailLength = 10;
+
+    drawer?.drawAfter?.({
+      context,
+      drawPosition: { x: 20, y: 20 },
+      drawRadius: 2,
+      drawScale: 1,
+      particle,
+      transformData: { a: 1, b: 0, c: 0, d: 1 },
+    } as any);
+
+    expect(record.strokes).to.have.length(0);
+
+    container.destroy(false);
+  }, 30000);
+
   it("uses the particle head bounds for trail bounce checks", async () => {
     const container = await loadContainer({
         particles: {

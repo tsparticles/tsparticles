@@ -187,6 +187,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         continue;
       }
 
+      if (particle.trailMaxWidth === 0) {
+        // Canvas ignores a zero lineWidth and would otherwise reuse the previous width.
+        continue;
+      }
+
       context.setTransform(
         stepTransformData.a,
         stepTransformData.b,
@@ -282,7 +287,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     particle.trailLength =
       getRangeValue(effectData?.length ?? defaultLength, this.#container.engine.getRandomFn()) *
       container.retina.pixelRatio;
-    particle.trailMaxWidth = effectData?.maxWidth
+    particle.trailMaxWidth = effectData?.maxWidth !== undefined
       ? getRangeValue(effectData.maxWidth, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
       : undefined;
     particle.trailMinWidth = effectData?.minWidth

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## Unreleased
+
+### Behavior changes
+
+- With `maxWidth: 0`, the trail is no longer drawn. Previously, Canvas ignored the zero line width and drew using a stale line width from the context. There is no exact equivalent for that unintended width; use a small positive `maxWidth` to draw a thin trail.
+
 # [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
 
 **Note:** Version bump only for package @tsparticles/effect-trail
