@@ -4,6 +4,8 @@ import { SoundsEvent } from "./SoundsEvent.js";
 import { SoundsIcons } from "./SoundsIcons.js";
 import { SoundsVolume } from "./SoundsVolume.js";
 
+const minimumVoices = 1;
+
 /**
  * Sounds options class
  * [[include:Options/Plugins/Sounds.md]]
@@ -17,6 +19,8 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
   events: SoundsEvent[] = [];
   /** The sounds icons */
   readonly icons = new SoundsIcons();
+  /** The maximum number of concurrent sound sources */
+  maxVoices = 32;
   /** The sounds volume */
   readonly volume = new SoundsVolume();
 
@@ -27,6 +31,10 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
 
     loadProperty(this, "autoPlay", data.autoPlay);
     loadProperty(this, "enable", data.enable);
+
+    if (data.maxVoices !== undefined && Number.isFinite(data.maxVoices)) {
+      this.maxVoices = Math.max(minimumVoices, Math.floor(data.maxVoices));
+    }
 
     if (data.events !== undefined) {
       this.events = data.events.map(t => {

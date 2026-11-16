@@ -19,6 +19,9 @@ export interface ISounds {
   /** The sounds icons */
   icons: ISoundsIcons;
 
+  /** The maximum number of concurrent sound sources */
+  maxVoices?: number;
+
   /** The sounds volume */
   volume: ISoundsVolume | number;
 }
