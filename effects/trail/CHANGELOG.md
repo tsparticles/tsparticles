@@ -5,6 +5,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## Unreleased
 
+### Changed
+
+- Default-transform trails use absolute coordinates to avoid setting a translated canvas transform for every segment.
+- Explicit zero minimum and maximum trail widths are preserved.
+
 ### Behavior changes
 
 - With `maxWidth: 0`, the trail is no longer drawn. Previously, Canvas ignored the zero line width and drew using a stale line width from the context. There is no exact equivalent for that unintended width; use a small positive `maxWidth` to draw a thin trail.
@@ -17,9 +22,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([c625975](https://github.com/tsparticles/tsparticles/commit/c6259752f8fd0ac74b30e7f1e6d2a0564d5eab45))
-* fixes after AI reviews ([d641680](https://github.com/tsparticles/tsparticles/commit/d6416808aec6d99afefaf80b0e88b9e0b9cef21d))
-* fixes after AI reviews ([57ed0c0](https://github.com/tsparticles/tsparticles/commit/57ed0c04ced4fec33896639441bb3a0e68366e1b))
+- fixes after AI reviews ([c625975](https://github.com/tsparticles/tsparticles/commit/c6259752f8fd0ac74b30e7f1e6d2a0564d5eab45))
+- fixes after AI reviews ([d641680](https://github.com/tsparticles/tsparticles/commit/d6416808aec6d99afefaf80b0e88b9e0b9cef21d))
+- fixes after AI reviews ([57ed0c0](https://github.com/tsparticles/tsparticles/commit/57ed0c04ced4fec33896639441bb3a0e68366e1b))
 
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
@@ -29,8 +34,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
-* fixes after AI reviews ([d8de9a5](https://github.com/tsparticles/tsparticles/commit/d8de9a5af46173f30809860db390cbcd2202f509))
+- fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+- fixes after AI reviews ([d8de9a5](https://github.com/tsparticles/tsparticles/commit/d8de9a5af46173f30809860db390cbcd2202f509))
 
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 

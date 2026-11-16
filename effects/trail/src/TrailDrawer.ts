@@ -19,7 +19,6 @@ import {
 
 const minTrailLength = 3,
   trailLengthOffset = 1,
-  minWidth = -1,
   firstIndex = 0,
   defaultLength = 10,
   loopTrailLengthOffset = 2,
@@ -77,7 +76,7 @@ export type TrailParticle = Particle & {
 };
 
 /**
- *
+ * Checks whether the particle (or its trail) is still inside the canvas for the given out-of-bounds direction. Returns undefined when the direction is not handled.
  * @param data - The canvas bounds data.
  * @param isBounce - Whether the particle is bouncing or splitting.
  * @param bouncePosition - The particle position used for bounce checks.
@@ -114,7 +113,7 @@ function isInsideByDirection(
 /** Trail effect drawer plugin */
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   /** The particles container */
-  readonly #container;
+  readonly #container: Container;
 
   /**
    * TrailDrawer constructor
@@ -133,7 +132,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       container = this.#container,
       diameter = drawRadius * double,
       pxRatio = container.retina.pixelRatio,
-      trail = particle.trail;
+      trail = particle.trail,
+      trailTransform = particle.trailTransform;
 
     if (!trail || !particle.trailLength) {
       return;
@@ -144,7 +144,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     trail.push({
       break: particle.justWarped,
-      color: context.fillStyle || context.strokeStyle,
+      color: context.fillStyle,
       position: {
         x: currentPos.x,
         y: currentPos.y,
@@ -152,22 +152,28 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       transformData,
     });
 
-    if (trail.length < minTrailLength) {
-      return;
-    }
-
     const pathLengthFloor = Math.floor(pathLength);
 
     if (trail.length > pathLengthFloor) {
       trail.splice(firstIndex, trail.length - pathLengthFloor);
     }
 
-    const trailLength = Math.min(trail.length, pathLength);
+    // The splice keeps the history within the configured path length.
+    const trailLength = trail.length;
+
+    if (trailLength < minTrailLength) {
+      // The step is stored before drawing begins so the trail history can grow.
+      return;
+    }
 
     context.save();
 
     context.lineCap = "butt";
     context.lineJoin = "round";
+
+    if (!trailTransform) {
+      context.setTransform(defaultTransform.a, defaultTransform.b, defaultTransform.c, defaultTransform.d, 0, 0);
+    }
 
     for (let i = trailLength - loopTrailLengthOffset; i > loopTrailLengthMinIndex; i--) {
       const previousStep = trail[i + trailLengthOffset],
@@ -192,30 +198,39 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         continue;
       }
 
-      context.setTransform(
-        stepTransformData.a,
-        stepTransformData.b,
-        stepTransformData.c,
-        stepTransformData.d,
-        position.x,
-        position.y,
-      );
+      if (trailTransform) {
+        context.setTransform(
+          stepTransformData.a,
+          stepTransformData.b,
+          stepTransformData.c,
+          stepTransformData.d,
+          position.x,
+          position.y,
+        );
+      }
 
-      const startX = (previousPosition.x + position.x) * half - position.x,
-        startY = (previousPosition.y + position.y) * half - position.y,
-        endX = (position.x + nextPosition.x) * half - position.x,
-        endY = (position.y + nextPosition.y) * half - position.y;
+      const startX = (previousPosition.x + position.x) * half - (trailTransform ? position.x : 0),
+        startY = (previousPosition.y + position.y) * half - (trailTransform ? position.y : 0),
+        endX = (position.x + nextPosition.x) * half - (trailTransform ? position.x : 0),
+        endY = (position.y + nextPosition.y) * half - (trailTransform ? position.y : 0),
+        controlX = trailTransform ? originPoint.x : position.x,
+        controlY = trailTransform ? originPoint.y : position.y;
 
       context.beginPath();
       context.moveTo(startX, startY);
-      context.quadraticCurveTo(originPoint.x, originPoint.y, endX, endY);
+      context.quadraticCurveTo(controlX, controlY, endX, endY);
 
-      const width = Math.max((i / trailLength) * diameter, pxRatio, (particle.trailMinWidth ?? minWidth) * drawScale),
+      const width = Math.max(
+          (i / trailLength) * diameter,
+          pxRatio,
+          (particle.trailMinWidth ?? defaultWidth) * drawScale,
+        ),
         oldAlpha = context.globalAlpha;
 
       context.globalAlpha = particle.trailFade ? i / trailLength : defaultAlpha;
 
-      context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth * drawScale) : width;
+      context.lineWidth =
+        particle.trailMaxWidth !== undefined ? Math.min(width, particle.trailMaxWidth * drawScale) : width;
       context.strokeStyle = step.color;
       context.stroke();
 
@@ -225,6 +240,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     context.restore();
   }
 
+  /**
+   * Checks whether the particle is inside the canvas bounds for its out mode.
+   * @param data - The canvas bounds data.
+   * @returns Whether the particle is inside the canvas.
+   */
   isInsideCanvas(data: IParticleCanvasBoundsData<TrailParticle>): boolean {
     const { canvasSize, outMode, particle, radius } = data,
       position = particle.position,
@@ -237,7 +257,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     const useTrailBounds = outMode !== OutMode.bounce && outMode !== OutMode.split;
 
-    if (trail?.length && useTrailBounds) {
+    if (trail && useTrailBounds) {
       const widthPadding = Math.max(
         radius,
         particle.trailMaxWidth ?? defaultWidth,
@@ -281,18 +301,19 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   particleInit(container: Container, particle: TrailParticle): void {
     particle.trail = [];
 
-    const effectData = particle.effectData;
+    const { effectData } = particle;
 
     particle.trailFade = effectData?.fade ?? true;
     particle.trailLength =
-      getRangeValue(effectData?.length ?? defaultLength, this.#container.engine.getRandomFn()) *
-      container.retina.pixelRatio;
-    particle.trailMaxWidth = effectData?.maxWidth !== undefined
-      ? getRangeValue(effectData.maxWidth, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
-      : undefined;
-    particle.trailMinWidth = effectData?.minWidth
-      ? getRangeValue(effectData.minWidth, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
-      : undefined;
+      getRangeValue(effectData?.length ?? defaultLength, container.engine.getRandomFn()) * container.retina.pixelRatio;
+    particle.trailMaxWidth =
+      effectData?.maxWidth !== undefined
+        ? getRangeValue(effectData.maxWidth, container.engine.getRandomFn()) * container.retina.pixelRatio
+        : undefined;
+    particle.trailMinWidth =
+      effectData?.minWidth !== undefined
+        ? getRangeValue(effectData.minWidth, container.engine.getRandomFn()) * container.retina.pixelRatio
+        : undefined;
     particle.trailTransform = effectData?.transform ?? false;
   }
 }

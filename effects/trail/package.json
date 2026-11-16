@@ -5,6 +5,8 @@
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build",
+    "browser:compare": "pnpm run build && node benchmarks/browser/run-browser.mjs compare",
+    "browser:benchmark": "pnpm run build && node benchmarks/browser/run-browser.mjs benchmark",
     "version": "tsparticles-build -d && git add package.dist.json && tsparticles-build -p -l && git add .",
     "prepack": "pnpm run build"
   },
@@ -83,7 +85,9 @@
   },
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:*",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0"
   },
   "publishConfig": {
     "access": "public",

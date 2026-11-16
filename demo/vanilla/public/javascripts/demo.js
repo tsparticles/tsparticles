@@ -64,9 +64,7 @@
     }
   }, 100);
 
-  let updateParticles = async editor => {
-    let presetId = localStorage.presetId || "basic";
-
+  let updateParticles = async (editor, presetId) => {
     if (presetId === "divEvents") {
       document.querySelectorAll(".bubble").forEach(elem => {
         elem.classList.add("d-block");
@@ -95,10 +93,20 @@
       });
     }
 
-    const particles = await engine.load({
-      id: "tsparticles",
-      options: engine.pluginManager.configs[presetId],
-    });
+    let particles = engine.item(0);
+
+    if (!particles) {
+      particles = await engine.load({
+        id: "tsparticles",
+        options: engine.pluginManager.configs[presetId],
+      });
+    } else {
+      await particles.reset(engine.pluginManager.configs[presetId]);
+    }
+
+    if (!particles) {
+      return;
+    }
 
     localStorage.presetId = presetId;
 
@@ -201,15 +209,24 @@
     const editor = new JSONEditor(element, options);
 
     const cmbPresets = document.getElementById("presets");
+    let presetUpdateQueue = Promise.resolve();
 
-    cmbPresets.onchange = async () => {
-      localStorage.presetId = cmbPresets.value;
+    cmbPresets.onchange = () => {
+      const presetId = cmbPresets.value;
 
-      try {
-        await updateParticles(editor);
-      } catch (e) {
-        console.error(e);
-      }
+      localStorage.presetId = presetId;
+
+      presetUpdateQueue = presetUpdateQueue
+        .then(async () => {
+          if (cmbPresets.value !== presetId) {
+            return;
+          }
+
+          await updateParticles(editor, presetId);
+        })
+        .catch(e => {
+          console.error(e);
+        });
     };
 
     if (!localStorage.presetId) {

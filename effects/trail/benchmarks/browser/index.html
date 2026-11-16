@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trail drawer browser validation</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@tsparticles/engine": "/engine/dist/browser/index.js"
+        }
+      }
+    </script>
+    <style>
+      body {
+        display: flex;
+        gap: 1rem;
+        margin: 0;
+      }
+
+      canvas {
+        border: 1px solid #888;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="current"></canvas>
+    <canvas id="original"></canvas>
+    <script type="module" src="./harness.mjs"></script>
+  </body>
+</html>
