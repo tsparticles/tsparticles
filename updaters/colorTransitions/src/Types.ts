@@ -10,16 +10,31 @@ export interface IColorTransitionStopState {
   offset: number;
 }
 
+/** Particle lifetime color transition state for a single paint channel (fill or stroke) */
+export interface IColorTransitionChannelState {
+  /** The current interpolated channel color */
+  current?: IHsl;
+  /** Reusable interpolation output object, avoiding per-frame allocations */
+  result?: IHsl;
+  /**
+   * The resolved channel stops, sorted by offset; channels without their own stops share the single
+   * resolved shared stops array, so random stop colors resolve once for both fill and stroke
+   */
+  stops: IColorTransitionStopState[];
+}
+
 /** Particle lifetime color transition state */
 export interface IParticleLifetimeColorTransitions {
-  /** The current interpolated color */
-  current?: IHsl;
+  /** Custom transition duration in milliseconds, overriding the particle life duration */
+  duration?: number;
   /** Whether the transition is enabled for the particle */
   enable: boolean;
+  /** Fill channel state */
+  fill?: IColorTransitionChannelState;
   /** Per-particle transition progress offset, used when sync is disabled */
   offset: number;
-  /** The resolved stops, sorted by offset */
-  stops: IColorTransitionStopState[];
+  /** Stroke channel state */
+  stroke?: IColorTransitionChannelState;
 }
 
 /** Particle color transitions state */
