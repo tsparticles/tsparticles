@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess,json,re
+import subprocess,json
 root=Path.cwd(); out=root/'.planning/handovers'; ev=out/'evidence/e0'
 files=subprocess.check_output(['git','ls-files'],text=True).splitlines()
 engine=[f for f in files if f.startswith('engine/src/')]
@@ -9,7 +9,8 @@ for f in files:
   try:
    p=json.loads(Path(f).read_text())
    if p.get('name'): packages.append((f,p))
-  except (ValueError,OSError): pass
+  except (ValueError,OSError): # Ignore unreadable or invalid manifests.
+   pass
 
 def owner(f):
  if any(x in f for x in ['CanvasManager','RenderManager']): return '05 / E5,E7'
