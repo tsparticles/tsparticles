@@ -181,6 +181,7 @@
     "@tsparticles/shape-rounded-rect": "4.6.0",
     "@tsparticles/shape-spiral": "4.6.0",
     "@tsparticles/shape-squircle": "4.6.0",
+    "@tsparticles/updater-color-transitions": "4.6.0",
     "@tsparticles/updater-gradient": "4.6.0",
     "@tsparticles/updater-orbit": "4.6.0",
     "tsparticles": "4.6.0"
