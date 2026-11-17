@@ -584,7 +584,7 @@ You can find the instructions [here](https://github.com/tsparticles/tsparticles/
 
 This preset loads confetti launched from a draggable cannon.
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiCannon/images/sample.png)](https://particles.js.org/demos/recipes/confettiCannon)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiCannon/images/sample.png)](https://particles.js.org/demos/recipes/confetti-cannon)
 
 You can find the instructions [here](https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme)
 
@@ -594,7 +594,7 @@ You can find the instructions [here](https://github.com/tsparticles/tsparticles/
 
 This preset loads confetti bursts at multiple points on the screen.
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiExplosions/images/sample.png)](https://particles.js.org/demos/recipes/confettiExplosions)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiExplosions/images/sample.png)](https://particles.js.org/demos/recipes/confetti-explosions)
 
 You can find the instructions [here](https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme)
 
@@ -604,7 +604,7 @@ You can find the instructions [here](https://github.com/tsparticles/tsparticles/
 
 This preset loads slowly falling confetti particles.
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiFalling/images/sample.png)](https://particles.js.org/demos/recipes/confettiFalling)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiFalling/images/sample.png)](https://particles.js.org/demos/recipes/confetti-falling)
 
 You can find the instructions [here](https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme)
 
@@ -614,7 +614,7 @@ You can find the instructions [here](https://github.com/tsparticles/tsparticles/
 
 This preset loads confetti moving horizontally across the screen like a parade.
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiParade/images/sample.png)](https://particles.js.org/demos/recipes/confettiParade)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiParade/images/sample.png)](https://particles.js.org/demos/recipes/confetti-parade)
 
 You can find the instructions [here](https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme)
 
@@ -743,15 +743,15 @@ credited as the template author!
 
 ## **_Demo / Generator_**
 
-<https://particles.js.org/samples>
+<https://particles.js.org/demos/>
 
-[![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.1)](https://particles.js.org/samples)
+[![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.1)](https://particles.js.org/demos/)
 
 ---
 
 ## **_Video Tutorials_**
 
-You can find all video tutorials on the website here: <https://particles.js.org/video.html>
+You can find all video tutorials on the website here: <https://particles.js.org/guide/video-tutorials>
 
 _More videos are coming soon! Check every day if there are some new contents._
 
@@ -759,43 +759,43 @@ _More videos are coming soon! Check every day if there are some new contents._
 
 ### Characters as particles
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples/#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 ### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples/#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 ### Animated stars
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/samples/#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 ### Nyan cat flying on scrolling stars
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples/#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 ### Snow particles
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/samples/#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 ### Background Mask particles
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/samples/#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/demos/)
 
 ---
 
 **particles.json**
 
-You can find some config samples [here](https://particles.js.org/demos/presets/) 📖
+You can find some config samples [here](https://particles.js.org/demos/presets) 📖
 
 ---
 
@@ -818,7 +818,7 @@ my [profile](https://codepen.io/matteobruni)
 
 Otherwise, there's the demo page link below.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/demos/)
 
 Want to see even more demos? Clone the repository on your computer and follow these instructions
 
@@ -865,7 +865,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
+_Read more [here](https://particles.js.org/docs/modules/tsParticles_Engine.Core_Interfaces_IPlugin.html)..._
 
 Practical customization guide (shape + preset examples):
 
