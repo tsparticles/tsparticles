@@ -558,6 +558,9 @@ importers:
       '@tsparticles/shape-squircle':
         specifier: workspace:*
         version: link:../../shapes/squircle/dist
+      '@tsparticles/updater-color-transitions':
+        specifier: workspace:*
+        version: link:../../updaters/colorTransitions/dist
       '@tsparticles/updater-gradient':
         specifier: workspace:*
         version: link:../../updaters/gradient/dist
@@ -11734,6 +11737,16 @@ importers:
       fs-extra:
         specifier: ^11.4.1
         version: 11.4.1
+
+  updaters/colorTransitions:
+    devDependencies:
+      '@tsparticles/cli-build':
+        specifier: workspace:*
+        version: link:../../cli/packages/cli-build
+      '@tsparticles/engine':
+        specifier: workspace:*
+        version: link:../../engine/dist
+    publishDirectory: dist
 
   updaters/destroy:
     devDependencies:
