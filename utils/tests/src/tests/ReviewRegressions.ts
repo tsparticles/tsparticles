@@ -117,7 +117,15 @@ describe("review regressions", () => {
   it("applies tap detection across the real pointer and touch event sequence", () => {
     const el = document.createElement("canvas"),
       handleClickMode = vi.fn(),
+      data: {
+        mouse: { clicking: boolean; inside: boolean; position?: { x: number; y: number } };
+        status?: string;
+      } = {
+        mouse: { clicking: false, inside: false, position: { x: 50, y: 50 } },
+      },
       makeListeners = (): InteractivityEventListeners => {
+        data.mouse = { clicking: false, inside: false, position: { x: 50, y: 50 } };
+        delete data.status;
         const container = {
             actualOptions: {
               interactivity: {
@@ -141,13 +149,7 @@ describe("review regressions", () => {
           },
           interactionManager = {
             handleClickMode,
-            interactivityData: {
-              mouse: {
-                clicking: false,
-                inside: false,
-                position: { x: 50, y: 50 },
-              },
-            },
+            interactivityData: data,
           };
 
         return new InteractivityEventListeners(container as never, interactionManager);
@@ -200,6 +202,8 @@ describe("review regressions", () => {
       dispatchTouch("touchend", 2);
 
       expect(handleClickMode).not.toHaveBeenCalled();
+      expect(data.mouse.clicking).toBe(false);
+      expect(data.status).toBe("pointerleave");
 
       listeners.removeListeners();
       handleClickMode.mockClear();
@@ -258,6 +262,8 @@ describe("review regressions", () => {
       dispatchTouch("touchcancel", 1);
 
       expect(handleClickMode).not.toHaveBeenCalled();
+      expect(data.mouse.clicking).toBe(false);
+      expect(data.status).toBe("pointerleave");
 
       listeners.removeListeners();
     } finally {
