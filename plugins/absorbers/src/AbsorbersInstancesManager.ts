@@ -25,7 +25,7 @@ export class AbsorbersInstancesManager {
 
   constructor(pluginManager: PluginManager) {
     this.#pluginManager = pluginManager;
-    this.#containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
+    this.#containerArrays = new WeakMap<AbsorberContainer, AbsorberInstance[]>();
   }
 
   async addAbsorber(
@@ -58,6 +58,10 @@ export class AbsorbersInstancesManager {
     this.initContainer(container);
 
     this.#containerArrays.set(container, []);
+  }
+
+  destroyContainer(container: AbsorberContainer): void {
+    this.#containerArrays.delete(container);
   }
 
   getArray(container: AbsorberContainer): AbsorberInstance[] {

@@ -12,7 +12,7 @@ export class EmittersInstancesManager {
   readonly #pluginManager;
 
   constructor(pluginManager: EmittersPluginManager) {
-    this.#containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
+    this.#containerArrays = new WeakMap<EmitterContainer, EmitterInstance[]>();
     this.#pluginManager = pluginManager;
   }
 
@@ -59,7 +59,16 @@ export class EmittersInstancesManager {
   clear(container: EmitterContainer): void {
     this.initContainer(container);
 
+    for (const emitter of this.#containerArrays.get(container) ?? []) {
+      emitter.dispose();
+    }
+
     this.#containerArrays.set(container, []);
+  }
+
+  destroyContainer(container: EmitterContainer): void {
+    this.clear(container);
+    this.#containerArrays.delete(container);
   }
 
   getArray(container: EmitterContainer): EmitterInstance[] {

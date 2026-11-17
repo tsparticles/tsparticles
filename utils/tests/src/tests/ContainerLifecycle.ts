@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
+import { type Container, type IPlugin, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -109,6 +109,37 @@ describe("Container lifecycle", () => {
     }).to.not.throw();
 
     container.destroy();
+  });
+
+  it("disposes container plugin instances on refresh and destroy", async () => {
+    const engine = createEngine();
+    let destroyed = 0;
+    const plugin: IPlugin = {
+      id: "container-lifecycle-disposal",
+      getPlugin: () => Promise.resolve({ destroy: () => destroyed++ }),
+      loadOptions: () => undefined,
+      needsPlugin: () => true,
+    };
+
+    await engine.pluginManager.register(current => {
+      current.pluginManager.addPlugin(plugin);
+    });
+
+    const container = await engine.load({
+      id: "container-lifecycle-disposal",
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      options: { autoPlay: false, particles: { number: { value: 0 } } },
+    });
+
+    if (!container) {
+      throw new Error("Test container not initialized");
+    }
+
+    await container.refresh();
+    expect(destroyed).to.equal(1);
+
+    container.destroy();
+    expect(destroyed).to.equal(2);
   });
 
   it("keeps only one queued animation frame after repeated play calls", async () => {

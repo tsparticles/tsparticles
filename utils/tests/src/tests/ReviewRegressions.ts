@@ -1,7 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/AbsorbersPluginInstance.js";
+import { EmittersPluginInstance } from "../../../../plugins/emitters/src/EmittersPluginInstance.js";
 import { EventListeners } from "../../../../engine/src/Core/Container/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
+import { MotionPluginInstance } from "../../../../plugins/motion/src/MotionPluginInstance.js";
+import { PoissonDiscPluginInstance } from "../../../../plugins/poisson/src/PoissonDiscPluginInstance.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
 import { Vector } from "@tsparticles/engine";
 
@@ -19,6 +22,81 @@ describe("review regressions", () => {
     } finally {
       vi.unstubAllGlobals();
     }
+  });
+
+  it("removes the reduced-motion listener on stop and reattaches it once on init", async () => {
+    const addEventListener = vi.fn(),
+      removeEventListener = vi.fn(),
+      mediaQuery = { matches: false, addEventListener, removeEventListener };
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => mediaQuery),
+    );
+
+    try {
+      const plugin = new MotionPluginInstance({
+        actualOptions: { motion: { disable: true, reduce: { value: true, factor: 2 } } },
+        retina: { reduceFactor: 1 },
+        refresh: vi.fn(),
+      } as never);
+
+      await plugin.init();
+      plugin.stop();
+      await plugin.init();
+
+      expect(addEventListener).toHaveBeenCalledTimes(2);
+      expect(removeEventListener).toHaveBeenCalledOnce();
+      plugin.destroy();
+      expect(removeEventListener).toHaveBeenCalledTimes(2);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("cancels pending Poisson redraw work on stop", () => {
+    vi.useFakeTimers();
+
+    try {
+      const redraw = vi.fn(),
+        plugin = new PoissonDiscPluginInstance({
+          actualOptions: { poisson: { enable: true } },
+          destroyed: false,
+          particles: { redraw },
+        } as never);
+
+      plugin.resize();
+      plugin.stop();
+      vi.runAllTimers();
+
+      expect(plugin.redrawTimeout).toBeUndefined();
+      expect(redraw).not.toHaveBeenCalled();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("releases emitter and absorber registries when a container plugin is destroyed", () => {
+    const container = {},
+      emitterManager = {
+        clear: vi.fn(),
+        destroyContainer: vi.fn(),
+        initContainer: vi.fn(),
+      },
+      absorberManager = {
+        destroyContainer: vi.fn(),
+        initContainer: vi.fn(),
+      },
+      emitters = new EmittersPluginInstance(emitterManager as never, container as never),
+      absorbers = new AbsorbersPluginInstance(container as never, absorberManager as never);
+
+    emitters.stop();
+    emitters.destroy();
+    absorbers.destroy();
+
+    expect(emitterManager.clear).toHaveBeenCalledWith(container);
+    expect(emitterManager.destroyContainer).toHaveBeenCalledWith(container);
+    expect(absorberManager.destroyContainer).toHaveBeenCalledWith(container);
   });
 
   it("does not retry a GIF after its particle is recycled as an image", () => {

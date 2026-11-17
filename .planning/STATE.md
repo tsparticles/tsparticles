@@ -1,7 +1,15 @@
-## Session status — 2026-11-17 — E0–E3 accepted
+## Session status — 2026-11-17 — E4 accepted
 
-- E0–E3 are accepted. E4 is the next stage. E5–E10 remain
-  open and E11 is excluded.
+- E0–E4 are accepted. E4 lifecycle cleanup has focused regressions, compressed
+  sizes within the 2% allowance, and matched headless Chrome timing plus CDP
+  forced-GC retention evidence. Across 30 retention cycles the DOM remains at
+  9 nodes, media listener counters remain zero, and post-warm-up heap drift is
+  104,052 bytes (<1 MiB). See [E4 measurements](handovers/evidence/e4/measurement-status.md).
+- Headless frame p95 is slightly over the E0-derived ceiling for M6/500 (2.0
+  vs 1.87 ms) and M8/500 (1.7 vs 1.65 ms); both are carried to E10's release
+  performance gate. After the final WeakMap cleanup adjustment, the primary
+  suite, test-package lint, CI formatting, and changed-file Prettier checks all
+  pass. E5–E10 remain open and E11 is excluded.
 - Corrected the root and basic/slim/full/all bundle READMEs to describe explicit
   engine creation and avoid claiming that classic bundles expose the old default
   singleton. The root CDN example now creates an engine and loads Basic before
@@ -42,7 +50,7 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus.** v5 E1 explicit-engine migration on branch `v5`, with package version `4.6.0`.
+**Current focus.** v5 E4 Container lifecycle on branch `v5`, with package version `4.6.0`.
 
 ## Session status — 2026-11-14 — E0 closed, E1 retirement verified
 

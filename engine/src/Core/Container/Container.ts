@@ -181,6 +181,7 @@ export class Container {
   #particleDestroyedPlugins = emptyPlugins;
   #particlePositionPlugins = emptyPlugins;
   #paused;
+  #pendingPlugins: IContainerPlugin[] = [];
   readonly #pluginManager;
   #plugins = emptyPlugins;
   #smooth;
@@ -426,8 +427,12 @@ export class Container {
       const containerPlugin = await plugin.getPlugin(this);
 
       if (generation !== this.#startGeneration || this.destroyed) {
+        containerPlugin.destroy?.();
+
         return;
       }
+
+      this.#pendingPlugins.push(containerPlugin);
 
       if (containerPlugin.preInit) {
         await containerPlugin.preInit();
@@ -496,6 +501,7 @@ export class Container {
     }
 
     this.dispatchEvent(EventType.particlesSetup);
+    this.#pendingPlugins = [];
   }
 
   /** Initializes the effect drawers, shape drawers and particle updaters */
@@ -702,14 +708,12 @@ export class Container {
       return;
     }
 
+    const wasStarted = this.started;
+
     this.#startGeneration++;
     this.#startCancel?.();
     this.#startCancel = undefined;
     this.#startPromise = undefined;
-
-    if (!this.started) {
-      return;
-    }
 
     if (this.#delayTimeout !== undefined) {
       clearTimeout(this.#delayTimeout);
@@ -722,13 +726,33 @@ export class Container {
     this.#firstStart = true;
     this.started = false;
     this.#eventListeners.removeListeners();
-    this.pause();
+    if (wasStarted) {
+      this.pause();
+    }
     this.particles.clear();
     this.canvas.stop();
 
-    for (const plugin of this.plugins) {
+    const activePlugins = this.plugins;
+
+    for (const plugin of activePlugins) {
       plugin.stop?.();
     }
+
+    const activePluginSet = new Set(activePlugins);
+
+    for (const plugin of this.#pendingPlugins) {
+      if (!activePluginSet.has(plugin)) {
+        plugin.stop?.();
+        plugin.destroy?.();
+      }
+    }
+
+    for (const plugin of activePlugins) {
+      plugin.destroy?.();
+    }
+
+    this.#pendingPlugins = [];
+    this.#plugins = emptyPlugins;
 
     this.#particleCreatedPlugins = emptyPlugins;
     this.#particleDestroyedPlugins = emptyPlugins;
@@ -736,7 +760,9 @@ export class Container {
 
     this.#sourceOptions = this.#options;
 
-    this.dispatchEvent(EventType.containerStopped);
+    if (wasStarted) {
+      this.dispatchEvent(EventType.containerStopped);
+    }
   }
 
   /**
@@ -787,6 +813,17 @@ export class Container {
     this.#particleCreatedPlugins = Object.freeze(particleCreatedPlugins);
     this.#particleDestroyedPlugins = Object.freeze(particleDestroyedPlugins);
     this.#particlePositionPlugins = Object.freeze(particlePositionPlugins);
+
+    const activePlugins = new Set(plugins);
+
+    for (const plugin of this.#pendingPlugins) {
+      if (!activePlugins.has(plugin)) {
+        plugin.stop?.();
+        plugin.destroy?.();
+      }
+    }
+
+    this.#pendingPlugins = this.#pendingPlugins.filter(plugin => activePlugins.has(plugin));
   }
 
   #nextFrame(timestamp: DOMHighResTimeStamp): void {

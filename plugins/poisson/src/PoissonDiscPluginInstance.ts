@@ -17,6 +17,7 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
   readonly #container: PoissonContainer;
   /** The current point index */
   #currentIndex: number;
+  #generation = 0;
 
   /**
    * Creates a new PoissonDiscPluginInstance
@@ -25,6 +26,10 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
   constructor(container: PoissonContainer) {
     this.#container = container;
     this.#currentIndex = 0;
+  }
+
+  destroy(): void {
+    this.stop();
   }
 
   async init(): Promise<void> {
@@ -50,19 +55,27 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
       return;
     }
 
-    if (this.redrawTimeout) {
+    if (this.redrawTimeout !== undefined) {
       clearTimeout(this.redrawTimeout);
+      this.redrawTimeout = undefined;
     }
 
-    const timeout = 250;
+    const timeout = 250,
+      generation = this.#generation;
 
     this.redrawTimeout = setTimeout(() => {
+      this.redrawTimeout = undefined;
+
       void (async (): Promise<void> => {
-        if (this.#container.destroyed) {
+        if (generation !== this.#generation) {
           return;
         }
 
         await this.#initData();
+
+        if (this.#container.destroyed || generation !== this.#generation) {
+          return;
+        }
 
         await container.particles.redraw();
       })();
@@ -70,11 +83,19 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
   }
 
   stop(): void {
+    this.#generation++;
+
+    if (this.redrawTimeout !== undefined) {
+      clearTimeout(this.redrawTimeout);
+      this.redrawTimeout = undefined;
+    }
+
     delete this.poissonDisc;
   }
 
   async #initData(): Promise<void> {
-    const container = this.#container,
+    const generation = this.#generation,
+      container = this.#container,
       poissonOptions = container.actualOptions.poisson,
       particlesOptions = container.actualOptions.particles,
       canvasSize = container.canvas.size,
@@ -88,26 +109,33 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
 
     const { PoissonDisc } = await import("./PoissonDisc.js");
 
-    this.poissonDisc = new PoissonDisc(
-      canvasSize,
-      poissonOptions.radius
-        ? poissonOptions.radius * pixelRatio
-        : Math.max(
-            getRangeMax((particlesOptions["size.value"] as number | undefined) ?? defaultSize) * pixelRatio,
-            Math.sqrt((canvasSize.width * canvasSize.height) / particlesOptions.number.value),
-          ),
-      poissonOptions.retries,
-      poissonOptions.dimensions,
-      undefined,
-      container.engine.getRandomFn(),
-    );
+    if (generation !== this.#generation || container.destroyed) {
+      return;
+    }
 
-    const noSteps = 0;
+    const poissonDisc = new PoissonDisc(
+        canvasSize,
+        poissonOptions.radius
+          ? poissonOptions.radius * pixelRatio
+          : Math.max(
+              getRangeMax((particlesOptions["size.value"] as number | undefined) ?? defaultSize) * pixelRatio,
+              Math.sqrt((canvasSize.width * canvasSize.height) / particlesOptions.number.value),
+            ),
+        poissonOptions.retries,
+        poissonOptions.dimensions,
+        undefined,
+        container.engine.getRandomFn(),
+      ),
+      noSteps = 0;
 
     if (poissonOptions.steps > noSteps) {
-      this.poissonDisc.steps(poissonOptions.steps);
+      poissonDisc.steps(poissonOptions.steps);
     } else {
-      await this.poissonDisc.run();
+      await poissonDisc.run();
+    }
+
+    if (generation === this.#generation) {
+      this.poissonDisc = poissonDisc;
     }
   }
 }

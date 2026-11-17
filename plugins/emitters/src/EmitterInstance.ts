@@ -282,6 +282,15 @@ export class EmitterInstance {
    * emitter spawn colors
    * @param context - the canvas 2d context used for drawing
    */
+  /** Releases observers owned by this emitter when its container stops. */
+  dispose(): void {
+    this.#mutationObserver?.disconnect();
+    this.#mutationObserver = undefined;
+
+    this.#resizeObserver?.disconnect();
+    this.#resizeObserver = undefined;
+  }
+
   draw(context: OffscreenCanvasRenderingContext2D): void {
     if (!this.options.draw || !this.#shape) {
       return;
@@ -574,11 +583,7 @@ export class EmitterInstance {
   }
 
   #destroy(): void {
-    this.#mutationObserver?.disconnect();
-    this.#mutationObserver = undefined;
-
-    this.#resizeObserver?.disconnect();
-    this.#resizeObserver = undefined;
+    this.dispose();
 
     this.#removeCallback(this);
 

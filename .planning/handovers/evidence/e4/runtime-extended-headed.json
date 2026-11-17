@@ -1,0 +1,881 @@
+{
+  "workingTree": true,
+  "mode": "headed Chrome; 800x600 CSS scene; manual harness; no forced GC/CDP",
+  "measuredAt": "2026-11-17T07:16:59.374Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "samples": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "cycle": 0,
+      "initMs": 8.399999998509884,
+      "update": {
+        "median": 0.20000000298023224,
+        "p95": 0.30000000447034836,
+        "min": 0.09999999403953552,
+        "max": 0.3999999985098839
+      },
+      "render": {
+        "median": 0.19999999552965164,
+        "p95": 0.29999999701976776,
+        "min": 0.09999999403953552,
+        "max": 0.3999999985098839
+      },
+      "frame": {
+        "median": 0.3999999985098839,
+        "p95": 0.5,
+        "min": 0.20000000298023224,
+        "max": 0.6000000014901161
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 116,
+      "finalCount": 116,
+      "backgroundDraws": 0,
+      "randomCalls": 1952,
+      "teardownMs": 0.3999999985098839,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "cycle": 1,
+      "initMs": 6.700000002980232,
+      "update": {
+        "median": 0.19999999552965164,
+        "p95": 0.30000000447034836,
+        "min": 0.09999999403953552,
+        "max": 0.3999999985098839
+      },
+      "render": {
+        "median": 0.19999999552965164,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.30000000447034836
+      },
+      "frame": {
+        "median": 0.30000000447034836,
+        "p95": 0.4000000059604645,
+        "min": 0.19999999552965164,
+        "max": 0.5999999940395355
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 116,
+      "finalCount": 116,
+      "backgroundDraws": 0,
+      "randomCalls": 1952,
+      "teardownMs": 0.20000000298023224,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "cycle": 2,
+      "initMs": 5.899999998509884,
+      "update": {
+        "median": 0.19999999552965164,
+        "p95": 0.30000000447034836,
+        "min": 0.09999999403953552,
+        "max": 0.8000000044703484
+      },
+      "render": {
+        "median": 0.19999999552965164,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.29999999701976776
+      },
+      "frame": {
+        "median": 0.30000000447034836,
+        "p95": 0.5,
+        "min": 0.19999999552965164,
+        "max": 0.9000000059604645
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 116,
+      "finalCount": 116,
+      "backgroundDraws": 0,
+      "randomCalls": 1952,
+      "teardownMs": 0.29999999701976776,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "cycle": 0,
+      "initMs": 10.800000004470348,
+      "update": {
+        "median": 0.8999999985098839,
+        "p95": 1.5,
+        "min": 0.6000000014901161,
+        "max": 2.100000001490116
+      },
+      "render": {
+        "median": 0.7999999970197678,
+        "p95": 1.1000000014901161,
+        "min": 0.5,
+        "max": 1.5999999940395355
+      },
+      "frame": {
+        "median": 1.6999999955296516,
+        "p95": 2.399999998509884,
+        "min": 1.2999999970197678,
+        "max": 3.6999999955296516
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 516,
+      "finalCount": 516,
+      "backgroundDraws": 0,
+      "randomCalls": 5580,
+      "teardownMs": 0.20000000298023224,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "cycle": 1,
+      "initMs": 14,
+      "update": {
+        "median": 0.7999999970197678,
+        "p95": 1.1000000014901161,
+        "min": 0.5999999940395355,
+        "max": 1.2000000029802322
+      },
+      "render": {
+        "median": 0.7000000029802322,
+        "p95": 0.9000000059604645,
+        "min": 0.6000000014901161,
+        "max": 1.1000000014901161
+      },
+      "frame": {
+        "median": 1.5,
+        "p95": 1.8999999985098839,
+        "min": 1.2999999970197678,
+        "max": 2.2000000029802322
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 516,
+      "finalCount": 516,
+      "backgroundDraws": 0,
+      "randomCalls": 5580,
+      "teardownMs": 0.20000000298023224,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "cycle": 2,
+      "initMs": 14.899999998509884,
+      "update": {
+        "median": 0.7999999970197678,
+        "p95": 1,
+        "min": 0.6000000014901161,
+        "max": 1.1000000014901161
+      },
+      "render": {
+        "median": 0.7000000029802322,
+        "p95": 0.9000000059604645,
+        "min": 0.5999999940395355,
+        "max": 1.0000000074505806
+      },
+      "frame": {
+        "median": 1.5,
+        "p95": 1.8000000044703484,
+        "min": 1.2999999970197678,
+        "max": 2
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 516,
+      "finalCount": 516,
+      "backgroundDraws": 0,
+      "randomCalls": 5580,
+      "teardownMs": 0.10000000149011612,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "cycle": 0,
+      "initMs": 21.69999999552965,
+      "update": {
+        "median": 1.6000000014901161,
+        "p95": 2,
+        "min": 1.2999999970197678,
+        "max": 2.100000001490116
+      },
+      "render": {
+        "median": 1.3999999985098839,
+        "p95": 1.6999999955296516,
+        "min": 1.1999999955296516,
+        "max": 1.7000000029802322
+      },
+      "frame": {
+        "median": 3.100000001490116,
+        "p95": 3.5,
+        "min": 2.600000001490116,
+        "max": 3.7999999970197678
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1016,
+      "finalCount": 1016,
+      "backgroundDraws": 0,
+      "randomCalls": 10114,
+      "teardownMs": 0.30000000447034836,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "cycle": 1,
+      "initMs": 20.5,
+      "update": {
+        "median": 1.6000000014901161,
+        "p95": 1.8999999985098839,
+        "min": 1.2999999970197678,
+        "max": 2.100000001490116
+      },
+      "render": {
+        "median": 1.3999999985098839,
+        "p95": 1.7000000029802322,
+        "min": 1.1999999955296516,
+        "max": 1.8999999985098839
+      },
+      "frame": {
+        "median": 3,
+        "p95": 3.5,
+        "min": 2.600000001490116,
+        "max": 3.8000000044703484
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1016,
+      "finalCount": 1016,
+      "backgroundDraws": 0,
+      "randomCalls": 10113,
+      "teardownMs": 0.29999999701976776,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "cycle": 2,
+      "initMs": 21.200000002980232,
+      "update": {
+        "median": 1.6000000014901161,
+        "p95": 1.8999999985098839,
+        "min": 1.2999999970197678,
+        "max": 2
+      },
+      "render": {
+        "median": 1.4000000059604645,
+        "p95": 1.7000000029802322,
+        "min": 1.1999999955296516,
+        "max": 1.7999999970197678
+      },
+      "frame": {
+        "median": 3.100000001490116,
+        "p95": 3.5,
+        "min": 2.600000001490116,
+        "max": 3.6999999955296516
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": null,
+      "resized": null,
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1016,
+      "finalCount": 1016,
+      "backgroundDraws": 0,
+      "randomCalls": 10114,
+      "teardownMs": 0.29999999701976776,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "cycle": 0,
+      "initMs": 8.399999998509884,
+      "update": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "render": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "frame": {
+        "median": 0.29999999701976776,
+        "p95": 0.30000000447034836,
+        "min": 0.10000000149011612,
+        "max": 0.3999999985098839
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 0.6000000014901161,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 100,
+      "finalCount": 100,
+      "backgroundDraws": 91,
+      "randomCalls": 908,
+      "teardownMs": 0.10000000149011612,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "cycle": 1,
+      "initMs": 9.5,
+      "update": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "render": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.30000000447034836
+      },
+      "frame": {
+        "median": 0.29999999701976776,
+        "p95": 0.30000000447034836,
+        "min": 0.19999999552965164,
+        "max": 0.4000000059604645
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 0.5,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 100,
+      "finalCount": 100,
+      "backgroundDraws": 91,
+      "randomCalls": 908,
+      "teardownMs": 0.20000000298023224,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "cycle": 2,
+      "initMs": 8.699999995529652,
+      "update": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.9000000059604645
+      },
+      "render": {
+        "median": 0.10000000149011612,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.29999999701976776
+      },
+      "frame": {
+        "median": 0.20000000298023224,
+        "p95": 0.3999999985098839,
+        "min": 0.09999999403953552,
+        "max": 1.1000000014901161
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 0.5,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 100,
+      "finalCount": 100,
+      "backgroundDraws": 91,
+      "randomCalls": 908,
+      "teardownMs": 0.19999999552965164,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "cycle": 0,
+      "initMs": 13.200000002980232,
+      "update": {
+        "median": 0.6000000014901161,
+        "p95": 0.8000000044703484,
+        "min": 0.5,
+        "max": 1
+      },
+      "render": {
+        "median": 0.6999999955296516,
+        "p95": 0.8000000044703484,
+        "min": 0.5,
+        "max": 1.6000000014901161
+      },
+      "frame": {
+        "median": 1.3000000044703484,
+        "p95": 1.5,
+        "min": 1.0999999940395355,
+        "max": 2.2999999970197678
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 1.7000000029802322,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 500,
+      "finalCount": 500,
+      "backgroundDraws": 91,
+      "randomCalls": 4535,
+      "teardownMs": 0.19999999552965164,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "cycle": 1,
+      "initMs": 12.899999998509884,
+      "update": {
+        "median": 0.6000000014901161,
+        "p95": 0.7000000029802322,
+        "min": 0.5,
+        "max": 1.3000000044703484
+      },
+      "render": {
+        "median": 0.6999999955296516,
+        "p95": 0.8000000044703484,
+        "min": 0.5,
+        "max": 0.8000000044703484
+      },
+      "frame": {
+        "median": 1.2999999970197678,
+        "p95": 1.3999999985098839,
+        "min": 1.0999999940395355,
+        "max": 2.100000001490116
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 1.6000000014901161,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 500,
+      "finalCount": 500,
+      "backgroundDraws": 91,
+      "randomCalls": 4535,
+      "teardownMs": 0.19999999552965164,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "cycle": 2,
+      "initMs": 13.899999998509884,
+      "update": {
+        "median": 0.6000000014901161,
+        "p95": 0.7999999970197678,
+        "min": 0.5,
+        "max": 1.6000000014901161
+      },
+      "render": {
+        "median": 0.6999999955296516,
+        "p95": 0.8000000044703484,
+        "min": 0.5,
+        "max": 0.9000000059604645
+      },
+      "frame": {
+        "median": 1.2999999970197678,
+        "p95": 1.5,
+        "min": 1.1000000014901161,
+        "max": 2.399999998509884
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 1.5,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 500,
+      "finalCount": 500,
+      "backgroundDraws": 91,
+      "randomCalls": 4535,
+      "teardownMs": 0.10000000149011612,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "cycle": 0,
+      "initMs": 21.100000001490116,
+      "update": {
+        "median": 1.3000000044703484,
+        "p95": 1.6000000014901161,
+        "min": 1.1000000014901161,
+        "max": 1.7999999970197678
+      },
+      "render": {
+        "median": 1.3000000044703484,
+        "p95": 1.6000000014901161,
+        "min": 1.1000000014901161,
+        "max": 1.7999999970197678
+      },
+      "frame": {
+        "median": 2.6999999955296516,
+        "p95": 3.1999999955296516,
+        "min": 2.399999998509884,
+        "max": 3.2999999970197678
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 2.899999998509884,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1000,
+      "finalCount": 1000,
+      "backgroundDraws": 91,
+      "randomCalls": 9072,
+      "teardownMs": 0.30000000447034836,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "cycle": 1,
+      "initMs": 19.399999998509884,
+      "update": {
+        "median": 1.2999999970197678,
+        "p95": 1.6000000014901161,
+        "min": 1.1000000014901161,
+        "max": 2
+      },
+      "render": {
+        "median": 1.3000000044703484,
+        "p95": 1.5999999940395355,
+        "min": 1.0999999940395355,
+        "max": 1.8000000044703484
+      },
+      "frame": {
+        "median": 2.600000001490116,
+        "p95": 3.100000001490116,
+        "min": 2.399999998509884,
+        "max": 3.399999998509884
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 3.1999999955296516,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1000,
+      "finalCount": 1000,
+      "backgroundDraws": 91,
+      "randomCalls": 9072,
+      "teardownMs": 0.20000000298023224,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "cycle": 2,
+      "initMs": 19.19999999552965,
+      "update": {
+        "median": 1.3999999985098839,
+        "p95": 1.6000000014901161,
+        "min": 1.1999999955296516,
+        "max": 1.6000000014901161
+      },
+      "render": {
+        "median": 1.3999999985098839,
+        "p95": 1.6000000014901161,
+        "min": 1.1999999955296516,
+        "max": 1.8999999985098839
+      },
+      "frame": {
+        "median": 2.7999999970197678,
+        "p95": 3.100000001490116,
+        "min": 2.399999998509884,
+        "max": 3.3000000044703484
+      },
+      "longFrames": 0,
+      "measuredTicks": 60,
+      "resizeMs": 2.7999999970197678,
+      "resized": {
+        "height": 480,
+        "width": 640
+      },
+      "contextAttributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "countAfterTicks": 1000,
+      "finalCount": 1000,
+      "backgroundDraws": 91,
+      "randomCalls": 9072,
+      "teardownMs": 0.10000000149011612,
+      "remainingContainers": 0
+    }
+  ],
+  "before": {
+    "usedHeap": 11200000,
+    "domNodes": 11,
+    "mediaListeners": {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  },
+  "after": {
+    "usedHeap": 11200000,
+    "domNodes": 11,
+    "mediaListeners": {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  },
+  "retention": [
+    {
+      "usedHeap": 11200000,
+      "domNodes": 11,
+      "mediaListeners": {
+        "(color-gamut: p3)": 0,
+        "(dynamic-range: high)": 0,
+        "(prefers-reduced-motion: reduce)": 0
+      }
+    },
+    {
+      "usedHeap": 11200000,
+      "domNodes": 11,
+      "mediaListeners": {
+        "(color-gamut: p3)": 0,
+        "(dynamic-range: high)": 0,
+        "(prefers-reduced-motion: reduce)": 0
+      }
+    },
+    {
+      "usedHeap": 11200000,
+      "domNodes": 11,
+      "mediaListeners": {
+        "(color-gamut: p3)": 0,
+        "(dynamic-range: high)": 0,
+        "(prefers-reduced-motion: reduce)": 0
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Headed UI browser run, not directly comparable to headless baseline timings",
+    "No CDP forced-GC; usedHeap is a non-forced snapshot and not a retention verdict",
+    "Retention listener counters and DOM-node counts are directly observed",
+    "Frame budget uses explicit synchronous ticks, not presented frames"
+  ]
+}

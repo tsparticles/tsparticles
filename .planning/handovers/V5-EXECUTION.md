@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E3 are complete; E4–E10 remain pending. This is the
+Replanned on 2026-11-13. E0–E4 are complete; E5–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -202,7 +202,7 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E1 — Explicit engines — factory, supported consumers, browser bootstrap and package checks accepted; M6 budget exceedance carried to E10
 - [x] E2 — Isolated services — engine ownership, consumer migration, entrypoints and tests accepted; see [E2 evidence](V5-02-ENGINE-SERVICES.md)
 - [x] E3 — Contracts and boundaries — decisions, consumer probes, boundary rules and C0 recorded in [E3 verification](V5-E3-VERIFICATION.md)
-- [ ] E4 — Lifecycle
+- [x] E4 — Lifecycle — lifecycle regressions, compressed sizes, matched headless timing and forced-GC retention pass; M6/500 and M8/500 p95 exceedances carried to E10 ([status](evidence/e4/measurement-status.md))
 - [ ] E5 — Particle/options and OKLCH
 - [ ] E6 — Collections and spatial index
 - [ ] E7 — Rendering optimization and review closure
@@ -210,7 +210,7 @@ new capability packages need a separate demonstrated consumer benefit.
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: begin E4 lifecycle work using the accepted E3 contracts. Later-stage source reviews remain assigned in the engine audit.
+Next action: rerun the corrected E4 Puppeteer benchmark in an environment where headless Chrome launches, then compare p95 timings and forced-GC retention with E0. Later-stage source reviews remain assigned in the engine audit.
 E1 factory and explicit wrapper ownership are accepted; the final suite passes
 23 projects / 1,099 tests, separate CDN copies pass real-browser isolation and
 canvas reuse checks, the Web Components demo renders in Chrome, and Webpack

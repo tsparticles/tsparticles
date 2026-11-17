@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E4 extended runtime benchmark</title>
+    <style>
+      body {
+        margin: 0;
+        font:
+          13px ui-monospace,
+          monospace;
+      }
+      #v5-baseline {
+        width: 800px;
+        height: 600px;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="v5-baseline"></div>
+    <pre id="result">Starting E4 headed benchmark…</pre>
+    <script src="../../../../bundles/all/dist/tsparticles.all.bundle.min.js"></script>
+    <script>
+      (async () => {
+        const result = document.getElementById("result"),
+          errors = [];
+        try {
+          let mediaListeners = {};
+          const add = MediaQueryList.prototype.addEventListener,
+            remove = MediaQueryList.prototype.removeEventListener;
+          MediaQueryList.prototype.addEventListener = function (...args) {
+            mediaListeners[this.media] = (mediaListeners[this.media] ?? 0) + 1;
+            return add.apply(this, args);
+          };
+          MediaQueryList.prototype.removeEventListener = function (...args) {
+            mediaListeners[this.media] = (mediaListeners[this.media] ?? 0) - 1;
+            return remove.apply(this, args);
+          };
+          const engine = tsParticles.createEngine();
+          await loadAll(engine);
+          const run = async (scenario, count, cycle) => {
+            let seed = 123456789,
+              calls = 0,
+              backgroundDraws = 0;
+            engine.setRandom(() => {
+              calls++;
+              seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+              return seed / 4294967296;
+            });
+            const host = document.getElementById("v5-baseline");
+            host.style.width = "800px";
+            host.style.height = "600px";
+            const options = {
+              autoPlay: false,
+              fullScreen: false,
+              detectRetina: false,
+              particles: {
+                number: { value: count, density: { enable: false } },
+                shape: { type: "circle" },
+                size: { value: 3 },
+                paint: { fill: { color: { value: "#ff0000" } } },
+                move: { enable: true, speed: 1 },
+              },
+            };
+            if (scenario === "M6-extensions") {
+              options.particles.groups = { a: { number: { value: 0 } } };
+              options.emitters = {
+                name: "baseline-emitter",
+                startCount: 0,
+                position: { x: 10, y: 10 },
+                rate: { delay: 0.1, quantity: 1 },
+              };
+              options.absorbers = {
+                name: "baseline-absorber",
+                position: { x: 80, y: 80 },
+                size: { value: 5 },
+                destroy: false,
+              };
+            } else {
+              options.hdr = { enable: true, mode: "standard", peakNits: 400 };
+              options.background = {
+                color: "#102030",
+                draw: ctx => {
+                  backgroundDraws++;
+                  ctx.fillStyle = "rgba(255,255,255,0.2)";
+                  ctx.fillRect(0, 0, 20, 20);
+                },
+              };
+              options.backgroundMask = { enable: true, cover: { color: "#101020", opacity: 0.5 } };
+            }
+            const start = performance.now(),
+              container = await engine.load({ id: "v5-baseline", options }),
+              initMs = performance.now() - start;
+            if (container.particles.count !== count) throw new Error(`Count mismatch: ${scenario}/${count}`);
+            if (scenario === "M6-extensions") {
+              if (!container.getEmitter("baseline-emitter") || !container.getAbsorber("baseline-absorber"))
+                throw new Error("Missing extension instance");
+              container.getEmitter("baseline-emitter").play();
+            }
+            const updates = [],
+              renders = [],
+              frames = [],
+              delta = { value: 1000 / 60, factor: 1 };
+            let updateMs = 0;
+            const update = container.particles.update.bind(container.particles);
+            container.particles.update = d => {
+              const t = performance.now();
+              update(d);
+              updateMs = performance.now() - t;
+            };
+            for (let tick = 0; tick < 90; tick++) {
+              const t = performance.now();
+              container.canvas.render.drawParticles(delta);
+              const elapsed = performance.now() - t;
+              if (tick >= 30) {
+                updates.push(updateMs);
+                renders.push(elapsed - updateMs);
+                frames.push(elapsed);
+              }
+            }
+            const countAfterTicks = container.particles.count;
+            let resizeMs = null,
+              resized = null,
+              contextAttributes;
+            container.canvas.render.draw(ctx => {
+              contextAttributes = ctx.getContextAttributes();
+            });
+            if (scenario === "M6-extensions") {
+              for (let i = 0; i < 10; i++) {
+                container.particles.push(10, undefined, undefined, "a");
+                container.particles.removeQuantity(10, "a");
+              }
+            } else {
+              host.style.width = "640px";
+              host.style.height = "480px";
+              const t = performance.now();
+              container.canvas.resize();
+              container.canvas.render.drawParticles(delta);
+              resizeMs = performance.now() - t;
+              resized = { ...container.canvas.size };
+              if (resized.width !== 640 || resized.height !== 480) throw new Error("Resize mismatch");
+              if (backgroundDraws < 90) throw new Error("Background layer was not rendered");
+            }
+            const finalCount = container.particles.count,
+              t = performance.now();
+            container.destroy();
+            const stats = xs => {
+              const v = [...xs].sort((a, b) => a - b);
+              return {
+                median: v[Math.floor(v.length * 0.5)],
+                p95: v[Math.floor((v.length - 1) * 0.95)],
+                min: v[0],
+                max: v.at(-1),
+              };
+            };
+            return {
+              scenario,
+              count,
+              cycle,
+              initMs,
+              update: stats(updates),
+              render: stats(renders),
+              frame: stats(frames),
+              longFrames: frames.filter(x => x > 16.667).length,
+              measuredTicks: frames.length,
+              resizeMs,
+              resized,
+              contextAttributes,
+              countAfterTicks,
+              finalCount,
+              backgroundDraws,
+              randomCalls: calls,
+              teardownMs: performance.now() - t,
+              remainingContainers: engine.items.length,
+            };
+          };
+          const memory = () => ({
+            usedHeap: performance.memory?.usedJSHeapSize ?? null,
+            domNodes: document.getElementsByTagName("*").length,
+            mediaListeners: { ...mediaListeners },
+          });
+          for (const s of ["M6-extensions", "M8-hdr-layers-resize"]) await run(s, 100, -1);
+          const before = memory(),
+            samples = [];
+          for (const scenario of ["M6-extensions", "M8-hdr-layers-resize"])
+            for (const count of [100, 500, 1000])
+              for (let i = 0; i < 3; i++) samples.push(await run(scenario, count, i));
+          const after = memory(),
+            retention = [],
+            retentionRuns = [];
+          for (let batch = 0; batch < 3; batch++) {
+            for (let cycle = 0; cycle < 10; cycle++) retentionRuns.push(await run("M6-extensions", 100, cycle));
+            retention.push(memory());
+          }
+          if (!retentionRuns.every(sample => sample.remainingContainers === 0))
+            throw new Error("Container remained registered after retention cycle");
+          const report = {
+            workingTree: true,
+            mode: "headed Chrome; 800x600 CSS scene; manual harness; no forced GC/CDP",
+            measuredAt: new Date().toISOString(),
+            browser: navigator.userAgent,
+            samples,
+            before,
+            after,
+            retention,
+            retentionRuns,
+            errors,
+            limitations: [
+              "Headed UI browser run, not directly comparable to headless baseline timings",
+              "No CDP forced-GC; usedHeap is a non-forced snapshot and not a retention verdict",
+              "Retention listener counters and DOM-node counts are directly observed",
+              "Frame budget uses explicit synchronous ticks, not presented frames",
+            ],
+          };
+          result.textContent = JSON.stringify(report, null, 2);
+          document.title = "E4 benchmark complete";
+        } catch (error) {
+          errors.push(String(error?.stack ?? error));
+          result.textContent = JSON.stringify({ errors }, null, 2);
+          document.title = "E4 benchmark failed";
+        }
+      })();
+    </script>
+  </body>
+</html>

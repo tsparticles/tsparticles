@@ -7,18 +7,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([ccf3f98](https://github.com/tsparticles/tsparticles/commit/ccf3f9843ddc3caf93d99d79aa954b704f92b2de))
-* fixes after AI reviews ([5ea587f](https://github.com/tsparticles/tsparticles/commit/5ea587f8134782c7a5b31f7e741d696765e1c4dc))
+- fixes after AI reviews ([ccf3f98](https://github.com/tsparticles/tsparticles/commit/ccf3f9843ddc3caf93d99d79aa954b704f92b2de))
+- fixes after AI reviews ([5ea587f](https://github.com/tsparticles/tsparticles/commit/5ea587f8134782c7a5b31f7e741d696765e1c4dc))
 
 ## [Unreleased]
 
 ### Breaking Changes
 
-* move random, logger and animation scheduler configuration from module-level APIs to `Engine` instances;
+- move random, logger and animation scheduler configuration from module-level APIs to `Engine` instances;
   see the v5 migration guide for replacements
 
 ### Bug Fixes
 
+- roll back partial container initialization and dispose container plugins on stop/refresh
 - share engine initialization with calls made from plugin loaders
 - reject late plugin registration and protect engine and container plugin lists from direct mutation
 - bound large spatial queries on sparse particle grids and reject unsafe cell bounds
@@ -29,37 +30,37 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([529bf85](https://github.com/tsparticles/tsparticles/commit/529bf857557b9e267ea80d4b79bedfc0b0ca3082))
-* fixes after AI reviews ([d8a54c0](https://github.com/tsparticles/tsparticles/commit/d8a54c0ec642935fd07ef66b534175957003ffb6))
-* fixes from v4 plan ([49d614d](https://github.com/tsparticles/tsparticles/commit/49d614d937df608ded6417f077cff5c3328e55b0))
+- fixes after AI reviews ([529bf85](https://github.com/tsparticles/tsparticles/commit/529bf857557b9e267ea80d4b79bedfc0b0ca3082))
+- fixes after AI reviews ([d8a54c0](https://github.com/tsparticles/tsparticles/commit/d8a54c0ec642935fd07ef66b534175957003ffb6))
+- fixes from v4 plan ([49d614d](https://github.com/tsparticles/tsparticles/commit/49d614d937df608ded6417f077cff5c3328e55b0))
 
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
 ### Bug Fixes
 
-* fixes after AI reviews ([a26d678](https://github.com/tsparticles/tsparticles/commit/a26d678ab9998222e0575df5faa0f40d3ebbb7c2))
+- fixes after AI reviews ([a26d678](https://github.com/tsparticles/tsparticles/commit/a26d678ab9998222e0575df5faa0f40d3ebbb7c2))
 
 ## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
 
 ### Bug Fixes
 
-* fixed after AI reviews ([b6a043a](https://github.com/tsparticles/tsparticles/commit/b6a043a63713bb74412ec408bf8c6de35f40fb08))
-* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
-* fixes after AI reviews ([389323b](https://github.com/tsparticles/tsparticles/commit/389323bd95fb0a88e3636055af9469f0150fe96c))
-* fixes after AI reviews ([f82fbfa](https://github.com/tsparticles/tsparticles/commit/f82fbfad468395e6b0ea1081f105392d7d491f84))
-* fixes after AI reviews ([1975dbe](https://github.com/tsparticles/tsparticles/commit/1975dbedbb1be445db53794ca86ed3924843d798))
-* fixes after AI reviews ([81be838](https://github.com/tsparticles/tsparticles/commit/81be83892964d7d540d575d8278faa74cb10d8a8))
-* fixes after AI reviews ([54ebd32](https://github.com/tsparticles/tsparticles/commit/54ebd32cab83ecce224b6df5f39d17e8fe222fc4))
-* fixes after AI reviews ([feb0028](https://github.com/tsparticles/tsparticles/commit/feb002871091228db8d77c48a19430277e030111))
+- fixed after AI reviews ([b6a043a](https://github.com/tsparticles/tsparticles/commit/b6a043a63713bb74412ec408bf8c6de35f40fb08))
+- fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+- fixes after AI reviews ([389323b](https://github.com/tsparticles/tsparticles/commit/389323bd95fb0a88e3636055af9469f0150fe96c))
+- fixes after AI reviews ([f82fbfa](https://github.com/tsparticles/tsparticles/commit/f82fbfad468395e6b0ea1081f105392d7d491f84))
+- fixes after AI reviews ([1975dbe](https://github.com/tsparticles/tsparticles/commit/1975dbedbb1be445db53794ca86ed3924843d798))
+- fixes after AI reviews ([81be838](https://github.com/tsparticles/tsparticles/commit/81be83892964d7d540d575d8278faa74cb10d8a8))
+- fixes after AI reviews ([54ebd32](https://github.com/tsparticles/tsparticles/commit/54ebd32cab83ecce224b6df5f39d17e8fe222fc4))
+- fixes after AI reviews ([feb0028](https://github.com/tsparticles/tsparticles/commit/feb002871091228db8d77c48a19430277e030111))
 
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 ### Bug Fixes
 
-* **engine:** cancel pending resize callbacks when listeners stop ([c25cbb8](https://github.com/tsparticles/tsparticles/commit/c25cbb87b71c1f8e7a0b88b7bc86e209f5b2c138))
-* **engine:** preserve active event listeners during subscription changes ([07284b5](https://github.com/tsparticles/tsparticles/commit/07284b56b3ef75f89e1d72ec201b2d7b66df9e22))
-* **engine:** preserve pooled ranges during nested spatial queries ([7833a14](https://github.com/tsparticles/tsparticles/commit/7833a1465ed4bfc2e54b3deed92b09bce04409a2))
-* **engine:** settle delayed starts cancelled by stop ([841456b](https://github.com/tsparticles/tsparticles/commit/841456bca33a11c37af74393fcd466d84b120cc3))
+- **engine:** cancel pending resize callbacks when listeners stop ([c25cbb8](https://github.com/tsparticles/tsparticles/commit/c25cbb87b71c1f8e7a0b88b7bc86e209f5b2c138))
+- **engine:** preserve active event listeners during subscription changes ([07284b5](https://github.com/tsparticles/tsparticles/commit/07284b56b3ef75f89e1d72ec201b2d7b66df9e22))
+- **engine:** preserve pooled ranges during nested spatial queries ([7833a14](https://github.com/tsparticles/tsparticles/commit/7833a1465ed4bfc2e54b3deed92b09bce04409a2))
+- **engine:** settle delayed starts cancelled by stop ([841456b](https://github.com/tsparticles/tsparticles/commit/841456bca33a11c37af74393fcd466d84b120cc3))
 
 # [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
 

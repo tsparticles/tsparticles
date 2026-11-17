@@ -9,6 +9,8 @@ const defaultFactor = 1,
 export class MotionPluginInstance implements IContainerPlugin {
   /** The motion container */
   readonly #container;
+  #handleChange?: () => void;
+  #mediaQuery?: MediaQueryList;
 
   /**
    * Creates a new MotionPluginInstance
@@ -18,7 +20,13 @@ export class MotionPluginInstance implements IContainerPlugin {
     this.#container = container;
   }
 
+  destroy(): void {
+    this.stop();
+  }
+
   async init(): Promise<void> {
+    this.stop();
+
     const container = this.#container,
       options = container.actualOptions.motion;
 
@@ -52,9 +60,20 @@ export class MotionPluginInstance implements IContainerPlugin {
       })();
     };
 
+    this.#mediaQuery = mediaQuery;
+    this.#handleChange = handleChange;
     mediaQuery.addEventListener("change", handleChange);
 
     await Promise.resolve();
+  }
+
+  stop(): void {
+    if (this.#mediaQuery && this.#handleChange) {
+      this.#mediaQuery.removeEventListener("change", this.#handleChange);
+    }
+
+    this.#mediaQuery = undefined;
+    this.#handleChange = undefined;
   }
 
   #handleMotionChange(mediaQuery: MediaQueryList): void {
