@@ -8,6 +8,7 @@ import collisionsBounce from "./collisionsBounce.js";
 import collisionsDestroy from "./collisionsDestroy.js";
 import collisionsFluid from "./collisionsFluid.js";
 import colorAnimation from "./colorAnimation.js";
+import colorTransitions from "./colorTransitions.js";
 import colors from "./colors.js";
 import confettiExplosions from "./confettiExplosions.js";
 import connect from "./connect.js";
@@ -24,6 +25,7 @@ export default {
   collisionsDestroy,
   collisionsFluid,
   colorAnimation,
+  colorTransitions,
   colors,
   confettiExplosions,
   connect,
