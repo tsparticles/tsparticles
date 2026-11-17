@@ -62,6 +62,7 @@ export async function loadAll(engine: Engine): Promise<void> {
         { loadLightInteraction },
         { loadParticlesRepulseInteraction },
 
+        { loadColorTransitionsUpdater },
         { loadGradientUpdater },
         { loadOrbitUpdater },
 
@@ -151,6 +152,7 @@ export async function loadAll(engine: Engine): Promise<void> {
         import("@tsparticles/interaction-light/lazy"),
         import("@tsparticles/interaction-particles-repulse/lazy"),
 
+        import("@tsparticles/updater-color-transitions/lazy"),
         import("@tsparticles/updater-gradient/lazy"),
         import("@tsparticles/updater-orbit/lazy"),
 
@@ -267,6 +269,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadExportJSONPlugin(e),
       loadExportVideoPlugin(e),
 
+      loadColorTransitionsUpdater(e),
       loadGradientUpdater(e),
       loadOrbitUpdater(e),
 

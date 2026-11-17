@@ -191,6 +191,7 @@
     "@tsparticles/shape-rounded-rect": "workspace:*",
     "@tsparticles/shape-spiral": "workspace:*",
     "@tsparticles/shape-squircle": "workspace:*",
+    "@tsparticles/updater-color-transitions": "workspace:*",
     "@tsparticles/updater-gradient": "workspace:*",
     "@tsparticles/updater-orbit": "workspace:*",
     "tsparticles": "workspace:*"
