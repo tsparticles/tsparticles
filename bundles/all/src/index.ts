@@ -7,6 +7,7 @@ import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadCardsShape } from "@tsparticles/shape-cards";
 import { loadCogShape } from "@tsparticles/shape-cog";
+import { loadColorTransitionsUpdater } from "@tsparticles/updater-color-transitions";
 import { loadCurlNoisePath } from "@tsparticles/path-curl-noise";
 import { loadCurvesPath } from "@tsparticles/path-curves";
 import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-back";
@@ -166,6 +167,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadExportJSONPlugin(e),
       loadExportVideoPlugin(e),
 
+      loadColorTransitionsUpdater(e),
       loadGradientUpdater(e),
       loadOrbitUpdater(e),
 
