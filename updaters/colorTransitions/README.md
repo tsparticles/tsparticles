@@ -31,8 +31,15 @@ The updater can be added to any bundle package using its exported `loadColorTran
 
 The updater adds a `colorTransitions` property to the particles options, with a `lifetime` section driving the color
 through the particle life progress. It requires the life updater (`@tsparticles/updater-life`, already included in
-the `slim`/`full` bundles) with a finite `life.duration` to work, since the life progress is read from the particle
-life state.
+the `slim`/`full` bundles) with a finite `life.duration` to work: the transition progress is read from the particle
+life clock, which never advances for particles with an infinite life duration, so those keep their base colors.
+
+The `lifetime.stops` list applies to both the fill and the stroke colors, matching how a single `paint` color applies
+to both channels; random stop colors resolve once, so fill and stroke transition through the same colors. A channel
+can override the shared stops with its own `lifetime.fill.stops` or `lifetime.stroke.stops` list; a channel without
+stops of its own (or with an empty list) falls back to the shared stops. An optional `lifetime.duration` (in seconds,
+like the life options) rescales the transition progress against the finite life clock above: a shorter value completes
+the transition earlier in each life cycle, and the transition restarts with each cycle.
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -57,6 +64,12 @@ const options = {
           { offset: 0.5, value: "#ff0000" }, // and turn red at half of their life
           { offset: 1, value: "#000000" }, // fading to black when their life ends
         ],
+        stroke: {
+          stops: [
+            { offset: 0, value: "#ffffff" }, // the stroke uses its own transition instead,
+            { offset: 1, value: "#ff00ff" }, // from white to magenta
+          ],
+        },
       },
     },
   },
