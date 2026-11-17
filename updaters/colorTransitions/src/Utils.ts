@@ -35,9 +35,10 @@ function lerpHue(a: number, b: number, t: number): number {
  * Interpolates the transition color for the given progress
  * @param stops - The transition stops, sorted by offset
  * @param progress - The transition progress, between 0 and 1
+ * @param out - Optional reusable output object, avoiding per-frame allocations
  * @returns The interpolated color, or undefined when there are no stops
  */
-export function interpolateStops(stops: IColorTransitionStopState[], progress: number): IHsl | undefined {
+export function interpolateStops(stops: IColorTransitionStopState[], progress: number, out?: IHsl): IHsl | undefined {
   const first = stops[firstIndex],
     last = stops[stops.length - 1];
 
@@ -62,13 +63,20 @@ export function interpolateStops(stops: IColorTransitionStopState[], progress: n
     }
 
     const span = b.offset - a.offset,
-      t = span > 0 ? (progress - a.offset) / span : 0;
+      t = span > 0 ? (progress - a.offset) / span : 0,
+      h = lerpHue(a.color.h, b.color.h, t),
+      l = lerp(a.color.l, b.color.l, t),
+      s = lerp(a.color.s, b.color.s, t);
 
-    return {
-      h: lerpHue(a.color.h, b.color.h, t),
-      l: lerp(a.color.l, b.color.l, t),
-      s: lerp(a.color.s, b.color.s, t),
-    };
+    if (out) {
+      out.h = h;
+      out.l = l;
+      out.s = s;
+
+      return out;
+    }
+
+    return { h, l, s };
   }
 
   return last.color;
@@ -76,15 +84,25 @@ export function interpolateStops(stops: IColorTransitionStopState[], progress: n
 
 /**
  * Reads the life progress of a particle
- * @param life - The particle life state, when the life updater created one
- * @returns The life progress between 0 and 1, or undefined when the particle has no finite lifetime
+ * @param life - The particle life state, when the life updater created one, in milliseconds
+ * @param duration - Optional custom transition duration in milliseconds, overriding the life duration
+ * @returns The life progress between 0 and 1, or undefined when the particle has no finite advancing life clock
  */
-export function getLifeProgress(life?: { duration: number; time: number }): number | undefined {
-  if (!life || life.duration <= 0) {
+export function getLifeProgress(life?: { duration: number; time: number }, duration?: number): number | undefined {
+  // An infinite (-1) or otherwise non-positive life duration never advances the life
+  // clock (the life updater returns before incrementing its time), so no transition
+  // can be driven from it, not even with a custom transition duration.
+  if (!life || life.duration <= 0 || !isFinite(life.duration)) {
     return undefined;
   }
 
-  return Math.min(maxProgress, Math.max(minProgress, life.time / life.duration));
+  const effectiveDuration = duration ?? life.duration;
+
+  if (effectiveDuration <= 0 || !isFinite(effectiveDuration)) {
+    return undefined;
+  }
+
+  return Math.min(maxProgress, Math.max(minProgress, life.time / effectiveDuration));
 }
 
 /**
