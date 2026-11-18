@@ -122,6 +122,9 @@ export class Container {
   /** The container id */
   readonly id;
 
+  /** The effective color space used by the render canvas. */
+  outputColorSpace: PredefinedColorSpace;
+
   /**
    * The container check if it's hidden on the web page
    */
@@ -204,6 +207,7 @@ export class Container {
     this.id = Symbol(id);
     this.fpsLimit = 120;
     this.hdr = false;
+    this.outputColorSpace = "srgb";
     this.hdrMode = HdrMode.standard;
     this.peakNits = 400;
     this.#smooth = false;

@@ -10,7 +10,7 @@ import {
   type RecursivePartial,
   isInArray,
   loadOptionProperty,
-  rangeColorToRgb,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
@@ -70,8 +70,8 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
       const lightGradient = interactivity.modes.light.area.gradient;
 
       container.canvas.mouseLight = {
-        start: rangeColorToRgb(this.#pluginManager, lightGradient.start),
-        stop: rangeColorToRgb(this.#pluginManager, lightGradient.stop),
+        start: rangeColorToOklch(this.#pluginManager, lightGradient.start),
+        stop: rangeColorToOklch(this.#pluginManager, lightGradient.stop),
       };
     }
 

@@ -5,8 +5,8 @@ import {
   Vector,
   defaultTransform,
   double,
-  getStyleFromRgb,
-  rangeColorToRgb,
+  getStyleFromOklch,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type {
   SVGPathSeg,
@@ -41,8 +41,9 @@ export function drawPolygonMask(
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
-  const color = rangeColorToRgb(pluginManager, stroke.color);
+  const color = rangeColorToOklch(pluginManager, stroke.color);
 
   if (!color) {
     return;
@@ -63,7 +64,7 @@ export function drawPolygonMask(
   }
 
   context.closePath();
-  context.strokeStyle = getStyleFromRgb(color, hdr, undefined, peakNits, mode);
+  context.strokeStyle = getStyleFromOklch(color, hdr, undefined, peakNits, mode, outputColorSpace);
   context.lineWidth = stroke.width;
   context.stroke();
 }
@@ -87,6 +88,7 @@ export function drawPolygonMaskPath(
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
   context.setTransform(
     defaultTransform.a,
@@ -97,13 +99,13 @@ export function drawPolygonMaskPath(
     position.y,
   );
 
-  const color = rangeColorToRgb(pluginManager, stroke.color);
+  const color = rangeColorToOklch(pluginManager, stroke.color);
 
   if (!color) {
     return;
   }
 
-  context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity, peakNits, mode);
+  context.strokeStyle = getStyleFromOklch(color, hdr, stroke.opacity, peakNits, mode, outputColorSpace);
   context.lineWidth = stroke.width;
   context.stroke(path);
   context.resetTransform();

@@ -1,4 +1,4 @@
-import type { IRgb, OptionsColor } from "@tsparticles/engine";
+import type { IOklcha, OptionsColor } from "@tsparticles/engine";
 import type { InteractivityContainer, InteractivityParticle } from "@tsparticles/plugin-interactivity";
 import type { Grab } from "./Options/Classes/Grab.js";
 import type { GrabOptions } from "./Options/Classes/GrabOptions.js";
@@ -18,7 +18,7 @@ export interface GrabMode {
 export type GrabContainer = InteractivityContainer & {
   actualOptions: GrabOptions;
   particles: {
-    grabLineColor?: IRgb | string;
+    grabLineColor?: IOklcha | string;
   };
   retina: {
     grabModeDistance?: number;

@@ -1,4 +1,4 @@
-import { type ICoordinates, doublePI, getStyleFromRgb, half, quarter } from "@tsparticles/engine";
+import { type ICoordinates, doublePI, getStyleFromOklch, half, quarter } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
 
 const gradientPos = {
@@ -40,19 +40,33 @@ export function drawLight(
       mousePos.y,
       lightOptions.radius,
     ),
-    gradientRgb = container.canvas.mouseLight;
+    gradientOklch = container.canvas.mouseLight;
 
-  if (!gradientRgb?.start || !gradientRgb.stop) {
+  if (!gradientOklch?.start || !gradientOklch.stop) {
     return;
   }
 
   gradientAmbientLight.addColorStop(
     gradientPos.min,
-    getStyleFromRgb(gradientRgb.start, container.hdr, undefined, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      gradientOklch.start,
+      container.hdr,
+      undefined,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
   gradientAmbientLight.addColorStop(
     gradientPos.max,
-    getStyleFromRgb(gradientRgb.stop, container.hdr, undefined, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      gradientOklch.stop,
+      container.hdr,
+      undefined,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
 
   context.fillStyle = gradientAmbientLight;
@@ -79,9 +93,9 @@ export function drawParticleShadow(
     return;
   }
 
-  const shadowRgb = particle.lightShadow;
+  const shadowOklch = particle.lightShadow;
 
-  if (!shadowRgb) {
+  if (!shadowOklch) {
     return;
   }
 
@@ -115,7 +129,14 @@ export function drawParticleShadow(
     });
   }
 
-  const shadowColor = getStyleFromRgb(shadowRgb, container.hdr, undefined, container.peakNits, container.hdrMode),
+  const shadowColor = getStyleFromOklch(
+      shadowOklch,
+      container.hdr,
+      undefined,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
     lastOffset = 1,
     firstPos = 0,
     last = points.length - lastOffset;

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## Unreleased
+
+### Breaking Changes
+
+- Renamed the `saturation` option to `chroma`; its values are absolute OKLCH
+  chroma offsets, with a default range of `-0.03` to `0.03`.
+
 # [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
 
 **Note:** Version bump only for package @tsparticles/fireworks
@@ -11,7 +18,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([1c9d4cc](https://github.com/tsparticles/tsparticles/commit/1c9d4ccd678fecd29f0c3932aaaf9003ebae1bbf))
+- fixes after AI reviews ([1c9d4cc](https://github.com/tsparticles/tsparticles/commit/1c9d4ccd678fecd29f0c3932aaaf9003ebae1bbf))
 
 ## [4.5.3](https://github.com/tsparticles/tsparticles/compare/v4.5.2...v4.5.3) (2026-11-06)
 
@@ -21,7 +28,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+- fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
 
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 

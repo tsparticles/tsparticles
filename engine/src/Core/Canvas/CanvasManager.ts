@@ -1,7 +1,7 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../../Utils/Utils.js";
 import { defaultZoom, generatedAttribute, half } from "../Utils/Constants.js";
-import { getStyleFromRgb, rangeColorToRgb } from "../../Utils/ColorUtils.js";
+import { getStyleFromOklch, rangeColorToOklch } from "../../Utils/ColorUtils.js";
 import type { Container } from "../Container/Container.js";
 import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
@@ -66,6 +66,16 @@ const getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
 
     return colorInfo.getContextAttributes?.().colorSpace ?? undefined;
   };
+
+function getEffectiveContextAttributes(
+  context: OffscreenCanvasRenderingContext2D,
+): (CanvasRenderingContext2DSettings & { colorType?: string }) | undefined {
+  const colorInfo = context as OffscreenCanvasRenderingContext2D & {
+    getContextAttributes?(): CanvasRenderingContext2DSettings & { colorType?: string };
+  };
+
+  return colorInfo.getContextAttributes?.();
+}
 
 /**
  *
@@ -275,17 +285,18 @@ export class CanvasManager {
     }
 
     const elementStyle = element.style,
-      color = rangeColorToRgb(this.#pluginManager, background.color);
+      color = rangeColorToOklch(this.#pluginManager, background.color);
 
     if (color) {
       const hdrOptions = container.actualOptions.hdr;
 
-      elementStyle.backgroundColor = getStyleFromRgb(
+      elementStyle.backgroundColor = getStyleFromOklch(
         color,
         container.hdr,
         background.opacity,
         hdrOptions.peakNits,
         toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard),
+        container.outputColorSpace,
       );
     } else {
       elementStyle.backgroundColor = "";
@@ -475,10 +486,10 @@ export class CanvasManager {
 
   #initContext(): void {
     const container = this.#container,
-      canSupportHdr =
-        container.actualOptions.hdr.enable &&
-        safeMatchMedia("(color-gamut: p3)")?.matches &&
-        safeMatchMedia("(dynamic-range: high)")?.matches;
+      canSupportP3 = safeMatchMedia("(color-gamut: p3)")?.matches,
+      canSupportHdr = Boolean(
+        container.actualOptions.hdr.enable && canSupportP3 && safeMatchMedia("(dynamic-range: high)")?.matches,
+      );
 
     container.hdrMode = toEnumValue(HdrMode, container.actualOptions.hdr.mode, HdrMode.standard);
     container.peakNits = container.actualOptions.hdr.peakNits;
@@ -486,7 +497,8 @@ export class CanvasManager {
     const renderCanvas = this.renderCanvas;
 
     if (!renderCanvas) {
-      container.hdr = canSupportHdr ?? false;
+      container.hdr = canSupportHdr;
+      container.outputColorSpace = canSupportP3 ? "display-p3" : "srgb";
 
       return;
     }
@@ -495,9 +507,8 @@ export class CanvasManager {
       alpha: true,
       desynchronized: true,
       willReadFrequently: false,
-      ...(canSupportHdr
-        ? { colorSpace: "display-p3" as const, colorType: "float16" as const }
-        : { colorSpace: "srgb" as const }),
+      ...(canSupportP3 ? { colorSpace: "display-p3" as const } : { colorSpace: "srgb" as const }),
+      ...(canSupportHdr ? { colorType: "float16" as const } : {}),
     });
 
     let context: OffscreenCanvasRenderingContext2D | null;
@@ -508,7 +519,7 @@ export class CanvasManager {
       context = null;
     }
 
-    if (canSupportHdr && !context) {
+    if (canSupportP3 && !context) {
       const sdrSettings: CanvasRenderingContext2DSettings = {
         alpha: true,
         desynchronized: true,
@@ -539,7 +550,11 @@ export class CanvasManager {
       const effectiveColorSpace = getEffectiveColorSpace(context);
 
       if (effectiveColorSpace !== undefined) {
-        container.hdr = effectiveColorSpace === "display-p3";
+        container.outputColorSpace = effectiveColorSpace;
+        const contextAttributes = getEffectiveContextAttributes(context);
+
+        container.hdr =
+          canSupportHdr && effectiveColorSpace === "display-p3" && contextAttributes?.colorType === "float16";
       }
     }
   }

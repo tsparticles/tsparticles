@@ -31,9 +31,23 @@ export class EventDispatcher {
   dispatchEvent(type: string, args?: CustomEventArgs): void {
     const listeners = this.#listeners.get(type);
 
-    listeners?.forEach(handler => {
-      handler(args);
-    });
+    let dispatchError: unknown,
+      hasDispatchError = false;
+
+    for (const handler of listeners ?? []) {
+      try {
+        handler(args);
+      } catch (error: unknown) {
+        if (!hasDispatchError) {
+          dispatchError = error;
+          hasDispatchError = true;
+        }
+      }
+    }
+
+    if (hasDispatchError) {
+      throw dispatchError;
+    }
   }
 
   /**

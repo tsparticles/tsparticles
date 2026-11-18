@@ -1,12 +1,11 @@
-import { type ISourceOptions, createEngine, defaultFps, millisecondsToSeconds } from "@tsparticles/engine";
+import { type IMovePathGenerator, type MoveEngine, loadMovePlugin } from "@tsparticles/plugin-move";
+import { type ISourceOptions, Vector, createEngine, defaultFps, millisecondsToSeconds } from "@tsparticles/engine";
 // Keep workspace imports grouped after external packages per repository convention.
 
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-
-import { loadMovePlugin } from "@tsparticles/plugin-move";
 
 const tsParticles = createEngine();
 
@@ -30,7 +29,14 @@ const canvasHeight = 600,
   initialPositionY = 300,
   initialVelocityY = -1,
   maximumSpeed = 2,
-  moveSpeed = 20;
+  moveSpeed = 20,
+  generatorName = "particle-pool-state",
+  pathGenerator: IMovePathGenerator = {
+    generate: () => Vector.create(0, 0),
+    init: () => undefined,
+    reset: () => undefined,
+    update: () => undefined,
+  };
 
 async function simulateMove(
   fps: number,
@@ -69,6 +75,17 @@ describe("Move timing", () => {
 
   beforeAll(async () => {
     await loadMovePlugin(tsParticles);
+
+    await tsParticles.pluginManager.register(current => {
+      const moveEngine = current as MoveEngine,
+        addPathGenerator = moveEngine.pluginManager.addPathGenerator;
+
+      if (!addPathGenerator) {
+        throw new Error("move path generator registration is unavailable");
+      }
+
+      addPathGenerator(generatorName, () => Promise.resolve(pathGenerator));
+    });
   });
 
   it("applies the same decay over equal elapsed time at 30, 60 and 120 FPS", async () => {
@@ -129,5 +146,50 @@ describe("Move timing", () => {
     expect(at60.distance).toBeGreaterThan(0);
     expect(at30.distance).toBeCloseTo(at60.distance, comparisonPrecision);
     expect(at30.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
+  });
+
+  it("clears move extension state when a pooled particle is reinitialized", async () => {
+    const container = await tsParticles.load({
+      autoPlay: false,
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      options: { particles: { move: { enable: true }, number: { value: 0 } } },
+    });
+
+    if (!container) {
+      throw new Error("move state test container not initialized");
+    }
+
+    try {
+      const particle = container.particles.addParticle(undefined, {
+        move: {
+          path: { enable: true, generator: generatorName },
+          spin: { enable: true },
+        },
+      });
+
+      if (!particle) {
+        throw new Error("move state test particle not initialized");
+      }
+
+      expect(particle.pathGenerator).to.equal(pathGenerator);
+      expect(particle.spin).toBeDefined();
+      expect(particle.retina.spinAcceleration).toBeDefined();
+
+      container.particles.remove(particle);
+
+      const reused = container.particles.addParticle(undefined, {
+        move: {
+          path: { enable: false },
+          spin: { enable: false },
+        },
+      });
+
+      expect(reused).to.equal(particle);
+      expect(reused?.pathGenerator).toBeUndefined();
+      expect(reused?.spin).toBeUndefined();
+      expect(reused?.retina.spinAcceleration).toBeUndefined();
+    } finally {
+      container.destroy(false);
+    }
   });
 });

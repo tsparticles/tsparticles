@@ -58,6 +58,10 @@ export class MovePluginInstance implements IContainerPlugin {
       gravityOptions = moveOptions.gravity,
       pathOptions = moveOptions.path;
 
+    particle.pathGenerator = undefined;
+    particle.spin = undefined;
+    particle.retina.spinAcceleration = undefined;
+
     particle.moveDecay = decayOffset - getRangeValue(moveOptions.decay, this.#container.engine.getRandomFn());
     particle.pathDelay =
       getRangeValue(pathOptions.delay.value, this.#container.engine.getRandomFn()) * millisecondsToSeconds;

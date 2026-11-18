@@ -19,13 +19,13 @@ describe("Container lifecycle", () => {
    * @param options - The source options to load.
    * @returns The loaded container.
    */
-  async function loadContainer(options: ISourceOptions): Promise<Container> {
+  async function loadContainer(options: ISourceOptions, element?: HTMLCanvasElement): Promise<Container> {
     const id = `container-lifecycle-${(containerId += 1).toString()}`,
       container = await tsParticles.load({
         id,
         options: { autoPlay: false, ...options },
         autoPlay: false,
-        element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+        element: element ?? (createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement),
       });
 
     if (!container) {
@@ -60,6 +60,87 @@ describe("Container lifecycle", () => {
     expect(container.particles.count).to.equal(particleCount);
     expect(container.options).to.be.not.undefined;
     expect(container.options.fpsLimit).to.equal(120);
+
+    container.destroy();
+  });
+
+  it("recomputes Retina-scaled particle motion after a device pixel ratio change", async () => {
+    const descriptor = Object.getOwnPropertyDescriptor(globalThis, "devicePixelRatio");
+    let container: Container | undefined;
+
+    try {
+      Object.defineProperty(globalThis, "devicePixelRatio", { configurable: true, value: 2 });
+      container = await loadContainer({
+        detectRetina: true,
+        particles: {
+          move: { enable: true, speed: 3 },
+          number: { value: 0 },
+        },
+      });
+
+      expect(container.retina.pixelRatio).toBe(2);
+      const firstParticle = container.particles.addParticle();
+
+      expect(firstParticle?.retina.moveSpeed).toBe(6);
+
+      Object.defineProperty(globalThis, "devicePixelRatio", { configurable: true, value: 3 });
+      await container.refresh();
+
+      expect(container.retina.pixelRatio).toBe(3);
+      const resizedParticle = container.particles.addParticle();
+
+      expect(resizedParticle?.retina.moveSpeed).toBe(9);
+    } finally {
+      container?.destroy();
+
+      if (descriptor) {
+        Object.defineProperty(globalThis, "devicePixelRatio", descriptor);
+      } else {
+        Reflect.deleteProperty(globalThis, "devicePixelRatio");
+      }
+    }
+  });
+
+  it("resizes the render canvas and scales particle positions proportionally", async () => {
+    const element = document.createElement("canvas");
+
+    Object.defineProperties(element, {
+      offsetHeight: { configurable: true, value: canvasHeight },
+      offsetWidth: { configurable: true, value: canvasWidth },
+    });
+
+    const container = await loadContainer(
+        {
+          detectRetina: false,
+          particles: { number: { value: 0 } },
+        },
+        element,
+      ),
+      particle = container.particles.addParticle({ x: 100, y: 50 });
+
+    expect(particle).not.toBeUndefined();
+    expect(container.canvas.domElement).toBe(element);
+
+    container.particles.update({ factor: 0, value: 0 });
+    if (particle) {
+      particle.position.x = 100;
+      particle.position.y = 50;
+    }
+
+    Object.defineProperties(element, {
+      offsetHeight: { configurable: true, value: canvasHeight / 2 },
+      offsetWidth: { configurable: true, value: canvasWidth / 2 },
+    });
+    container.started = true;
+
+    expect(container.canvas.resize()).toBe(true);
+    expect(container.canvas.renderCanvas?.width).toBe(canvasWidth / 2);
+    expect(container.canvas.renderCanvas?.height).toBe(canvasHeight / 2);
+
+    container.particles.update({ factor: 0, value: 0 });
+
+    expect(particle?.position.x).toBe(50);
+    expect(particle?.position.y).toBe(25);
 
     container.destroy();
   });

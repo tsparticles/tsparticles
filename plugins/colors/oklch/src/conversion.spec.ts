@@ -55,5 +55,53 @@ describe("OKLCH conversion", () => {
         expect(result).toMatchObject(expected);
       });
     }
+
+    it("preserves alpha and rejects trailing input or out-of-range alpha", () => {
+      expect(manager.parseString("oklch(70% 0.2 30 / 37%)")?.a).toBe(0.37);
+      expect(manager.parseString("oklch(70% 0.2 30) trailing")).toBeUndefined();
+      expect(manager.parseString("oklch(70% 0.2 30 / 101%)")).toBeUndefined();
+      expect(manager.parseString("OKLCH(70% 0.2 30 / 37%)")?.a).toBe(0.37);
+    });
+  });
+
+  describe("canonical OKLCH manager output", () => {
+    it("keeps decimal precision and alpha in direct string parsing", () => {
+      const result = manager.parseStringOklch("oklch(0.712345 0.123456 -12.345678 / 37%)");
+
+      expect(result).toEqual({ a: 0.37, c: 0.123456, h: 347.654322, l: 71.2345 });
+    });
+
+    it("rejects trailing input and alpha outside the supported unit interval", () => {
+      expect(manager.parseStringOklch("oklch(70% 0.2 30) trailing")).toBeUndefined();
+      expect(manager.parseStringOklch("oklch(70% 0.2 30 / 101%)")).toBeUndefined();
+    });
+
+    it("parses CSS hue units and rejects an unsupported missing hue", () => {
+      for (const hue of ["180deg", "200grad", "3.141592653589793rad", ".5turn"]) {
+        expect(manager.parseStringOklch(`oklch(70% 0.2 ${hue})`)?.h).toBeCloseTo(180, 10);
+      }
+
+      expect(manager.parseStringOklch("oklch(70% 0.2 none)")).toBeUndefined();
+    });
+
+    it("parses percentage chroma with the CSS reference scale", () => {
+      const numeric = manager.parseStringOklch("oklch(0.65125 0.13138 104.097 / 37%)"),
+        percentage = manager.parseStringOklch("oklch(65.125% 32.845% 104.097 / 37%)");
+
+      expect(percentage).toEqual(numeric);
+    });
+
+    it("samples and normalizes an OKLCH range without converting through RGB", () => {
+      const result = manager.handleRangeColorOklch({
+        value: { oklch: { c: 0.123456, h: -12.5, l: 71.2345 } },
+      });
+
+      expect(result).toEqual({ a: 1, c: 0.123456, h: 347.5, l: 71.2345 });
+    });
+
+    it("rejects calc() and exponent notation", () => {
+      expect(manager.parseString("oklch(calc(.5) .2 30)")).toBeUndefined();
+      expect(manager.parseString("oklch(5e-1 .2 30)")).toBeUndefined();
+    });
   });
 });

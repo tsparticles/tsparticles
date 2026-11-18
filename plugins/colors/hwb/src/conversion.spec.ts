@@ -27,4 +27,9 @@ describe("HwbColorManager", () => {
       expect(result).toMatchObject(expected);
     });
   }
+
+  it("rejects calc() and exponent notation", () => {
+    expect(manager.parseString("hwb(calc(0) 0% 0%)")).toBeUndefined();
+    expect(manager.parseString("hwb(1e2 0% 0%)")).toBeUndefined();
+  });
 });

@@ -3,6 +3,8 @@ import {
   type Container,
   type CustomEventArgs,
   EventType,
+  type IParticleUpdater,
+  type IPlugin,
   type ISourceOptions,
   LimitMode,
   type Particle,
@@ -11,6 +13,7 @@ import {
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadCircleShape } from "@tsparticles/shape-circle";
 
 const tsParticles = createEngine();
 
@@ -220,6 +223,192 @@ describe("ParticleEvents", async () => {
     } finally {
       tsParticles.removeEventListener(EventType.particleAdded, onAdded);
       tsParticles.removeEventListener(EventType.particleRemoved, onRemoved);
+      fresh.destroy(false);
+    }
+  });
+
+  it("fires destroy hooks once in updater-before-event order", async () => {
+    const fresh = await loadContainer("test-events-destroy-order", {
+        detectRetina: false,
+        autoPlay: false,
+        particles: { number: { value: 0 } },
+      }),
+      particle = fresh.particles.addParticle(),
+      order: string[] = [];
+
+    if (!particle) {
+      throw new Error("test particle not initialized");
+    }
+
+    const updater: IParticleUpdater = {
+      init: () => undefined,
+      isEnabled: () => false,
+      update: () => undefined,
+      particleDestroyed: destroyed => {
+        expect(destroyed).to.equal(particle);
+        order.push("updater");
+      },
+    };
+
+    const onDestroyed = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
+        order.push("event");
+      }
+    };
+
+    fresh.particleUpdaters.push(updater);
+    tsParticles.addEventListener(EventType.particleDestroyed, onDestroyed);
+
+    try {
+      particle.destroy();
+      particle.destroy();
+
+      expect(particle.destroyed).to.be.true;
+      expect(order).to.eql(["updater", "event"]);
+    } finally {
+      fresh.particleUpdaters.splice(fresh.particleUpdaters.indexOf(updater), 1);
+      tsParticles.removeEventListener(EventType.particleDestroyed, onDestroyed);
+      fresh.destroy(false);
+    }
+  });
+
+  it("finishes removal and pooling when a destroy hook throws", async () => {
+    const engine = createEngine(),
+      order: string[] = [],
+      shapeError = new Error("shape destroy hook failed"),
+      pluginError = new Error("container plugin destroy hook failed"),
+      destroyError = new Error("particle updater destroy hook failed"),
+      listenerError = new Error("event listener failed"),
+      plugin: IPlugin = {
+        id: "test-particle-destroy-plugin-errors",
+        getPlugin: async () => ({
+          particleDestroyed: () => {
+            order.push("container plugin");
+            throw pluginError;
+          },
+        }),
+        loadOptions: () => undefined,
+        needsPlugin: () => true,
+      };
+
+    await engine.pluginManager.register(current => {
+      current.pluginManager.addPlugin(plugin);
+    });
+    await loadCircleShape(engine);
+
+    const fresh = await engine.load({
+        id: "test-events-destroy-error",
+        element: createCustomCanvas(width, height) as unknown as HTMLCanvasElement,
+        options: {
+          detectRetina: false,
+          autoPlay: false,
+          particles: { number: { value: 0 } },
+        },
+      }),
+      particle = fresh?.particles.addParticle();
+
+    if (!fresh || !particle) {
+      throw new Error("test particle not initialized");
+    }
+
+    const shapeDrawer = particle.shape ? fresh.shapeDrawers.get(particle.shape) : undefined;
+
+    if (!shapeDrawer) {
+      throw new Error("test particle shape drawer not initialized");
+    }
+
+    const originalParticleDestroy = shapeDrawer.particleDestroy;
+
+    shapeDrawer.particleDestroy = () => {
+      order.push("shape drawer");
+      throw shapeError;
+    };
+
+    const failingUpdater: IParticleUpdater = {
+        init: () => undefined,
+        isEnabled: () => false,
+        update: () => undefined,
+        particleDestroyed: () => {
+          order.push("failing updater");
+          throw destroyError;
+        },
+      },
+      followingUpdater: IParticleUpdater = {
+        init: () => undefined,
+        isEnabled: () => false,
+        update: () => undefined,
+        particleDestroyed: () => order.push("following updater"),
+      };
+
+    const onDestroyedError = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
+        order.push("throwing destroyed listener");
+        throw listenerError;
+      }
+    };
+
+    const onDestroyed = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
+        order.push("destroyed event");
+      }
+    };
+
+    const onRemovedError = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
+        order.push("throwing removed listener");
+        throw listenerError;
+      }
+    };
+
+    const onRemoved = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
+        order.push("removed event");
+      }
+    };
+
+    const removeUpdater = (updater: IParticleUpdater): void => {
+      const updaterIndex = fresh.particleUpdaters.indexOf(updater);
+
+      if (updaterIndex >= 0) {
+        fresh.particleUpdaters.splice(updaterIndex, 1);
+      }
+    };
+
+    fresh.particleUpdaters.push(failingUpdater, followingUpdater);
+    engine.addEventListener(EventType.particleDestroyed, onDestroyedError);
+    engine.addEventListener(EventType.particleDestroyed, onDestroyed);
+    engine.addEventListener(EventType.particleRemoved, onRemovedError);
+    engine.addEventListener(EventType.particleRemoved, onRemoved);
+
+    try {
+      expect(() => {
+        fresh.particles.remove(particle);
+      }).to.throw(shapeError);
+
+      expect(order).to.eql([
+        "shape drawer",
+        "container plugin",
+        "failing updater",
+        "following updater",
+        "throwing destroyed listener",
+        "destroyed event",
+        "throwing removed listener",
+        "removed event",
+      ]);
+      expect(fresh.particles.count).to.equal(0);
+
+      removeUpdater(failingUpdater);
+      removeUpdater(followingUpdater);
+
+      expect(fresh.particles.addParticle()).to.equal(particle);
+    } finally {
+      shapeDrawer.particleDestroy = originalParticleDestroy;
+      removeUpdater(failingUpdater);
+      removeUpdater(followingUpdater);
+      engine.removeEventListener(EventType.particleDestroyed, onDestroyedError);
+      engine.removeEventListener(EventType.particleDestroyed, onDestroyed);
+      engine.removeEventListener(EventType.particleRemoved, onRemovedError);
+      engine.removeEventListener(EventType.particleRemoved, onRemoved);
       fresh.destroy(false);
     }
   });

@@ -188,8 +188,8 @@ Main options:
 - `minHeight` Number or { min: number; max: number; }: The minimum height for fireworks explosions (the lesser, the
   higher).
 - `rate` Number or { min: number; max: number; }: The rate of the fireworks explosions.
-- `saturation` Number or { min: number; max: number; }: The saturation offset applied to the particles color, from -100
-  to 100.
+- `chroma` Number or { min: number; max: number; }: The absolute OKLCH chroma offset applied to split stroke colors.
+  The default range is -0.03 to 0.03.
 - `sounds` Boolean: Whether to play sounds or not.
 - `speed` Number or { min: number; max: number; }: The speed of the fireworks particles.
 - `splitCount` Number or { min: number; max: number; }: The number of particles to split the emitter in.

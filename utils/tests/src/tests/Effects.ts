@@ -11,6 +11,7 @@ import {
   half,
   millisecondsToSeconds,
   originPoint,
+  rgbToOklch,
 } from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
@@ -347,9 +348,8 @@ describe("Effects", async () => {
 
     expect(particle.shadowBlur).to.equal(7);
     expect(particle.shadowColor).to.not.be.undefined;
-    expect(particle.shadowColor.r).to.equal(255);
-    expect(particle.shadowColor.g).to.equal(0);
-    expect(particle.shadowColor.b).to.equal(0);
+    expect(particle.shadowColor).to.deep.include(rgbToOklch({ r: 255, g: 0, b: 0 }));
+    expect(particle.shadowColor.a).to.equal(defaultAlpha);
     expect(particle.shadowOffset.x).to.equal(2);
     expect(particle.shadowOffset.y).to.equal(3);
 

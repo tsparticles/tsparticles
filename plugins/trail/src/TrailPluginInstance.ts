@@ -1,11 +1,11 @@
 import {
   DrawLayer,
   type IContainerPlugin,
-  type IRgb,
+  type IOklcha,
   type PluginManager,
-  getStyleFromRgb,
+  getStyleFromOklch,
   inverseFactorNumerator,
-  rangeColorToRgb,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import type { TrailContainer } from "./types.js";
@@ -15,7 +15,7 @@ const minimumLength = 0;
 /** Trail fill data for rendering */
 interface ITrailFillData {
   /** The trail fill color */
-  color?: IRgb;
+  color?: IOklcha;
   /** The trail fill image */
   image?: HTMLImageElement;
   /** The trail fill opacity */
@@ -57,7 +57,14 @@ export class TrailPluginInstance implements IContainerPlugin {
 
     if (trailFill.color) {
       canvas.render.paintBase(
-        getStyleFromRgb(trailFill.color, container.hdr, trailFill.opacity, container.peakNits, container.hdrMode),
+        getStyleFromOklch(
+          trailFill.color,
+          container.hdr,
+          trailFill.opacity,
+          container.peakNits,
+          container.hdrMode,
+          container.outputColorSpace,
+        ),
       );
 
       handled = true;
@@ -90,7 +97,7 @@ export class TrailPluginInstance implements IContainerPlugin {
       opacity = inverseFactorNumerator / trail.length;
 
     if (trailFill.color) {
-      const fillColor = rangeColorToRgb(this.#pluginManager, trailFill.color);
+      const fillColor = rangeColorToOklch(this.#pluginManager, trailFill.color);
 
       if (!fillColor) {
         return;

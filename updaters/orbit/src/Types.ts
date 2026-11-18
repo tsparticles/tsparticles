@@ -1,6 +1,6 @@
 import type {
   Container,
-  IHsl,
+  IOklcha,
   IParticleRetinaProps,
   IParticlesOptions,
   Particle,
@@ -41,7 +41,7 @@ export type OrbitParticle = Particle & {
   /** Orbit animation speed */
   orbitAnimationSpeed?: number;
   /** Orbit color */
-  orbitColor?: IHsl;
+  orbitColor?: IOklcha;
   /** Orbit opacity */
   orbitOpacity?: number;
   /** Orbit rotation */

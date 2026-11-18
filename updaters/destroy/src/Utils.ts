@@ -1,9 +1,9 @@
 import {
   AnimatableColor,
   type Container,
-  type IHsl,
+  type IOklcha,
   type IParticlesOptions,
-  type IRangeHsl,
+  type IRangeOklch,
   type OptionsColor,
   type Particle,
   PixelMode,
@@ -26,10 +26,7 @@ const defaultOffset = 0,
   increment = 1,
   unbreakableTime = 500,
   minSplitCount = 0,
-  minHue = 0,
   hueRange = 360,
-  minSaturation = 0,
-  maxSaturation = 100,
   minLightness = 0,
   maxLightness = 100;
 
@@ -39,10 +36,10 @@ type SplitColorData = string | RecursivePartial<OptionsColor>;
  * @param parentColor - The parentColor
  * @returns the parent color as AnimatableColor
  */
-function createParentColor(parentColor: IHsl): AnimatableColor {
+function createParentColor(parentColor: IOklcha): AnimatableColor {
   return AnimatableColor.create(undefined, {
     value: {
-      hsl: parentColor,
+      oklch: parentColor,
     },
   });
 }
@@ -52,19 +49,19 @@ function createParentColor(parentColor: IHsl): AnimatableColor {
  * @param offset - The offset
  * @returns the offset color as AnimatableColor
  */
-function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>, random: () => number): AnimatableColor {
+function createOffsetColor(parentColor: IOklcha, offset: Partial<IRangeOklch>, random: () => number): AnimatableColor {
   const offsetH = getRangeValue(offset.h ?? defaultOffset, random),
-    offsetS = getRangeValue(offset.s ?? defaultOffset, random),
+    offsetC = getRangeValue(offset.c ?? defaultOffset, random),
     offsetL = getRangeValue(offset.l ?? defaultOffset, random),
-    h = (parentColor.h + offsetH) % hueRange,
-    s = Math.max(minSaturation, Math.min(maxSaturation, parentColor.s + offsetS)),
+    h = (((parentColor.h + offsetH) % hueRange) + hueRange) % hueRange,
+    c = Math.max(defaultOffset, parentColor.c + offsetC),
     l = Math.max(minLightness, Math.min(maxLightness, parentColor.l + offsetL));
 
   return AnimatableColor.create(undefined, {
     value: {
-      hsl: {
-        h: h < minHue ? h + hueRange : h,
-        s,
+      oklch: {
+        h,
+        c,
         l,
       },
     },
@@ -79,10 +76,10 @@ function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>, random
  * @returns the split color resolved using precedence rules
  */
 function resolveSplitColor(
-  offset: Partial<IRangeHsl> | undefined,
+  offset: Partial<IRangeOklch> | undefined,
   splitColor: SplitColorData | undefined,
   splitParticlesColor: SplitColorData | undefined,
-  parentColor: IHsl | undefined,
+  parentColor: IOklcha | undefined,
   random: () => number,
 ): AnimatableColor | undefined {
   if (offset && parentColor) {

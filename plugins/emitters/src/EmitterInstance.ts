@@ -6,7 +6,7 @@ import {
   type IDelta,
   type IDimension,
   type IDimensionWithMode,
-  type IHsl,
+  type IOklcha,
   type IPaint,
   type IParticlesOptions,
   type IRgb,
@@ -18,18 +18,16 @@ import {
   deepExtend,
   defaultOpacity,
   getRangeValue,
-  getStyleFromHsl,
-  getStyleFromRgb,
+  getStyleFromOklch,
   hMax,
   half,
+  identity,
   isPointInside,
   itemFromSingleOrMultiple,
-  lMax,
   millisecondsToSeconds,
   percentDenominator,
   randomInRangeValue,
-  rangeColorToHsl,
-  sMax,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
@@ -57,7 +55,7 @@ const defaultLifeDelay = 0,
  */
 function setParticlesOptionsFillColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IHsl | IRgb,
+  color: IOklcha | IRgb,
   opacity: number,
   enable: boolean,
 ): void {
@@ -79,7 +77,7 @@ function setParticlesOptionsFillColor(
  */
 function setParticlesOptionsStrokeColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IHsl | IRgb,
+  color: IOklcha | IRgb,
   opacity: number,
   width: number,
 ): void {
@@ -120,7 +118,7 @@ export class EmitterInstance {
   /**
    * The emitter spawn fill color
    */
-  spawnFillColor?: IHsl;
+  spawnFillColor?: IOklcha;
   /**
    * The emitter spawn fill enabled flag
    */
@@ -132,7 +130,7 @@ export class EmitterInstance {
   /**
    * The emitter spawn stroke color
    */
-  spawnStrokeColor?: IHsl;
+  spawnStrokeColor?: IOklcha;
   /**
    * The emitter spawn stroke opacity
    */
@@ -205,11 +203,11 @@ export class EmitterInstance {
     particlesOptions.move.direction ??= this.options.direction;
 
     if (this.options.spawn.fill?.color) {
-      this.spawnFillColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.fill.color);
+      this.spawnFillColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.fill.color);
     }
 
     if (this.options.spawn.stroke?.color) {
-      this.spawnStrokeColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.stroke.color);
+      this.spawnStrokeColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.stroke.color);
     }
 
     const spawnFill = this.options.spawn.fill,
@@ -304,23 +302,32 @@ export class EmitterInstance {
 
     if (fillEnabled) {
       context.fillStyle = this.spawnFillColor
-        ? getStyleFromHsl(
+        ? getStyleFromOklch(
             this.spawnFillColor,
             container.hdr,
             this.spawnFillOpacity ?? defaultOpacity,
             container.peakNits,
             container.hdrMode,
+            container.outputColorSpace,
           )
-        : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+        : getStyleFromOklch(
+            { c: 0, h: 0, l: 0 },
+            container.hdr,
+            defaultOpacity,
+            container.peakNits,
+            container.hdrMode,
+            container.outputColorSpace,
+          );
     }
 
     if (this.spawnStrokeColor) {
-      context.strokeStyle = getStyleFromHsl(
+      context.strokeStyle = getStyleFromOklch(
         this.spawnStrokeColor,
         container.hdr,
         this.spawnStrokeOpacity ?? defaultOpacity,
         container.peakNits,
         container.hdrMode,
+        container.outputColorSpace,
       );
       context.lineWidth = this.spawnStrokeWidth ?? defaultStrokeWidth;
     }
@@ -609,13 +616,13 @@ export class EmitterInstance {
         undefined,
         this.#container.engine.getRandomFn(),
       ) ?? {}) as RecursivePartial<IParticlesOptions>,
-      fillHslAnimation = this.options.spawn.fill?.color?.animation,
+      fillOklchAnimation = this.options.spawn.fill?.color?.animation,
       fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
       fillOpacity =
         this.options.spawn.fill?.opacity === undefined
           ? defaultOpacity
           : getRangeValue(this.options.spawn.fill.opacity, this.#container.engine.getRandomFn()),
-      strokeHslAnimation = this.options.spawn.stroke?.color?.animation,
+      strokeOklchAnimation = this.options.spawn.stroke?.color?.animation,
       strokeOpacity =
         this.options.spawn.stroke?.opacity === undefined
           ? defaultOpacity
@@ -625,12 +632,12 @@ export class EmitterInstance {
           ? defaultStrokeWidth
           : getRangeValue(this.options.spawn.stroke.width, this.#container.engine.getRandomFn()),
       reduceFactor = this.#container.retina.reduceFactor,
-      needsFillColorAnimation = !!fillHslAnimation,
-      needsStrokeColorAnimation = !!strokeHslAnimation,
+      needsFillColorAnimation = !!fillOklchAnimation,
+      needsStrokeColorAnimation = !!strokeOklchAnimation,
       needsShapeData = !!this.#shape,
       needsColorAnimation = needsFillColorAnimation || needsStrokeColorAnimation,
       needsCopy = needsColorAnimation || needsShapeData,
-      maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
+      maxValues = needsColorAnimation ? { c: 0.4, h: hMax, l: identity } : null,
       shapeOptions = this.options.shape;
 
     for (let i = 0; i < quantity * reduceFactor; i++) {
@@ -644,15 +651,15 @@ export class EmitterInstance {
       this.spawnStrokeWidth = strokeWidth;
 
       if (this.spawnFillColor) {
-        if (fillHslAnimation && maxValues) {
+        if (fillOklchAnimation && maxValues) {
           this.spawnFillColor.h = this.#setColorAnimation(
-            fillHslAnimation.h,
+            fillOklchAnimation.h,
             this.spawnFillColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnFillColor.s = this.#setColorAnimation(fillHslAnimation.s, this.spawnFillColor.s, maxValues.s);
-          this.spawnFillColor.l = this.#setColorAnimation(fillHslAnimation.l, this.spawnFillColor.l, maxValues.l);
+          this.spawnFillColor.c = this.#setColorAnimation(fillOklchAnimation.c, this.spawnFillColor.c, maxValues.c);
+          this.spawnFillColor.l = this.#setColorAnimation(fillOklchAnimation.l, this.spawnFillColor.l, maxValues.l);
         }
 
         setParticlesOptionsFillColor(
@@ -664,15 +671,23 @@ export class EmitterInstance {
       }
 
       if (this.spawnStrokeColor) {
-        if (strokeHslAnimation && maxValues) {
+        if (strokeOklchAnimation && maxValues) {
           this.spawnStrokeColor.h = this.#setColorAnimation(
-            strokeHslAnimation.h,
+            strokeOklchAnimation.h,
             this.spawnStrokeColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnStrokeColor.s = this.#setColorAnimation(strokeHslAnimation.s, this.spawnStrokeColor.s, maxValues.s);
-          this.spawnStrokeColor.l = this.#setColorAnimation(strokeHslAnimation.l, this.spawnStrokeColor.l, maxValues.l);
+          this.spawnStrokeColor.c = this.#setColorAnimation(
+            strokeOklchAnimation.c,
+            this.spawnStrokeColor.c,
+            maxValues.c,
+          );
+          this.spawnStrokeColor.l = this.#setColorAnimation(
+            strokeOklchAnimation.l,
+            this.spawnStrokeColor.l,
+            maxValues.l,
+          );
         }
 
         setParticlesOptionsStrokeColor(

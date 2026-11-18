@@ -2,6 +2,7 @@ import {
   type IColor,
   type IColorManager,
   type ILab,
+  type IOklcha,
   type IRangeColor,
   type IRangeLab,
   type IRangeValueColor,
@@ -10,11 +11,17 @@ import {
   type IValueColor,
   defaultAlpha,
   getRangeValue,
+  identity,
+  labToOklch,
+  none,
   parseAlpha,
+  percentDenominator,
 } from "@tsparticles/engine";
 import { labToRgb, labaToRgba } from "./utils.js";
 
-const labRegex = /lab\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
+const labRegex =
+    /^lab\(\s*((?:\d+(?:\.\d*)?|\.\d+))%?\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+))(%?)\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+))(%?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i,
+  labAxisPercentScale = 1.25;
 
 /** LAB color manager */
 export class LabColorManager implements IColorManager {
@@ -30,7 +37,7 @@ export class LabColorManager implements IColorManager {
    * @returns The boolean value
    */
   accepts(input: string): boolean {
-    return input.startsWith("lab");
+    return /^lab/i.test(input);
   }
 
   /**
@@ -47,6 +54,19 @@ export class LabColorManager implements IColorManager {
     }
 
     return labToRgb(labColor); // Handle LAB conversion
+  }
+
+  handleColorOklch(color: IColor): IOklcha | undefined {
+    const colorValue = color.value as IValueColor,
+      labColor = colorValue.lab ?? (color.value as ILab);
+
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
+      return;
+    }
+
+    const alpha = (labColor as ILab & { a?: number }).a ?? defaultAlpha;
+
+    return { ...labToOklch(labColor), a: alpha };
   }
 
   /**
@@ -69,6 +89,23 @@ export class LabColorManager implements IColorManager {
     });
   }
 
+  handleRangeColorOklch(color: IRangeColor): IOklcha | undefined {
+    const colorValue = color.value as IRangeValueColor,
+      labColor = colorValue.lab ?? (color.value as IRangeLab);
+
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
+      return;
+    }
+
+    const resolved = {
+      l: getRangeValue(labColor.l, this.#random),
+      aAxis: getRangeValue(labColor.aAxis, this.#random),
+      bAxis: getRangeValue(labColor.bAxis, this.#random),
+    };
+
+    return { ...labToOklch(resolved), a: defaultAlpha };
+  }
+
   /**
    * Parses a LAB color string to RGBA
    * @param input - The input value
@@ -82,18 +119,67 @@ export class LabColorManager implements IColorManager {
     const result = labRegex.exec(input),
       indexes = {
         l: 1, // Lightness
-        aAxis: 3, // Chroma
-        bAxis: 5, // Hue
-        a: 7, // Optional alpha for LAB
+        aAxis: 2,
+        aAxisPercent: 3,
+        bAxis: 4,
+        bAxisPercent: 5,
+        a: 6, // Optional alpha for LAB
       };
 
-    return result
-      ? labaToRgba({
-          a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          aAxis: Number.parseFloat(result[indexes.aAxis] ?? "0"),
-          bAxis: Number.parseFloat(result[indexes.bAxis] ?? "0"),
-          l: Number.parseFloat(result[indexes.l] ?? "0"),
-        })
-      : undefined; // LAB parsing without alpha
+    if (!result) {
+      return;
+    }
+
+    const color = {
+        aAxis:
+          Number.parseFloat(result[indexes.aAxis] ?? "0") * (result[indexes.aAxisPercent] ? labAxisPercentScale : 1),
+        bAxis:
+          Number.parseFloat(result[indexes.bAxis] ?? "0") * (result[indexes.bAxisPercent] ? labAxisPercentScale : 1),
+        l: Number.parseFloat(result[indexes.l] ?? "0"),
+      },
+      alpha = result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha;
+
+    if (
+      ![color.l, color.aAxis, color.bAxis, alpha].every(Number.isFinite) ||
+      color.l < none ||
+      color.l > percentDenominator ||
+      alpha < none ||
+      alpha > identity
+    ) {
+      return;
+    }
+
+    return labaToRgba({ ...color, a: alpha });
+  }
+
+  parseStringOklch(input: string): IOklcha | undefined {
+    if (!this.accepts(input)) {
+      return;
+    }
+
+    const result = labRegex.exec(input);
+
+    if (!result) {
+      return;
+    }
+
+    const lab = {
+        l: Number.parseFloat(result[1] ?? "0"),
+        aAxis: Number.parseFloat(result[2] ?? "0") * (result[3] ? labAxisPercentScale : 1),
+        bAxis: Number.parseFloat(result[4] ?? "0") * (result[5] ? labAxisPercentScale : 1),
+      },
+      alpha = result[6] ? parseAlpha(result[6]) : defaultAlpha;
+
+    if (
+      ![lab.l, lab.aAxis, lab.bAxis, alpha].every(Number.isFinite) ||
+      lab.l < none ||
+      lab.l > percentDenominator ||
+      alpha < none ||
+      alpha > identity
+    ) {
+      return;
+    }
+
+    return { ...labToOklch(lab), a: alpha };
   }
 }

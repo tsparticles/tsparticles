@@ -6,7 +6,7 @@ import {
   getRandom,
   getRangeValue,
   half,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { RollMode } from "./RollMode.js";
 import type { RollParticle } from "./Types.js";
@@ -19,6 +19,8 @@ const maxAngle = 360;
  */
 export function initParticle(pluginManager: PluginManager, particle: RollParticle): void {
   const rollOpt = particle.options.roll;
+
+  particle.backColor = undefined;
 
   if (!rollOpt?.enable) {
     particle.roll = {
@@ -41,7 +43,7 @@ export function initParticle(pluginManager: PluginManager, particle: RollParticl
   };
 
   if (rollOpt.backColor) {
-    particle.backColor = rangeColorToHsl(pluginManager, rollOpt.backColor);
+    particle.backColor = rangeColorToOklch(pluginManager, rollOpt.backColor);
   } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
     const alterType =
       getRandom(particle.container.engine.getRandomFn()) >= half ? AlterType.darken : AlterType.enlighten;

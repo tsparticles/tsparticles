@@ -5,13 +5,13 @@ import type {
   InteractivityParticlesOptions,
 } from "@tsparticles/plugin-interactivity";
 import type { ILinks } from "./Options/Interfaces/ILinks.js";
-import type { IRgb } from "@tsparticles/engine";
+import type { IOklcha } from "@tsparticles/engine";
 import type { Links } from "./Options/Classes/Links.js";
 
 /** Link data between two particles */
 export interface ILink {
   /** Link line color */
-  color?: IRgb;
+  color?: IOklcha;
   /** Destination particle */
   destination: LinkParticle;
   /** Whether the link crosses the canvas boundaries */
@@ -31,8 +31,8 @@ export interface ILinkTriangle {
 /** Link container type */
 export type LinkContainer = InteractivityContainer & {
   particles: {
-    linksColor?: IRgb | string;
-    linksColors: Map<string, IRgb | string | undefined>;
+    linksColor?: IOklcha | string;
+    linksColors: Map<string, IOklcha | string | undefined>;
   };
 };
 

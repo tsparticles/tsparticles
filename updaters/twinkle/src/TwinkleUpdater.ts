@@ -7,9 +7,9 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  getStyleFromHsl,
+  getStyleFromOklch,
   loadOptionProperty,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
 import { Twinkle } from "./Options/Classes/Twinkle.js";
@@ -61,26 +61,34 @@ export class TwinkleUpdater implements IParticleUpdater {
       twinklingOpacity = twinkling
         ? getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn()) * zOpacityFactor
         : opacity,
-      twinkleFillRgb = rangeColorToHsl(this.#pluginManager, twinkle.fillColor),
-      twinkleStrokeRgb = rangeColorToHsl(this.#pluginManager, twinkle.strokeColor),
+      twinkleFillRgb = rangeColorToOklch(this.#pluginManager, twinkle.fillColor),
+      twinkleStrokeRgb = rangeColorToOklch(this.#pluginManager, twinkle.strokeColor),
       getTwinkleFillStyle = (): string | undefined => {
         if (!twinkleFillRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(twinkleFillRgb, container.hdr, twinklingOpacity, container.peakNits, container.hdrMode);
+        return getStyleFromOklch(
+          twinkleFillRgb,
+          container.hdr,
+          twinklingOpacity,
+          container.peakNits,
+          container.hdrMode,
+          container.outputColorSpace,
+        );
       },
       getTwinkleStrokeStyle = (): string | undefined => {
         if (!twinkleStrokeRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(
+        return getStyleFromOklch(
           twinkleStrokeRgb,
           container.hdr,
           twinklingOpacity,
           container.peakNits,
           container.hdrMode,
+          container.outputColorSpace,
         );
       },
       twinkleFillStyle = getTwinkleFillStyle(),

@@ -691,13 +691,32 @@ export class ParticlesManager {
     this.#array.splice(index, deleteCount);
     this.#removeParticleFromBucket(particle);
 
-    particle.destroy(override);
+    let removalError: unknown,
+      hasRemovalError = false;
 
-    this.#container.dispatchEvent(EventType.particleRemoved, {
-      particle,
-    });
+    try {
+      particle.destroy(override);
+    } catch (error: unknown) {
+      removalError = error;
+      hasRemovalError = true;
+    }
+
+    try {
+      this.#container.dispatchEvent(EventType.particleRemoved, {
+        particle,
+      });
+    } catch (error: unknown) {
+      if (!hasRemovalError) {
+        removalError = error;
+        hasRemovalError = true;
+      }
+    }
 
     this.#addToPool(particle);
+
+    if (hasRemovalError) {
+      throw removalError;
+    }
 
     return true;
   }

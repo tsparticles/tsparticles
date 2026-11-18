@@ -1,4 +1,4 @@
-import { type HdrMode, type IHsl, type ILogger, type Particle, getStyleFromHsl } from "@tsparticles/engine";
+import { type HdrMode, type ILogger, type IOklcha, type Particle, getStyleFromOklch } from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -11,7 +11,7 @@ const stringStart = 0,
  * The image interface, used for keeping useful data for drawing
  */
 export interface IImage {
-  color?: IHsl;
+  color?: IOklcha;
   element?: HTMLImageElement;
   error: boolean;
   loading: boolean;
@@ -27,7 +27,7 @@ export interface IImage {
  * The particle image, containing also some particles options
  */
 export interface IParticleImage {
-  color?: IHsl;
+  color?: IOklcha;
   data: IImage;
   element?: HTMLImageElement;
   loaded?: boolean;
@@ -61,11 +61,12 @@ const currentColorRegex =
  */
 function replaceColorSvg(
   imageShape: IImage,
-  color: IHsl,
+  color: IOklcha,
   opacity: number,
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): string {
   const { svgData } = imageShape;
 
@@ -73,7 +74,7 @@ function replaceColorSvg(
     return "";
   }
 
-  const colorStyle = getStyleFromHsl(color, hdr, opacity, peakNits, mode);
+  const colorStyle = getStyleFromOklch(color, hdr, opacity, peakNits, mode, outputColorSpace);
 
   /* set color to svg element */
   if (svgData.includes("fill")) {
@@ -157,14 +158,22 @@ export async function downloadSvgImage(image: IImage, logger: ILogger): Promise<
 export function replaceImageColor(
   image: IImage,
   imageData: IImageShape,
-  color: IHsl,
+  color: IOklcha,
   particle: Particle,
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
   logger?: ILogger,
 ): Promise<IParticleImage> {
-  const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr, peakNits, mode),
+  const svgColoredData = replaceColorSvg(
+      image,
+      color,
+      particle.opacity?.value ?? defaultOpacity,
+      hdr,
+      peakNits,
+      mode,
+      particle.container.outputColorSpace,
+    ),
     imageRes: IParticleImage = {
       color,
       data: {

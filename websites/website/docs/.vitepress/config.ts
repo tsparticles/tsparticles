@@ -314,6 +314,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
       text: "Versioning & Migration",
       items: [
         { text: "Overview", link: "/migrations/" },
+        { text: "Migrate color animation to OKLCH", link: "/migrations/v5-oklch-colors" },
         { text: "Migrate from v3.x", link: "/migrations/from-v3" },
         { text: "Migrate from v2.x", link: "/migrations/from-v2" },
         { text: "Migrate from v1.x", link: "/migrations/from-v1" },

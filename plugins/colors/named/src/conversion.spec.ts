@@ -22,4 +22,17 @@ describe("NamedColorManager", () => {
       expect(result).toMatchObject(expected);
     });
   }
+
+  it("parses color names case-insensitively and preserves transparent alpha", () => {
+    expect(manager.parseString("ReD")).toEqual({ a: 1, b: 0, g: 0, r: 255 });
+    expect(manager.parseStringOklch("TRANSPARENT")?.a).toBe(0);
+    expect(manager.parseString("transparent")).toEqual({ a: 0, b: 0, g: 0, r: 0 });
+    expect(manager.accepts("transparent")).toBe(true);
+    expect(manager.handleColorOklch({ value: "transparent" })?.a).toBe(0);
+  });
+
+  it("rejects unknown names and trailing input", () => {
+    expect(manager.parseString("not-a-color")).toBeUndefined();
+    expect(manager.parseString("red ")).toBeUndefined();
+  });
 });

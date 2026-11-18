@@ -26,4 +26,31 @@ describe("HsvColorManager", () => {
       expect(result).toMatchObject(expected);
     });
   }
+
+  it("parses legacy integer HSV syntax and preserves alpha for canonical output", () => {
+    const rgba = manager.parseString("hsva(210°, 35%, 42%, 37%)"),
+      oklch = manager.parseStringOklch("hsva(210°, 35%, 42%, 37%)");
+
+    expect(rgba?.a).toBe(0.37);
+    expect(oklch?.a).toBe(0.37);
+    expect(manager.parseString("hsv(210° 35% 42%)")?.a).toBe(1);
+  });
+
+  it("rejects incomplete, fractional, out-of-range, or trailing HSV input", () => {
+    for (const input of [
+      "hsv(210°, 35%)",
+      "hsv(210°, 35.5%, 42%)",
+      "hsv(210°, 101%, 42%)",
+      "hsv(210°, 35%, 42%, 101%)",
+      "hsv(210°, 35%, 42%) trailing",
+    ]) {
+      expect(manager.parseString(input), input).toBeUndefined();
+      expect(manager.parseStringOklch(input), input).toBeUndefined();
+    }
+  });
+
+  it("rejects calc() and exponent notation", () => {
+    expect(manager.parseString("hsv(calc(0)°, 35%, 42%)")).toBeUndefined();
+    expect(manager.parseString("hsv(2e2°, 35%, 42%)")).toBeUndefined();
+  });
 });

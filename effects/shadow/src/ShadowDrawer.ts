@@ -2,16 +2,16 @@ import {
   type Container,
   type ICoordinates,
   type IEffectDrawer,
+  type IOklcha,
   type IOptionsColor,
-  type IRgb,
   type IShapeDrawData,
   type IShapeValues,
   OptionsColor,
   type Particle,
   type PluginManager,
-  getStyleFromRgb,
+  getStyleFromOklch,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 
 const defaultShadowBlur = 0,
@@ -38,7 +38,7 @@ export type ShadowParticle = Particle & {
   /** Shadow blur radius */
   shadowBlur?: number;
   /** Shadow color */
-  shadowColor?: IRgb;
+  shadowColor?: IOklcha;
   /** Shadow offset */
   shadowOffset?: ICoordinates;
 };
@@ -88,7 +88,14 @@ export class ShadowDrawer implements IEffectDrawer {
     context.save();
 
     context.shadowBlur = shadowParticle.shadowBlur ?? defaultShadowBlur;
-    context.shadowColor = getStyleFromRgb(shadowColor, container.hdr, undefined, container.peakNits, container.hdrMode);
+    context.shadowColor = getStyleFromOklch(
+      shadowColor,
+      container.hdr,
+      undefined,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    );
     context.shadowOffsetX = shadowOffset?.x ?? defaultShadowOffsetValue;
     context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
   }
@@ -102,7 +109,7 @@ export class ShadowDrawer implements IEffectDrawer {
     const effectData = particle.effectData,
       shadowColor = OptionsColor.create(new OptionsColor(), effectData?.color);
 
-    particle.shadowColor = rangeColorToRgb(this.#pluginManager, shadowColor);
+    particle.shadowColor = rangeColorToOklch(this.#pluginManager, shadowColor);
     particle.shadowBlur = effectData?.blur ?? defaultShadowBlur;
     particle.shadowOffset = effectData?.offset ?? originPoint;
   }

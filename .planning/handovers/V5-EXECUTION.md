@@ -203,14 +203,23 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E2 — Isolated services — engine ownership, consumer migration, entrypoints and tests accepted; see [E2 evidence](V5-02-ENGINE-SERVICES.md)
 - [x] E3 — Contracts and boundaries — decisions, consumer probes, boundary rules and C0 recorded in [E3 verification](V5-E3-VERIFICATION.md)
 - [x] E4 — Lifecycle — lifecycle regressions, compressed sizes, matched headless timing and forced-GC retention pass; M6/500 and M8/500 p95 exceedances carried to E10 ([status](evidence/e4/measurement-status.md))
-- [ ] E5 — Particle/options and OKLCH
+- [ ] E5 — Particle/options and OKLCH — in progress; see [checkpoint](V5-E5-STATUS.md)
 - [ ] E6 — Collections and spatial index
 - [ ] E7 — Rendering optimization and review closure
 - [ ] E8 — Ecosystem audit closure
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: rerun the corrected E4 Puppeteer benchmark in an environment where headless Chrome launches, then compare p95 timings and forced-GC retention with E0. Later-stage source reviews remain assigned in the engine audit.
+Next action: continue E5 with Particle lifecycle/consumer closure and the
+remaining supported-syntax, schema and custom-manager audit listed in the
+[E5 checkpoint](V5-E5-STATUS.md). Independent cusp references and sRGB/P3
+browser pixel readback now pass, including extended Display-P3 float16 values;
+HDR luminance/tone-mapping conformance and particle cost measurements remain
+open. Group color precedence and delayed SVG completion after reuse cases have
+regressions. Split destroy offsets and Fireworks split chroma now use canonical
+OKLCH h/c/l units, with a passing split-offset regression. E4 timing budget
+follow-up remains recorded for E10; later-stage
+source reviews remain assigned in the engine audit.
 E1 factory and explicit wrapper ownership are accepted; the final suite passes
 23 projects / 1,099 tests, separate CDN copies pass real-browser isolation and
 canvas reuse checks, the Web Components demo renders in Chrome, and Webpack

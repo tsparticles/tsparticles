@@ -115,6 +115,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
           this.#container.hdr,
           this.#container.peakNits,
           this.#container.hdrMode,
+          this.#container.outputColorSpace,
         );
       } else if (rawData) {
         drawPolygonMask(
@@ -125,6 +126,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
           this.#container.hdr,
           this.#container.peakNits,
           this.#container.hdrMode,
+          this.#container.outputColorSpace,
         );
       }
     }

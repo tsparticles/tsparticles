@@ -1015,5 +1015,92 @@ describe("ShapeGeometry", async () => {
 
       expect(() => image.particleInit?.(container, particle as unknown as Particle)).to.not.throw();
     });
+
+    it("does not apply a delayed colorized image to a particle after reuse", async () => {
+      const instances: {
+        addEventListener: (type: string, listener: () => void) => void;
+        dispatch: (type: string) => void;
+      }[] = [];
+      class DeferredImage {
+        readonly #listeners = new Map<string, (() => void)[]>();
+
+        constructor() {
+          instances.push(this);
+        }
+
+        addEventListener(type: string, listener: () => void): void {
+          const listeners = this.#listeners.get(type) ?? [];
+
+          listeners.push(listener);
+          this.#listeners.set(type, listeners);
+        }
+
+        set src(_value: string) {
+          // The test releases the image load after the particle is reused.
+        }
+
+        dispatch(type: string): void {
+          for (const listener of this.#listeners.get(type) ?? []) {
+            listener();
+          }
+        }
+      }
+
+      vi.stubGlobal("Image", DeferredImage as unknown as typeof Image);
+
+      try {
+        const imageEngine = tsParticles as typeof tsParticles & {
+            getImages: (container: Container) => {
+              error: boolean;
+              loading: boolean;
+              name: string;
+              source: string;
+              svgData: string;
+              type: string;
+            }[];
+          },
+          imageData = {
+            height: 10,
+            name: "delayed-svg",
+            replaceColor: true,
+            src: "delayed.svg",
+            width: 10,
+          },
+          particle = {
+            container,
+            destroyed: false,
+            getFillColor: () => ({ a: 1, c: 0.1, h: 220, l: 60 }),
+            id: 10,
+            shape: "image",
+            shapeClose: true,
+            shapeData: imageData,
+          } as unknown as Particle & { image?: unknown };
+
+        imageEngine.getImages(container).push({
+          error: false,
+          loading: false,
+          name: "delayed-svg",
+          source: "delayed.svg",
+          svgData: '<svg><path fill="currentColor" /></svg>',
+          type: "svg",
+        });
+
+        image.particleInit?.(container, particle);
+
+        expect(instances).to.have.length(1);
+
+        particle.id = 11;
+        particle.shape = "circle";
+        particle.shapeData = {};
+
+        instances[0]?.dispatch("load");
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(particle.image).to.be.undefined;
+        expect(particle.shapeClose).to.be.true;
+      } finally {
+        vi.unstubAllGlobals();
+      }
+    });
   });
 });

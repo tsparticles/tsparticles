@@ -3,11 +3,11 @@ import {
   type HdrMode,
   type IShapeDrawData,
   Vector,
-  alterHsl,
-  getHslFromAnimation,
+  alterOklch,
+  getOklchFromAnimation,
   getRandom,
   getRangeValue,
-  getStyleFromHsl,
+  getStyleFromOklch,
   half,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
@@ -472,14 +472,14 @@ function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData
 
 /**
  *
- * @param hasStroke
- * @param frontFill
- * @param frontStroke
- * @param shapeData
- * @param particle
- * @param hdr
- * @param peakNits
- * @param mode
+ * @param hasStroke - Whether the ribbon has a stroke.
+ * @param frontFill - The front fill style.
+ * @param frontStroke - The front stroke style.
+ * @param shapeData - The ribbon shape options.
+ * @param particle - The particle being drawn.
+ * @param hdr - Whether HDR output is active.
+ * @param peakNits - The HDR peak brightness.
+ * @param mode - The HDR rendering mode.
  */
 function resolveBackFill(
   hasStroke: boolean,
@@ -496,28 +496,28 @@ function resolveBackFill(
   if (shapeData?.backColor) {
     backFill = shapeData.backColor;
   } else if (shapeData?.darken?.enable) {
-    const frontHsl = getHslFromAnimation(particle.fillColor);
+    const frontHsl = getOklchFromAnimation(particle.fillColor);
 
     if (frontHsl) {
-      const altered = alterHsl(
+      const altered = alterOklch(
         frontHsl,
         AlterType.darken,
         getRangeValue(shapeData.darken.value, particle.container.engine.getRandomFn()),
       );
 
-      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
+      backFill = getStyleFromOklch(altered, hdr, undefined, peakNits, mode, particle.container.outputColorSpace);
     }
   } else if (shapeData?.enlighten?.enable) {
-    const frontHsl = getHslFromAnimation(particle.fillColor);
+    const frontHsl = getOklchFromAnimation(particle.fillColor);
 
     if (frontHsl) {
-      const altered = alterHsl(
+      const altered = alterOklch(
         frontHsl,
         AlterType.enlighten,
         getRangeValue(shapeData.enlighten.value, particle.container.engine.getRandomFn()),
       );
 
-      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
+      backFill = getStyleFromOklch(altered, hdr, undefined, peakNits, mode, particle.container.outputColorSpace);
     }
   }
 
@@ -526,15 +526,15 @@ function resolveBackFill(
 
 /**
  *
- * @param context
- * @param currentBase
- * @param nextBase
- * @param currentSide
- * @param nextSide
- * @param isFirst
- * @param isLast
- * @param hasFill
- * @param hasStroke
+ * @param context - The rendering context.
+ * @param currentBase - The current base point.
+ * @param nextBase - The next base point.
+ * @param currentSide - The current side point.
+ * @param nextSide - The next side point.
+ * @param isFirst - Whether this is the first segment.
+ * @param isLast - Whether this is the final segment.
+ * @param hasFill - Whether to fill the segment.
+ * @param hasStroke - Whether to stroke the segment.
  */
 function drawEdgeSegments(
   context: OffscreenCanvasRenderingContext2D,

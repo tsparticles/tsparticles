@@ -8,10 +8,10 @@ any decision that fails numerical, consumer, or browser evidence.
 ## Canonical runtime model
 
 - Particle color and color animation use `IOklch` (`l`, `c`, `h`) as the
-  canonical runtime model. `IOklch.l` uses the normalized OKLab/OKLCH scale,
-  `c` uses the standard OKLab scale, and `h` is degrees normalized to
-  `[0, 360)`. RGB, HSL, HSV, HWB, Lab, LCH, OKLab, CSS strings, arrays, ranges,
-  and color-manager extensions remain supported inputs.
+  canonical runtime model. `IOklch.l` uses the 0–100 OKLab/OKLCH scale, `c`
+  uses the standard OKLab scale, and `h` is degrees normalized to `[0, 360)`.
+  RGB, HSL, HSV, HWB, Lab, LCH, OKLab, CSS strings, arrays, ranges, and
+  color-manager extensions remain supported inputs.
 - Runtime coordinates remain floating point. Do not quantize or clamp during
   parsing, animation, or conversion through OKLab. Gamut handling happens once
   at the output boundary. Invalid/non-finite option values are diagnosed at
@@ -32,6 +32,11 @@ any decision that fails numerical, consumer, or browser evidence.
   alpha, and the currently characterized input-format precedence. Do not add a
   new precedence for objects containing multiple model keys until a test
   captures existing behavior.
+- CSS hue-bearing functions HSL, HWB, LCH, and OKLCH accept unitless degrees
+  and `deg`, `°`, `rad`, `grad`, or `turn` angles. The `none` missing-component
+  keyword is rejected at the parser boundary because the canonical model has no
+  missing-component representation. RGB accepts numeric or percentage channels;
+  RGB and HSL accept modern slash alpha and retain legacy comma alpha.
 - Keep HSL and RGB conversion helpers as compatibility inputs/outputs where
   used by consumers. Remove `IHsl` from particle runtime animation contracts,
   not from accepted option syntax or conversion APIs. Legacy animation options

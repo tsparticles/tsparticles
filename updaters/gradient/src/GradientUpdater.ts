@@ -11,12 +11,12 @@ import {
   StartValueType,
   doublePI,
   executeOnSingleOrMultiple,
-  getHslAnimationFromHsl,
+  getOklchAnimationFromOklch,
   getRandom,
   getRangeMax,
   getRangeMin,
   getRangeValue,
-  getStyleFromHsl,
+  getStyleFromOklch,
   half,
   itemFromSingleOrMultiple,
   millisecondsToSeconds,
@@ -24,7 +24,7 @@ import {
   originPoint,
   percentDenominator,
   randomInRangeValue,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types.js";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
@@ -80,15 +80,22 @@ export class GradientUpdater implements IParticleUpdater {
             );
 
     for (const { stop, value, opacity: cOpacity } of gradient.colors) {
-      const hsl = {
+      const oklch = {
+        c: value.c.value,
         h: value.h.value,
-        s: value.s.value,
         l: value.l.value,
       };
 
       fillGradient.addColorStop(
         stop,
-        getStyleFromHsl(hsl, container.hdr, cOpacity?.value ?? opacity, container.peakNits, container.hdrMode),
+        getStyleFromOklch(
+          oklch,
+          container.hdr,
+          cOpacity?.value ?? opacity,
+          container.peakNits,
+          container.hdrMode,
+          container.outputColorSpace,
+        ),
       );
     }
 
@@ -100,6 +107,8 @@ export class GradientUpdater implements IParticleUpdater {
    * @param particle - The particle to process
    */
   init(particle: GradientParticle): void {
+    particle.gradient = undefined;
+
     const gradient = itemFromSingleOrMultiple(
       particle.options.gradient,
       undefined,
@@ -158,16 +167,20 @@ export class GradientUpdater implements IParticleUpdater {
     const reduceDuplicates = particle.options.reduceDuplicates;
 
     for (const grColor of gradient.colors) {
-      const grHslColor = rangeColorToHsl(this.#pluginManager, grColor.value, particle.id, reduceDuplicates);
+      const grOklchColor = rangeColorToOklch(this.#pluginManager, grColor.value, particle.id, reduceDuplicates);
 
-      if (!grHslColor) {
+      if (!grOklchColor) {
         continue;
       }
 
-      const grHslAnimation = getHslAnimationFromHsl(grHslColor, grColor.value.animation, container.retina.reduceFactor),
+      const grOklchAnimation = getOklchAnimationFromOklch(
+          grOklchColor,
+          grColor.value.animation,
+          container.retina.reduceFactor,
+        ),
         addColor = {
           stop: grColor.stop,
-          value: grHslAnimation,
+          value: grOklchAnimation,
           opacity: grColor.opacity
             ? {
                 enable: grColor.opacity.animation.enable,
@@ -237,7 +250,7 @@ export class GradientUpdater implements IParticleUpdater {
       !particle.destroyed &&
       !particle.spawning &&
       (!!particle.gradient?.angle.enable ||
-        (particle.gradient?.colors.some(c => c.value.h.enable || c.value.s.enable || c.value.l.enable) ?? false))
+        (particle.gradient?.colors.some(c => c.value.h.enable || c.value.c.enable || c.value.l.enable) ?? false))
     );
   }
 

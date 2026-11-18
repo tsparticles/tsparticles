@@ -42,23 +42,20 @@ export class DestroyUpdater implements IParticleUpdater {
    */
   init(particle: DestroyParticle): void {
     const container = this.#container,
-      particlesOptions = particle.options,
-      destroyOptions = particlesOptions.destroy;
+      destroyOptions = particle.options.destroy,
+      destroyBounds: NonNullable<DestroyParticle["destroyBounds"]> = {};
+
+    particle.exploding = undefined;
+    particle.splitCount = 0;
+    particle.unbreakableUntil = undefined;
+    particle.destroyBounds = destroyBounds;
 
     if (!destroyOptions) {
       return;
     }
 
-    particle.exploding = undefined;
-
-    particle.splitCount = 0;
-
-    const destroyBoundsOptions = destroyOptions.bounds;
-
-    particle.destroyBounds ??= {};
-
-    const { bottom, left, right, top } = destroyBoundsOptions,
-      { destroyBounds } = particle,
+    const destroyBoundsOptions = destroyOptions.bounds,
+      { bottom, left, right, top } = destroyBoundsOptions,
       canvasSize = container.canvas.size;
 
     if (bottom) {

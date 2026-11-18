@@ -2,7 +2,7 @@ import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
 import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "../Interfaces/IParticleCanvasBounds.js";
 import { Vector, Vector3d } from "./Vectors.js";
-import { alterHsl, getHslFromAnimation } from "../../Utils/ColorUtils.js";
+import { alterOklch, getOklchFromAnimation } from "../../Utils/ColorUtils.js";
 import {
   calcExactPositionOrRandomFromSize,
   clamp,
@@ -36,10 +36,10 @@ import { EventType } from "../../Enums/Types/EventType.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
 import type { IEffect } from "../../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
-import type { IHsl } from "../Interfaces/Colors.js";
-import type { IParticleHslAnimation } from "../Interfaces/IParticleHslAnimation.js";
+import type { IOklcha } from "../Interfaces/Colors.js";
 import type { IParticleModifier } from "../Interfaces/IParticleModifier.js";
 import type { IParticleNumericValueAnimation } from "../Interfaces/IParticleValueAnimation.js";
+import type { IParticleOklchAnimation } from "../Interfaces/IParticleOklchAnimation.js";
 import type { IParticleOpacityData } from "../Interfaces/IParticleOpacityData.js";
 import type { IParticleRetinaProps } from "../Interfaces/IParticleRetinaProps.js";
 import type { IParticleRoll } from "../Interfaces/IParticleRoll.js";
@@ -174,6 +174,7 @@ function normalizeAngle(angle: number, modulus: number): number {
 function initParticleState(particle: Particle, id: number, group?: string): void {
   particle.id = id;
   particle.group = group;
+  particle.randomIndexData = undefined;
   particle.justWarped = false;
   particle.effectClose = true;
   particle.shapeClose = true;
@@ -378,7 +379,7 @@ export class Particle {
   /**
    * Particles back color
    */
-  backColor?: IHsl;
+  backColor?: IOklcha;
 
   /** The container that owns this particle and its engine services. */
   readonly container: Container;
@@ -411,7 +412,7 @@ export class Particle {
   /**
    * Sets the particle fill color
    */
-  fillColor?: IParticleHslAnimation;
+  fillColor?: IParticleOklchAnimation;
 
   /**
    * Sets the particle fill status
@@ -544,7 +545,7 @@ export class Particle {
   /**
    * Sets the particle stroke color
    */
-  strokeColor?: IParticleHslAnimation;
+  strokeColor?: IParticleOklchAnimation;
 
   /**
    * Sets the particle stroke opacity
@@ -630,19 +631,52 @@ export class Particle {
     const container = this.container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
 
-    shapeDrawer?.particleDestroy?.(this);
+    let destroyError: unknown,
+      hasDestroyError = false;
+
+    try {
+      shapeDrawer?.particleDestroy?.(this);
+    } catch (error: unknown) {
+      destroyError = error;
+      hasDestroyError = true;
+    }
 
     for (const plugin of container.particleDestroyedPlugins) {
-      plugin.particleDestroyed?.(this, override);
+      try {
+        plugin.particleDestroyed?.(this, override);
+      } catch (error: unknown) {
+        if (!hasDestroyError) {
+          destroyError = error;
+          hasDestroyError = true;
+        }
+      }
     }
 
     for (const updater of container.particleUpdaters) {
-      updater.particleDestroyed?.(this, override);
+      try {
+        updater.particleDestroyed?.(this, override);
+      } catch (error: unknown) {
+        if (!hasDestroyError) {
+          destroyError = error;
+          hasDestroyError = true;
+        }
+      }
     }
 
-    this.container.dispatchEvent(EventType.particleDestroyed, {
-      particle: this,
-    });
+    try {
+      container.dispatchEvent(EventType.particleDestroyed, {
+        particle: this,
+      });
+    } catch (error: unknown) {
+      if (!hasDestroyError) {
+        destroyError = error;
+        hasDestroyError = true;
+      }
+    }
+
+    if (hasDestroyError) {
+      throw destroyError;
+    }
   }
 
   /**
@@ -669,8 +703,8 @@ export class Particle {
    * Gets the particle fill color
    * @returns the fill color object
    */
-  getFillColor(): IHsl | undefined {
-    return this.#getRollColor(this.#applyModifiers(getHslFromAnimation(this.fillColor), m => m.fillColor));
+  getFillColor(): IOklcha | undefined {
+    return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.fillColor), m => m.fillColor));
   }
 
   /**
@@ -746,8 +780,8 @@ export class Particle {
    * Gets the particle stroke color
    * @returns the stroke color
    */
-  getStrokeColor(): IHsl | undefined {
-    return this.#getRollColor(this.#applyModifiers(getHslFromAnimation(this.strokeColor), m => m.strokeColor));
+  getStrokeColor(): IOklcha | undefined {
+    return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.strokeColor), m => m.strokeColor));
   }
 
   /**
@@ -1129,7 +1163,7 @@ export class Particle {
     return shapeResult ?? effectResult ?? defaultResult;
   }
 
-  #getRollColor(color?: IHsl): IHsl | undefined {
+  #getRollColor(color?: IOklcha): IOklcha | undefined {
     if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
       return color;
     }
@@ -1143,7 +1177,7 @@ export class Particle {
     }
 
     if (this.roll.alter) {
-      return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
+      return alterOklch(color, this.roll.alter.type, this.roll.alter.value);
     }
 
     return color;

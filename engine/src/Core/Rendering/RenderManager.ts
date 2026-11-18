@@ -7,7 +7,7 @@ import {
   originPoint,
   zIndexFactorOffset,
 } from "../Utils/Constants.js";
-import { getStyleFromHsl, rangeColorToHsl } from "../../Utils/ColorUtils.js";
+import { getStyleFromOklch, rangeColorToOklch } from "../../Utils/ColorUtils.js";
 import type { CanvasManager } from "../Canvas/CanvasManager.js";
 import type { Container } from "../Container/Container.js";
 import { DrawLayer } from "../../Enums/DrawLayer.js";
@@ -15,7 +15,7 @@ import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
 import type { IDrawParticleParams } from "../Interfaces/IDrawParticleParams.js";
 import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
-import type { IHsl } from "../Interfaces/Colors.js";
+import type { IOklcha } from "../Interfaces/Colors.js";
 import type { IParticleColorStyle } from "../Interfaces/IParticleColorStyle.js";
 import type { IParticleTransformValues } from "../Interfaces/IParticleTransformValues.js";
 import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
@@ -76,7 +76,7 @@ export class RenderManager {
   #postDrawUpdaters: IParticleUpdater[];
   #preDrawUpdaters: IParticleUpdater[];
   readonly #reusableColorStyles: IParticleColorStyle = {};
-  readonly #reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
+  readonly #reusablePluginColors: (IOklcha | undefined)[] = [undefined, undefined];
   readonly #reusableTransform: Partial<IParticleTransformValues> = {};
 
   /**
@@ -245,10 +245,24 @@ export class RenderManager {
       transform = this.#reusableTransform,
       colorStyles = this.#reusableColorStyles,
       fill = fColor
-        ? getStyleFromHsl(fColor, container.hdr, fillOpacity * opacity, container.peakNits, container.hdrMode)
+        ? getStyleFromOklch(
+            fColor,
+            container.hdr,
+            fillOpacity * opacity,
+            container.peakNits,
+            container.hdrMode,
+            container.outputColorSpace,
+          )
         : undefined,
       stroke = sColor
-        ? getStyleFromHsl(sColor, container.hdr, strokeOpacity * opacity, container.peakNits, container.hdrMode)
+        ? getStyleFromOklch(
+            sColor,
+            container.hdr,
+            strokeOpacity * opacity,
+            container.peakNits,
+            container.hdrMode,
+            container.outputColorSpace,
+          )
         : fill;
 
     transform.a = transform.b = transform.c = transform.d = undefined;
@@ -719,16 +733,16 @@ export class RenderManager {
     return this.#layers[layer];
   }
 
-  #getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
-    let fColor: IHsl | undefined, sColor: IHsl | undefined;
+  #getPluginParticleColors(particle: Particle): (IOklcha | undefined)[] {
+    let fColor: IOklcha | undefined, sColor: IOklcha | undefined;
 
     for (const plugin of this.#colorPlugins) {
       if (!fColor && plugin.particleFillColor) {
-        fColor = rangeColorToHsl(this.#pluginManager, plugin.particleFillColor(particle));
+        fColor = rangeColorToOklch(this.#pluginManager, plugin.particleFillColor(particle));
       }
 
       if (!sColor && plugin.particleStrokeColor) {
-        sColor = rangeColorToHsl(this.#pluginManager, plugin.particleStrokeColor(particle));
+        sColor = rangeColorToOklch(this.#pluginManager, plugin.particleStrokeColor(particle));
       }
 
       if (fColor && sColor) {

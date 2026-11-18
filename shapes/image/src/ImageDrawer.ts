@@ -128,7 +128,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src),
+      particleId = particle.id;
 
     if (!image) {
       return;
@@ -173,6 +174,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
       if (!imageRes.ratio) {
         imageRes.ratio = 1;
+      }
+
+      if (particle.destroyed || particle.id !== particleId || particle.shapeData !== imageData) {
+        return;
       }
 
       const close = imageData.close ?? particle.shapeClose,

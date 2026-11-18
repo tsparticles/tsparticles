@@ -9,7 +9,7 @@ import {
   FullScreen,
   HDROptions,
   HdrMode,
-  HslAnimation,
+  OklchAnimation,
   LimitMode,
   Move,
   MoveAngle,
@@ -79,6 +79,70 @@ async function loadContainer(options: Record<string, unknown> = {}) {
 
 describe("Options load tests", () => {
   globalThis.window = TestWindow;
+
+  it("does not mutate caller-owned options while loading and refreshing particles", async () => {
+    const sourceOptions = {
+        autoPlay: false,
+        detectRetina: false,
+        particles: {
+          groups: { one: { move: { drift: 2, speed: { max: 4, min: 2 } }, number: { value: 1 } } },
+          move: { drift: 1, speed: 3 },
+          number: { value: 1 },
+        },
+      },
+      originalOptions = structuredClone(sourceOptions),
+      container = await loadContainer(sourceOptions);
+
+    container.particles.addParticle(undefined, { move: { speed: 5 } }, "one");
+    await container.refresh();
+
+    expect(sourceOptions).toEqual(originalOptions);
+
+    container.destroy();
+  });
+
+  it("keeps nested particle options independent between live particles", async () => {
+    const container = await loadContainer({
+      particles: {
+        move: { speed: 3 },
+        number: { value: 0 },
+        paint: [{ fill: { opacity: 0.5 }, stroke: { opacity: 0.75, width: { min: 1, max: 3 } } }],
+        shape: { options: { circle: { particles: { move: { speed: 2 } } } } },
+      },
+    });
+    const first = container.particles.addParticle(),
+      second = container.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+    expect(second).not.toBeUndefined();
+    expect(first?.options).not.toBe(second?.options);
+    expect(first?.options.move).not.toBe(second?.options.move);
+    expect(first?.options.paint).not.toBe(second?.options.paint);
+    expect(first?.shapeData).not.toBe(second?.shapeData);
+
+    if (first && second) {
+      const firstPaint = Array.isArray(first.options.paint) ? first.options.paint[0] : first.options.paint,
+        secondPaint = Array.isArray(second.options.paint) ? second.options.paint[0] : second.options.paint;
+
+      expect(firstPaint).not.toBe(secondPaint);
+      expect(firstPaint?.fill).not.toBe(secondPaint?.fill);
+      expect(firstPaint?.stroke).not.toBe(secondPaint?.stroke);
+
+      first.options.move.speed = 7;
+      firstPaint?.fill?.load({ opacity: 0.2 });
+      firstPaint?.stroke?.load({ width: 9 });
+      if (first.shapeData?.particles?.move) {
+        first.shapeData.particles.move.speed = 8;
+      }
+
+      expect(second.options.move.speed).toBe(2);
+      expect(secondPaint?.fill?.opacity).toBe(0.5);
+      expect(secondPaint?.stroke?.width).toEqual({ min: 1, max: 3 });
+      expect(second.shapeData?.particles?.move?.speed).toBe(2);
+    }
+
+    container.destroy();
+  });
 
   it("loadProperty keeps defaults on undefined and sets primitives/objects otherwise", () => {
     const target: TestPropertyTarget = { value: "default" };
@@ -197,18 +261,18 @@ describe("Options load tests", () => {
     expect(options.enable).toBe(true);
   });
 
-  it("HslAnimation owns the three color channels", () => {
-    const options = new HslAnimation();
+  it("OklchAnimation owns the three color channels", () => {
+    const options = new OklchAnimation();
 
     expect(options.h).toBeInstanceOf(ColorAnimation);
-    expect(options.s).toBeInstanceOf(ColorAnimation);
+    expect(options.c).toBeInstanceOf(ColorAnimation);
     expect(options.l).toBeInstanceOf(ColorAnimation);
     expect(options.h.sync).toBe(true);
 
-    options.load({ h: { enable: true, offset: 30 }, s: { offset: 12 } });
+    options.load({ h: { enable: true, offset: 30 }, c: { offset: 0.12 } });
     expect(options.h.enable).toBe(true);
     expect(options.h.offset).toBe(30);
-    expect(options.s.offset).toBe(12);
+    expect(options.c.offset).toBe(0.12);
     expect(options.l.offset).toBe(0);
   });
 
@@ -234,7 +298,7 @@ describe("Options load tests", () => {
     const options = new AnimatableColor();
 
     expect(options.value).toBe("");
-    expect(options.animation).toBeInstanceOf(HslAnimation);
+    expect(options.animation).toBeInstanceOf(OklchAnimation);
 
     options.load({ value: "#123", animation: { h: { enable: true } } });
     expect(options.value).toBe("#123");
@@ -243,6 +307,12 @@ describe("Options load tests", () => {
     const copy = AnimatableColor.create(options, "#f00");
 
     expect(copy.value).toBe("#f00");
+  });
+
+  it("rejects legacy HSL animation with a migration hint", () => {
+    const options = new AnimatableColor();
+
+    expect(() => options.load({ animation: { s: { enable: true } } as never })).toThrow("animation.s");
   });
 
   it("Background defaults and merge semantics", () => {
@@ -608,6 +678,51 @@ describe("Options load tests", () => {
 
     expect(particles.groups.g1.number?.value).toBe(10);
     expect(particles.groups.g1.move?.enable).toBe(true);
+
+    container.destroy(false);
+  });
+
+  it("uses the selected group's shape options when creating a grouped particle", async () => {
+    const container = await loadContainer({
+      particles: {
+        number: { value: 0 },
+        shape: { type: "circle" },
+        effect: { type: "baseEffect" },
+        groups: {
+          squareGroup: {
+            effect: { type: "groupEffect" },
+            number: { value: 0 },
+            shape: { type: "square" },
+          },
+        },
+      },
+    });
+
+    const groupOptions = container.actualOptions.particles.groups.squareGroup,
+      particle = container.particles.addParticle(undefined, groupOptions, "squareGroup");
+
+    expect(particle?.group).toBe("squareGroup");
+    expect(particle?.shape).toBe("square");
+    expect(particle?.effect).toBe("groupEffect");
+
+    container.destroy(false);
+  });
+
+  it("clears a particle's random index when reusing it from the pool", async () => {
+    const container = await loadContainer({ particles: { number: { value: 0 } } }),
+      first = container.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+
+    if (first) {
+      first.randomIndexData = 3;
+      container.particles.remove(first);
+
+      const reused = container.particles.addParticle();
+
+      expect(reused).toBe(first);
+      expect(reused?.randomIndexData).toBeUndefined();
+    }
 
     container.destroy(false);
   });

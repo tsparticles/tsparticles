@@ -51,6 +51,25 @@ describe("event listener removal during dispatch", () => {
 });
 
 describe("event listener snapshots", () => {
+  it("runs every listener before rethrowing the first listener error", () => {
+    const dispatcher = new EventDispatcher(),
+      received: string[] = [],
+      listenerError = new Error("listener failed");
+
+    dispatcher.addEventListener("test", () => {
+      received.push("throwing");
+      throw listenerError;
+    });
+    dispatcher.addEventListener("test", () => {
+      received.push("following");
+    });
+
+    expect(() => {
+      dispatcher.dispatchEvent("test");
+    }).to.throw(listenerError);
+    expect(received).toEqual(["throwing", "following"]);
+  });
+
   it("does not call a listener twice when it re-registers itself", () => {
     const dispatcher = new EventDispatcher(),
       received: string[] = [],

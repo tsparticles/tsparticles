@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E5 color output check</title>
+    <style>
+      body {
+        background: #202124;
+        color: #f1f3f4;
+        font:
+          14px ui-monospace,
+          monospace;
+        margin: 1rem;
+      }
+
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <pre id="result">Running…</pre>
+    <script type="module">
+      const resultNode = document.querySelector("#result");
+
+      addEventListener("error", event => {
+        resultNode.textContent = `Error: ${event.message} at ${event.filename}:${event.lineno}`;
+      });
+
+      addEventListener("unhandledrejection", event => {
+        resultNode.textContent = `Unhandled rejection: ${event.reason}`;
+      });
+
+      import { getStyleFromOklch } from "/engine/dist/esm/Utils/ColorUtils.js";
+
+      const cases = [
+          {
+            expected: [58.7928, 80.9115, 210.7014],
+            label: "sRGB CSS Color 4 / WPT blue",
+            oklch: { c: 0.2, h: 270, l: 50 },
+            target: "srgb",
+            tolerance: 2,
+          },
+          {
+            expected: [255, 139.23, 0],
+            label: "Display-P3 CSS Color 4 §14.2 high-chroma example",
+            oklch: { c: 0.27, h: 60, l: 76 },
+            target: "display-p3",
+            tolerance: 9,
+          },
+          {
+            colorType: "float16",
+            expected: [1.1436441914536786, 0.4496716770410463, -0.38981410959680357],
+            hdr: true,
+            label: "Extended Display-P3 HDR style through float16 canvas",
+            oklch: { c: 0.27, h: 60, l: 76 },
+            target: "display-p3",
+            tolerance: 0.001,
+          },
+        ],
+        results = [];
+
+      for (const testCase of cases) {
+        const canvas = document.createElement("canvas"),
+          context = canvas.getContext("2d", {
+            colorSpace: testCase.target,
+            colorType: testCase.colorType ?? "unorm8",
+          });
+
+        if (!context) {
+          results.push({ label: testCase.label, status: "unsupported-context" });
+          continue;
+        }
+
+        const style = getStyleFromOklch(testCase.oklch, testCase.hdr ?? false, 1, 400, undefined, testCase.target);
+
+        context.fillStyle = style;
+        context.fillRect(0, 0, 1, 1);
+
+        let imageData,
+          readbackMode = "context-default";
+
+        try {
+          imageData = context.getImageData(0, 0, 1, 1, {
+            colorSpace: testCase.target,
+            pixelFormat: testCase.colorType === "float16" ? "rgba-float16" : "rgba-unorm8",
+          });
+          readbackMode = "explicit-colorSpace";
+        } catch {
+          imageData = context.getImageData(0, 0, 1, 1);
+        }
+
+        const pixel = [...imageData.data.slice(0, 3)],
+          difference = pixel.map((channel, index) => Math.abs(channel - testCase.expected[index])),
+          passed = difference.every(channel => channel <= testCase.tolerance);
+
+        results.push({
+          context: context.getContextAttributes?.(),
+          difference,
+          expected: testCase.expected,
+          label: testCase.label,
+          pixel,
+          readbackColorSpace: imageData.colorSpace,
+          readbackMode,
+          status: passed ? "pass" : "fail",
+          style,
+          target: testCase.target,
+          tolerance: testCase.tolerance,
+        });
+      }
+
+      resultNode.textContent = JSON.stringify(
+        {
+          browser: navigator.userAgent,
+          date: new Date().toISOString(),
+          results,
+        },
+        null,
+        2,
+      );
+    </script>
+  </body>
+</html>

@@ -1,4 +1,13 @@
-import type { Engine, IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
+import {
+  type Engine,
+  type IColor,
+  type IColorManager,
+  type IOklcha,
+  type IRangeColor,
+  type IRgb,
+  type IRgba,
+  rgbToOklch,
+} from "@tsparticles/engine";
 
 const namedColors = new Map<string, IRgb>([
   ["aliceblue", { r: 240, g: 248, b: 255 }],
@@ -165,7 +174,9 @@ export class NamedColorManager implements IColorManager {
    * @returns The boolean value
    */
   accepts(input: string): boolean {
-    return namedColors.has(input.toLowerCase());
+    const normalized = input.toLowerCase();
+
+    return normalized === "transparent" || namedColors.has(normalized);
   }
 
   /**
@@ -177,6 +188,12 @@ export class NamedColorManager implements IColorManager {
     return this.#parseString(color.value);
   }
 
+  handleColorOklch(color: IColor): IOklcha | undefined {
+    const rgba = this.#parseString(color.value);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
+  }
+
   /**
    * Converts an IRangeColor to RGB
    * @param color - The color
@@ -184,6 +201,12 @@ export class NamedColorManager implements IColorManager {
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     return this.#parseString(color.value);
+  }
+
+  handleRangeColorOklch(color: IRangeColor): IOklcha | undefined {
+    const rgba = this.#parseString(color.value);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
   }
 
   /**
@@ -195,12 +218,24 @@ export class NamedColorManager implements IColorManager {
     return this.#parseString(input);
   }
 
+  parseStringOklch(input: string): IOklcha | undefined {
+    const rgba = this.#parseString(input);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
+  }
+
   #parseString(input: unknown): IRgba | undefined {
     if (!input || typeof input !== "string") {
       return undefined;
     }
 
-    const rgbColor = namedColors.get(input.toLowerCase());
+    const normalized = input.toLowerCase();
+
+    if (normalized === "transparent") {
+      return { a: 0, b: 0, g: 0, r: 0 };
+    }
+
+    const rgbColor = namedColors.get(normalized);
 
     if (!rgbColor) {
       this.#engine.getLogger().error("Color not found", input);

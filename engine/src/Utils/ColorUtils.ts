@@ -1,15 +1,29 @@
-import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import type {
+  IColor,
+  IHsl,
+  IHsla,
+  IOklch,
+  IOklcha,
+  IRangeColor,
+  IRangeOklch,
+  IRangeValueColor,
+  IRgb,
+  IRgba,
+  IValueColor,
+} from "../Core/Interfaces/Colors.js";
 import {
   clamp,
   getRandom,
   getRandomInRange,
   getRangeValue,
   mix,
+  parseAlpha,
   randomInRangeValue,
   setRangeValue,
 } from "./MathUtils.js";
 import {
   decayOffset,
+  defaultAlpha,
   defaultLoops,
   defaultOpacity,
   defaultRgbMin,
@@ -39,22 +53,33 @@ import {
   sextuple,
   triple,
 } from "../Core/Utils/Constants.js";
+import {
+  displayP3ToOklch,
+  mapOklchToDisplayP3,
+  mapOklchToSrgb,
+  mixOklch,
+  oklchToRgbFloat,
+  rgbToOklch,
+} from "./OklchUtils.js";
 import { isArray, isString } from "./TypeUtils.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { HdrMode } from "../Enums/Modes/HdrMode.js";
-import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
+import type { IParticleOklchAnimation } from "../Core/Interfaces/IParticleOklchAnimation.js";
+import type { OklchAnimation } from "../Options/Classes/OklchAnimation.js";
 import type { Particle } from "../Core/Particles/Particle.js";
 import type { PluginManager } from "../Core/Engine/PluginManager.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
   maxStyleCacheSize = 2000,
+  oklchLightnessCachePrecision = 6,
+  oklchChromaCachePrecision = 6,
+  oklchHueCachePrecision = 4,
   rgbFixedPrecision = 2,
   hslFixedPrecision = 2,
   hdrRgbFixedPrecision = 4,
@@ -120,7 +145,9 @@ function acesFilmic(x: number): number {
  * @returns the linear value
  */
 function srgbToLinear(c: number): number {
-  return c <= srgbThreshold ? c / srgbDivisor : Math.pow((c + srgbOffset) / srgbScale, srgbExponent);
+  return Math.abs(c) <= srgbThreshold
+    ? c / srgbDivisor
+    : Math.sign(c) * Math.pow((Math.abs(c) + srgbOffset) / srgbScale, srgbExponent);
 }
 
 /**
@@ -129,7 +156,9 @@ function srgbToLinear(c: number): number {
  * @returns the sRGB value
  */
 function linearToSrgb(c: number): number {
-  return c <= linearThreshold ? c * linearScale : srgbScale * Math.pow(c, one / srgbExponent) - srgbOffset;
+  return Math.abs(c) <= linearThreshold
+    ? c * linearScale
+    : Math.sign(c) * (srgbScale * Math.pow(Math.abs(c), one / srgbExponent) - srgbOffset);
 }
 
 /**
@@ -329,6 +358,133 @@ export function rangeColorToHsl(
   const rgb = rangeColorToRgb(pluginManager, color, index, useIndex);
 
   return rgb ? rgbToHsl(rgb) : undefined;
+}
+
+/** Resolves an input color to canonical OKLCH (lightness 0–100). */
+export function rangeColorToOklch(
+  pluginManager: PluginManager,
+  color: string | IRangeColor | undefined,
+  index?: number,
+  useIndex = true,
+): IOklcha | undefined {
+  if (!color) {
+    return;
+  }
+
+  if (isString(color)) {
+    for (const manager of pluginManager.colorManagers.values()) {
+      if (manager.accepts(color)) {
+        const resolved = manager.parseStringOklch?.(color);
+
+        if (resolved) {
+          return resolved;
+        }
+
+        break;
+      }
+    }
+
+    const match =
+      /^oklch\(\s*([+-]?(?:\d+\.?\d*|\.\d+))(%?)\s+([+-]?(?:\d+\.?\d*|\.\d+))\s+([+-]?(?:\d+\.?\d*|\.\d+))(?:deg|°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
+        color,
+      );
+
+    if (match) {
+      const rawLightness = Number(match[1]),
+        lightness = rawLightness * (match[2] ? identity : percentDenominator),
+        chroma = Number(match[3]),
+        hue = Number(match[4]),
+        alpha = parseAlpha(match[5]);
+
+      if (
+        ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
+        rawLightness < none ||
+        rawLightness > (match[2] ? percentDenominator : identity) ||
+        chroma < none ||
+        alpha < none ||
+        alpha > identity
+      ) {
+        return;
+      }
+
+      return {
+        a: alpha,
+        c: chroma,
+        h: ((hue % hMax) + hMax) % hMax,
+        l: lightness,
+      };
+    }
+
+    const p3Match =
+      /^color\(\s*display-p3\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
+        color,
+      );
+
+    if (p3Match) {
+      const parseChannel = (channel: string): number =>
+          (channel.endsWith("%") ? Number.parseFloat(channel) / percentDenominator : Number.parseFloat(channel)) *
+          rgbMax,
+        r = parseChannel(p3Match[1] ?? "0"),
+        g = parseChannel(p3Match[2] ?? "0"),
+        b = parseChannel(p3Match[3] ?? "0"),
+        alpha = parseAlpha(p3Match[4]);
+
+      if ([r, g, b, alpha].every(Number.isFinite) && alpha >= none && alpha <= identity) {
+        return { ...displayP3ToOklch({ r, g, b }), a: alpha };
+      }
+    }
+  } else if (isArray(color.value)) {
+    const value = itemFromArray(color.value, index, useIndex, pluginManager.engine.getRandomFn());
+
+    return value ? rangeColorToOklch(pluginManager, isString(value) ? value : { value }) : undefined;
+  } else if (typeof color.value === "object") {
+    for (const manager of pluginManager.colorManagers.values()) {
+      const resolved = manager.handleRangeColorOklch?.(color);
+
+      if (resolved) {
+        return resolved;
+      }
+    }
+
+    const value = color.value as IValueColor | IRangeValueColor | IOklch | IOklcha | IRangeOklch,
+      oklch = ("oklch" in value ? value.oklch : value) as IOklch | IRangeOklch | undefined;
+
+    if (oklch && "c" in oklch && "h" in oklch && "l" in oklch) {
+      const random = pluginManager.engine.getRandomFn(),
+        l = getRangeValue(oklch.l, random),
+        c = getRangeValue(oklch.c, random),
+        h = getRangeValue(oklch.h, random),
+        alpha = (oklch as unknown as { a?: number }).a ?? defaultAlpha;
+
+      if (
+        [l, c, h, alpha].every(Number.isFinite) &&
+        c >= none &&
+        l >= none &&
+        l <= percentDenominator &&
+        alpha >= none &&
+        alpha <= identity
+      ) {
+        return {
+          a: alpha,
+          c,
+          h: ((h % hMax) + hMax) % hMax,
+          l,
+        };
+      }
+    }
+  }
+
+  if (isString(color)) {
+    const rgba = stringToRgba(pluginManager, color);
+
+    if (rgba) {
+      return { ...rgbToOklch(rgba), a: rgba.a };
+    }
+  }
+
+  const rgb = rangeColorToRgb(pluginManager, color, index, useIndex);
+
+  return rgb ? { ...rgbToOklch(rgb), a: defaultAlpha } : undefined;
 }
 
 /**
@@ -656,6 +812,10 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
   return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
+function getDisplayP3StyleFromRgb(color: IRgb, opacity?: number): string {
+  return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+}
+
 /**
  * Gets a CSS style string from a {@link IHsl} object and opacity value
  * @param color - the {@link IHsl} input color
@@ -683,6 +843,29 @@ export function getStyleFromHsl(
       ? getStyleFromRgb(hslToRgbFloat(color), true, opacity, peakNits, mode)
       : `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${op.toString()})`,
   );
+}
+
+/** Formats a canonical OKLCH color at the output boundary. */
+export function getStyleFromOklch(
+  color: IOklch | IOklcha,
+  hdr: boolean,
+  opacity?: number,
+  peakNits?: number,
+  mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
+): string {
+  const alpha = (opacity ?? defaultOpacity) * ("a" in color ? color.a : defaultAlpha),
+    key = `oklch-${color.l.toFixed(oklchLightnessCachePrecision)}-${color.c.toFixed(oklchChromaCachePrecision)}-${color.h.toFixed(oklchHueCachePrecision)}-${hdr ? "hdr" : outputColorSpace}-${alpha}-${peakNits ?? maxNits}-${mode ?? HdrMode.standard}`;
+
+  return getCachedStyle(key, () => {
+    if (hdr) {
+      return getStyleFromRgb(oklchToRgbFloat(color), true, alpha, peakNits, mode);
+    }
+
+    return outputColorSpace === "display-p3"
+      ? getDisplayP3StyleFromRgb(mapOklchToDisplayP3(color).rgb, alpha)
+      : getSdrStyleFromRgb(mapOklchToSrgb(color).rgb, alpha);
+  });
 }
 
 /**
@@ -741,24 +924,40 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @param hdr - the HDR flag
  * @returns the calculated link color
  */
-export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb, hdr?: boolean): IRgb | undefined {
+export function getLinkColor(
+  p1: Particle,
+  p2?: Particle,
+  linkColor?: string | IRgb | IOklcha,
+  _hdr?: boolean,
+): IOklcha | undefined {
   if (linkColor === randomColorValue) {
-    return getRandomRgbColor(undefined, undefined, p1.container.engine.getRandomFn());
+    return {
+      ...rgbToOklch(getRandomRgbColor(undefined, undefined, p1.container.engine.getRandomFn())),
+      a: defaultAlpha,
+    };
   } else if (linkColor === midColorValue) {
     const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
       destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
     if (sourceColor && destColor && p2) {
-      return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius(), hdr);
+      return mixOklch(sourceColor, destColor, p1.getRadius(), p2.getRadius());
     } else {
-      const hslColor = sourceColor ?? destColor;
+      const oklchColor = sourceColor ?? destColor;
 
-      if (hslColor) {
-        return hslToRgb(hslColor);
+      if (oklchColor) {
+        return oklchColor;
       }
     }
   } else {
-    return linkColor as IRgb;
+    if (isString(linkColor)) {
+      return rangeColorToOklch(p1.container.engine.pluginManager, linkColor);
+    }
+
+    if (linkColor && "r" in linkColor) {
+      return { ...rgbToOklch(linkColor), a: defaultAlpha };
+    }
+
+    return linkColor;
   }
 
   return undefined;
@@ -777,12 +976,12 @@ export function getLinkRandomColor(
   optColor: string | IOptionsColor,
   blink: boolean,
   consent: boolean,
-): IRgb | string | undefined {
+): IOklcha | string | undefined {
   const color = isString(optColor) ? optColor : optColor.value;
 
   if (color === randomColorValue) {
     if (consent) {
-      return rangeColorToRgb(pluginManager, {
+      return rangeColorToOklch(pluginManager, {
         value: color,
       });
     }
@@ -795,69 +994,45 @@ export function getLinkRandomColor(
   } else if (color === midColorValue) {
     return midColorValue;
   } else {
-    return rangeColorToRgb(pluginManager, {
+    return rangeColorToOklch(pluginManager, {
       value: color,
     });
   }
 }
 
-/**
- * Gets the HSL color values from an HSL animation
- * @param animation - the HSL animation to extract values from
- * @returns the HSL color or undefined
- */
-export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
+/** Gets the canonical OKLCH value from particle channel state. */
+export function getOklchFromAnimation(animation?: IParticleOklchAnimation): IOklcha | undefined {
   return animation === undefined
     ? undefined
     : {
+        a: animation.a,
+        c: animation.c.value,
         h: animation.h.value,
-        s: animation.s.value,
         l: animation.l.value,
       };
 }
 
-/**
- * Creates an HSL animation from a base HSL color and animation options
- * @param hsl - the base HSL color
- * @param animationOptions - the HSL animation options
- * @param reduceFactor - the reduce factor for velocity
- * @returns the HSL animation data
- */
-export function getHslAnimationFromHsl(
-  hsl: IHsl,
-  animationOptions: HslAnimation | undefined,
+/** Creates per-particle h/c/l state from a resolved color and animation options. */
+export function getOklchAnimationFromOklch(
+  oklch: IOklch | IOklcha,
+  animationOptions: OklchAnimation | undefined,
   reduceFactor: number,
   random?: () => number,
-): IParticleHslAnimation {
-  /* color */
-  const resColor: IParticleHslAnimation = {
-    h: {
-      enable: false,
-      value: hsl.h,
-      min: hMin,
-      max: hMax,
-    },
-    s: {
-      enable: false,
-      value: hsl.s,
-      min: sMin,
-      max: sMax,
-    },
-    l: {
-      enable: false,
-      value: hsl.l,
-      min: lMin,
-      max: lMax,
-    },
+): IParticleOklchAnimation {
+  const result: IParticleOklchAnimation = {
+    a: "a" in oklch ? oklch.a : defaultAlpha,
+    c: { enable: false, value: oklch.c, min: 0, max: 0.4 },
+    h: { enable: false, value: oklch.h, min: 0, max: 360 },
+    l: { enable: false, value: oklch.l, min: 0, max: percentDenominator },
   };
 
   if (animationOptions) {
-    setColorAnimation(resColor.h, animationOptions.h, reduceFactor, random);
-    setColorAnimation(resColor.s, animationOptions.s, reduceFactor, random);
-    setColorAnimation(resColor.l, animationOptions.l, reduceFactor, random);
+    setColorAnimation(result.h, animationOptions.h, reduceFactor, random);
+    setColorAnimation(result.c, animationOptions.c, reduceFactor, random);
+    setColorAnimation(result.l, animationOptions.l, reduceFactor, random);
   }
 
-  return resColor;
+  return result;
 }
 
 /**
@@ -876,7 +1051,7 @@ function setColorAnimation(
   colorValue.max = colorAnimation.max;
 
   if (colorValue.enable) {
-    colorValue.velocity = (getRangeValue(colorAnimation.speed, random) / percentDenominator) * reduceFactor;
+    colorValue.velocity = getRangeValue(colorAnimation.speed, random) * reduceFactor;
     colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay, random);
     colorValue.status = AnimationStatus.increasing;
     colorValue.loops = defaultLoops;
@@ -909,18 +1084,18 @@ export function updateColorValue(
   delta: IDelta,
   _hdr?: boolean,
   random?: () => number,
+  wrap = false,
 ): void {
   const minLoops = 0,
     minDelay = 0,
     identity = 1,
     minVelocity = 0,
     minOffset = 0,
-    velocityFactor = 3.6;
+    velocityFactor = 1,
+    maxLoops = data.maxLoops ?? minLoops,
+    loops = data.loops ?? minLoops;
 
-  if (
-    !data.enable ||
-    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
-  ) {
+  if (!data.enable || (maxLoops > minLoops && (wrap ? loops >= maxLoops : loops > maxLoops))) {
     return;
   }
 
@@ -943,7 +1118,19 @@ export function updateColorValue(
   if (!decrease || data.status === AnimationStatus.increasing) {
     data.value += velocity;
 
-    if (data.value > max) {
+    if (wrap && max > min && data.value >= max) {
+      const range = max - min,
+        loops = Math.max(1, Math.floor((data.value - min) / range));
+
+      data.value = min + ((((data.value - min) % range) + range) % range);
+      data.loops = (data.loops ?? 0) + loops;
+    } else if (wrap && max > min && data.value < min) {
+      const range = max - min,
+        loops = Math.max(1, Math.ceil((min - data.value) / range));
+
+      data.value = min + ((((data.value - min) % range) + range) % range);
+      data.loops = (data.loops ?? 0) + loops;
+    } else if (data.value > max) {
       data.loops ??= 0;
       data.loops++;
 
@@ -978,7 +1165,7 @@ export function updateColorValue(
  * @param hdr - the HDR flag
  */
 export function updateColor(
-  color: IParticleHslAnimation | undefined,
+  color: IParticleOklchAnimation | undefined,
   delta: IDelta,
   hdr?: boolean,
   random?: () => number,
@@ -987,10 +1174,10 @@ export function updateColor(
     return;
   }
 
-  const { h, s, l } = color;
+  const { h, c, l } = color;
 
-  updateColorValue(h, false, delta, hdr, random);
-  updateColorValue(s, true, delta, hdr, random);
+  updateColorValue(h, false, delta, hdr, random, true);
+  updateColorValue(c, true, delta, hdr, random);
   updateColorValue(l, true, delta, hdr, random);
 }
 
@@ -1006,5 +1193,14 @@ export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     h: color.h,
     s: color.s,
     l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
+  };
+}
+
+/** Alters OKLCH lightness while preserving chroma and hue. */
+export function alterOklch(color: IOklch | IOklcha, type: AlterType, value: number): IOklcha {
+  return {
+    ...color,
+    a: "a" in color ? color.a : defaultAlpha,
+    l: clamp(color.l + (type === AlterType.darken ? -1 : 1) * value, none, percentDenominator),
   };
 }

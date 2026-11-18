@@ -92,6 +92,31 @@ describe("UpdaterMath", async () => {
     container.destroy(false);
   });
 
+  it("clears roll back color when a pooled particle is reused without roll", async () => {
+    const container = await loadContainer({
+        autoPlay: false,
+        particles: { number: { value: 0 } },
+      }),
+      first = container.particles.addParticle(undefined, {
+        roll: { enable: true, backColor: "#ff0000" },
+      } as any);
+
+    expect(first?.backColor).toBeDefined();
+
+    if (!first) {
+      throw new Error("roll state test particle not initialized");
+    }
+
+    container.particles.remove(first);
+
+    const reused = container.particles.addParticle(undefined, { roll: { enable: false } } as any);
+
+    expect(reused).to.equal(first);
+    expect(reused?.backColor).toBeUndefined();
+
+    container.destroy(false);
+  });
+
   it("updateRoll advances the angle by speed * delta.factor and wraps at 2π", async () => {
     const container = await loadContainer({ autoPlay: false }),
       particle = await singleParticle(container, { roll: { enable: true, speed: 360, mode: "both" } });
@@ -189,6 +214,42 @@ describe("UpdaterMath", async () => {
     container.destroy(false);
   });
 
+  it("clears orbit extension state when a pooled particle is reused without orbit", async () => {
+    const container = await loadContainer({
+        autoPlay: false,
+        particles: { number: { value: 0 } },
+      }),
+      first = container.particles.addParticle(undefined, {
+        orbit: { enable: true, color: "#ff0000", radius: 40, width: 3, opacity: 0.5 },
+      } as any);
+
+    if (!first) {
+      throw new Error("orbit state test particle not initialized");
+    }
+
+    const firstState = first as any;
+
+    expect(firstState.orbitColor).toBeDefined();
+    expect(firstState.retina.orbitRadius).toBeDefined();
+    expect(firstState.orbitWidth).to.equal(3);
+    expect(firstState.orbitOpacity).to.equal(0.5);
+
+    container.particles.remove(first);
+
+    const reused = container.particles.addParticle(undefined, { orbit: { enable: false } } as any);
+    const reusedState = reused as any;
+
+    expect(reused).to.equal(first);
+    expect(reusedState.orbitAnimationSpeed).toBeUndefined();
+    expect(reusedState.orbitColor).toBeUndefined();
+    expect(reusedState.orbitOpacity).toBeUndefined();
+    expect(reusedState.retina.orbitRadius).toBeUndefined();
+    expect(reusedState.orbitRotation).toBeUndefined();
+    expect(reusedState.orbitWidth).toBeUndefined();
+
+    container.destroy(false);
+  });
+
   it("GradientUpdater initializes gradient colors and advances the angle", async () => {
     const container = await loadContainer({ autoPlay: false }),
       particle = await singleParticle(container, {
@@ -209,6 +270,38 @@ describe("UpdaterMath", async () => {
     container.particles.update({ value: 16, factor: 1 });
 
     expect(particle.gradient.angle.value).to.be.greaterThan(0);
+
+    container.destroy(false);
+  });
+
+  it("clears gradient state when a pooled particle is reused without a gradient", async () => {
+    const container = await loadContainer({
+        autoPlay: false,
+        particles: { number: { value: 0 } },
+      }),
+      first = container.particles.addParticle(undefined, {
+        gradient: {
+          type: "linear",
+          angle: { value: 0 },
+          colors: [
+            { stop: 0, value: "#fff" },
+            { stop: 1, value: "#000" },
+          ],
+        },
+      } as any);
+
+    expect(first?.gradient).toBeDefined();
+
+    if (!first) {
+      throw new Error("gradient state test particle not initialized");
+    }
+
+    container.particles.remove(first);
+
+    const reused = container.particles.addParticle();
+
+    expect(reused).to.equal(first);
+    expect(reused?.gradient).toBeUndefined();
 
     container.destroy(false);
   });

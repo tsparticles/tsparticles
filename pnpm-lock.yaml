@@ -11956,6 +11956,9 @@ importers:
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:*
         version: link:../../plugins/colors/hsv/dist
+      '@tsparticles/plugin-hwb-color':
+        specifier: workspace:*
+        version: link:../../plugins/colors/hwb/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:*
         version: link:../../plugins/infection/dist

@@ -1,12 +1,12 @@
 import {
   type HdrMode,
-  type IRgb,
   double,
   doublePI,
-  getStyleFromRgb,
+  getStyleFromOklch,
   half,
   minRadius,
   originPoint,
+  rgbToOklch,
   triple,
 } from "@tsparticles/engine";
 import type { ICardData } from "./ICardData.js";
@@ -27,8 +27,10 @@ const cardWidthRatio = (double * double) / triple,
   suitEdgeBufferFactor = 0.1,
   fixedCacheKey = 2,
   cardsCache = new Map<string, ImageBitmap | HTMLCanvasElement>(),
-  redSuitColor: IRgb = { r: 215, g: 20, b: 20 },
-  blackSuitColor: IRgb = { r: 18, g: 18, b: 18 };
+  redSuitColor = rgbToOklch({ r: 215, g: 20, b: 20 }),
+  blackSuitColor = rgbToOklch({ r: 18, g: 18, b: 18 }),
+  white = rgbToOklch({ r: 255, g: 255, b: 255 }),
+  black = rgbToOklch({ r: 0, g: 0, b: 0 });
 
 /**
  * Draws a rounded card with suit and value side-by-side.
@@ -51,11 +53,12 @@ export function drawRoundedCard(
   canvasSettings?: CanvasRenderingContext2DSettings,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
   if (flipped) {
     drawRoundedCardBack(ctx, radius);
   } else {
-    const cacheKey = getCacheKey(radius, hdr, cardData, peakNits, mode),
+    const cacheKey = getCacheKey(radius, hdr, cardData, peakNits, mode, outputColorSpace),
       cardWidth = radius * cardWidthRatio,
       cardHeight = radius * cardHeightRatio,
       halfWidth = cardWidth * half,
@@ -70,7 +73,7 @@ export function drawRoundedCard(
       if (cacheCtx) {
         cacheCtx.translate(halfWidth, halfHeight);
 
-        drawRoundedCardFront(cacheCtx, radius, cardData, hdr, peakNits, mode);
+        drawRoundedCardFront(cacheCtx, radius, cardData, hdr, peakNits, mode, outputColorSpace);
 
         cachedData = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
 
@@ -81,7 +84,7 @@ export function drawRoundedCard(
     if (cachedData) {
       ctx.drawImage(cachedData, -halfWidth, -halfHeight, cardWidth, cardHeight);
     } else {
-      drawRoundedCardFront(ctx, radius, cardData, hdr, peakNits, mode);
+      drawRoundedCardFront(ctx, radius, cardData, hdr, peakNits, mode, outputColorSpace);
     }
   }
 }
@@ -90,12 +93,19 @@ export function drawRoundedCard(
  * @param radius - The radius
  * @param hdr - The hdr
  * @param cardData - The cardData
- * @param peakNits
- * @param mode
- * @returns -
+ * @param peakNits - The HDR peak brightness.
+ * @param mode - The HDR rendering mode.
+ * @returns A key for cached card artwork.
  */
-function getCacheKey(radius: number, hdr: boolean, cardData: ICardData, peakNits?: number, mode?: HdrMode): string {
-  return `${radius.toFixed(fixedCacheKey)}-${hdr ? "hdr" : "sdr"}-${peakNits !== undefined ? peakNits.toFixed(fixedCacheKey) : "default"}-${mode ?? "default"}-${cardData.suit}-${cardData.value}`;
+function getCacheKey(
+  radius: number,
+  hdr: boolean,
+  cardData: ICardData,
+  peakNits?: number,
+  mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
+): string {
+  return `${radius.toFixed(fixedCacheKey)}-${hdr ? "hdr" : "sdr"}-${outputColorSpace}-${peakNits !== undefined ? peakNits.toFixed(fixedCacheKey) : "default"}-${mode ?? "default"}-${cardData.suit}-${cardData.value}`;
 }
 
 /**
@@ -121,6 +131,7 @@ function drawRoundedCardFront(
   hdr: boolean,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
   const { suit, value } = cardData,
     cardWidth = radius * cardWidthRatio,
@@ -137,17 +148,17 @@ function drawRoundedCardFront(
     suitEdgeBuffer = radius * suitEdgeBufferFactor,
     isRed = suit === SuitType.hearts || suit === SuitType.diamonds,
     color = isRed
-      ? getStyleFromRgb(redSuitColor, hdr, undefined, peakNits, mode)
-      : getStyleFromRgb(blackSuitColor, hdr, undefined, peakNits, mode);
+      ? getStyleFromOklch(redSuitColor, hdr, undefined, peakNits, mode, outputColorSpace)
+      : getStyleFromOklch(blackSuitColor, hdr, undefined, peakNits, mode, outputColorSpace);
 
   ctx.save();
 
   // --- 1. Drawing Card Body ---
   drawCardBody(ctx, radius);
 
-  ctx.fillStyle = getStyleFromRgb({ r: 255, g: 255, b: 255 }, hdr, undefined, peakNits, mode);
+  ctx.fillStyle = getStyleFromOklch(white, hdr, undefined, peakNits, mode, outputColorSpace);
   ctx.fill();
-  ctx.strokeStyle = getStyleFromRgb({ r: 0, g: 0, b: 0 }, hdr, undefined, peakNits, mode);
+  ctx.strokeStyle = getStyleFromOklch(black, hdr, undefined, peakNits, mode, outputColorSpace);
   ctx.stroke();
 
   // --- 2. Text and Suit Style Configuration ---

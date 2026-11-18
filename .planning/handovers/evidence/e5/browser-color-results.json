@@ -1,0 +1,109 @@
+{
+  "browserVersion": "Chrome/157.0.8103.79",
+  "fixtureDate": "2026-11-17T22:14:34.391Z",
+  "results": [
+    {
+      "context": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.20720000000000027,
+        0.08849999999999625,
+        0.2985999999999933
+      ],
+      "expected": [
+        58.7928,
+        80.9115,
+        210.7014
+      ],
+      "label": "sRGB CSS Color 4 / WPT blue",
+      "pixel": [
+        59,
+        81,
+        211
+      ],
+      "readbackColorSpace": "srgb",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "rgba(58.79333826184976, 80.910555586008, 210.7018289746295, 1)",
+      "target": "srgb",
+      "tolerance": 2
+    },
+    {
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        5,
+        4.77000000000001,
+        0
+      ],
+      "expected": [
+        255,
+        139.23,
+        0
+      ],
+      "label": "Display-P3 CSS Color 4 §14.2 high-chroma example",
+      "pixel": [
+        250,
+        144,
+        0
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 0.9799540909136121 0.5664605501845867 2.4888873662726185e-7 / 1)",
+      "target": "display-p3",
+      "tolerance": 9
+    },
+    {
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.00008950395367857134,
+        0.00020878641604632486,
+        0.00016567209680357076
+      ],
+      "expected": [
+        1.1436441914536786,
+        0.4496716770410463,
+        -0.38981410959680357
+      ],
+      "label": "Extended Display-P3 HDR style through float16 canvas",
+      "pixel": [
+        1.1435546875,
+        0.449462890625,
+        -0.3896484375
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 1.1436441914536786 0.4496716770410463 -0.38981410959680357 / 1)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36"
+}

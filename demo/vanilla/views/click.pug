@@ -72,20 +72,26 @@ html(lang="en")
 
                         particle.customClicked = true;
 
+                        const color = particle.fillColor;
+
+                        if (!color) {
+                            continue;
+                        }
+
                         const oldColor = {
-                            h: particle.color.h.value,
-                            s: particle.color.s.value,
-                            l: particle.color.l.value,
+                            h: color.h.value,
+                            c: color.c.value,
+                            l: color.l.value,
                         };
 
-                        particle.color.h.value = 0;
-                        particle.color.s.value = 100;
-                        particle.color.l.value = 50;
+                        color.h.value = 0;
+                        color.c.value = 0.2;
+                        color.l.value = 50;
 
                         setTimeout(() => {
-                            particle.color.h.value = oldColor.h;
-                            particle.color.s.value = oldColor.s;
-                            particle.color.l.value = oldColor.l;
+                            color.h.value = oldColor.h;
+                            color.c.value = oldColor.c;
+                            color.l.value = oldColor.l;
 
                             delete particle.customClicked;
                         }, 1000);

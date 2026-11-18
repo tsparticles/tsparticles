@@ -35,7 +35,7 @@ export * from "./Options/Classes/FullScreen/FullScreen.js";
 
 export * from "./Options/Classes/HDROptions.js";
 
-export * from "./Options/Classes/HslAnimation.js";
+export * from "./Options/Classes/OklchAnimation.js";
 
 export * from "./Options/Classes/Options.js";
 export * from "./Options/Classes/OptionsColor.js";
@@ -68,6 +68,7 @@ export * from "./Options/Classes/ResizeEvent.js";
 export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/ColorUtils.js";
+export * from "./Utils/OklchUtils.js";
 export * from "./Utils/ErrorCodes.js";
 export * from "./Utils/ErrorUtils.js";
 export type { ILogger } from "./Utils/LogUtils.js";

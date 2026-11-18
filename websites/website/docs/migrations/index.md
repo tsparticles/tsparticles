@@ -4,6 +4,7 @@ Use this section to navigate between major `tsParticles` versions, track release
 
 ## Migration guides
 
+- [`Migrate color animation to OKLCH`](/migrations/v5-oklch-colors)
 - [`Migrate from v3.x`](/migrations/from-v3)
 - [`Migrate from v2.x`](/migrations/from-v2)
 - [`Migrate from v1.x`](/migrations/from-v1)

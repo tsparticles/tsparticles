@@ -1,14 +1,14 @@
 import {
   type IContainerPlugin,
-  type IRgb,
+  type IOklcha,
   type PluginManager,
   getLinkColor as engineGetLinkColor,
   getRandom,
   getRangeValue,
-  getStyleFromRgb,
+  getStyleFromOklch,
   half,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
 import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
@@ -87,7 +87,7 @@ export class LinkInstance implements IContainerPlugin {
 
       const twinkleRgb =
         twinkle?.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency
-          ? rangeColorToRgb(this.#pluginManager, twinkle.color)
+          ? rangeColorToOklch(this.#pluginManager, twinkle.color)
           : undefined;
 
       if (twinkle && twinkleRgb) {
@@ -223,7 +223,7 @@ export class LinkInstance implements IContainerPlugin {
       }
 
       const opacityTriangle = triangleOptions.opacity ?? (link.opacity + vertex.opacity) * half,
-        colorTriangle = rangeColorToRgb(this.#pluginManager, triangleOptions.color) ?? link.color;
+        colorTriangle = rangeColorToOklch(this.#pluginManager, triangleOptions.color) ?? link.color;
 
       if (!colorTriangle || opacityTriangle <= minOpacity) {
         continue;
@@ -246,12 +246,19 @@ export class LinkInstance implements IContainerPlugin {
     }
   }
 
-  #getCachedStyle(rgb: IRgb): string {
-    const key = `${rgb.r},${rgb.g},${rgb.b}-${this.#container.hdr}-${this.#container.peakNits}-${this.#container.hdrMode}`;
+  #getCachedStyle(color: IOklcha): string {
+    const key = `${color.l},${color.c},${color.h},${color.a}-${this.#container.hdr}-${this.#container.outputColorSpace}-${this.#container.peakNits}-${this.#container.hdrMode}`;
     let style = this.#colorCache.get(key);
 
     if (!style) {
-      style = getStyleFromRgb(rgb, this.#container.hdr, undefined, this.#container.peakNits, this.#container.hdrMode);
+      style = getStyleFromOklch(
+        color,
+        this.#container.hdr,
+        undefined,
+        this.#container.peakNits,
+        this.#container.hdrMode,
+        this.#container.outputColorSpace,
+      );
       this.#colorCache.set(key, style);
     }
 

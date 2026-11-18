@@ -120,7 +120,7 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
             value: options.splitCount,
           },
           strokeColorOffset: {
-            s: options.saturation,
+            c: options.chroma,
             l: options.brightness,
           },
           particles: {

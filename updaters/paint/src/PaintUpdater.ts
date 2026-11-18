@@ -6,10 +6,10 @@ import {
   type Paint,
   type Particle,
   type PluginManager,
-  getHslAnimationFromHsl,
+  getOklchAnimationFromOklch,
   getRangeValue,
   itemFromSingleOrMultiple,
-  rangeColorToHsl,
+  rangeColorToOklch,
   updateColor,
 } from "@tsparticles/engine";
 import type { PaintParticle } from "./Types.js";
@@ -61,12 +61,12 @@ export class PaintUpdater implements IParticleUpdater {
       fillEnabled =
         !!fillAnimation &&
         ((fillColor?.h.value !== undefined && fillColor.h.enable) ||
-          (fillColor?.s.value !== undefined && fillColor.s.enable) ||
+          (fillColor?.c.value !== undefined && fillColor.c.enable) ||
           (fillColor?.l.value !== undefined && fillColor.l.enable)),
       strokeEnabled =
         !!strokeAnimation &&
         ((strokeColor?.h.value !== undefined && strokeColor.h.enable) ||
-          (strokeColor?.s.value !== undefined && strokeColor.s.enable) ||
+          (strokeColor?.c.value !== undefined && strokeColor.c.enable) ||
           (strokeColor?.l.value !== undefined && strokeColor.l.enable));
 
     return !particle.destroyed && !particle.spawning && (fillEnabled || strokeEnabled);
@@ -109,13 +109,17 @@ export class PaintUpdater implements IParticleUpdater {
     particle.fillOpacity = getRangeValue(fill.opacity, this.#container.engine.getRandomFn());
     particle.fillAnimation = fillColor.animation;
 
-    const fillHslColor = rangeColorToHsl(this.#pluginManager, fillColor);
+    const fillOklchColor = rangeColorToOklch(this.#pluginManager, fillColor);
 
-    if (!fillHslColor) {
+    if (!fillOklchColor) {
       return;
     }
 
-    particle.fillColor = getHslAnimationFromHsl(fillHslColor, particle.fillAnimation, container.retina.reduceFactor);
+    particle.fillColor = getOklchAnimationFromOklch(
+      fillOklchColor,
+      particle.fillAnimation,
+      container.retina.reduceFactor,
+    );
   }
 
   #initStroke(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
@@ -142,14 +146,14 @@ export class PaintUpdater implements IParticleUpdater {
     particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity, this.#container.engine.getRandomFn());
     particle.strokeAnimation = strokeColor.animation;
 
-    const strokeHslColor = rangeColorToHsl(this.#pluginManager, strokeColor) ?? particle.getFillColor();
+    const strokeOklchColor = rangeColorToOklch(this.#pluginManager, strokeColor) ?? particle.getFillColor();
 
-    if (!strokeHslColor) {
+    if (!strokeOklchColor) {
       return;
     }
 
-    particle.strokeColor = getHslAnimationFromHsl(
-      strokeHslColor,
+    particle.strokeColor = getOklchAnimationFromOklch(
+      strokeOklchColor,
       particle.strokeAnimation,
       container.retina.reduceFactor,
     );

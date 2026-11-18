@@ -6,7 +6,6 @@ import {
   type PluginManager,
   Rectangle,
   type RecursivePartial,
-  colorMix,
   defaultRatio,
   double,
   getDistance,
@@ -16,8 +15,8 @@ import {
   itemFromSingleOrMultiple,
   loadOptionProperty,
   millisecondsToSeconds,
-  rangeColorToHsl,
-  rgbToHsl,
+  mixOklch,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import {
@@ -343,7 +342,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         this.container.engine.getRandomFn(),
       );
 
-      mod.finalColor = rangeColorToHsl(this.#pluginManager, bubbleColor);
+      mod.finalColor = rangeColorToOklch(this.#pluginManager, bubbleColor);
     }
 
     if (!mod.finalColor) {
@@ -357,7 +356,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       const pColor = particle.getFillColor();
 
       if (pColor) {
-        const mixedColor = rgbToHsl(colorMix(pColor, mod.finalColor, ratioOffset - ratio, ratio, this.container.hdr));
+        const mixedColor = mixOklch(pColor, mod.finalColor, ratioOffset - ratio, ratio);
 
         mod.fillColor = mixedColor;
         mod.strokeColor = mixedColor;
