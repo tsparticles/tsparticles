@@ -7,9 +7,10 @@ reviews:
 
   auto_review:
     enabled: true
-    # Also review PRs whose base branch is the actively developed v4 branch,
+    # Also review PRs whose base branch is the actively developed v4 and v5 branches,
     # in addition to the default branch (main).
     base_branches:
+      - "main"
       - "v4"
       - "v5"
 
