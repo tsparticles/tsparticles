@@ -38,6 +38,7 @@
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@crowdin/cli": "^5.6.0",
+    "@gglint/cli": "0.5.1",
     "@nx/devkit": "^24.0.6",
     "@nx/js": "^24.0.6",
     "@swc-node/register": "^1.12.1",
