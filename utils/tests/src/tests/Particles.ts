@@ -2,6 +2,7 @@
 import {
   type Container,
   type ICoordinates3d,
+  type IParticleUpdater,
   type ISourceOptions,
   LimitMode,
   type Particle,
@@ -116,6 +117,79 @@ describe("Particles", async () => {
 
     expect(container.particles.count).to.equal(3);
     expect(container.particles.filter(t => t === particle1 || t === particle2 || t === particle3).length).to.equal(3);
+  });
+
+  it("keeps supplied position and initial motion snapshots independent", async () => {
+    await container.reset({ particles: { number: { value: 0 } } });
+
+    const suppliedPosition: ICoordinates3d = { x: 100, y: 120, z: 0 },
+      particle = container.particles.addParticle(suppliedPosition, { move: { speed: 8 } });
+
+    expect(particle).to.not.be.undefined;
+    expect(suppliedPosition).to.deep.equal({ x: 100, y: 120, z: 0 });
+
+    if (!particle) {
+      return;
+    }
+
+    expect(particle.position).to.not.equal(particle.initialPosition);
+    expect(particle.initialPosition.x).to.equal(suppliedPosition.x);
+    expect(particle.initialPosition.y).to.equal(suppliedPosition.y);
+    expect(particle.options.move.speed).to.equal(8);
+    expect(particle.velocity).to.not.equal(particle.initialVelocity);
+
+    const initialPositionX = particle.initialPosition.x,
+      initialVelocityX = particle.initialVelocity.x;
+
+    particle.position.x += 1;
+    particle.velocity.x += 1;
+
+    expect(particle.initialPosition.x).to.equal(initialPositionX);
+    expect(particle.initialVelocity.x).to.equal(initialVelocityX);
+  });
+
+  it("lets an updater release its particle-owned extension state before pool reuse", async () => {
+    await container.reset({ particles: { number: { value: 0 } } });
+
+    let extensionEnabled = true;
+    const updater: IParticleUpdater = {
+      init: particle => {
+        if (extensionEnabled) {
+          (particle as Particle & { extensionCache?: string }).extensionCache = "owned";
+        }
+      },
+      isEnabled: () => false,
+      particleDestroyed: particle => {
+        delete (particle as Particle & { extensionCache?: string }).extensionCache;
+      },
+      update: () => undefined,
+    };
+
+    container.particleUpdaters.push(updater);
+
+    try {
+      const original = container.particles.addParticle();
+
+      expect(original).to.not.be.undefined;
+
+      if (!original) {
+        return;
+      }
+
+      expect((original as Particle & { extensionCache?: string }).extensionCache).to.equal("owned");
+      container.particles.remove(original);
+      expect((original as Particle & { extensionCache?: string }).extensionCache).to.be.undefined;
+
+      extensionEnabled = false;
+
+      const reused = container.particles.addParticle();
+
+      expect(reused).to.equal(original);
+      expect((reused as (Particle & { extensionCache?: string }) | undefined)?.extensionCache).to.be.undefined;
+    } finally {
+      container.particles.clear();
+      container.particleUpdaters.splice(container.particleUpdaters.indexOf(updater), 1);
+    }
   });
 
   it("should remove particles at specified indices", async () => {
@@ -411,16 +485,81 @@ describe("Particles", async () => {
     it("T6 - should reject particles when the initializer returns false and return them to the pool", async () => {
       await container.reset(enableParticleEmptyMoveOptions);
 
-      const rejected = container.particles.addParticle(undefined, undefined, undefined, () => false);
+      let rejectedParticle: Particle | undefined;
+      const rejected = container.particles.addParticle(undefined, undefined, undefined, particle => {
+        rejectedParticle = particle;
+
+        return false;
+      });
 
       expect(rejected).to.be.undefined;
       expect(container.particles.count).to.equal(0);
+      expect(rejectedParticle?.destroyed).to.be.true;
 
       const accepted = container.particles.addParticle(undefined, undefined, undefined, () => true);
 
       expect(accepted).to.be.not.undefined;
       expect(container.particles.count).to.equal(1);
       expect(container.particles.filter(() => true)[0]).to.equal(accepted);
+    });
+
+    it("T7 - should destroy and pool a particle when the initializer throws", async () => {
+      await container.reset(enableParticleEmptyMoveOptions);
+
+      let rejectedParticle: Particle | undefined;
+      const rejected = container.particles.addParticle(undefined, undefined, undefined, particle => {
+        rejectedParticle = particle;
+
+        throw new Error("initializer failed");
+      });
+
+      expect(rejected).to.be.undefined;
+      expect(container.particles.count).to.equal(0);
+      expect(rejectedParticle?.destroyed).to.be.true;
+
+      const accepted = container.particles.addParticle();
+
+      expect(accepted).to.equal(rejectedParticle);
+      expect(accepted?.destroyed).to.be.false;
+      expect(container.particles.count).to.equal(1);
+    });
+
+    it("T8 - should destroy and pool a particle when particle initialization throws", async () => {
+      await container.reset(enableParticleEmptyMoveOptions);
+
+      let failedParticle: Particle | undefined, destroyedParticle: Particle | undefined;
+      const failingUpdater: IParticleUpdater = {
+        init: particle => {
+          failedParticle = particle;
+          particle.unbreakable = true;
+
+          throw new Error("particle init failed");
+        },
+        isEnabled: () => false,
+        particleDestroyed: particle => {
+          destroyedParticle = particle;
+        },
+        update: () => undefined,
+      };
+
+      container.particleUpdaters.push(failingUpdater);
+
+      try {
+        const rejected = container.particles.addParticle();
+
+        expect(rejected).to.be.undefined;
+        expect(container.particles.count).to.equal(0);
+        expect(failedParticle?.destroyed).to.be.true;
+        expect(destroyedParticle).to.equal(failedParticle);
+      } finally {
+        container.particleUpdaters.splice(container.particleUpdaters.indexOf(failingUpdater), 1);
+      }
+
+      const accepted = container.particles.addParticle();
+
+      expect(accepted).to.equal(failedParticle);
+      expect(accepted?.destroyed).to.be.false;
+      expect(container.particles.count).to.equal(1);
     });
 
     it("T7 - should leave the pool intact when clearing so addParticle still works", async () => {
@@ -435,13 +574,27 @@ describe("Particles", async () => {
 
       expect(container.particles.count).to.equal(1);
 
+      const remaining = container.particles.filter(() => true)[0];
+
+      if (!remaining) {
+        throw new Error("remaining particle not found");
+      }
+
+      const position = remaining.getPosition();
+
+      container.particles.grid.insert(remaining);
+      expect(container.particles.grid.queryCircle(position, 100)).to.include(remaining);
+
       container.particles.clear();
 
       expect(container.particles.count).to.equal(0);
+      expect(remaining.destroyed).to.be.true;
+      expect(container.particles.grid.queryCircle(position, 100)).to.be.empty;
 
       const particle = container.particles.addParticle();
 
       expect(particle).to.be.not.undefined;
+      expect(particle).to.equal(remaining);
       expect(container.particles.count).to.equal(1);
     });
   });

@@ -70,12 +70,28 @@ destroy hooks, then dispatch `particleDestroyed`. Removal dispatches
 The focused regression for updater-before-event order and repeated-destroy
 idempotence is in `utils/tests/src/tests/ParticlesEvents.ts`.
 
+`ParticlesManager.clear()` now destroys every active particle, returns each
+object to the local pool, and clears the spatial grid before returning. It
+retains the existing behavior of omitting `particleRemoved`; destroy hooks and
+`particleDestroyed` still run. A failing destroy hook is logged after all
+particles have been attempted. `destroy()` uses the same cleanup before
+dropping the pool, so container stop, redraw, and teardown release particle
+references consistently.
+
 The pool reuses the entire `Particle` object, including public fields added by
 plugins. Core rebuilds known options, motion, Retina and drawer state along the
 initialization path, but it has no generic registry to clear arbitrary plugin
 fields. Extension-state isolation therefore depends on plugin destroy/create
 hooks today and remains an open acceptance item; do not claim arbitrary plugin
 state is reset until representative extension tests cover it.
+
+When `Particle.init()` fails partway through, or a custom `addParticle`
+initializer rejects or throws, the manager now runs destroy hooks before
+returning the object to the pool. Rollback clears `unbreakable` so it cannot
+skip cleanup, and cleanup errors do not replace the original initialization or
+initializer error. This releases drawer and plugin-owned state on all three
+failure paths. `Particles.ts` covers the `init()` updater hook, rejection,
+exception rollback, destroy notification, and reuse.
 
 The Move extension had a concrete pooled-state leak: `pathGenerator`, `spin`,
 and `retina.spinAcceleration` could survive when the next particle disabled
@@ -102,14 +118,32 @@ and `unbreakableUntil` before loading the next particle's destroy options.
 destroy state.
 
 Destroy now attempts the shape hook, every destroy plugin and updater, and the
-`particleDestroyed` event even if one of them throws. It rethrows the first
-captured error after those attempts. Removal likewise dispatches
+`particleDestroyed` event even if one of them throws. An optional effect drawer
+`particleDestroy` hook now runs after shape cleanup, so effects can release
+particle-owned state before an object enters the pool. Trail uses it to release
+its point history and per-particle settings. Cards, path, text, and image shape
+drawers now release their copied data, text layout, and loaded image reference
+through their existing shape destroy hook. Ribbon releases per-particle
+geometry and timing state, Emoji clears its cached key, and GIF releases decoded
+frames and compositing canvases. `ShapeGeometry.ts` covers these cleanups.
+Filter releases its eleven CSS filter fields; Particles releases spawn data,
+rate, quantity and deadline; Shadow releases resolved color, blur and offset.
+`Effects.ts` verifies each affected effect particle can be removed and the same
+object reused without stale effect state. The built-in effect drawer audit found
+Bubble has no particle-owned fields, while Trail already clears its history and
+configuration.
+Destroy rethrows the first captured error after those attempts.
+Removal likewise dispatches
 `particleRemoved` and returns the particle to the pool before rethrowing the
 first error. The shared `EventDispatcher` now also runs the full listener
 snapshot and rethrows its first listener error. Regressions cover an updater
 throwing, shape and container-plugin failures, later updater and event
 listeners, removal notification, and reuse of the pooled object. The first
 shape error is preserved even when later hooks also throw.
+For `particleAdded`, dispatch occurs after collection insertion, so a listener
+failure is logged while `addParticle()` still returns the inserted particle;
+the regression verifies the active count and that the object remains reusable
+after removal.
 
 ## Acceptance tests
 
@@ -120,17 +154,31 @@ shape error is preserved even when later hooks also throw.
   `addParticle` receives one options object and does not merge group options
   automatically. `OptionsLoad.ts` now covers the manager path that supplies a
   group's resolved options explicitly, verifying the selected shape, effect,
-  and group identity. It also covers clearing `randomIndexData` on pooled
-  Particle reuse; the complete 752-test suite passes these regressions.
-  Additional shape/effect combinations remain open.
+  and group identity. A cross-layer case confirms group types replace container
+  defaults, effect particle options layer over group values, shape particle
+  options layer over effect values, and explicit shape/effect overrides replace
+  container defaults. It also covers clearing `randomIndexData` on pooled
+  Particle reuse. Other plugin-specific shape/effect combinations remain open.
 - `OptionsLoad.ts` verifies the caller's nested options remain unchanged after
-  container loading, grouped particle creation, and refresh. Per-particle
+  container loading, grouped particle creation, and refresh. Root `preset`
+  arrays are copied when loaded, and a regression verifies neither the caller
+  nor the loaded options can mutate the other's array. `OptionsColor.value`
+  deep-copies color arrays and their nested OKLCH objects, with bidirectional
+  mutation coverage. Per-particle
   `move`, `paint`, `fill`, and `stroke` option objects are independent between
   live particles; nested fill-opacity and stroke-width mutations do not leak to
   siblings. `shapeData` and its shape-specific nested particle options are also
   isolated. The shape's `move` override takes precedence over base particle
   options. Check remaining mutable option families and plugin-owned references
   as part of the ownership review.
+- `Particles.ts` verifies an explicit input position is not retained by
+  reference, `position` and `initialPosition` are separate snapshots, and the
+  same is true for `velocity` and `initialVelocity`. It also confirms per-add
+  movement overrides resolve onto the new particle.
+- A custom updater regression attaches private extension data during init,
+  releases it in `particleDestroyed`, and verifies the same pooled Particle is
+  reused without stale state when that extension feature is disabled. Arbitrary
+  plugin state still requires each extension to implement its cleanup hook.
 - Container lifecycle coverage now changes `devicePixelRatio` from 2 to 3,
   refreshes, and verifies newly initialized particles get the corresponding
   Retina-scaled move speed. A DOM-canvas resize test verifies bitmap dimensions
@@ -147,6 +195,20 @@ shape error is preserved even when later hooks also throw.
 - Reuse the 4.6.0 `MoveTiming.ts` regressions for decay, gravity and
   speed limits when changing particle movement state or its update contract.
   Run the full suite, lint/format, and downstream builds.
+
+The E5 checkpoint now includes a matched M6/M8 headless runtime sample against
+E4 at 100, 500 and 1,000 particles, with deterministic RNG and 30 forced-GC
+retention cycles. M6/500 remains the only sampled p95 exception (2.0 ms versus
+the 1.87 ms E0 ceiling); the other five frame p95 medians pass their ceilings.
+Retention drift is 88,852 bytes, below the 1 MiB allowance. See the raw and
+aggregated results in `evidence/e5/runtime-extended.json` and
+`evidence/e5/runtime-extended-summary.json`. This does not replace the missing
+per-particle heap/allocation and M3–M8 complete cost comparison.
+The matching E4-to-E5 bundle comparison also exceeds the 2% growth target for
+the minimal and factory consumers (+6.92% and +7.90% gzip, respectively); the
+minified engine is +12.70% gzip and the all bundle +5.25%. Keep the size gate
+open while attributing and reducing this growth. See
+`evidence/e5/bundle-delta-vs-e4.json`.
 
 ## Deliverables
 
@@ -182,3 +244,18 @@ Apply G3/G4/G6/G7 from the [source review](V5-CODE-REVIEW.md). Cover asynchronou
 asset completion after particle reuse, numeric domains and RNG sampling lifetime.
 Preserve drawable/callback references and option semantics; extend existing
 movement/shape/option regressions rather than treating them as absent.
+
+`ImageDrawer.loadShape()` now catches custom image-loader rejections and ignores
+both resolved and rejected completions when the container, particle ID, or
+shape-data reference no longer matches the request. `ShapeGeometry.ts` covers
+active rejection, rejection after reuse, stale success after replacement, and
+the existing delayed colorized-SVG particle-init path. Video export now covers
+missing MediaRecorder, duration units, recorder errors, concurrent export
+cancellation on plugin destruction, and recorder/stream cleanup in
+`Exports.ts`; wider engine-load rollback and fetch cancellation remain open G3
+questions. Container teardown now continues through throwing plugin/resource
+cleanup hooks, preserves the original start/load error, and removes failed load
+candidates; late plugin instances are also disposed safely when initialization
+finishes after container destruction. `ContainerLifecycle.ts` covers these
+failure paths. Old-scene retention during replacement and fetch cancellation
+remain open.

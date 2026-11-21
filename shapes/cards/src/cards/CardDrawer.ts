@@ -48,6 +48,14 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
   }
 
   /**
+   * Releases copied card data when the particle enters the pool
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: CardParticle): void {
+    delete particle.cardData;
+  }
+
+  /**
    * Initializes the card shape on the particle
    * @param _container - The container to handle
    * @param particle - The particle to process

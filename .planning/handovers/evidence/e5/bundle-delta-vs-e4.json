@@ -1,0 +1,713 @@
+{
+  "comparison": "E4 bundle-sizes.json vs E5 bundle-sizes.json",
+  "e4MeasuredAt": "2026-11-17T07:04:24.472Z",
+  "e5MeasuredAt": "2026-11-20T22:08:26.322Z",
+  "toolchain": {
+    "node": "v26.13.0",
+    "rollup": "4.67.4",
+    "compression": {
+      "gzipLevel": 9,
+      "brotliQuality": 11
+    }
+  },
+  "budget": {
+    "pureHelper": "no growth",
+    "minimalSceneAndStandaloneSlim": "gzip and Brotli reduction of at least 5% from E0",
+    "otherMeasuredPayloads": "maximum 2% growth with documented reason"
+  },
+  "consumers": [
+    {
+      "name": "helper",
+      "condition": "import",
+      "e4": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "e5": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "name": "factory",
+      "condition": "import",
+      "e4": {
+        "raw": 70122,
+        "gzip": 23146,
+        "brotli": 20572
+      },
+      "e5": {
+        "raw": 74525,
+        "gzip": 24974,
+        "brotli": 22043
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1828,
+        "brotli": 1471
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.9,
+        "brotli": 7.15
+      }
+    },
+    {
+      "name": "initialization",
+      "condition": "import",
+      "e4": {
+        "raw": 70150,
+        "gzip": 23154,
+        "brotli": 20553
+      },
+      "e5": {
+        "raw": 74553,
+        "gzip": 24988,
+        "brotli": 22046
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1834,
+        "brotli": 1493
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.92,
+        "brotli": 7.26
+      }
+    },
+    {
+      "name": "minimal",
+      "condition": "import",
+      "e4": {
+        "raw": 90185,
+        "gzip": 29210,
+        "brotli": 26143
+      },
+      "e5": {
+        "raw": 95359,
+        "gzip": 31231,
+        "brotli": 27793
+      },
+      "delta": {
+        "raw": 5174,
+        "gzip": 2021,
+        "brotli": 1650
+      },
+      "percent": {
+        "raw": 5.74,
+        "gzip": 6.92,
+        "brotli": 6.31
+      }
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "import",
+      "e4": {
+        "raw": 70132,
+        "gzip": 23153,
+        "brotli": 20597
+      },
+      "e5": {
+        "raw": 74535,
+        "gzip": 24985,
+        "brotli": 22043
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1832,
+        "brotli": 1446
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.91,
+        "brotli": 7.02
+      }
+    },
+    {
+      "name": "helper",
+      "condition": "browser",
+      "e4": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "e5": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "name": "factory",
+      "condition": "browser",
+      "e4": {
+        "raw": 70122,
+        "gzip": 23146,
+        "brotli": 20572
+      },
+      "e5": {
+        "raw": 74525,
+        "gzip": 24974,
+        "brotli": 22043
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1828,
+        "brotli": 1471
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.9,
+        "brotli": 7.15
+      }
+    },
+    {
+      "name": "initialization",
+      "condition": "browser",
+      "e4": {
+        "raw": 70150,
+        "gzip": 23154,
+        "brotli": 20553
+      },
+      "e5": {
+        "raw": 74553,
+        "gzip": 24988,
+        "brotli": 22046
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1834,
+        "brotli": 1493
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.92,
+        "brotli": 7.26
+      }
+    },
+    {
+      "name": "minimal",
+      "condition": "browser",
+      "e4": {
+        "raw": 90185,
+        "gzip": 29210,
+        "brotli": 26143
+      },
+      "e5": {
+        "raw": 95359,
+        "gzip": 31231,
+        "brotli": 27793
+      },
+      "delta": {
+        "raw": 5174,
+        "gzip": 2021,
+        "brotli": 1650
+      },
+      "percent": {
+        "raw": 5.74,
+        "gzip": 6.92,
+        "brotli": 6.31
+      }
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "browser",
+      "e4": {
+        "raw": 70132,
+        "gzip": 23153,
+        "brotli": 20597
+      },
+      "e5": {
+        "raw": 74535,
+        "gzip": 24985,
+        "brotli": 22043
+      },
+      "delta": {
+        "raw": 4403,
+        "gzip": 1832,
+        "brotli": 1446
+      },
+      "percent": {
+        "raw": 6.28,
+        "gzip": 7.91,
+        "brotli": 7.02
+      }
+    }
+  ],
+  "distributions": [
+    {
+      "file": "engine/dist/tsparticles.engine.js",
+      "e4": {
+        "file": "engine/dist/tsparticles.engine.js",
+        "raw": 229802,
+        "gzip": 41200,
+        "brotli": 34581
+      },
+      "e5": {
+        "file": "engine/dist/tsparticles.engine.js",
+        "raw": 252177,
+        "gzip": 45909,
+        "brotli": 38456
+      },
+      "delta": {
+        "raw": 22375,
+        "gzip": 4709,
+        "brotli": 3875
+      },
+      "percent": {
+        "raw": 9.74,
+        "gzip": 11.43,
+        "brotli": 11.21
+      }
+    },
+    {
+      "file": "engine/dist/tsparticles.engine.min.js",
+      "e4": {
+        "file": "engine/dist/tsparticles.engine.min.js",
+        "raw": 84828,
+        "gzip": 26714,
+        "brotli": 23066
+      },
+      "e5": {
+        "file": "engine/dist/tsparticles.engine.min.js",
+        "raw": 93138,
+        "gzip": 30107,
+        "brotli": 25753
+      },
+      "delta": {
+        "raw": 8310,
+        "gzip": 3393,
+        "brotli": 2687
+      },
+      "percent": {
+        "raw": 9.8,
+        "gzip": 12.7,
+        "brotli": 11.65
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
+      "e4": {
+        "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
+        "raw": 280298,
+        "gzip": 48289,
+        "brotli": 40343
+      },
+      "e5": {
+        "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
+        "raw": 307876,
+        "gzip": 53713,
+        "brotli": 44685
+      },
+      "delta": {
+        "raw": 27578,
+        "gzip": 5424,
+        "brotli": 4342
+      },
+      "percent": {
+        "raw": 9.84,
+        "gzip": 11.23,
+        "brotli": 10.76
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "e4": {
+        "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+        "raw": 103907,
+        "gzip": 30990,
+        "brotli": 27362
+      },
+      "e5": {
+        "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+        "raw": 114090,
+        "gzip": 34833,
+        "brotli": 30394
+      },
+      "delta": {
+        "raw": 10183,
+        "gzip": 3843,
+        "brotli": 3032
+      },
+      "percent": {
+        "raw": 9.8,
+        "gzip": 12.4,
+        "brotli": 11.08
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.js",
+      "e4": {
+        "file": "bundles/basic/dist/tsparticles.basic.js",
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "e5": {
+        "file": "bundles/basic/dist/tsparticles.basic.js",
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.min.js",
+      "e4": {
+        "file": "bundles/basic/dist/tsparticles.basic.min.js",
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "e5": {
+        "file": "bundles/basic/dist/tsparticles.basic.min.js",
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
+      "e4": {
+        "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
+        "raw": 468579,
+        "gzip": 76767,
+        "brotli": 61759
+      },
+      "e5": {
+        "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
+        "raw": 497436,
+        "gzip": 82355,
+        "brotli": 66168
+      },
+      "delta": {
+        "raw": 28857,
+        "gzip": 5588,
+        "brotli": 4409
+      },
+      "percent": {
+        "raw": 6.16,
+        "gzip": 7.28,
+        "brotli": 7.14
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+      "e4": {
+        "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+        "raw": 170314,
+        "gzip": 48405,
+        "brotli": 41884
+      },
+      "e5": {
+        "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+        "raw": 180954,
+        "gzip": 52377,
+        "brotli": 45032
+      },
+      "delta": {
+        "raw": 10640,
+        "gzip": 3972,
+        "brotli": 3148
+      },
+      "percent": {
+        "raw": 6.25,
+        "gzip": 8.21,
+        "brotli": 7.52
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.js",
+      "e4": {
+        "file": "bundles/slim/dist/tsparticles.slim.js",
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "e5": {
+        "file": "bundles/slim/dist/tsparticles.slim.js",
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.min.js",
+      "e4": {
+        "file": "bundles/slim/dist/tsparticles.slim.min.js",
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "e5": {
+        "file": "bundles/slim/dist/tsparticles.slim.min.js",
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.js",
+      "e4": {
+        "file": "bundles/full/dist/tsparticles.bundle.js",
+        "raw": 599327,
+        "gzip": 95588,
+        "brotli": 76187
+      },
+      "e5": {
+        "file": "bundles/full/dist/tsparticles.bundle.js",
+        "raw": 629517,
+        "gzip": 101679,
+        "brotli": 80716
+      },
+      "delta": {
+        "raw": 30190,
+        "gzip": 6091,
+        "brotli": 4529
+      },
+      "percent": {
+        "raw": 5.04,
+        "gzip": 6.37,
+        "brotli": 5.94
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.min.js",
+      "e4": {
+        "file": "bundles/full/dist/tsparticles.bundle.min.js",
+        "raw": 216864,
+        "gzip": 59948,
+        "brotli": 51523
+      },
+      "e5": {
+        "file": "bundles/full/dist/tsparticles.bundle.min.js",
+        "raw": 228103,
+        "gzip": 64340,
+        "brotli": 54837
+      },
+      "delta": {
+        "raw": 11239,
+        "gzip": 4392,
+        "brotli": 3314
+      },
+      "percent": {
+        "raw": 5.18,
+        "gzip": 7.33,
+        "brotli": 6.43
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.js",
+      "e4": {
+        "file": "bundles/full/dist/tsparticles.js",
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "e5": {
+        "file": "bundles/full/dist/tsparticles.js",
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.min.js",
+      "e4": {
+        "file": "bundles/full/dist/tsparticles.min.js",
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "e5": {
+        "file": "bundles/full/dist/tsparticles.min.js",
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.js",
+      "e4": {
+        "file": "bundles/all/dist/tsparticles.all.bundle.js",
+        "raw": 1193110,
+        "gzip": 182818,
+        "brotli": 138169
+      },
+      "e5": {
+        "file": "bundles/all/dist/tsparticles.all.bundle.js",
+        "raw": 1244138,
+        "gzip": 191924,
+        "brotli": 143929
+      },
+      "delta": {
+        "raw": 51028,
+        "gzip": 9106,
+        "brotli": 5760
+      },
+      "percent": {
+        "raw": 4.28,
+        "gzip": 4.98,
+        "brotli": 4.17
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "e4": {
+        "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+        "raw": 435531,
+        "gzip": 118216,
+        "brotli": 96340
+      },
+      "e5": {
+        "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+        "raw": 454662,
+        "gzip": 124421,
+        "brotli": 100650
+      },
+      "delta": {
+        "raw": 19131,
+        "gzip": 6205,
+        "brotli": 4310
+      },
+      "percent": {
+        "raw": 4.39,
+        "gzip": 5.25,
+        "brotli": 4.47
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.js",
+      "e4": {
+        "file": "bundles/all/dist/tsparticles.all.js",
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "e5": {
+        "file": "bundles/all/dist/tsparticles.all.js",
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.min.js",
+      "e4": {
+        "file": "bundles/all/dist/tsparticles.all.min.js",
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "e5": {
+        "file": "bundles/all/dist/tsparticles.all.min.js",
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "percent": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    }
+  ],
+  "assessment": "Pure helper is unchanged. E4-to-E5 factory and minimal consumer payloads, plus shipped bundles, exceed the 2% comparison target; this is an open E5 size gate requiring attribution and optimization or an explicitly approved budget revision."
+}

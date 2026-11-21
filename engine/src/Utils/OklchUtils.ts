@@ -99,6 +99,19 @@ export function displayP3ToOklch(color: IRgb): IOklch {
   });
 }
 
+/** Converts encoded sRGB channels to encoded Display-P3 coordinates. */
+export function rgbToDisplayP3Float(color: IRgb): IRgb {
+  const r = srgbToLinear(color.r),
+    g = srgbToLinear(color.g),
+    b = srgbToLinear(color.b);
+
+  return {
+    b: linearToSrgb(0.01708535 * r + 0.07239572 * g + 0.91030148 * b),
+    g: linearToSrgb(0.03319951 * r + 0.9667835 * g),
+    r: linearToSrgb(0.82259287 * r + 0.17753395 * g),
+  };
+}
+
 /** Converts OKLCH to extended sRGB coordinates in the 0–255 range, without gamut mapping. */
 export function oklchToRgbFloat(color: IOklch): IRgb {
   const angle = color.h * radiansPerDegree,
@@ -119,11 +132,9 @@ export function oklchToRgbFloat(color: IOklch): IRgb {
   };
 }
 
-/** Maps OKLCH to sRGB by reducing chroma at constant lightness and hue. */
-export function mapOklchToSrgb(color: IOklch): { color: IOklch; rgb: IRgb } {
-  const lightness = Math.min(100, Math.max(0, color.l)),
-    candidate = { ...color, l: lightness },
-    candidateRgb = oklchToRgbFloat(candidate),
+function mapOklchToGamut(color: IOklch, convert: (color: IOklch) => IRgb): { color: IOklch; rgb: IRgb } {
+  const candidate = { ...color, l: Math.min(100, Math.max(0, color.l)) },
+    candidateRgb = convert(candidate),
     inGamut = (rgb: IRgb): boolean =>
       rgb.r >= 0 && rgb.r <= rgbScale && rgb.g >= 0 && rgb.g <= rgbScale && rgb.b >= 0 && rgb.b <= rgbScale;
 
@@ -133,22 +144,33 @@ export function mapOklchToSrgb(color: IOklch): { color: IOklch; rgb: IRgb } {
 
   let low = 0,
     high = candidate.c,
-    mapped = { ...candidate, c: 0 };
+    mappedChroma = 0;
+
+  const probe = { ...candidate, c: 0 };
 
   for (let iteration = 0; iteration < 24; iteration++) {
-    const chroma = (low + high) / 2,
-      probe = { ...candidate, c: chroma },
-      probeRgb = oklchToRgbFloat(probe);
+    const chroma = (low + high) / 2;
+
+    probe.c = chroma;
+
+    const probeRgb = convert(probe);
 
     if (inGamut(probeRgb)) {
       low = chroma;
-      mapped = probe;
+      mappedChroma = chroma;
     } else {
       high = chroma;
     }
   }
 
-  return { color: mapped, rgb: oklchToRgbFloat(mapped) };
+  const mapped = { ...candidate, c: mappedChroma };
+
+  return { color: mapped, rgb: convert(mapped) };
+}
+
+/** Maps OKLCH to sRGB by reducing chroma at constant lightness and hue. */
+export function mapOklchToSrgb(color: IOklch): { color: IOklch; rgb: IRgb } {
+  return mapOklchToGamut(color, oklchToRgbFloat);
 }
 
 /** Converts OKLCH to floating-point Display-P3 channels without gamut mapping. */
@@ -170,34 +192,7 @@ export function oklchToDisplayP3Float(color: IOklch): IRgb {
 
 /** Maps OKLCH to Display-P3 by reducing chroma at constant lightness and hue. */
 export function mapOklchToDisplayP3(color: IOklch): { color: IOklch; rgb: IRgb } {
-  const lightness = Math.min(100, Math.max(0, color.l)),
-    candidate = { ...color, l: lightness },
-    candidateRgb = oklchToDisplayP3Float(candidate),
-    inGamut = (rgb: IRgb): boolean =>
-      rgb.r >= 0 && rgb.r <= rgbScale && rgb.g >= 0 && rgb.g <= rgbScale && rgb.b >= 0 && rgb.b <= rgbScale;
-
-  if (inGamut(candidateRgb)) {
-    return { color: candidate, rgb: candidateRgb };
-  }
-
-  let low = 0,
-    high = candidate.c,
-    mapped = { ...candidate, c: 0 };
-
-  for (let iteration = 0; iteration < 24; iteration++) {
-    const chroma = (low + high) / 2,
-      probe = { ...candidate, c: chroma },
-      probeRgb = oklchToDisplayP3Float(probe);
-
-    if (inGamut(probeRgb)) {
-      low = chroma;
-      mapped = probe;
-    } else {
-      high = chroma;
-    }
-  }
-
-  return { color: mapped, rgb: oklchToDisplayP3Float(mapped) };
+  return mapOklchToGamut(color, oklchToDisplayP3Float);
 }
 
 /** Mixes two colors by interpolating their rectangular OKLab coordinates. */

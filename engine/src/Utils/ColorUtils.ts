@@ -58,7 +58,8 @@ import {
   mapOklchToDisplayP3,
   mapOklchToSrgb,
   mixOklch,
-  oklchToRgbFloat,
+  oklchToDisplayP3Float,
+  rgbToDisplayP3Float,
   rgbToOklch,
 } from "./OklchUtils.js";
 import { isArray, isString } from "./TypeUtils.js";
@@ -77,6 +78,7 @@ import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
   maxStyleCacheSize = 2000,
+  hueGradsPerTurn = 400,
   oklchLightnessCachePrecision = 6,
   oklchChromaCachePrecision = 6,
   oklchHueCachePrecision = 4,
@@ -95,9 +97,9 @@ const styleCache = new Map<string, string>(),
   temperatureR = 1.05,
   temperatureB = 0.95,
   contrastFactor = 1.1,
-  luminanceR = 0.2126,
-  luminanceG = 0.7152,
-  luminanceB = 0.0722,
+  displayP3LuminanceR = 0.2289745641,
+  displayP3LuminanceG = 0.6917385218,
+  displayP3LuminanceB = 0.0792869141,
   dynamicLuminanceFactor = 2,
   channelCount = 3,
   srgbThreshold = 0.04045,
@@ -140,8 +142,8 @@ function acesFilmic(x: number): number {
 }
 
 /**
- * Converts an sRGB gamma-encoded value to linear space
- * @param c - the sRGB value in [0, 1]
+ * Converts a signed sRGB-compatible gamma-encoded channel to linear light
+ * @param c - the encoded channel, including extended values outside [0, 1]
  * @returns the linear value
  */
 function srgbToLinear(c: number): number {
@@ -151,9 +153,9 @@ function srgbToLinear(c: number): number {
 }
 
 /**
- * Converts a linear value to sRGB gamma-encoded space
- * @param c - the linear value in [0, 1]
- * @returns the sRGB value
+ * Converts a signed linear channel to sRGB-compatible encoded space
+ * @param c - the linear channel, including values above 1 for HDR
+ * @returns the encoded channel
  */
 function linearToSrgb(c: number): number {
   return Math.abs(c) <= linearThreshold
@@ -167,7 +169,7 @@ function linearToSrgb(c: number): number {
  * @param g - the green channel
  * @param b - the blue channel
  * @param mode - the HDR rendering mode
- * @param maxChannel - the maximum channel value the display can reproduce
+ * @param maxChannel - the maximum linear channel value the display can reproduce
  * @returns the adjusted RGB values
  */
 function applyHdrModeAdjustments(
@@ -201,7 +203,7 @@ function applyHdrModeAdjustments(
     }
 
     case HdrMode.dynamic: {
-      const luminance = luminanceR * r + luminanceG * g + luminanceB * b,
+      const luminance = displayP3LuminanceR * r + displayP3LuminanceG * g + displayP3LuminanceB * b,
         vividWeight = Math.min(one, luminance * dynamicLuminanceFactor),
         naturalWeight = one - vividWeight,
         avg = (r + g + b) / channelCount,
@@ -360,6 +362,37 @@ export function rangeColorToHsl(
   return rgb ? rgbToHsl(rgb) : undefined;
 }
 
+function normalizeOklchaResult(color: IOklcha): IOklcha | undefined {
+  if (
+    ![color.a, color.c, color.h, color.l].every(Number.isFinite) ||
+    color.a < none ||
+    color.a > identity ||
+    color.c < none ||
+    color.l < none ||
+    color.l > percentDenominator
+  ) {
+    return;
+  }
+
+  return { ...color, h: ((color.h % hMax) + hMax) % hMax };
+}
+
+function parseCssHueAngle(value: number, unit?: string): number {
+  switch (unit?.toLowerCase()) {
+    case "rad":
+      return (value * hMax) / (2 * Math.PI);
+
+    case "grad":
+      return (value * hMax) / hueGradsPerTurn;
+
+    case "turn":
+      return value * hMax;
+
+    default:
+      return value;
+  }
+}
+
 /** Resolves an input color to canonical OKLCH (lightness 0–100). */
 export function rangeColorToOklch(
   pluginManager: PluginManager,
@@ -374,10 +407,11 @@ export function rangeColorToOklch(
   if (isString(color)) {
     for (const manager of pluginManager.colorManagers.values()) {
       if (manager.accepts(color)) {
-        const resolved = manager.parseStringOklch?.(color);
+        const resolved = manager.parseStringOklch?.(color),
+          normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
 
-        if (resolved) {
-          return resolved;
+        if (normalized) {
+          return normalized;
         }
 
         break;
@@ -385,7 +419,7 @@ export function rangeColorToOklch(
     }
 
     const match =
-      /^oklch\(\s*([+-]?(?:\d+\.?\d*|\.\d+))(%?)\s+([+-]?(?:\d+\.?\d*|\.\d+))\s+([+-]?(?:\d+\.?\d*|\.\d+))(?:deg|°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
+      /^oklch\(\s*([+-]?(?:\d+\.?\d*|\.\d+))(%?)\s+([+-]?(?:\d+\.?\d*|\.\d+))\s+([+-]?(?:\d+\.?\d*|\.\d+))(deg|°|rad|grad|turn)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
         color,
       );
 
@@ -393,8 +427,8 @@ export function rangeColorToOklch(
       const rawLightness = Number(match[1]),
         lightness = rawLightness * (match[2] ? identity : percentDenominator),
         chroma = Number(match[3]),
-        hue = Number(match[4]),
-        alpha = parseAlpha(match[5]);
+        hue = parseCssHueAngle(Number(match[4]), match[5]),
+        alpha = parseAlpha(match[6]);
 
       if (
         ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
@@ -439,10 +473,11 @@ export function rangeColorToOklch(
     return value ? rangeColorToOklch(pluginManager, isString(value) ? value : { value }) : undefined;
   } else if (typeof color.value === "object") {
     for (const manager of pluginManager.colorManagers.values()) {
-      const resolved = manager.handleRangeColorOklch?.(color);
+      const resolved = manager.handleRangeColorOklch?.(color),
+        normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
 
-      if (resolved) {
-        return resolved;
+      if (normalized) {
+        return normalized;
       }
     }
 
@@ -722,7 +757,7 @@ export function getStyleFromRgb(
       : `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-sdr-${op.toString()}`;
 
   return getCachedStyle(key, () =>
-    hdr ? getHdrStyleFromRgb(color, opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
+    hdr ? getHdrStyleFromRgb(rgbToDisplayP3Float(color), opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
   );
 }
 
@@ -771,23 +806,31 @@ function hdrToneMapColor(
   }
 
   const maxChannel = Math.max(one, headroom),
-    luminance = luminanceR * rNorm + luminanceG * gNorm + luminanceB * bNorm,
+    rLinear = srgbToLinear(rNorm),
+    gLinear = srgbToLinear(gNorm),
+    bLinear = srgbToLinear(bNorm),
+    luminance = displayP3LuminanceR * rLinear + displayP3LuminanceG * gLinear + displayP3LuminanceB * bLinear,
     mappedLuminance = hdrToneMap(luminance, headroom, middleGray),
-    scale = luminance > none ? mappedLuminance / luminance : one;
+    scale = luminance > none ? mappedLuminance / luminance : one,
+    adjusted = applyHdrModeAdjustments(
+      clamp(rLinear * scale, none, maxChannel),
+      clamp(gLinear * scale, none, maxChannel),
+      clamp(bLinear * scale, none, maxChannel),
+      mode,
+      maxChannel,
+    );
 
-  return applyHdrModeAdjustments(
-    clamp(rNorm * scale, none, maxChannel),
-    clamp(gNorm * scale, none, maxChannel),
-    clamp(bNorm * scale, none, maxChannel),
-    mode,
-    maxChannel,
-  );
+  return {
+    b: linearToSrgb(adjusted.b),
+    g: linearToSrgb(adjusted.g),
+    r: linearToSrgb(adjusted.r),
+  };
 }
 
 /**
  * Applies ACES Filmic tone mapping with selective HDR expansion above middle gray.
- * Preserves SDR fidelity for dark tones while extending bright highlights.
- * @param normalized - the sRGB value normalized to [0, 1]
+ * Preserves dark tones while extending bright highlights in linear Display-P3 light.
+ * @param normalized - the linear luminance normalized to SDR reference white
  * @param headroom - the HDR headroom ratio (peakNits / referenceWhite)
  * @param middleGray - the middle gray threshold
  * @returns the tone-mapped value
@@ -859,7 +902,7 @@ export function getStyleFromOklch(
 
   return getCachedStyle(key, () => {
     if (hdr) {
-      return getStyleFromRgb(oklchToRgbFloat(color), true, alpha, peakNits, mode);
+      return getHdrStyleFromRgb(oklchToDisplayP3Float(color), alpha, peakNits, mode);
     }
 
     return outputColorSpace === "display-p3"

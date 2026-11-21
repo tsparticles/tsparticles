@@ -49,3 +49,27 @@ it("generates a shape with type-only imports compatible with the feature lint co
     await rm(directory, { force: true, recursive: true });
   }
 });
+
+it("generates a color manager scaffold with direct OKLCH extension points", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "tsparticles-color-manager-"));
+
+  try {
+    await createProjectTemplate({
+      description: "Example color manager",
+      destination: directory,
+      kind: "plugin",
+      name: "example",
+      repositoryUrl: "",
+      type: "color-manager",
+    });
+
+    const manager = await readFile(join(directory, "src/ColorManager.ts"), "utf8");
+
+    expect(manager).toContain("IOklcha");
+    expect(manager).toContain("handleColorOklch(_color: IColor)");
+    expect(manager).toContain("handleRangeColorOklch(_color: IRangeColor)");
+    expect(manager).toContain("parseStringOklch(_input: string)");
+  } finally {
+    await rm(directory, { force: true, recursive: true });
+  }
+});

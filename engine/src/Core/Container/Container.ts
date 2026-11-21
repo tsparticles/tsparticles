@@ -78,6 +78,22 @@ function loadContainerOptions(
 
 const emptyPlugins: readonly IContainerPlugin[] = Object.freeze([]);
 
+interface CleanupFailure {
+  error: unknown;
+  hasError: boolean;
+}
+
+function attemptCleanup(failure: CleanupFailure, callback: () => void): void {
+  try {
+    callback();
+  } catch (error: unknown) {
+    if (!failure.hasError) {
+      failure.error = error;
+      failure.hasError = true;
+    }
+  }
+}
+
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
@@ -315,21 +331,24 @@ export class Container {
       return;
     }
 
-    this.stop();
+    const failure: CleanupFailure = { error: undefined, hasError: false };
 
-    this.particles.destroy();
-    this.canvas.destroy();
+    attemptCleanup(failure, () => {
+      this.stop();
+    });
+    attemptCleanup(failure, () => {
+      this.particles.destroy();
+    });
+    attemptCleanup(failure, () => {
+      this.canvas.destroy();
+    });
 
     for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.(this);
+      attemptCleanup(failure, () => effectDrawer.destroy?.(this));
     }
 
     for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.(this);
-    }
-
-    for (const plugin of this.plugins) {
-      plugin.destroy?.();
+      attemptCleanup(failure, () => shapeDrawer.destroy?.(this));
     }
 
     this.effectDrawers = new Map();
@@ -339,9 +358,16 @@ export class Container {
 
     this.destroyed = true;
 
-    this.#onDestroy(remove);
+    attemptCleanup(failure, () => {
+      this.#onDestroy(remove);
+    });
+    attemptCleanup(failure, () => {
+      this.dispatchEvent(EventType.containerDestroyed);
+    });
 
-    this.dispatchEvent(EventType.containerDestroyed);
+    if (failure.hasError) {
+      throw failure.error;
+    }
   }
 
   /**
@@ -431,7 +457,13 @@ export class Container {
       const containerPlugin = await plugin.getPlugin(this);
 
       if (generation !== this.#startGeneration || this.destroyed) {
-        containerPlugin.destroy?.();
+        try {
+          containerPlugin.destroy?.();
+        } catch (error: unknown) {
+          this.engine
+            .getLogger()
+            .warning("Error cleaning up a container plugin after initialization was cancelled", error);
+        }
 
         return;
       }
@@ -689,7 +721,11 @@ export class Container {
         this.play();
       } catch (error) {
         if (generation === this.#startGeneration && !this.destroyed) {
-          this.stop();
+          try {
+            this.stop();
+          } catch (cleanupError: unknown) {
+            this.engine.getLogger().warning("Error cleaning up after container start failed", cleanupError);
+          }
         }
 
         throw error;
@@ -712,7 +748,8 @@ export class Container {
       return;
     }
 
-    const wasStarted = this.started;
+    const wasStarted = this.started,
+      failure: CleanupFailure = { error: undefined, hasError: false };
 
     this.#startGeneration++;
     this.#startCancel?.();
@@ -729,30 +766,38 @@ export class Container {
 
     this.#firstStart = true;
     this.started = false;
-    this.#eventListeners.removeListeners();
+    attemptCleanup(failure, () => {
+      this.#eventListeners.removeListeners();
+    });
     if (wasStarted) {
-      this.pause();
+      attemptCleanup(failure, () => {
+        this.pause();
+      });
     }
-    this.particles.clear();
-    this.canvas.stop();
+    attemptCleanup(failure, () => {
+      this.particles.clear();
+    });
+    attemptCleanup(failure, () => {
+      this.canvas.stop();
+    });
 
     const activePlugins = this.plugins;
 
     for (const plugin of activePlugins) {
-      plugin.stop?.();
+      attemptCleanup(failure, () => plugin.stop?.());
     }
 
     const activePluginSet = new Set(activePlugins);
 
     for (const plugin of this.#pendingPlugins) {
       if (!activePluginSet.has(plugin)) {
-        plugin.stop?.();
-        plugin.destroy?.();
+        attemptCleanup(failure, () => plugin.stop?.());
+        attemptCleanup(failure, () => plugin.destroy?.());
       }
     }
 
     for (const plugin of activePlugins) {
-      plugin.destroy?.();
+      attemptCleanup(failure, () => plugin.destroy?.());
     }
 
     this.#pendingPlugins = [];
@@ -765,7 +810,13 @@ export class Container {
     this.#sourceOptions = this.#options;
 
     if (wasStarted) {
-      this.dispatchEvent(EventType.containerStopped);
+      attemptCleanup(failure, () => {
+        this.dispatchEvent(EventType.containerStopped);
+      });
+    }
+
+    if (failure.hasError) {
+      throw failure.error;
     }
   }
 

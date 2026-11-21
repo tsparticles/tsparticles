@@ -315,12 +315,16 @@ export class Engine {
         }
         await newItem.start();
       } catch (error) {
-        newItem.destroy(false);
+        try {
+          newItem.destroy(false);
+        } catch (cleanupError: unknown) {
+          this.getLogger().warning("Error cleaning up a failed container load", cleanupError);
+        } finally {
+          const failedIndex = items.indexOf(newItem);
 
-        const failedIndex = items.indexOf(newItem);
-
-        if (failedIndex >= loadMinIndex) {
-          items.splice(failedIndex, removeDeleteCount);
+          if (failedIndex >= loadMinIndex) {
+            items.splice(failedIndex, removeDeleteCount);
+          }
         }
 
         throw error;

@@ -93,7 +93,7 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
    */
   protected doLoad(data: ISourceOptions): void {
     if (data.preset !== undefined) {
-      this.preset = data.preset;
+      this.preset = Array.isArray(data.preset) ? [...data.preset] : data.preset;
 
       executeOnSingleOrMultiple(this.preset, preset => {
         this.#importPreset(preset);

@@ -9,6 +9,7 @@ const defaultFactor = 1,
 export class MotionPluginInstance implements IContainerPlugin {
   /** The motion container */
   readonly #container;
+  #generation = 0;
   #handleChange?: () => void;
   #mediaQuery?: MediaQueryList;
 
@@ -28,7 +29,8 @@ export class MotionPluginInstance implements IContainerPlugin {
     this.stop();
 
     const container = this.#container,
-      options = container.actualOptions.motion;
+      options = container.actualOptions.motion,
+      generation = this.#generation;
 
     if (!(options && (options.disable || options.reduce.value))) {
       container.retina.reduceFactor = 1;
@@ -49,8 +51,16 @@ export class MotionPluginInstance implements IContainerPlugin {
 
     // Ads an event listener to check for changes in the media query's value.
     const handleChange = (): void => {
+      if (generation !== this.#generation || container.destroyed) {
+        return;
+      }
+
       void (async (): Promise<void> => {
         this.#handleMotionChange(mediaQuery);
+
+        if (generation !== this.#generation || container.destroyed) {
+          return;
+        }
 
         try {
           await container.refresh();
@@ -68,6 +78,8 @@ export class MotionPluginInstance implements IContainerPlugin {
   }
 
   stop(): void {
+    this.#generation++;
+
     if (this.#mediaQuery && this.#handleChange) {
       this.#mediaQuery.removeEventListener("change", this.#handleChange);
     }

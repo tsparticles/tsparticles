@@ -113,16 +113,24 @@ export class ParticlesManager {
     try {
       const particle = this.#pool.pop() ?? new Particle(this.#pluginManager, this.#container);
 
-      particle.init(this.#nextId, position, overrideOptions, group);
+      try {
+        particle.init(this.#nextId, position, overrideOptions, group);
+      } catch (error: unknown) {
+        this.#destroyAndPoolAfterError(particle, error);
+      }
 
       let canAdd = true;
 
       if (initializer) {
-        canAdd = initializer(particle);
+        try {
+          canAdd = initializer(particle);
+        } catch (error: unknown) {
+          this.#destroyAndPoolAfterError(particle, error);
+        }
       }
 
       if (!canAdd) {
-        this.#pool.push(particle);
+        this.#destroyAndPool(particle);
 
         return;
       }
@@ -132,9 +140,13 @@ export class ParticlesManager {
 
       this.#nextId++;
 
-      this.#container.dispatchEvent(EventType.particleAdded, {
-        particle,
-      });
+      try {
+        this.#container.dispatchEvent(EventType.particleAdded, {
+          particle,
+        });
+      } catch (error: unknown) {
+        this.#container.engine.getLogger().warning(`error dispatching particleAdded: ${error as string}`);
+      }
 
       return particle;
     } catch (e: unknown) {
@@ -144,18 +156,37 @@ export class ParticlesManager {
     return undefined;
   }
 
-  /**
-   * Removes all particles from the array
-   */
+  /** Destroys and pools all active particles without dispatching particleRemoved. */
   clear(): void {
+    const particles = this.#array;
+
     this.#array = [];
     this.#particleBuckets.clear();
     this.#resetBuckets(this.#container.zLayers);
+    this.#grid.clear();
+
+    let cleanupError: unknown,
+      hasCleanupError = false;
+
+    for (const particle of particles) {
+      try {
+        this.#destroyAndPool(particle);
+      } catch (error: unknown) {
+        if (!hasCleanupError) {
+          cleanupError = error;
+          hasCleanupError = true;
+        }
+      }
+    }
+
+    if (hasCleanupError) {
+      this.#container.engine.getLogger().warning(`error clearing particles: ${cleanupError as string}`);
+    }
   }
 
   /** Destroys the particles manager */
   destroy(): void {
-    this.#array = [];
+    this.clear();
     this.#pool.length = 0;
     this.#particleBuckets.clear();
     this.#zBuckets = [];
@@ -522,6 +553,27 @@ export class ParticlesManager {
     const bucketCount = Math.max(Math.floor(zLayers), one);
 
     return Array.from({ length: bucketCount }, () => []);
+  }
+
+  #destroyAndPool(particle: Particle): void {
+    particle.destroyed = false;
+    particle.unbreakable = false;
+
+    try {
+      particle.destroy();
+    } finally {
+      this.#pool.push(particle);
+    }
+  }
+
+  #destroyAndPoolAfterError(particle: Particle, error: unknown): never {
+    try {
+      this.#destroyAndPool(particle);
+    } catch (cleanupError: unknown) {
+      this.#container.engine.getLogger().warning(`error cleaning up failed particle: ${cleanupError as string}`);
+    }
+
+    throw error;
   }
 
   #getBucketIndex(zIndex: number): number {

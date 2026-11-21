@@ -122,6 +122,19 @@ for subsequent model changes.
 
 ### E5 — Deliver the model and color change as coherent increments
 
+Scope: OKLCH is the canonical model for all resolved engine/extension colors,
+not just particles. Follow the [boundary rules and closure inventory](V5-COLORS-OKLCH.md#e5-scope-clarification--2026-11-21).
+Use direct CSS `oklch(...)` as the default supported output, including P3
+canvases. Follow the [output implementation rules](V5-COLORS-OKLCH.md#output-rule-for-implementers);
+manual RGB output needs a documented fallback/API/HDR requirement. Complete
+unresolved runtime RGB/HSL state and the native manager contract here, before
+E6–E10.
+
+Agent starting point: use the [E5 entry checklist](V5-E5-STATUS.md#agent-entry-checklist)
+and its implementation tasks. Historical checkpoint results do not waive these
+requirements; all existing lifecycle and performance gates also remain open
+until verified.
+
 1. **E5a: Particle and options foundations (07).** Apply selected ARCH-01/03
    decisions to initialization, precedence, mutable state, Retina and reset.
    Verify against the existing manager/pool. Keep pool algorithms unchanged.
@@ -210,8 +223,10 @@ new capability packages need a separate demonstrated consumer benefit.
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: continue E5 with Particle lifecycle/consumer closure and the
-remaining supported-syntax, schema and custom-manager audit listed in the
+Next action: complete the canonical-manager contract and per-file color-boundary
+inventory in the E5 scope clarification, alongside Particle lifecycle/consumer
+closure and the remaining supported-syntax, schema and custom-manager audit
+listed in the
 [E5 checkpoint](V5-E5-STATUS.md). Independent cusp references and sRGB/P3
 browser pixel readback now pass, including extended Display-P3 float16 values;
 HDR luminance/tone-mapping conformance and particle cost measurements remain

@@ -19,6 +19,7 @@ import { loadCogShape } from "@tsparticles/shape-cog";
 import { loadEmojiShape } from "@tsparticles/shape-emoji";
 import { loadHeartShape } from "@tsparticles/shape-heart";
 import { loadImageShape } from "@tsparticles/shape-image";
+import { loadGifShape } from "@tsparticles/shape-gif";
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadLineShape } from "@tsparticles/shape-line";
 import { loadMatrixShape } from "@tsparticles/shape-matrix";
@@ -197,6 +198,7 @@ describe("ShapeGeometry", async () => {
   await loadPathShape(tsParticles);
   await loadTextShape(tsParticles);
   await loadEmojiShape(tsParticles);
+  await loadGifShape(tsParticles);
   await loadImageShape(tsParticles);
   await loadHeartShape(tsParticles);
 
@@ -304,6 +306,7 @@ describe("ShapeGeometry", async () => {
     shapeData?: { font?: string; value?: string };
     size?: { value: number };
   }>;
+  const gif = (await getDrawer("gif")) as IShapeDrawer;
   const image = (await getDrawer("image")) as IShapeDrawer<{
     image?: { element?: unknown; ratio?: number };
     shapeData?: unknown;
@@ -781,6 +784,22 @@ describe("ShapeGeometry", async () => {
       expect(fakeContainer.canvas.size.width).to.equal(400);
       expect(ribbon).to.not.be.undefined;
     });
+
+    it("particleDestroy releases per-particle ribbon geometry and timing state", () => {
+      const particle = {
+        ribbonPoints: [{ x: 10, y: 20 }],
+        ribbonPointsCount: 1,
+        ribbonTime: 30,
+        ribbonPreviousPosition: { x: 5, y: 6 },
+      } as unknown as Particle;
+
+      ribbon.particleDestroy?.(particle);
+
+      expect((particle as any).ribbonPoints).to.be.undefined;
+      expect((particle as any).ribbonPointsCount).to.be.undefined;
+      expect((particle as any).ribbonTime).to.be.undefined;
+      expect((particle as any).ribbonPreviousPosition).to.be.undefined;
+    });
   });
 
   describe("matrix", () => {
@@ -850,6 +869,14 @@ describe("ShapeGeometry", async () => {
       expect(empty.cardData).to.be.undefined;
     });
 
+    it("card.particleDestroy releases its copied card data", () => {
+      const particle = { cardData: { suit: "hearts", value: "A" } };
+
+      card.particleDestroy?.(particle as unknown as Particle);
+
+      expect(particle.cardData).to.be.undefined;
+    });
+
     it("card.draw renders the cached card image at the computed size", () => {
       const { calls, ctx } = createRecorder(),
         particle = {
@@ -902,6 +929,14 @@ describe("ShapeGeometry", async () => {
       expect(particle.pathData).to.eql(shapeData);
       expect(particle.pathData).to.not.equal(shapeData);
     });
+
+    it("particleDestroy releases its copied path data", () => {
+      const particle = { pathData: { segments: [{ type: SegmentType.line }] } };
+
+      path.particleDestroy?.(particle as unknown as Particle);
+
+      expect(particle.pathData).to.be.undefined;
+    });
   });
 
   describe("text", () => {
@@ -947,6 +982,15 @@ describe("ShapeGeometry", async () => {
       expect(particle.textLines).to.eql(["abc"]);
       expect(particle.maxTextLength).to.equal(3);
     });
+
+    it("particleDestroy releases the particle's text layout", () => {
+      const particle = { maxTextLength: 3, textLines: ["abc"] };
+
+      text.particleDestroy?.(particle as unknown as Particle);
+
+      expect(particle.textLines).to.be.undefined;
+      expect(particle.maxTextLength).to.be.undefined;
+    });
   });
 
   describe("emoji", () => {
@@ -978,6 +1022,44 @@ describe("ShapeGeometry", async () => {
       emoji.draw(makeData(ctx, {}, 10));
 
       expect(calls.length).to.equal(0);
+    });
+
+    it("particleDestroy clears the cached emoji key", () => {
+      const particle = { emojiDataKey: "😀" } as unknown as Particle;
+
+      emoji.particleDestroy?.(particle);
+
+      expect((particle as any).emojiDataKey).to.be.undefined;
+    });
+  });
+
+  describe("gif", () => {
+    it("particleDestroy releases decoded frames and compositing canvases", () => {
+      const particle = {
+        gifCanvas: {},
+        gifCanvasContext: {},
+        gifCanvasFrame: {},
+        gifPreviousCanvas: {},
+        gifData: {},
+        gifFrame: 1,
+        gifLoopCount: 2,
+        gifTime: 3,
+      } as unknown as Particle;
+
+      gif.particleDestroy?.(particle);
+
+      for (const key of [
+        "gifCanvas",
+        "gifCanvasContext",
+        "gifCanvasFrame",
+        "gifPreviousCanvas",
+        "gifData",
+        "gifFrame",
+        "gifLoopCount",
+        "gifTime",
+      ]) {
+        expect((particle as any)[key], key).to.be.undefined;
+      }
     });
   });
 
@@ -1014,6 +1096,141 @@ describe("ShapeGeometry", async () => {
       };
 
       expect(() => image.particleInit?.(container, particle as unknown as Particle)).to.not.throw();
+    });
+
+    it("particleDestroy releases its loaded image reference", () => {
+      const particle = { image: { element: {}, ratio: 1 } };
+
+      image.particleDestroy?.(particle as unknown as Particle);
+
+      expect(particle.image).to.be.undefined;
+    });
+
+    it("handles rejected custom image loaders without an unhandled rejection", async () => {
+      const container = featureContainer as Container,
+        engine = tsParticles as typeof tsParticles & {
+          getImages: (container: Container) => { name: string; source: string }[];
+          loadImage?: (
+            container: Container,
+            data: { name: string; replaceColor: boolean; src: string },
+          ) => Promise<void>;
+        },
+        originalLoadImage = engine.loadImage,
+        failure = new Error("custom image loader failed"),
+        loggerError = vi.spyOn(container.engine.getLogger(), "error"),
+        particle = {
+          destroyed: false,
+          id: 20,
+          shape: "image",
+          shapeData: { height: 10, name: "failed-image", replaceColor: false, src: "failed-image.png", width: 10 },
+        } as unknown as Particle;
+
+      engine.loadImage = vi.fn().mockRejectedValue(failure);
+
+      try {
+        image.loadShape?.(particle);
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(loggerError).toHaveBeenCalledWith('Error loading image shape "failed-image.png"', failure);
+      } finally {
+        engine.loadImage = originalLoadImage;
+        loggerError.mockRestore();
+      }
+    });
+
+    it("ignores a rejected image load after its particle has been reused", async () => {
+      const container = featureContainer as Container,
+        engine = tsParticles as typeof tsParticles & {
+          getImages: (container: Container) => { name: string; source: string }[];
+          loadImage?: (
+            container: Container,
+            data: { name: string; replaceColor: boolean; src: string },
+          ) => Promise<void>;
+        },
+        originalLoadImage = engine.loadImage,
+        failure = new Error("stale custom image loader failed"),
+        loggerError = vi.spyOn(container.engine.getLogger(), "error"),
+        staleShapeData = {
+          height: 10,
+          name: "stale-image",
+          replaceColor: false,
+          src: "stale-image.png",
+          width: 10,
+        },
+        particle = {
+          destroyed: false,
+          id: 21,
+          shape: "image",
+          shapeData: staleShapeData,
+        } as unknown as Particle;
+      let rejectLoad!: (reason: unknown) => void;
+
+      engine.loadImage = vi.fn(
+        () =>
+          new Promise<void>((_resolve, reject) => {
+            rejectLoad = reject;
+          }),
+      );
+
+      try {
+        image.loadShape?.(particle);
+        particle.destroyed = true;
+        particle.id = 22;
+        particle.shape = "circle";
+        particle.shapeData = {};
+        rejectLoad(failure);
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(loggerError).not.toHaveBeenCalled();
+      } finally {
+        engine.loadImage = originalLoadImage;
+        loggerError.mockRestore();
+      }
+    });
+
+    it("does not resume an old image request against a reused particle", async () => {
+      const container = featureContainer as Container,
+        engine = tsParticles as typeof tsParticles & {
+          getImages: (container: Container) => { name: string; source: string }[];
+          loadImage?: (
+            container: Container,
+            data: { name: string; replaceColor: boolean; src: string },
+          ) => Promise<void>;
+        },
+        originalGetImages = engine.getImages,
+        originalLoadImage = engine.loadImage,
+        images: { name: string; source: string }[] = [],
+        loadImage = vi.fn(async (_container: Container, data: { name: string; src: string }): Promise<void> => {
+          images.push({ name: data.name, source: data.src });
+        }),
+        particle = {
+          destroyed: false,
+          id: 23,
+          shape: "image",
+          shapeData: { height: 10, name: "first-image", replaceColor: false, src: "first-image.png", width: 10 },
+        } as unknown as Particle;
+
+      engine.getImages = () => images;
+      engine.loadImage = loadImage;
+
+      try {
+        image.loadShape?.(particle);
+        particle.id = 24;
+        particle.shapeData = {
+          height: 10,
+          name: "replacement-image",
+          replaceColor: false,
+          src: "replacement-image.png",
+          width: 10,
+        };
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(loadImage).toHaveBeenCalledOnce();
+        expect(images).toEqual([{ name: "first-image", source: "first-image.png" }]);
+      } finally {
+        engine.getImages = originalGetImages;
+        engine.loadImage = originalLoadImage;
+      }
     });
 
     it("does not apply a delayed colorized image to a particle after reuse", async () => {

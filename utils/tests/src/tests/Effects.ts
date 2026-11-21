@@ -307,6 +307,45 @@ describe("Effects", async () => {
     container.destroy(false);
   }, 30000);
 
+  it("clears filter effect state before a pooled particle is reused without an effect", async () => {
+    const container = await loadContainer({ autoPlay: false, particles: { number: { value: 0 } } }),
+      first = container.particles.addParticle(undefined, {
+        effect: {
+          type: "filter",
+          options: { filter: { blur: 10, brightness: 0.5, contrast: 1.2, hueRotate: 90, opacity: 0.75, url: "#fx" } },
+        },
+      });
+
+    expect(first?.filterBlur).to.equal(10);
+    expect(first?.filterUrl).to.equal("#fx");
+
+    if (first) {
+      container.particles.remove(first);
+    }
+
+    const reused = container.particles.addParticle();
+
+    expect(reused).to.equal(first);
+
+    for (const field of [
+      "filterBlur",
+      "filterBrightness",
+      "filterContrast",
+      "filterDropShadow",
+      "filterGrayscale",
+      "filterHueRotate",
+      "filterInvert",
+      "filterOpacity",
+      "filterSaturate",
+      "filterSepia",
+      "filterUrl",
+    ]) {
+      expect(reused?.[field]).to.be.undefined;
+    }
+
+    container.destroy(false);
+  });
+
   it("filter drawer serializes the particle values into a CSS filter string", async () => {
     const container = await loadContainer({
         particles: {
@@ -355,6 +394,33 @@ describe("Effects", async () => {
 
     container.destroy(false);
   }, 30000);
+
+  it("clears shadow effect state before a pooled particle is reused without an effect", async () => {
+    const container = await loadContainer({ autoPlay: false, particles: { number: { value: 0 } } }),
+      first = container.particles.addParticle(undefined, {
+        effect: {
+          type: "shadow",
+          options: { shadow: { color: "#ff0000", blur: 7, offset: { x: 2, y: 3 } } },
+        },
+      });
+
+    expect(first?.shadowBlur).to.equal(7);
+    expect(first?.shadowColor).to.not.be.undefined;
+    expect(first?.shadowOffset).to.deep.equal({ x: 2, y: 3 });
+
+    if (first) {
+      container.particles.remove(first);
+    }
+
+    const reused = container.particles.addParticle();
+
+    expect(reused).to.equal(first);
+    expect(reused?.shadowBlur).to.be.undefined;
+    expect(reused?.shadowColor).to.be.undefined;
+    expect(reused?.shadowOffset).to.be.undefined;
+
+    container.destroy(false);
+  });
 
   it("shadow drawer applies the resolved shadow styles to the canvas", async () => {
     const container = await loadContainer({
@@ -726,6 +792,26 @@ describe("Effects", async () => {
     }
   }, 30000);
 
+  it("releases trail history when a particle is destroyed into the pool", async () => {
+    const container = await loadContainer({ particles: { number: { value: 1 }, effect: { type: "trail" } } });
+
+    try {
+      const particle = firstParticle(container);
+
+      particle.trail = [{ break: false, color: "#000000", position: { x: 10, y: 20 } }];
+      particle.trailLength = 12;
+
+      container.particles.remove(particle);
+
+      expect(particle.trail).to.be.undefined;
+      expect(particle.trailLength).to.be.undefined;
+      expect(particle.trailFade).to.be.undefined;
+      expect(particle.trailTransform).to.be.undefined;
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("trail out-mode direction checks account for trail bounds except for bounce and split", async () => {
     const container = await loadContainer({ particles: { number: { value: 1 }, effect: { type: "trail" } } });
 
@@ -934,6 +1020,42 @@ describe("Effects", async () => {
 
     container.destroy(false);
   }, 30000);
+
+  it("clears particle spawner state before a pooled particle is reused without an effect", async () => {
+    const container = await loadContainer({ autoPlay: false, particles: { number: { value: 0 } } }),
+      first = container.particles.addParticle(undefined, {
+        effect: {
+          type: "particles",
+          options: {
+            particles: {
+              spawn: {
+                rate: { delay: 0.1, quantity: 3 },
+                particles: { effect: { type: "none" } },
+              },
+            },
+          },
+        },
+      });
+
+    expect(first?.particlesSpawnQuantity).to.equal(3);
+    expect(first?.particlesSpawnRate).to.equal(0.1 * millisecondsToSeconds);
+    expect(first?.particlesNextSpawn).to.be.a("number");
+    expect(first?.particlesData).to.not.be.undefined;
+
+    if (first) {
+      container.particles.remove(first);
+    }
+
+    const reused = container.particles.addParticle();
+
+    expect(reused).to.equal(first);
+    expect(reused?.particlesData).to.be.undefined;
+    expect(reused?.particlesNextSpawn).to.be.undefined;
+    expect(reused?.particlesSpawnQuantity).to.be.undefined;
+    expect(reused?.particlesSpawnRate).to.be.undefined;
+
+    container.destroy(false);
+  });
 
   it("particles effect spawns the configured quantity once the delay elapses", async () => {
     const container = await loadContainer({

@@ -4,11 +4,13 @@ import { EmittersPluginInstance } from "../../../../plugins/emitters/src/Emitter
 import { EventListeners } from "../../../../engine/src/Core/Container/EventListeners.js";
 import { GifDrawer } from "../../../../shapes/gif/src/GifDrawer.js";
 import { MotionPluginInstance } from "../../../../plugins/motion/src/MotionPluginInstance.js";
+import { NoiseFieldGenerator } from "../../../../utils/noiseField/src/NoiseFieldGenerator.js";
 import { PoissonDiscPluginInstance } from "../../../../plugins/poisson/src/PoissonDiscPluginInstance.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
 import { Vector } from "@tsparticles/engine";
 
-const testOrbitRadius = 10;
+const testOrbitRadius = 10,
+  testRandomValue = 0.5;
 
 describe("review regressions", () => {
   it("adds and removes listeners without a document in a worker", () => {
@@ -35,20 +37,77 @@ describe("review regressions", () => {
     );
 
     try {
-      const plugin = new MotionPluginInstance({
-        actualOptions: { motion: { disable: true, reduce: { value: true, factor: 2 } } },
-        retina: { reduceFactor: 1 },
-        refresh: vi.fn(),
-      } as never);
+      const refresh = vi.fn(),
+        plugin = new MotionPluginInstance({
+          actualOptions: { motion: { disable: true, reduce: { value: true, factor: 2 } } },
+          destroyed: false,
+          retina: { reduceFactor: 1 },
+          refresh,
+        } as never);
 
       await plugin.init();
+      const staleCallback = addEventListener.mock.calls[0]?.[1] as EventListener;
+
       plugin.stop();
+      staleCallback(new Event("change"));
+
       await plugin.init();
+      const currentCallback = addEventListener.mock.calls[1]?.[1] as EventListener;
+
+      currentCallback(new Event("change"));
+      await Promise.resolve();
+      await Promise.resolve();
+
+      expect(refresh).toHaveBeenCalledOnce();
 
       expect(addEventListener).toHaveBeenCalledTimes(2);
       expect(removeEventListener).toHaveBeenCalledOnce();
       plugin.destroy();
       expect(removeEventListener).toHaveBeenCalledTimes(2);
+      currentCallback(new Event("change"));
+      expect(refresh).toHaveBeenCalledOnce();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("removes and replaces the noise-field resize listener across init and destroy", () => {
+    const addEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
+      removeEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
+      noiseGenerator = { noise4d: () => 0, seed: vi.fn() };
+
+    vi.stubGlobal("addEventListener", addEventListener);
+    vi.stubGlobal("removeEventListener", removeEventListener);
+
+    class TestNoiseFieldGenerator extends NoiseFieldGenerator {
+      constructor() {
+        super(
+          {
+            actualOptions: { particles: { move: { path: { options: {} } } } },
+            canvas: { size: { width: 100, height: 100 } },
+            engine: { getRandomFn: () => () => testRandomValue },
+            zLayers: 100,
+          } as never,
+          noiseGenerator,
+        );
+      }
+    }
+
+    try {
+      const generator = new TestNoiseFieldGenerator();
+
+      generator.init();
+      const firstHandler = addEventListener.mock.calls[0]?.[1];
+
+      generator.init();
+      const secondHandler = addEventListener.mock.calls[1]?.[1];
+
+      expect(removeEventListener).toHaveBeenCalledWith("resize", firstHandler);
+      expect(secondHandler).not.toBe(firstHandler);
+
+      generator.destroy();
+
+      expect(removeEventListener).toHaveBeenCalledWith("resize", secondHandler);
     } finally {
       vi.unstubAllGlobals();
     }
@@ -74,6 +133,26 @@ describe("review regressions", () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+
+  it("does not install Poisson data when async initialization is stopped", async () => {
+    const plugin = new PoissonDiscPluginInstance({
+        actualOptions: {
+          poisson: { dimensions: 2, enable: true, radius: 10, retries: 5, steps: 0 },
+          particles: { number: { value: 10 } },
+        },
+        canvas: { size: { width: 100, height: 100 } },
+        destroyed: false,
+        engine: { getRandomFn: () => () => testRandomValue },
+        retina: { pixelRatio: 1 },
+        zLayers: 100,
+      } as never),
+      initialization = plugin.init();
+
+    plugin.stop();
+    await initialization;
+
+    expect(plugin.poissonDisc).toBeUndefined();
   });
 
   it("releases emitter and absorber registries when a container plugin is destroyed", () => {

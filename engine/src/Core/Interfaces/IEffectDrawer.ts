@@ -44,6 +44,12 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
   loadEffect?: (particle: TParticle) => void;
 
   /**
+   * Effect particle destroy function
+   * @param particle - the particle being destroyed
+   */
+  particleDestroy?: (particle: TParticle) => void;
+
+  /**
    * Shape particle init function
    * @param container - the container containing the shape
    * @param particle - the particle using the shape

@@ -15,7 +15,7 @@ try {
 
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("http://127.0.0.1:8765/.planning/handovers/evidence/e5/browser-color.html", {
-    waitUntil: "load",
+    waitUntil: "domcontentloaded",
   });
   await page.waitForFunction(
     () => {
@@ -30,7 +30,7 @@ try {
     fixture = JSON.parse(resultsText ?? "null");
 
   assert.deepEqual(errors, []);
-  assert.equal(fixture.results.length, 3);
+  assert.equal(fixture.results.length, 5);
 
   for (const result of fixture.results) {
     assert.equal(result.status, "pass", result.label);
@@ -38,12 +38,18 @@ try {
     assert.equal(result.readbackColorSpace, result.target, `${result.label} readback space`);
   }
 
-  assert.equal(fixture.results[2].context.colorType, "float16");
-  assert.equal(fixture.results[2].readbackMode, "explicit-colorSpace");
+  assert.equal(fixture.hdrLuminanceComparison, "pass");
+
+  for (const result of fixture.results.filter(({ label }) => label.startsWith("Natural HDR tone mapping"))) {
+    assert.equal(result.context.colorType, "float16", `${result.label} context type`);
+    assert.equal(result.readbackMode, "explicit-colorSpace", `${result.label} readback mode`);
+    assert.ok(result.luminanceNits > 0, `${result.label} luminance`);
+  }
 
   const report = {
     browserVersion: await browser.version(),
     fixtureDate: fixture.date,
+    hdrLuminanceComparison: fixture.hdrLuminanceComparison,
     results: fixture.results,
     userAgent: fixture.browser,
   };

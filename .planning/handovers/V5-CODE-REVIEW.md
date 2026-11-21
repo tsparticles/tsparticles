@@ -89,6 +89,13 @@ multiple containers/engines, media changes and OffscreenCanvas without global DO
 listeners. Resource counts must return to baseline; old callbacks must not revive
 or mutate a replacement scene. Preserve reduced-motion behavior and zero motion.
 
+**Follow-up:** Move teardown now calls optional `destroy()` on each unique path
+generator; NoiseField removes and replaces its global resize listener on re-init
+and removes it on destroy. Motion invalidates already-captured media-query
+callbacks on stop/destroy, and Poisson invalidates pending redraw timers and
+in-flight initialization. `ReviewRegressions.ts` covers these cleanup and stale
+callback paths. Broader container/resource-count scenarios remain part of E8.
+
 ### G3 — Failure paths are part of the loading contract
 
 Evidence: [Engine.load](../../engine/src/Core/Engine.ts) guards superseded loads,
@@ -111,6 +118,23 @@ before start, late image completion after reuse, unavailable MediaRecorder,
 recorder errors and concurrent exports. Reuse the existing load/cancellation tests.
 Fix mandatory failure/isolation behavior in the owning stage; optional decode or
 cache optimizations may wait for E11.
+
+**E5 follow-up:** video export now validates its seconds-based duration and MIME
+type before recording, resolves without a Blob when MediaRecorder is unavailable,
+and settles to `undefined` after recorder errors or plugin destruction. Every
+settlement clears the timer, stops recorder/stream resources, and concurrent
+exports are canceled together. Focused regression coverage lives in
+`utils/tests/src/tests/Exports.ts`; image completion after pooled particle reuse
+is covered separately in `ShapeGeometry.ts`. Broader engine-load rollback and
+fetch cancellation questions above remain open. Container teardown now runs
+remaining cleanup steps after plugin or resource hooks throw, reports the first
+cleanup error after teardown, and preserves the original start/load error when
+cleanup also fails. Failed candidate containers are removed from the engine;
+`utils/tests/src/tests/ContainerLifecycle.ts` covers both error paths. Late
+plugin instances are disposed best-effort after container destruction, and
+cleanup failures are logged instead of escaping cancelled initialization.
+Retention of the old scene during replacement and fetch cancellation remain
+open.
 
 ### G4 — Time, units and finite numeric domains
 

@@ -32,7 +32,13 @@
         resultNode.textContent = `Unhandled rejection: ${event.reason}`;
       });
 
-      import { getStyleFromOklch } from "/engine/dist/esm/Utils/ColorUtils.js";
+      import { getStyleFromOklch, getStyleFromRgb } from "/engine/dist/esm/Utils/ColorUtils.js";
+      import { HdrMode } from "/engine/dist/esm/Enums/Modes/HdrMode.js";
+
+      const displayP3ToLinear = channel =>
+        Math.abs(channel) <= 0.04045
+          ? channel / 12.92
+          : Math.sign(channel) * Math.pow((Math.abs(channel) + 0.055) / 1.055, 2.4);
 
       const cases = [
           {
@@ -51,13 +57,22 @@
           },
           {
             colorType: "float16",
-            expected: [1.1436441914536786, 0.4496716770410463, -0.38981410959680357],
+            expected: [1.062335846380718, 0.495412992470279, -0.3113956814861343],
             hdr: true,
             label: "Extended Display-P3 HDR style through float16 canvas",
             oklch: { c: 0.27, h: 60, l: 76 },
             target: "display-p3",
             tolerance: 0.001,
           },
+          ...[400, 1000].map(peakNits => ({
+            colorType: "float16",
+            hdr: true,
+            label: `Natural HDR tone mapping at ${peakNits} nits`,
+            peakNits,
+            target: "display-p3",
+            toneMapped: true,
+            tolerance: 0.001,
+          })),
         ],
         results = [];
 
@@ -73,7 +88,16 @@
           continue;
         }
 
-        const style = getStyleFromOklch(testCase.oklch, testCase.hdr ?? false, 1, 400, undefined, testCase.target);
+        const style = testCase.toneMapped
+            ? getStyleFromRgb({ b: 255, g: 180, r: 200 }, true, 1, testCase.peakNits, HdrMode.natural)
+            : getStyleFromOklch(testCase.oklch, testCase.hdr ?? false, 1, 400, undefined, testCase.target),
+          styleChannels = testCase.toneMapped
+            ? /^color\(display-p3 ([\d.e+-]+) ([\d.e+-]+) ([\d.e+-]+) \/ ([\d.]+)\)$/u
+                .exec(style)
+                ?.slice(1, 4)
+                .map(Number)
+            : undefined,
+          expected = testCase.toneMapped ? styleChannels : testCase.expected;
 
         context.fillStyle = style;
         context.fillRect(0, 0, 1, 1);
@@ -92,14 +116,22 @@
         }
 
         const pixel = [...imageData.data.slice(0, 3)],
-          difference = pixel.map((channel, index) => Math.abs(channel - testCase.expected[index])),
+          difference = pixel.map((channel, index) => Math.abs(channel - expected[index])),
           passed = difference.every(channel => channel <= testCase.tolerance);
+
+        const luminanceNits = testCase.toneMapped
+          ? 203 *
+            (0.2289745641 * displayP3ToLinear(pixel[0]) +
+              0.6917385218 * displayP3ToLinear(pixel[1]) +
+              0.0792869141 * displayP3ToLinear(pixel[2]))
+          : undefined;
 
         results.push({
           context: context.getContextAttributes?.(),
           difference,
-          expected: testCase.expected,
+          expected,
           label: testCase.label,
+          luminanceNits,
           pixel,
           readbackColorSpace: imageData.colorSpace,
           readbackMode,
@@ -110,10 +142,20 @@
         });
       }
 
+      const hdr400 = results.find(testCase => testCase.label === "Natural HDR tone mapping at 400 nits"),
+        hdr1000 = results.find(testCase => testCase.label === "Natural HDR tone mapping at 1000 nits");
+      const hdrLuminanceComparison =
+        hdr400?.luminanceNits !== undefined && hdr1000?.luminanceNits !== undefined
+          ? hdr1000.luminanceNits > hdr400.luminanceNits
+            ? "pass"
+            : "fail"
+          : "unsupported";
+
       resultNode.textContent = JSON.stringify(
         {
           browser: navigator.userAgent,
           date: new Date().toISOString(),
+          hdrLuminanceComparison,
           results,
         },
         null,

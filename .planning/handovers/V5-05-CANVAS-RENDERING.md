@@ -65,6 +65,11 @@ Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.
 
 ## Required color migration
 
+For E5 implementation, start with the [agent entry checklist](V5-E5-STATUS.md#agent-entry-checklist)
+and [output rules](V5-COLORS-OKLCH.md#output-rule-for-implementers). Default to
+CSS `oklch(...)` on supported destinations, including P3 canvases. P3 alone does
+not justify manual RGB serialization; document and test fallback/API/HDR needs.
+
 Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In E5, coordinate C1–C4
 with 07/08, including complete canonical runtime and affected-consumer integration. Cover conversion without early clipping, OKLCH/P3 output and
 fallbacks, separate gamut/precision/HDR capabilities, intermediate surfaces,

@@ -100,6 +100,13 @@ export class ShadowDrawer implements IEffectDrawer {
     context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
   }
 
+  /** Clears shadow-specific state before a particle enters the pool. */
+  particleDestroy(particle: ShadowParticle): void {
+    delete particle.shadowBlur;
+    delete particle.shadowColor;
+    delete particle.shadowOffset;
+  }
+
   /**
    * Initializes shadow-related particle properties
    * @param _container - The container to handle

@@ -294,6 +294,19 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   }
 
   /**
+   * Releases particle-specific trail history when the particle is removed
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: TrailParticle): void {
+    delete particle.trail;
+    delete particle.trailFade;
+    delete particle.trailLength;
+    delete particle.trailMaxWidth;
+    delete particle.trailMinWidth;
+    delete particle.trailTransform;
+  }
+
+  /**
    * Initializes trail-related particle properties
    * @param container - The container to handle
    * @param particle - The particle to process

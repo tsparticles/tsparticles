@@ -519,6 +519,23 @@ export class CanvasManager {
       context = null;
     }
 
+    if (canSupportP3 && canSupportHdr && !context) {
+      const p3SdrSettings: CanvasRenderingContext2DSettings = {
+        alpha: true,
+        desynchronized: true,
+        willReadFrequently: false,
+        colorSpace: "display-p3" as const,
+      };
+
+      this.render.setContextSettings(p3SdrSettings);
+
+      try {
+        context = renderCanvas.getContext("2d", p3SdrSettings);
+      } catch {
+        context = null;
+      }
+    }
+
     if (canSupportP3 && !context) {
       const sdrSettings: CanvasRenderingContext2DSettings = {
         alpha: true,

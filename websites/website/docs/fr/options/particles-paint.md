@@ -27,6 +27,9 @@ particles: {
 
 - Defines the particle inner color.
 - Supports static values, arrays, and color animation.
+- L’animation utilise des canaux OKLCH indépendants : `h` mesure la teinte en
+  degrés, `c` le chroma en unités OKLab et `l` la luminosité de 0 à 100.
+  L’ancien canal HSL `s` est rejeté avec un message de migration.
 
 ## Stroke (`particles.paint.stroke`)
 

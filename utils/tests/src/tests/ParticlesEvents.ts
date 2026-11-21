@@ -3,6 +3,7 @@ import {
   type Container,
   type CustomEventArgs,
   EventType,
+  type IEffectDrawer,
   type IParticleUpdater,
   type IPlugin,
   type ISourceOptions,
@@ -114,7 +115,8 @@ describe("ParticleEvents", async () => {
       },
     });
 
-    const removed: Particle[] = [];
+    const destroyed: Particle[] = [],
+      removed: Particle[] = [];
 
     const onRemoved = (args?: CustomEventArgs): void => {
       if (args?.container === fresh) {
@@ -122,7 +124,14 @@ describe("ParticleEvents", async () => {
       }
     };
 
+    const onDestroyed = (args?: CustomEventArgs): void => {
+      if (args?.container === fresh) {
+        destroyed.push((args.data as { particle: Particle }).particle);
+      }
+    };
+
     tsParticles.addEventListener(EventType.particleRemoved, onRemoved);
+    tsParticles.addEventListener(EventType.particleDestroyed, onDestroyed);
 
     try {
       const all = fresh.particles.filter(() => true);
@@ -140,13 +149,92 @@ describe("ParticleEvents", async () => {
       expect(removed).to.have.length(1);
 
       removed.length = 0;
+      const remaining = fresh.particles.filter(() => true);
+
+      destroyed.length = 0;
       fresh.particles.clear();
 
-      // clear() reassigns the internal array without dispatching removal events
+      // clear() destroys and pools particles without dispatching removal events.
       expect(removed).to.have.length(0);
+      expect(destroyed).to.eql(remaining);
+      expect(remaining[0]?.destroyed).to.be.true;
       expect(fresh.particles.count).to.equal(0);
     } finally {
       tsParticles.removeEventListener(EventType.particleRemoved, onRemoved);
+      tsParticles.removeEventListener(EventType.particleDestroyed, onDestroyed);
+      fresh.destroy(false);
+    }
+  });
+
+  it("returns an added particle when a particleAdded listener throws", async () => {
+    const fresh = await loadContainer("test-events-added-error", {
+      detectRetina: false,
+      autoPlay: false,
+      particles: { number: { value: 0 } },
+    });
+    const added: Particle[] = [],
+      onAdded = (args?: CustomEventArgs): void => {
+        if (args?.container === fresh) {
+          added.push((args.data as { particle: Particle }).particle);
+          throw new Error("particleAdded listener failed");
+        }
+      };
+
+    tsParticles.addEventListener(EventType.particleAdded, onAdded);
+
+    try {
+      const particle = fresh.particles.addParticle();
+
+      expect(particle).toBeDefined();
+      expect(fresh.particles.count).toBe(1);
+      expect(added).toEqual([particle]);
+
+      if (particle) {
+        fresh.particles.remove(particle);
+
+        const reused = fresh.particles.addParticle();
+
+        expect(reused).toBe(particle);
+        expect(fresh.particles.count).toBe(1);
+      }
+    } finally {
+      tsParticles.removeEventListener(EventType.particleAdded, onAdded);
+      fresh.destroy(false);
+    }
+  });
+
+  it("continues clearing particles when one destroy hook throws", async () => {
+    const fresh = await loadContainer("test-events-clear-error", {
+        detectRetina: false,
+        autoPlay: false,
+        particles: { number: { value: 2 } },
+      }),
+      particles = fresh.particles.filter(() => true),
+      destroyed: Particle[] = [];
+
+    const updater: IParticleUpdater = {
+      init: () => undefined,
+      isEnabled: () => false,
+      particleDestroyed: particle => {
+        destroyed.push(particle);
+
+        if (particle === particles[0]) {
+          throw new Error("destroy hook failed");
+        }
+      },
+      update: () => undefined,
+    };
+
+    fresh.particleUpdaters.push(updater);
+
+    try {
+      fresh.particles.clear();
+
+      expect(destroyed).to.eql(particles);
+      expect(particles.every(particle => particle.destroyed)).to.be.true;
+      expect(fresh.particles.count).to.equal(0);
+    } finally {
+      fresh.particleUpdaters.splice(fresh.particleUpdaters.indexOf(updater), 1);
       fresh.destroy(false);
     }
   });
@@ -276,6 +364,7 @@ describe("ParticleEvents", async () => {
     const engine = createEngine(),
       order: string[] = [],
       shapeError = new Error("shape destroy hook failed"),
+      effectError = new Error("effect destroy hook failed"),
       pluginError = new Error("container plugin destroy hook failed"),
       destroyError = new Error("particle updater destroy hook failed"),
       listenerError = new Error("event listener failed"),
@@ -323,6 +412,14 @@ describe("ParticleEvents", async () => {
       order.push("shape drawer");
       throw shapeError;
     };
+
+    fresh.effectDrawers.set("test-effect", {
+      particleDestroy: () => {
+        order.push("effect drawer");
+        throw effectError;
+      },
+    } satisfies IEffectDrawer);
+    particle.effect = "test-effect";
 
     const failingUpdater: IParticleUpdater = {
         init: () => undefined,
@@ -387,6 +484,7 @@ describe("ParticleEvents", async () => {
 
       expect(order).to.eql([
         "shape drawer",
+        "effect drawer",
         "container plugin",
         "failing updater",
         "following updater",

@@ -1,14 +1,17 @@
 # V5-COLOR — Adopt OKLCH as the canonical color model
 
 Initial plan dated 2026-11-06 on branch `v5`, based on `4.5.2` source.
-Implementation and measurements are pending. Use the current checkout and the
-clean measurement procedure in the [handover index](README.md) for execution.
+Implementation is in progress and acceptance remains open; see the
+[E5 checkpoint](V5-E5-STATUS.md). Use the current checkout and the clean
+measurement procedure in the [handover index](README.md) for execution.
 
 ## Required outcome
 
-Use OKLCH for canonical particle color and color animation in v5. `IOklch`
-replaces `IHsl` in runtime contracts. Options continue to accept color manager
-formats, including arrays, ranges, index selection, random values, and documented
+Use OKLCH for every resolved runtime color in v5, throughout the engine and
+its extensions, including particle colors and color animation. `IOklch` /
+`IOklcha` replace HSL/RGB as the persistent semantic color model. Options
+continue to accept color manager formats, including arrays, ranges, index
+selection, random values, and documented
 precedence. HSL and RGB remain available for input and conversion. The pipeline
 can resolve native OKLCH without an intermediate HSL or RGB conversion.
 
@@ -16,6 +19,93 @@ Preserve floating-point color until output. For colors outside a device's gamut,
 retain the canonical value and apply a documented transform at the destination.
 Avoid additional clipping, quantization, unnecessary conversions, and interpreting
 RGB coordinates in the wrong space.
+
+## E5 scope clarification — 2026-11-21
+
+E5 owns this entire migration (C1–C4), not just particle fill/stroke. E6/E7
+optimize the completed model; E8 audits ecosystem coverage; E9/E10 verify
+packaging and release. None of those stages postpones unresolved canonical
+runtime colors or the color-manager contract.
+
+Apply the following boundary rules to every color-bearing field and API:
+
+- Accepted user options, palettes, ranges, strings and source assets may retain
+  their original syntax until selection/resolution. Resolve a selected color
+  once into OKLCH plus alpha before it enters semantic runtime state. Preserve
+  option ownership, random-call counts and refresh behavior.
+- Particle and extension state, getters, modifiers, animation, link/bubble
+  colors, gradient stops, emitter/absorber colors, backgrounds, masks, shadows,
+  trails and recoloring must use canonical OKLCH. Review non-particle paths
+  explicitly; a migrated particle getter or formatter does not prove closure.
+- Temporary OKLab coordinates for mixing, XYZ/linear RGB for conversion, and
+  destination RGB for rendering are allowed. They must not become a parallel
+  semantic state model or overwrite canonical color/alpha.
+- Raw decoded GIF/image palettes, pixel buffers and pixel-filter callbacks
+  may use the source/API RGB format. Record the boundary and convert when a
+  sampled pixel becomes an engine color (for example, an emitter spawn color).
+- Derived CSS strings, mapped destination coordinates and raster caches are
+  output artifacts. Key/invalidate them by canonical value and output settings;
+  never reuse them as the source of animation or another destination's color.
+
+### Output rule for implementers
+
+**Default: canonical OKLCH → CSS `oklch(...)` → browser output conversion.**
+This applies to supported CSS/Canvas color-string destinations, including a
+Canvas2D context configured as `display-p3`. OKLCH represents colors inside and
+outside the P3 gamut; selecting P3 does not require engine-side conversion to
+`color(display-p3 ...)`. Syntax support and actual canvas gamut/precision must
+still be detected independently. See [CSS Color 4](https://www.w3.org/TR/2026/CRD-css-color-4-20261027/).
+
+Implement this decision in E5c/C2:
+
+1. Make direct `oklch(L% C H / A)` serialization the normal style path. Internal
+   `l` is 0–100, so serialize it as a percentage; preserve chroma/hue precision
+   and apply input alpha and paint opacity exactly once. Do not require the
+   optional OKLCH input-parser plugin to render canonical colors.
+2. Keep effective canvas gamut selection (`srgb`/`display-p3`) separate from
+   color-string serialization. Test direct OKLCH in both contexts, including
+   colors inside P3 but outside sRGB, gradients, shadows and auxiliary surfaces.
+3. Preserve the explicit chroma-reduction gamut policy below: when engine-side
+   mapping is required by that contract, map a copy in OKLCH and serialize the
+   mapped OKLCH value. Temporary RGB probes may test gamut membership; RGB
+   serialization is not required. Do not add another engine mapping pass or
+   mutate the canonical source. Record browser mapping differences in pixel tests.
+4. Retain manual RGB conversion only for a demonstrated boundary requirement:
+   unsupported OKLCH syntax, a pixel/binary API requiring RGB, or an explicit
+   HDR/linear-light operation. For each retained path record the caller,
+   capability/operation requiring it, primaries, encoding, scale and regression
+   test. Wide-gamut/P3 support alone is not a justification.
+5. Audit `oklchToDisplayP3Float` and `getHdrStyleFromRgb` under that rule. Their
+   current use is implementation evidence, not a requirement to preserve the
+   route. Remove unnecessary normal-style conversions; retain/rework helpers
+   only for verified math, compatibility or output needs and update exports
+   and callers if their API changes. An unclipped RGB intermediate is permitted
+   math, never the persistent semantic color model.
+6. Keep the HDR tone-mapping contract and its tests. Direct OKLCH syntax does
+   not by itself implement peak-nits handling or HDR tone mapping. Isolate the
+   manual linear-light path to modes that require it; prove its need and output
+   with reference/pixel tests rather than routing every P3 color through it.
+
+Acceptance: verify normal style generation emits `oklch(...)` without invoking
+RGB conversion/serialization unless a documented mapping/fallback operation
+requires conversion math. Test alpha, precision, sRGB/P3 pixel output, fallback,
+HDR modes and unchanged canonical state. Existing RGB-output browser results
+must be rerun for the new path; they do not validate direct OKLCH automatically.
+
+The final manager contract must resolve to `IOklcha | undefined`. Required
+legacy RGB methods plus optional OKLCH hooks are an intermediate migration,
+not C2 completion. Move old custom-manager support behind an explicit legacy
+sRGB input adapter; built-in and native v5 managers must not require RGB methods
+or silently fall back to them. Update exports, CLI templates, examples and
+contract tests together, preserving the supported input formats.
+
+Before closing E5, attach a per-file inventory of remaining RGB/HSL fields,
+signatures, conversions and call sites to the checkpoint. Classify each as
+source/input compatibility, temporary math, output artifact, or unresolved
+runtime migration; name its owner and test. The unresolved category must be
+empty. Test that native managers need no RGB hooks, sampled input colors become
+OKLCH before runtime use, and sequential sRGB/P3/HDR output leaves the same
+canonical color and alpha intact. Include representative non-particle consumers.
 
 ## Evidence from the original checkout
 
@@ -148,8 +238,8 @@ Apply the same rule to split offsets and trail coordinates.
   for caller-supplied canvas, OffscreenCanvas, and existing contexts. A second
   `getContext` retains settings. Recreating or refreshing a context requires
   explicit lifecycle, ownership, and teardown.
-- Serialize OKLCH directly where supported or convert to the destination's RGB
-  coordinates. Verify fill/stroke, shadow, gradient, CSS backgrounds and masks,
+- Serialize OKLCH directly where supported, following the output rule above.
+  Manual RGB output requires a documented boundary need. Verify fill/stroke, shadow, gradient, CSS backgrounds and masks,
   intermediate canvases, recolored images/SVG, export, and caches. Intermediate
   sRGB canvases can lose gamut before final composition.
 - For reproducible output, choose explicit chroma reduction and perceptual error
@@ -277,12 +367,17 @@ before collection and rendering optimizations in E6/E7.
 
 ## Documentation and completion
 
-- [ ] `IOklch` and h/c/l animation are the sole canonical particle model.
-      Remaining HSL/RGB uses are intentional and classified.
+- [ ] `IOklch` / `IOklcha` and h/c/l animation are the sole canonical runtime
+      color model throughout engine and extensions, not only particles.
+      The per-file RGB/HSL inventory has no unresolved runtime migration.
+- [ ] Native v5 managers resolve to OKLCH without required RGB methods; legacy
+      custom managers use an explicit input adapter with documented limitations.
 - [ ] Managers cover historical color value formats. Document the new schema,
       alpha, and migration or conversion of external managers.
 - [ ] Preserve wide gamut through parsing, state, modifiers, and output.
       Verify P3 SDR independently from HDR and float16.
+- [ ] Direct `oklch(...)` is the default supported CSS/Canvas output; every
+      retained manual RGB output path has a documented need and regression test.
 - [ ] Implement and verify HDR and gamut mapping decisions, including actual
       coordinate conversions and absolute luminance.
 - [ ] Complete the package matrix with verification results beyond compilation.

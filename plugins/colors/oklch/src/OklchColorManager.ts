@@ -40,6 +40,33 @@ function parseOklchHue(input: string): number {
   }
 }
 
+function parseOklchString(input: string): IOklcha | undefined {
+  const result = oklchRegex.exec(input);
+
+  if (!result) {
+    return;
+  }
+
+  const rawL = Number.parseFloat(result[1] ?? "0"),
+    lightness = rawL * (result[2] ? identity : percentDenominator),
+    chroma = Number.parseFloat(result[3] ?? "0") * (result[4] ? oklchChromaPercentScale : 1),
+    hue = parseOklchHue(result[5] ?? "0"),
+    alpha = result[6] ? parseAlpha(result[6]) : defaultAlpha;
+
+  if (
+    ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
+    rawL < none ||
+    rawL > (result[2] ? percentDenominator : identity) ||
+    chroma < none ||
+    alpha < none ||
+    alpha > identity
+  ) {
+    return;
+  }
+
+  return { a: alpha, c: chroma, h: ((hue % hMax) + hMax) % hMax, l: lightness };
+}
+
 /** OKLCH color manager */
 export class OklchColorManager implements IColorManager {
   readonly #random: () => number;
@@ -146,44 +173,9 @@ export class OklchColorManager implements IColorManager {
       return;
     }
 
-    const result = oklchRegex.exec(input),
-      indexes = {
-        l: 1, // Lightness
-        lPercent: 2, // % after lightness
-        c: 3, // Chroma
-        cPercent: 4,
-        h: 5, // Hue
-        a: 6, // Optional alpha for OKLCH
-      };
+    const color = parseOklchString(input);
 
-    if (!result) {
-      return undefined;
-    }
-
-    const rawL = Number.parseFloat(result[indexes.l] ?? "0"),
-      lightness = rawL * (result[indexes.lPercent] ? identity : percentDenominator),
-      chroma = Number.parseFloat(result[indexes.c] ?? "0") * (result[indexes.cPercent] ? oklchChromaPercentScale : 1),
-      hue = parseOklchHue(result[indexes.h] ?? "0"),
-      alpha = result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha;
-
-    // Validate lightness range BEFORE scaling
-    if (
-      ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
-      rawL < none ||
-      rawL > (result[indexes.lPercent] ? percentDenominator : identity) ||
-      chroma < none ||
-      alpha < none ||
-      alpha > identity
-    ) {
-      return undefined;
-    }
-
-    return oklchaToRgba({
-      a: alpha,
-      c: chroma,
-      h: ((hue % hMax) + hMax) % hMax,
-      l: lightness,
-    });
+    return color ? oklchaToRgba(color) : undefined;
   }
 
   parseStringOklch(input: string): IOklcha | undefined {
@@ -191,35 +183,6 @@ export class OklchColorManager implements IColorManager {
       return;
     }
 
-    const result = oklchRegex.exec(input),
-      indexes = { l: 1, lPercent: 2, c: 3, cPercent: 4, h: 5, alpha: 6 };
-
-    if (!result) {
-      return;
-    }
-
-    const rawL = Number.parseFloat(result[indexes.l] ?? "0"),
-      lightness = rawL * (result[indexes.lPercent] ? identity : percentDenominator),
-      chroma = Number.parseFloat(result[indexes.c] ?? "0") * (result[indexes.cPercent] ? oklchChromaPercentScale : 1),
-      hue = parseOklchHue(result[indexes.h] ?? "0"),
-      alpha = result[indexes.alpha] ? parseAlpha(result[indexes.alpha]) : defaultAlpha;
-
-    if (
-      ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
-      rawL < none ||
-      rawL > (result[indexes.lPercent] ? percentDenominator : identity) ||
-      chroma < none ||
-      alpha < none ||
-      alpha > identity
-    ) {
-      return;
-    }
-
-    return {
-      a: alpha,
-      c: chroma,
-      h: ((hue % hMax) + hMax) % hMax,
-      l: lightness,
-    };
+    return parseOklchString(input);
   }
 }

@@ -99,6 +99,14 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
   }
 
+  /** Clears spawner-specific state before a particle enters the pool. */
+  particleDestroy(particle: ParticlesParticle): void {
+    delete particle.particlesData;
+    delete particle.particlesNextSpawn;
+    delete particle.particlesSpawnQuantity;
+    delete particle.particlesSpawnRate;
+  }
+
   /**
    * Initializes the particle spawner properties
    * @param _container - The container to handle

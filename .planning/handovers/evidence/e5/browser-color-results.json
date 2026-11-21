@@ -1,6 +1,7 @@
 {
   "browserVersion": "Chrome/157.0.8103.79",
-  "fixtureDate": "2026-11-17T22:14:34.391Z",
+  "fixtureDate": "2026-11-20T17:39:23.821Z",
+  "hdrLuminanceComparison": "pass",
   "results": [
     {
       "context": {
@@ -82,25 +83,95 @@
         "willReadFrequently": false
       },
       "difference": [
-        0.00008950395367857134,
-        0.00020878641604632486,
-        0.00016567209680357076
+        0.0008124088807179852,
+        0.000051664345278978896,
+        0.00011638461113427923
       ],
       "expected": [
-        1.1436441914536786,
-        0.4496716770410463,
-        -0.38981410959680357
+        1.062335846380718,
+        0.495412992470279,
+        -0.3113956814861343
       ],
       "label": "Extended Display-P3 HDR style through float16 canvas",
       "pixel": [
-        1.1435546875,
-        0.449462890625,
-        -0.3896484375
+        1.0615234375,
+        0.495361328125,
+        -0.311279296875
       ],
       "readbackColorSpace": "display-p3",
       "readbackMode": "explicit-colorSpace",
       "status": "pass",
-      "style": "color(display-p3 1.1436441914536786 0.4496716770410463 -0.38981410959680357 / 1)",
+      "style": "color(display-p3 1.062335846380718 0.495412992470279 -0.3113956814861343 / 1)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    },
+    {
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.0002806836778780353,
+        0.00005257959166549142,
+        0.0009843686979502664
+      ],
+      "expected": [
+        0.915808027427878,
+        0.8423377358416655,
+        1.1601640561979503
+      ],
+      "label": "Natural HDR tone mapping at 400 nits",
+      "luminanceNits": 155.8023269567444,
+      "pixel": [
+        0.91552734375,
+        0.84228515625,
+        1.1591796875
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 0.915808027427878 0.8423377358416655 1.1601640561979503 / 1)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    },
+    {
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.00033775645704359203,
+        0.00022911597850183707,
+        0.0009297979411633239
+      ],
+      "expected": [
+        0.9852010377070436,
+        0.9064791159785018,
+        1.2470235479411633
+      ],
+      "label": "Natural HDR tone mapping at 1000 nits",
+      "luminanceNits": 183.83420731404743,
+      "pixel": [
+        0.98486328125,
+        0.90625,
+        1.24609375
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 0.9852010377070436 0.9064791159785018 1.2470235479411633 / 1)",
       "target": "display-p3",
       "tolerance": 0.001
     }

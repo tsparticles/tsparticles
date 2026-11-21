@@ -7,9 +7,10 @@ any decision that fails numerical, consumer, or browser evidence.
 
 ## Canonical runtime model
 
-- Particle color and color animation use `IOklch` (`l`, `c`, `h`) as the
-  canonical runtime model. `IOklch.l` uses the 0–100 OKLab/OKLCH scale, `c`
-  uses the standard OKLab scale, and `h` is degrees normalized to `[0, 360)`.
+- All resolved engine and extension colors, including particle color and
+  color animation, use `IOklch` / `IOklcha` as the canonical runtime model.
+  `IOklch.l` uses the 0–100 OKLab/OKLCH scale, `c` uses the standard OKLab
+  scale, and `h` is degrees normalized to `[0, 360)`.
   RGB, HSL, HSV, HWB, Lab, LCH, OKLab, CSS strings, arrays, ranges, and
   color-manager extensions remain supported inputs.
 - Runtime coordinates remain floating point. Do not quantize or clamp during
@@ -22,12 +23,21 @@ any decision that fails numerical, consumer, or browser evidence.
   compose at their existing output boundary; animation of alpha is not added by
   C0.
 
+The [E5 scope clarification](V5-COLORS-OKLCH.md#e5-scope-clarification--2026-11-21)
+extends this invariant to non-particle state and defines permitted input,
+temporary-math and output representations. Direct CSS `oklch(...)` is the
+default supported output, including P3 canvases; the browser performs destination
+conversion. Engine-side RGB output requires a documented boundary need.
+
 ## Input and compatibility
 
 - Existing color-manager extension points remain the input adapter. Built-in
   managers convert supported formats directly to the canonical model; custom
   managers remain supported through an adapter that does not introduce an
-  engine-to-plugin import cycle.
+  engine-to-plugin import cycle. The final native manager contract returns
+  `IOklcha | undefined`; RGB compatibility belongs to an explicit legacy input
+  adapter. Required RGB methods plus optional OKLCH hooks are transitional and
+  cannot close E5/C2.
 - Preserve array/range selection, random sampling order, `reduceDuplicates`,
   alpha, and the currently characterized input-format precedence. Do not add a
   new precedence for objects containing multiple model keys until a test
@@ -58,12 +68,17 @@ any decision that fails numerical, consumer, or browser evidence.
 
 ## Output gamut and precision
 
-- Convert through D65 XYZ and the target linear RGB space. Prefer Display-P3
-  only when the actual canvas/context accepts it; otherwise use sRGB. Keep the
+- Prefer Display-P3 only when the actual canvas/context accepts it; otherwise
+  use sRGB. Serialize `oklch(...)` directly on supported CSS/Canvas destinations
+  in either gamut. Convert through D65 XYZ and the target linear RGB space only
+  for required conversion math, explicit HDR processing, pixel APIs or verified
+  syntax fallbacks. P3 alone does not require manual RGB serialization. Keep
   canonical color unchanged when a target cannot reproduce it.
 - Map out-of-gamut output by reducing chroma at constant OKLCH lightness and
-  hue with a bounded deterministic search, then encode to the target transfer
-  function. Do not independently clamp RGB channels as the gamut mapper.
+  hue with a bounded deterministic search on a copy. The direct style path
+  serializes that mapped OKLCH copy; RGB gamut probes are temporary math. Apply
+  target transfer encoding only on a justified RGB output path. Do not
+  independently clamp RGB channels as the gamut mapper.
 - Keep full floating-point intermediates. Quantization is allowed only at the
   final API/pixel format boundary. Document browser-native canvas mapping and
   compare it with the engine fallback using explicit color-space readback.

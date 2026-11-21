@@ -23,8 +23,10 @@ import {
   hslaToRgba,
   mapOklchToDisplayP3,
   mapOklchToSrgb,
+  oklchToDisplayP3Float,
   oklchToRgbFloat,
   rangeColorToOklch,
+  rgbToDisplayP3Float,
   rgbToOklch,
   stringToAlpha,
   stringToRgb,
@@ -506,6 +508,33 @@ describe("ColorUtils", async () => {
       }
     });
 
+    it("maps each destination gamut without mutating the canonical color", () => {
+      const maps = [
+          { map: mapOklchToSrgb, name: "sRGB" },
+          { map: mapOklchToDisplayP3, name: "Display-P3" },
+        ],
+        inputs = [
+          { c: 0.02, h: 210, l: 55 },
+          { c: 0.5, h: 20, l: 60 },
+          { c: 0.4, h: 180, l: -10 },
+          { c: 0.4, h: 180, l: 110 },
+        ];
+
+      for (const { map, name } of maps) {
+        for (const input of inputs) {
+          const original = { ...input },
+            result = map(input);
+
+          expect(input, `${name} input`).to.deep.equal(original);
+          expect(result.color, `${name} result`).not.to.equal(input);
+          expect(result.color.l, `${name} lightness`).to.be.within(0, 100);
+          expect(result.rgb.r, `${name} red`).to.be.within(-0.1, 255.1);
+          expect(result.rgb.g, `${name} green`).to.be.within(-0.1, 255.1);
+          expect(result.rgb.b, `${name} blue`).to.be.within(-0.1, 255.1);
+        }
+      }
+    });
+
     it("preserves extended Display-P3 channels when resolving to OKLCH", () => {
       // CSS Color 4 §14.1.1 gives this out-of-P3 color as an equivalent
       // to oklch(85.07% 0.4873 151.4), before destination gamut mapping.
@@ -548,6 +577,14 @@ describe("ColorUtils", async () => {
 
       expect(unitless).to.deep.equal(percentage);
       expect(unitless?.l).to.equal(70);
+    });
+
+    it("parses every CSS hue angle unit in the engine's native OKLCH fallback", () => {
+      const bareEngine = createEngine();
+
+      for (const hue of ["180deg", "180°", "200grad", "3.141592653589793rad", ".5turn"]) {
+        expect(rangeColorToOklch(bareEngine.pluginManager, `oklch(70% 0.2 ${hue})`)?.h, hue).to.be.closeTo(180, 1e-10);
+      }
     });
 
     it("keeps alpha and canonical channels when a built-in HSL manager resolves a string", () => {
@@ -645,7 +682,7 @@ describe("ColorUtils", async () => {
     });
 
     it("prefers direct OKLCH manager methods over legacy RGB conversion", () => {
-      const direct = { a: 0.4, c: 0.17, h: 225, l: 62 },
+      const direct = { a: 0.4, c: 0.17, h: 585, l: 62 },
         legacyRgb = { b: 255, g: 0, r: 0 };
       let legacyCalls = 0;
 
@@ -674,9 +711,60 @@ describe("ColorUtils", async () => {
 
       directEngine.pluginManager.addColorManager("direct", directManager);
 
-      expect(rangeColorToOklch(directEngine.pluginManager, "direct(color)")).to.deep.equal(direct);
-      expect(rangeColorToOklch(directEngine.pluginManager, { value: { direct: true } })).to.deep.equal(direct);
+      expect(rangeColorToOklch(directEngine.pluginManager, "direct(color)")).to.deep.equal({ ...direct, h: 225 });
+      expect(rangeColorToOklch(directEngine.pluginManager, { value: { direct: true } })).to.deep.equal({
+        ...direct,
+        h: 225,
+      });
       expect(legacyCalls).to.equal(0);
+    });
+
+    it("falls back when a custom manager returns invalid direct OKLCH data", () => {
+      const customEngine = createEngine(),
+        customRgb = { r: 12.5, g: 87.25, b: 194.75 },
+        customManager: IColorManager = {
+          accepts: input => input.startsWith("custom("),
+          handleColor: () => customRgb,
+          handleRangeColor: () => customRgb,
+          handleRangeColorOklch: () => ({ a: 1.1, c: 0.2, h: 30, l: 50 }),
+          parseString: () => ({ ...customRgb, a: 0.35 }),
+          parseStringOklch: () => ({ a: Number.NaN, c: -0.1, h: Number.POSITIVE_INFINITY, l: 50 }),
+        };
+
+      customEngine.pluginManager.addColorManager("custom", customManager);
+
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.deep.equal({
+        ...rgbToOklch(customRgb),
+        a: 0.35,
+      });
+      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.deep.equal({
+        ...rgbToOklch(customRgb),
+        a: 1,
+      });
+    });
+
+    it("rejects custom OKLCH manager lightness outside the canonical range", () => {
+      const customEngine = createEngine(),
+        customRgb = { r: 12.5, g: 87.25, b: 194.75 },
+        customManager: IColorManager = {
+          accepts: input => input.startsWith("custom("),
+          handleColor: () => customRgb,
+          handleRangeColor: () => customRgb,
+          handleRangeColorOklch: () => ({ a: 0.6, c: 0.2, h: 30, l: -1 }),
+          parseString: () => ({ ...customRgb, a: 0.35 }),
+          parseStringOklch: () => ({ a: 0.35, c: 0.2, h: 30, l: 101 }),
+        };
+
+      customEngine.pluginManager.addColorManager("custom", customManager);
+
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.deep.equal({
+        ...rgbToOklch(customRgb),
+        a: 0.35,
+      });
+      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.deep.equal({
+        ...rgbToOklch(customRgb),
+        a: 1,
+      });
     });
 
     it("adapts custom managers that only implement the legacy RGB contract", () => {
@@ -1022,6 +1110,10 @@ describe("ColorUtils", async () => {
 
   describe("getStyleFromRgb HDR", () => {
     const referenceWhiteNits = 203,
+      displayP3ToLinear = (channel: number): number =>
+        Math.abs(channel) <= 0.04045
+          ? channel / 12.92
+          : Math.sign(channel) * Math.pow((Math.abs(channel) + 0.055) / 1.055, 2.4),
       parseDisplayP3 = (style: string): { b: number; g: number; r: number } => {
         const match = /^color\(display-p3 ([\d.]+) ([\d.]+) ([\d.]+) \/ ([\d.]+)\)$/u.exec(style);
 
@@ -1035,20 +1127,45 @@ describe("ColorUtils", async () => {
       };
 
     it("standard mode outputs untone-mapped normalized channels", () => {
-      expect(getStyleFromRgb(red, true)).to.equal("color(display-p3 1 0 0 / 1)");
+      const p3 = rgbToDisplayP3Float(red);
+
+      expect(getStyleFromRgb(red, true)).to.equal(`color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 1)`);
+      expect(p3.r / 255).to.be.closeTo(0.91755205, 0.000001);
+      expect(p3.g / 255).to.be.closeTo(0.20030383, 0.000001);
+      expect(p3.b / 255).to.be.closeTo(0.13857343, 0.000001);
+    });
+
+    it("converts sRGB inputs to Display-P3 before HDR output", () => {
+      const green: IRgb = { b: 0, g: 255, r: 0 },
+        p3 = rgbToDisplayP3Float(green),
+        channels = parseDisplayP3(getStyleFromRgb(green, true));
+
+      expect(channels.r).to.equal(p3.r / 255);
+      expect(channels.g).to.equal(p3.g / 255);
+      expect(channels.b).to.equal(p3.b / 255);
+    });
+
+    it("formats OKLCH HDR colors in the Display-P3 coordinate space", () => {
+      const color = { c: 0.27, h: 60, l: 76 },
+        p3 = oklchToDisplayP3Float(color),
+        expected = `color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 1)`;
+
+      expect(getStyleFromOklch(color, true, 1, 400, HdrMode.standard, "display-p3")).to.equal(expected);
     });
 
     it("SDR output ignores HDR-only params", () => {
       expect(getStyleFromRgb(red, false, 1, 1000, HdrMode.vivid)).to.equal("rgba(255, 0, 0, 1)");
     });
 
-    it("keeps all channels within the display headroom for every mode", () => {
+    it("keeps linear Display-P3 channels within the display headroom for every mode", () => {
       for (const mode of [HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic]) {
         const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, mode)),
           maxChannel = Math.max(1, 400 / referenceWhiteNits);
 
         for (const channel of [channels.r, channels.g, channels.b]) {
-          expect(channel).to.be.at.least(0).and.to.be.at.most(maxChannel);
+          const linearChannel = displayP3ToLinear(channel);
+
+          expect(linearChannel).to.be.at.least(0).and.to.be.at.most(maxChannel);
         }
       }
     });
@@ -1059,10 +1176,10 @@ describe("ColorUtils", async () => {
       expect(channels.r).to.be.above(1);
     });
 
-    it("vivid mode keeps channels within the display headroom", () => {
+    it("vivid mode keeps linear channels within the display headroom", () => {
       const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, HdrMode.vivid));
 
-      expect(channels.r).to.be.at.most(400 / referenceWhiteNits);
+      expect(displayP3ToLinear(channels.r)).to.be.at.most(400 / referenceWhiteNits);
     });
 
     it("dynamic mode keeps the blue channel intact", () => {
@@ -1091,18 +1208,23 @@ describe("ColorUtils", async () => {
       expect(styles.size).to.equal(5);
     });
 
-    it("increasing peakNits expands luminance for bright colors", () => {
+    it("measures linear Display-P3 luminance and expands it with peakNits", () => {
       const color: IRgb = {
-          b: 160,
-          g: 40,
-          r: 80,
+          b: 255,
+          g: 180,
+          r: 200,
         },
-        luminanceOf = (channels: { b: number; g: number; r: number }): number =>
-          0.2126 * channels.r + 0.7152 * channels.g + 0.0722 * channels.b,
-        luminance400 = luminanceOf(parseDisplayP3(getStyleFromRgb(color, true, 1, 400, HdrMode.natural))),
-        luminance1000 = luminanceOf(parseDisplayP3(getStyleFromRgb(color, true, 1, 1000, HdrMode.natural)));
+        luminanceNits = (channels: { b: number; g: number; r: number }): number =>
+          referenceWhiteNits *
+          (0.2289745641 * displayP3ToLinear(channels.r) +
+            0.6917385218 * displayP3ToLinear(channels.g) +
+            0.0792869141 * displayP3ToLinear(channels.b)),
+        luminance400 = luminanceNits(parseDisplayP3(getStyleFromRgb(color, true, 1, 400, HdrMode.natural))),
+        luminance1000 = luminanceNits(parseDisplayP3(getStyleFromRgb(color, true, 1, 1000, HdrMode.natural)));
 
       expect(luminance1000).to.be.above(luminance400);
+      expect(luminance400).to.be.closeTo(155.88603, 0.01);
+      expect(luminance1000).to.be.closeTo(183.97916, 0.01);
     });
   });
 });

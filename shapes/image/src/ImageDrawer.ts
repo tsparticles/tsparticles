@@ -105,9 +105,41 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    void this.#loadImageShape(container, imageData).then(() => {
-      this.loadShape(particle);
-    });
+    const particleId = particle.id;
+
+    void this.#loadImageShape(container, imageData)
+      .then(() => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        this.loadShape(particle);
+      })
+      .catch((error: unknown) => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        container.engine.getLogger().error(`Error loading image shape "${imageData.src}"`, error);
+      });
+  }
+
+  /**
+   * Releases the particle's reference to the loaded image when it enters the pool
+   * @param particle - the particle to process
+   */
+  particleDestroy(particle: ImageParticle): void {
+    delete particle.image;
   }
 
   /**

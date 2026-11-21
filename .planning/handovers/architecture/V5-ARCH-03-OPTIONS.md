@@ -54,10 +54,23 @@ engines that register them. Compare existing augmentation with a typed
 capability map while preserving specific option types and avoiding `any`.
 
 Evaluate a shared source for types, defaults, normalization, schema, and docs.
-The current schema is `engine/schema/options.schema.json`. Compare build-time
+The prior plan referenced `engine/schema/options.schema.json`, but that file is
+not present in the current repository. Confirm whether consumers still require
+a standalone particle-options schema before adding one. Compare build-time
 generation with opt-in runtime validation. Keep unnecessary schemas and heavy
 validators out of the engine. Test schema drift, cases outside schema
 expressiveness, and plugin options.
+
+### E5 schema decision (2026-11-20)
+
+A workspace search found no consumer for a standalone particle-options JSON
+Schema. The MCP server's Zod schemas validate MCP tool arguments and deliberately
+accept options as an open object; they do not claim to validate the complete
+plugin-extensible `ISourceOptions` surface. Engine package scripts that formatted
+the absent `engine/schema/options.schema.json` were removed. Do not generate or
+ship a replacement until a concrete consumer and its required plugin coverage
+are identified. This closes the standalone-schema question for E5; it does not
+close parser coverage or the custom-manager migration audit.
 
 ## Templates and invalidation
 

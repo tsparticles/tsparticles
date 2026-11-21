@@ -629,7 +629,8 @@ export class Particle {
     this.clearModifiers();
 
     const container = this.container,
-      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
+      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
+      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;
 
     let destroyError: unknown,
       hasDestroyError = false;
@@ -639,6 +640,15 @@ export class Particle {
     } catch (error: unknown) {
       destroyError = error;
       hasDestroyError = true;
+    }
+
+    try {
+      effectDrawer?.particleDestroy?.(this);
+    } catch (error: unknown) {
+      if (!hasDestroyError) {
+        destroyError = error;
+        hasDestroyError = true;
+      }
     }
 
     for (const plugin of container.particleDestroyedPlugins) {

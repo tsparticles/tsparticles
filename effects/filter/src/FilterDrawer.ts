@@ -50,6 +50,21 @@ export class FilterDrawer implements IEffectDrawer<FilterParticle> {
       `${blurString} ${brightnessString} ${contrastString} ${dropShadowString} ${grayscaleString} ${hueRotateString} ${invertString} ${opacityString} ${saturateString} ${sepiaString} ${urlString}`.trim();
   }
 
+  /** Clears filter-specific state before a particle enters the pool. */
+  particleDestroy(particle: FilterParticle): void {
+    particle.filterBlur = undefined;
+    particle.filterBrightness = undefined;
+    particle.filterContrast = undefined;
+    particle.filterDropShadow = undefined;
+    particle.filterGrayscale = undefined;
+    particle.filterHueRotate = undefined;
+    particle.filterInvert = undefined;
+    particle.filterOpacity = undefined;
+    particle.filterSaturate = undefined;
+    particle.filterSepia = undefined;
+    particle.filterUrl = undefined;
+  }
+
   /**
    * Initializes filter-related particle properties
    * @param _container - The container to handle
