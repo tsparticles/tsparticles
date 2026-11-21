@@ -1,5 +1,11 @@
-import type { InteractivityContainer, InteractivityParticle } from "@tsparticles/plugin-interactivity";
-import type { LightOptions, LightParticlesOptions } from "./Options/Classes/LightOptions.js";
+import type {
+  InteractivityContainer,
+  InteractivityParticle,
+} from "@tsparticles/plugin-interactivity";
+import type {
+  LightOptions,
+  LightParticlesOptions,
+} from "./Options/Classes/LightOptions.js";
 import type { ILight } from "./Options/Interfaces/ILight.js";
 import type { IOklcha } from "@tsparticles/engine";
 import type { Light } from "./Options/Classes/Light.js";

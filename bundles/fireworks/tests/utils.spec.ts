@@ -7,13 +7,18 @@ import type { Container, Engine } from "@tsparticles/engine";
 describe("fireworks cache cleanup", () => {
   it("removes a cached wrapper destroyed through a second wrapper and preserves replacements", async () => {
     const container = {
-      destroyed: false,
-      destroy() {
-        this.destroyed = true;
+        destroyed: false,
+        destroy() {
+          this.destroyed = true;
+        },
       },
-    };
-    const engine = { load: vi.fn().mockResolvedValue(container) };
-    const cached = await getFireworksInstance(engine as unknown as Engine, "cache-test", {});
+      engine = { load: vi.fn().mockResolvedValue(container) },
+      cached = await getFireworksInstance(
+        engine as unknown as Engine,
+        "cache-test",
+        {},
+      );
+
     if (!cached) {
       throw new Error("Expected the fireworks instance to load");
     }
@@ -28,13 +33,21 @@ describe("fireworks cache cleanup", () => {
         this.destroyed = true;
       },
     };
+
     engine.load.mockResolvedValue(replacement);
-    const next = await getFireworksInstance(engine as unknown as Engine, "cache-test", {});
+    const next = await getFireworksInstance(
+      engine as unknown as Engine,
+      "cache-test",
+      {},
+    );
+
     expect(cachedDestroyed).not.toHaveBeenCalled();
     expect(next).not.toBe(cached);
     expect(engine.load).toHaveBeenCalledTimes(2);
     cached?.destroy();
-    expect(await getFireworksInstance(engine as unknown as Engine, "cache-test", {})).toBe(next);
+    expect(
+      await getFireworksInstance(engine as unknown as Engine, "cache-test", {}),
+    ).toBe(next);
     next?.destroy();
   });
 

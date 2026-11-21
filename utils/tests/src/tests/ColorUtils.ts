@@ -309,7 +309,9 @@ describe("ColorUtils", async () => {
         particle = {
           getPosition: () => ({ x: 1, y: 1 }),
           links: [{ color, destination, isWarped: false, opacity: 0.5 }],
-          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          options: {
+            links: { enable: true, frequency: 1, triangles: { enable: false } },
+          },
           retina: { linksWidth: 2 },
         },
         styles: string[] = [],
@@ -430,20 +432,60 @@ describe("ColorUtils", async () => {
           gamut: "sRGB",
           map: mapOklchToSrgb,
           values: [
-            { c: 0.253583, h: 30, l: 63.22837, rgb: { r: 255, g: 21.225, b: 0 } },
-            { c: 0.273353, h: 145, l: 86.91193, rgb: { r: 0, g: 255, b: 73.067 } },
-            { c: 0.234261, h: 260, l: 57.43053, rgb: { r: 0, g: 107.702, b: 255 } },
-            { c: 0.317423, h: 325, l: 67.88539, rgb: { r: 239.675, g: 0, b: 255 } },
+            {
+              c: 0.253583,
+              h: 30,
+              l: 63.22837,
+              rgb: { r: 255, g: 21.225, b: 0 },
+            },
+            {
+              c: 0.273353,
+              h: 145,
+              l: 86.91193,
+              rgb: { r: 0, g: 255, b: 73.067 },
+            },
+            {
+              c: 0.234261,
+              h: 260,
+              l: 57.43053,
+              rgb: { r: 0, g: 107.702, b: 255 },
+            },
+            {
+              c: 0.317423,
+              h: 325,
+              l: 67.88539,
+              rgb: { r: 239.675, g: 0, b: 255 },
+            },
           ],
         },
         {
           gamut: "Display-P3",
           map: mapOklchToDisplayP3,
           values: [
-            { c: 0.293224, h: 30, l: 65.4209, rgb: { r: 255, g: 27.202, b: 0 } },
-            { c: 0.363472, h: 145, l: 85.16288, rgb: { r: 39.32, g: 255, b: 0 } },
-            { c: 0.275999, h: 260, l: 53.74775, rgb: { r: 0, g: 83.755, b: 255 } },
-            { c: 0.345605, h: 325, l: 68.00807, rgb: { r: 225.573, g: 0, b: 255 } },
+            {
+              c: 0.293224,
+              h: 30,
+              l: 65.4209,
+              rgb: { r: 255, g: 27.202, b: 0 },
+            },
+            {
+              c: 0.363472,
+              h: 145,
+              l: 85.16288,
+              rgb: { r: 39.32, g: 255, b: 0 },
+            },
+            {
+              c: 0.275999,
+              h: 260,
+              l: 53.74775,
+              rgb: { r: 0, g: 83.755, b: 255 },
+            },
+            {
+              c: 0.345605,
+              h: 325,
+              l: 68.00807,
+              rgb: { r: 225.573, g: 0, b: 255 },
+            },
           ],
         },
       ];
@@ -477,9 +519,18 @@ describe("ColorUtils", async () => {
 
     it("matches the CSS Color 4 OKLCH vectors for all Display-P3 primaries", () => {
       const primaries = [
-        { input: "color(display-p3 1 0 0)", expected: { c: 0.29949, h: 28.958, l: 64.857 } },
-        { input: "color(display-p3 0 1 0)", expected: { c: 0.36853, h: 145.645, l: 84.883 } },
-        { input: "color(display-p3 0 0 1)", expected: { c: 0.32316, h: 264.052, l: 46.636 } },
+        {
+          input: "color(display-p3 1 0 0)",
+          expected: { c: 0.29949, h: 28.958, l: 64.857 },
+        },
+        {
+          input: "color(display-p3 0 1 0)",
+          expected: { c: 0.36853, h: 145.645, l: 84.883 },
+        },
+        {
+          input: "color(display-p3 0 0 1)",
+          expected: { c: 0.32316, h: 264.052, l: 46.636 },
+        },
       ];
 
       for (const { input, expected } of primaries) {
@@ -493,9 +544,18 @@ describe("ColorUtils", async () => {
 
     it("maps rounded Display-P3 primary OKLCH references close to their boundaries", () => {
       const primaries = [
-        { color: { c: 0.29949, h: 28.958, l: 64.857 }, expected: { r: 255, g: 0, b: 0 } },
-        { color: { c: 0.36853, h: 145.645, l: 84.883 }, expected: { r: 0, g: 255, b: 0 } },
-        { color: { c: 0.32316, h: 264.052, l: 46.636 }, expected: { r: 0, g: 0, b: 255 } },
+        {
+          color: { c: 0.29949, h: 28.958, l: 64.857 },
+          expected: { r: 255, g: 0, b: 0 },
+        },
+        {
+          color: { c: 0.36853, h: 145.645, l: 84.883 },
+          expected: { r: 0, g: 255, b: 0 },
+        },
+        {
+          color: { c: 0.32316, h: 264.052, l: 46.636 },
+          expected: { r: 0, g: 0, b: 255 },
+        },
       ];
 
       for (const { color, expected } of primaries) {
@@ -570,7 +630,11 @@ describe("ColorUtils", async () => {
       expect(rangeColorToOklch(pluginManager, "oklch(70% 0.2 30) extra")).to.be.undefined;
       expect(rangeColorToOklch(pluginManager, "oklch(120% 0.2 30)")).to.be.undefined;
       expect(rangeColorToOklch(pluginManager, "oklch(0.7 -0.2 30)")).to.be.undefined;
-      expect(rangeColorToOklch(pluginManager, { value: { oklch: { c: 0.2, h: 30, l: 101 } } })).to.be.undefined;
+      expect(
+        rangeColorToOklch(pluginManager, {
+          value: { oklch: { c: 0.2, h: 30, l: 101 } },
+        }),
+      ).to.be.undefined;
 
       const unitless = rangeColorToOklch(pluginManager, "oklch(0.7 0.2 30)"),
         percentage = rangeColorToOklch(pluginManager, "oklch(70% 0.2 30)");
@@ -582,7 +646,13 @@ describe("ColorUtils", async () => {
     it("parses every CSS hue angle unit in the engine's native OKLCH fallback", () => {
       const bareEngine = createEngine();
 
-      for (const hue of ["180deg", "180°", "200grad", "3.141592653589793rad", ".5turn"]) {
+      for (const hue of [
+        "180deg",
+        "180°",
+        "200grad",
+        "3.141592653589793rad",
+        ".5turn",
+      ]) {
         expect(rangeColorToOklch(bareEngine.pluginManager, `oklch(70% 0.2 ${hue})`)?.h, hue).to.be.closeTo(180, 1e-10);
       }
     });
@@ -644,23 +714,53 @@ describe("ColorUtils", async () => {
           fixed: { value: { rgb: { b: 65, g: 30, r: 25 } } },
           name: "RGB",
           ranged: {
-            value: { rgb: { b: { max: 80, min: 20 }, g: { max: 50, min: 10 }, r: { max: 100, min: 0 } } },
+            value: {
+              rgb: {
+                b: { max: 80, min: 20 },
+                g: { max: 50, min: 10 },
+                r: { max: 100, min: 0 },
+              },
+            },
           },
         },
         {
           fixed: { value: { hsl: { h: 90, l: 50, s: 65 } } },
           name: "HSL",
-          ranged: { value: { hsl: { h: { max: 360, min: 0 }, l: { max: 70, min: 30 }, s: { max: 80, min: 20 } } } },
+          ranged: {
+            value: {
+              hsl: {
+                h: { max: 360, min: 0 },
+                l: { max: 70, min: 30 },
+                s: { max: 80, min: 20 },
+              },
+            },
+          },
         },
         {
           fixed: { value: { hsv: { h: 90, s: 50, v: 60 } } },
           name: "HSV",
-          ranged: { value: { hsv: { h: { max: 360, min: 0 }, s: { max: 80, min: 20 }, v: { max: 70, min: 30 } } } },
+          ranged: {
+            value: {
+              hsv: {
+                h: { max: 360, min: 0 },
+                s: { max: 80, min: 20 },
+                v: { max: 70, min: 30 },
+              },
+            },
+          },
         },
         {
           fixed: { value: { hwb: { b: 60, h: 90, w: 20 } } },
           name: "HWB",
-          ranged: { value: { hwb: { b: { max: 70, min: 30 }, h: { max: 360, min: 0 }, w: { max: 30, min: 10 } } } },
+          ranged: {
+            value: {
+              hwb: {
+                b: { max: 70, min: 30 },
+                h: { max: 360, min: 0 },
+                w: { max: 30, min: 10 },
+              },
+            },
+          },
         },
       ];
 
@@ -694,7 +794,11 @@ describe("ColorUtils", async () => {
       directEngine.pluginManager.addColorManager("direct", directManager);
 
       expect(rangeColorToOklch(directEngine.pluginManager, "direct(color)")).to.deep.equal({ ...direct, h: 225 });
-      expect(rangeColorToOklch(directEngine.pluginManager, { value: { direct: true } })).to.deep.equal({
+      expect(
+        rangeColorToOklch(directEngine.pluginManager, {
+          value: { direct: true },
+        }),
+      ).to.deep.equal({
         ...direct,
         h: 225,
       });
@@ -746,7 +850,11 @@ describe("ColorUtils", async () => {
       const parsed = rangeColorToOklch(customEngine.pluginManager, "custom(color)");
 
       expect(parsed).to.deep.equal({ ...rgbToOklch(customRgb), a: 0.35 });
-      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.deep.equal({
+      expect(
+        rangeColorToOklch(customEngine.pluginManager, {
+          value: { custom: true },
+        }),
+      ).to.deep.equal({
         ...rgbToOklch(customRgb),
         a: 1,
       });
@@ -825,7 +933,9 @@ describe("ColorUtils", async () => {
     it("uses channel units directly and wraps hue within configured bounds", () => {
       const animationOptions = new OklchAnimation();
 
-      animationOptions.load({ h: { enable: true, max: 100, min: 30, speed: 30, sync: true } });
+      animationOptions.load({
+        h: { enable: true, max: 100, min: 30, speed: 30, sync: true },
+      });
 
       const animation = getOklchAnimationFromOklch({ c: 0.1, h: 95, l: 50 }, animationOptions, 1);
 
@@ -871,7 +981,17 @@ describe("ColorUtils", async () => {
     it("applies the delay once and decays hue velocity on each active tick", () => {
       const options = new OklchAnimation();
 
-      options.load({ h: { enable: true, max: 360, min: 0, speed: 20, decay: 0.5, delay: 1, sync: true } });
+      options.load({
+        h: {
+          enable: true,
+          max: 360,
+          min: 0,
+          speed: 20,
+          decay: 0.5,
+          delay: 1,
+          sync: true,
+        },
+      });
 
       const animation = getOklchAnimationFromOklch({ c: 0.1, h: 30, l: 50 }, options, 1);
 
@@ -893,7 +1013,9 @@ describe("ColorUtils", async () => {
     it("stops hue at its configured completed-loop count", () => {
       const options = new OklchAnimation();
 
-      options.load({ h: { enable: true, max: 360, min: 0, speed: 200, count: 1, sync: true } });
+      options.load({
+        h: { enable: true, max: 360, min: 0, speed: 200, count: 1, sync: true },
+      });
 
       const animation = getOklchAnimationFromOklch({ c: 0.1, h: 300, l: 50 }, options, 1);
 
@@ -909,7 +1031,9 @@ describe("ColorUtils", async () => {
     it("stops an oscillating channel after its configured full period", () => {
       const options = new OklchAnimation();
 
-      options.load({ c: { enable: true, max: 1, min: 0, speed: 0.2, count: 1, sync: true } });
+      options.load({
+        c: { enable: true, max: 1, min: 0, speed: 0.2, count: 1, sync: true },
+      });
 
       const animation = getOklchAnimationFromOklch({ c: 0.9, h: 120, l: 50 }, options, 1);
 
@@ -932,7 +1056,14 @@ describe("ColorUtils", async () => {
       let randomCalls = 0;
 
       options.load({
-        h: { enable: true, max: 360, min: 0, speed: 20, offset: { min: 2, max: 4 }, sync: false },
+        h: {
+          enable: true,
+          max: 360,
+          min: 0,
+          speed: 20,
+          offset: { min: 2, max: 4 },
+          sync: false,
+        },
       });
 
       const animation = getOklchAnimationFromOklch({ c: 0.1, h: 120, l: 50 }, options, 2, () => {
@@ -957,7 +1088,12 @@ describe("ColorUtils", async () => {
       expect(animation.a).to.equal(0.4);
       expect(
         getStyleFromOklch(
-          { a: animation.a, c: animation.c.value, h: animation.h.value, l: animation.l.value },
+          {
+            a: animation.a,
+            c: animation.c.value,
+            h: animation.h.value,
+            l: animation.l.value,
+          },
           false,
           0.5,
         ),
@@ -1130,7 +1266,12 @@ describe("ColorUtils", async () => {
     });
 
     it("keeps linear Display-P3 channels within the display headroom for every mode", () => {
-      for (const mode of [HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic]) {
+      for (const mode of [
+        HdrMode.natural,
+        HdrMode.vivid,
+        HdrMode.cinematic,
+        HdrMode.dynamic,
+      ]) {
         const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, mode)),
           maxChannel = Math.max(1, 400 / referenceWhiteNits);
 
@@ -1172,9 +1313,13 @@ describe("ColorUtils", async () => {
           r: 80,
         },
         styles = new Set(
-          [HdrMode.standard, HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic].map(mode =>
-            getStyleFromRgb(color, true, 1, 400, mode),
-          ),
+          [
+            HdrMode.standard,
+            HdrMode.natural,
+            HdrMode.vivid,
+            HdrMode.cinematic,
+            HdrMode.dynamic,
+          ].map(mode => getStyleFromRgb(color, true, 1, 400, mode)),
         );
 
       expect(styles.size).to.equal(5);

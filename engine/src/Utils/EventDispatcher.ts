@@ -93,7 +93,10 @@ export class EventDispatcher {
     if (length === deleteCount) {
       this.#listeners.delete(type);
     } else {
-      this.#listeners.set(type, [...arr.slice(minIndex, idx), ...arr.slice(idx + deleteCount)]);
+      this.#listeners.set(type, [
+        ...arr.slice(minIndex, idx),
+        ...arr.slice(idx + deleteCount),
+      ]);
     }
   }
 }

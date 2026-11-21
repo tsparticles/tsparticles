@@ -1,4 +1,10 @@
-import { type HdrMode, type ILogger, type IOklcha, type Particle, getStyleFromOklch } from "@tsparticles/engine";
+import {
+  type HdrMode,
+  type ILogger,
+  type IOklcha,
+  type Particle,
+  getStyleFromOklch,
+} from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -74,7 +80,14 @@ function replaceColorSvg(
     return "";
   }
 
-  const colorStyle = getStyleFromOklch(color, hdr, opacity, peakNits, mode, outputColorSpace);
+  const colorStyle = getStyleFromOklch(
+    color,
+    hdr,
+    opacity,
+    peakNits,
+    mode,
+    outputColorSpace,
+  );
 
   /* set color to svg element */
   if (svgData.includes("fill")) {
@@ -91,7 +104,7 @@ function replaceColorSvg(
  * @param image - the image to load
  */
 export async function loadImage(image: IImage, logger: ILogger): Promise<void> {
-  return new Promise<void>(resolve => {
+  return new Promise<void>((resolve) => {
     image.loading = true;
 
     const img = new Image();
@@ -122,7 +135,10 @@ export async function loadImage(image: IImage, logger: ILogger): Promise<void> {
  * Downloads the SVG image data, using `fetch`
  * @param image - the image to download
  */
-export async function downloadSvgImage(image: IImage, logger: ILogger): Promise<void> {
+export async function downloadSvgImage(
+  image: IImage,
+  logger: ILogger,
+): Promise<void> {
   if (image.type !== "svg") {
     await loadImage(image, logger);
 
@@ -186,7 +202,7 @@ export function replaceImageColor(
       source: imageData.src,
     };
 
-  return new Promise<IParticleImage>(resolve => {
+  return new Promise<IParticleImage>((resolve) => {
     const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg,
       url = URL.createObjectURL(svg),
       img = new Image();

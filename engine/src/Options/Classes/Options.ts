@@ -95,7 +95,7 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
     if (data.preset !== undefined) {
       this.preset = Array.isArray(data.preset) ? [...data.preset] : data.preset;
 
-      executeOnSingleOrMultiple(this.preset, preset => {
+      executeOnSingleOrMultiple(this.preset, (preset) => {
         this.#importPreset(preset);
       });
     }
@@ -143,11 +143,14 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
 
     this.resize.load(data.resize);
 
-    this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
+    this.style = deepExtend(
+      this.style,
+      data.style,
+    ) as RecursivePartial<CSSStyleDeclaration>;
 
     loadProperty(this, "smooth", data.smooth);
 
-    this.#pluginManager.plugins.forEach(plugin => {
+    this.#pluginManager.plugins.forEach((plugin) => {
       plugin.loadOptions(this.#container, this, data);
     });
   }
