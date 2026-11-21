@@ -25,7 +25,7 @@ export class AbsorbersInstancesManager {
 
   constructor(pluginManager: PluginManager) {
     this.#pluginManager = pluginManager;
-    this.#containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
+    this.#containerArrays = new WeakMap<AbsorberContainer, AbsorberInstance[]>();
   }
 
   async addAbsorber(
@@ -58,6 +58,10 @@ export class AbsorbersInstancesManager {
     this.initContainer(container);
 
     this.#containerArrays.set(container, []);
+  }
+
+  destroyContainer(container: AbsorberContainer): void {
+    this.#containerArrays.delete(container);
   }
 
   getArray(container: AbsorberContainer): AbsorberInstance[] {
@@ -144,7 +148,7 @@ export class AbsorbersInstancesManager {
     const particleSize = (size * splitMassRatio) / quantity / container.retina.pixelRatio;
 
     for (let i = defaultIndex; i < quantity; i++) {
-      const angle = getRandom() * doublePI;
+      const angle = getRandom(this.#pluginManager.engine.getRandomFn()) * doublePI;
 
       // the particles are released on the rim the absorber was covering, which is the shape a
       // split is expected to have

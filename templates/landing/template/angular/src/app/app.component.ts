@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { NgParticlesService } from "@tsparticles/angular";
-import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { NgParticlesService } from "@tsparticles/angular";
+import { engine } from "../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 @Component({
   standalone: false,
@@ -23,7 +24,14 @@ export class AppComponent implements OnInit {
       opacity: { value: 0.4, random: true },
       size: { value: { min: 1, max: 4 }, random: true },
       links: { enable: true, distance: 150, color: "#6c5ce7", opacity: 0.15, width: 1 },
-      move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
     },
     interactivity: {
       events: { onHover: { enable: true, mode: "grab" } },
@@ -40,18 +48,36 @@ export class AppComponent implements OnInit {
   ];
 
   pricingPlans = [
-    { plan: "Starter", price: "$9", features: ["Up to 5 projects", "Basic analytics", "Email support"], featured: false },
-    { plan: "Pro", price: "$29", features: ["Unlimited projects", "Advanced analytics", "Priority support", "Custom integrations"], featured: true },
-    { plan: "Enterprise", price: "$99", features: ["Everything in Pro", "Dedicated support", "SLA guarantee", "Custom deployment"], featured: false },
+    {
+      plan: "Starter",
+      price: "$9",
+      features: ["Up to 5 projects", "Basic analytics", "Email support"],
+      featured: false,
+    },
+    {
+      plan: "Pro",
+      price: "$29",
+      features: ["Unlimited projects", "Advanced analytics", "Priority support", "Custom integrations"],
+      featured: true,
+    },
+    {
+      plan: "Enterprise",
+      price: "$99",
+      features: ["Everything in Pro", "Dedicated support", "SLA guarantee", "Custom deployment"],
+      featured: false,
+    },
   ];
 
   testimonials = [
     { text: "This platform transformed how our team ships features. Absolutely love it.", author: "Sarah K., CTO" },
-    { text: "The best investment we made this year. The performance gains are incredible.", author: "Michael R., Developer" },
+    {
+      text: "The best investment we made this year. The performance gains are incredible.",
+      author: "Michael R., Developer",
+    },
   ];
 
   ngOnInit(): void {
-    void this.ngParticlesService.init(async (engine) => {
+    void this.ngParticlesService.init(engine, async engine => {
       await loadSlim(engine);
     });
   }

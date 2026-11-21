@@ -6,6 +6,8 @@ export interface IFireworkOptions {
   background: string;
   /** Brightness offset for stroke colors */
   brightness: RangeValue;
+  /** OKLCH chroma offset for split stroke colors */
+  chroma: RangeValue;
   /** Firework colors */
   colors: SingleOrMultiple<string>;
   /** Gravity acceleration */
@@ -14,8 +16,6 @@ export interface IFireworkOptions {
   minHeight: RangeValue;
   /** Firework launch rate */
   rate: RangeValue;
-  /** Saturation offset for stroke colors */
-  saturation: RangeValue;
   /** Enables explosion sounds */
   sounds: boolean;
   /** Rocket speed */

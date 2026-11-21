@@ -1,7 +1,9 @@
-import { Component } from "inferno";
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
-import { particles } from "@tsparticles/particles";
+import { Component } from "inferno";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(engine);
+import { engine } from "../particlesEngine";
 import "./App.css";
 
 async function init(): Promise<void> {
@@ -18,7 +20,14 @@ const options: ISourceOptions = {
     opacity: { value: 0.5 },
     size: { value: { min: 1, max: 5 } },
     links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-    move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: false,
+      straight: false,
+      outModes: { default: "bounce" },
+    },
   },
   interactivity: {
     events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
@@ -30,11 +39,11 @@ const options: ISourceOptions = {
 export default class App extends Component {
   render() {
     return (
-      <ParticlesProvider init={init}>
+      <ParticlesProvider engine={engine} init={init}>
         <div id="app">
           <h1>tsParticles</h1>
         </div>
-        <Particles id="tsparticles" options={options} />
+        <Particles engine={engine} id="tsparticles" options={options} />
       </ParticlesProvider>
     );
   }

@@ -214,8 +214,8 @@ const defaultMinInterval = 100, // ms
 /**
  * @returns a random character from the pool
  */
-function randomChar(): string {
-  return matrixChars[Math.floor(getRandom() * matrixChars.length)] ?? " ";
+function randomChar(random: () => number): string {
+  return matrixChars[Math.floor(getRandom(random) * matrixChars.length)] ?? " ";
 }
 
 /**
@@ -223,8 +223,8 @@ function randomChar(): string {
  * @param maxInterval - The maxInterval
  * @returns a random interval between MIN_INTERVAL and MAX_INTERVAL
  */
-function randomInterval(minInterval: number, maxInterval: number): number {
-  return minInterval + getRandom() * (maxInterval - minInterval);
+function randomInterval(minInterval: number, maxInterval: number, random: () => number): number {
+  return minInterval + getRandom(random) * (maxInterval - minInterval);
 }
 
 /**
@@ -238,9 +238,9 @@ function getState(particle: Particle, minInterval: number, maxInterval: number):
 
   if (!state) {
     state = {
-      char: randomChar(),
+      char: randomChar(particle.container.engine.getRandomFn()),
       elapsed: 0,
-      interval: randomInterval(minInterval, maxInterval), // each particle gets its own speed
+      interval: randomInterval(minInterval, maxInterval, particle.container.engine.getRandomFn()), // each particle gets its own speed
     };
 
     charCache.set(particle, state);
@@ -264,9 +264,9 @@ export function drawMatrix(data: IShapeDrawData<MatrixParticle>): void {
   state.elapsed += delta.value;
 
   if (state.elapsed >= state.interval) {
-    state.char = randomChar();
+    state.char = randomChar(particle.container.engine.getRandomFn());
     state.elapsed -= state.interval;
-    state.interval = randomInterval(minInterval, maxInterval);
+    state.interval = randomInterval(minInterval, maxInterval, particle.container.engine.getRandomFn());
   }
 
   const fontSize = Math.round(radius * double);

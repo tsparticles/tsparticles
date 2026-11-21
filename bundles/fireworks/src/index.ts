@@ -5,3 +5,5 @@ import type { RecursivePartial } from "@tsparticles/engine";
 export type FireworkOptions = RecursivePartial<IFireworkOptions>;
 
 export * from "./fireworks.js";
+
+export type { FireworksApi } from "./types.js";

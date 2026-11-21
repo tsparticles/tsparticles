@@ -1,11 +1,14 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
-import { beforeAll, describe, expect, it } from "vitest";
+import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
+import { ExportVideoPluginInstance } from "../../../../plugins/exports/video/src/ExportVideoPluginInstance.js";
+
+const tsParticles = createEngine();
 
 const exporterIds = ["export-json", "export-image", "export-video"],
   bootParticles = {
@@ -15,6 +18,63 @@ const exporterIds = ["export-json", "export-image", "export-video"],
   };
 
 let containerId = 0;
+
+class TestMediaRecorder extends EventTarget {
+  static instances: TestMediaRecorder[] = [];
+
+  static isTypeSupported(type: string): boolean {
+    return type === "video/webm";
+  }
+
+  readonly stop = vi.fn((): void => {
+    this.state = "inactive";
+
+    const dataEvent = new Event("dataavailable");
+
+    Object.defineProperty(dataEvent, "data", { value: new Blob(["encoded-video"]) });
+    this.dispatchEvent(dataEvent);
+    this.dispatchEvent(new Event("stop"));
+  });
+  state: RecordingState = "inactive";
+
+  constructor(_stream: MediaStream, _options: MediaRecorderOptions) {
+    super();
+    TestMediaRecorder.instances.push(this);
+  }
+
+  start(): void {
+    this.state = "recording";
+  }
+
+  fail(error: Error): void {
+    const event = new Event("error");
+
+    Object.defineProperty(event, "error", { value: error });
+    this.dispatchEvent(event);
+  }
+}
+
+function installCaptureStream(container: Container) {
+  const element = container.canvas.domElement as HTMLCanvasElement,
+    track = { stop: vi.fn() } as unknown as MediaStreamTrack,
+    stream = { getTracks: () => [track] } as unknown as MediaStream,
+    captureStream = vi.fn(() => stream),
+    descriptor = Object.getOwnPropertyDescriptor(element, "captureStream");
+
+  Object.defineProperty(element, "captureStream", { configurable: true, value: captureStream });
+
+  return {
+    captureStream,
+    restore: (): void => {
+      if (descriptor) {
+        Object.defineProperty(element, "captureStream", descriptor);
+      } else {
+        Reflect.deleteProperty(element, "captureStream");
+      }
+    },
+    track,
+  };
+}
 
 /**
  * Boots a throwaway container for export tests.
@@ -53,6 +113,12 @@ async function blobText(blob: Blob | undefined): Promise<string> {
 
 describe("Exports", async () => {
   globalThis.window = TestWindow;
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    TestMediaRecorder.instances = [];
+  });
 
   beforeAll(async () => {
     await loadExportJSONPlugin(tsParticles);
@@ -136,4 +202,95 @@ describe("Exports", async () => {
 
     container.destroy(false);
   }, 30000);
+
+  it("returns no video when MediaRecorder is unavailable", async () => {
+    vi.stubGlobal("MediaRecorder", undefined);
+
+    const container = await loadContainer(bootParticles);
+
+    try {
+      const video = new ExportVideoPluginInstance(container),
+        result = await video.export("video", { duration: 0.01 });
+
+      expect(result.supported).toBe(true);
+      expect(result.blob).toBeUndefined();
+    } finally {
+      container.destroy(false);
+    }
+  });
+
+  it("uses duration seconds and releases the recorder stream after export", async () => {
+    vi.stubGlobal("MediaRecorder", TestMediaRecorder);
+    const container = await loadContainer(bootParticles),
+      capture = installCaptureStream(container),
+      video = new ExportVideoPluginInstance(container);
+
+    vi.useFakeTimers();
+
+    try {
+      const promise = video.export("video", { duration: 0.01 }),
+        recorder = TestMediaRecorder.instances[0];
+
+      expect(recorder).toBeDefined();
+
+      await vi.advanceTimersByTimeAsync(9);
+      expect(recorder?.stop).not.toHaveBeenCalled();
+
+      await vi.advanceTimersByTimeAsync(1);
+      const result = await promise,
+        blob = result.blob;
+
+      expect(result.supported).toBe(true);
+      expect(blob).toBeInstanceOf(Blob);
+      expect(await blob?.text()).toBe("encoded-video");
+      expect(recorder?.stop).toHaveBeenCalledOnce();
+      expect(capture.track.stop).toHaveBeenCalledOnce();
+      expect(vi.getTimerCount()).toBe(0);
+    } finally {
+      capture.restore();
+      container.destroy(false);
+    }
+  });
+
+  it("settles a failed or destroyed video export and releases its resources", async () => {
+    vi.stubGlobal("MediaRecorder", TestMediaRecorder);
+    const container = await loadContainer(bootParticles),
+      capture = installCaptureStream(container),
+      video = new ExportVideoPluginInstance(container),
+      failure = new Error("recorder failed");
+
+    try {
+      const failedExport = video.export("video", { duration: 30 }),
+        failedRecorder = TestMediaRecorder.instances[0];
+
+      failedRecorder?.fail(failure);
+
+      const failedResult = await failedExport;
+
+      expect(failedResult.blob).toBeUndefined();
+      expect(failedRecorder?.stop).toHaveBeenCalledOnce();
+      expect(capture.track.stop).toHaveBeenCalledOnce();
+
+      capture.track.stop.mockClear();
+
+      const pendingExport = video.export("video", { duration: 30 }),
+        secondPendingExport = video.export("video", { duration: 30 }),
+        pendingRecorder = TestMediaRecorder.instances[1],
+        secondPendingRecorder = TestMediaRecorder.instances[2];
+
+      video.destroy();
+
+      const [pendingResult, secondPendingResult] = await Promise.all([pendingExport, secondPendingExport]);
+
+      expect(pendingResult.blob).toBeUndefined();
+      expect(secondPendingResult.blob).toBeUndefined();
+      expect(pendingRecorder?.stop).toHaveBeenCalledOnce();
+      expect(secondPendingRecorder?.stop).toHaveBeenCalledOnce();
+      expect(capture.track.stop).toHaveBeenCalledTimes(2);
+    } finally {
+      video.destroy();
+      capture.restore();
+      container.destroy(false);
+    }
+  });
 });

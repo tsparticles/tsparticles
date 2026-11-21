@@ -1,7 +1,9 @@
-import { useEffect } from "preact/hooks";
-import Particles, { initParticlesEngine } from "@tsparticles/preact";
-import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+import { engine } from "../particlesEngine";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
+const particles = createParticles(engine);
+import { useEffect } from "preact/hooks";
 import "./App.css";
 
 const options: ISourceOptions = {
@@ -14,7 +16,14 @@ const options: ISourceOptions = {
     opacity: { value: 0.5 },
     size: { value: { min: 1, max: 5 } },
     links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-    move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: false,
+      straight: false,
+      outModes: { default: "bounce" },
+    },
   },
   interactivity: {
     events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
@@ -25,7 +34,7 @@ const options: ISourceOptions = {
 
 export default function App() {
   useEffect(() => {
-    void initParticlesEngine(async () => {
+    void initParticlesEngine(engine, async () => {
       await particles.init();
     });
   }, []);
@@ -35,7 +44,7 @@ export default function App() {
       <div id="app">
         <h1>tsParticles</h1>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </>
   );
 }

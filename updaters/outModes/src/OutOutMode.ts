@@ -77,17 +77,23 @@ export class OutOutMode implements IOutModeManager {
     }
 
     particle.position.x = Math.floor(
-      randomInRangeValue({
-        min: 0,
-        max: container.canvas.size.width,
-      }),
+      randomInRangeValue(
+        {
+          min: 0,
+          max: container.canvas.size.width,
+        },
+        this.#container.engine.getRandomFn(),
+      ),
     );
 
     particle.position.y = Math.floor(
-      randomInRangeValue({
-        min: 0,
-        max: container.canvas.size.height,
-      }),
+      randomInRangeValue(
+        {
+          min: 0,
+          max: container.canvas.size.height,
+        },
+        this.#container.engine.getRandomFn(),
+      ),
     );
 
     const newDx = particle.position.x - particle.moveCenter.x,
@@ -116,7 +122,7 @@ export class OutOutMode implements IOutModeManager {
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = getRandom() * canvasSize.height;
+        particle.position.y = getRandom(this.#container.engine.getRandomFn()) * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
@@ -126,7 +132,7 @@ export class OutOutMode implements IOutModeManager {
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = getRandom() * canvasSize.height;
+        particle.position.y = getRandom(this.#container.engine.getRandomFn()) * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
@@ -135,7 +141,7 @@ export class OutOutMode implements IOutModeManager {
 
     if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height + particle.offset.y) {
       if (!warp) {
-        particle.position.x = getRandom() * canvasSize.width;
+        particle.position.x = getRandom(this.#container.engine.getRandomFn()) * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 
@@ -145,7 +151,7 @@ export class OutOutMode implements IOutModeManager {
       particle.justWarped = true;
     } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
       if (!warp) {
-        particle.position.x = getRandom() * canvasSize.width;
+        particle.position.x = getRandom(this.#container.engine.getRandomFn()) * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 
@@ -159,17 +165,23 @@ export class OutOutMode implements IOutModeManager {
   #applyParticleModeOutside(particle: Particle): void {
     particle.position.x =
       Math.floor(
-        randomInRangeValue({
-          min: -particle.moveCenter.radius,
-          max: particle.moveCenter.radius,
-        }),
+        randomInRangeValue(
+          {
+            min: -particle.moveCenter.radius,
+            max: particle.moveCenter.radius,
+          },
+          this.#container.engine.getRandomFn(),
+        ),
       ) + particle.moveCenter.x;
     particle.position.y =
       Math.floor(
-        randomInRangeValue({
-          min: -particle.moveCenter.radius,
-          max: particle.moveCenter.radius,
-        }),
+        randomInRangeValue(
+          {
+            min: -particle.moveCenter.radius,
+            max: particle.moveCenter.radius,
+          },
+          this.#container.engine.getRandomFn(),
+        ),
       ) + particle.moveCenter.y;
 
     const dx = particle.position.x - particle.moveCenter.x,

@@ -1,7 +1,7 @@
 import {
   type IOptionLoader,
   type IParticlesOptions,
-  type IRangeHsl,
+  type IRangeOklch,
   OptionsColor,
   type RecursivePartial,
   type SingleOrMultiple,
@@ -23,7 +23,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split fill color */
   fillColor?: OptionsColor;
   /** The split fill color offset */
-  fillColorOffset?: Partial<IRangeHsl>;
+  fillColorOffset?: Partial<IRangeOklch>;
   /** The split particles options */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** The split rate */
@@ -33,7 +33,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split stroke color */
   strokeColor?: OptionsColor;
   /** The split stroke color offset */
-  strokeColorOffset?: Partial<IRangeHsl>;
+  strokeColorOffset?: Partial<IRangeOklch>;
 
   /** Split constructor */
 
@@ -51,7 +51,10 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     }
 
     if (data.strokeColor !== undefined) {
-      this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
+      this.strokeColor = OptionsColor.create(
+        this.strokeColor,
+        data.strokeColor,
+      );
     }
 
     loadProperty(this, "count", data.count);
@@ -59,7 +62,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     this.factor.load(data.factor);
     this.rate.load(data.rate);
 
-    this.particles = executeOnSingleOrMultiple(data.particles, particles => {
+    this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
     });
 
@@ -72,8 +75,8 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.fillColorOffset.h = data.fillColorOffset.h;
       }
 
-      if (data.fillColorOffset.s !== undefined) {
-        this.fillColorOffset.s = data.fillColorOffset.s;
+      if (data.fillColorOffset.c !== undefined) {
+        this.fillColorOffset.c = data.fillColorOffset.c;
       }
 
       if (data.fillColorOffset.l !== undefined) {
@@ -88,8 +91,8 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.strokeColorOffset.h = data.strokeColorOffset.h;
       }
 
-      if (data.strokeColorOffset.s !== undefined) {
-        this.strokeColorOffset.s = data.strokeColorOffset.s;
+      if (data.strokeColorOffset.c !== undefined) {
+        this.strokeColorOffset.c = data.strokeColorOffset.c;
       }
 
       if (data.strokeColorOffset.l !== undefined) {

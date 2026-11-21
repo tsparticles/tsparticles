@@ -1,5 +1,5 @@
 import type { IColorAnimation } from "./IColorAnimation.js";
-import type { IHslAnimation } from "./IHslAnimation.js";
+import type { IOklchAnimation } from "./IOklchAnimation.js";
 import type { IOptionsColor } from "./IOptionsColor.js";
 
 /**
@@ -10,5 +10,5 @@ export interface IAnimatableColor extends IOptionsColor {
   /**
    * The color animation property
    */
-  animation: IColorAnimation | IHslAnimation;
+  animation: IColorAnimation | IOklchAnimation;
 }

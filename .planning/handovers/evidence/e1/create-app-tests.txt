@@ -1,0 +1,37 @@
+
+ NX   Running target test for project @tsparticles/cli-command-create-app:
+
+- @tsparticles/cli-command-create-app
+
+
+
+> nx run @tsparticles/cli-command-create-app:test
+
+(node:79620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79622) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ vitest run --config vitest.config.ts
+(node:79699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.1.0 /Users/matteo/Projects/GitHub/tsparticles/tsparticles/cli/commands/create-app
+
+(node:79765) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  00:02:46
+   Duration  263ms (transform 53%, import 37%, tests 9%, worker 2%)
+
+
+
+
+ NX   Successfully ran target test for project @tsparticles/cli-command-create-app
+
+
+  Run duration:      1.3s
+  Cache:             0/1 hit (0%)
+  Critical path:     1.3s (1 task)
+  Recoverable time:  <1ms

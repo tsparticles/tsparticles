@@ -13,7 +13,9 @@ pnpm add @tsparticles/engine @tsparticles/ribbons
 ## उपयोग के लिए तैयार (पूरा पेज)
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   count: 5,
@@ -24,7 +26,9 @@ await ribbons({
 ## किसी विशिष्ट कैनवास तक सीमित
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 import type { Container } from "@tsparticles/engine";
 
 const canvas = document.getElementById("ribbons-canvas") as HTMLCanvasElement;
@@ -54,7 +58,9 @@ export function resume(): void {
 डिफ़ॉल्ट रूप से प्रत्येक रिबन कण पूरे कैनवास की चौड़ाई में यादृच्छिक x स्थान पर उत्पन्न होता है। स्पॉन क्षेत्र को नियंत्रित करने के लिए `emitterSize` का उपयोग करें — सभी रिबन को एक ही बिंदु से शुरू करने के लिए इसे `{ width: 0, height: 0 }` पर सेट करें:
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   positionX: 50,

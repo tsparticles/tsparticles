@@ -1,19 +1,18 @@
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 
-const shapeGenerators: Map<string, IEmitterShapeGenerator> = new Map<string, IEmitterShapeGenerator>();
-
 export class ShapeManager {
+  readonly #shapeGenerators = new Map<string, IEmitterShapeGenerator>();
   addShapeGenerator(name: string, generator: IEmitterShapeGenerator): void {
     if (!this.getShapeGenerator(name)) {
-      shapeGenerators.set(name, generator);
+      this.#shapeGenerators.set(name, generator);
     }
   }
 
   getShapeGenerator(name: string): IEmitterShapeGenerator | undefined {
-    return shapeGenerators.get(name);
+    return this.#shapeGenerators.get(name);
   }
 
   getSupportedShapeGenerators(): IterableIterator<string> {
-    return shapeGenerators.keys();
+    return this.#shapeGenerators.keys();
   }
 }

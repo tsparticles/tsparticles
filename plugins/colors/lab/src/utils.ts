@@ -1,14 +1,22 @@
-import { type ILab, type ILaba, type IRgb, type IRgba, clamp, inverseFactorNumerator } from "@tsparticles/engine";
+/* eslint-disable @typescript-eslint/no-magic-numbers -- fixed CSS Color 4 Bradford adaptation coefficients */
+import {
+  type ILab,
+  type ILaba,
+  type IRgb,
+  type IRgba,
+  clamp,
+  inverseFactorNumerator,
+} from "@tsparticles/engine";
 
 // RGB
 const RGB = {
     MAX: 255,
   } as const,
-  // Reference white (D65, 2°)
-  WHITE_POINT_D65 = {
-    X: 0.95047,
+  // CSS Lab reference white (D50, 2°)
+  WHITE_POINT_D50 = {
+    X: 0.96422,
     Y: 1.0,
-    Z: 1.08883,
+    Z: 0.82521,
   } as const,
   // CIE LAB constants
   CIE = {
@@ -51,7 +59,7 @@ const RGB = {
  * @param lab - the LAB object
  * @returns the {@link IRgb} object
  */
-export function labToRgb(lab: ILab): IRgb {
+export function labToRgbFloat(lab: ILab): IRgb {
   // 1. LAB → LAB
   const L = lab.l, // 0–100
     a = lab.aAxis,
@@ -63,27 +71,69 @@ export function labToRgb(lab: ILab): IRgb {
     cubic = 3,
     fx3 = fx ** cubic,
     fz3 = fz ** cubic,
-    xr = fx3 > LAB.EPSILON ? fx3 : (LAB.L_SCALE * fx - LAB.L_OFFSET) / LAB.KAPPA,
+    xr =
+      fx3 > LAB.EPSILON ? fx3 : (LAB.L_SCALE * fx - LAB.L_OFFSET) / LAB.KAPPA,
     yr = L > LAB.KAPPA * LAB.EPSILON ? fy ** cubic : L / LAB.KAPPA,
-    zr = fz3 > LAB.EPSILON ? fz3 : (LAB.L_SCALE * fz - LAB.L_OFFSET) / LAB.KAPPA,
-    X = xr * WHITE_POINT_D65.X,
-    Y = yr * WHITE_POINT_D65.Y,
-    Z = zr * WHITE_POINT_D65.Z,
+    zr =
+      fz3 > LAB.EPSILON ? fz3 : (LAB.L_SCALE * fz - LAB.L_OFFSET) / LAB.KAPPA,
+    x50 = xr * WHITE_POINT_D50.X,
+    y50 = yr * WHITE_POINT_D50.Y,
+    z50 = zr * WHITE_POINT_D50.Z,
+    // Bradford adaptation from CSS Lab D50 to sRGB D65.
+    X =
+      0.955473421488075 * x50 -
+      0.02309845494876471 * y50 +
+      0.06325924320057072 * z50,
+    Y =
+      -0.0283697093338637 * x50 +
+      1.0099953980813041 * y50 +
+      0.021041441191917323 * z50,
+    Z =
+      0.012314014864481998 * x50 -
+      0.020507649298898964 * y50 +
+      1.330365926242124 * z50,
     // 3. XYZ → linear sRGB
-    rLinear = XYZ_TO_LINEAR_RGB.r.x * X + XYZ_TO_LINEAR_RGB.r.y * Y + XYZ_TO_LINEAR_RGB.r.z * Z,
-    gLinear = XYZ_TO_LINEAR_RGB.g.x * X + XYZ_TO_LINEAR_RGB.g.y * Y + XYZ_TO_LINEAR_RGB.g.z * Z,
-    bLinear = XYZ_TO_LINEAR_RGB.b.x * X + XYZ_TO_LINEAR_RGB.b.y * Y + XYZ_TO_LINEAR_RGB.b.z * Z,
+    rLinear =
+      XYZ_TO_LINEAR_RGB.r.x * X +
+      XYZ_TO_LINEAR_RGB.r.y * Y +
+      XYZ_TO_LINEAR_RGB.r.z * Z,
+    gLinear =
+      XYZ_TO_LINEAR_RGB.g.x * X +
+      XYZ_TO_LINEAR_RGB.g.y * Y +
+      XYZ_TO_LINEAR_RGB.g.z * Z,
+    bLinear =
+      XYZ_TO_LINEAR_RGB.b.x * X +
+      XYZ_TO_LINEAR_RGB.b.y * Y +
+      XYZ_TO_LINEAR_RGB.b.z * Z,
     // 4. Linear → gamma-corrected sRGB
     toSrgb = (x: number): number =>
       x <= SRGB.LINEAR_THRESHOLD
         ? SRGB.LINEAR_SCALE * x
-        : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) - SRGB.OFFSET,
-    toSrgbFixed: (num: number) => number = num => Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * RGB.MAX);
+        : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) -
+          SRGB.OFFSET,
+    toSrgbFloat: (num: number) => number = (num) => toSrgb(num) * RGB.MAX;
 
   return {
-    r: toSrgbFixed(rLinear),
-    g: toSrgbFixed(gLinear),
-    b: toSrgbFixed(bLinear),
+    r: toSrgbFloat(rLinear),
+    g: toSrgbFloat(gLinear),
+    b: toSrgbFloat(bLinear),
+  };
+}
+
+/** Converts CIELAB to the legacy clamped, integer RGB representation. */
+export function labToRgb(lab: ILab): IRgb {
+  const color = labToRgbFloat(lab);
+
+  return {
+    r: Math.round(
+      clamp(color.r, minSrgbValue * RGB.MAX, maxSrgbValue * RGB.MAX),
+    ),
+    g: Math.round(
+      clamp(color.g, minSrgbValue * RGB.MAX, maxSrgbValue * RGB.MAX),
+    ),
+    b: Math.round(
+      clamp(color.b, minSrgbValue * RGB.MAX, maxSrgbValue * RGB.MAX),
+    ),
   };
 }
 

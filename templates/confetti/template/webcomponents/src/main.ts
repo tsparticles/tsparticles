@@ -1,11 +1,11 @@
-import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
-import { confetti } from "@tsparticles/confetti";
+import "./style.css";
 
-globalThis.tsParticles = tsParticles;
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
 
-void initParticlesEngine(() => Promise.resolve());
+void initParticlesEngine(engine, () => Promise.resolve());
 
 defineParticlesElement();
 
@@ -49,3 +49,7 @@ fireBtn.addEventListener("click", () => {
       break;
   }
 });
+
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

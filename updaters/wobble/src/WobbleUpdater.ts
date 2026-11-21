@@ -39,9 +39,9 @@ export class WobbleUpdater implements IParticleUpdater {
 
     if (wobbleOpt?.enable) {
       particle.wobble = {
-        angle: getRandom() * doublePI,
-        angleSpeed: getRangeValue(wobbleOpt.speed.angle) / maxAngle,
-        moveSpeed: getRangeValue(wobbleOpt.speed.move) / moveSpeedFactor,
+        angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
+        angleSpeed: getRangeValue(wobbleOpt.speed.angle, this.#container.engine.getRandomFn()) / maxAngle,
+        moveSpeed: getRangeValue(wobbleOpt.speed.move, this.#container.engine.getRandomFn()) / moveSpeedFactor,
       };
     } else {
       particle.wobble = {
@@ -52,7 +52,8 @@ export class WobbleUpdater implements IParticleUpdater {
     }
 
     particle.retina.wobbleDistance =
-      getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.#container.retina.pixelRatio;
+      getRangeValue(wobbleOpt?.distance ?? defaultDistance, this.#container.engine.getRandomFn()) *
+      this.#container.retina.pixelRatio;
   }
 
   /**

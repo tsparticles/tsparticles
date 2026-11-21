@@ -63,7 +63,7 @@ export class Repulser extends ParticlesInteractorBase {
         return;
       }
 
-      const repulseDistance = getRangeValue(repulseOpt1.distance);
+      const repulseDistance = getRangeValue(repulseOpt1.distance, container.engine.getRandomFn());
 
       if (repulseDistance > this.maxDistance) {
         this.#maxDistance = repulseDistance;
@@ -71,8 +71,8 @@ export class Repulser extends ParticlesInteractorBase {
 
       p1.repulse = {
         distance: repulseDistance * container.retina.pixelRatio,
-        speed: getRangeValue(repulseOpt1.speed),
-        factor: getRangeValue(repulseOpt1.factor),
+        speed: getRangeValue(repulseOpt1.speed, container.engine.getRandomFn()),
+        factor: getRangeValue(repulseOpt1.factor, container.engine.getRandomFn()),
       };
     }
 

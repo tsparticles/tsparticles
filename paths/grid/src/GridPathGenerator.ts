@@ -57,7 +57,7 @@ export class GridPathGenerator implements IMovePathGenerator {
     const size = this.options.cellSize;
 
     p.grid ??= {
-      direction: Math.trunc(getRandom() * dirs.length),
+      direction: Math.trunc(getRandom(this.#container.engine.getRandomFn()) * dirs.length),
       speed: p.velocity.length,
       cellPosition: {
         x: Math.floor(p.position.x / size),
@@ -79,10 +79,10 @@ export class GridPathGenerator implements IMovePathGenerator {
         allowed = this.options.graph?.[key];
 
       if (allowed && allowed.length > minLength) {
-        grid.direction = allowed[Math.trunc(getRandom() * allowed.length)]!;
+        grid.direction = allowed[Math.trunc(getRandom(this.#container.engine.getRandomFn()) * allowed.length)]!;
       } else if (!this.options.graph) {
         // free grid fallback
-        const turn = Math.trunc(getRandom() * 3) - 1;
+        const turn = Math.trunc(getRandom(this.#container.engine.getRandomFn()) * 3) - 1;
 
         grid.direction = (grid.direction + turn + 4) % dirs.length;
       }
@@ -153,7 +153,7 @@ export class GridPathGenerator implements IMovePathGenerator {
         visited[y]![x] = true;
       }
 
-      const dirsOrder = [0, 1, 2, 3].sort(() => getRandom() - 0.5);
+      const dirsOrder = [0, 1, 2, 3].sort(() => getRandom(this.#container.engine.getRandomFn()) - 0.5);
       let moved = false;
 
       for (const d of dirsOrder) {

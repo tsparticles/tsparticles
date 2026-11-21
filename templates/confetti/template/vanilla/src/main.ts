@@ -1,5 +1,7 @@
+import { createConfetti } from "@tsparticles/confetti";
 import "./style.css";
-import { confetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;

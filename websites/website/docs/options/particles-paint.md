@@ -27,6 +27,23 @@ particles: {
 
 - Defines the particle inner color.
 - Supports static values, arrays, and color animation.
+- Color animation uses independent OKLCH channels: `h` (hue in degrees), `c`
+  (chroma in OKLab units), and `l` (lightness from 0 to 100).
+
+```ts
+color: {
+  value: "oklch(65% 0.2 285)",
+  animation: {
+    h: { enable: true, speed: 12 },
+    c: { enable: true, speed: 0.04, min: 0.08 },
+    l: { enable: true, speed: 3, min: 45, max: 80 },
+  },
+}
+```
+
+The channel ranges are in their own units; HSL `s` animation is rejected with a
+migration error. Convert the base color to OKLCH and choose chroma bounds for
+the intended effect. HSL saturation values do not map directly to chroma.
 
 ## Stroke (`particles.paint.stroke`)
 

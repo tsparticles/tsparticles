@@ -21,11 +21,20 @@ export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
    * @param _container - The container to handle
    * @param particle - The particle to process
    */
-  particleInit(_container: Container, particle: ArrowParticle): void {
+  particleInit(container: Container, particle: ArrowParticle): void {
     const shapeData = particle.shapeData;
 
-    particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);
-    particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? defaultHeadWidthFactor);
-    particle.bodyHeightFactor = getRangeValue(shapeData?.bodyHeightFactor ?? defaultBodyHeightFactor);
+    particle.heightFactor = getRangeValue(
+      shapeData?.heightFactor ?? defaultHeightFactor,
+      container.engine.getRandomFn(),
+    );
+    particle.headWidthFactor = getRangeValue(
+      shapeData?.headWidthFactor ?? defaultHeadWidthFactor,
+      container.engine.getRandomFn(),
+    );
+    particle.bodyHeightFactor = getRangeValue(
+      shapeData?.bodyHeightFactor ?? defaultBodyHeightFactor,
+      container.engine.getRandomFn(),
+    );
   }
 }

@@ -1,10 +1,173 @@
+## Session status — 2026-11-17 — E4 accepted
+
+- E0–E4 are accepted. E4 lifecycle cleanup has focused regressions, compressed
+  sizes within the 2% allowance, and matched headless Chrome timing plus CDP
+  forced-GC retention evidence. Across 30 retention cycles the DOM remains at
+  9 nodes, media listener counters remain zero, and post-warm-up heap drift is
+  104,052 bytes (<1 MiB). See [E4 measurements](handovers/evidence/e4/measurement-status.md).
+- Headless frame p95 is slightly over the E0-derived ceiling for M6/500 (2.0
+  vs 1.87 ms) and M8/500 (1.7 vs 1.65 ms); both are carried to E10's release
+  performance gate. After the final WeakMap cleanup adjustment, the primary
+  suite, test-package lint, CI formatting, and changed-file Prettier checks all
+  pass. E5–E10 remain open and E11 is excluded.
+- Corrected the root and basic/slim/full/all bundle READMEs to describe explicit
+  engine creation and avoid claiming that classic bundles expose the old default
+  singleton. The root CDN example now creates an engine and loads Basic before
+  starting the scene.
+- Fixed Webpack config generation to use the package directory and omit the
+  nonexistent `bundle.lazy.js` entry. Added standalone and external-engine UMD
+  compile/runtime regressions; the Webpack CLI tests pass 6/6. Webpack plugin
+  and CLI CI builds pass.
+- The Web Components demo browser smoke passes: its custom element rendered a
+  canvas and animated particles.
+- Repeated M6 extension frame p95 is 1.90 ms vs the E0-derived 1.87 ms ceiling
+  (E0 measured 1.70 ms). This is documented as a regression and carried to E10's
+  release budget gate, not reported as passing. No workload tuning was used.
+- No commit or publication performed. See [E1 acceptance](handovers/V5-E1-ENGINE.md).
+
+> Historical checkpoint (superseded 2026-11-17): E1 factory and consumer migration are implemented in
+> the working tree, with acceptance still open. Main suite: 686 tests; installed
+> ESM/CJS/browser purity and real Chrome two-bundle canvas ownership pass.
+> Final combined tests pass: 23 projects / 1,099 tests. Rebuild failures were
+> corrected; consumer/distribution closure and one repeated timing exceedance
+> remain open before accepting E1.
+> At that 2026-11-14 checkpoint, E2 was complete and E1 acceptance and E3–E10
+> were still open; E11 excluded. No commits or publications.
+> See [current engine work](handovers/V5-E1-ENGINE.md). Earlier retirement-only
+> results below describe the preceding verified checkpoint.
+
+## Session status — 2026-11-15 — E2 accepted
+
+- Completed E2 engine-owned runtime services after the ongoing E1 consumer migration. RNG, logging and animation scheduling now resolve from the owning engine; runtime callsites across core, plugins, shapes, paths, updaters and interactions were migrated.
+- Updated migration guidance and all localized plugin-customization pages. Added targeted engine-isolation, logger, scheduler, boundary and consumer regressions.
+- Engine build passes and direct builds succeeded for all 75 changed library packages, the Lit/Angular/Web Components wrappers and demo, and website docs. The primary suite passes (51 files / 688 tests), including 127 focused E2 tests and async logger ownership coverage. Installed ESM/CJS/lazy/browser package probes passed; changed package lint/format checks and final changed-file Prettier passed. Nx stalls before task output, so direct package builds were used. The engine-only bundle delta is recorded. See [E2 acceptance](handovers/V5-02-ENGINE-SERVICES.md).
+- Shared caches/registries were classified. The sounds user-activation latch is intentionally realm-scoped browser state, shared by engines in one window and isolated across windows. E2 is complete. No commits or publications.
+- Downstream Nx follow-up fixed remaining framework wrappers using the removed global logger. The requested build graph passed 199/199 tasks; wrapper tests passed 10/10 targets and the primary suite remained green at 688 tests. See the follow-up in [E2 acceptance](handovers/V5-02-ENGINE-SERVICES.md).
+
 ## Project Reference
 
 See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** v5 major planning on branch `v5`; 4.5.0/4.5.1 release history retained below.
+**Current focus.** v5 E4 Container lifecycle on branch `v5`, with package version `4.6.0`.
+
+## Session status — 2026-11-14 — E0 closed, E1 retirement verified
+
+- Resumed at `f17e249212` (the preceding checkpoint was committed outside this
+  execution). No commits or publications performed by this agent.
+- Closed E0 with installed-tarball/CJS accounting, 18 additional runtime runs,
+  30 retention cycles and inspected SDR/P3/float16 color fixtures. Recorded the
+  absent classic lazy product and fixed payload/runtime budgets.
+- Confirmed one leaked reduced-motion listener per container lifecycle and
+  corresponding retained heap; assigned to E4/G2. Alpha fixtures record the
+  v4 parser-alpha loss for required E5 migration.
+- E1 first increment removes Vue 2/Nuxt 2/Nuxt 3 integrations: six Nx projects,
+  24 starter variants and active references. pnpm removes 493 package versions;
+  no new package-version entries. Nine packed template archives retain supported
+  variants and exclude retired ones.
+- Main suite: 50 files / 680 tests passed; create-app: 11 tests, CI build passed;
+  primary test-package lint passed. New installer tests cover semver prefixes,
+  retired frameworks, existing wrappers and continued detection.
+- Next: factory/entrypoint and supported-consumer migration in E1. The singleton
+  is still present. E1 is not complete; E2–E10 pending; E11 excluded.
+
+## Session status — 2026-11-13 — E0 execution checkpoint
+
+- Started from clean `1944fa0f5c202b8af82841b5de9b2315f758a258` after reading
+  AGENTS, the handover index, execution sequence, source review and E0 owners.
+- Captured fresh Rollup artifacts, ten consumer graphs, numeric payload budgets,
+  six package-condition checks, classic-CDN cold/warm HTTP checks, 54 seeded
+  runtime runs and an inspected SDR color reference. See
+  [the report and exit checklist](handovers/V5-BUNDLE-REPORT.md).
+- Created inventories for 153 engine source files and 349 extension/utility
+  manifests, the consumer matrix, migration draft and decisions including G1–G7,
+  retirement scope and browser age/usage policy. Inventory is not completed audit.
+- Fixed import ordering and an empty logger mock in the existing BackgroundMask
+  test to unblock baseline builds. No library runtime changes. Main suite:
+  49 files / 668 tests passed; BackgroundMask: 16 tests passed. Earlier overlapping
+  build/test runs are explicitly invalidated and their logs retained.
+- E0 remains open: finish CJS/installed-consumer accounting and lazy-CDN
+  disposition, emitter/absorber/retention, HDR/layers/resize and broader visual
+  baseline evidence. E1–E10 have not started; do not skip the evidence gate.
+- No commits, version bumps, publications or E11 work.
+
+## Session status — 2026-11-13 — source-based coverage check
+
+- Reviewed current source at `6ef62b21869b2e08de8f80911e1f9192c18d451c`, with
+  Nx project discovery and selected existing regression tests. Added
+  [G1–G7](handovers/V5-CODE-REVIEW.md) to the mandatory stage acceptance checks.
+- Concrete ownership targets include the shared emitter-shape registry and
+  noise/motion listeners. Added explicit async failure, time/numeric, sampling,
+  spatial-snapshot and public-lifetime decisions, preserving existing tests.
+- Appended [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) after E10 for
+  measured plugin improvements. Mandatory fixes remain in E1–E8/E10.
+- Source review and planning only; no implementation, runtime verification or
+  performance result claimed. Full per-file audit and E0 baseline remain pending.
+
+## Session status — 2026-11-13 — v5 execution reordering
+
+- Added the authoritative [E0–E10 sequence](handovers/V5-EXECUTION.md), with
+  dependencies, difficulty, impact, implementation increments and exit gates.
+  Handover 01–10 filenames remain stable topic/ownership references.
+- Baseline and retirement/browser scope precede runtime changes. Explicit engines
+  remain first, immediately followed by isolated services. Shared contracts and
+  lifecycle precede Particle/options plus the complete OKLCH migration; collections
+  and rendering optimizations follow the resulting model.
+- Plugin and browser migration now explicitly accompany every breaking change;
+  final ecosystem/distribution stages close coverage rather than postpone repairs.
+- Next action: E0 baseline and inventories. All runtime stages remain pending.
+  Documentation-only revision; no runtime tests, builds or measurements claimed.
+
+## Session status — 2026-11-13 — v4.6.0 merge
+
+- Merge `201b8e8d33` brought `main` at `eab131e13a`, including the
+  `v4.6.0` tag at `8c572f3f97` and subsequent publishing fixes. The first
+  major runtime handover and its clean measurement baseline remain pending.
+- The 4.6.0 release is complete. Collect the outstanding V4-S01 Rollup and CDN
+  measurements in the v5 baseline. V4-S03 remains deferred under its first-use
+  and standalone All compatibility criteria.
+
+## Session status — 2026-11-08 — Post-merge documentation review
+
+- Merge `e9c7a7378d` brought v4 tip `5aba15652a` into `v5`. Both root and engine
+  manifests report `4.5.3`. The engine still exports the singleton, so the first
+  major runtime handover remains pending.
+- Aligned the current roadmap, requirements, handover sequence, and release gates.
+  The original `4.5.1` reconnaissance and `4.5.2` architecture/color review remain
+  historical. Capture a clean measurement baseline from the implementation
+  starting commit before any major runtime changes.
+- Translated the v5-only architecture and OKLCH plans and their handover
+  additions into English. This pass checked documentation and source references.
+  Runtime tests and measurements were not rerun.
+
+## Session Status — 2026-11-06 — v5 OKLCH color planning
+
+- Added [V5-COLOR detailed plan](handovers/V5-COLORS-OKLCH.md), phases C0–C5,
+  runtime/input contracts, migration matrix and numerical/browser/performance gates.
+- Confirmed early sRGB clipping/8-bit rounding in the current OKLCH manager and
+  RGB → HSL normalization for particle state; also identified P3/HDR coupling.
+- Proposed canonical IOklch, h/c/l animation, explicit alpha and gamut/HDR handling;
+  old color values remain supported, HSL animation semantics need explicit migration.
+- Integrated with handovers 03/05/07/08/09/10 and V5 requirements/roadmap.
+- Documentation only: no runtime changes, test runs, builds or benchmark claims.
+
+## Session Status — 2026-11-06 — v5 architecture planning
+
+- Added [four dedicated architecture evaluations](handovers/V5-ARCHITECTURE.md)
+  with source evidence, alternatives, initial recommendations, ownership,
+  experiments, acceptance criteria and migration considerations.
+- Particle: evaluate explicit snapshots and separation of state/behavior without
+  moving every method into ParticlesManager. Full runtime serialization is not assumed.
+- Engine: compare internal domains, selective subpaths and publishable packages.
+- Options: separate input, resolved configuration and mutable runtime state;
+  investigate normalization, extension contributions and cache invalidation.
+- Extensions: evaluate common registration/lifecycle with typed capabilities and
+  specialized frame pipelines, including all extension families in the audit.
+- Integrated evaluations with handovers 03/06/07/08/09/10 and IMP plans; final gate
+  requires a decision and evidence for each theme. Runtime experiments remain pending.
+- Source/package baseline inspected today is `4.5.2`; original `4.5.1` plan
+  evidence below remains historical. No runtime change, build or benchmark performed.
 
 ## Session Status — 2026-11-03 — v5 planning
 
@@ -189,7 +352,7 @@ Fluid-in-collisions work moved to 4.5.0.
 9. ✅ **S9 Riot** — done (onUpdated/onUnmounted lifecycle hooks, theme support, loadId race guard, demo with config switch, README aligned)
 10. ✅ **S10 WebComponents** — done (`data-id`/`data-theme` added to `observedAttributes`, `attributeChangedCallback` handles both, `id` setter syncs to `data-id`, deprecated `particlesInit` event removed, README documented with observed attributes table and theme caveat, build passes)
 11. ✅ **S11 React docs** — README props table updated with `particlesLoaded`, demo/template check passed
-12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate senza refresh per solo-theme), demo (constructor init + conditional render — module-level init freeze Preact, tenuto pattern originale), README aligned
+12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate without refresh for theme-only changes), demo (constructor init + conditional render — the original pattern was retained because module-level initialization froze Preact), README aligned
 13. ✅ **S13 Svelte** — wrapper reactivity (`theme` prop, `afterUpdate` → reactive `$:` statements with `loadKey`, `loadTheme` on initial load + theme change), demo alignment (`particlesInit` → `initParticlesEngine`, Svelte 5 `mount()` API, SSR-safe dynamic imports), README with props table, reactive behavior docs, theme plugin docs. Svelte demo + SvelteKit demo both verified working by the user.
 14. ✅ **S14 Stencil** — done (`theme` prop + `particlesLoaded` event + `@Watch("theme")` + demo with theme toggle + `@tsparticles/plugin-themes` installed, build passes).
 15. ✅ **S15 Ember** — done (`theme` prop, `#container` instance tracking for memory leak fix, `registerDestructor` called once, `particlesLoaded` type fixed to `(container?: Container)`, template `particles.hbs` updated with `theme=@theme`, demo with config switch + theme toggle buttons, README with args table and optional plugin caveat, build passes).
@@ -201,3 +364,10 @@ Fluid-in-collisions work moved to 4.5.0.
 21. ✅ **S21 Final handoff** — done: README documentation gaps fixed for preact (reload contract + cleanup), stencil (safe no-op + reactivity + cleanup), ember (cleanup), jquery (reload + loaded callback + cleanup), angular-fireworks (lifecycle). All builds pass.
 22. ✅ **S22 EN wrapper guide audit** — completed: all 16 EN wrapper guide pages audited against wrapper READMEs. Gap matrix produced: all 16 guides have missing `theme` prop docs, missing reactivity contracts, missing cleanup docs, or stale patterns (see S22 gap matrix in conversation). Vue3.md already clean from S18. Nuxt guide has stale `@particles-init`/`@particles-destroy` events. Solid and Svelte guides have misleading reactivity descriptions.
 23. ✅ **S23 Translation alignment** — completed: all 16 EN wrapper guides fixed with `theme` prop docs, reactivity contract, cleanup docs, fixed `Container | undefined` callback types, stale Nuxt events removed, misleading Solid/Svelte descriptions corrected. Changes mirrored to all 9 translation directories (zh, ja, hi, ru, pt, fr, de, es, it) — 144 translation files updated.
+
+## Session status — 2026-11-17 — E0–E3 accepted; E4 next
+
+- E1 is accepted (see `handovers/V5-E1-ENGINE.md`); the M6 p95 exceedance remains an E10 budget issue. E0 and E2 are accepted.
+- E3 accepted: recorded ARCH-01–04 and C0 decisions, moved Core files into five logical domains, added selective type barrels and import rules, synchronized the 159-file audit inventory, and documented option/registry mutation matrices.
+- Public consumer type/runtime checks pass, including root and lazy ESM/CJS imports, browser-condition import, and rejection of consumer deep imports. Engine CI passed (20 tasks); representative consumer builds passed (158 Nx tasks, cached); the full tests passed (52 files, 695 tests); tests-package lint and format checks passed.
+- The full workspace `build:ci` command was stopped after six minutes without further output. Representative Nx consumer builds and the engine CI build passed; Nx Cloud remote cache was unavailable (`ENOTFOUND`). No commit or publication.

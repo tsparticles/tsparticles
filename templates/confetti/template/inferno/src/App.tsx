@@ -1,7 +1,9 @@
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
-import { confetti } from "@tsparticles/confetti";
-import type { Engine } from "@tsparticles/engine";
 import { Component } from "inferno";
+import type { Engine } from "@tsparticles/engine";
+const confetti = createConfetti(engine);
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
 import "./App.css";
 
 function randomInRange(min: number, max: number): number {
@@ -50,7 +52,7 @@ export default class App extends Component<{}, AppState> {
 
   render() {
     return (
-      <ParticlesProvider init={async (engine: Engine): Promise<void> => {}}>
+      <ParticlesProvider engine={engine} init={async (engine: Engine): Promise<void> => {}}>
         <div id="app">
           <h1>Confetti!</h1>
           <div class="controls">
@@ -62,7 +64,7 @@ export default class App extends Component<{}, AppState> {
             </select>
           </div>
         </div>
-        <Particles id="tsparticles" options={{}} />
+        <Particles engine={engine} id="tsparticles" options={{}} />
       </ParticlesProvider>
     );
   }

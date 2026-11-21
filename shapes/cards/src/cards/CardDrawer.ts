@@ -1,4 +1,9 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
+import {
+  type Container,
+  type IShapeDrawData,
+  type IShapeDrawer,
+  deepExtend,
+} from "@tsparticles/engine";
 import type { CardParticle } from "../CardParticle.js";
 import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";
@@ -41,9 +46,18 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
       container.canvas.render.settings,
       container.peakNits,
       container.hdrMode,
+      container.outputColorSpace,
     );
 
     context.globalAlpha = defaultOpacity;
+  }
+
+  /**
+   * Releases copied card data when the particle enters the pool
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: CardParticle): void {
+    delete particle.cardData;
   }
 
   /**

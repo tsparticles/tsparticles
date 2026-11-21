@@ -40,12 +40,15 @@ export interface ILogger {
 }
 
 const wrap =
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-    <T extends unknown[]>(fn: (this: void, ...args: T) => void) =>
-      (...args: T): void => {
-        fn(...args);
-      },
-  _logger: ILogger = {
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  <T extends unknown[]>(fn: (this: void, ...args: T) => void) =>
+    (...args: T): void => {
+      fn(...args);
+    };
+
+/** Creates an independent logger using console defaults for omitted methods. */
+export function createLogger(logger: Partial<ILogger> = {}): ILogger {
+  const defaults: ILogger = {
     debug: wrap(console.debug),
 
     error: (message?: unknown, ...optionalParams: unknown[]) => {
@@ -73,48 +76,13 @@ const wrap =
     warning: wrap(console.warn),
   };
 
-/**
- * Replaces the library log functions with a custom one.
- * @param logger - A logger object responsible for logging messages.
- * @remarks
- * Also available on globalThis as `setParticlesLogger` in UMD/browser builds.
- */
-export function setLogger(logger: Partial<ILogger>): void {
-  if (logger.debug) {
-    _logger.debug = wrap(logger.debug);
-  }
-
-  if (logger.error) {
-    _logger.error = wrap(logger.error);
-  }
-
-  if (logger.info) {
-    _logger.info = wrap(logger.info);
-  }
-
-  if (logger.log) {
-    _logger.log = wrap(logger.log);
-  }
-
-  if (logger.trace) {
-    _logger.trace = wrap(logger.trace);
-  }
-
-  if (logger.verbose) {
-    _logger.verbose = wrap(logger.verbose);
-  }
-
-  if (logger.warning) {
-    _logger.warning = wrap(logger.warning);
-  }
-}
-
-/**
- * Returns the logger object.
- * @returns the logger
- * @remarks
- * Also available on globalThis as `getParticlesLogger` in UMD/browser builds.
- */
-export function getLogger(): ILogger {
-  return _logger;
+  return {
+    debug: logger.debug ? wrap(logger.debug) : defaults.debug,
+    error: logger.error ? wrap(logger.error) : defaults.error,
+    info: logger.info ? wrap(logger.info) : defaults.info,
+    log: logger.log ? wrap(logger.log) : defaults.log,
+    trace: logger.trace ? wrap(logger.trace) : defaults.trace,
+    verbose: logger.verbose ? wrap(logger.verbose) : defaults.verbose,
+    warning: logger.warning ? wrap(logger.warning) : defaults.warning,
+  };
 }

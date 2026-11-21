@@ -12,6 +12,6 @@ export async function loadRgbColorPlugin(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { RgbColorManager } = await import("./RgbColorManager.js");
 
-    e.pluginManager.addColorManager("rgb", new RgbColorManager());
+    e.pluginManager.addColorManager("rgb", new RgbColorManager(e.getRandomFn()));
   });
 }

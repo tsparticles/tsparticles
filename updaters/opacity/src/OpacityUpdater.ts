@@ -39,16 +39,17 @@ export class OpacityUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.opacity = initParticleNumericAnimationValue(opacityOptions, pxRatio);
+    particle.opacity = initParticleNumericAnimationValue(opacityOptions, pxRatio, this.#container.engine.getRandomFn());
 
     const opacityAnimation = opacityOptions.animation;
 
     if (opacityAnimation.enable) {
       particle.opacity.velocity =
-        (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.#container.retina.reduceFactor;
+        (getRangeValue(opacityAnimation.speed, this.#container.engine.getRandomFn()) / percentDenominator) *
+        this.#container.retina.reduceFactor;
 
       if (!opacityAnimation.sync) {
-        particle.opacity.velocity *= getRandom();
+        particle.opacity.velocity *= getRandom(this.#container.engine.getRandomFn());
       }
     }
   }

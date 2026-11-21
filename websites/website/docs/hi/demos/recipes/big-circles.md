@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-big-circles
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
 import type { Container } from "@tsparticles/engine";
 

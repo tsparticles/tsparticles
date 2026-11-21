@@ -69,7 +69,8 @@ const { loadCanvasUtilsPath } = require("@tsparticles/canvas-utils");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCanvasUtilsPath } from "@tsparticles/canvas-utils";
 
 (async () => {

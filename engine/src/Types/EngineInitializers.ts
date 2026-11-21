@@ -1,4 +1,4 @@
-import type { Container } from "../Core/Container.js";
+import type { Container } from "../Core/Container/Container.js";
 import type { IEffectDrawer } from "../Core/Interfaces/IEffectDrawer.js";
 import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater.js";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer.js";

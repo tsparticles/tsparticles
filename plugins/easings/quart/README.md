@@ -69,7 +69,8 @@ const { loadEasingQuartPlugin } = require("@tsparticles/plugin-easing-quart");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingQuartPlugin } from "@tsparticles/plugin-easing-quart";
 
 (async () => {

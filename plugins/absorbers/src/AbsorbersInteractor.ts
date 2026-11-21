@@ -91,7 +91,8 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         }
       }
 
-      const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber();
+      const absorbersModeOptions =
+        itemFromArray(absorbers, undefined, true, container.engine.getRandomFn()) ?? new Absorber();
 
       void this.#instancesManager.addAbsorber(container, absorbersModeOptions, clickPosition);
     };

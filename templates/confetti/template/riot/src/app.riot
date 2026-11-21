@@ -10,10 +10,13 @@
       </select>
     </div>
   </div>
-  <riot-particles id="tsparticles" options={ state.options }></riot-particles>
+  <riot-particles engine={engine} id="tsparticles" options={ state.options }></riot-particles>
 
   <script>
-    import { confetti } from "@tsparticles/confetti"
+import { engine } from "../particlesEngine";
+
+    import {  createConfetti  } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
     function randomInRange(min, max) {
       return Math.random() * (max - min) + min

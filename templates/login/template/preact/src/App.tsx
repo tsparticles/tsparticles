@@ -1,7 +1,8 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
 
 const options: ISourceOptions = {
@@ -42,13 +43,13 @@ export default function App() {
   }, [theme]);
 
   useEffect(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   }, []);
 
   function toggleTheme() {
-    setTheme((t) => (t === "dark" ? "light" : "dark"));
+    setTheme(t => (t === "dark" ? "light" : "dark"));
   }
 
   function handleSubmit(e: Event) {
@@ -94,7 +95,7 @@ export default function App() {
 
   function toggleMode(e: Event) {
     e.preventDefault();
-    setIsLogin((m) => !m);
+    setIsLogin(m => !m);
     setEmailErr("");
     setPassErr("");
     setConfirmErr("");
@@ -106,23 +107,45 @@ export default function App() {
         <div class="auth-card">
           <div class="auth-header">
             <h1>{isLogin ? "Login" : "Register"}</h1>
-            <button class="theme-btn" onClick={toggleTheme} aria-label="Toggle theme">{theme === "dark" ? "🌙" : "☀️"}</button>
+            <button class="theme-btn" onClick={toggleTheme} aria-label="Toggle theme">
+              {theme === "dark" ? "🌙" : "☀️"}
+            </button>
           </div>
           <form onSubmit={handleSubmit} novalidate>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" value={email} onInput={(e) => setEmail(e.currentTarget.value)} required />
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onInput={e => setEmail(e.currentTarget.value)}
+                required
+              />
               <span class="error">{emailErr}</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input id="password" type="password" placeholder="Enter password" value={password} onInput={(e) => setPassword(e.currentTarget.value)} required />
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onInput={e => setPassword(e.currentTarget.value)}
+                required
+              />
               <span class="error">{passErr}</span>
             </div>
             {!isLogin && (
               <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" type="password" placeholder="Confirm password" value={confirm} onInput={(e) => setConfirm(e.currentTarget.value)} />
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm password"
+                  value={confirm}
+                  onInput={e => setConfirm(e.currentTarget.value)}
+                />
                 <span class="error">{confirmErr}</span>
               </div>
             )}
@@ -130,11 +153,13 @@ export default function App() {
           </form>
           <p class="toggle-text">
             <span>{isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick={toggleMode}>{isLogin ? "Register" : "Login"}</a>
+            <a href="#" onClick={toggleMode}>
+              {isLogin ? "Register" : "Login"}
+            </a>
           </p>
         </div>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </div>
   );
 }

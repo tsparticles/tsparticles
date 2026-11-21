@@ -1,5 +1,7 @@
+import { createConfetti } from "@tsparticles/confetti";
 import { createSignal } from "solid-js";
-import { confetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
@@ -55,7 +57,7 @@ export default function App() {
       <h1>Confetti!</h1>
       <div class="controls">
         <button onClick={handleFire}>Fire Confetti</button>
-        <select value={mode()} onChange={(e) => setMode(e.currentTarget.value)}>
+        <select value={mode()} onChange={e => setMode(e.currentTarget.value)}>
           <option value="cannon">Cannon</option>
           <option value="waterfall">Waterfall</option>
           <option value="random">Random</option>

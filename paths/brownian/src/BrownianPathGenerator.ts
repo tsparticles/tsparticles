@@ -34,12 +34,12 @@ export class BrownianPathGenerator implements IMovePathGenerator {
    */
   generate(p: BrownianPathParticle): Vector {
     p.brownian ??= {
-      angle: getRandom() * doublePI,
+      angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
       speed: p.velocity.length,
     };
 
     const b = p.brownian,
-      delta = (getRandom() * 2 - 1) * (this.options.angleDelta ?? 0);
+      delta = (getRandom(this.#container.engine.getRandomFn()) * 2 - 1) * (this.options.angleDelta ?? 0);
 
     b.angle += delta;
 

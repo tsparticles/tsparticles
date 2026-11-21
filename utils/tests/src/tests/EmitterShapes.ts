@@ -1,15 +1,17 @@
 /* eslint-disable */
-import { describe, expect, it, beforeAll } from "vitest";
-import { tsParticles, type Container } from "@tsparticles/engine";
-import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
-import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
-import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
-import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
-import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
-import { loadEmittersShapeCanvas } from "@tsparticles/plugin-emitters-shape-canvas";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { type Container, createEngine } from "@tsparticles/engine";
+import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmittersShapeCanvas } from "@tsparticles/plugin-emitters-shape-canvas";
+import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
+import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
+import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+
+const tsParticles = createEngine();
 
 interface Coords {
   x: number;

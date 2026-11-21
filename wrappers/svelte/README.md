@@ -26,6 +26,8 @@ yarn add @tsparticles/svelte
 
 ```html
 <script>
+	import { createEngine } from '@tsparticles/engine';
+	const particlesEngine = createEngine();
 	import Particles, { initParticlesEngine } from '@tsparticles/svelte';
 	//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 	import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
@@ -57,7 +59,7 @@ yarn add @tsparticles/svelte
 		// (from the core library) methods like play, pause, refresh, start, stop
 	};
 
-	void initParticlesEngine(async (engine) => {
+	void initParticlesEngine(particlesEngine, async (engine) => {
 		// call this once per app
 		// you can use main to customize the tsParticles instance adding presets or custom shapes
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -68,6 +70,7 @@ yarn add @tsparticles/svelte
 </script>
 
 <Particles
+	engine="{particlesEngine}"
 	id="tsparticles"
 	class="put your classes here"
 	style=""
@@ -78,6 +81,7 @@ yarn add @tsparticles/svelte
 <!-- or -->
 
 <Particles
+	engine="{particlesEngine}"
 	id="tsparticles"
 	class="put your classes here"
 	style=""
@@ -149,6 +153,8 @@ You can see a sample below:
 
 ```html
 <script>
+	import { createEngine } from '@tsparticles/engine';
+	const particlesEngine = createEngine();
 	import { initParticlesEngine } from '@tsparticles/svelte';
 	import { onMount } from 'svelte';
 	//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
@@ -189,7 +195,7 @@ You can see a sample below:
 		// (from the core library) methods like play, pause, refresh, start, stop
 	};
 
-	void initParticlesEngine(async (engine) => {
+	void initParticlesEngine(particlesEngine, async (engine) => {
 		// call this once per app
 		// you can use main to customize the tsParticles instance adding presets or custom shapes
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready

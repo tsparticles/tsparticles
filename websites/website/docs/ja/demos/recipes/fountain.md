@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-fountain
 ## すぐに使用可能 (手動開始/停止)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFountainPreset } from "@tsparticles/preset-fountain";
 import type { Container } from "@tsparticles/engine";
 

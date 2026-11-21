@@ -29,9 +29,11 @@
       </p>
     </div>
   </div>
-  <riot-particles id="tsparticles" options={ state.options }></riot-particles>
+  <riot-particles engine={engine} id="tsparticles" options={ state.options }></riot-particles>
 
   <script>
+import { engine } from "../particlesEngine";
+
     import { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
@@ -69,7 +71,7 @@
       },
       onMounted() {
         document.documentElement.setAttribute("data-theme", this.state.theme);
-        void initParticlesEngine(async (engine) => {
+        void initParticlesEngine(engine, async (engine) => {
           await loadSlim(engine);
         });
       },

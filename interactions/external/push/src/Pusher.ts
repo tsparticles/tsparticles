@@ -45,15 +45,20 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         return;
       }
 
-      const quantity = getRangeValue(pushOptions.quantity);
+      const quantity = getRangeValue(pushOptions.quantity, container.engine.getRandomFn());
 
       if (quantity <= minQuantity) {
         return;
       }
 
-      const group = itemFromArray([undefined, ...pushOptions.groups]),
+      const group = itemFromArray([undefined, ...pushOptions.groups], undefined, true, container.engine.getRandomFn()),
         groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined,
-        particlesOptions = itemFromSingleOrMultiple(pushOptions.particles),
+        particlesOptions = itemFromSingleOrMultiple(
+          pushOptions.particles,
+          undefined,
+          undefined,
+          container.engine.getRandomFn(),
+        ),
         overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
       container.particles.push(quantity, interactivityData.mouse.position, overrideOptions, group);

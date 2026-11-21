@@ -1,15 +1,19 @@
+import { type Engine, createEngine } from "@tsparticles/engine";
 import { Particles, initParticlesEngine } from "./components/particles";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { loadFull } from "tsparticles";
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 // Initialize the particles engine on the client only. Calling initParticlesEngine
 // at module scope runs during SSR and won't set the client-side initialization
 // state, which makes <Particles /> throw when it renders in the browser.
 export default component$(() => {
+  const engine = useSignal<Engine>();
   useVisibleTask$(async () => {
-    await initParticlesEngine(async engine => {
+    const instance = createEngine();
+    await initParticlesEngine(instance, async engine => {
       await loadFull(engine);
     });
+    engine.value = noSerialize(instance);
   });
 
   return (
@@ -20,6 +24,7 @@ export default component$(() => {
       </head>
       <body>
         <Particles
+          engine={engine.value}
           id="tsparticles"
           options={{
             background: {

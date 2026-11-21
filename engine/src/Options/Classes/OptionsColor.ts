@@ -14,11 +14,15 @@ import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
 import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
+import { deepExtend } from "../../Utils/Utils.js";
 
 /**
  * [[include:Color.md]]
  */
-export class OptionsColor extends OptionLoader<IOptionsColor> implements IOptionsColor {
+export class OptionsColor
+  extends OptionLoader<IOptionsColor>
+  implements IOptionsColor
+{
   value: SingleOrMultiple<
     | SingleOrMultiple<string>
     | IRangeValueColor
@@ -59,7 +63,7 @@ export class OptionsColor extends OptionLoader<IOptionsColor> implements IOption
 
   protected doLoad(data: RecursivePartial<IOptionsColor>): void {
     if (!isNull(data.value)) {
-      this.value = data.value;
+      this.value = deepExtend(undefined, data.value) as typeof this.value;
     }
   }
 }

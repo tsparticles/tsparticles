@@ -57,3 +57,12 @@ Provide an S1–S4 table with profiles, alternatives, bundle/heap/query time del
 and consumer tests. Include negative and distant coordinates, boundaries,
 nested queries, resize/cellSize, and collisions/fluid/links. Validate a full
 M3/M4/M5 scene alongside synthetic benchmarks before changing the default algorithm.
+
+## Current-source additions
+
+The 2026-11-13 checkout already optimizes sparse queries without predicates by
+sorting occupied coordinates in scan order. Preserve that path and its tests.
+[G5](../V5-CODE-REVIEW.md) adds predicate-driven sparse workloads and explicit
+cell/position snapshots after updater and fluid movement. Candidate-count limits
+do not necessarily bound traversal. Review geometry independently before using
+it to prune cells; see G4 for input/cell-size validation.

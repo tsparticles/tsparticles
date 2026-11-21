@@ -72,7 +72,8 @@ const { loadSquircleShape } = require("@tsparticles/shape-squircle");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSquircleShape } from "@tsparticles/shape-squircle";
 
 (async () => {

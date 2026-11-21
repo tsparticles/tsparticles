@@ -1,15 +1,20 @@
-import { afterEach, beforeAll, beforeEach, expect, it, vi } from "vitest";
 import { LitParticles, initParticlesEngine } from "../src/lit-tsparticles.js";
+import { afterEach, beforeAll, beforeEach, expect, it, vi } from "vitest";
 
 const { errorMock, loadMock } = vi.hoisted(() => ({ errorMock: vi.fn(), loadMock: vi.fn() }));
 
-vi.mock("@tsparticles/engine", () => ({
+const engine = {
+  load: loadMock,
+  init: vi.fn(async () => undefined),
   getLogger: () => ({ error: errorMock }),
+} as unknown as import("@tsparticles/engine").Engine;
+
+vi.mock("@tsparticles/engine", () => ({
   tsParticles: { load: loadMock },
 }));
 
 beforeAll(async () => {
-  await initParticlesEngine();
+  await initParticlesEngine(engine);
 });
 
 beforeEach(() => {
@@ -25,6 +30,7 @@ function mount(): { element: LitParticles; loaded: ReturnType<typeof vi.fn> } {
   const element = document.createElement("lit-particles") as LitParticles,
     loaded = vi.fn();
 
+  element.engine = engine;
   element.options = {};
   element.addEventListener("particlesLoaded", loaded);
   document.body.append(element);

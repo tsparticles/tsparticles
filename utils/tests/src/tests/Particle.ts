@@ -6,13 +6,14 @@ import {
   OutMode,
   OutModeDirection,
   calcExactPositionOrRandomFromSize,
-  tsParticles,
+  createEngine,
 } from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
-const width = 1920,
+const tsParticles = createEngine(),
+  width = 1920,
   height = 1080;
 
 describe("Particle", async () => {

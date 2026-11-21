@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { ShapeData } from "../../../../Types/ShapeData.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
+import { isArray } from "../../../../Utils/TypeUtils.js";
 import { loadProperty } from "../../../../Utils/OptionsUtils.js";
 
 /**
@@ -23,12 +24,15 @@ export class Shape extends OptionLoader<IShape> implements IShape {
         const item = options[shape];
 
         if (item) {
-          this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
+          this.options[shape] = deepExtend(
+            this.options[shape] ?? {},
+            item,
+          ) as IShapeValues[];
         }
       }
     }
 
     loadProperty(this, "close", data.close);
-    loadProperty(this, "type", data.type);
+    loadProperty(this, "type", isArray(data.type) ? [...data.type] : data.type);
   }
 }

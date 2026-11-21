@@ -18,15 +18,29 @@ import { FireworkOptions } from "./FireworkOptions.js";
 import type { FireworksInstance } from "./FireworksInstance.js";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
-const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
+const instances = new Map<
+  string,
+  FireworksInstance | Promise<FireworksInstance | undefined>
+>();
 
 /**
  * @param id - The cache key
  * @param instance - The instance expected to be cached
  * @internal
  */
-export function deleteFireworksInstance(id: string, instance: FireworksInstance): void {
-  if (instances.get(id) === instance) {
+export function deleteFireworksInstance(
+  id: string,
+  instance: FireworksInstance,
+): void {
+  const cached = instances.get(id);
+
+  if (
+    cached === instance ||
+    (cached &&
+      !(cached instanceof Promise) &&
+      cached.destroyed &&
+      cached.hasSameContainer(instance))
+  ) {
     instances.delete(id);
   }
 }
@@ -48,7 +62,10 @@ export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
  * @param canvas - The canvas
  * @returns the options for the tsParticles instance
  */
-export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISourceOptions {
+export function getOptions(
+  options: IFireworkOptions,
+  canvas?: HTMLCanvasElement,
+): ISourceOptions {
   const identity = 1;
 
   return {
@@ -74,7 +91,10 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
       rate: {
         delay: isNumber(options.rate)
           ? identity / options.rate
-          : { min: identity / getRangeMin(options.rate), max: identity / getRangeMax(options.rate) },
+          : {
+              min: identity / getRangeMin(options.rate),
+              max: identity / getRangeMax(options.rate),
+            },
         quantity: 1,
       },
       size: {
@@ -115,7 +135,7 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
             value: options.splitCount,
           },
           strokeColorOffset: {
-            s: options.saturation,
+            c: options.chroma,
             l: options.brightness,
           },
           particles: {
@@ -253,7 +273,11 @@ export async function getFireworksInstance(
 
       const particlesOptions = getOptions(options, canvas),
         // Load the container
-        container = await engine.load({ id, element: canvas, options: particlesOptions });
+        container = await engine.load({
+          id,
+          element: canvas,
+          options: particlesOptions,
+        });
 
       if (!container) {
         instances.delete(id); // Clean up on failure

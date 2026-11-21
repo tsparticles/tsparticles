@@ -72,7 +72,8 @@ const { loadFilterEffect } = require("@tsparticles/effect-filter");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFilterEffect } from "@tsparticles/effect-filter";
 
 (async () => {

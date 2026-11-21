@@ -20,7 +20,13 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
 
   const textData = character.value;
 
-  particle.textLines ??= itemFromSingleOrMultiple(textData, particle.randomIndexData)?.split("\n") ?? [];
+  particle.textLines ??=
+    itemFromSingleOrMultiple(
+      textData,
+      particle.randomIndexData,
+      undefined,
+      particle.container.engine.getRandomFn(),
+    )?.split("\n") ?? [];
   particle.maxTextLength ??= particle.textLines.length
     ? Math.max(...particle.textLines.map(t => t.length))
     : (particle.textLines[firstIndex]?.length ?? minLength);

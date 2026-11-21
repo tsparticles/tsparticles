@@ -3,9 +3,8 @@ import {
   type ICoordinates,
   type Particle,
   clamp,
-  colorMix,
-  getStyleFromHsl,
-  getStyleFromRgb,
+  getStyleFromOklch,
+  mixOklch,
 } from "@tsparticles/engine";
 import { drawLine } from "@tsparticles/canvas-utils";
 
@@ -39,20 +38,46 @@ export function gradient(
 
   const sourcePos = p1.getPosition(),
     destPos = p2.getPosition(),
-    midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius(), container.hdr),
-    grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
+    midColor = mixOklch(color1, color2, p1.getRadius(), p2.getRadius()),
+    grad = context.createLinearGradient(
+      sourcePos.x,
+      sourcePos.y,
+      destPos.x,
+      destPos.y,
+    );
 
   grad.addColorStop(
     gradientMin,
-    getStyleFromHsl(color1, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      color1,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
   grad.addColorStop(
     clamp(gradStop, gradientMin, gradientMax),
-    getStyleFromRgb(midRgb, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      midColor,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
   grad.addColorStop(
     gradientMax,
-    getStyleFromHsl(color2, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      color2,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
 
   return grad;
@@ -110,8 +135,12 @@ export function lineStyle(
  * @param p1 - The first point
  * @param p2 - The second point
  */
-export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
-  container.canvas.render.draw(ctx => {
+export function drawConnection(
+  container: ConnectContainer,
+  p1: LinkParticle,
+  p2: LinkParticle,
+): void {
+  container.canvas.render.draw((ctx) => {
     const ls = lineStyle(container, ctx, p1, p2);
 
     if (!ls) {
@@ -121,6 +150,12 @@ export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2
     const pos1 = p1.getPosition(),
       pos2 = p2.getPosition();
 
-    drawConnectLine(ctx, p1.retina.linksWidth ?? defaultLinksWidth, ls, pos1, pos2);
+    drawConnectLine(
+      ctx,
+      p1.retina.linksWidth ?? defaultLinksWidth,
+      ls,
+      pos1,
+      pos2,
+    );
   });
 }

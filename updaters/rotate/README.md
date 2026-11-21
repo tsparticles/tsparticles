@@ -69,7 +69,8 @@ const { loadRotateUpdater } = require("@tsparticles/updater-rotate");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 
 (async () => {

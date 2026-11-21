@@ -31,13 +31,14 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
    * @param _container - The container to handle
    * @param particle - The particle to process
    */
-  particleInit(_container: Container, particle: CogParticle): void {
-    const shapeData = particle.shapeData;
+  particleInit(container: Container, particle: CogParticle): void {
+    const shapeData = particle.shapeData,
+      random = container.engine.getRandomFn();
 
-    particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius);
-    particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius);
-    particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? defaultInnerTaper);
-    particle.cogNotches = getRangeValue(shapeData?.notches ?? defaultNotches);
-    particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? defaultOuterTaper);
+    particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius, random);
+    particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius, random);
+    particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? defaultInnerTaper, random);
+    particle.cogNotches = getRangeValue(shapeData?.notches ?? defaultNotches, random);
+    particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? defaultOuterTaper, random);
   }
 }

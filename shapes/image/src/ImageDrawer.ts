@@ -7,7 +7,13 @@ import {
   double,
   getErrorMessage,
 } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
+import {
+  type IImage,
+  type IParticleImage,
+  type ImageParticle,
+  replaceImageColor,
+  shapeTypes,
+} from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import { ErrorCodes } from "./ErrorCodes.js";
 import type { IImageShape } from "./IImageShape.js";
@@ -99,15 +105,51 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const images = this.#engine.getImages?.(container),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find(
+        (t: IImage) => t.name === imageData.name || t.source === imageData.src,
+      );
 
     if (image) {
       return;
     }
 
-    void this.#loadImageShape(container, imageData).then(() => {
-      this.loadShape(particle);
-    });
+    const particleId = particle.id;
+
+    void this.#loadImageShape(container, imageData)
+      .then(() => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        this.loadShape(particle);
+      })
+      .catch((error: unknown) => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        container.engine
+          .getLogger()
+          .error(`Error loading image shape "${imageData.src}"`, error);
+      });
+  }
+
+  /**
+   * Releases the particle's reference to the loaded image when it enters the pool
+   * @param particle - the particle to process
+   */
+  particleDestroy(particle: ImageParticle): void {
+    delete particle.image;
   }
 
   /**
@@ -128,7 +170,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find(
+        (t: IImage) => t.name === imageData.name || t.source === imageData.src,
+      ),
+      particleId = particle.id;
 
     if (!image) {
       return;
@@ -156,6 +201,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           container.hdr,
           container.peakNits,
           container.hdrMode,
+          container.engine.getLogger(),
         );
       } else {
         imageRes = {
@@ -164,7 +210,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           element: image.element,
           loaded: true,
           ratio:
-            imageData.width && imageData.height ? imageData.width / imageData.height : (image.ratio ?? defaultRatio),
+            imageData.width && imageData.height
+              ? imageData.width / imageData.height
+              : (image.ratio ?? defaultRatio),
           replaceColor: replaceColor,
           source: imageData.src,
         };
@@ -172,6 +220,14 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
       if (!imageRes.ratio) {
         imageRes.ratio = 1;
+      }
+
+      if (
+        particle.destroyed ||
+        particle.id !== particleId ||
+        particle.shapeData !== imageData
+      ) {
+        return;
       }
 
       const close = imageData.close ?? particle.shapeClose,
@@ -191,7 +247,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param imageShape - the image shape to load
    * @internal
    */
-  readonly #loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
+  readonly #loadImageShape = async (
+    container: ImageContainer,
+    imageShape: IImageShape,
+  ): Promise<void> => {
     if (!this.#engine.loadImage) {
       throw new Error(getErrorMessage(ErrorCodes.imageShapeNotInitialized));
     }

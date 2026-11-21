@@ -54,7 +54,7 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
 
     /* the fluid mode is a neighborhood solver, it's mutually exclusive with the pair modes */
     if (collisions.mode === CollisionMode.fluid) {
-      const fluidRadius = getRangeValue(collisions.fluid.radius);
+      const fluidRadius = getRangeValue(collisions.fluid.radius, this.container.engine.getRandomFn());
 
       if (fluidRadius > this.#maxDistance) {
         this.#maxDistance = fluidRadius;

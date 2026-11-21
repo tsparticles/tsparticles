@@ -69,7 +69,8 @@ const { loadResponsivePlugin } = require("@tsparticles/plugin-responsive");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadResponsivePlugin } from "@tsparticles/plugin-responsive";
 
 (async () => {

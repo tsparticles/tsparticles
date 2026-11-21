@@ -69,7 +69,8 @@ const { loadSVGPath } = require("@tsparticles/path-svg");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSVGPath } from "@tsparticles/path-svg";
 
 (async () => {

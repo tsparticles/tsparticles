@@ -1,3 +1,4 @@
+import { engine } from "../particlesEngine";
 import "../styles/globals.css";
 import { NextParticlesProvider } from "@tsparticles/nextjs";
 
@@ -12,7 +13,7 @@ const registerParticles = async engine => {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <NextParticlesProvider init={registerParticles}>
+    <NextParticlesProvider engine={engine} init={registerParticles}>
       <Component {...pageProps} />
     </NextParticlesProvider>
   );

@@ -64,7 +64,9 @@ confetti({
 Nach (`@tsparticles/confetti`):
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 await confetti({
   count: 90,

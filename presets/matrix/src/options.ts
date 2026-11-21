@@ -20,10 +20,10 @@ export const options: ISourceOptions = {
           animation: {
             l: {
               enable: true,
-              speed: 70,
+              speed: 0.7,
               sync: false,
-              min: 30,
-              max: 100,
+              min: 0.3,
+              max: 1,
             },
           },
         },

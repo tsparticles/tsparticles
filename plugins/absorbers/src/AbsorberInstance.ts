@@ -2,22 +2,24 @@ import {
   type Container,
   type ICoordinates,
   type IDelta,
-  type IRgb,
+  type IOklcha,
   type Particle,
   type PluginManager,
   type RecursivePartial,
   type RotateDirection,
   Vector,
   calcPositionOrRandomFromSizeRanged,
+  defaultAlpha,
   doublePI,
   getDistanceSq,
   getRangeValue,
-  getStyleFromRgb,
+  getStyleFromOklch,
   isPointInside,
   millisecondsToSeconds,
   minRadius,
+  none,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -64,7 +66,7 @@ export class AbsorberInstance {
   /**
    * The absorber color
    */
-  color: IRgb;
+  color: IOklcha;
 
   /**
    * The absorber size limit
@@ -139,7 +141,9 @@ export class AbsorberInstance {
     this.#currentDuration = 0;
     this.#currentSpawnDelay = 0;
 
-    this.#initialPosition = position ? Vector.create(position.x, position.y) : undefined;
+    this.#initialPosition = position
+      ? Vector.create(position.x, position.y)
+      : undefined;
 
     if (options instanceof Absorber) {
       this.options = options;
@@ -151,8 +155,13 @@ export class AbsorberInstance {
     this.name = this.options.name;
     this.opacity = this.options.opacity;
     this.orbits = this.options.orbits;
-    this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
-    this.mass = this.size * this.options.size.density * container.retina.reduceFactor;
+    this.size =
+      getRangeValue(
+        this.options.size.value,
+        this.#container.engine.getRandomFn(),
+      ) * container.retina.pixelRatio;
+    this.mass =
+      this.size * this.options.size.density * container.retina.reduceFactor;
 
     this.#initialSize = this.size;
     this.#initialMass = this.mass;
@@ -160,14 +169,18 @@ export class AbsorberInstance {
     const limit = this.options.size.limit;
 
     this.limit = {
-      radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
+      radius:
+        limit.radius *
+        container.retina.pixelRatio *
+        container.retina.reduceFactor,
       mass: limit.mass,
     };
 
-    this.color = rangeColorToRgb(this.#pluginManager, this.options.color) ?? {
-      b: 0,
-      g: 0,
-      r: 0,
+    this.color = rangeColorToOklch(this.#pluginManager, this.options.color) ?? {
+      a: defaultAlpha,
+      c: none,
+      h: none,
+      l: none,
     };
 
     this.position = this.#initialPosition?.copy() ?? this.#calcPosition();
@@ -176,7 +189,11 @@ export class AbsorberInstance {
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+      ? (getRangeValue(
+          this.options.life.delay ?? defaultLifeDelay,
+          this.#container.engine.getRandomFn(),
+        ) *
+          millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
   }
@@ -198,12 +215,17 @@ export class AbsorberInstance {
       contactRadius = this.size + particleRadius;
 
     if (contactRadius > 0 && distanceSq < contactRadius * contactRadius) {
-      const sizeFactor = particleRadius * absorbFactor * container.retina.pixelRatio * delta.factor,
+      const sizeFactor =
+          particleRadius *
+          absorbFactor *
+          container.retina.pixelRatio *
+          delta.factor,
         innerRadius = this.size - particleRadius;
 
       if (
         (innerRadius > 0 && distanceSq < innerRadius * innerRadius) ||
-        (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < minOrbitLength)
+        (particle.absorberOrbit !== undefined &&
+          particle.absorberOrbit.length < minOrbitLength)
       ) {
         if (options.destroy) {
           particle.destroy();
@@ -219,7 +241,10 @@ export class AbsorberInstance {
       }
 
       if (this.limit.mass <= minMass || this.mass < this.limit.mass) {
-        this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
+        this.mass +=
+          sizeFactor *
+          this.options.size.density *
+          container.retina.reduceFactor;
       }
     }
   }
@@ -231,14 +256,22 @@ export class AbsorberInstance {
   draw(context: OffscreenCanvasRenderingContext2D): void {
     context.translate(this.position.x, this.position.y);
     context.beginPath();
-    context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
+    context.arc(
+      originPoint.x,
+      originPoint.y,
+      this.size,
+      minAngle,
+      maxAngle,
+      false,
+    );
     context.closePath();
-    context.fillStyle = getStyleFromRgb(
+    context.fillStyle = getStyleFromOklch(
       this.color,
       this.#container.hdr,
       this.opacity,
       this.#container.peakNits,
       this.#container.hdrMode,
+      this.#container.outputColorSpace,
     );
     context.fill();
   }
@@ -259,7 +292,10 @@ export class AbsorberInstance {
       minRadius * minRadius,
     );
 
-    return Math.min((this.mass / effectiveDistanceSq) * this.#container.retina.reduceFactor, maxAttractForce);
+    return Math.min(
+      (this.mass / effectiveDistanceSq) * this.#container.retina.reduceFactor,
+      maxAttractForce,
+    );
   }
 
   /**
@@ -271,7 +307,10 @@ export class AbsorberInstance {
    * @returns the force vector, with the capped magnitude of {@link getAttraction}
    */
   getForce(point: ICoordinates): Vector {
-    const force = Vector.create(this.position.x - point.x, this.position.y - point.y);
+    const force = Vector.create(
+      this.position.x - point.x,
+      this.position.y - point.y,
+    );
 
     force.length = this.getAttraction(point);
 
@@ -285,7 +324,8 @@ export class AbsorberInstance {
     const initialPosition = this.#initialPosition;
 
     this.position =
-      initialPosition && isPointInside(initialPosition, this.#container.canvas.size, Vector.origin)
+      initialPosition &&
+      isPointInside(initialPosition, this.#container.canvas.size, Vector.origin)
         ? initialPosition
         : this.#calcPosition();
   }
@@ -299,9 +339,12 @@ export class AbsorberInstance {
       return false;
     }
 
-    const grown = this.size > this.#initialSize || this.mass > this.#initialMass,
-      radiusLimitReached = this.limit.radius > minRadius && this.size >= this.limit.radius,
-      massLimitReached = this.limit.mass > minMass && this.mass >= this.limit.mass;
+    const grown =
+        this.size > this.#initialSize || this.mass > this.#initialMass,
+      radiusLimitReached =
+        this.limit.radius > minRadius && this.size >= this.limit.radius,
+      massLimitReached =
+        this.limit.mass > minMass && this.mass >= this.limit.mass;
 
     return grown && (radiusLimitReached || massLimitReached);
   }
@@ -329,7 +372,11 @@ export class AbsorberInstance {
           this.position = this.#calcPosition();
 
           this.#spawnDelay = this.#container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            ? (getRangeValue(
+                this.options.life.delay ?? defaultLifeDelay,
+                this.#container.engine.getRandomFn(),
+              ) *
+                millisecondsToSeconds) /
               this.#container.retina.reduceFactor
             : Infinity;
         }
@@ -372,8 +419,11 @@ export class AbsorberInstance {
    */
   #play(): void {
     if (!(
-      (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
-      (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
+      (this.#lifeCount > minLifeCount ||
+        this.#immortal ||
+        !this.options.life.count) &&
+      (this.#firstSpawn ||
+        this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
     )) {
       return;
     }
@@ -388,10 +438,20 @@ export class AbsorberInstance {
    * @internal
    */
   #prepareToDie(): void {
-    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+    const duration =
+        this.options.life.duration !== undefined
+          ? getRangeValue(
+              this.options.life.duration,
+              this.#container.engine.getRandomFn(),
+            )
+          : undefined,
       minDuration = 0;
 
-    if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
+    if (
+      (this.#lifeCount > minLifeCount || this.#immortal) &&
+      duration !== undefined &&
+      duration > minDuration
+    ) {
       this.#duration = duration * millisecondsToSeconds;
     }
   }

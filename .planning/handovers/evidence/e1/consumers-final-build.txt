@@ -1,0 +1,365 @@
+
+ NX   Running target build for 6 projects:
+
+- @tsparticles/confetti
+- @tsparticles/fireworks
+- @tsparticles/pjs
+- @tsparticles/inferno-demo
+- @tsparticles/jquery-demo
+- @tsparticles/preact-demo
+
+
+
+> nx run @tsparticles/fireworks:build
+
+(node:85826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85827) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsparticles-build
+(node:85906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Clearing dist folder
+Clearing dist folder done
+Prettier - started on src
+Prettier - done on src
+ESLint - started on src
+
+ESLint - done on src
+Building TS files
+Building TS files for browser configuration
+TSC for browser done with exit code: '0'.
+Building TS files for cjs configuration
+TSC for cjs done with exit code: '0'.
+Building TS files for esm configuration
+TSC for esm done with exit code: '0'.
+Building TS files for types configuration
+TSC for types done with exit code: '0'.
+Building TS files done
+✅ No circular dependencies found.
+Finished checking circular dependencies.
+Rollup bundling started
+Rollup bundling completed
+Prettier - started on README.md
+Prettier - started on traductions
+Prettier - done on traductions
+Prettier - started on markdown
+Prettier - done on markdown
+Prettier - done on README.md
+Prettier - started on package.json
+Prettier - done on package.json
+Prettier - started on package.dist.json
+Prettier - done on package.dist.json
+Build - started on dist files
+package.dist.json updated for version 4.6.0
+Build - done on dist files
+Bundle size increased from 140344 to 140612 (268B)
+Size increased from 880153 to 881269 (1116B)
+Files count changed from 55 to 55 (0)
+Folders count changed from 4 to 4 (0)
+
+> nx run @tsparticles/confetti:build
+
+(node:85824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsparticles-build
+(node:85905) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Clearing dist folder
+Clearing dist folder done
+Prettier - started on src
+Prettier - done on src
+ESLint - started on src
+
+ESLint - done on src
+Building TS files
+Building TS files for browser configuration
+TSC for browser done with exit code: '0'.
+Building TS files for cjs configuration
+TSC for cjs done with exit code: '0'.
+Building TS files for esm configuration
+TSC for esm done with exit code: '0'.
+Building TS files for types configuration
+TSC for types done with exit code: '0'.
+Building TS files done
+✅ No circular dependencies found.
+Finished checking circular dependencies.
+Rollup bundling started
+Rollup bundling completed
+Prettier - started on README.md
+Prettier - started on traductions
+Prettier - done on traductions
+Prettier - started on markdown
+Prettier - done on markdown
+Prettier - done on README.md
+Prettier - started on package.json
+Prettier - done on package.json
+Prettier - started on package.dist.json
+Prettier - done on package.dist.json
+Build - started on dist files
+package.dist.json updated for version 4.6.0
+Build - done on dist files
+Bundle size increased from 137807 to 138074 (267B)
+Size increased from 900250 to 901362 (1112B)
+Files count changed from 55 to 55 (0)
+Folders count changed from 4 to 4 (0)
+
+> nx run @tsparticles/pjs:build
+
+(node:85825) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ tsparticles-build
+(node:85907) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Clearing dist folder
+Clearing dist folder done
+Prettier - started on src
+Prettier - done on src
+ESLint - started on src
+
+ESLint - done on src
+Building TS files
+Building TS files for browser configuration
+TSC for browser done with exit code: '0'.
+Building TS files for cjs configuration
+TSC for cjs done with exit code: '0'.
+Building TS files for esm configuration
+TSC for esm done with exit code: '0'.
+Building TS files for types configuration
+TSC for types done with exit code: '0'.
+Building TS files done
+✅ No circular dependencies found.
+Finished checking circular dependencies.
+Rollup bundling started
+Rollup bundling completed
+Prettier - started on README.md
+Prettier - started on traductions
+Prettier - done on traductions
+Prettier - started on markdown
+Prettier - done on markdown
+Prettier - done on README.md
+Prettier - started on package.json
+Prettier - done on package.json
+Prettier - started on package.dist.json
+Prettier - done on package.dist.json
+Build - started on dist files
+package.dist.json updated for version 4.6.0
+Build - done on dist files
+Bundle size increased from 8224 to 8486 (262B)
+Size increased from 1252282 to 1253374 (1092B)
+Files count changed from 39 to 39 (0)
+Folders count changed from 12 to 12 (0)
+
+> nx run @tsparticles/jquery-demo:build
+
+(node:86118) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86121) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run build:style && pnpm run build:index
+(node:86147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ stylus ./public/stylesheets/main.styl
+  compiled public/stylesheets/main.css
+(node:86176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86179) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ echo "pug ./views/index.pug"
+pug ./views/index.pug
+
+> nx run @tsparticles/inferno-demo:build
+
+(node:85990) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ webpack --mode production
+(node:86043) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Usage of builders starting with an uppercase letter such as `StringLiteral` has been deprecated, please migrate to `stringLiteral`
+    at Module.<anonymous> (file:///Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/@babel+types@8.0.0/node_modules/@babel/types/lib/index.js:8830:5)
+    at getName (/Users/matteo/Projects/GitHub/tsparticles/tsparticles/node_modules/.pnpm/babel-plugin-inferno@6.9.0_@babel+core@8.1.0/node_modules/babel-plugin-inferno/lib/index.js:202:14)
+clean-webpack-plugin: removed dist/105.bundle.js
+clean-webpack-plugin: removed dist/12.bundle.js
+clean-webpack-plugin: removed dist/27.bundle.js
+clean-webpack-plugin: removed dist/359.bundle.js
+clean-webpack-plugin: removed dist/408.bundle.js
+clean-webpack-plugin: removed dist/410.bundle.js
+clean-webpack-plugin: removed dist/447.bundle.js
+clean-webpack-plugin: removed dist/513.bundle.js
+clean-webpack-plugin: removed dist/545.bundle.js
+clean-webpack-plugin: removed dist/662.bundle.js
+clean-webpack-plugin: removed dist/694.bundle.js
+clean-webpack-plugin: removed dist/704.bundle.js
+clean-webpack-plugin: removed dist/809.bundle.js
+clean-webpack-plugin: removed dist/976.bundle.js
+clean-webpack-plugin: removed dist/bundle.js
+clean-webpack-plugin: removed dist/index.html
+asset bundle.js 146 KiB [emitted] [minimized] (name: main)
+asset 410.bundle.js 102 KiB [emitted] [minimized]
+asset 447.bundle.js 37.1 KiB [emitted] [minimized]
+asset 359.bundle.js 7.56 KiB [emitted] [minimized]
+asset 27.bundle.js 7.23 KiB [emitted] [minimized]
+asset 694.bundle.js 4.29 KiB [emitted] [minimized]
+asset 545.bundle.js 3.2 KiB [emitted] [minimized]
+asset 513.bundle.js 2.92 KiB [emitted] [minimized]
+asset 809.bundle.js 2.29 KiB [emitted] [minimized]
+asset 662.bundle.js 1.32 KiB [emitted] [minimized]
+asset 408.bundle.js 1.27 KiB [emitted] [minimized]
+asset 105.bundle.js 737 bytes [emitted] [minimized]
+asset 704.bundle.js 576 bytes [emitted] [minimized]
+asset 12.bundle.js 344 bytes [emitted] [minimized]
++ 2 assets
+orphan modules 383 KiB [orphan] 268 modules
+runtime modules 6.29 KiB 10 modules
+cacheable modules 739 KiB
+  modules by path ../../engine/dist/esm/ 179 KiB 57 modules
+  modules by path ../../plugins/ 75.9 KiB 24 modules
+  modules by path ./src/ 18.6 KiB 4 modules
+  modules by path ../../node_modules/.pnpm/ 92.8 KiB
+    ../../node_modules/.pnpm/inferno@9.1.0/node_modules/inferno/dist/index.dev.mjs 90.5 KiB [built] [code generated]
+    + 2 modules
+  modules by path ../../interactions/ 7.74 KiB
+    ../../interactions/particles/collisions/dist/esm/ErrorCodes.js 61 bytes [built] [code generated]
+    + 2 modules
+  ../../wrappers/inferno/dist/particles.js 113 KiB [built] [code generated]
+  ../../bundles/full/dist/esm/index.js + 224 modules 252 KiB [built] [code generated]
+  ../../shapes/image/dist/esm/ImagePreloaderInstance.js 231 bytes [built] [code generated]
+webpack 5.112.2 compiled successfully in 2919 ms
+
+> nx run @tsparticles/preact-demo:build
+
+(node:85989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85991) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm --filter @tsparticles/preact build && env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender
+(node:86044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm run prettify:src && pnpm run lint && cross-env NODE_ENV=production webpack && pnpm run prettify:readme
+(node:86088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./src/*
+(node:86119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+src/IParticlesProps.ts 15ms (unchanged)
+src/IParticlesState.ts 1ms (unchanged)
+src/Particles.tsx 30ms (unchanged)
+src/Utils.ts 6ms (unchanged)
+src/index.ts 1ms (unchanged)
+src/initParticlesEngine.ts 5ms (unchanged)
+(node:86178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ eslint src --ext .js,.jsx,.ts,.tsx --fix
+(node:86209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86259) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+<i> [webpack-bundle-analyzer] Webpack Bundle Analyzer saved report to /Users/matteo/Projects/GitHub/tsparticles/tsparticles/wrappers/preact/report.html
+asset particles.js 6.41 KiB [compared for emit] [minimized] (name: main)
+orphan modules 12.1 KiB [orphan] 5 modules
+runtime modules 883 bytes 4 modules
+./src/index.ts + 5 modules 12.3 KiB [not cacheable] [built] [code generated]
+webpack 5.112.2 compiled successfully in 1572 ms
+
+asset particles.js 6.83 KiB [compared for emit] [minimized] (name: main)
+runtime modules 883 bytes 4 modules
+orphan modules 12 KiB [orphan] 3 modules
+built modules 12.3 KiB [built]
+  ./src/index.ts + 3 modules 12.2 KiB [built] [code generated]
+  external {"commonjs":"@tsparticles/engine","commonjs2":"@tsparticles/engine","am...(truncated) 42 bytes [built] [code generated]
+  external "preact/compat" 42 bytes [built] [code generated]
+webpack 5.112.2 compiled successfully in 1608 ms
+(node:86285) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ prettier --write ./README.md
+(node:86315) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+README.md 67ms (unchanged)
+(node:86318) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚠ WARN Could not find sw.js in /Users/matteo/Projects/GitHub/tsparticles/tsparticles/demo/preact/src. Using the default service worker.
+
+                 bundle.b7061.css ⏤  505 B
+              bundle.*****.esm.js ⏤  94.3 kB (+102 B)
+           polyfills.*****.esm.js ⏤  2.31 kB
+       route-home.chunk.3f6d8.css ⏤  128 B
+    route-home.chunk.*****.esm.js ⏤  253 B
+    route-profile.chunk.141aa.css ⏤  131 B
+ route-profile.chunk.*****.esm.js ⏤  749 B
+             4.chunk.*****.esm.js ⏤  15.3 kB
+                        sw-esm.js ⏤  11.4 kB (+2 B)
+                            sw.js ⏤  11.4 kB
+                       index.html ⏤  572 B
+                         200.html ⏤  572 B
+             5.chunk.*****.esm.js ⏤  628 B
+            10.chunk.*****.esm.js ⏤  837 B
+            11.chunk.*****.esm.js ⏤  3.66 kB
+            12.chunk.*****.esm.js ⏤  883 B
+            13.chunk.*****.esm.js ⏤  436 B
+            14.chunk.*****.esm.js ⏤  3.58 kB
+            15.chunk.*****.esm.js ⏤  2.36 kB
+            16.chunk.*****.esm.js ⏤  463 B
+             6.chunk.*****.esm.js ⏤  1.75 kB
+             7.chunk.*****.esm.js ⏤  2 kB
+             8.chunk.*****.esm.js ⏤  957 B
+             9.chunk.*****.esm.js ⏤  1.43 kB
+                10.chunk.e86c8.js ⏤  1.02 kB
+                 6.chunk.57682.js ⏤  2.62 kB
+                12.chunk.533a2.js ⏤  1.88 kB
+                16.chunk.ee394.js ⏤  798 B
+                14.chunk.24aa8.js ⏤  5 kB
+                11.chunk.c4818.js ⏤  4.02 kB
+                 8.chunk.24efb.js ⏤  1.92 kB
+                 9.chunk.c7b67.js ⏤  2.48 kB
+                 5.chunk.f943b.js ⏤  954 B
+                 7.chunk.33a63.js ⏤  2.18 kB
+                15.chunk.0f0c6.js ⏤  3.17 kB
+                  bundle.dbd7f.js ⏤  0 B (-122 kB)
+               polyfills.b0223.js ⏤  2.41 kB
+        route-home.chunk.7b13c.js ⏤  257 B
+     route-profile.chunk.17ed0.js ⏤  1.35 kB
+                 4.chunk.8113f.js ⏤  19 kB
+                13.chunk.5960f.js ⏤  783 B
+                  bundle.caa7e.js ⏤  122 kB (+122 kB)
+
+⚠ WARN asset size limit: The following asset(s) exceed the recommended size limit (195 KiB).
+This can impact web performance.
+Assets: 
+  bundle.1fdf0.esm.js (474 KiB)
+  bundle.caa7e.js (776 KiB)
+⚠ WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (195 KiB). This can impact web performance.
+Entrypoints:
+  bundle (1.22 MiB)
+      bundle.b7061.css
+      bundle.caa7e.js
+      bundle.1fdf0.esm.js
+
+⚠ WARN asset size limit: The following asset(s) exceed the recommended size limit (195 KiB).
+This can impact web performance.
+Assets: 
+  bundle.1fdf0.esm.js (474 KiB)
+  bundle.caa7e.js (776 KiB)
+⚠ WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (195 KiB). This can impact web performance.
+Entrypoints:
+  bundle (1.22 MiB)
+      bundle.b7061.css
+      bundle.caa7e.js
+      bundle.1fdf0.esm.js
+
+
+
+
+ NX   Successfully ran target build for 6 projects
+
+
+  Run duration:      25.9s
+  Cache:             Skipped (--skip-nx-cache)
+  Critical path:     20.1s (1 task)
+  Recoverable time:  5.8s (22% of the run)

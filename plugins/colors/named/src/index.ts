@@ -11,6 +11,6 @@ export async function loadNamedColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("named", new NamedColorManager());
+    e.pluginManager.addColorManager("named", new NamedColorManager(e));
   });
 }

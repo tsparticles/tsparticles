@@ -70,7 +70,8 @@ npm install @tsparticles/engine @tsparticles/slim
 Then import and use it:
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {

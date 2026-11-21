@@ -72,7 +72,8 @@ const { loadEmittersPlugin } = require("@tsparticles/plugin-emitters");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 

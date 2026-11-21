@@ -1,6 +1,8 @@
 import { Component, h } from "@stencil/core";
-import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(engine);
+import { engine } from "../../../particlesEngine";
 
 @Component({
   tag: "app-home",
@@ -56,7 +58,7 @@ export class AppHome {
         <div id="app">
           <h1>tsParticles</h1>
         </div>
-        <stencil-particles id="tsparticles" options={this.options}></stencil-particles>
+        <stencil-particles engine={engine} id="tsparticles" options={this.options}></stencil-particles>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import type {
   GradientType,
-  IParticleHslAnimation,
   IParticleNumericValueAnimation,
+  IParticleOklchAnimation,
   IParticlesOptions,
   Particle,
   ParticlesOptions,
@@ -16,8 +16,8 @@ export interface IParticleGradientColorAnimation {
   opacity?: IParticleNumericValueAnimation;
   /** Color stop position */
   stop: number;
-  /** HSL animation values */
-  value: IParticleHslAnimation;
+  /** OKLCH animation values */
+  value: IParticleOklchAnimation;
 }
 
 /** Particle gradient animation interface */

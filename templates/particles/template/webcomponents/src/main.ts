@@ -1,10 +1,10 @@
-import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
-import { particles } from "@tsparticles/particles";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
-import type { ISourceOptions } from "@tsparticles/engine";
+import "./style.css";
 
-globalThis.tsParticles = tsParticles;
+import type { ISourceOptions } from "@tsparticles/engine";
+const particles = createParticles(engine);
+import { createParticles } from "@tsparticles/particles";
+import { engine } from "../particlesEngine";
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },
@@ -44,7 +44,7 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-void initParticlesEngine(async () => {
+void initParticlesEngine(engine, async () => {
   await particles.init();
 });
 
@@ -53,3 +53,6 @@ defineParticlesElement();
 const particlesEl = document.getElementById("tsparticles");
 
 (particlesEl as unknown as { options: ISourceOptions }).options = options;
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

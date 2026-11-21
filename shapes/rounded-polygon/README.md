@@ -73,7 +73,8 @@ const { loadRoundedPolygonShape } = require("@tsparticles/shape-rounded-polygon"
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
 
 (async () => {

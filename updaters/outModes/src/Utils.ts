@@ -71,7 +71,10 @@ export function bounce(data: IBounceData): void {
     data.outOfCanvas &&
     ((config.negative && velocity < minVelocity) || (!config.negative && velocity > minVelocity))
   ) {
-    data.particle.velocity[config.axis] *= -getRangeValue(data.particle.options.bounce[config.bounce].value);
+    data.particle.velocity[config.axis] *= -getRangeValue(
+      data.particle.options.bounce[config.bounce].value,
+      data.particle.container.engine.getRandomFn(),
+    );
   } else {
     return;
   }

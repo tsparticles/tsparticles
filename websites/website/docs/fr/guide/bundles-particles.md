@@ -27,7 +27,9 @@ pnpm add @tsparticles/particles
 ```
 
 ```ts
-import { particles } from "@tsparticles/particles";
+import { createEngine } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(createEngine());
 
 // Background with links
 await particles({

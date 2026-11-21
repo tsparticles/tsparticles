@@ -10,7 +10,12 @@ const instances = new Map<string, ParticlesInstance | Promise<ParticlesInstance 
  * @internal
  */
 export function deleteParticlesInstance(id: string, instance: ParticlesInstance): void {
-  if (instances.get(id) === instance) {
+  const cached = instances.get(id);
+
+  if (
+    cached === instance ||
+    (cached && !(cached instanceof Promise) && cached.destroyed && cached.hasSameContainer(instance))
+  ) {
     instances.delete(id);
   }
 }

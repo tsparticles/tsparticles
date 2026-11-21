@@ -1,12 +1,14 @@
-import Controller from "@ember/controller";
-import { tracked } from "@glimmer/tracking";
+import { CONFETTI_OPTIONS, LINK_OPTIONS, SNOW_OPTIONS } from "../utils/options";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSnowPreset } from "@tsparticles/preset-snow";
+import Controller from "@ember/controller";
+import { engine } from "../../particlesEngine";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadFull } from "tsparticles";
-import { CONFETTI_OPTIONS, LINK_OPTIONS, SNOW_OPTIONS } from "../utils/options";
+import { loadSnowPreset } from "@tsparticles/preset-snow";
+import { tracked } from "@glimmer/tracking";
 
 export default class ApplicationController extends Controller {
+  engine = engine;
   @tracked isConfettiVisible = false;
   @tracked options: ISourceOptions = LINK_OPTIONS;
   @tracked theme = "default";
@@ -21,7 +23,7 @@ export default class ApplicationController extends Controller {
     // may run in FastBoot (server) where window/document are not available.
     // Guard and initialize only on the client.
     if (typeof window !== "undefined") {
-      void initParticlesEngine(async (engine: Engine) => {
+      void initParticlesEngine(engine, async (engine: Engine) => {
         await loadFull(engine);
         await loadSnowPreset(engine);
       });

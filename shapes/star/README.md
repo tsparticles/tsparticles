@@ -72,7 +72,8 @@ const { loadStarShape } = require("@tsparticles/shape-star");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadStarShape } from "@tsparticles/shape-star";
 
 (async () => {

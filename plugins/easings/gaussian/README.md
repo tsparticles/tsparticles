@@ -69,7 +69,8 @@ const { loadEasingGaussianPlugin } = require("@tsparticles/plugin-easing-gaussia
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingGaussianPlugin } from "@tsparticles/plugin-easing-gaussian";
 
 (async () => {

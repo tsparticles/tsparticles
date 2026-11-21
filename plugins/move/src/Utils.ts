@@ -61,14 +61,14 @@ export function applyDistance(particle: MoveParticle): void {
       hDistance &&
       ((pos.x < initialPosition.x && vel.x < minVelocity) || (pos.x > initialPosition.x && vel.x > minVelocity))
     ) {
-      vel.x *= -getRandom();
+      vel.x *= -getRandom(particle.container.engine.getRandomFn());
     }
 
     if (
       vDistance &&
       ((pos.y < initialPosition.y && vel.y < minVelocity) || (pos.y > initialPosition.y && vel.y > minVelocity))
     ) {
-      vel.y *= -getRandom();
+      vel.y *= -getRandom(particle.container.engine.getRandomFn());
     }
   }
 }
@@ -279,14 +279,14 @@ export function initSpin(container: Container, particle: MoveParticle): void {
     },
     pos = particle.getPosition(),
     distance = getDistance(pos, spinCenter),
-    spinAcceleration = getRangeValue(spinOptions.acceleration);
+    spinAcceleration = getRangeValue(spinOptions.acceleration, container.engine.getRandomFn());
 
   particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
 
   particle.spin = {
     center: spinCenter,
     direction: particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-    angle: getRandom() * doublePI,
+    angle: getRandom(container.engine.getRandomFn()) * doublePI,
     radius: distance,
     acceleration: particle.retina.spinAcceleration,
   };

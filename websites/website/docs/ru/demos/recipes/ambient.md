@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-ambient
 ## Готов к использованию (ручной запуск/остановка)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadAmbientPreset } from "@tsparticles/preset-ambient";
 import type { Container } from "@tsparticles/engine";
 

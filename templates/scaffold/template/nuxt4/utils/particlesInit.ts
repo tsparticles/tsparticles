@@ -4,3 +4,5 @@ import { loadSlim } from "@tsparticles/slim";
 export async function registerParticles(engine: Engine): Promise<void> {
   await loadSlim(engine);
 }
+
+export { engine } from "../particlesEngine";

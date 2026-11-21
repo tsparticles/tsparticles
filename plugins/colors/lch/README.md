@@ -69,7 +69,8 @@ const { loadLchColorPlugin } = require("@tsparticles/plugin-lch-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLchColorPlugin } from "@tsparticles/plugin-lch-color";
 
 (async () => {

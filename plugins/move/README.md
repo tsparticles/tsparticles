@@ -69,7 +69,8 @@ const { loadMovePlugin } = require("@tsparticles/plugin-move");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadMovePlugin } from "@tsparticles/plugin-move";
 
 (async () => {

@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "dev": "tsc --watch",
+    "dev": "tsc --project tsconfig.build.json --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
     "start": "node dist/index.js",
@@ -51,7 +51,7 @@
   "devDependencies": {
     "@tsparticles/eslint-config": "workspace:*",
     "@types/node": "^26.6.6",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"
   }

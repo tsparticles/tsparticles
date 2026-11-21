@@ -1,12 +1,14 @@
 /* eslint-disable */
-import { type Container, tsParticles } from "@tsparticles/engine";
+import { type Container, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { initPjs } from "@tsparticles/pjs";
 import { loadAll } from "@tsparticles/all";
 import { loadBasic } from "@tsparticles/basic";
 import { loadSlim } from "@tsparticles/slim";
-import { initPjs } from "@tsparticles/pjs";
+
+const tsParticles = createEngine();
 
 const bundleOptions = {
   fullScreen: {
@@ -26,7 +28,9 @@ describe("Bundles sweep", async () => {
     await loadBasic(tsParticles);
     await loadSlim(tsParticles);
     await loadAll(tsParticles);
-    await initPjs(tsParticles);
+    const compatibility = await initPjs(tsParticles);
+    expect(compatibility.particlesJS).toBeDefined();
+    expect(compatibility.pJSDom).toBe(tsParticles.items);
 
     const boot = (await tsParticles.load({
       id: "bundles-boot",
@@ -51,8 +55,9 @@ describe("Bundles sweep", async () => {
       container?.destroy(false);
     }
 
-    expect(globalThis.particlesJS, "particles.js compatibility missing").to.not.be.undefined;
-    expect(Array.isArray(globalThis.pJSDom)).to.be.true;
-    expect(globalThis.Particles).to.not.be.undefined;
+    expect(globalThis.particlesJS).to.be.undefined;
+    expect(globalThis.pJSDom).to.be.undefined;
+    expect(globalThis.Particles).to.be.undefined;
+    expect(compatibility.Particles.init).toBeTypeOf("function");
   }, 180000);
 });

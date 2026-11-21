@@ -14,13 +14,17 @@ export function getLinkKey(ids: number[]): string {
  * @param dictionary - The dictionary
  * @returns the link frequency
  */
-export function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
+export function setLinkFrequency(
+  particles: LinkParticle[],
+  dictionary: Map<string, number>,
+  random: () => number,
+): number {
   const key = getLinkKey(particles.map(t => t.id));
 
   let res = dictionary.get(key);
 
   if (res === undefined) {
-    res = getRandom();
+    res = getRandom(random);
 
     dictionary.set(key, res);
   }

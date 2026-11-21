@@ -35,7 +35,7 @@ export class AppModule {}
 ### Template usage
 
 ```html
-<ngx-fireworks [id]="id" [options]="fireworksOptions"></ngx-fireworks>
+<ngx-fireworks [engine]="engine" [id]="id" [options]="fireworksOptions"></ngx-fireworks>
 ```
 
 The component reactively updates when `id` or `options` inputs change — the previous fireworks instance is stopped and a new one is started automatically.
@@ -48,6 +48,7 @@ On component destroy (`ngOnDestroy`), the fireworks instance is stopped and clea
 
 ```ts
 import { Component } from "@angular/core";
+import { createEngine } from "@tsparticles/engine";
 import type { FireworkOptions } from "@tsparticles/fireworks";
 
 @Component({
@@ -55,6 +56,7 @@ import type { FireworkOptions } from "@tsparticles/fireworks";
   templateUrl: "./app.component.html",
 })
 export class AppComponent {
+  public readonly engine = createEngine();
   public id = "tsparticles";
 
   public fireworksOptions: FireworkOptions = {

@@ -23,9 +23,11 @@ yarn add @tsparticles/astro tsparticles
 tsParticles uses a modular architecture. Before rendering particles, you must initialize the engine with the features you need. Create a client script (e.g., `src/scripts/particles-init.ts`) or use an inline `<script>` in your Astro component:
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/astro";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   const { loadFull } = await import("tsparticles");
   await loadFull(engine);
 });
@@ -38,6 +40,8 @@ void initParticlesEngine(async (engine) => {
 Place the `<Particles />` component in any `.astro` template. Pass your configuration via the `options` prop:
 
 ```astro
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 ---
 import Particles from "@tsparticles/astro";
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -59,7 +63,7 @@ const options: ISourceOptions = {
 <script>
   import { initParticlesEngine } from "@tsparticles/astro";
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(particlesEngine, async (engine) => {
     const { loadFull } = await import("tsparticles");
     await loadFull(engine);
   });
@@ -111,6 +115,8 @@ const options: ISourceOptions = {
 Below is a more elaborate configuration that you can drop into any Astro page:
 
 ```astro
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 ---
 import Particles from "@tsparticles/astro";
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -213,7 +219,7 @@ const options: ISourceOptions = {
 <script>
   import { initParticlesEngine } from "@tsparticles/astro";
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(particlesEngine, async (engine) => {
     const { loadFull } = await import("tsparticles");
     await loadFull(engine);
   });
@@ -225,6 +231,8 @@ const options: ISourceOptions = {
 Instead of building a configuration manually, load a preset during engine initialization and reference it in the options:
 
 ```astro
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 ---
 import Particles from "@tsparticles/astro";
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -240,7 +248,7 @@ const options: ISourceOptions = {
 <script>
   import { initParticlesEngine } from "@tsparticles/astro";
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(particlesEngine, async (engine) => {
     const { loadStarsPreset } = await import("tsparticles-preset-stars");
     await loadStarsPreset(engine);
   });
@@ -298,6 +306,8 @@ const options: ISourceOptions = {
 A complete Astro page with particles serving as an animated background:
 
 ```astro
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 ---
 import Layout from "../layouts/Layout.astro";
 import Particles from "@tsparticles/astro";
@@ -366,7 +376,7 @@ const options: ISourceOptions = {
 <script>
   import { initParticlesEngine } from "@tsparticles/astro";
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(particlesEngine, async (engine) => {
     const { loadFull } = await import("tsparticles");
     await loadFull(engine);
   });

@@ -1,4 +1,9 @@
-import { type Container, type ExportResult, type IContainerPlugin, millisecondsToSeconds } from "@tsparticles/engine";
+import {
+  type Container,
+  type ExportResult,
+  type IContainerPlugin,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
 import type { IExportVideoData } from "./IExportVideoData.js";
 
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
@@ -24,20 +29,28 @@ const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
  * @returns the video supported mime types
  */
 function getVideoSupportedMimeTypes(): string[] {
-  const isSupported = (type: string): boolean => MediaRecorder.isTypeSupported(type),
+  if (
+    typeof MediaRecorder === "undefined" ||
+    typeof MediaRecorder.isTypeSupported !== "function"
+  ) {
+    return [];
+  }
+
+  const isSupported = (type: string): boolean =>
+      MediaRecorder.isTypeSupported(type),
     supported: string[] = [];
 
-  videoTypes.forEach(type => {
+  videoTypes.forEach((type) => {
     const mimeType = `video/${type}`;
 
-    codecs.forEach(codec => {
+    codecs.forEach((codec) => {
       [
         `${mimeType};codecs=${codec}`,
         `${mimeType};codecs=${codec.toUpperCase()}`,
         // /!\ false positive /!\
         // `${mimeType};codecs:${codec}`,
         // `${mimeType};codecs:${codec.toUpperCase()}`
-      ].forEach(variation => {
+      ].forEach((variation) => {
         if (isSupported(variation)) {
           supported.push(variation);
         }
@@ -54,6 +67,7 @@ function getVideoSupportedMimeTypes(): string[] {
 
 /** Video export plugin instance */
 export class ExportVideoPluginInstance implements IContainerPlugin {
+  readonly #activeExports = new Set<() => void>();
   readonly #container: Container;
   readonly #supportedTypes: string[] = [];
 
@@ -63,7 +77,16 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
     this.#supportedTypes = getVideoSupportedMimeTypes();
   }
 
-  async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {
+  destroy(): void {
+    for (const cancel of this.#activeExports) {
+      cancel();
+    }
+  }
+
+  async export(
+    type: string,
+    data: Record<string, unknown>,
+  ): Promise<ExportResult> {
     const res: ExportResult = {
       supported: false,
     };
@@ -82,36 +105,128 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
   async #exportVideo(data: IExportVideoData): Promise<Blob | undefined> {
     const element = this.#container.canvas.domElement;
 
-    if (!element) {
+    if (!element || typeof MediaRecorder === "undefined") {
       return;
     }
 
-    return new Promise<Blob | undefined>(resolve => {
-      const stream = element.captureStream(data.fps ?? this.#container.actualOptions.fpsLimit),
-        firstIndex = 0,
-        mimeType = data.mimeType ?? this.#supportedTypes[firstIndex],
-        recorder = new MediaRecorder(stream, {
-          mimeType,
-        }),
-        chunks: Blob[] = [],
-        defaultDuration = 5;
+    const defaultDuration = 5,
+      duration = data.duration ?? defaultDuration,
+      mimeType = data.mimeType ?? this.#supportedTypes[0];
 
-      recorder.addEventListener("dataavailable", (event): void => {
-        chunks.push(event.data);
-      });
+    if (!Number.isFinite(duration) || duration <= 0) {
+      this.#container.engine
+        .getLogger()
+        .error(
+          "Video export duration must be a finite positive number of seconds",
+        );
 
-      recorder.addEventListener("stop", (): void => {
-        resolve(new Blob(chunks, { type: mimeType }));
-      });
+      return;
+    }
 
-      recorder.start();
+    if (!mimeType) {
+      this.#container.engine
+        .getLogger()
+        .error("No supported video MIME type is available");
 
-      setTimeout(
-        () => {
-          recorder.stop();
+      return;
+    }
+
+    return new Promise<Blob | undefined>((resolve) => {
+      const chunks: Blob[] = [];
+      let stream: MediaStream | undefined,
+        recorder: MediaRecorder | undefined,
+        timeout: ReturnType<typeof setTimeout> | undefined,
+        settled = false;
+
+      const onDataAvailable = (event: BlobEvent): void => {
+          if (event.data.size > 0) {
+            chunks.push(event.data);
+          }
         },
-        data.duration ?? defaultDuration * millisecondsToSeconds,
-      );
+        onStop = (): void => {
+          finish(new Blob(chunks, { type: mimeType }));
+        },
+        onError = (event: Event): void => {
+          const error: unknown = (event as ErrorEvent).error ?? event;
+
+          this.#container.engine
+            .getLogger()
+            .error("Video export failed", error);
+          finish();
+        },
+        cleanup = (): void => {
+          if (timeout !== undefined) {
+            clearTimeout(timeout);
+          }
+
+          this.#activeExports.delete(cancel);
+          recorder?.removeEventListener("dataavailable", onDataAvailable);
+          recorder?.removeEventListener("stop", onStop);
+          recorder?.removeEventListener("error", onError);
+
+          if (recorder && recorder.state !== "inactive") {
+            try {
+              recorder.stop();
+            } catch (error: unknown) {
+              this.#container.engine
+                .getLogger()
+                .warning(`Error stopping video recorder: ${error as string}`);
+            }
+          }
+
+          for (const track of stream?.getTracks() ?? []) {
+            try {
+              track.stop();
+            } catch (error: unknown) {
+              this.#container.engine
+                .getLogger()
+                .warning(
+                  `Error stopping video stream track: ${error as string}`,
+                );
+            }
+          }
+        },
+        finish = (blob?: Blob): void => {
+          if (settled) {
+            return;
+          }
+
+          settled = true;
+          cleanup();
+          resolve(blob);
+        },
+        cancel = (): void => {
+          finish();
+        };
+
+      try {
+        stream = element.captureStream(
+          data.fps ?? this.#container.actualOptions.fpsLimit,
+        );
+        recorder = new MediaRecorder(stream, { mimeType });
+
+        recorder.addEventListener("dataavailable", onDataAvailable);
+        recorder.addEventListener("stop", onStop);
+        recorder.addEventListener("error", onError);
+        this.#activeExports.add(cancel);
+        recorder.start();
+
+        timeout = setTimeout((): void => {
+          try {
+            recorder?.stop();
+          } catch (error: unknown) {
+            this.#container.engine
+              .getLogger()
+              .error("Error stopping video recorder", error);
+            finish();
+          }
+        }, duration * millisecondsToSeconds);
+      } catch (error: unknown) {
+        this.#container.engine
+          .getLogger()
+          .error("Error starting video export", error);
+        finish();
+      }
     });
   }
 }

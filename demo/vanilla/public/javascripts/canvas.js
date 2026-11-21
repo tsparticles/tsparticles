@@ -1,22 +1,21 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const end = performance.now() + 15 * 1000,
+  const engine = tsParticles.createEngine(),
+    confetti = tsParticles.createConfetti(engine),
+    fireworks = tsParticles.createFireworks(engine),
+    particles = tsParticles.createParticles(engine),
+    end = performance.now() + 15 * 1000,
     colors = ["#bb0000", "#ffffff"],
     canvas = document.getElementById("canvas"),
-    fetti = await confetti.create(canvas),
+    fetti = async options => (await confetti.create(canvas))(options),
     fworks = async options => await fireworks.create(canvas, options),
     prtcls = async options => await particles.create(canvas, options),
     standard = async options =>
-      await tsParticles.load({
+      await engine.load({
         element: canvas,
         options,
       });
 
-  await Promise.all([
-    confetti.init(),
-    fireworks.init(),
-    particles.init(),
-    loadAll(tsParticles),
-  ]);
+  await Promise.all([confetti.init(), fireworks.init(), particles.init(), loadAll(engine)]);
 
   console.log(canvas);
 
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function particlesFrame() {
     prtcls({
-      links: true
+      links: true,
     });
   }
 
@@ -66,9 +65,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           enable: true,
         },
         links: {
-          enable: true
+          enable: true,
         },
-      }
+      },
     });
   }
 

@@ -11,6 +11,6 @@ export async function loadLchColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("lch", new LchColorManager());
+    e.pluginManager.addColorManager("lch", new LchColorManager(e.getRandomFn()));
   });
 }

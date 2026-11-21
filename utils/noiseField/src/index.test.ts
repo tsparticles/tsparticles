@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { NoiseFieldGenerator } from "./index.js";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 class TestNoiseFieldGenerator extends NoiseFieldGenerator {
   constructor(container: unknown, noiseGen: unknown) {
@@ -35,5 +35,30 @@ describe("NoiseFieldGenerator", () => {
 
     expect(generator.field.length).to.equal(0);
     expect(generator.noiseW).to.equal(0);
+  });
+
+  it("removes its container resize listener on destroy", () => {
+    const add = vi.fn(),
+      remove = vi.fn(),
+      container = {
+        actualOptions: { particles: { move: { path: { options: {} } } } },
+        canvas: { size: { width: 10, height: 10 } },
+        zLayers: 10,
+        engine: { getRandomFn: () => () => 0 },
+      },
+      generator = new TestNoiseFieldGenerator(container, noiseGen);
+
+    vi.stubGlobal("addEventListener", add);
+    vi.stubGlobal("removeEventListener", remove);
+
+    try {
+      generator.init();
+      generator.destroy();
+
+      expect(add).toHaveBeenCalledOnce();
+      expect(remove).toHaveBeenCalledWith("resize", add.mock.calls[0]?.[1]);
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });

@@ -1,13 +1,20 @@
 import { Component } from "@angular/core";
-import { confetti } from "@tsparticles/confetti";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
+import { engine } from "../../particlesEngine";
 
 type Player = "X" | "O";
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 @Component({
@@ -33,7 +40,14 @@ export class AppComponent {
       shape: { type: "circle" },
       opacity: { value: 0.2, random: true },
       size: { value: { min: 1, max: 2 } },
-      move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      move: {
+        enable: true,
+        speed: 0.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
     },
     detectRetina: true,
   };
@@ -51,7 +65,7 @@ export class AppComponent {
         return { winner: board[a] as Player, winLine: pattern };
       }
     }
-    if (board.every((cell) => cell !== null)) return { winner: "draw" as const, winLine: [] };
+    if (board.every(cell => cell !== null)) return { winner: "draw" as const, winLine: [] };
     return null;
   }
 

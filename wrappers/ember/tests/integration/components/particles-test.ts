@@ -8,10 +8,11 @@ import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-eng
 import { loadFull } from 'tsparticles';
 
 import type { Container, Engine } from '@tsparticles/engine';
-import { tsParticles } from '@tsparticles/engine';
+import { createEngine } from '@tsparticles/engine';
 import { loadSnowPreset } from '@tsparticles/preset-snow';
 
 interface Context extends TestContext {
+  engine: Engine;
   id: string;
   url: string;
   options: object;
@@ -25,42 +26,48 @@ const SELECTORS = {
 module('Integration | Component | particles', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.afterEach(function () {
+  hooks.afterEach(function (this: Context) {
+    for (const container of [...this.engine.items]) {
+      container.destroy();
+    }
     sinon.restore();
   });
 
-  hooks.beforeEach(async function () {
-    await initParticlesEngine(async (engine: Engine) => {
+  hooks.beforeEach(async function (this: Context) {
+    this.engine = createEngine();
+    await initParticlesEngine(this.engine, async (engine: Engine) => {
       await loadFull(engine);
       await loadSnowPreset(engine);
     });
   });
 
   test('generates a unique id', async function (this: Context, assert) {
-    await render(hbs`<Particles />`);
+    await render(hbs`<Particles @engine={{this.engine}} />`);
 
     assert.dom(SELECTORS.PARTICLES).hasAttribute('id');
   });
 
   test('can be assigned a custom id', async function (this: Context, assert) {
     this.id = 'custom-id';
-    await render(hbs`<Particles id={{this.id}}/>`);
+    await render(hbs`<Particles @engine={{this.engine}} id={{this.id}}/>`);
 
     assert.dom(SELECTORS.PARTICLES).hasAttribute('id', this.id);
   });
 
   test('calls load when passing a config object', async function (this: Context, assert) {
-    const loadSpy = sinon.spy(tsParticles, 'load');
+    const loadSpy = sinon.spy(this.engine, 'load');
     this.options = LINK_OPTIONS;
-    await render(hbs`<Particles @options={{this.options}}/>`);
+    await render(
+      hbs`<Particles @engine={{this.engine}} @options={{this.options}}/>`,
+    );
 
     assert.true(loadSpy.calledOnce, 'tsparticles engine load has been called');
   });
 
   test('calls load when passing an url', async function (this: Context, assert) {
-    const loadSpy = sinon.stub(tsParticles, 'load');
+    const loadSpy = sinon.stub(this.engine, 'load');
     this.url = 'https://example.com/config.json';
-    await render(hbs`<Particles @url={{this.url}}/>`);
+    await render(hbs`<Particles @engine={{this.engine}} @url={{this.url}}/>`);
 
     assert.true(loadSpy.calledOnce, 'tsparticles engine load has been called');
   });
@@ -75,7 +82,7 @@ module('Integration | Component | particles', function (hooks) {
     };
     await render(
       hbs`
-      <Particles
+      <Particles @engine={{this.engine}}
         @options={{this.options}}
         @particlesLoaded={{this.particlesLoaded}}
       />`,
@@ -94,7 +101,7 @@ module('Integration | Component | particles', function (hooks) {
     };
     await render(
       hbs`
-      <Particles
+      <Particles @engine={{this.engine}}
         @options={{this.options}}
         @particlesLoaded={{this.particlesLoaded}}
       />`,

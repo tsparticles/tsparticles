@@ -72,7 +72,8 @@ const { loadCogShape } = require("@tsparticles/shape-cog");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCogShape } from "@tsparticles/shape-cog";
 
 (async () => {

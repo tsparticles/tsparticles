@@ -11,6 +11,6 @@ export async function loadHslColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("hsl", new HslColorManager());
+    e.pluginManager.addColorManager("hsl", new HslColorManager(e.getRandomFn()));
   });
 }

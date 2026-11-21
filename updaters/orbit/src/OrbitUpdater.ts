@@ -8,9 +8,14 @@ import {
   getRangeValue,
   half,
   loadOptionProperty,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
-import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types.js";
+import type {
+  IOrbitParticlesOptions,
+  OrbitContainer,
+  OrbitParticle,
+  OrbitParticlesOptions,
+} from "./Types.js";
 import { Orbit } from "./Options/Classes/Orbit.js";
 import { OrbitType } from "./Enums.js";
 import { drawEllipse } from "./Utils.js";
@@ -87,16 +92,19 @@ export class OrbitUpdater implements IParticleUpdater {
         end = doublePI;
     }
 
-    container.canvas.render.draw(ctx => {
+    container.canvas.render.draw((ctx) => {
       drawEllipse(
         container,
         ctx,
         particle,
         particle.orbitColor ?? particle.getFillColor(),
-        particle.retina.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
+        particle.retina.orbitRadius ??
+          container.retina.orbitRadius ??
+          particle.getRadius(),
         particle.orbitOpacity ?? defaultOpacity,
         particle.orbitWidth ?? defaultWidth,
-        (particle.orbitRotation ?? defaultRotation) * container.retina.pixelRatio,
+        (particle.orbitRotation ?? defaultRotation) *
+          container.retina.pixelRatio,
         start,
         end,
       );
@@ -113,20 +121,47 @@ export class OrbitUpdater implements IParticleUpdater {
       particlesOptions = particle.options,
       orbitOptions = particlesOptions.orbit;
 
+    particle.orbitAnimationSpeed = undefined;
+    particle.orbitColor = undefined;
+    particle.orbitOpacity = undefined;
+    particle.orbitRotation = undefined;
+    particle.orbitWidth = undefined;
+    particle.retina.orbitRadius = undefined;
+
     if (!orbitOptions?.enable) {
       return;
     }
 
-    particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-    particle.orbitColor = rangeColorToHsl(this.#pluginManager, orbitOptions.color);
+    particle.orbitRotation = getRangeValue(
+      orbitOptions.rotation.value,
+      this.#container.engine.getRandomFn(),
+    );
+    particle.orbitColor = rangeColorToOklch(
+      this.#pluginManager,
+      orbitOptions.color,
+    );
     particle.retina.orbitRadius =
-      orbitOptions.radius !== undefined ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio : undefined;
+      orbitOptions.radius !== undefined
+        ? getRangeValue(
+            orbitOptions.radius,
+            this.#container.engine.getRandomFn(),
+          ) * container.retina.pixelRatio
+        : undefined;
     container.retina.orbitRadius = particle.retina.orbitRadius;
     particle.orbitAnimationSpeed = orbitOptions.animation.enable
-      ? getRangeValue(orbitOptions.animation.speed)
+      ? getRangeValue(
+          orbitOptions.animation.speed,
+          this.#container.engine.getRandomFn(),
+        )
       : defaultOrbitSpeed;
-    particle.orbitWidth = getRangeValue(orbitOptions.width);
-    particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
+    particle.orbitWidth = getRangeValue(
+      orbitOptions.width,
+      this.#container.engine.getRandomFn(),
+    );
+    particle.orbitOpacity = getRangeValue(
+      orbitOptions.opacity,
+      this.#container.engine.getRandomFn(),
+    );
   }
 
   /**
@@ -137,7 +172,9 @@ export class OrbitUpdater implements IParticleUpdater {
   isEnabled(particle: OrbitParticle): boolean {
     const orbitAnimations = particle.options.orbit?.animation;
 
-    return !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable;
+    return (
+      !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable
+    );
   }
 
   /**
@@ -163,6 +200,8 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     particle.orbitRotation ??= defaultRotation;
-    particle.orbitRotation += (particle.orbitAnimationSpeed ?? defaultOrbitSpeed / doublePI) * delta.factor;
+    particle.orbitRotation +=
+      (particle.orbitAnimationSpeed ?? defaultOrbitSpeed / doublePI) *
+      delta.factor;
   }
 }

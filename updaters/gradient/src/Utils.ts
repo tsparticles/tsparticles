@@ -17,7 +17,7 @@ export function updateGradient(particle: GradientParticle, delta: IDelta, hdr?: 
   updateAnimation(particle, gradient.angle, false, DestroyType.none, delta);
 
   for (const color of gradient.colors) {
-    updateColor(color.value, delta, hdr);
+    updateColor(color.value, delta, hdr, particle.container.engine.getRandomFn());
 
     if (color.opacity) {
       updateAnimation(particle, color.opacity, true, DestroyType.none, delta);

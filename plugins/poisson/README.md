@@ -69,7 +69,8 @@ const { loadPoissonDiscPlugin } = require("@tsparticles/plugin-poisson");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPoissonDiscPlugin } from "@tsparticles/plugin-poisson";
 
 (async () => {

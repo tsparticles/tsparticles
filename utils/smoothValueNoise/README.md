@@ -69,7 +69,8 @@ const { loadSmoothValueNoisePath } = require("@tsparticles/smooth-value-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSmoothValueNoisePath } from "@tsparticles/smooth-value-noise";
 
 (async () => {

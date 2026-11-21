@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { NgParticlesService } from "@tsparticles/angular";
-import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { NgParticlesService } from "@tsparticles/angular";
+import { createParticles } from "@tsparticles/particles";
+const particles = createParticles(engine);
+import { engine } from "../../particlesEngine";
 
 @Component({
   standalone: false,
@@ -22,7 +24,14 @@ export class AppComponent implements OnInit {
       opacity: { value: 0.5 },
       size: { value: { min: 1, max: 5 } },
       links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-      move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: { default: "bounce" },
+      },
     },
     interactivity: {
       events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
@@ -32,7 +41,7 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    void this.ngParticlesService.init(async () => {
+    void this.ngParticlesService.init(engine, async () => {
       await particles.init();
     });
   }

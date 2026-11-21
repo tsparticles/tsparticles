@@ -69,7 +69,8 @@ const { loadOklchColorPlugin } = require("@tsparticles/plugin-oklch-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 
 (async () => {

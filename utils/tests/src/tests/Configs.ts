@@ -1,9 +1,11 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import configs from "@tsparticles/configs";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 const configKeys = Object.keys(configs as Record<string, ISourceOptions>);
 

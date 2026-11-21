@@ -11,12 +11,12 @@ import {
   StartValueType,
   doublePI,
   executeOnSingleOrMultiple,
-  getHslAnimationFromHsl,
+  getOklchAnimationFromOklch,
   getRandom,
   getRangeMax,
   getRangeMin,
   getRangeValue,
-  getStyleFromHsl,
+  getStyleFromOklch,
   half,
   itemFromSingleOrMultiple,
   millisecondsToSeconds,
@@ -24,9 +24,13 @@ import {
   originPoint,
   percentDenominator,
   randomInRangeValue,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
-import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types.js";
+import type {
+  GradientParticle,
+  GradientParticlesOptions,
+  IGradientParticlesOptions,
+} from "./Types.js";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
 
@@ -71,7 +75,14 @@ export class GradientUpdater implements IParticleUpdater {
       gradientAngle = gradient.angle.value,
       fillGradient =
         gradient.type === GradientType.radial
-          ? context.createRadialGradient(originPoint.x, originPoint.y, minRadius, originPoint.x, originPoint.y, radius)
+          ? context.createRadialGradient(
+              originPoint.x,
+              originPoint.y,
+              minRadius,
+              originPoint.x,
+              originPoint.y,
+              radius,
+            )
           : context.createLinearGradient(
               Math.cos(gradientAngle) * -radius,
               Math.sin(gradientAngle) * -radius,
@@ -80,15 +91,22 @@ export class GradientUpdater implements IParticleUpdater {
             );
 
     for (const { stop, value, opacity: cOpacity } of gradient.colors) {
-      const hsl = {
+      const oklch = {
+        c: value.c.value,
         h: value.h.value,
-        s: value.s.value,
         l: value.l.value,
       };
 
       fillGradient.addColorStop(
         stop,
-        getStyleFromHsl(hsl, container.hdr, cOpacity?.value ?? opacity, container.peakNits, container.hdrMode),
+        getStyleFromOklch(
+          oklch,
+          container.hdr,
+          cOpacity?.value ?? opacity,
+          container.peakNits,
+          container.hdrMode,
+          container.outputColorSpace,
+        ),
       );
     }
 
@@ -100,7 +118,14 @@ export class GradientUpdater implements IParticleUpdater {
    * @param particle - The particle to process
    */
   init(particle: GradientParticle): void {
-    const gradient = itemFromSingleOrMultiple(particle.options.gradient);
+    particle.gradient = undefined;
+
+    const gradient = itemFromSingleOrMultiple(
+      particle.options.gradient,
+      undefined,
+      undefined,
+      this.#container.engine.getRandomFn(),
+    );
 
     if (!gradient) {
       return;
@@ -113,11 +138,26 @@ export class GradientUpdater implements IParticleUpdater {
 
     particle.gradient = {
       angle: {
-        value: getRangeValue(angle.value),
+        value: getRangeValue(angle.value, this.#container.engine.getRandomFn()),
         enable: angle.animation.enable,
-        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * container.retina.reduceFactor,
-        decay: delayOffset - getRangeValue(angle.animation.decay),
-        delayTime: getRangeValue(angle.animation.delay) * millisecondsToSeconds,
+        velocity:
+          (getRangeValue(
+            angle.animation.speed,
+            this.#container.engine.getRandomFn(),
+          ) /
+            speedFactor) *
+          container.retina.reduceFactor,
+        decay:
+          delayOffset -
+          getRangeValue(
+            angle.animation.decay,
+            this.#container.engine.getRandomFn(),
+          ),
+        delayTime:
+          getRangeValue(
+            angle.animation.delay,
+            this.#container.engine.getRandomFn(),
+          ) * millisecondsToSeconds,
         max: doublePI,
         min: 0,
         time: 0,
@@ -129,7 +169,10 @@ export class GradientUpdater implements IParticleUpdater {
     let rotateDirection = gradient.angle.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      rotateDirection = getRandom() > half ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+      rotateDirection =
+        getRandom(this.#container.engine.getRandomFn()) > half
+          ? RotateDirection.counterClockwise
+          : RotateDirection.clockwise;
     }
 
     switch (rotateDirection) {
@@ -148,27 +191,53 @@ export class GradientUpdater implements IParticleUpdater {
     const reduceDuplicates = particle.options.reduceDuplicates;
 
     for (const grColor of gradient.colors) {
-      const grHslColor = rangeColorToHsl(this.#pluginManager, grColor.value, particle.id, reduceDuplicates);
+      const grOklchColor = rangeColorToOklch(
+        this.#pluginManager,
+        grColor.value,
+        particle.id,
+        reduceDuplicates,
+      );
 
-      if (!grHslColor) {
+      if (!grOklchColor) {
         continue;
       }
 
-      const grHslAnimation = getHslAnimationFromHsl(grHslColor, grColor.value.animation, container.retina.reduceFactor),
+      const grOklchAnimation = getOklchAnimationFromOklch(
+          grOklchColor,
+          grColor.value.animation,
+          container.retina.reduceFactor,
+        ),
         addColor = {
           stop: grColor.stop,
-          value: grHslAnimation,
+          value: grOklchAnimation,
           opacity: grColor.opacity
             ? {
                 enable: grColor.opacity.animation.enable,
                 max: getRangeMax(grColor.opacity.value),
                 min: getRangeMin(grColor.opacity.value),
                 status: AnimationStatus.increasing,
-                value: getRangeValue(grColor.opacity.value),
+                value: getRangeValue(
+                  grColor.opacity.value,
+                  this.#container.engine.getRandomFn(),
+                ),
                 velocity:
-                  (getRangeValue(grColor.opacity.animation.speed) / percentDenominator) * container.retina.reduceFactor,
-                decay: delayOffset - getRangeValue(grColor.opacity.animation.decay),
-                delayTime: getRangeValue(grColor.opacity.animation.delay) * millisecondsToSeconds,
+                  (getRangeValue(
+                    grColor.opacity.animation.speed,
+                    this.#container.engine.getRandomFn(),
+                  ) /
+                    percentDenominator) *
+                  container.retina.reduceFactor,
+                decay:
+                  delayOffset -
+                  getRangeValue(
+                    grColor.opacity.animation.decay,
+                    this.#container.engine.getRandomFn(),
+                  ),
+                delayTime:
+                  getRangeValue(
+                    grColor.opacity.animation.delay,
+                    this.#container.engine.getRandomFn(),
+                  ) * millisecondsToSeconds,
                 time: 0,
               }
             : undefined,
@@ -198,8 +267,14 @@ export class GradientUpdater implements IParticleUpdater {
 
           case StartValueType.random:
           default:
-            addOpacity.value = randomInRangeValue(addOpacity);
-            addOpacity.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+            addOpacity.value = randomInRangeValue(
+              addOpacity,
+              this.#container.engine.getRandomFn(),
+            );
+            addOpacity.status =
+              getRandom(this.#container.engine.getRandomFn()) >= half
+                ? AnimationStatus.increasing
+                : AnimationStatus.decreasing;
 
             break;
         }
@@ -219,7 +294,10 @@ export class GradientUpdater implements IParticleUpdater {
       !particle.destroyed &&
       !particle.spawning &&
       (!!particle.gradient?.angle.enable ||
-        (particle.gradient?.colors.some(c => c.value.h.enable || c.value.s.enable || c.value.l.enable) ?? false))
+        (particle.gradient?.colors.some(
+          (c) => c.value.h.enable || c.value.c.enable || c.value.l.enable,
+        ) ??
+          false))
     );
   }
 
@@ -239,13 +317,16 @@ export class GradientUpdater implements IParticleUpdater {
 
       const gradientToLoad = source.gradient;
 
-      options.gradient = executeOnSingleOrMultiple(gradientToLoad, gradient => {
-        const tmp = new AnimatableGradient();
+      options.gradient = executeOnSingleOrMultiple(
+        gradientToLoad,
+        (gradient) => {
+          const tmp = new AnimatableGradient();
 
-        tmp.load(gradient);
+          tmp.load(gradient);
 
-        return tmp;
-      });
+          return tmp;
+        },
+      );
     }
   }
 

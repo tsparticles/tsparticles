@@ -72,7 +72,8 @@ const { loadLineShape } = require("@tsparticles/shape-line");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLineShape } from "@tsparticles/shape-line";
 
 (async () => {

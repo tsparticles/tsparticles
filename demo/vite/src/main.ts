@@ -1,9 +1,10 @@
+import { type Engine, getRandom } from "@tsparticles/engine";
 import "./style.css";
-import { type Engine, getRandom, tsParticles } from "@tsparticles/engine";
-import { loadAll } from "@tsparticles/all";
 import configs from "@tsparticles/configs";
-import { loadConfettiPalette } from "@tsparticles/palette-confetti";
+import { engine } from "../particlesEngine";
+import { loadAll } from "@tsparticles/all";
 import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
+import { loadConfettiPalette } from "@tsparticles/palette-confetti";
 
 (async (engine: Engine) => {
   await loadAll(engine);
@@ -25,4 +26,4 @@ import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
       preset: "big-circles",
     },
   });
-})(tsParticles);
+})(engine);

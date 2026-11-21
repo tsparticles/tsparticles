@@ -1,23 +1,10 @@
-import { getLogger, setLogger } from "./Utils/LogUtils.js";
-import { getRandom, getRandomFn, setRandom } from "./Utils/MathUtils.js";
-import { tsParticles } from "./index.js";
+import * as engineExports from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
-  __tsParticlesInternals?: Record<string, unknown>;
-  getParticlesLogger?: typeof getLogger;
-  getParticlesRandom?: typeof getRandom;
-  getParticlesRandomFn?: typeof getRandomFn;
-  setParticlesLogger?: typeof setLogger;
-  setParticlesRandom?: typeof setRandom;
-  tsParticles?: typeof tsParticles;
+  tsParticles?: typeof engineExports;
 };
 
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
-globalObject.tsParticles = tsParticles;
-globalObject.getParticlesLogger = getLogger;
-globalObject.setParticlesLogger = setLogger;
-globalObject.getParticlesRandom = getRandom;
-globalObject.getParticlesRandomFn = getRandomFn;
-globalObject.setParticlesRandom = setRandom;
+/** Classic scripts expose engine definitions only; applications create instances. */
+globalObject.tsParticles = { ...globalObject.tsParticles, ...engineExports };
 
 export * from "./index.js";

@@ -7,11 +7,15 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  getStyleFromHsl,
+  getStyleFromOklch,
   loadOptionProperty,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
-import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
+import type {
+  ITwinkleParticlesOptions,
+  TwinkeParticle,
+  TwinkleParticlesOptions,
+} from "./Types.js";
 import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 /** Twinkle updater plugin */
@@ -54,31 +58,51 @@ export class TwinkleUpdater implements IParticleUpdater {
     }
 
     const twinkle = twinkleOptions.particles,
-      twinkling = twinkle.enable && getRandom() < twinkle.frequency,
+      twinkling =
+        twinkle.enable &&
+        getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency,
       zIndexOptions = particle.options.zIndex,
       zOffset = 1,
-      zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
-      twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-      twinkleFillRgb = rangeColorToHsl(this.#pluginManager, twinkle.fillColor),
-      twinkleStrokeRgb = rangeColorToHsl(this.#pluginManager, twinkle.strokeColor),
+      zOpacityFactor =
+        (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
+      twinklingOpacity = twinkling
+        ? getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn()) *
+          zOpacityFactor
+        : opacity,
+      twinkleFillRgb = rangeColorToOklch(
+        this.#pluginManager,
+        twinkle.fillColor,
+      ),
+      twinkleStrokeRgb = rangeColorToOklch(
+        this.#pluginManager,
+        twinkle.strokeColor,
+      ),
       getTwinkleFillStyle = (): string | undefined => {
         if (!twinkleFillRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(twinkleFillRgb, container.hdr, twinklingOpacity, container.peakNits, container.hdrMode);
+        return getStyleFromOklch(
+          twinkleFillRgb,
+          container.hdr,
+          twinklingOpacity,
+          container.peakNits,
+          container.hdrMode,
+          container.outputColorSpace,
+        );
       },
       getTwinkleStrokeStyle = (): string | undefined => {
         if (!twinkleStrokeRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(
+        return getStyleFromOklch(
           twinkleStrokeRgb,
           container.hdr,
           twinklingOpacity,
           container.peakNits,
           container.hdrMode,
+          container.outputColorSpace,
         );
       },
       twinkleFillStyle = getTwinkleFillStyle(),

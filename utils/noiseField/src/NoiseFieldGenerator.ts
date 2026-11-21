@@ -34,7 +34,8 @@ const originCoordinate = 0,
       y: 40000,
       z: 40000,
     },
-  };
+  },
+  globalEvents = globalThis as unknown as Pick<Partial<typeof globalThis>, "addEventListener" | "removeEventListener">;
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   readonly container: Container;
@@ -43,6 +44,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   noiseW: number;
   readonly options: INoiseFieldOptions;
   readonly #res: Vector;
+  #resizeHandler?: () => void;
 
   protected constructor(container: Container, noiseGen: INoiseGenerator) {
     this.container = container;
@@ -51,6 +53,13 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     this.noiseW = 0;
     this.#res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
+  }
+
+  destroy(): void {
+    if (this.#resizeHandler) {
+      globalEvents.removeEventListener?.("resize", this.#resizeHandler);
+      this.#resizeHandler = undefined;
+    }
   }
 
   generate(particle: Particle): Vector {
@@ -238,7 +247,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     options.factor.length = factor?.length ?? defaultOptions.factor.length;
     options.seed = sourceOptions["seed"] as number | undefined;
 
-    this.noiseGen.seed(options.seed ?? getRandom());
+    this.noiseGen.seed(options.seed ?? getRandom(container.engine.getRandomFn()));
 
     options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
     options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
@@ -252,8 +261,11 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     this.#resetField();
 
-    addEventListener("resize", () => {
+    this.destroy();
+    this.#resizeHandler = (): void => {
       this.#resetField();
-    });
+    };
+
+    globalEvents.addEventListener?.("resize", this.#resizeHandler);
   }
 }

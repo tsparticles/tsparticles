@@ -57,23 +57,24 @@ function checkDestroy(
 export function initParticleNumericAnimationValue(
   options: RangedAnimationValueWithRandom,
   pxRatio: number,
+  random?: () => number,
 ): IParticleNumericValueAnimation {
   const valueRange = options.value,
     animationOptions = options.animation,
     res: IParticleNumericValueAnimation = {
-      delayTime: getRangeValue(animationOptions.delay) * millisecondsToSeconds,
+      delayTime: getRangeValue(animationOptions.delay, random) * millisecondsToSeconds,
       enable: animationOptions.enable,
-      value: getRangeValue(options.value) * pxRatio,
+      value: getRangeValue(options.value, random) * pxRatio,
       max: getRangeMax(valueRange) * pxRatio,
       min: getRangeMin(valueRange) * pxRatio,
       loops: 0,
-      maxLoops: getRangeValue(animationOptions.count),
+      maxLoops: getRangeValue(animationOptions.count, random),
       time: 0,
     },
     decayOffset = 1;
 
   if (animationOptions.enable) {
-    res.decay = decayOffset - getRangeValue(animationOptions.decay);
+    res.decay = decayOffset - getRangeValue(animationOptions.decay, random);
 
     switch (animationOptions.mode) {
       case AnimationMode.increase:
@@ -86,7 +87,7 @@ export function initParticleNumericAnimationValue(
         break;
 
       case AnimationMode.random:
-        res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+        res.status = getRandom(random) >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
         break;
       default:
@@ -116,10 +117,10 @@ export function initParticleNumericAnimationValue(
 
       case StartValueType.random:
       default:
-        res.value = randomInRangeValue(res);
+        res.value = randomInRangeValue(res, random);
 
         if (autoStatus) {
-          res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+          res.status = getRandom(random) >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
         }
 
         break;

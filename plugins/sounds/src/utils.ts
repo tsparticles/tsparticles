@@ -27,29 +27,51 @@ notes.set("B", [30.87, 61.74, 123.47, 246.94, 493.88, 987.77, 1975.53, 3951.07, 
 
 notes.set("pause", [0]);
 
+const enharmonicSharps = new Map<string, string>([
+  ["C#", "Db"],
+  ["D#", "Eb"],
+  ["E#", "F"],
+  ["F#", "Gb"],
+  ["G#", "Ab"],
+  ["A#", "Bb"],
+  ["B#", "C"],
+]);
+
 /**
  * @param note - The note
  * @returns frequency
  */
 export function getNoteFrequency(note: string): number | undefined {
-  const regex = /(([A-G]b?)(\d))|pause/i,
+  const regex = /(([A-G](?:b|#)?)(\d+))|(pause)/i,
     result = regex.exec(note),
     groupKey = 2,
-    defaultMatchKey = 0,
-    innerGroupKey = 3;
+    pauseGroupKey = 4,
+    octaveGroupKey = 3;
 
-  if (!result?.length) {
+  if (!result) {
     return;
   }
 
-  const noteKey = result[groupKey] ?? result[defaultMatchKey],
-    noteItem = notes.get(noteKey);
+  const resultGroup = result[groupKey] ?? result[pauseGroupKey];
 
-  if (!noteItem) {
+  if (!resultGroup) {
     return;
   }
 
-  return noteItem[parseInt(result[innerGroupKey] ?? "0")];
+  if (resultGroup.toLowerCase() === "pause") {
+    return 0;
+  }
+
+  const normalizedNoteKey = (resultGroup[0]?.toUpperCase() ?? "") + resultGroup.slice(1).toLowerCase(),
+    noteKey = enharmonicSharps.get(normalizedNoteKey) ?? normalizedNoteKey,
+    noteItem = notes.get(noteKey),
+    octaveIndex = Number.parseInt(result[octaveGroupKey] ?? "0", 10);
+
+  if (!noteItem || octaveIndex >= noteItem.length) {
+    return;
+  }
+
+  return noteItem[octaveIndex];
 }
 
 let muted = true;

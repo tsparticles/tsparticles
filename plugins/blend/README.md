@@ -69,7 +69,8 @@ const { loadBlendPlugin } = require("@tsparticles/plugin-blend");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 
 (async () => {

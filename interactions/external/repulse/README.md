@@ -74,7 +74,8 @@ const { loadExternalRepulseInteraction } = require("@tsparticles/interaction-ext
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalRepulseInteraction } from "@tsparticles/interaction-external-repulse";
 

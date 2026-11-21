@@ -69,7 +69,8 @@ const { loadEasingLinearPlugin } = require("@tsparticles/plugin-easing-linear");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 
 (async () => {

@@ -5,7 +5,7 @@ import type { IDelta } from "./IDelta.js";
 import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /** Container plugin interface for extending container behavior */
 export interface IContainerPlugin {

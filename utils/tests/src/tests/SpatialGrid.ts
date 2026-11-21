@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { Circle, type Particle, Rectangle, tsParticles } from "@tsparticles/engine";
+import { Circle, type Particle, Rectangle, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 describe("SpatialGrid tests", () => {
   describe("Rectangle (0, 0, 50, 50) tests", () => {

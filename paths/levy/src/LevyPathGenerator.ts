@@ -38,7 +38,7 @@ export class LevyPathGenerator implements IMovePathGenerator {
    */
   generate(p: LevyPathParticle): Vector {
     p.levy ??= {
-      angle: getRandom() * Math.PI * 2,
+      angle: getRandom(this.#container.engine.getRandomFn()) * Math.PI * 2,
       baseSpeed: p.velocity.length,
     };
 
@@ -46,10 +46,10 @@ export class LevyPathGenerator implements IMovePathGenerator {
       l = p.levy;
 
     // Direction: uniform
-    l.angle += (getRandom() - 0.5) * 0.2;
+    l.angle += (getRandom(this.#container.engine.getRandomFn()) - 0.5) * 0.2;
 
     // Lévy step length
-    const u = Math.max(getRandom(), 1e-6),
+    const u = Math.max(getRandom(this.#container.engine.getRandomFn()), 1e-6),
       scale = opts.scale ?? defaultScale,
       levyAlpha = opts.alpha ?? defaultLevyAlpha;
     let step = scale / Math.pow(u, 1 / levyAlpha);

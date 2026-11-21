@@ -1,4 +1,9 @@
-import { type Container, type IEffectDrawer, type IShapeDrawData, isNull } from "@tsparticles/engine";
+import {
+  type Container,
+  type IEffectDrawer,
+  type IShapeDrawData,
+  isNull,
+} from "@tsparticles/engine";
 import type { FilterParticle } from "./FilterParticle.js";
 
 /** CSS filter effect drawer plugin */
@@ -22,32 +27,64 @@ export class FilterDrawer implements IEffectDrawer<FilterParticle> {
 
     context.save();
 
-    const blurValue = typeof particle.filterBlur === "number" ? `${particle.filterBlur}px` : particle.filterBlur,
+    const blurValue =
+        typeof particle.filterBlur === "number"
+          ? `${particle.filterBlur}px`
+          : particle.filterBlur,
       brightnessValue = particle.filterBrightness,
       contrastValue = particle.filterContrast,
       dropShadowValue = particle.filterDropShadow,
       grayscaleValue = particle.filterGrayscale,
       hueRotateValue =
-        typeof particle.filterHueRotate === "number" ? `${particle.filterHueRotate}deg` : particle.filterHueRotate,
+        typeof particle.filterHueRotate === "number"
+          ? `${particle.filterHueRotate}deg`
+          : particle.filterHueRotate,
       invertValue = particle.filterInvert,
       opacityValue = particle.filterOpacity,
       saturateValue = particle.filterSaturate,
       sepiaValue = particle.filterSepia,
       urlValue = particle.filterUrl,
       blurString = blurValue ? `blur(${blurValue})` : "",
-      brightnessString = isNull(brightnessValue) ? "" : `brightness(${brightnessValue})`,
-      contrastString = isNull(contrastValue) ? "" : `contrast(${contrastValue})`,
-      dropShadowString = dropShadowValue ? `drop-shadow(${dropShadowValue})` : "",
-      grayscaleString = isNull(grayscaleValue) ? "" : `grayscale(${grayscaleValue})`,
-      hueRotateString = isNull(hueRotateValue) ? "" : `hue-rotate(${hueRotateValue})`,
+      brightnessString = isNull(brightnessValue)
+        ? ""
+        : `brightness(${brightnessValue})`,
+      contrastString = isNull(contrastValue)
+        ? ""
+        : `contrast(${contrastValue})`,
+      dropShadowString = dropShadowValue
+        ? `drop-shadow(${dropShadowValue})`
+        : "",
+      grayscaleString = isNull(grayscaleValue)
+        ? ""
+        : `grayscale(${grayscaleValue})`,
+      hueRotateString = isNull(hueRotateValue)
+        ? ""
+        : `hue-rotate(${hueRotateValue})`,
       invertString = isNull(invertValue) ? "" : `invert(${invertValue})`,
       opacityString = isNull(opacityValue) ? "" : `opacity(${opacityValue})`,
-      saturateString = isNull(saturateValue) ? "" : `saturate(${saturateValue})`,
+      saturateString = isNull(saturateValue)
+        ? ""
+        : `saturate(${saturateValue})`,
       sepiaString = isNull(sepiaValue) ? "" : `sepia(${sepiaValue})`,
       urlString = urlValue ? `url(${urlValue})` : "";
 
     context.filter =
       `${blurString} ${brightnessString} ${contrastString} ${dropShadowString} ${grayscaleString} ${hueRotateString} ${invertString} ${opacityString} ${saturateString} ${sepiaString} ${urlString}`.trim();
+  }
+
+  /** Clears filter-specific state before a particle enters the pool. */
+  particleDestroy(particle: FilterParticle): void {
+    particle.filterBlur = undefined;
+    particle.filterBrightness = undefined;
+    particle.filterContrast = undefined;
+    particle.filterDropShadow = undefined;
+    particle.filterGrayscale = undefined;
+    particle.filterHueRotate = undefined;
+    particle.filterInvert = undefined;
+    particle.filterOpacity = undefined;
+    particle.filterSaturate = undefined;
+    particle.filterSepia = undefined;
+    particle.filterUrl = undefined;
   }
 
   /**

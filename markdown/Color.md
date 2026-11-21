@@ -1,6 +1,12 @@
 # Colors
 
 This page explains all color formats accepted by tsParticles options.
+Every resolved engine color is stored internally as floating-point OKLCH plus
+independent alpha. Other supported formats are converted at input resolution;
+animation and extensions use the same canonical color model.
+Supported CSS/Canvas destinations receive `oklch(...)` directly; the browser
+converts that value for the active canvas color space. HDR output remains a
+separate rendering path.
 
 Most color fields accept either:
 
@@ -50,7 +56,7 @@ Note: particle base color has additional behaviors, see {@link IParticlesOptions
 
 ### RGB
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "rgb(255, 255, 255)"
@@ -58,7 +64,7 @@ Alpha in color strings is ignored; use dedicated opacity options.
 
 ### HSL
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "hsl(0, 100%, 100%)"
@@ -66,10 +72,16 @@ Alpha in color strings is ignored; use dedicated opacity options.
 
 ### HSV
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "hsv(0, 100%, 100%)"
+```
+
+### Display-P3
+
+```json
+"color(display-p3 1 0 0 / 50%)"
 ```
 
 ### Random
@@ -99,6 +111,25 @@ Alpha in color strings is ignored; use dedicated opacity options.
   }
 }
 ```
+
+Untagged RGB objects mean sRGB. Specify `colorSpace` when the channels use
+Display-P3 primaries:
+
+```json
+{
+  "value": {
+    "r": 255,
+    "g": 0,
+    "b": 0,
+    "colorSpace": "display-p3",
+    "a": 0.5
+  }
+}
+```
+
+This describes the source channels and does not select the canvas output space.
+HDR source inputs require explicit transfer and luminance metadata; a generic
+`hdr` boolean is not supported.
 
 ### HSL object
 

@@ -1,14 +1,14 @@
+import { createEngine } from "@tsparticles/engine";
 import { loadConfettiPreset } from "./index.js";
-import { tsParticles } from "@tsparticles/engine";
 export { loadConfettiPreset } from "./index.js";
-export { tsParticles };
+export { createEngine };
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadConfettiPreset?: typeof loadConfettiPreset;
-  tsParticles?: typeof tsParticles;
+  tsParticles?: { createEngine: typeof createEngine };
 };
 
 globalObject.loadConfettiPreset = loadConfettiPreset;
 
-globalObject.tsParticles = tsParticles;
+globalObject.tsParticles = { ...globalObject.tsParticles, createEngine };

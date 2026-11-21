@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import Particles from "@tsparticles/react";
-import { confetti } from "@tsparticles/confetti";
+import { useCallback, useState } from "react";
 import type { ISourceOptions } from "@tsparticles/engine";
+import Particles from "@tsparticles/react";
 import Providers from "./providers";
+const confetti = createConfetti(engine);
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../particlesEngine";
 
 type Player = "X" | "O";
 
@@ -17,9 +19,14 @@ interface GameState {
 }
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function createInitialState(): GameState {
@@ -39,7 +46,7 @@ function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine:
       return { winner: board[a] as Player, winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) {
+  if (board.every(cell => cell !== null)) {
     return { winner: "draw" as const, winLine: [] };
   }
   return null;
@@ -77,7 +84,7 @@ export default function Home() {
   const [state, setState] = useState<GameState>(createInitialState);
 
   const handleMove = useCallback((index: number) => {
-    setState((prev) => {
+    setState(prev => {
       if (prev.board[index] || prev.winner) return prev;
       const board = [...prev.board];
       board[index] = prev.currentPlayer;
@@ -96,7 +103,7 @@ export default function Home() {
   }, []);
 
   function handleReset() {
-    setState((prev) => ({
+    setState(prev => ({
       ...prev,
       board: Array(9).fill(null),
       currentPlayer: "X",
@@ -106,48 +113,86 @@ export default function Home() {
   }
 
   const status = state.winner
-    ? state.winner === "draw" ? "It's a draw!" : `${state.winner} wins!`
+    ? state.winner === "draw"
+      ? "It's a draw!"
+      : `${state.winner} wins!`
     : `${state.currentPlayer}'s turn`;
 
   return (
     <Providers>
       <Particles id="tsparticles" options={particlesOptions} />
-      <div id="app" style={{
-        textAlign: "center", zIndex: 10, padding: "1rem",
-      }}>
-        <h1 style={{
-          fontSize: "2.5em", marginBottom: "1rem",
-          background: "linear-gradient(135deg, #6c5ce7, #fd79a8)",
-          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        }}>
+      <div
+        id="app"
+        style={{
+          textAlign: "center",
+          zIndex: 10,
+          padding: "1rem",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "2.5em",
+            marginBottom: "1rem",
+            background: "linear-gradient(135deg, #6c5ce7, #fd79a8)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           Tic-Tac-Toe
         </h1>
-        <div className="scoreboard" style={{
-          display: "flex", justifyContent: "center", gap: "2rem",
-          marginBottom: "1rem", fontSize: "1.1em", opacity: 0.8,
-        }}>
-          <span>X: <strong>{state.scores.X}</strong></span>
-          <span>Draws: <strong>{state.scores.draw}</strong></span>
-          <span>O: <strong>{state.scores.O}</strong></span>
+        <div
+          className="scoreboard"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "2rem",
+            marginBottom: "1rem",
+            fontSize: "1.1em",
+            opacity: 0.8,
+          }}
+        >
+          <span>
+            X: <strong>{state.scores.X}</strong>
+          </span>
+          <span>
+            Draws: <strong>{state.scores.draw}</strong>
+          </span>
+          <span>
+            O: <strong>{state.scores.O}</strong>
+          </span>
         </div>
         <div className="turn" style={{ fontSize: "1.2em", marginBottom: "1rem", opacity: 0.7 }}>
           {status}
         </div>
-        <div className="board" style={{
-          display: "grid", gridTemplateColumns: "repeat(3, 100px)",
-          gridTemplateRows: "repeat(3, 100px)", gap: "4px",
-          background: "rgba(255,255,255,0.1)", borderRadius: "12px",
-          overflow: "hidden", margin: "0 auto", width: "fit-content",
-        }}>
+        <div
+          className="board"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 100px)",
+            gridTemplateRows: "repeat(3, 100px)",
+            gap: "4px",
+            background: "rgba(255,255,255,0.1)",
+            borderRadius: "12px",
+            overflow: "hidden",
+            margin: "0 auto",
+            width: "fit-content",
+          }}
+        >
           {state.board.map((cell, i) => (
             <div
               key={i}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "2.5em", fontWeight: 700, background: "#12122a",
-                cursor: cell ? "default" : "pointer", transition: "background 0.2s",
-                userSelect: "none", color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "2.5em",
+                fontWeight: 700,
+                background: "#12122a",
+                cursor: cell ? "default" : "pointer",
+                transition: "background 0.2s",
+                userSelect: "none",
+                color: "#fff",
                 ...(state.winLine?.includes(i) ? { background: "rgba(108,92,231,0.3)" } : {}),
               }}
               onClick={() => handleMove(i)}
@@ -158,10 +203,16 @@ export default function Home() {
         </div>
         <button
           style={{
-            marginTop: "1.5rem", padding: "0.7em 2em", fontSize: "1em",
-            fontWeight: 600, border: "none", borderRadius: "8px",
+            marginTop: "1.5rem",
+            padding: "0.7em 2em",
+            fontSize: "1em",
+            fontWeight: 600,
+            border: "none",
+            borderRadius: "8px",
             background: "linear-gradient(135deg, #6c5ce7, #a29bfe)",
-            color: "#fff", cursor: "pointer", transition: "transform 0.2s",
+            color: "#fff",
+            cursor: "pointer",
+            transition: "transform 0.2s",
           }}
           onClick={handleReset}
         >

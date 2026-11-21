@@ -1,5 +1,6 @@
-import { ribbons } from '@tsparticles/ribbons';
-import { confetti } from '@tsparticles/confetti';
+import { createEngine } from '@tsparticles/engine';
+import { createRibbons } from '@tsparticles/ribbons';
+import { createConfetti } from '@tsparticles/confetti';
 import './style.css';
 import './cookie-consent.js';
 import ace from 'ace-builds';
@@ -23,6 +24,10 @@ import {
 ace.config.setModuleUrl('ace/mode/javascript_worker', javascriptWorkerUrl);
 ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
 ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
+
+const engine = createEngine();
+const ribbons = createRibbons(engine);
+const confetti = createConfetti(engine);
 
 window.ribbons = ribbons;
 window.confetti = confetti;

@@ -69,7 +69,8 @@ const { loadHslColorPlugin } = require("@tsparticles/plugin-hsl-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
 
 (async () => {

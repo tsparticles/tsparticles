@@ -69,7 +69,8 @@ const { loadEasingBlendPlugin } = require("@tsparticles/plugin-easing-bounce");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingBlendPlugin } from "@tsparticles/plugin-easing-bounce";
 
 (async () => {

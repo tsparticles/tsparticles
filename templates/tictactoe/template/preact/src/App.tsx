@@ -1,8 +1,10 @@
-import { useEffect, useState, useCallback } from "preact/hooks";
-import Particles, { initParticlesEngine } from "@tsparticles/preact";
-import { loadSlim } from "@tsparticles/slim";
-import { confetti } from "@tsparticles/confetti";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
+const confetti = createConfetti(engine);
+import { loadSlim } from "@tsparticles/slim";
 import "./App.css";
 
 type Player = "X" | "O";
@@ -16,9 +18,14 @@ interface GameState {
 }
 
 const WIN_PATTERNS = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function createInitialState(): GameState {
@@ -38,7 +45,7 @@ function checkWin(board: (Player | null)[]): { winner: Player | "draw"; winLine:
       return { winner: board[a] as Player, winLine: pattern };
     }
   }
-  if (board.every((cell) => cell !== null)) {
+  if (board.every(cell => cell !== null)) {
     return { winner: "draw" as const, winLine: [] };
   }
   return null;
@@ -76,13 +83,13 @@ export default function App() {
   const [state, setState] = useState<GameState>(createInitialState);
 
   useEffect(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   }, []);
 
   const handleMove = useCallback((index: number) => {
-    setState((prev) => {
+    setState(prev => {
       if (prev.board[index] || prev.winner) return prev;
       const board = [...prev.board];
       board[index] = prev.currentPlayer;
@@ -101,7 +108,7 @@ export default function App() {
   }, []);
 
   function handleReset() {
-    setState((prev) => ({
+    setState(prev => ({
       ...prev,
       board: Array(9).fill(null),
       currentPlayer: "X",
@@ -111,18 +118,26 @@ export default function App() {
   }
 
   const status = state.winner
-    ? state.winner === "draw" ? "It's a draw!" : `${state.winner} wins!`
+    ? state.winner === "draw"
+      ? "It's a draw!"
+      : `${state.winner} wins!`
     : `${state.currentPlayer}'s turn`;
 
   return (
     <>
-      <Particles id="tsparticles" options={particlesOptions} />
+      <Particles engine={engine} id="tsparticles" options={particlesOptions} />
       <div id="app">
         <h1>Tic-Tac-Toe</h1>
         <div class="scoreboard">
-          <span>X: <strong>{state.scores.X}</strong></span>
-          <span>Draws: <strong>{state.scores.draw}</strong></span>
-          <span>O: <strong>{state.scores.O}</strong></span>
+          <span>
+            X: <strong>{state.scores.X}</strong>
+          </span>
+          <span>
+            Draws: <strong>{state.scores.draw}</strong>
+          </span>
+          <span>
+            O: <strong>{state.scores.O}</strong>
+          </span>
         </div>
         <div class="turn">{status}</div>
         <div class="board">
@@ -136,7 +151,9 @@ export default function App() {
             </div>
           ))}
         </div>
-        <button class="reset-btn" onClick={handleReset}>New Game</button>
+        <button class="reset-btn" onClick={handleReset}>
+          New Game
+        </button>
       </div>
     </>
   );

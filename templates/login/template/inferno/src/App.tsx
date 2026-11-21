@@ -1,7 +1,8 @@
-import { Component } from "inferno";
-import { Particles, ParticlesProvider } from "@tsparticles/inferno";
-import { loadSlim } from "@tsparticles/slim";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
+import { Component } from "inferno";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 import "./App.css";
 
 const options: ISourceOptions = {
@@ -113,28 +114,55 @@ class App extends Component<Record<string, unknown>, AppState> {
 
   render() {
     return (
-      <ParticlesProvider init={async (engine: Engine): Promise<void> => { await loadSlim(engine); }}>
+      <ParticlesProvider
+        engine={engine}
+        init={async (engine: Engine): Promise<void> => {
+          await loadSlim(engine);
+        }}
+      >
         <div className="auth-container">
           <div className="auth-card">
             <div className="auth-header">
               <h1>{this.state.isLogin ? "Login" : "Register"}</h1>
-              <button className="theme-btn" onClick={this.toggleTheme} aria-label="Toggle theme">{this.state.theme === "dark" ? "🌙" : "☀️"}</button>
+              <button className="theme-btn" onClick={this.toggleTheme} aria-label="Toggle theme">
+                {this.state.theme === "dark" ? "🌙" : "☀️"}
+              </button>
             </div>
             <form onSubmit={this.handleSubmit} noValidate>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" placeholder="you@example.com" value={this.state.email} onInput={(e) => this.setState({ email: (e.target as HTMLInputElement).value })} required />
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={this.state.email}
+                  onInput={e => this.setState({ email: (e.target as HTMLInputElement).value })}
+                  required
+                />
                 <span className="error">{this.state.emailErr}</span>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" placeholder="Enter password" value={this.state.password} onInput={(e) => this.setState({ password: (e.target as HTMLInputElement).value })} required />
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onInput={e => this.setState({ password: (e.target as HTMLInputElement).value })}
+                  required
+                />
                 <span className="error">{this.state.passErr}</span>
               </div>
               {!this.state.isLogin && (
                 <div className="form-group">
                   <label htmlFor="confirmPassword">Confirm Password</label>
-                  <input id="confirmPassword" type="password" placeholder="Confirm password" value={this.state.confirm} onInput={(e) => this.setState({ confirm: (e.target as HTMLInputElement).value })} />
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    value={this.state.confirm}
+                    onInput={e => this.setState({ confirm: (e.target as HTMLInputElement).value })}
+                  />
                   <span className="error">{this.state.confirmErr}</span>
                 </div>
               )}
@@ -142,11 +170,13 @@ class App extends Component<Record<string, unknown>, AppState> {
             </form>
             <p className="toggle-text">
               <span>{this.state.isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-              <a href="#" onClick={this.toggleMode}>{this.state.isLogin ? "Register" : "Login"}</a>
+              <a href="#" onClick={this.toggleMode}>
+                {this.state.isLogin ? "Register" : "Login"}
+              </a>
             </p>
           </div>
         </div>
-        <Particles id="tsparticles" options={options} />
+        <Particles engine={engine} id="tsparticles" options={options} />
       </ParticlesProvider>
     );
   }

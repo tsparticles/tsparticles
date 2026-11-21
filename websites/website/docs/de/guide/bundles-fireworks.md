@@ -27,7 +27,9 @@ pnpm add @tsparticles/fireworks
 ```
 
 ```ts
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+const fireworks = createFireworks(createEngine());
 
 // Basic effect
 const instance = await fireworks({

@@ -1,14 +1,14 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { Background } from "./Background/Background.js";
-import type { Container } from "../../Core/Container.js";
+import type { Container } from "../../Core/Container/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import { HDROptions } from "./HDROptions.js";
 import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { OptionLoader } from "../../Utils/OptionLoader.js";
-import type { PluginManager } from "../../Core/Utils/PluginManager.js";
+import type { PluginManager } from "../../Core/Engine/PluginManager.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
@@ -93,9 +93,9 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
    */
   protected doLoad(data: ISourceOptions): void {
     if (data.preset !== undefined) {
-      this.preset = data.preset;
+      this.preset = Array.isArray(data.preset) ? [...data.preset] : data.preset;
 
-      executeOnSingleOrMultiple(this.preset, preset => {
+      executeOnSingleOrMultiple(this.preset, (preset) => {
         this.#importPreset(preset);
       });
     }
@@ -143,11 +143,14 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
 
     this.resize.load(data.resize);
 
-    this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
+    this.style = deepExtend(
+      this.style,
+      data.style,
+    ) as RecursivePartial<CSSStyleDeclaration>;
 
     loadProperty(this, "smooth", data.smooth);
 
-    this.#pluginManager.plugins.forEach(plugin => {
+    this.#pluginManager.plugins.forEach((plugin) => {
       plugin.loadOptions(this.#container, this, data);
     });
   }

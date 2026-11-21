@@ -72,7 +72,8 @@ const { loadTrailEffect } = require("@tsparticles/effect-trail");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 (async () => {

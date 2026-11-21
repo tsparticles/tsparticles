@@ -69,7 +69,8 @@ const { loadOrbitUpdater } = require("@tsparticles/updater-orbit");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 
 (async () => {

@@ -69,7 +69,8 @@ const { loadBrownianPath } = require("@tsparticles/path-brownian");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBrownianPath } from "@tsparticles/path-brownian";
 
 (async () => {

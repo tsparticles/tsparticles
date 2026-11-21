@@ -1,5 +1,5 @@
-import { Component, type JSX, Prop, Watch, Event, EventEmitter, h } from "@stencil/core";
-import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { Component, Event, EventEmitter, type JSX, Prop, Watch, h } from "@stencil/core";
+import { Container, type Engine, type ISourceOptions } from "@tsparticles/engine";
 import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 import { initParticlesEngine } from "../../initParticlesEngine";
 
@@ -31,6 +31,7 @@ export class StencilParticles {
 
   @Event() particlesLoaded!: EventEmitter<Container | undefined>;
 
+  @Prop() engine!: Engine;
   @Prop() options?: ISourceOptions;
   @Prop() url?: string;
   @Prop() init?: ParticlesPluginRegistrar;
@@ -77,6 +78,7 @@ export class StencilParticles {
     this.generatedContainerId = undefined;
   }
 
+  @Watch("engine")
   @Watch("options")
   @Watch("url")
   @Watch("init")
@@ -111,7 +113,7 @@ export class StencilParticles {
       // and avoid duplicate initialization when multiple instances mount concurrently.
       // initParticlesEngine handles promise de-duplication and enforces a stable init callback.
       if (this.init) {
-        await initParticlesEngine(this.init);
+        await initParticlesEngine(this.engine, this.init);
       }
 
       if (!this.options && !this.url) {
@@ -149,7 +151,7 @@ export class StencilParticles {
         ...(this.url ? { url: this.url } : {}),
       };
 
-      container = await tsParticles.load(loadParams);
+      container = await this.engine.load(loadParams);
     } catch (error: unknown) {
       console.error("[stencil-particles] load failed", error);
       return;

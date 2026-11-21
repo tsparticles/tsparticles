@@ -117,7 +117,7 @@ Before generating, examine the target area of the codebase:
 **Always run with `--dry-run` first** to verify files will be created in the correct location:
 
 ```bash
-npx nx g @nx/react:library --name=my-lib --dry-run --no-interactive
+npx nx g @nx/react:library --directory=libs/my-lib --dry-run --no-interactive
 ```
 
 Review the output carefully. If files would be created in the wrong location, adjust your options based on what you learned from the generator source code.

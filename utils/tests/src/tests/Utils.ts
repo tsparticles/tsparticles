@@ -6,6 +6,7 @@ import {
   areBoundsInside,
   calculateBounds,
   clamp,
+  createEngine,
   getDistance,
   getParticleBaseVelocity,
   getRandom,
@@ -15,11 +16,12 @@ import {
   mix,
   randomInRangeValue,
   setRangeValue,
-  tsParticles,
 } from "@tsparticles/engine";
 import { buildParticleWithDirection, segmentBounce } from "../Fixture/Utils.js";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+
+const tsParticles = createEngine();
 
 describe("Utils", () => {
   globalThis.window = TestWindow;

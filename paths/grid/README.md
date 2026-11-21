@@ -69,7 +69,8 @@ const { loadGridPath } = require("@tsparticles/path-grid");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadGridPath } from "@tsparticles/path-grid";
 
 (async () => {

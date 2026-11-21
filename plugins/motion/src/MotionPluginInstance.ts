@@ -9,6 +9,9 @@ const defaultFactor = 1,
 export class MotionPluginInstance implements IContainerPlugin {
   /** The motion container */
   readonly #container;
+  #generation = 0;
+  #handleChange?: () => void;
+  #mediaQuery?: MediaQueryList;
 
   /**
    * Creates a new MotionPluginInstance
@@ -18,9 +21,16 @@ export class MotionPluginInstance implements IContainerPlugin {
     this.#container = container;
   }
 
+  destroy(): void {
+    this.stop();
+  }
+
   async init(): Promise<void> {
+    this.stop();
+
     const container = this.#container,
-      options = container.actualOptions.motion;
+      options = container.actualOptions.motion,
+      generation = this.#generation;
 
     if (!(options && (options.disable || options.reduce.value))) {
       container.retina.reduceFactor = 1;
@@ -41,8 +51,16 @@ export class MotionPluginInstance implements IContainerPlugin {
 
     // Ads an event listener to check for changes in the media query's value.
     const handleChange = (): void => {
+      if (generation !== this.#generation || container.destroyed) {
+        return;
+      }
+
       void (async (): Promise<void> => {
         this.#handleMotionChange(mediaQuery);
+
+        if (generation !== this.#generation || container.destroyed) {
+          return;
+        }
 
         try {
           await container.refresh();
@@ -52,9 +70,22 @@ export class MotionPluginInstance implements IContainerPlugin {
       })();
     };
 
+    this.#mediaQuery = mediaQuery;
+    this.#handleChange = handleChange;
     mediaQuery.addEventListener("change", handleChange);
 
     await Promise.resolve();
+  }
+
+  stop(): void {
+    this.#generation++;
+
+    if (this.#mediaQuery && this.#handleChange) {
+      this.#mediaQuery.removeEventListener("change", this.#handleChange);
+    }
+
+    this.#mediaQuery = undefined;
+    this.#handleChange = undefined;
   }
 
   #handleMotionChange(mediaQuery: MediaQueryList): void {
@@ -69,7 +100,9 @@ export class MotionPluginInstance implements IContainerPlugin {
       if (motion.disable) {
         container.retina.reduceFactor = disableReduce;
       } else {
-        container.retina.reduceFactor = motion.reduce.value ? identity / motion.reduce.factor : defaultFactor;
+        container.retina.reduceFactor = motion.reduce.value
+          ? identity / motion.reduce.factor
+          : defaultFactor;
       }
     } else {
       container.retina.reduceFactor = defaultReduce;

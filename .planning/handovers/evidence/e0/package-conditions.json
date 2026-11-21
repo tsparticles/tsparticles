@@ -1,0 +1,82 @@
+[
+  {
+    "condition": "import",
+    "subpath": "",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/esm/index.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [],
+    "window": "undefined",
+    "document": "undefined"
+  },
+  {
+    "condition": "import",
+    "subpath": "/lazy",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/esm/index.lazy.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [
+      "tsParticles"
+    ],
+    "window": "undefined",
+    "document": "undefined"
+  },
+  {
+    "condition": "require",
+    "subpath": "",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/cjs/index.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [],
+    "window": "undefined",
+    "document": "undefined"
+  },
+  {
+    "condition": "require",
+    "subpath": "/lazy",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/cjs/index.lazy.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [
+      "tsParticles"
+    ],
+    "window": "undefined",
+    "document": "undefined"
+  },
+  {
+    "condition": "browser",
+    "subpath": "",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/browser/browser.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [
+      "__tsParticlesInternals",
+      "tsParticles",
+      "getParticlesLogger",
+      "setParticlesLogger",
+      "getParticlesRandom",
+      "getParticlesRandomFn",
+      "setParticlesRandom"
+    ],
+    "window": "undefined",
+    "document": "undefined"
+  },
+  {
+    "condition": "browser",
+    "subpath": "/lazy",
+    "resolved": "/Users/matteo/Projects/GitHub/tsparticles/tsparticles/engine/dist/browser/browser.js",
+    "singleton": true,
+    "factory": "undefined",
+    "globalsAdded": [
+      "__tsParticlesInternals",
+      "tsParticles",
+      "getParticlesLogger",
+      "setParticlesLogger",
+      "getParticlesRandom",
+      "getParticlesRandomFn",
+      "setParticlesRandom"
+    ],
+    "window": "undefined",
+    "document": "undefined"
+  }
+]

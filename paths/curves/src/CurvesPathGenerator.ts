@@ -16,11 +16,11 @@ const defaultOptions: ICurvesOptions = {
 /**
  * @returns a random velocity
  */
-function randomVelocity(): number {
+function randomVelocity(random: () => number): number {
   const offset = 0.8,
     factor = 0.6;
 
-  return getRandom() * factor + offset;
+  return getRandom(random) * factor + offset;
 }
 
 /** Curves path generator plugin */
@@ -66,8 +66,8 @@ export class CurvesPathGenerator implements IMovePathGenerator {
     } else {
       particle.curveVelocity = Vector.origin;
 
-      particle.curveVelocity.length = randomVelocity();
-      particle.curveVelocity.angle = getRandom() * doublePI;
+      particle.curveVelocity.length = randomVelocity(this.#container.engine.getRandomFn());
+      particle.curveVelocity.angle = getRandom(this.#container.engine.getRandomFn()) * doublePI;
     }
 
     particle.velocity.x = 0;

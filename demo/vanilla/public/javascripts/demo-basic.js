@@ -1,7 +1,8 @@
 (async () => {
-  await loadBasic(tsParticles);
+  const engine = tsParticles.createEngine();
+  await loadBasic(engine);
 
-  await tsParticles.load({
+  await engine.load({
     options: {
       name: "Big Particles",
       particles: {

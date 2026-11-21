@@ -27,7 +27,9 @@ pnpm add @tsparticles/confetti
 ```
 
 ```ts
-import { confetti } from "@tsparticles/confetti";
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(createEngine());
 
 // Basic effect
 await confetti({

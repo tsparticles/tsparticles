@@ -903,10 +903,18 @@ function extractLabeledCount(
   skipSplitCount: boolean,
   countPattern: RegExp = GROUPED_INTEGER_COUNT_PATTERN,
 ): string | undefined {
+  const splitCountIndexes = new Set<number>();
+
+  if (skipSplitCount) {
+    for (const match of text.matchAll(/\bsplit\s*count\b/gi)) {
+      splitCountIndexes.add(match.index + match[0].length - "count".length);
+    }
+  }
+
   for (const labelMatch of text.matchAll(labelPattern)) {
     const labelIndex = labelMatch.index;
 
-    if (skipSplitCount && /\bsplit\s*$/i.test(text.slice(0, labelIndex))) {
+    if (splitCountIndexes.has(labelIndex)) {
       continue;
     }
 
@@ -947,9 +955,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const splitCount = extractLabeledCount(text, /\bsplit\s*count\b/gi, false);
 
   if (splitCount !== undefined) {
-    const raw = normalizeCountString(splitCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return { ambiguous: false, raw: splitCount, value: Number(normalizeCountString(splitCount)) };
   }
 
   const explicitSparkCount = new RegExp(
@@ -966,9 +972,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const labeledCount = extractLabeledCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
-    const raw = normalizeCountString(labeledCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return { ambiguous: false, raw: labeledCount, value: Number(normalizeCountString(labeledCount)) };
   }
 
   const sparkCountAfterHeading = extractSparkCountAfterHeading(text);
@@ -1304,8 +1308,12 @@ function buildLoaderCalls(loaders: PackageImport[], indent: string, engineVar: s
  * @param options
  */
 function autoInitCode(bundle: BundleMatch, options: Record<string, unknown>): string {
-  return `import { ${bundle.loadFunction} } from "${bundle.bundleName}";
+  const factory = `create${bundle.loadFunction.charAt(0).toUpperCase()}${bundle.loadFunction.slice(1)}`;
+  return `import { createEngine } from "@tsparticles/engine";
+import { ${factory} } from "${bundle.bundleName}";
 
+const engine = createEngine();
+const ${bundle.loadFunction} = ${factory}(engine);
 await ${bundle.loadFunction}(${serializeOptions(options)});
 `;
 }
@@ -1331,7 +1339,9 @@ function vanillaCode(
 
   if (typescript) {
     return `${imports.join("\n")}
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = ${serializeOptions(options)};
@@ -1350,7 +1360,9 @@ void init();
   }
 
   return `${imports.join("\n")}
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 
 async function init() {
 ${calls}
@@ -1386,17 +1398,19 @@ function reactCode(
       .filter(call => call.length > 0)
       .join("\n");
 
-  return `import { useCallback } from "react";
+  return `import { useCallback, useState } from "react";
+import { createEngine } from "@tsparticles/engine";
 ${engineTypeImport}import Particles, { ParticlesProvider } from "@tsparticles/react";
 ${imports.join("\n")}
 
 export function ParticlesBackground() {
+  const [engine] = useState(createEngine);
   const init = useCallback(async ${initParam} => {
 ${calls}
   }, []);
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <Particles
         id="tsparticles"
         options={${serializeOptions(options)}}
@@ -1434,6 +1448,7 @@ function vueCode(
 
   return `// main.ts
 import { createApp } from "vue";
+import { createEngine } from "@tsparticles/engine";
 ${engineTypeImport}import Particles from "@tsparticles/vue3";
 ${imports.join("\n")}
 
@@ -1446,6 +1461,7 @@ ${calls}
 const app = createApp(App);
 
 app.use(Particles, {
+  engine: createEngine(),
   init: registerParticles,
 });
 
@@ -1492,6 +1508,8 @@ function svelteCode(
   if (typescript) {
     return `<script lang="ts">
   import Particles, { initParticlesEngine } from "@tsparticles/svelte";
+  import { createEngine } from "@tsparticles/engine";
+  const engine = createEngine();
   import type { Engine, ISourceOptions } from "@tsparticles/engine";
   ${svelteImports.join("\n  ")}
 
@@ -1500,12 +1518,13 @@ function svelteCode(
     console.log(event.detail.particles);
   };
 
-  void initParticlesEngine(async (engine: Engine) => {
+  void initParticlesEngine(engine, async (engine: Engine) => {
 ${calls}
   });
 </script>
 
 <Particles
+  {engine}
   id="tsparticles"
   options={options}
   on:particlesLoaded={onParticlesLoaded}
@@ -1515,6 +1534,8 @@ ${calls}
 
   return `<script>
   import Particles, { initParticlesEngine } from "@tsparticles/svelte";
+  import { createEngine } from "@tsparticles/engine";
+  const engine = createEngine();
   ${svelteImports.join("\n  ")}
 
   const options = ${serializeOptions(options)};
@@ -1522,12 +1543,13 @@ ${calls}
     console.log(event.detail.particles);
   };
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(engine, async (engine) => {
 ${calls}
   });
 </script>
 
 <Particles
+  {engine}
   id="tsparticles"
   options={options}
   on:particlesLoaded={onParticlesLoaded}
@@ -1558,6 +1580,7 @@ function angularCode(
     return `import { Component, OnInit } from "@angular/core";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
+import { createEngine } from "@tsparticles/engine";
 ${imports.join("\n")}
 
 @Component({
@@ -1573,7 +1596,7 @@ export class ParticlesComponent implements OnInit {
   constructor(private readonly ngParticlesService: NgParticlesService) {}
 
   public ngOnInit(): void {
-    void this.ngParticlesService.init(async engine => {
+    void this.ngParticlesService.init(createEngine(), async engine => {
 ${calls}
     });
   }
@@ -1587,6 +1610,7 @@ ${calls}
 
   return `import { Component, inject } from "@angular/core";
 import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
+import { createEngine } from "@tsparticles/engine";
 ${imports.join("\n")}
 
 @Component({
@@ -1602,7 +1626,7 @@ export class ParticlesComponent {
   ngParticlesService = inject(NgParticlesService);
 
   ngOnInit() {
-    void this.ngParticlesService.init(async engine => {
+    void this.ngParticlesService.init(createEngine(), async engine => {
 ${calls}
     });
   }
@@ -1690,7 +1714,9 @@ function buildNotes(
   const notes: string[] = [];
 
   if (bundle.isAutoInitialized) {
-    notes.push(`${bundle.bundleName} auto-initializes all plugins — no manual load() needed.`);
+    notes.push(
+      `${bundle.bundleName} initializes its plugins on the explicitly supplied engine — no manual plugin load() needed.`,
+    );
   }
 
   if (bundle.isPreset) {
@@ -1780,7 +1806,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     extraLoaders = suggestion.imports.filter(({ from }) => !covered.has(from)),
     installPackages: string[] = [];
   if (bundleMatch.isAutoInitialized) {
-    installPackages.push(bundleMatch.bundleName);
+    installPackages.push(bundleMatch.bundleName, "@tsparticles/engine");
   } else {
     installPackages.push(bundleMatch.bundleName);
     installPackages.push("@tsparticles/engine");

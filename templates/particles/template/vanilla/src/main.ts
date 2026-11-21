@@ -1,11 +1,13 @@
+import { createParticles } from "@tsparticles/particles";
 import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
-import { particles } from "@tsparticles/particles";
+
+import { engine } from "../particlesEngine";
+const particles = createParticles(engine);
 
 (async () => {
   await particles.init();
 
-  await tsParticles.load({
+  await engine.load({
     id: "tsparticles",
     options: {
       background: { color: { value: "#0d0d2b" } },

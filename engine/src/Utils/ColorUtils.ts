@@ -1,15 +1,31 @@
-import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import type {
+  IColor,
+  IHsl,
+  IHsla,
+  IOklch,
+  IOklcha,
+  IRangeColor,
+  IRangeOklch,
+  IRangeSpacedRgb,
+  IRangeValueColor,
+  IRgb,
+  IRgba,
+  ISpacedRgb,
+  IValueColor,
+} from "../Core/Interfaces/Colors.js";
 import {
   clamp,
   getRandom,
   getRandomInRange,
   getRangeValue,
   mix,
+  parseAlpha,
   randomInRangeValue,
   setRangeValue,
 } from "./MathUtils.js";
 import {
   decayOffset,
+  defaultAlpha,
   defaultLoops,
   defaultOpacity,
   defaultRgbMin,
@@ -39,22 +55,32 @@ import {
   sextuple,
   triple,
 } from "../Core/Utils/Constants.js";
+import {
+  displayP3ToOklch,
+  mapOklchToSrgb,
+  mixOklch,
+  oklchToDisplayP3Float,
+  rgbToDisplayP3Float,
+  rgbToOklch,
+} from "./OklchUtils.js";
 import { isArray, isString } from "./TypeUtils.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { HdrMode } from "../Enums/Modes/HdrMode.js";
-import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
-import type { Particle } from "../Core/Particle.js";
-import type { PluginManager } from "../Core/Utils/PluginManager.js";
+import type { IParticleOklchAnimation } from "../Core/Interfaces/IParticleOklchAnimation.js";
+import type { OklchAnimation } from "../Options/Classes/OklchAnimation.js";
+import type { Particle } from "../Core/Particles/Particle.js";
+import type { PluginManager } from "../Core/Engine/PluginManager.js";
+import type { RangeValue } from "../Types/RangeValue.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
   maxStyleCacheSize = 2000,
+  hueGradsPerTurn = 400,
   rgbFixedPrecision = 2,
   hslFixedPrecision = 2,
   hdrRgbFixedPrecision = 4,
@@ -70,9 +96,9 @@ const styleCache = new Map<string, string>(),
   temperatureR = 1.05,
   temperatureB = 0.95,
   contrastFactor = 1.1,
-  luminanceR = 0.2126,
-  luminanceG = 0.7152,
-  luminanceB = 0.0722,
+  displayP3LuminanceR = 0.2289745641,
+  displayP3LuminanceG = 0.6917385218,
+  displayP3LuminanceB = 0.0792869141,
   dynamicLuminanceFactor = 2,
   channelCount = 3,
   srgbThreshold = 0.04045,
@@ -111,25 +137,35 @@ function getCachedStyle(key: string, generator: () => string): string {
  * @returns the tone-mapped value in [0, 1]
  */
 function acesFilmic(x: number): number {
-  return clamp((x * (acesA * x + acesB)) / (x * (acesC * x + acesD) + acesE), none, one);
+  return clamp(
+    (x * (acesA * x + acesB)) / (x * (acesC * x + acesD) + acesE),
+    none,
+    one,
+  );
 }
 
 /**
- * Converts an sRGB gamma-encoded value to linear space
- * @param c - the sRGB value in [0, 1]
+ * Converts a signed sRGB-compatible gamma-encoded channel to linear light
+ * @param c - the encoded channel, including extended values outside [0, 1]
  * @returns the linear value
  */
 function srgbToLinear(c: number): number {
-  return c <= srgbThreshold ? c / srgbDivisor : Math.pow((c + srgbOffset) / srgbScale, srgbExponent);
+  return Math.abs(c) <= srgbThreshold
+    ? c / srgbDivisor
+    : Math.sign(c) *
+        Math.pow((Math.abs(c) + srgbOffset) / srgbScale, srgbExponent);
 }
 
 /**
- * Converts a linear value to sRGB gamma-encoded space
- * @param c - the linear value in [0, 1]
- * @returns the sRGB value
+ * Converts a signed linear channel to sRGB-compatible encoded space
+ * @param c - the linear channel, including values above 1 for HDR
+ * @returns the encoded channel
  */
 function linearToSrgb(c: number): number {
-  return c <= linearThreshold ? c * linearScale : srgbScale * Math.pow(c, one / srgbExponent) - srgbOffset;
+  return Math.abs(c) <= linearThreshold
+    ? c * linearScale
+    : Math.sign(c) *
+        (srgbScale * Math.pow(Math.abs(c), one / srgbExponent) - srgbOffset);
 }
 
 /**
@@ -138,7 +174,7 @@ function linearToSrgb(c: number): number {
  * @param g - the green channel
  * @param b - the blue channel
  * @param mode - the HDR rendering mode
- * @param maxChannel - the maximum channel value the display can reproduce
+ * @param maxChannel - the maximum linear channel value the display can reproduce
  * @returns the adjusted RGB values
  */
 function applyHdrModeAdjustments(
@@ -153,9 +189,24 @@ function applyHdrModeAdjustments(
       const avg = (r + g + b) / channelCount;
 
       return {
-        b: clamp(clamp(avg + (b - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
-        g: clamp(clamp(avg + (g - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
-        r: clamp(clamp(avg + (r - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
+        b: clamp(
+          clamp(avg + (b - avg) * saturationBoost, none, maxChannel) *
+            lightnessBoost,
+          none,
+          maxChannel,
+        ),
+        g: clamp(
+          clamp(avg + (g - avg) * saturationBoost, none, maxChannel) *
+            lightnessBoost,
+          none,
+          maxChannel,
+        ),
+        r: clamp(
+          clamp(avg + (r - avg) * saturationBoost, none, maxChannel) *
+            lightnessBoost,
+          none,
+          maxChannel,
+        ),
       };
     }
 
@@ -172,13 +223,22 @@ function applyHdrModeAdjustments(
     }
 
     case HdrMode.dynamic: {
-      const luminance = luminanceR * r + luminanceG * g + luminanceB * b,
+      const luminance =
+          displayP3LuminanceR * r +
+          displayP3LuminanceG * g +
+          displayP3LuminanceB * b,
         vividWeight = Math.min(one, luminance * dynamicLuminanceFactor),
         naturalWeight = one - vividWeight,
         avg = (r + g + b) / channelCount,
-        vividR = clamp(avg + (r - avg) * saturationBoost, none, maxChannel) * lightnessBoost,
-        vividG = clamp(avg + (g - avg) * saturationBoost, none, maxChannel) * lightnessBoost,
-        vividB = clamp(avg + (b - avg) * saturationBoost, none, maxChannel) * lightnessBoost;
+        vividR =
+          clamp(avg + (r - avg) * saturationBoost, none, maxChannel) *
+          lightnessBoost,
+        vividG =
+          clamp(avg + (g - avg) * saturationBoost, none, maxChannel) *
+          lightnessBoost,
+        vividB =
+          clamp(avg + (b - avg) * saturationBoost, none, maxChannel) *
+          lightnessBoost;
 
       return {
         b: clamp(b * naturalWeight + vividB * vividWeight, none, maxChannel),
@@ -202,18 +262,18 @@ function applyHdrModeAdjustments(
  * @param input - A string that represents a color.
  * @returns the converted color from string to {@link IRgba} interfaec
  */
-function stringToRgba(pluginManager: PluginManager, input: string): IRgba | undefined {
+function stringToRgba(
+  pluginManager: PluginManager,
+  input: string,
+): IRgba | undefined {
   if (!input) {
     return;
   }
 
-  for (const manager of pluginManager.colorManagers.values()) {
-    if (manager.accepts(input)) {
-      return manager.parseString(input);
-    }
-  }
+  const color = rangeColorToOklch(pluginManager, input),
+    mapped = color ? mapOklchToSrgb(color).rgb : undefined;
 
-  return undefined;
+  return color && mapped ? { ...mapped, a: color.a } : undefined;
 }
 
 /**
@@ -230,37 +290,21 @@ export function rangeColorToRgb(
   index?: number,
   useIndex = true,
 ): IRgb | undefined {
-  if (!input) {
-    return;
+  const raw = isString(input) ? input : input?.value;
+
+  if (raw === randomColorValue) {
+    return getRandomRgbColor(
+      undefined,
+      undefined,
+      pluginManager.engine.getRandomFn(),
+    );
   }
 
-  const color = isString(input) ? { value: input } : input;
+  const color = input
+    ? rangeColorToOklch(pluginManager, input, index, useIndex)
+    : undefined;
 
-  if (isString(color.value)) {
-    return colorToRgb(pluginManager, color.value, index, useIndex);
-  }
-
-  if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex);
-
-    if (!value) {
-      return;
-    }
-
-    return rangeColorToRgb(pluginManager, {
-      value,
-    });
-  }
-
-  for (const manager of pluginManager.colorManagers.values()) {
-    const res = manager.handleRangeColor(color);
-
-    if (res) {
-      return res;
-    }
-  }
-
-  return undefined;
+  return color ? mapOklchToSrgb(color).rgb : undefined;
 }
 
 /**
@@ -281,33 +325,50 @@ export function colorToRgb(
     return;
   }
 
-  const color = isString(input) ? { value: input } : input;
+  let raw: string | undefined;
 
-  if (isString(color.value)) {
-    return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(pluginManager, color.value);
+  if (isString(input)) {
+    raw = input;
+  } else if (isString(input.value)) {
+    raw = input.value;
   }
 
-  if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex);
+  if (raw === randomColorValue) {
+    return getRandomRgbColor(
+      undefined,
+      undefined,
+      pluginManager.engine.getRandomFn(),
+    );
+  }
 
-    if (!value) {
-      return;
-    }
+  if (isString(input) || raw !== undefined) {
+    return raw ? stringToRgb(pluginManager, raw) : undefined;
+  }
 
-    return colorToRgb(pluginManager, {
-      value,
-    });
+  if (isArray(input.value)) {
+    const value = itemFromArray(
+      input.value,
+      index,
+      useIndex,
+      pluginManager.engine.getRandomFn(),
+    );
+
+    return value ? colorToRgb(pluginManager, { value }) : undefined;
   }
 
   for (const manager of pluginManager.colorManagers.values()) {
-    const res = manager.handleColor(color);
+    const handled = manager.handleColorOklch(input),
+      resolved = handled ? normalizeOklchaResult(handled) : undefined,
+      mapped = resolved ? mapOklchToSrgb(resolved).rgb : undefined;
 
-    if (res) {
-      return res;
+    if (mapped) {
+      return mapped;
     }
   }
 
-  return undefined;
+  const color = rangeColorToOklch(pluginManager, input, index, useIndex);
+
+  return color ? mapOklchToSrgb(color).rgb : undefined;
 }
 
 /**
@@ -327,6 +388,213 @@ export function rangeColorToHsl(
   const rgb = rangeColorToRgb(pluginManager, color, index, useIndex);
 
   return rgb ? rgbToHsl(rgb) : undefined;
+}
+
+function normalizeOklchaResult(color: IOklcha): IOklcha | undefined {
+  if (
+    ![color.a, color.c, color.h, color.l].every(Number.isFinite) ||
+    color.a < none ||
+    color.a > identity ||
+    color.c < none ||
+    color.l < none ||
+    color.l > percentDenominator
+  ) {
+    return;
+  }
+
+  return { ...color, h: ((color.h % hMax) + hMax) % hMax };
+}
+
+function parseCssHueAngle(value: number, unit?: string): number {
+  switch (unit?.toLowerCase()) {
+    case "rad":
+      return (value * hMax) / (2 * Math.PI);
+
+    case "grad":
+      return (value * hMax) / hueGradsPerTurn;
+
+    case "turn":
+      return value * hMax;
+
+    default:
+      return value;
+  }
+}
+
+/** Resolves an input color to canonical OKLCH (lightness 0–100). */
+export function rangeColorToOklch(
+  pluginManager: PluginManager,
+  color: string | IColor | IRangeColor | undefined,
+  index?: number,
+  useIndex = true,
+): IOklcha | undefined {
+  if (!color) {
+    return;
+  }
+
+  if (isString(color)) {
+    for (const manager of pluginManager.colorManagers.values()) {
+      if (manager.accepts(color)) {
+        const resolved = manager.parseStringOklch(color),
+          normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
+
+        if (normalized) {
+          return normalized;
+        }
+
+        break;
+      }
+    }
+
+    const match =
+      /^oklch\(\s*([+-]?(?:\d+\.?\d*|\.\d+))(%?)\s+([+-]?(?:\d+\.?\d*|\.\d+))\s+([+-]?(?:\d+\.?\d*|\.\d+))(deg|°|rad|grad|turn)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
+        color,
+      );
+
+    if (match) {
+      const rawLightness = Number(match[1]),
+        lightness = rawLightness * (match[2] ? identity : percentDenominator),
+        chroma = Number(match[3]),
+        hue = parseCssHueAngle(Number(match[4]), match[5]),
+        alpha = parseAlpha(match[6]);
+
+      if (
+        ![lightness, chroma, hue, alpha].every(Number.isFinite) ||
+        rawLightness < none ||
+        rawLightness > (match[2] ? percentDenominator : identity) ||
+        chroma < none ||
+        alpha < none ||
+        alpha > identity
+      ) {
+        return;
+      }
+
+      return {
+        a: alpha,
+        c: chroma,
+        h: ((hue % hMax) + hMax) % hMax,
+        l: lightness,
+      };
+    }
+
+    const p3Match =
+      /^color\(\s*display-p3\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?%?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)$/i.exec(
+        color,
+      );
+
+    if (p3Match) {
+      const parseChannel = (channel: string): number =>
+          (channel.endsWith("%")
+            ? Number.parseFloat(channel) / percentDenominator
+            : Number.parseFloat(channel)) * rgbMax,
+        r = parseChannel(p3Match[1] ?? "0"),
+        g = parseChannel(p3Match[2] ?? "0"),
+        b = parseChannel(p3Match[3] ?? "0"),
+        alpha = parseAlpha(p3Match[4]);
+
+      if (
+        [r, g, b, alpha].every(Number.isFinite) &&
+        alpha >= none &&
+        alpha <= identity
+      ) {
+        return { ...displayP3ToOklch({ r, g, b }), a: alpha };
+      }
+    }
+  } else if (isArray(color.value)) {
+    const value = itemFromArray(
+      color.value,
+      index,
+      useIndex,
+      pluginManager.engine.getRandomFn(),
+    );
+
+    return value
+      ? rangeColorToOklch(pluginManager, isString(value) ? value : { value })
+      : undefined;
+  } else if (typeof color.value === "object") {
+    const source = color.value as
+      | (Partial<ISpacedRgb & IRangeSpacedRgb> & {
+          a?: number | RangeValue;
+          b?: number | RangeValue;
+          colorSpace?: string;
+          g?: number | RangeValue;
+          r?: number | RangeValue;
+        })
+      | undefined;
+
+    if (
+      source &&
+      (source.colorSpace === "srgb" || source.colorSpace === "display-p3") &&
+      source.r !== undefined &&
+      source.g !== undefined &&
+      source.b !== undefined
+    ) {
+      const random = pluginManager.engine.getRandomFn(),
+        r = getRangeValue(source.r, random),
+        g = getRangeValue(source.g, random),
+        b = getRangeValue(source.b, random),
+        alpha =
+          source.a === undefined
+            ? defaultAlpha
+            : getRangeValue(source.a, random);
+
+      if (
+        [r, g, b, alpha].every(Number.isFinite) &&
+        alpha >= none &&
+        alpha <= identity
+      ) {
+        const channels = { b, g, r },
+          converted =
+            source.colorSpace === "display-p3"
+              ? displayP3ToOklch(channels)
+              : rgbToOklch(channels);
+
+        return { ...converted, a: alpha };
+      }
+
+      return;
+    }
+
+    for (const manager of pluginManager.colorManagers.values()) {
+      const resolved = manager.handleRangeColorOklch(color),
+        normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
+
+      if (normalized) {
+        return normalized;
+      }
+    }
+
+    const value = color.value as
+        IValueColor | IRangeValueColor | IOklch | IOklcha | IRangeOklch,
+      oklch = ("oklch" in value ? value.oklch : value) as
+        IOklch | IRangeOklch | undefined;
+
+    if (oklch && "c" in oklch && "h" in oklch && "l" in oklch) {
+      const random = pluginManager.engine.getRandomFn(),
+        l = getRangeValue(oklch.l, random),
+        c = getRangeValue(oklch.c, random),
+        h = getRangeValue(oklch.h, random),
+        alpha = (oklch as unknown as { a?: number }).a ?? defaultAlpha;
+
+      if (
+        [l, c, h, alpha].every(Number.isFinite) &&
+        c >= none &&
+        l >= none &&
+        l <= percentDenominator &&
+        alpha >= none &&
+        alpha <= identity
+      ) {
+        return {
+          a: alpha,
+          c,
+          h: ((h % hMax) + hMax) % hMax,
+          l,
+        };
+      }
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -349,7 +617,10 @@ export function rgbToHsl(color: IRgb): IHsl {
 
   if (max !== min) {
     // Calculate S:
-    res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
+    res.s =
+      res.l < half
+        ? (max - min) / (max + min)
+        : (max - min) / (double - max - min);
     // Calculate H:
     if (r1 === max) {
       res.h = (g1 - b1) / (max - min);
@@ -381,7 +652,10 @@ export function rgbToHsl(color: IRgb): IHsl {
  * @param input - the input color to convert in alpha value
  * @returns the alpha value
  */
-export function stringToAlpha(pluginManager: PluginManager, input: string): number | undefined {
+export function stringToAlpha(
+  pluginManager: PluginManager,
+  input: string,
+): number | undefined {
   return stringToRgba(pluginManager, input)?.a;
 }
 
@@ -391,7 +665,10 @@ export function stringToAlpha(pluginManager: PluginManager, input: string): numb
  * @param input - the hexadecimal string (#f70 or #ff7700)
  * @returns the {@link IRgb} object
  */
-export function stringToRgb(pluginManager: PluginManager, input: string): IRgb | undefined {
+export function stringToRgb(
+  pluginManager: PluginManager,
+  input: string,
+): IRgb | undefined {
   return stringToRgba(pluginManager, input);
 }
 
@@ -459,9 +736,15 @@ export function hslToRgb(hsl: IHsl): IRgb {
         : lNormalized + sNormalized - lNormalized * sNormalized,
     temp1 = double * lNormalized - temp2,
     phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird)),
+    red = Math.min(
+      rgbMax,
+      rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird),
+    ),
     green = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird));
+    blue = Math.min(
+      rgbMax,
+      rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird),
+    );
 
   return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -491,9 +774,15 @@ export function hslToRgbFloat(hsl: IHsl): IRgb {
         : lNormalized + sNormalized - lNormalized * sNormalized,
     temp1 = double * lNormalized - temp2,
     phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird)),
+    red = Math.min(
+      rgbMax,
+      rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird),
+    ),
     green = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird));
+    blue = Math.min(
+      rgbMax,
+      rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird),
+    );
 
   return { r: red, g: green, b: blue };
 }
@@ -520,19 +809,24 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @param hdr - the HDR flag
  * @returns the random ({@link IRgb}) color
  */
-export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
+export function getRandomRgbColor(
+  min?: number,
+  hdr?: boolean,
+  random?: () => number,
+): IRgb {
   const fixedMin = min ?? defaultRgbMin;
 
   if (hdr) {
     return {
-      r: getRandomInRange(fixedMin, rgbMax),
-      g: getRandomInRange(fixedMin, rgbMax),
-      b: getRandomInRange(fixedMin, rgbMax),
+      r: getRandomInRange(fixedMin, rgbMax, random),
+      g: getRandomInRange(fixedMin, rgbMax, random),
+      b: getRandomInRange(fixedMin, rgbMax, random),
     };
   }
 
   const fixedMax = rgbMax + identity,
-    getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
+    getRgbInRangeValue = (): number =>
+      Math.floor(getRandomInRange(fixedMin, fixedMax, random));
 
   return {
     b: getRgbInRangeValue(),
@@ -564,7 +858,9 @@ export function getStyleFromRgb(
       : `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-sdr-${op.toString()}`;
 
   return getCachedStyle(key, () =>
-    hdr ? getHdrStyleFromRgb(color, opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
+    hdr
+      ? getHdrStyleFromRgb(rgbToDisplayP3Float(color), opacity, peakNits, mode)
+      : getSdrStyleFromRgb(color, opacity),
   );
 }
 
@@ -608,33 +904,53 @@ function hdrToneMapColor(
     gNorm = color.g / rgbMax,
     bNorm = color.b / rgbMax;
 
-  if (mode !== HdrMode.natural && mode !== HdrMode.vivid && mode !== HdrMode.cinematic && mode !== HdrMode.dynamic) {
+  if (
+    mode !== HdrMode.natural &&
+    mode !== HdrMode.vivid &&
+    mode !== HdrMode.cinematic &&
+    mode !== HdrMode.dynamic
+  ) {
     return { b: bNorm, g: gNorm, r: rNorm };
   }
 
   const maxChannel = Math.max(one, headroom),
-    luminance = luminanceR * rNorm + luminanceG * gNorm + luminanceB * bNorm,
+    rLinear = srgbToLinear(rNorm),
+    gLinear = srgbToLinear(gNorm),
+    bLinear = srgbToLinear(bNorm),
+    luminance =
+      displayP3LuminanceR * rLinear +
+      displayP3LuminanceG * gLinear +
+      displayP3LuminanceB * bLinear,
     mappedLuminance = hdrToneMap(luminance, headroom, middleGray),
-    scale = luminance > none ? mappedLuminance / luminance : one;
+    scale = luminance > none ? mappedLuminance / luminance : one,
+    adjusted = applyHdrModeAdjustments(
+      clamp(rLinear * scale, none, maxChannel),
+      clamp(gLinear * scale, none, maxChannel),
+      clamp(bLinear * scale, none, maxChannel),
+      mode,
+      maxChannel,
+    );
 
-  return applyHdrModeAdjustments(
-    clamp(rNorm * scale, none, maxChannel),
-    clamp(gNorm * scale, none, maxChannel),
-    clamp(bNorm * scale, none, maxChannel),
-    mode,
-    maxChannel,
-  );
+  return {
+    b: linearToSrgb(adjusted.b),
+    g: linearToSrgb(adjusted.g),
+    r: linearToSrgb(adjusted.r),
+  };
 }
 
 /**
  * Applies ACES Filmic tone mapping with selective HDR expansion above middle gray.
- * Preserves SDR fidelity for dark tones while extending bright highlights.
- * @param normalized - the sRGB value normalized to [0, 1]
+ * Preserves dark tones while extending bright highlights in linear Display-P3 light.
+ * @param normalized - the linear luminance normalized to SDR reference white
  * @param headroom - the HDR headroom ratio (peakNits / referenceWhite)
  * @param middleGray - the middle gray threshold
  * @returns the tone-mapped value
  */
-function hdrToneMap(normalized: number, headroom: number, middleGray: number): number {
+function hdrToneMap(
+  normalized: number,
+  headroom: number,
+  middleGray: number,
+): number {
   if (normalized <= middleGray) {
     return acesFilmic(normalized);
   }
@@ -683,6 +999,35 @@ export function getStyleFromHsl(
   );
 }
 
+/** Formats a canonical OKLCH color at the output boundary. */
+export function getStyleFromOklch(
+  color: IOklch | IOklcha,
+  hdr: boolean,
+  opacity?: number,
+  peakNits?: number,
+  mode?: HdrMode,
+  _outputColorSpace: PredefinedColorSpace = "srgb",
+): string {
+  const alpha =
+      (opacity ?? defaultOpacity) * ("a" in color ? color.a : defaultAlpha),
+    key = hdr
+      ? `oklch-hdr-${color.l}-${color.c}-${color.h}-${alpha}-${peakNits ?? maxNits}-${mode ?? HdrMode.standard}`
+      : `oklch-css-${color.l}-${color.c}-${color.h}-${alpha}`;
+
+  return getCachedStyle(key, () => {
+    if (hdr) {
+      return getHdrStyleFromRgb(
+        oklchToDisplayP3Float(color),
+        alpha,
+        peakNits,
+        mode,
+      );
+    }
+
+    return `oklch(${color.l.toString()}% ${color.c.toString()} ${color.h.toString()}° / ${alpha.toString()})`;
+  });
+}
+
 /**
  * Mixes two colors based on size proportions
  * @param color1 - the first color
@@ -692,7 +1037,13 @@ export function getStyleFromHsl(
  * @param hdr - whether to mix in linear space for HDR
  * @returns the mixed RGB color
  */
-export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number, hdr?: boolean): IRgb {
+export function colorMix(
+  color1: IRgb | IHsl,
+  color2: IRgb | IHsl,
+  size1: number,
+  size2: number,
+  hdr?: boolean,
+): IRgb {
   let rgb1 = color1 as IRgb,
     rgb2 = color2 as IRgb;
 
@@ -739,24 +1090,46 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @param hdr - the HDR flag
  * @returns the calculated link color
  */
-export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb, hdr?: boolean): IRgb | undefined {
+export function getLinkColor(
+  p1: Particle,
+  p2?: Particle,
+  linkColor?: string | IRgb | IOklcha,
+  _hdr?: boolean,
+): IOklcha | undefined {
   if (linkColor === randomColorValue) {
-    return getRandomRgbColor();
+    return {
+      ...rgbToOklch(
+        getRandomRgbColor(
+          undefined,
+          undefined,
+          p1.container.engine.getRandomFn(),
+        ),
+      ),
+      a: defaultAlpha,
+    };
   } else if (linkColor === midColorValue) {
     const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
       destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
     if (sourceColor && destColor && p2) {
-      return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius(), hdr);
+      return mixOklch(sourceColor, destColor, p1.getRadius(), p2.getRadius());
     } else {
-      const hslColor = sourceColor ?? destColor;
+      const oklchColor = sourceColor ?? destColor;
 
-      if (hslColor) {
-        return hslToRgb(hslColor);
+      if (oklchColor) {
+        return oklchColor;
       }
     }
   } else {
-    return linkColor as IRgb;
+    if (isString(linkColor)) {
+      return rangeColorToOklch(p1.container.engine.pluginManager, linkColor);
+    }
+
+    if (linkColor && "r" in linkColor) {
+      return { ...rgbToOklch(linkColor), a: defaultAlpha };
+    }
+
+    return linkColor;
   }
 
   return undefined;
@@ -775,12 +1148,12 @@ export function getLinkRandomColor(
   optColor: string | IOptionsColor,
   blink: boolean,
   consent: boolean,
-): IRgb | string | undefined {
+): IOklcha | string | undefined {
   const color = isString(optColor) ? optColor : optColor.value;
 
   if (color === randomColorValue) {
     if (consent) {
-      return rangeColorToRgb(pluginManager, {
+      return rangeColorToOklch(pluginManager, {
         value: color,
       });
     }
@@ -793,68 +1166,47 @@ export function getLinkRandomColor(
   } else if (color === midColorValue) {
     return midColorValue;
   } else {
-    return rangeColorToRgb(pluginManager, {
+    return rangeColorToOklch(pluginManager, {
       value: color,
     });
   }
 }
 
-/**
- * Gets the HSL color values from an HSL animation
- * @param animation - the HSL animation to extract values from
- * @returns the HSL color or undefined
- */
-export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
+/** Gets the canonical OKLCH value from particle channel state. */
+export function getOklchFromAnimation(
+  animation?: IParticleOklchAnimation,
+): IOklcha | undefined {
   return animation === undefined
     ? undefined
     : {
+        a: animation.a,
+        c: animation.c.value,
         h: animation.h.value,
-        s: animation.s.value,
         l: animation.l.value,
       };
 }
 
-/**
- * Creates an HSL animation from a base HSL color and animation options
- * @param hsl - the base HSL color
- * @param animationOptions - the HSL animation options
- * @param reduceFactor - the reduce factor for velocity
- * @returns the HSL animation data
- */
-export function getHslAnimationFromHsl(
-  hsl: IHsl,
-  animationOptions: HslAnimation | undefined,
+/** Creates per-particle h/c/l state from a resolved color and animation options. */
+export function getOklchAnimationFromOklch(
+  oklch: IOklch | IOklcha,
+  animationOptions: OklchAnimation | undefined,
   reduceFactor: number,
-): IParticleHslAnimation {
-  /* color */
-  const resColor: IParticleHslAnimation = {
-    h: {
-      enable: false,
-      value: hsl.h,
-      min: hMin,
-      max: hMax,
-    },
-    s: {
-      enable: false,
-      value: hsl.s,
-      min: sMin,
-      max: sMax,
-    },
-    l: {
-      enable: false,
-      value: hsl.l,
-      min: lMin,
-      max: lMax,
-    },
+  random?: () => number,
+): IParticleOklchAnimation {
+  const result: IParticleOklchAnimation = {
+    a: "a" in oklch ? oklch.a : defaultAlpha,
+    c: { enable: false, value: oklch.c, min: 0, max: 0.4 },
+    h: { enable: false, value: oklch.h, min: 0, max: 360 },
+    l: { enable: false, value: oklch.l, min: 0, max: percentDenominator },
   };
 
   if (animationOptions) {
-    setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
-    setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
-    setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+    setColorAnimation(result.h, animationOptions.h, reduceFactor, random);
+    setColorAnimation(result.c, animationOptions.c, reduceFactor, random);
+    setColorAnimation(result.l, animationOptions.l, reduceFactor, random);
   }
 
-  return resColor;
+  return result;
 }
 
 /**
@@ -866,23 +1218,27 @@ function setColorAnimation(
   colorValue: IParticleColorAnimation,
   colorAnimation: IColorAnimation,
   reduceFactor: number,
+  random?: () => number,
 ): void {
   colorValue.enable = colorAnimation.enable;
   colorValue.min = colorAnimation.min;
   colorValue.max = colorAnimation.max;
 
   if (colorValue.enable) {
-    colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
-    colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
+    colorValue.velocity =
+      getRangeValue(colorAnimation.speed, random) * reduceFactor;
+    colorValue.decay =
+      decayOffset - getRangeValue(colorAnimation.decay, random);
     colorValue.status = AnimationStatus.increasing;
     colorValue.loops = defaultLoops;
-    colorValue.maxLoops = getRangeValue(colorAnimation.count);
+    colorValue.maxLoops = getRangeValue(colorAnimation.count, random);
     colorValue.time = defaultTime;
-    colorValue.delayTime = getRangeValue(colorAnimation.delay) * millisecondsToSeconds;
+    colorValue.delayTime =
+      getRangeValue(colorAnimation.delay, random) * millisecondsToSeconds;
 
     if (!colorAnimation.sync) {
-      colorValue.velocity *= getRandom();
-      colorValue.value *= getRandom();
+      colorValue.velocity *= getRandom(random);
+      colorValue.value *= getRandom(random);
     }
 
     colorValue.initialValue = colorValue.value;
@@ -904,33 +1260,46 @@ export function updateColorValue(
   decrease: boolean,
   delta: IDelta,
   _hdr?: boolean,
+  random?: () => number,
+  wrap = false,
 ): void {
   const minLoops = 0,
     minDelay = 0,
     identity = 1,
     minVelocity = 0,
     minOffset = 0,
-    velocityFactor = 3.6;
+    velocityFactor = 1,
+    maxLoops = data.maxLoops ?? minLoops,
+    loops = data.loops ?? minLoops;
 
   if (
     !data.enable ||
-    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    (maxLoops > minLoops && (wrap ? loops >= maxLoops : loops > maxLoops))
   ) {
     return;
   }
 
   data.time ??= 0;
 
-  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+  if (
+    (data.delayTime ?? minDelay) > minDelay &&
+    data.time < (data.delayTime ?? minDelay)
+  ) {
     data.time += delta.value;
   }
 
-  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+  if (
+    (data.delayTime ?? minDelay) > minDelay &&
+    data.time < (data.delayTime ?? minDelay)
+  ) {
     return;
   }
 
-  const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
-    velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
+  const offset = data.offset
+      ? randomInRangeValue(data.offset, random)
+      : minOffset,
+    velocity =
+      (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
     decay = data.decay ?? identity,
     max = data.max,
     min = data.min;
@@ -938,7 +1307,19 @@ export function updateColorValue(
   if (!decrease || data.status === AnimationStatus.increasing) {
     data.value += velocity;
 
-    if (data.value > max) {
+    if (wrap && max > min && data.value >= max) {
+      const range = max - min,
+        loops = Math.max(1, Math.floor((data.value - min) / range));
+
+      data.value = min + ((((data.value - min) % range) + range) % range);
+      data.loops = (data.loops ?? 0) + loops;
+    } else if (wrap && max > min && data.value < min) {
+      const range = max - min,
+        loops = Math.max(1, Math.ceil((min - data.value) / range));
+
+      data.value = min + ((((data.value - min) % range) + range) % range);
+      data.loops = (data.loops ?? 0) + loops;
+    } else if (data.value > max) {
       data.loops ??= 0;
       data.loops++;
 
@@ -972,16 +1353,21 @@ export function updateColorValue(
  * @param delta - the frame delta time
  * @param hdr - the HDR flag
  */
-export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta, hdr?: boolean): void {
+export function updateColor(
+  color: IParticleOklchAnimation | undefined,
+  delta: IDelta,
+  hdr?: boolean,
+  random?: () => number,
+): void {
   if (!color) {
     return;
   }
 
-  const { h, s, l } = color;
+  const { h, c, l } = color;
 
-  updateColorValue(h, false, delta, hdr);
-  updateColorValue(s, true, delta, hdr);
-  updateColorValue(l, true, delta, hdr);
+  updateColorValue(h, false, delta, hdr, random, true);
+  updateColorValue(c, true, delta, hdr, random);
+  updateColorValue(l, true, delta, hdr, random);
 }
 
 /**
@@ -996,5 +1382,22 @@ export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     h: color.h,
     s: color.s,
     l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
+  };
+}
+
+/** Alters OKLCH lightness while preserving chroma and hue. */
+export function alterOklch(
+  color: IOklch | IOklcha,
+  type: AlterType,
+  value: number,
+): IOklcha {
+  return {
+    ...color,
+    a: "a" in color ? color.a : defaultAlpha,
+    l: clamp(
+      color.l + (type === AlterType.darken ? -1 : 1) * value,
+      none,
+      percentDenominator,
+    ),
   };
 }

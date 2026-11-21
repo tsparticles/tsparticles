@@ -47,7 +47,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const opts = this.options;
 
     p.branching ??= {
-      angle: getRandom() * doublePI,
+      angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
       remaining: opts.segmentLength,
       baseSpeed: p.velocity.length,
       speed: p.velocity.length,
@@ -56,14 +56,14 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const b = p.branching;
 
     if (b.remaining <= 0) {
-      const branch = getRandom() < (opts.branchChance ?? 0),
+      const branch = getRandom(this.#container.engine.getRandomFn()) < (opts.branchChance ?? 0),
         maxAngle = opts.maxAngle ?? defaultOptions.maxAngle,
-        delta = (getRandom() * 2 - 1) * (branch ? maxAngle : maxAngle * 0.3);
+        delta = (getRandom(this.#container.engine.getRandomFn()) * 2 - 1) * (branch ? maxAngle : maxAngle * 0.3);
 
       b.angle += delta;
       b.remaining = opts.segmentLength;
 
-      const speedFactor = 1 + (getRandom() * 2 - 1) * (opts.speedVariation ?? 0);
+      const speedFactor = 1 + (getRandom(this.#container.engine.getRandomFn()) * 2 - 1) * (opts.speedVariation ?? 0);
 
       b.speed = b.baseSpeed * speedFactor;
     }

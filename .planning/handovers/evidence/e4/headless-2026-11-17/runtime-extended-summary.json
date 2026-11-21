@@ -1,0 +1,272 @@
+{
+  "measuredAt": "2026-11-17T09:52:34.952Z",
+  "browser": "Chrome/157.0.8103.79",
+  "baselineBrowser": "Chrome/157.0.8103.52",
+  "mode": "headless",
+  "sampleCount": 18,
+  "retentionCycles": 30,
+  "validations": {
+    "pageErrors": true,
+    "allContainersRemoved": true,
+    "domStable": true,
+    "retentionDomStable": true,
+    "rngStable": {
+      "M6-extensions:100": true,
+      "M6-extensions:500": true,
+      "M6-extensions:1000": true,
+      "M8-hdr-layers-resize:100": true,
+      "M8-hdr-layers-resize:500": true,
+      "M8-hdr-layers-resize:1000": true
+    }
+  },
+  "heap": {
+    "beforeBytes": 3810248,
+    "afterScenariosBytes": 10363776,
+    "retentionBatchBytes": [
+      5160948,
+      5228144,
+      5265000
+    ],
+    "retentionDriftBytes": 104052,
+    "limitBytes": 1048576
+  },
+  "dom": {
+    "beforeNodes": 9,
+    "afterEachSample": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ],
+    "retentionNodes": [
+      9,
+      9,
+      9
+    ]
+  },
+  "mediaListeners": [
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 0.20000004768371582,
+        "renderMedianMs": 0.19999992847442627,
+        "frameP95Ms": 0.6000000238418579
+      },
+      "e4": {
+        "updateMedianMs": 0.20000000298023224,
+        "renderMedianMs": 0.19999999552965164,
+        "frameP95Ms": 0.6000000014901161,
+        "frameP95SamplesMs": [
+          0.6000000014901161,
+          0.5,
+          0.6000000014901161
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 0.3,
+        "renderMedianMs": 0.3,
+        "frameP95Ms": 0.7
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        1952,
+        1952,
+        1952
+      ]
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 0.8000000715255737,
+        "renderMedianMs": 0.7000000476837158,
+        "frameP95Ms": 1.7000000476837158
+      },
+      "e4": {
+        "updateMedianMs": 0.8000000044703484,
+        "renderMedianMs": 0.7000000029802322,
+        "frameP95Ms": 2,
+        "frameP95SamplesMs": [
+          2.100000001490116,
+          2,
+          1.8000000044703484
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 0.9,
+        "renderMedianMs": 0.8,
+        "frameP95Ms": 1.87
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        5580,
+        5580,
+        5580
+      ]
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 1.7000000476837158,
+        "renderMedianMs": 1.5,
+        "frameP95Ms": 3.6999999284744263
+      },
+      "e4": {
+        "updateMedianMs": 1.6999999955296516,
+        "renderMedianMs": 1.5,
+        "frameP95Ms": 3.600000001490116,
+        "frameP95SamplesMs": [
+          3.600000001490116,
+          3.600000001490116,
+          3.600000001490116
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 1.87,
+        "renderMedianMs": 1.65,
+        "frameP95Ms": 4.07
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        10113,
+        10113,
+        10113
+      ]
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 0.10000002384185791,
+        "renderMedianMs": 0.10000002384185791,
+        "frameP95Ms": 0.3999999761581421
+      },
+      "e4": {
+        "updateMedianMs": 0.19999999552965164,
+        "renderMedianMs": 0.19999999552965164,
+        "frameP95Ms": 0.4000000059604645,
+        "frameP95SamplesMs": [
+          0.3999999985098839,
+          0.4000000059604645,
+          0.4000000059604645
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 0.2,
+        "renderMedianMs": 0.2,
+        "frameP95Ms": 0.5
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        908,
+        908,
+        908
+      ]
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 0.6000000238418579,
+        "renderMedianMs": 0.6999999284744263,
+        "frameP95Ms": 1.5
+      },
+      "e4": {
+        "updateMedianMs": 0.6999999955296516,
+        "renderMedianMs": 0.7000000029802322,
+        "frameP95Ms": 1.6999999955296516,
+        "frameP95SamplesMs": [
+          1.7000000029802322,
+          1.6000000014901161,
+          1.6999999955296516
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 0.7,
+        "renderMedianMs": 0.8,
+        "frameP95Ms": 1.65
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        4535,
+        4535,
+        4535
+      ]
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "repetitions": 3,
+      "baseline": {
+        "updateMedianMs": 1.3000000715255737,
+        "renderMedianMs": 1.3000000715255737,
+        "frameP95Ms": 3
+      },
+      "e4": {
+        "updateMedianMs": 1.3000000044703484,
+        "renderMedianMs": 1.3999999985098839,
+        "frameP95Ms": 3.2999999970197678,
+        "frameP95SamplesMs": [
+          3.2999999970197678,
+          3.2999999970197678,
+          3.3000000044703484
+        ]
+      },
+      "ceilings": {
+        "updateMedianMs": 1.43,
+        "renderMedianMs": 1.43,
+        "frameP95Ms": 3.3
+      },
+      "longFrames": 0,
+      "rngCalls": [
+        9072,
+        9072,
+        9072
+      ]
+    }
+  ],
+  "limitations": [
+    "CPU submission times; physical HDR luminance is not observable headlessly",
+    "Forced-GC retained heap is not allocation volume or proof of absence of leaks",
+    "Retention runs use one warmed page; DOM/heap drift must be compared to repeated same-toolchain runs",
+    "Frame budget counts use explicit synchronous ticks, not presented frames"
+  ]
+}

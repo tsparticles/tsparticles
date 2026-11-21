@@ -43,7 +43,7 @@
     "@tsparticles/rollup-plugin": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "dependency-cruiser": "^18.7.0",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",

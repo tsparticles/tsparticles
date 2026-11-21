@@ -1,12 +1,12 @@
+import { Container } from "@tsparticles/engine";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
-import { Container, getLogger, tsParticles } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
-import { deepCompare } from "./Utils";
 import React from "preact/compat";
-import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+import { deepCompare } from "./Utils";
 
 /**
  * @param {IParticlesProps}
@@ -16,7 +16,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
   #loadId = 0;
   #mounted = false;
 
-  static defaultProps: IParticlesProps = {
+  static defaultProps: Partial<IParticlesProps> = {
     width: "100%",
     height: "100%",
     options: {},
@@ -28,7 +28,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     super(props);
 
     this.state = {
-      init: isParticlesEngineInitialized(),
+      init: isParticlesEngineInitialized(this.props.engine),
       library: undefined,
     };
   }
@@ -54,6 +54,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     return (
       nextState.init !== this.state.init ||
       nextProps.url !== this.props.url ||
+      nextProps.engine !== this.props.engine ||
       nextProps.id !== this.props.id ||
       nextProps.canvasClassName !== this.props.canvasClassName ||
       nextProps.className !== this.props.className ||
@@ -75,6 +76,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
     if (
       prevProps.url !== this.props.url ||
+      prevProps.engine !== this.props.engine ||
       prevProps.id !== this.props.id ||
       prevProps.canvasClassName !== this.props.canvasClassName ||
       prevProps.className !== this.props.className ||
@@ -100,12 +102,13 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
   componentDidMount(): void {
     this.#mounted = true;
+    const engine = this.props.engine;
 
     void (async () => {
       if (!this.state.init) {
-        await waitForParticlesEngineInitialization();
+        await waitForParticlesEngineInitialization(engine);
 
-        if (!isParticlesEngineInitialized()) {
+        if (!isParticlesEngineInitialized(engine)) {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
       }
@@ -124,7 +127,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       );
     })().catch((error: unknown) => {
       if (this.#mounted) {
-        getLogger().error("Particles: error initializing engine", error);
+        engine.getLogger().error("Particles: error initializing engine", error);
       }
     });
   }
@@ -163,18 +166,19 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       return;
     }
 
-    const loadId = ++this.#loadId;
+    const loadId = ++this.#loadId,
+      engine = this.props.engine;
     let container: Container | undefined;
 
     try {
-      container = await tsParticles.load({
+      container = await engine.load({
         url: this.props.url,
         options: this.props.options,
         id: this.props.id,
       });
     } catch (error: unknown) {
       if (loadId === this.#loadId) {
-        getLogger().error("Particles: error loading particles", error);
+        engine.getLogger().error("Particles: error loading particles", error);
       }
 
       return;
@@ -202,7 +206,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       try {
         await this.props.particlesLoaded?.(container);
       } catch (error: unknown) {
-        getLogger().error("Particles: error in particlesLoaded callback", error);
+        (container?.engine ?? engine).getLogger().error("Particles: error in particlesLoaded callback", error);
       }
     }
   }
@@ -212,7 +216,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       await (container as Container & { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
     } catch (error: unknown) {
       if (this.#container === container) {
-        getLogger().error("Particles: error loading theme", error);
+        container.engine.getLogger().error("Particles: error loading theme", error);
       }
     }
   }

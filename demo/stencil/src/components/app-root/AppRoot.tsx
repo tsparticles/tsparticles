@@ -1,6 +1,7 @@
 import { Component, type JSX, State, h } from "@stencil/core";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { defineCustomElements } from "@tsparticles/stencil/loader";
+import { engine } from "../../../particlesEngine";
 
 @Component({
   tag: "app-root",
@@ -147,6 +148,7 @@ export class AppRoot {
         {this.initError ? <p class="error">Init error: {this.initError}</p> : null}
         {this.engineReady ? (
           <stencil-particles
+            engine={engine}
             container-id="tsparticles"
             options={this.options}
             theme={this.darkTheme ? "dark" : "light"}
@@ -168,9 +170,7 @@ export class AppRoot {
             }}
           ></stencil-particles>
         ) : null}
-        <button onClick={this.toggleTheme}>
-          Switch to {this.darkTheme ? "light" : "dark"} theme
-        </button>
+        <button onClick={this.toggleTheme}>Switch to {this.darkTheme ? "light" : "dark"} theme</button>
         <p>Particles loaded: {this.particlesLoaded ? "yes" : "no"}</p>
       </main>
     );

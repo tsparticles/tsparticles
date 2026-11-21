@@ -355,7 +355,9 @@ describe("generateOptions", () => {
     const result = generateCode({ description });
 
     expect(result.options).toHaveProperty("splitCount", 500);
-    expect(result.notes).toContain("Requested fireworks splitCount of 2000 exceeds the maximum of 500; using 500.");
+    expect(result.notes).toContain(
+      `Requested fireworks splitCount of ${description === "fireworks count: 2,000" || description === "fireworks split count: 2,000" ? "2,000" : "2000"} exceeds the maximum of 500; using 500.`,
+    );
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(false);
   });
 
@@ -451,17 +453,17 @@ describe("generateOptions", () => {
     expect(options.background).toEqual({ color: "#000000" });
   });
 
-  it.each([
-    "particle animation count: 9007199254740993",
-    "particle animation 9007199254740993",
-  ])("keeps the generic default for unsafe counts in %s", description => {
-    const lower = description.toLowerCase(),
-      keywords = extractKeywords(lower),
-      match = matchBundle(keywords, lower),
-      options = generateOptions(match, keywords, lower);
+  it.each(["particle animation count: 9007199254740993", "particle animation 9007199254740993"])(
+    "keeps the generic default for unsafe counts in %s",
+    description => {
+      const lower = description.toLowerCase(),
+        keywords = extractKeywords(lower),
+        match = matchBundle(keywords, lower),
+        options = generateOptions(match, keywords, lower);
 
-    expect(options).toMatchObject({ particles: { number: { value: 80 } } });
-  });
+      expect(options).toMatchObject({ particles: { number: { value: 80 } } });
+    },
+  );
 
   it(
     "scans repeated year-reference candidates without rescanning description prefixes",
@@ -530,17 +532,17 @@ describe("generateOptions", () => {
 describe("framework codegen", () => {
   it("generates copy-pasteable confetti code for any framework", () => {
     const result = generateCode({ description: "confetti", framework: "react" });
-    expect(result.code).toContain('import { confetti } from "@tsparticles/confetti"');
+    expect(result.code).toContain('import { createConfetti } from "@tsparticles/confetti"');
     expect(result.code).toContain("await confetti(");
-    expect(result.installPackages).toEqual(["@tsparticles/confetti"]);
+    expect(result.installPackages).toEqual(["@tsparticles/confetti", "@tsparticles/engine"]);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    expect(result.notes[0]).toContain("auto-initializes");
+    expect(result.notes[0]).toContain("explicitly supplied engine");
   });
 
   it("generates React code with the React wrapper", () => {
     const result = generateCode({ description: "particle animation", framework: "react" });
     expect(result.code).toContain('import Particles, { ParticlesProvider } from "@tsparticles/react"');
-    expect(result.code).toContain("<ParticlesProvider init={init}>");
+    expect(result.code).toContain("<ParticlesProvider engine={engine} init={init}>");
     expect(result.code).toContain("export function ParticlesBackground()");
     expect(result.installPackages).toContain("@tsparticles/react");
     expect(result.installPackages).toContain("@tsparticles/engine");
@@ -703,10 +705,10 @@ describe("generateCode integration", () => {
     expect(result.bundle).toBe("@tsparticles/confetti");
     expect(result.loadFunction).toBe("confetti");
     expect(result.isAutoInitialized).toBe(true);
-    expect(result.installPackages).toEqual(["@tsparticles/confetti"]);
-    expect(result.installCommand).toBe("npm install @tsparticles/confetti");
+    expect(result.installPackages).toEqual(["@tsparticles/confetti", "@tsparticles/engine"]);
+    expect(result.installCommand).toBe("npm install @tsparticles/confetti @tsparticles/engine");
     expect(result.code).toContain("await confetti(");
-    expect(result.notes.some(n => n.includes("auto-initializes"))).toBe(true);
+    expect(result.notes.some(n => n.includes("explicitly supplied engine"))).toBe(true);
   });
 
   it("does not crash on a whitespace-only description and falls back to slim", () => {
@@ -746,6 +748,6 @@ describe("generateCode integration", () => {
     expect(generic.installPackages).toContain("@tsparticles/angular");
 
     const specialized = generateCode({ description: "fireworks", framework: "angular" });
-    expect(specialized.installPackages).toEqual(["@tsparticles/fireworks"]);
+    expect(specialized.installPackages).toEqual(["@tsparticles/fireworks", "@tsparticles/engine"]);
   });
 });

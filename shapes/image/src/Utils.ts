@@ -1,4 +1,10 @@
-import { type HdrMode, type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import {
+  type HdrMode,
+  type ILogger,
+  type IOklcha,
+  type Particle,
+  getStyleFromOklch,
+} from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -11,7 +17,7 @@ const stringStart = 0,
  * The image interface, used for keeping useful data for drawing
  */
 export interface IImage {
-  color?: IHsl;
+  color?: IOklcha;
   element?: HTMLImageElement;
   error: boolean;
   loading: boolean;
@@ -27,7 +33,7 @@ export interface IImage {
  * The particle image, containing also some particles options
  */
 export interface IParticleImage {
-  color?: IHsl;
+  color?: IOklcha;
   data: IImage;
   element?: HTMLImageElement;
   loaded?: boolean;
@@ -61,11 +67,12 @@ const currentColorRegex =
  */
 function replaceColorSvg(
   imageShape: IImage,
-  color: IHsl,
+  color: IOklcha,
   opacity: number,
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): string {
   const { svgData } = imageShape;
 
@@ -73,7 +80,14 @@ function replaceColorSvg(
     return "";
   }
 
-  const colorStyle = getStyleFromHsl(color, hdr, opacity, peakNits, mode);
+  const colorStyle = getStyleFromOklch(
+    color,
+    hdr,
+    opacity,
+    peakNits,
+    mode,
+    outputColorSpace,
+  );
 
   /* set color to svg element */
   if (svgData.includes("fill")) {
@@ -89,8 +103,8 @@ function replaceColorSvg(
  * Loads the given image
  * @param image - the image to load
  */
-export async function loadImage(image: IImage): Promise<void> {
-  return new Promise<void>(resolve => {
+export async function loadImage(image: IImage, logger: ILogger): Promise<void> {
+  return new Promise<void>((resolve) => {
     image.loading = true;
 
     const img = new Image();
@@ -108,7 +122,7 @@ export async function loadImage(image: IImage): Promise<void> {
       image.error = true;
       image.loading = false;
 
-      getLogger().error(`Error loading image: ${image.source}`);
+      logger.error(`Error loading image: ${image.source}`);
 
       resolve();
     });
@@ -121,9 +135,12 @@ export async function loadImage(image: IImage): Promise<void> {
  * Downloads the SVG image data, using `fetch`
  * @param image - the image to download
  */
-export async function downloadSvgImage(image: IImage): Promise<void> {
+export async function downloadSvgImage(
+  image: IImage,
+  logger: ILogger,
+): Promise<void> {
   if (image.type !== "svg") {
-    await loadImage(image);
+    await loadImage(image, logger);
 
     return;
   }
@@ -135,7 +152,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
   if (response.ok) {
     image.svgData = await response.text();
   } else {
-    getLogger().error("Image not found");
+    logger.error("Image not found");
 
     image.error = true;
   }
@@ -157,13 +174,22 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 export function replaceImageColor(
   image: IImage,
   imageData: IImageShape,
-  color: IHsl,
+  color: IOklcha,
   particle: Particle,
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  logger?: ILogger,
 ): Promise<IParticleImage> {
-  const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr, peakNits, mode),
+  const svgColoredData = replaceColorSvg(
+      image,
+      color,
+      particle.opacity?.value ?? defaultOpacity,
+      hdr,
+      peakNits,
+      mode,
+      particle.container.outputColorSpace,
+    ),
     imageRes: IParticleImage = {
       color,
       data: {
@@ -176,7 +202,7 @@ export function replaceImageColor(
       source: imageData.src,
     };
 
-  return new Promise<IParticleImage>(resolve => {
+  return new Promise<IParticleImage>((resolve) => {
     const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg,
       url = URL.createObjectURL(svg),
       img = new Image();
@@ -200,7 +226,9 @@ export function replaceImageColor(
       };
 
       // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-      await loadImage(img2);
+      if (logger) {
+        await loadImage(img2, logger);
+      }
 
       imageRes.loaded = true;
       imageRes.element = img2.element;

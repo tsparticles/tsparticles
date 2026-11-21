@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { confetti } from "@tsparticles/confetti";
+  import { engine } from "../particlesEngine";
+
+  import { createConfetti } from "@tsparticles/confetti";
+  const confetti = createConfetti(engine);
 
   let mode = $state("cannon");
 

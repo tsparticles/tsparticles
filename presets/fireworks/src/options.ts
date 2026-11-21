@@ -14,7 +14,7 @@ import {
   StartValueType,
   defaultAlpha,
   none,
-  rgbToHsl,
+  rgbToOklch,
   setRangeValue,
 } from "@tsparticles/engine";
 
@@ -53,7 +53,8 @@ export function initOptions(): ISourceOptions {
       if (shortRegex.test(hexValue)) {
         hexValue = hexValue.replace(
           shortRegex,
-          (_m, r: string, g: string, b: string, a?: string) => r + r + g + g + b + b + (a ? a + a : ""),
+          (_m, r: string, g: string, b: string, a?: string) =>
+            r + r + g + g + b + b + (a ? a + a : ""),
         );
       }
 
@@ -96,35 +97,45 @@ export function initOptions(): ISourceOptions {
       "#0000FF",
       "#FF00FF",
     ]
-      .map(color => {
+      .map((color) => {
         const rgb = hexToRgba(color);
 
         if (!rgb) {
           return undefined;
         }
 
-        const hsl = rgbToHsl(rgb),
-          sOffset = 30,
-          lOffset = 30,
-          sBounds: IRangeValue = {
+        const oklch = rgbToOklch(rgb),
+          chromaOffset = 0.05,
+          lightnessOffset = 0.12,
+          chromaBounds: IRangeValue = {
             min: 0,
-            max: 100,
+            max: 0.4,
           },
-          lBounds: IRangeValue = {
+          lightnessBounds: IRangeValue = {
             min: 0,
-            max: 100,
+            max: 1,
           },
-          sRange = fixRange({ min: hsl.s - sOffset, max: hsl.s + sOffset }, sBounds.min, sBounds.max),
-          lRange = fixRange({ min: hsl.l - lOffset, max: hsl.l + lOffset }, lBounds.min, lBounds.max);
+          chromaRange = fixRange(
+            { min: oklch.c - chromaOffset, max: oklch.c + chromaOffset },
+            chromaBounds.min,
+            chromaBounds.max,
+          ),
+          lightnessRange = fixRange(
+            { min: oklch.l - lightnessOffset, max: oklch.l + lightnessOffset },
+            lightnessBounds.min,
+            lightnessBounds.max,
+          );
 
         return {
           paint: {
             fill: {
               color: {
                 value: {
-                  h: hsl.h,
-                  s: sRange,
-                  l: lRange,
+                  oklch: {
+                    c: chromaRange,
+                    h: oklch.h,
+                    l: lightnessRange,
+                  },
                 },
               },
               enable: true,
@@ -197,7 +208,7 @@ export function initOptions(): ISourceOptions {
           },
         };
       })
-      .filter(t => t !== undefined);
+      .filter((t) => t !== undefined);
 
   return {
     detectRetina: true,

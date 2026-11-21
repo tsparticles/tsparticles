@@ -1,6 +1,6 @@
 export * from "./Core/Utils/Constants.js";
-export * from "./Core/Utils/Ranges.js";
-export * from "./Core/Utils/Vectors.js";
+export * from "./Core/Particles/Ranges.js";
+export * from "./Core/Particles/Vectors.js";
 
 export * from "./Enums/Directions/MoveDirection.js";
 export * from "./Enums/Directions/RotateDirection.js";
@@ -35,7 +35,7 @@ export * from "./Options/Classes/FullScreen/FullScreen.js";
 
 export * from "./Options/Classes/HDROptions.js";
 
-export * from "./Options/Classes/HslAnimation.js";
+export * from "./Options/Classes/OklchAnimation.js";
 
 export * from "./Options/Classes/Options.js";
 export * from "./Options/Classes/OptionsColor.js";
@@ -68,9 +68,11 @@ export * from "./Options/Classes/ResizeEvent.js";
 export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/ColorUtils.js";
+export * from "./Utils/OklchUtils.js";
+export * from "./Utils/LegacyColorManagerAdapter.js";
 export * from "./Utils/ErrorCodes.js";
 export * from "./Utils/ErrorUtils.js";
-export * from "./Utils/LogUtils.js";
+export type { ILogger } from "./Utils/LogUtils.js";
 export * from "./Utils/MathUtils.js";
 export * from "./Utils/OptionLoader.js";
 export * from "./Utils/ParticlesOptionsLoader.js";

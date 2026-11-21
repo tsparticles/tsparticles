@@ -72,7 +72,8 @@ const { loadArrowShape } = require("@tsparticles/shape-arrow");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 
 (async () => {

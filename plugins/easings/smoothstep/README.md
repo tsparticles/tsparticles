@@ -69,7 +69,8 @@ const { loadEasingSmoothstepPlugin } = require("@tsparticles/plugin-easing-smoot
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingSmoothstepPlugin } from "@tsparticles/plugin-easing-smoothstep";
 
 (async () => {

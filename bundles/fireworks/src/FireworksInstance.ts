@@ -28,6 +28,11 @@ export class FireworksInstance {
     deleteFireworksInstance(this.#id, this);
   }
 
+  /** @internal Checks whether another wrapper uses this container. */
+  hasSameContainer(instance: FireworksInstance): boolean {
+    return this.#container === instance.#container;
+  }
+
   /** Pauses the fireworks animation */
   pause(): void {
     this.#container.pause();

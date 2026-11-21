@@ -69,7 +69,8 @@ const { loadExportImagePlugin } = require("@tsparticles/plugin-export-image");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 
 (async () => {

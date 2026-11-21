@@ -9,8 +9,18 @@ import {
   identity,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
-import type { MoveParticle, MovePluginManager } from "./Types.js";
-import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
+import type {
+  MoveParticle,
+  MovePluginManager,
+  PathGeneratorInitializer,
+} from "./Types.js";
+import {
+  applyDistance,
+  getProximitySpeedFactor,
+  initSpin,
+  move,
+  spin,
+} from "./Utils.js";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
 const defaultSizeFactor = 1;
@@ -23,6 +33,7 @@ export class MovePluginInstance implements IContainerPlugin {
 
   /** The particles container */
   readonly #container;
+  #generation = 0;
   /** The plugin manager */
   readonly #pluginManager;
 
@@ -40,8 +51,7 @@ export class MovePluginInstance implements IContainerPlugin {
   }
 
   destroy(): void {
-    this.availablePathGenerators = new Map();
-    this.pathGenerators = new Map();
+    this.stop();
   }
 
   /**
@@ -58,8 +68,18 @@ export class MovePluginInstance implements IContainerPlugin {
       gravityOptions = moveOptions.gravity,
       pathOptions = moveOptions.path;
 
-    particle.moveDecay = decayOffset - getRangeValue(moveOptions.decay);
-    particle.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
+    particle.pathGenerator = undefined;
+    particle.spin = undefined;
+    particle.retina.spinAcceleration = undefined;
+
+    particle.moveDecay =
+      decayOffset -
+      getRangeValue(moveOptions.decay, this.#container.engine.getRandomFn());
+    particle.pathDelay =
+      getRangeValue(
+        pathOptions.delay.value,
+        this.#container.engine.getRandomFn(),
+      ) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
       let pathGenerator = this.pathGenerators.get(pathOptions.generator);
@@ -79,7 +99,10 @@ export class MovePluginInstance implements IContainerPlugin {
 
     particle.gravity = {
       enable: gravityOptions.enable,
-      acceleration: getRangeValue(gravityOptions.acceleration),
+      acceleration: getRangeValue(
+        gravityOptions.acceleration,
+        this.#container.engine.getRandomFn(),
+      ),
       inverse: gravityOptions.inverse,
     };
 
@@ -106,14 +129,29 @@ export class MovePluginInstance implements IContainerPlugin {
       baseSpeed = particle.retina.moveSpeed,
       moveDrift = particle.retina.moveDrift,
       maxSize = particle.size.max,
-      sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
+      sizeFactor = moveOptions.size
+        ? particle.getRadius() / maxSize
+        : defaultSizeFactor,
       moveSpeed = baseSpeed * sizeFactor * slowFactor * half,
       maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
-      spin(container, particle, moveSpeed * (delta.factor || identity), reduceFactor);
+      spin(
+        container,
+        particle,
+        moveSpeed * (delta.factor || identity),
+        reduceFactor,
+      );
     } else {
-      move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, reduceFactor, delta);
+      move(
+        particle,
+        moveOptions,
+        moveSpeed,
+        maxSpeed,
+        moveDrift,
+        reduceFactor,
+        delta,
+      );
     }
 
     applyDistance(particle);
@@ -127,6 +165,22 @@ export class MovePluginInstance implements IContainerPlugin {
     return this.#init();
   }
 
+  stop(): void {
+    this.#generation++;
+
+    const generators = new Set([
+      ...this.availablePathGenerators.values(),
+      ...this.pathGenerators.values(),
+    ]);
+
+    for (const generator of generators) {
+      generator.destroy?.();
+    }
+
+    this.availablePathGenerators = new Map();
+    this.pathGenerators = new Map();
+  }
+
   /** Updates all active path generators */
   update(): void {
     for (const pathGenerator of this.pathGenerators.values()) {
@@ -135,16 +189,27 @@ export class MovePluginInstance implements IContainerPlugin {
   }
 
   async #init(): Promise<void> {
-    const pluginManager = this.#pluginManager;
+    const generation = this.#generation,
+      pluginManager = this.#pluginManager;
 
     if (!pluginManager.initializers.pathGenerators) {
       return;
     }
 
-    this.availablePathGenerators = await getItemMapFromInitializer(
-      this.#container,
-      pluginManager.initializers.pathGenerators,
-    );
+    const availablePathGenerators = await getItemMapFromInitializer<
+      IMovePathGenerator,
+      PathGeneratorInitializer
+    >(this.#container, pluginManager.initializers.pathGenerators);
+
+    if (generation !== this.#generation || this.#container.destroyed) {
+      for (const generator of availablePathGenerators.values()) {
+        generator.destroy?.();
+      }
+
+      return;
+    }
+
+    this.availablePathGenerators = availablePathGenerators;
 
     this.pathGenerators = new Map();
 

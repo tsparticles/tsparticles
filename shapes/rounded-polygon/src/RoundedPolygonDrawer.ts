@@ -25,7 +25,7 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
   getSidesCount(particle: RoundedParticle): number {
     const roundedPolygon = particle.shapeData;
 
-    return Math.round(getRangeValue(roundedPolygon?.sides ?? defaultSides));
+    return Math.round(getRangeValue(roundedPolygon?.sides ?? defaultSides, particle.container.engine.getRandomFn()));
   }
 
   /**
@@ -36,6 +36,8 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
   particleInit(container: Container, particle: RoundedParticle): void {
     const shapeData = particle.shapeData;
 
-    particle.borderRadius = Math.round(getRangeValue(shapeData?.radius ?? defaultSides)) * container.retina.pixelRatio;
+    particle.borderRadius =
+      Math.round(getRangeValue(shapeData?.radius ?? defaultSides, container.engine.getRandomFn())) *
+      container.retina.pixelRatio;
   }
 }

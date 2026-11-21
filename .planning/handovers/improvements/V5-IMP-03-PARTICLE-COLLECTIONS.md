@@ -65,4 +65,5 @@ Run regressions for counts, groups, density, limits, reset, lifecycle, hook
 order, and emitter/absorber/collision consumers. Benchmark identical M3, M6,
 M7, and M9 scenarios. Attach operation counts, allocations, heap, timings,
 and bundle deltas. Document rejected alternatives with data. Handover 06
-closes P1–P4 and passes the required invariants to 07/08.
+closes P1–P4 in E6 using the Particle/reset invariants from 07 in E5 and
+passes integration evidence to 08.

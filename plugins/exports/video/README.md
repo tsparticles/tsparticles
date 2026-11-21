@@ -69,7 +69,8 @@ const { loadExportVideoPlugin } = require("@tsparticles/plugin-export-video");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
 
 (async () => {

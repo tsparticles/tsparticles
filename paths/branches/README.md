@@ -69,7 +69,8 @@ const { loadBranchesPath } = require("@tsparticles/path-branches");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBranchesPath } from "@tsparticles/path-branches";
 
 (async () => {

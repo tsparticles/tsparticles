@@ -69,7 +69,8 @@ const { loadManualParticlesPlugin } = require("@tsparticles/plugin-manual-partic
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadManualParticlesPlugin } from "@tsparticles/plugin-manual-particles";
 
 (async () => {

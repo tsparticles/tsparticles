@@ -72,7 +72,8 @@ const { loadRibbonShape } = require("@tsparticles/shape-ribbon");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRibbonShape } from "@tsparticles/shape-ribbon";
 
 (async () => {

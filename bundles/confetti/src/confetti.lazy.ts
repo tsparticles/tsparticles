@@ -1,190 +1,186 @@
-import type { ConfettiFirstParam, ConfettiFunc } from "./types.js";
-import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+import type { ConfettiApi, ConfettiFirstParam, ConfettiFunc } from "./types.js";
+
+import { type Container, type Engine, type RecursivePartial, isString } from "@tsparticles/engine/lazy";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 import { setConfetti } from "./utils.js";
 
 declare const __VERSION__: string;
 
-declare global {
-  /** The global confetti function */
-  var confetti: ConfettiFunc & {
-    /** Creates a confetti animation bound to a specific canvas */
-    create: (canvas?: HTMLCanvasElement | null, options?: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
-
-    /** Initializes the confetti plugins */
-    init: () => Promise<void>;
-
-    /** The confetti bundle version */
-    version: string;
-  };
-}
-
-let initPromise: Promise<void> | null = null;
-
-/**
- * Initializes all required plugins for the confetti bundle
- * @param engine - The engine to register plugins with
- * @returns the init plugins promise
- * @internal
+/** Creates an animation API bound to the supplied engine.
+ * @param tsParticles - the application-owned engine
+ * @returns the animation API
  */
-async function doInitPlugins(engine: Engine): Promise<void> {
-  engine.checkVersion(__VERSION__);
+export function createConfetti(tsParticles: Engine): ConfettiApi {
+  let initPromise: Promise<void> | null = null;
 
-  await engine.pluginManager.register(async e => {
-    const [
-      { loadBasic },
-      { loadEmittersPluginSimple },
-      { loadMotionPlugin },
+  /**
+   * Initializes all required plugins for the confetti bundle
+   * @param engine - The engine to register plugins with
+   * @returns the init plugins promise
+   * @internal
+   */
+  async function doInitPlugins(engine: Engine): Promise<void> {
+    engine.checkVersion(__VERSION__);
 
-      { loadCardSuitsShape },
-      { loadEmojiShape },
-      { loadHeartShape },
-      { loadImageShape },
-      { loadPolygonShape },
-      { loadSquareShape },
-      { loadStarShape },
+    await engine.pluginManager.register(async e => {
+      const [
+        { loadBasic },
+        { loadEmittersPluginSimple },
+        { loadMotionPlugin },
 
-      { loadRotateUpdater },
-      { loadLifeUpdater },
-      { loadRollUpdater },
-      { loadTiltUpdater },
-      { loadWobbleUpdater },
-    ] = await Promise.all([
-      import("@tsparticles/basic/lazy"),
-      import("@tsparticles/plugin-emitters/plugin/lazy"),
-      import("@tsparticles/plugin-motion/lazy"),
+        { loadCardSuitsShape },
+        { loadEmojiShape },
+        { loadHeartShape },
+        { loadImageShape },
+        { loadPolygonShape },
+        { loadSquareShape },
+        { loadStarShape },
 
-      import("@tsparticles/shape-cards/suits/lazy"),
-      import("@tsparticles/shape-emoji/lazy"),
-      import("@tsparticles/shape-heart/lazy"),
-      import("@tsparticles/shape-image/lazy"),
-      import("@tsparticles/shape-polygon/lazy"),
-      import("@tsparticles/shape-square/lazy"),
-      import("@tsparticles/shape-star/lazy"),
+        { loadRotateUpdater },
+        { loadLifeUpdater },
+        { loadRollUpdater },
+        { loadTiltUpdater },
+        { loadWobbleUpdater },
+      ] = await Promise.all([
+        import("@tsparticles/basic/lazy"),
+        import("@tsparticles/plugin-emitters/plugin/lazy"),
+        import("@tsparticles/plugin-motion/lazy"),
 
-      import("@tsparticles/updater-rotate/lazy"),
-      import("@tsparticles/updater-life/lazy"),
-      import("@tsparticles/updater-roll/lazy"),
-      import("@tsparticles/updater-tilt/lazy"),
-      import("@tsparticles/updater-wobble/lazy"),
-    ]);
+        import("@tsparticles/shape-cards/suits/lazy"),
+        import("@tsparticles/shape-emoji/lazy"),
+        import("@tsparticles/shape-heart/lazy"),
+        import("@tsparticles/shape-image/lazy"),
+        import("@tsparticles/shape-polygon/lazy"),
+        import("@tsparticles/shape-square/lazy"),
+        import("@tsparticles/shape-star/lazy"),
 
-    await Promise.all([
-      loadBasic(e),
+        import("@tsparticles/updater-rotate/lazy"),
+        import("@tsparticles/updater-life/lazy"),
+        import("@tsparticles/updater-roll/lazy"),
+        import("@tsparticles/updater-tilt/lazy"),
+        import("@tsparticles/updater-wobble/lazy"),
+      ]);
 
-      loadMotionPlugin(e),
-      loadEmittersPluginSimple(e),
+      await Promise.all([
+        loadBasic(e),
 
-      loadCardSuitsShape(e),
-      loadHeartShape(e),
-      loadImageShape(e),
-      loadPolygonShape(e),
-      loadSquareShape(e),
-      loadStarShape(e),
-      loadEmojiShape(e),
+        loadMotionPlugin(e),
+        loadEmittersPluginSimple(e),
 
-      loadRotateUpdater(e),
-      loadLifeUpdater(e),
-      loadRollUpdater(e),
-      loadTiltUpdater(e),
-      loadWobbleUpdater(e),
-    ]);
-  });
-}
+        loadCardSuitsShape(e),
+        loadHeartShape(e),
+        loadImageShape(e),
+        loadPolygonShape(e),
+        loadSquareShape(e),
+        loadStarShape(e),
+        loadEmojiShape(e),
 
-/**
- * This function prepares all the plugins needed by the confetti bundle
- * @param engine - The engine to load the shape in
- * @returns the init plugins promise
- * @internal
- */
-async function initPlugins(engine: Engine): Promise<void> {
-  if (initPromise) {
+        loadRotateUpdater(e),
+        loadLifeUpdater(e),
+        loadRollUpdater(e),
+        loadTiltUpdater(e),
+        loadWobbleUpdater(e),
+      ]);
+    });
+  }
+
+  /**
+   * This function prepares all the plugins needed by the confetti bundle
+   * @param engine - The engine to load the shape in
+   * @returns the init plugins promise
+   * @internal
+   */
+  async function initPlugins(engine: Engine): Promise<void> {
+    if (initPromise) {
+      return initPromise;
+    }
+
+    initPromise = doInitPlugins(engine).catch((error: unknown) => {
+      initPromise = null;
+      throw error;
+    });
+
     return initPromise;
   }
 
-  initPromise = doInitPlugins(engine);
-
-  return initPromise;
-}
-
-/**
- * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
- * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
- * @returns the container of the animation, or undefined if no canvas was found
- */
-export async function confetti(
-  idOrOptions: ConfettiFirstParam,
-  confettiOptions?: RecursivePartial<IConfettiOptions>,
-): Promise<Container | undefined> {
-  await initPlugins(tsParticles);
-
-  let options: RecursivePartial<IConfettiOptions>, id: string;
-
-  if (isString(idOrOptions)) {
-    id = idOrOptions;
-    options = confettiOptions ?? {};
-  } else {
-    id = "confetti";
-    options = idOrOptions;
-  }
-
-  return setConfetti(tsParticles, {
-    id,
-    options,
-  });
-}
-
-/**
- *
- * @param canvas - The canvas
- * @param options - The options to handle
- * @returns the confetti function to use for the given canvas animations
- */
-confetti.create = async (
-  canvas?: HTMLCanvasElement | null,
-  options: RecursivePartial<IConfettiOptions> = {},
-): Promise<ConfettiFunc> => {
-  await initPlugins(tsParticles);
-
-  const id = canvas?.getAttribute("id") ?? "confetti";
-
-  canvas?.setAttribute("id", id);
-
-  await setConfetti(tsParticles, {
-    id,
-    canvas: canvas ?? undefined,
-    options,
-  });
-
-  return async (
+  /**
+   * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
+   * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+   * @returns the container of the animation, or undefined if no canvas was found
+   */
+  async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>,
-  ): Promise<Container | undefined> => {
-    let subOptions: RecursivePartial<IConfettiOptions>, subId: string;
+  ): Promise<Container | undefined> {
+    await initPlugins(tsParticles);
+
+    let options: RecursivePartial<IConfettiOptions>, id: string;
 
     if (isString(idOrOptions)) {
-      subId = idOrOptions;
-      subOptions = confettiOptions ?? options;
+      id = idOrOptions;
+      options = confettiOptions ?? {};
     } else {
-      subId = id;
-      subOptions = idOrOptions;
+      id = "confetti";
+      options = idOrOptions;
     }
 
     return setConfetti(tsParticles, {
-      id: subId,
-      canvas: canvas ?? undefined,
-      options: subOptions,
+      id,
+      options,
     });
+  }
+
+  /**
+   *
+   * @param canvas - The canvas
+   * @param options - The options to handle
+   * @returns the confetti function to use for the given canvas animations
+   */
+  confetti.create = async (
+    canvas?: HTMLCanvasElement | null,
+    options: RecursivePartial<IConfettiOptions> = {},
+  ): Promise<ConfettiFunc> => {
+    await initPlugins(tsParticles);
+
+    const id = canvas?.getAttribute("id") ?? "confetti";
+
+    canvas?.setAttribute("id", id);
+
+    await setConfetti(tsParticles, {
+      id,
+      canvas: canvas ?? undefined,
+      options,
+    });
+
+    return async (
+      idOrOptions: ConfettiFirstParam,
+      confettiOptions?: RecursivePartial<IConfettiOptions>,
+    ): Promise<Container | undefined> => {
+      let subOptions: RecursivePartial<IConfettiOptions>, subId: string;
+
+      if (isString(idOrOptions)) {
+        subId = idOrOptions;
+        subOptions = confettiOptions ?? options;
+      } else {
+        subId = id;
+        subOptions = idOrOptions;
+      }
+
+      return setConfetti(tsParticles, {
+        id: subId,
+        canvas: canvas ?? undefined,
+        options: subOptions,
+      });
+    };
   };
-};
 
-/** Initializes the confetti plugins without creating an animation */
-confetti.init = async (): Promise<void> => {
-  await initPlugins(tsParticles);
-};
+  /** Initializes the confetti plugins without creating an animation */
+  confetti.init = async (): Promise<void> => {
+    await initPlugins(tsParticles);
+  };
 
-/** The confetti bundle version */
-confetti.version = __VERSION__;
+  /** The confetti bundle version */
+  confetti.version = __VERSION__;
 
-globalThis.confetti = confetti;
+  return confetti;
+}

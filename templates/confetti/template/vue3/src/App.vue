@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { engine } from "../particlesEngine";
+
 import { ref } from "vue";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;

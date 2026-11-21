@@ -38,7 +38,8 @@ pnpm add --save-dev @tsparticles/configs
 ### JavaScript
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine"; // not needed with CDN
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine(); // not needed with CDN
 import * as configs from "@tsparticles/configs"; // not needed with CDN
 
 (async () => {
@@ -49,7 +50,8 @@ import * as configs from "@tsparticles/configs"; // not needed with CDN
 ### TypeScript
 
 ```typescript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import * as configs from "@tsparticles/configs";
 
 (async () => {

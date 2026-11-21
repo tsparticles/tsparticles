@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-matrix
 ## 随时可用（手动启动/停止）
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadMatrixPreset } from "@tsparticles/preset-matrix";
 import type { Container } from "@tsparticles/engine";
 

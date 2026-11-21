@@ -1,26 +1,28 @@
 /* eslint-disable */
 import {
+  Absorber,
+  type AbsorberContainer,
+  type AbsorberInstance,
+  AbsorberSplit,
+  type AbsorbersInstancesManager,
+  getAbsorbersInstancesManager,
+  loadAbsorbersPlugin,
+} from "@tsparticles/plugin-absorbers";
+import {
   type IDelta,
   type IMouseData,
   type ISourceOptions,
   type RecursivePartial,
+  createEngine,
   doublePI,
   getDistance,
-  tsParticles,
 } from "@tsparticles/engine";
-import {
-  type AbsorberContainer,
-  type AbsorberInstance,
-  type AbsorbersInstancesManager,
-  Absorber,
-  AbsorberSplit,
-  getAbsorbersInstancesManager,
-  loadAbsorbersPlugin,
-} from "@tsparticles/plugin-absorbers";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+
+const tsParticles = createEngine();
 
 globalThis.window = TestWindow;
 

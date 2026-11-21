@@ -31,6 +31,8 @@ Examples:
 _Remote url_
 
 ```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
 
@@ -44,49 +46,7 @@ class App extends Component {
 
     this.particlesLoaded = this.particlesLoaded.bind(this);
 
-    initParticlesEngine(async engine => {
-      // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      await loadFull(engine);
-    }).then(() => {
-      this.setState({
-        particlesInitialized: true,
-      });
-    });
-  }
-
-  particlesLoaded(container) {
-    console.log(container);
-  }
-
-  render() {
-    if (!this.state.particlesInitialized) {
-      return null;
-    }
-
-    return <Particles id="tsparticles" url="http://foo.bar/particles.json" particlesLoaded={this.particlesLoaded} />;
-  }
-}
-```
-
-_Options object_
-
-```javascript
-import Particles, { initParticlesEngine } from "@tsparticles/preact";
-import { loadFull } from "tsparticles";
-
-class App extends Component {
-  state = {
-    particlesInitialized: false,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-
-    initParticlesEngine(async engine => {
+    initParticlesEngine(particlesEngine, async engine => {
       // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
@@ -109,6 +69,58 @@ class App extends Component {
 
     return (
       <Particles
+        engine={particlesEngine}
+        id="tsparticles"
+        url="http://foo.bar/particles.json"
+        particlesLoaded={this.particlesLoaded}
+      />
+    );
+  }
+}
+```
+
+_Options object_
+
+```javascript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
+import { loadFull } from "tsparticles";
+
+class App extends Component {
+  state = {
+    particlesInitialized: false,
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.particlesLoaded = this.particlesLoaded.bind(this);
+
+    initParticlesEngine(particlesEngine, async engine => {
+      // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+      // starting from v2 you can add only the features you need reducing the bundle size
+      await loadFull(engine);
+    }).then(() => {
+      this.setState({
+        particlesInitialized: true,
+      });
+    });
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
+  }
+
+  render() {
+    if (!this.state.particlesInitialized) {
+      return null;
+    }
+
+    return (
+      <Particles
+        engine={particlesEngine}
         id="tsparticles"
         particlesLoaded={this.particlesLoaded}
         options={{

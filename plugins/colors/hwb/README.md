@@ -69,7 +69,8 @@ const { loadHwbColorPlugin } = require("@tsparticles/plugin-hwb-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHwbColorPlugin } from "@tsparticles/plugin-hwb-color";
 
 (async () => {

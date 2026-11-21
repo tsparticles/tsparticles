@@ -1,4 +1,11 @@
-import { type IHsl, type Particle, degToRad, double, getStyleFromHsl, half } from "@tsparticles/engine";
+import {
+  type IOklcha,
+  type Particle,
+  degToRad,
+  double,
+  getStyleFromOklch,
+  half,
+} from "@tsparticles/engine";
 import type { OrbitContainer } from "./Types.js";
 
 const minWidth = 0;
@@ -20,7 +27,7 @@ export function drawEllipse(
   container: OrbitContainer,
   context: OffscreenCanvasRenderingContext2D,
   particle: Particle,
-  fillColorValue: IHsl | undefined,
+  fillColorValue: IOklcha | undefined,
   radius: number,
   opacity: number,
   width: number,
@@ -35,12 +42,13 @@ export function drawEllipse(
   const pos = particle.getPosition();
 
   if (fillColorValue) {
-    context.strokeStyle = getStyleFromHsl(
+    context.strokeStyle = getStyleFromOklch(
       fillColorValue,
       container.hdr,
       opacity,
       container.peakNits,
       container.hdrMode,
+      container.outputColorSpace,
     );
   }
 
@@ -49,6 +57,14 @@ export function drawEllipse(
   const rotationRadian = degToRad(rotation);
 
   context.beginPath();
-  context.ellipse(pos.x, pos.y, radius * half, radius * double, rotationRadian, start, end);
+  context.ellipse(
+    pos.x,
+    pos.y,
+    radius * half,
+    radius * double,
+    rotationRadian,
+    start,
+    end,
+  );
   context.stroke();
 }

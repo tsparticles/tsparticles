@@ -64,7 +64,7 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
       ((sourceOptions["speed"] as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
     this.options.step = (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
 
-    this.#simplex.seed(this.options.seed ?? getRandom());
+    this.#simplex.seed(this.options.seed ?? getRandom(this.#container.engine.getRandomFn()));
   }
 
   /** Resets the generator state */

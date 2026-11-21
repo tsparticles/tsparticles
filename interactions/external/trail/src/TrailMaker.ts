@@ -9,13 +9,12 @@ import {
   getRangeMax,
   getRangeMin,
   hMax,
+  identity,
   isInArray,
   itemFromSingleOrMultiple,
-  lMax,
   loadOptionProperty,
   millisecondsToSeconds,
-  rangeColorToHsl,
-  sMax,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import {
   ExternalInteractorBase,
@@ -31,7 +30,8 @@ import { Trail } from "./Options/Classes/Trail.js";
 
 const trailMode = "trail",
   defaultMin = 0,
-  defaultWeight = 0;
+  defaultWeight = 0,
+  trailChromaMax = 0.4;
 
 /** Trail mode interactor */
 export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
@@ -41,7 +41,10 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
   #lastPosition?: ICoordinates;
   readonly #pluginManager;
 
-  constructor(pluginManager: InteractivityPluginManager, container: TrailContainer) {
+  constructor(
+    pluginManager: InteractivityPluginManager,
+    container: TrailContainer,
+  ) {
     super(container);
     this.#pluginManager = pluginManager;
     this.#delay = 0;
@@ -69,7 +72,9 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       return;
     }
 
-    const optDelay = (trailOptions.delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
+    const optDelay =
+      (trailOptions.delay * millisecondsToSeconds) /
+      this.container.retina.reduceFactor;
 
     if (this.#delay < optDelay) {
       this.#delay += delta.value;
@@ -83,7 +88,8 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       canEmit = !(
         trailOptions.pauseOnStop &&
         (mousePos === this.#lastPosition ||
-          (mousePos?.x === this.#lastPosition?.x && mousePos?.y === this.#lastPosition?.y))
+          (mousePos?.x === this.#lastPosition?.x &&
+            mousePos?.y === this.#lastPosition?.y))
       );
 
     if (mousePos) {
@@ -115,7 +121,9 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             }
 
             const w = comp?.weights,
-              factor = norm.x * (w?.x ?? defaultWeight) + norm.y * (w?.y ?? defaultWeight),
+              factor =
+                norm.x * (w?.x ?? defaultWeight) +
+                norm.y * (w?.y ?? defaultWeight),
               rangeSource = comp?.value ?? originalValue,
               min = getRangeMin(rangeSource ?? defaultMin),
               max = getRangeMax(rangeSource ?? defaultMax),
@@ -124,27 +132,36 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             return Math.min(max, Math.max(min, result));
           },
           trailPaintOptions = trailOptions.particles?.paint
-            ? itemFromSingleOrMultiple(trailOptions.particles.paint)
+            ? itemFromSingleOrMultiple(
+                trailOptions.particles.paint,
+                undefined,
+                undefined,
+                this.container.engine.getRandomFn(),
+              )
             : undefined,
           fillData = trailPaintOptions?.fill,
-          // Safe conversion of the particle color option to HSL structure
-          // This handles strings, RGB, and existing HSL objects correctly
-          baseHsl = fillData
-            ? rangeColorToHsl(this.#pluginManager, AnimatableColor.create(undefined, fillData.color))
+          // Resolve the trail color once into the canonical OKLCH model.
+          baseOklch = fillData
+            ? rangeColorToOklch(
+                this.#pluginManager,
+                AnimatableColor.create(undefined, fillData.color),
+              )
             : undefined,
-          h = calculateValue(colorCoords.h, baseHsl?.h, hMax),
-          s = calculateValue(colorCoords.s, baseHsl?.s, sMax),
-          l = calculateValue(colorCoords.l, baseHsl?.l, lMax);
+          h = calculateValue(colorCoords.h, baseOklch?.h, hMax),
+          c = calculateValue(colorCoords.c, baseOklch?.c, trailChromaMax),
+          l = calculateValue(colorCoords.l, baseOklch?.l, identity);
 
-        if (h !== undefined || s !== undefined || l !== undefined) {
+        if (h !== undefined || c !== undefined || l !== undefined) {
           particleOptions = deepExtend({}, trailOptions.particles, {
             paint: {
               fill: {
                 color: {
                   value: {
-                    h: h ?? baseHsl?.h,
-                    s: s ?? baseHsl?.s,
-                    l: l ?? baseHsl?.l,
+                    oklch: {
+                      h: h ?? baseOklch?.h,
+                      c: c ?? baseOklch?.c,
+                      l: l ?? baseOklch?.l,
+                    },
                   },
                 },
               },
@@ -153,13 +170,20 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
       }
 
-      container.particles.push(trailOptions.quantity, mousePos, particleOptions);
+      container.particles.push(
+        trailOptions.quantity,
+        mousePos,
+        particleOptions,
+      );
     }
 
     this.#delay -= optDelay;
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -167,12 +191,20 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
     return (
       !!events &&
-      ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
-        (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode)))
+      ((mouse.clicking &&
+        mouse.inside &&
+        !!mouse.position &&
+        isInArray(trailMode, events.onClick.mode)) ||
+        (mouse.inside &&
+          !!mouse.position &&
+          isInArray(trailMode, events.onHover.mode)))
     );
   }
 
-  loadModeOptions(options: Modes & TrailMode, ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]): void {
+  loadModeOptions(
+    options: Modes & TrailMode,
+    ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
+  ): void {
     loadOptionProperty(options, "trail", Trail, ...sources);
   }
 

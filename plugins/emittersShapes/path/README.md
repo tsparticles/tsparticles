@@ -72,7 +72,8 @@ const { loadEmittersShapePathPlugin } = require("@tsparticles/plugin-emitters-sh
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapePathPlugin } from "@tsparticles/plugin-emitters-shape-path";
 

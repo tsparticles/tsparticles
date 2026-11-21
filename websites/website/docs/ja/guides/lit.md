@@ -20,10 +20,12 @@ The package is fully typed and includes Lit's reactive controller patterns for r
 Call `initParticlesEngine` before registering the `<lit-particles>` component or importing it in your application. This must happen exactly once.
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/lit";
 import { loadFull } from "tsparticles";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 ```
@@ -31,11 +33,13 @@ void initParticlesEngine(async (engine) => {
 For optimized bundle sizes, import only the features your project needs:
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/lit";
 import { loadBasic } from "@tsparticles/basic";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   await loadBasic(engine);
   await loadConfettiPreset(engine);
 });
@@ -221,6 +225,8 @@ class MyApp extends LitElement {
 A fully typed Lit element with `initParticlesEngine`, reactive options, and event handling:
 
 ```typescript
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { initParticlesEngine } from "@tsparticles/lit";
@@ -228,7 +234,7 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import "@tsparticles/lit";
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
   await loadFull(engine);
 });
 

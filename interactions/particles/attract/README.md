@@ -73,7 +73,8 @@ const { loadParticlesAttractInteraction } = require("@tsparticles/interaction-pa
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadParticlesAttractInteraction } from "@tsparticles/interaction-particles-attract";
 

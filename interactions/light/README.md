@@ -72,7 +72,8 @@ const { loadLightInteraction } = require("@tsparticles/interaction-light");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 

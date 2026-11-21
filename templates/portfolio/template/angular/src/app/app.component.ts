@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { NgParticlesService } from "@tsparticles/angular";
-import { loadSlim } from "@tsparticles/slim";
-import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
 import type { FormGroup } from "@angular/forms";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { NgParticlesService } from "@tsparticles/angular";
+import configs from "@tsparticles/configs";
+import { engine } from "../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 @Component({
   standalone: false,
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
       fullScreen: { enable: true, zIndex: -1 },
     };
 
-    void this.ngParticlesService.init(async (engine) => {
+    void this.ngParticlesService.init(engine, async engine => {
       await loadSlim(engine);
     });
   }

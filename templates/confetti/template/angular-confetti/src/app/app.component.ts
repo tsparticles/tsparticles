@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../particlesEngine";
+const confetti = createConfetti(engine);
 
 @Component({
   standalone: false,

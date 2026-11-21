@@ -1,9 +1,10 @@
-import configs from "./index.js";
+import configs, { loadConfigs } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
-  __tsParticlesInternals?: Record<string, unknown>;
+  tsParticles?: { loadConfigs?: typeof loadConfigs };
 };
 
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
+globalObject.tsParticles = { ...globalObject.tsParticles, loadConfigs };
 
+export { loadConfigs };
 export default configs;

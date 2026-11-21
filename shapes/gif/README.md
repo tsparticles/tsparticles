@@ -72,7 +72,8 @@ const { loadGifShape } = require("@tsparticles/shape-gif");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadGifShape } from "@tsparticles/shape-gif";
 
 (async () => {

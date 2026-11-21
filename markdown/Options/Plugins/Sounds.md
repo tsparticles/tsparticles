@@ -4,13 +4,14 @@ The `sounds` plugin configures audio playback tied to particle events. It expose
 
 Properties (summary)
 
-| Property   |            Type | Default | Description                                           |
-| ---------- | --------------: | ------: | ----------------------------------------------------- |
-| `autoPlay` |       `boolean` |  `true` | Whether to auto-play sounds on init.                  |
-| `enable`   |       `boolean` | `false` | Enable the sounds plugin.                             |
-| `events`   | `SoundsEvent[]` |    `[]` | Array of sound event definitions (see `SoundsEvent`). |
-| `icons`    |   `SoundsIcons` |    `{}` | Icon configuration for UI elements.                   |
-| `volume`   |  `SoundsVolume` |    `{}` | Global/default volume options.                        |
+| Property    |            Type | Default | Description                                                              |
+| ----------- | --------------: | ------: | ------------------------------------------------------------------------ |
+| `autoPlay`  |       `boolean` |  `true` | Whether to auto-play sounds on init.                                     |
+| `enable`    |       `boolean` | `false` | Enable the sounds plugin.                                                |
+| `events`    | `SoundsEvent[]` |    `[]` | Array of sound event definitions (see `SoundsEvent`).                    |
+| `icons`     |   `SoundsIcons` |    `{}` | Icon configuration for UI elements.                                      |
+| `maxVoices` |        `number` |    `32` | Maximum concurrent sound sources; older voices are stopped at the limit. |
+| `volume`    |  `SoundsVolume` |    `{}` | Global/default volume options.                                           |
 
 Notes
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { Particle } from "../../../../engine/src/Core/Particle.js";
-import { SpatialHashGrid } from "../../../../engine/src/Core/Utils/SpatialHashGrid.js";
+import type { Particle } from "../../../../engine/src/Core/Particles/Particle.js";
+import { SpatialHashGrid } from "../../../../engine/src/Core/Particles/SpatialHashGrid.js";
 
 const cellSize = 64,
   sparseRadius = 10_000,

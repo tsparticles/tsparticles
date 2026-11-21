@@ -2,10 +2,9 @@ import {
   DrawLayer,
   type IContainerPlugin,
   type PluginManager,
-  getLogger,
-  getStyleFromRgb,
+  getStyleFromOklch,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import type { BackgroundMaskContainer } from "./types.js";
@@ -17,11 +16,20 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
   #coverColorStyle?: string;
   #coverImage?: { image: HTMLImageElement; opacity: number };
   #defaultCompositeValue?: GlobalCompositeOperation;
-  #maskElement?: HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement | null;
+  #maskElement?:
+    | HTMLCanvasElement
+    | OffscreenCanvas
+    | HTMLVideoElement
+    | HTMLImageElement
+    | null;
+
   readonly #maskWarnings = new Set<string>();
   readonly #pluginManager;
 
-  constructor(pluginManager: PluginManager, container: BackgroundMaskContainer) {
+  constructor(
+    pluginManager: PluginManager,
+    container: BackgroundMaskContainer,
+  ) {
     this.#pluginManager = pluginManager;
     this.#container = container;
   }
@@ -54,15 +62,24 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     if (maskElement) {
       dynamicUsed = true;
 
-      canvas.render.draw(ctx => {
+      canvas.render.draw((ctx) => {
         const previousAlpha = ctx.globalAlpha;
 
         ctx.globalAlpha = cover.opacity;
 
         try {
-          ctx.drawImage(maskElement, originPoint.x, originPoint.y, canvas.size.width, canvas.size.height);
+          ctx.drawImage(
+            maskElement,
+            originPoint.x,
+            originPoint.y,
+            canvas.size.width,
+            canvas.size.height,
+          );
         } catch {
-          this.#maskWarnOnce("mask-element-draw-error", "Error drawing background mask cover element onto canvas");
+          this.#maskWarnOnce(
+            "mask-element-draw-error",
+            "Error drawing background mask cover element onto canvas",
+          );
         }
 
         ctx.globalAlpha = previousAlpha;
@@ -75,11 +92,14 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
       const drawFn = cover.draw;
 
-      canvas.render.draw(ctx => {
+      canvas.render.draw((ctx) => {
         try {
           drawFn(ctx, { value: 0, factor: 1 });
         } catch {
-          this.#maskWarnOnce("mask-draw-error", "Error in mask cover.draw callback");
+          this.#maskWarnOnce(
+            "mask-draw-error",
+            "Error in mask cover.draw callback",
+          );
         }
       });
     }
@@ -87,7 +107,10 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     /* fallback: static cover (legacy behavior, unchanged) */
     if (!dynamicUsed) {
       if (this.#coverImage) {
-        canvas.render.paintImage(this.#coverImage.image, this.#coverImage.opacity);
+        canvas.render.paintImage(
+          this.#coverImage.image,
+          this.#coverImage.opacity,
+        );
       } else {
         canvas.render.paintBase(this.#coverColorStyle);
       }
@@ -115,7 +138,9 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
     this.#defaultCompositeValue = previousComposite;
 
-    context.globalCompositeOperation = backgroundMask?.enable ? backgroundMask.composite : previousComposite;
+    context.globalCompositeOperation = backgroundMask?.enable
+      ? backgroundMask.composite
+      : previousComposite;
   }
 
   async init(): Promise<void> {
@@ -131,20 +156,16 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       color = cover?.color;
 
     if (color) {
-      const coverRgb = rangeColorToRgb(this.#pluginManager, color);
+      const coverOklch = rangeColorToOklch(this.#pluginManager, color);
 
-      if (coverRgb) {
-        const coverColor = {
-          ...coverRgb,
-          a: cover.opacity,
-        };
-
-        this.#coverColorStyle = getStyleFromRgb(
-          coverColor,
+      if (coverOklch) {
+        this.#coverColorStyle = getStyleFromOklch(
+          coverOklch,
           this.#container.hdr,
-          coverColor.a,
+          cover.opacity,
           this.#container.peakNits,
           this.#container.hdrMode,
+          this.#container.outputColorSpace,
         );
       }
     } else if (cover?.image) {
@@ -173,11 +194,16 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
   readonly #isSupportedMaskElement = (
     element: unknown,
-  ): element is HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement =>
-    (typeof HTMLCanvasElement !== "undefined" && element instanceof HTMLCanvasElement) ||
-    (typeof OffscreenCanvas !== "undefined" && element instanceof OffscreenCanvas) ||
-    (typeof HTMLVideoElement !== "undefined" && element instanceof HTMLVideoElement) ||
-    (typeof HTMLImageElement !== "undefined" && element instanceof HTMLImageElement);
+  ): element is
+    HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement =>
+    (typeof HTMLCanvasElement !== "undefined" &&
+      element instanceof HTMLCanvasElement) ||
+    (typeof OffscreenCanvas !== "undefined" &&
+      element instanceof OffscreenCanvas) ||
+    (typeof HTMLVideoElement !== "undefined" &&
+      element instanceof HTMLVideoElement) ||
+    (typeof HTMLImageElement !== "undefined" &&
+      element instanceof HTMLImageElement);
 
   readonly #maskWarnOnce = (key: string, message: string): void => {
     if (this.#maskWarnings.has(key)) {
@@ -185,7 +211,9 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     }
 
     this.#maskWarnings.add(key);
-    getLogger().warning(`[tsParticles BackgroundMask] ${message}`);
+    this.#container.engine
+      .getLogger()
+      .warning(`[tsParticles BackgroundMask] ${message}`);
   };
 
   readonly #resolveMaskElement = (): void => {

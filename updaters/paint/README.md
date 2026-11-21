@@ -69,7 +69,8 @@ const { loadPaintUpdater } = require("@tsparticles/updater-paint");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPaintUpdater } from "@tsparticles/updater-paint";
 
 (async () => {

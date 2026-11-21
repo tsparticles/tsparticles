@@ -69,7 +69,8 @@ const { loadEasingExpoPlugin } = require("@tsparticles/plugin-easing-expo");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingExpoPlugin } from "@tsparticles/plugin-easing-expo";
 
 (async () => {

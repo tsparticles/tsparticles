@@ -1,13 +1,13 @@
-import { ribbons } from "./index.js";
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
-  ribbons?: typeof ribbons;
-  tsParticles?: typeof tsParticles;
+  createRibbons?: typeof createRibbons;
+  tsParticles?: { createEngine: typeof createEngine };
 };
 
-globalObject.ribbons = ribbons;
-globalObject.tsParticles = tsParticles;
+globalObject.createRibbons = createRibbons;
+globalObject.tsParticles = { ...globalObject.tsParticles, createEngine };
 
 export * from "./index.js";
 export * from "@tsparticles/engine";

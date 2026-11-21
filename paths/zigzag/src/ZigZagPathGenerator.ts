@@ -79,9 +79,9 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     const options = this.options;
 
     particle.zigzag ??= {
-      counter: getRandom(),
-      waveHeight: getRangeValue(options.waveHeight),
-      waveLength: getRangeValue(options.waveLength),
+      counter: getRandom(this.#container.engine.getRandomFn()),
+      waveHeight: getRangeValue(options.waveHeight, this.#container.engine.getRandomFn()),
+      waveLength: getRangeValue(options.waveLength, this.#container.engine.getRandomFn()),
     };
 
     const angularFrequency = (angularFrequencyFactor / particle.zigzag.waveLength) * delta.factor;

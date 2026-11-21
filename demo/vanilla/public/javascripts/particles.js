@@ -1,3 +1,6 @@
+const engine = tsParticles.createEngine();
+const particles = tsParticles.createParticles(engine);
+
 particles({
   radius: 3,
   speed: 2,

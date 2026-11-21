@@ -81,7 +81,8 @@ After initialization, you can use particles.js-compatible APIs.
 ### ESM / TypeScript
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { initPjs } from "@tsparticles/pjs";
 
 await initPjs(tsParticles);

@@ -1,13 +1,22 @@
 /* eslint-disable */
-import { type IDelta, type ISourceOptions, double, getDistance, getRangeValue, tsParticles } from "@tsparticles/engine";
-import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-import { loadCircleShape } from "@tsparticles/shape-circle";
-import { loadSizeUpdater } from "@tsparticles/updater-size";
+import {
+  type IDelta,
+  type ISourceOptions,
+  createEngine,
+  double,
+  getDistance,
+  getRangeValue,
+} from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
+import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
+
+const tsParticles = createEngine();
 
 globalThis.window = TestWindow;
 

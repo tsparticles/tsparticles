@@ -1,3 +1,4 @@
+import { engine } from "../particlesEngine";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ParticlesProvider } from "@tsparticles/react";
@@ -9,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <ParticlesProvider init={registerParticles}>
+    <ParticlesProvider engine={engine} init={registerParticles}>
       <App />
     </ParticlesProvider>
   </React.StrictMode>,

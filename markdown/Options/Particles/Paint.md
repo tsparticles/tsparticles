@@ -24,6 +24,10 @@ overridden.
 ## `fill` details
 
 `paint.fill` controls particle fill color and related animation settings.
+Color animation uses independent OKLCH channels. Hue `h` is measured in
+degrees, chroma `c` in OKLab units, and lightness `l` on a 0–100 scale. HSL
+saturation animation (`s`) is unsupported because its values do not map directly
+to OKLCH chroma.
 
 ```json
 {
@@ -38,6 +42,23 @@ overridden.
       }
     }
   }
+}
+```
+
+An animated fill can configure each channel independently:
+
+```ts
+paint: {
+  fill: {
+    color: {
+      value: "oklch(65% 0.2 285)",
+      animation: {
+        h: { enable: true, speed: 12 },
+        c: { enable: true, speed: 0.04, min: 0.08 },
+        l: { enable: true, speed: 3, min: 45, max: 80 },
+      },
+    },
+  },
 }
 ```
 

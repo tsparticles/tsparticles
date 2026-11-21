@@ -72,7 +72,8 @@ const { loadPathShape } = require("@tsparticles/shape-path");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPathShape } from "@tsparticles/shape-path";
 
 (async () => {

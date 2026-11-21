@@ -69,7 +69,8 @@ const { loadHexColorPlugin } = require("@tsparticles/plugin-hex-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 
 (async () => {

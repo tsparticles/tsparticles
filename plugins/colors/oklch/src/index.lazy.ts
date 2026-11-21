@@ -12,6 +12,6 @@ export async function loadOklchColorPlugin(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { OklchColorManager } = await import("./OklchColorManager.js");
 
-    e.pluginManager.addColorManager("oklch", new OklchColorManager());
+    e.pluginManager.addColorManager("oklch", new OklchColorManager(e.getRandomFn()));
   });
 }

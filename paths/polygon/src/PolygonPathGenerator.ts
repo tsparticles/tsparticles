@@ -42,11 +42,17 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     const { sides, turnSteps } = this.options;
 
     p.hexStep ??= 0;
-    p.hexDirection ??= sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * sides) | 0;
+    p.hexDirection ??=
+      sides === 6
+        ? ((getRandom(this.#container.engine.getRandomFn()) * 3) | 0) * 2
+        : (getRandom(this.#container.engine.getRandomFn()) * sides) | 0;
     p.hexSpeed ??= p.velocity.length;
 
     if (p.hexStep % turnSteps === 0) {
-      p.hexDirection = getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
+      p.hexDirection =
+        getRandom(this.#container.engine.getRandomFn()) > 0.5
+          ? (p.hexDirection + 1) % sides
+          : (p.hexDirection + sides - 1) % sides;
     }
 
     p.velocity.x = 0;

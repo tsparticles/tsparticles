@@ -5,8 +5,8 @@ import {
   Vector,
   defaultTransform,
   double,
-  getStyleFromRgb,
-  rangeColorToRgb,
+  getStyleFromOklch,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type {
   SVGPathSeg,
@@ -15,7 +15,10 @@ import type {
   SVGPathSegLinetoVerticalAbs,
   SVGPathSegLinetoVerticalRel,
 } from "./pathseg.js";
-import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types.js";
+import type {
+  SvgAbsoluteCoordinatesTypes,
+  SvgRelativeCoordinatesTypes,
+} from "./types.js";
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 
@@ -41,8 +44,9 @@ export function drawPolygonMask(
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
-  const color = rangeColorToRgb(pluginManager, stroke.color);
+  const color = rangeColorToOklch(pluginManager, stroke.color);
 
   if (!color) {
     return;
@@ -63,7 +67,14 @@ export function drawPolygonMask(
   }
 
   context.closePath();
-  context.strokeStyle = getStyleFromRgb(color, hdr, undefined, peakNits, mode);
+  context.strokeStyle = getStyleFromOklch(
+    color,
+    hdr,
+    undefined,
+    peakNits,
+    mode,
+    outputColorSpace,
+  );
   context.lineWidth = stroke.width;
   context.stroke();
 }
@@ -87,6 +98,7 @@ export function drawPolygonMaskPath(
   hdr = false,
   peakNits?: number,
   mode?: HdrMode,
+  outputColorSpace: PredefinedColorSpace = "srgb",
 ): void {
   context.setTransform(
     defaultTransform.a,
@@ -97,13 +109,20 @@ export function drawPolygonMaskPath(
     position.y,
   );
 
-  const color = rangeColorToRgb(pluginManager, stroke.color);
+  const color = rangeColorToOklch(pluginManager, stroke.color);
 
   if (!color) {
     return;
   }
 
-  context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity, peakNits, mode);
+  context.strokeStyle = getStyleFromOklch(
+    color,
+    hdr,
+    stroke.opacity,
+    peakNits,
+    mode,
+    outputColorSpace,
+  );
   context.lineWidth = stroke.width;
   context.stroke(path);
   context.resetTransform();
@@ -115,7 +134,11 @@ export function drawPolygonMaskPath(
  * @param offset - The offset
  * @returns the coordinates of the points
  */
-export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
+export function parsePaths(
+  paths: ISvgPath[],
+  scale: number,
+  offset: ICoordinates,
+): ICoordinates[] {
   const res: ICoordinates[] = [],
     defaultCount = 0;
 
@@ -242,7 +265,11 @@ export function calcClosestPointOnSegment(
  * @param stop - The stop
  * @param velocity - The velocity
  */
-export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
+export function segmentBounce(
+  start: ICoordinates,
+  stop: ICoordinates,
+  velocity: Vector,
+): void {
   const dx = start.x - stop.x,
     dy = start.y - stop.y,
     wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;

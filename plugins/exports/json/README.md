@@ -69,7 +69,8 @@ const { loadExportJSONPlugin } = require("@tsparticles/plugin-export-json");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 
 (async () => {

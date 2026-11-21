@@ -31,7 +31,7 @@ export function addParticlesFromCanvasPixels(
 ): void {
   const { height, width } = data,
     numPixels = height * width,
-    indexArray = shuffle(range(numPixels)),
+    indexArray = shuffle(range(numPixels), container.engine.getRandomFn()),
     maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value),
     canvasSize = container.canvas.size;
 
@@ -100,9 +100,9 @@ export function addParticlesFromCanvasPixels(
  * @param array - The array
  * @returns the shuffled array
  */
-function shuffle<T>(array: T[]): T[] {
+function shuffle<T>(array: T[], random: () => number): T[] {
   for (let currentIndex = array.length - lengthOffset; currentIndex >= minIndex; currentIndex--) {
-    const randomIndex = Math.floor(getRandom() * currentIndex),
+    const randomIndex = Math.floor(getRandom(random) * currentIndex),
       currentItem = array[currentIndex],
       randomItem = array[randomIndex];
 

@@ -5,7 +5,7 @@ const getExternalObject = (name: string): unknown => {
     commonjs: name,
     commonjs2: name,
     amd: name,
-    root: "window",
+    root: name === "@tsparticles/engine" ? ["tsParticles"] : "window",
   };
 };
 
