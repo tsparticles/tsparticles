@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type CustomEventArgs, EventType, createEngine } from "@tsparticles/engine";
+import {
+  type CustomEventArgs,
+  EventType,
+  createEngine,
+} from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { EventDispatcher } from "../../../../engine/src/Utils/EventDispatcher.js";
 import { TestWindow } from "../Fixture/Window.js";

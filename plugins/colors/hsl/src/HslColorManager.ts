@@ -151,7 +151,9 @@ export class HslColorManager implements IColorManager {
     }
 
     const result = hslRegex.exec(input),
-      alpha = result?.[HslIndexes.a] ? parseAlpha(result[HslIndexes.a]) : defaultAlpha;
+      alpha = result?.[HslIndexes.a]
+        ? parseAlpha(result[HslIndexes.a])
+        : defaultAlpha;
 
     if (!result) {
       return;
@@ -191,7 +193,9 @@ export class HslColorManager implements IColorManager {
         l: Number.parseFloat(result[HslIndexes.l] ?? "0"),
         s: Number.parseFloat(result[HslIndexes.s] ?? "0"),
       },
-      alpha = result[HslIndexes.a] ? parseAlpha(result[HslIndexes.a]) : defaultAlpha;
+      alpha = result[HslIndexes.a]
+        ? parseAlpha(result[HslIndexes.a])
+        : defaultAlpha;
 
     if (
       ![hsl.h, hsl.l, hsl.s, alpha].every(Number.isFinite) ||

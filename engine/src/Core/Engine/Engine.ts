@@ -1,13 +1,23 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import { type ILogger, createLogger } from "../../Utils/LogUtils.js";
-import { canvasOwner, transferredCanvasKey } from "../Canvas/CanvasOwnership.js";
+import {
+  canvasOwner,
+  transferredCanvasKey,
+} from "../Canvas/CanvasOwnership.js";
 import {
   getCanvasFromContainer,
   getDataFromUrl,
   getDomContainer,
   itemFromSingleOrMultiple,
 } from "../../Utils/Utils.js";
-import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "../Utils/Constants.js";
+import {
+  loadMinIndex,
+  loadRandomFactor,
+  none,
+  one,
+  removeDeleteCount,
+  removeMinIndex,
+} from "../Utils/Constants.js";
 import type { Container } from "../Container/Container.js";
 import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../../Types/CustomEventListener.js";
@@ -64,8 +74,9 @@ export class Engine {
     cancelAnimationFrame(handle);
   };
 
-  #nextFrame: (callback: FrameRequestCallback) => number = (callback: FrameRequestCallback): number =>
-    requestAnimationFrame(callback);
+  #nextFrame: (callback: FrameRequestCallback) => number = (
+    callback: FrameRequestCallback,
+  ): number => requestAnimationFrame(callback);
 
   readonly #randomProvider = (): number => this.getRandom();
 
@@ -97,7 +108,9 @@ export class Engine {
   }
 
   #getElementId(element: HTMLElement): string {
-    return element.id.length ? element.id : this.#getAnonymousElementId(element);
+    return element.id.length
+      ? element.id
+      : this.#getAnonymousElementId(element);
   }
 
   /**
@@ -114,7 +127,7 @@ export class Engine {
     let handle = -1;
     const cancel = this.#cancelFrame;
 
-    handle = this.#nextFrame(timestamp => {
+    handle = this.#nextFrame((timestamp) => {
       this.#scheduledFrames.delete(handle);
       callback(timestamp);
     });
@@ -147,7 +160,13 @@ export class Engine {
       return;
     }
 
-    throw new Error(getErrorMessage(ErrorCodes.engineVersionMismatch, this.version, pluginVersion));
+    throw new Error(
+      getErrorMessage(
+        ErrorCodes.engineVersionMismatch,
+        this.version,
+        pluginVersion,
+      ),
+    );
   }
 
   /**
@@ -213,7 +232,10 @@ export class Engine {
   async load(params: ILoadParams): Promise<Container | undefined> {
     let domSourceElement: HTMLElement | undefined;
 
-    if (typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement) {
+    if (
+      typeof HTMLElement !== "undefined" &&
+      params.element instanceof HTMLElement
+    ) {
       domSourceElement = params.element;
     }
 
@@ -247,21 +269,33 @@ export class Engine {
       }
 
       const sourceCanvas: OwnedCanvas =
-          typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
+          typeof OffscreenCanvas !== "undefined" &&
+          params.element instanceof OffscreenCanvas
             ? params.element
             : getCanvasFromContainer(getDomContainer(id, domSourceElement)),
-        owner = sourceCanvas[canvasOwner] ?? sourceCanvas[transferredCanvasKey]?.[canvasOwner];
+        owner =
+          sourceCanvas[canvasOwner] ??
+          sourceCanvas[transferredCanvasKey]?.[canvasOwner];
 
-      if (owner && !owner.destroyed && (!this.items.includes(owner) || owner.id.description !== id)) {
+      if (
+        owner &&
+        !owner.destroyed &&
+        (!this.items.includes(owner) || owner.id.description !== id)
+      ) {
         throw new Error("This canvas is already owned by another engine.");
       }
 
       let ownedRenderCanvas: OwnedCanvas | undefined;
 
       /* elements */
-      const currentOptions = itemFromSingleOrMultiple(options, index, undefined, this.getRandomFn()),
+      const currentOptions = itemFromSingleOrMultiple(
+          options,
+          index,
+          undefined,
+          this.getRandomFn(),
+        ),
         { items } = this,
-        oldIndex = items.findIndex(v => v.id.description === id),
+        oldIndex = items.findIndex((v) => v.id.description === id),
         newItem = new Container({
           engine: this,
           dispatchCallback: (eventType, args): void => {
@@ -318,7 +352,10 @@ export class Engine {
         try {
           newItem.destroy(false);
         } catch (cleanupError: unknown) {
-          this.getLogger().warning("Error cleaning up a failed container load", cleanupError);
+          this.getLogger().warning(
+            "Error cleaning up a failed container load",
+            cleanupError,
+          );
         } finally {
           const failedIndex = items.indexOf(newItem);
 
@@ -353,7 +390,7 @@ export class Engine {
       return;
     }
 
-    await Promise.all(this.items.map(t => t.refresh()));
+    await Promise.all(this.items.map((t) => t.refresh()));
   }
 
   /**
@@ -368,7 +405,10 @@ export class Engine {
   /**
    * Replaces the frame scheduler for this engine only. Callback timestamps must use the same high-resolution time domain as requestAnimationFrame.
    */
-  setAnimationFunctions(nextFrame: (callback: FrameRequestCallback) => number, cancel: (handle: number) => void): void {
+  setAnimationFunctions(
+    nextFrame: (callback: FrameRequestCallback) => number,
+    cancel: (handle: number) => void,
+  ): void {
     this.#nextFrame = nextFrame;
     this.#cancelFrame = cancel;
   }

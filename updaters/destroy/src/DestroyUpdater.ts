@@ -9,7 +9,11 @@ import {
   loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
-import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
+import type {
+  DestroyParticle,
+  DestroyParticlesOptions,
+  IDestroyParticlesOptions,
+} from "./Types.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
 import { DestroyMode } from "./Enums/DestroyMode.js";
 import { split } from "./Utils.js";
@@ -60,22 +64,30 @@ export class DestroyUpdater implements IParticleUpdater {
 
     if (bottom) {
       destroyBounds.bottom =
-        (getRangeValue(bottom, this.#container.engine.getRandomFn()) * canvasSize.height) / percentDenominator;
+        (getRangeValue(bottom, this.#container.engine.getRandomFn()) *
+          canvasSize.height) /
+        percentDenominator;
     }
 
     if (left) {
       destroyBounds.left =
-        (getRangeValue(left, this.#container.engine.getRandomFn()) * canvasSize.width) / percentDenominator;
+        (getRangeValue(left, this.#container.engine.getRandomFn()) *
+          canvasSize.width) /
+        percentDenominator;
     }
 
     if (right) {
       destroyBounds.right =
-        (getRangeValue(right, this.#container.engine.getRandomFn()) * canvasSize.width) / percentDenominator;
+        (getRangeValue(right, this.#container.engine.getRandomFn()) *
+          canvasSize.width) /
+        percentDenominator;
     }
 
     if (top) {
       destroyBounds.top =
-        (getRangeValue(top, this.#container.engine.getRandomFn()) * canvasSize.height) / percentDenominator;
+        (getRangeValue(top, this.#container.engine.getRandomFn()) *
+          canvasSize.height) /
+        percentDenominator;
     }
   }
 
@@ -163,15 +175,19 @@ export class DestroyUpdater implements IParticleUpdater {
 
       explosionState.progress = Math.min(
         maxExplodeProgress,
-        explosionState.progress + (explosionState.speed * deltaFactor) / fpsFactor,
+        explosionState.progress +
+          (explosionState.speed * deltaFactor) / fpsFactor,
       );
 
       const progress = explosionState.progress;
 
       particle.size.value =
-        explosionState.initialSize + (explosionState.maxSize - explosionState.initialSize) * progress;
-      particle.fillOpacity = explosionState.initialFillOpacity * (maxExplodeProgress - progress);
-      particle.strokeOpacity = explosionState.initialStrokeOpacity * (maxExplodeProgress - progress);
+        explosionState.initialSize +
+        (explosionState.maxSize - explosionState.initialSize) * progress;
+      particle.fillOpacity =
+        explosionState.initialFillOpacity * (maxExplodeProgress - progress);
+      particle.strokeOpacity =
+        explosionState.initialStrokeOpacity * (maxExplodeProgress - progress);
 
       if (progress >= maxExplodeProgress) {
         particle.exploding = undefined;
@@ -181,7 +197,10 @@ export class DestroyUpdater implements IParticleUpdater {
       return;
     }
 
-    if (particle.unbreakableUntil !== undefined && performance.now() >= particle.unbreakableUntil) {
+    if (
+      particle.unbreakableUntil !== undefined &&
+      performance.now() >= particle.unbreakableUntil
+    ) {
       particle.unbreakable = false;
       particle.unbreakableUntil = undefined;
     }

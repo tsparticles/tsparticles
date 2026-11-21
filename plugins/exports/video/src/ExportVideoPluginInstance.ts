@@ -1,4 +1,9 @@
-import { type Container, type ExportResult, type IContainerPlugin, millisecondsToSeconds } from "@tsparticles/engine";
+import {
+  type Container,
+  type ExportResult,
+  type IContainerPlugin,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
 import type { IExportVideoData } from "./IExportVideoData.js";
 
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
@@ -24,24 +29,28 @@ const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
  * @returns the video supported mime types
  */
 function getVideoSupportedMimeTypes(): string[] {
-  if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") {
+  if (
+    typeof MediaRecorder === "undefined" ||
+    typeof MediaRecorder.isTypeSupported !== "function"
+  ) {
     return [];
   }
 
-  const isSupported = (type: string): boolean => MediaRecorder.isTypeSupported(type),
+  const isSupported = (type: string): boolean =>
+      MediaRecorder.isTypeSupported(type),
     supported: string[] = [];
 
-  videoTypes.forEach(type => {
+  videoTypes.forEach((type) => {
     const mimeType = `video/${type}`;
 
-    codecs.forEach(codec => {
+    codecs.forEach((codec) => {
       [
         `${mimeType};codecs=${codec}`,
         `${mimeType};codecs=${codec.toUpperCase()}`,
         // /!\ false positive /!\
         // `${mimeType};codecs:${codec}`,
         // `${mimeType};codecs:${codec.toUpperCase()}`
-      ].forEach(variation => {
+      ].forEach((variation) => {
         if (isSupported(variation)) {
           supported.push(variation);
         }
@@ -74,7 +83,10 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
     }
   }
 
-  async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {
+  async export(
+    type: string,
+    data: Record<string, unknown>,
+  ): Promise<ExportResult> {
     const res: ExportResult = {
       supported: false,
     };
@@ -102,18 +114,24 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
       mimeType = data.mimeType ?? this.#supportedTypes[0];
 
     if (!Number.isFinite(duration) || duration <= 0) {
-      this.#container.engine.getLogger().error("Video export duration must be a finite positive number of seconds");
+      this.#container.engine
+        .getLogger()
+        .error(
+          "Video export duration must be a finite positive number of seconds",
+        );
 
       return;
     }
 
     if (!mimeType) {
-      this.#container.engine.getLogger().error("No supported video MIME type is available");
+      this.#container.engine
+        .getLogger()
+        .error("No supported video MIME type is available");
 
       return;
     }
 
-    return new Promise<Blob | undefined>(resolve => {
+    return new Promise<Blob | undefined>((resolve) => {
       const chunks: Blob[] = [];
       let stream: MediaStream | undefined,
         recorder: MediaRecorder | undefined,
@@ -131,7 +149,9 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
         onError = (event: Event): void => {
           const error: unknown = (event as ErrorEvent).error ?? event;
 
-          this.#container.engine.getLogger().error("Video export failed", error);
+          this.#container.engine
+            .getLogger()
+            .error("Video export failed", error);
           finish();
         },
         cleanup = (): void => {
@@ -148,7 +168,9 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
             try {
               recorder.stop();
             } catch (error: unknown) {
-              this.#container.engine.getLogger().warning(`Error stopping video recorder: ${error as string}`);
+              this.#container.engine
+                .getLogger()
+                .warning(`Error stopping video recorder: ${error as string}`);
             }
           }
 
@@ -156,7 +178,11 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
             try {
               track.stop();
             } catch (error: unknown) {
-              this.#container.engine.getLogger().warning(`Error stopping video stream track: ${error as string}`);
+              this.#container.engine
+                .getLogger()
+                .warning(
+                  `Error stopping video stream track: ${error as string}`,
+                );
             }
           }
         },
@@ -174,7 +200,9 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
         };
 
       try {
-        stream = element.captureStream(data.fps ?? this.#container.actualOptions.fpsLimit);
+        stream = element.captureStream(
+          data.fps ?? this.#container.actualOptions.fpsLimit,
+        );
         recorder = new MediaRecorder(stream, { mimeType });
 
         recorder.addEventListener("dataavailable", onDataAvailable);
@@ -187,12 +215,16 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
           try {
             recorder?.stop();
           } catch (error: unknown) {
-            this.#container.engine.getLogger().error("Error stopping video recorder", error);
+            this.#container.engine
+              .getLogger()
+              .error("Error stopping video recorder", error);
             finish();
           }
         }, duration * millisecondsToSeconds);
       } catch (error: unknown) {
-        this.#container.engine.getLogger().error("Error starting video export", error);
+        this.#container.engine
+          .getLogger()
+          .error("Error starting video export", error);
         finish();
       }
     });

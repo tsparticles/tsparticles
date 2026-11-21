@@ -59,7 +59,8 @@ function setParticlesOptionsFillColor(
   opacity: number,
   enable: boolean,
 ): void {
-  const paint = (particlesOptions.paint ??= new Paint()) as RecursivePartial<IPaint>;
+  const paint = (particlesOptions.paint ??=
+    new Paint()) as RecursivePartial<IPaint>;
 
   paint.fill = {
     color: AnimatableColor.create(undefined, { value: color }),
@@ -81,7 +82,8 @@ function setParticlesOptionsStrokeColor(
   opacity: number,
   width: number,
 ): void {
-  const paint = (particlesOptions.paint ??= new Paint()) as RecursivePartial<IPaint>;
+  const paint = (particlesOptions.paint ??=
+    new Paint()) as RecursivePartial<IPaint>;
 
   paint.stroke = {
     color: AnimatableColor.create(undefined, { value: color }),
@@ -185,7 +187,10 @@ export class EmitterInstance {
     }
 
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+      ? (getRangeValue(
+          this.options.life.delay ?? defaultLifeDelay,
+          this.#container.engine.getRandomFn(),
+        ) *
           millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
@@ -197,17 +202,26 @@ export class EmitterInstance {
     this.#firstSpawn = !this.options.life.wait;
     this.#startParticlesAdded = false;
 
-    const particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
+    const particlesOptions = deepExtend(
+      {},
+      this.options.particles,
+    ) as RecursivePartial<IParticlesOptions>;
 
     particlesOptions.move ??= {};
     particlesOptions.move.direction ??= this.options.direction;
 
     if (this.options.spawn.fill?.color) {
-      this.spawnFillColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.fill.color);
+      this.spawnFillColor = rangeColorToOklch(
+        this.#pluginManager,
+        this.options.spawn.fill.color,
+      );
     }
 
     if (this.options.spawn.stroke?.color) {
-      this.spawnStrokeColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.stroke.color);
+      this.spawnStrokeColor = rangeColorToOklch(
+        this.#pluginManager,
+        this.options.spawn.stroke.color,
+      );
     }
 
     const spawnFill = this.options.spawn.fill,
@@ -218,15 +232,24 @@ export class EmitterInstance {
     this.spawnFillOpacity =
       spawnFill?.opacity === undefined
         ? defaultOpacity
-        : getRangeValue(spawnFill.opacity, this.#container.engine.getRandomFn());
+        : getRangeValue(
+            spawnFill.opacity,
+            this.#container.engine.getRandomFn(),
+          );
     this.spawnStrokeOpacity =
       spawnStroke?.opacity === undefined
         ? defaultOpacity
-        : getRangeValue(spawnStroke.opacity, this.#container.engine.getRandomFn());
+        : getRangeValue(
+            spawnStroke.opacity,
+            this.#container.engine.getRandomFn(),
+          );
     this.spawnStrokeWidth =
       spawnStroke?.width === undefined
         ? defaultStrokeWidth
-        : getRangeValue(spawnStroke.width, this.#container.engine.getRandomFn());
+        : getRangeValue(
+            spawnStroke.width,
+            this.#container.engine.getRandomFn(),
+          );
 
     this.#paused = !this.options.autoPlay;
     this.#particlesOptions = particlesOptions;
@@ -234,8 +257,12 @@ export class EmitterInstance {
     this.size =
       this.#size.mode === PixelMode.percent
         ? {
-            width: (this.#size.width / percentDenominator) * this.#container.canvas.size.width,
-            height: (this.#size.height / percentDenominator) * this.#container.canvas.size.height,
+            width:
+              (this.#size.width / percentDenominator) *
+              this.#container.canvas.size.width,
+            height:
+              (this.#size.height / percentDenominator) *
+              this.#container.canvas.size.height,
           }
         : { width: this.#size.width, height: this.#size.height };
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
@@ -262,10 +289,19 @@ export class EmitterInstance {
     }
 
     const shapeOptions = this.options.shape,
-      shapeGenerator = this.#pluginManager.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+      shapeGenerator =
+        this.#pluginManager.emitterShapeManager?.getShapeGenerator(
+          shapeOptions.type,
+        );
 
     if (shapeGenerator) {
-      this.#shape = shapeGenerator.generate(this.#container, this.position, this.size, this.fill, shapeOptions.options);
+      this.#shape = shapeGenerator.generate(
+        this.#container,
+        this.position,
+        this.size,
+        this.fill,
+        shapeOptions.options,
+      );
     }
 
     this.#container.dispatchEvent("emitterCreated", {
@@ -390,8 +426,11 @@ export class EmitterInstance {
     }
 
     if (!(
-      (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
-      (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
+      (this.#lifeCount > minLifeCount ||
+        this.#immortal ||
+        !this.options.life.count) &&
+      (this.#firstSpawn ||
+        this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
     )) {
       return;
     }
@@ -399,7 +438,10 @@ export class EmitterInstance {
     const container = this.#container;
 
     if (this.#emitDelay === undefined) {
-      const delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn());
+      const delay = getRangeValue(
+        this.options.rate.delay,
+        this.#container.engine.getRandomFn(),
+      );
 
       this.#emitDelay = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
@@ -421,7 +463,8 @@ export class EmitterInstance {
       const initialPosition = this.#initialPosition;
 
       this.position =
-        initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
+        initialPosition &&
+        isPointInside(initialPosition, container.canvas.size, Vector.origin)
           ? initialPosition
           : this.#calcPosition();
     }
@@ -430,8 +473,12 @@ export class EmitterInstance {
     this.size =
       this.#size.mode === PixelMode.percent
         ? {
-            width: (this.#size.width / percentDenominator) * container.canvas.size.width,
-            height: (this.#size.height / percentDenominator) * container.canvas.size.height,
+            width:
+              (this.#size.width / percentDenominator) *
+              container.canvas.size.width,
+            height:
+              (this.#size.height / percentDenominator) *
+              container.canvas.size.height,
           }
         : { width: this.#size.width, height: this.#size.height };
 
@@ -495,7 +542,10 @@ export class EmitterInstance {
           }
 
           this.#spawnDelay = container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+            ? (getRangeValue(
+                this.options.life.delay ?? defaultLifeDelay,
+                this.#container.engine.getRandomFn(),
+              ) *
                 millisecondsToSeconds) /
               container.retina.reduceFactor
             : Infinity;
@@ -604,7 +654,10 @@ export class EmitterInstance {
       return;
     }
 
-    const quantity = getRangeValue(this.options.rate.quantity, this.#container.engine.getRandomFn());
+    const quantity = getRangeValue(
+      this.options.rate.quantity,
+      this.#container.engine.getRandomFn(),
+    );
 
     this.#emitParticles(quantity);
   }
@@ -617,32 +670,46 @@ export class EmitterInstance {
         this.#container.engine.getRandomFn(),
       ) ?? {}) as RecursivePartial<IParticlesOptions>,
       fillOklchAnimation = this.options.spawn.fill?.color?.animation,
-      fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
+      fillEnabled =
+        this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
       fillOpacity =
         this.options.spawn.fill?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.fill.opacity, this.#container.engine.getRandomFn()),
+          : getRangeValue(
+              this.options.spawn.fill.opacity,
+              this.#container.engine.getRandomFn(),
+            ),
       strokeOklchAnimation = this.options.spawn.stroke?.color?.animation,
       strokeOpacity =
         this.options.spawn.stroke?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.stroke.opacity, this.#container.engine.getRandomFn()),
+          : getRangeValue(
+              this.options.spawn.stroke.opacity,
+              this.#container.engine.getRandomFn(),
+            ),
       strokeWidth =
         this.options.spawn.stroke?.width === undefined
           ? defaultStrokeWidth
-          : getRangeValue(this.options.spawn.stroke.width, this.#container.engine.getRandomFn()),
+          : getRangeValue(
+              this.options.spawn.stroke.width,
+              this.#container.engine.getRandomFn(),
+            ),
       reduceFactor = this.#container.retina.reduceFactor,
       needsFillColorAnimation = !!fillOklchAnimation,
       needsStrokeColorAnimation = !!strokeOklchAnimation,
       needsShapeData = !!this.#shape,
-      needsColorAnimation = needsFillColorAnimation || needsStrokeColorAnimation,
+      needsColorAnimation =
+        needsFillColorAnimation || needsStrokeColorAnimation,
       needsCopy = needsColorAnimation || needsShapeData,
       maxValues = needsColorAnimation ? { c: 0.4, h: hMax, l: identity } : null,
       shapeOptions = this.options.shape;
 
     for (let i = 0; i < quantity * reduceFactor; i++) {
       const particlesOptions = needsCopy
-        ? (deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>)
+        ? (deepExtend(
+            {},
+            singleParticlesOptions,
+          ) as RecursivePartial<IParticlesOptions>)
         : singleParticlesOptions;
 
       this.spawnFillOpacity = fillOpacity;
@@ -658,8 +725,16 @@ export class EmitterInstance {
             maxValues.h,
             colorFactor,
           );
-          this.spawnFillColor.c = this.#setColorAnimation(fillOklchAnimation.c, this.spawnFillColor.c, maxValues.c);
-          this.spawnFillColor.l = this.#setColorAnimation(fillOklchAnimation.l, this.spawnFillColor.l, maxValues.l);
+          this.spawnFillColor.c = this.#setColorAnimation(
+            fillOklchAnimation.c,
+            this.spawnFillColor.c,
+            maxValues.c,
+          );
+          this.spawnFillColor.l = this.#setColorAnimation(
+            fillOklchAnimation.l,
+            this.spawnFillColor.l,
+            maxValues.l,
+          );
         }
 
         setParticlesOptionsFillColor(
@@ -701,7 +776,9 @@ export class EmitterInstance {
       let position: ICoordinates | null = this.position;
 
       if (this.#shape) {
-        const shapePosData = this.#shape.randomPosition(this.#container.engine.getRandomFn());
+        const shapePosData = this.#shape.randomPosition(
+          this.#container.engine.getRandomFn(),
+        );
 
         if (shapePosData) {
           position = shapePosData.position;
@@ -712,7 +789,9 @@ export class EmitterInstance {
             setParticlesOptionsFillColor(
               particlesOptions,
               shapePosData.color,
-              replaceData.opacity ? (shapePosData.opacity ?? defaultOpacity) : defaultOpacity,
+              replaceData.opacity
+                ? (shapePosData.opacity ?? defaultOpacity)
+                : defaultOpacity,
               true,
             );
           }
@@ -734,12 +813,19 @@ export class EmitterInstance {
 
     const duration =
         this.options.life.duration !== undefined
-          ? getRangeValue(this.options.life.duration, this.#container.engine.getRandomFn())
+          ? getRangeValue(
+              this.options.life.duration,
+              this.#container.engine.getRandomFn(),
+            )
           : undefined,
       minDuration = 0,
       minLifeCount = 0;
 
-    if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
+    if (
+      (this.#lifeCount > minLifeCount || this.#immortal) &&
+      duration !== undefined &&
+      duration > minDuration
+    ) {
       this.#duration = duration * millisecondsToSeconds;
     }
   }
@@ -756,13 +842,27 @@ export class EmitterInstance {
       return initValue;
     }
 
-    const colorOffset = randomInRangeValue(animation.offset, this.#container.engine.getRandomFn()),
-      delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn()),
+    const colorOffset = randomInRangeValue(
+        animation.offset,
+        this.#container.engine.getRandomFn(),
+      ),
+      delay = getRangeValue(
+        this.options.rate.delay,
+        this.#container.engine.getRandomFn(),
+      ),
       emitFactor = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
         : Infinity,
-      colorSpeed = getRangeValue(animation.speed, this.#container.engine.getRandomFn());
+      colorSpeed = getRangeValue(
+        animation.speed,
+        this.#container.engine.getRandomFn(),
+      );
 
-    return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
+    return (
+      (initValue +
+        (colorSpeed * container.fpsLimit) / emitFactor +
+        colorOffset * factor) %
+      maxValue
+    );
   }
 }

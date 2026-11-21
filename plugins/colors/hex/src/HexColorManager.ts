@@ -95,14 +95,19 @@ export class HexColorManager implements IColorManager {
       return;
     }
 
-    const hexFixed = hexColor.replace(shorthandHexRegex, (_, r: string, g: string, b: string, a?: string) => {
-        return r + r + g + g + b + b + (a === undefined ? "" : a + a);
-      }),
+    const hexFixed = hexColor.replace(
+        shorthandHexRegex,
+        (_, r: string, g: string, b: string, a?: string) => {
+          return r + r + g + g + b + b + (a === undefined ? "" : a + a);
+        },
+      ),
       result = hexRegex.exec(hexFixed);
 
     return result
       ? {
-          a: result[RgbIndexes.a] ? Number.parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor : defaultAlpha,
+          a: result[RgbIndexes.a]
+            ? Number.parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor
+            : defaultAlpha,
           b: Number.parseInt(result[RgbIndexes.b] ?? "0", hexRadix),
           g: Number.parseInt(result[RgbIndexes.g] ?? "0", hexRadix),
           r: Number.parseInt(result[RgbIndexes.r] ?? "0", hexRadix),

@@ -28,10 +28,21 @@ describe("HexColorManager", () => {
   });
 
   it("parses shorthand and alpha hex forms and rejects invalid lengths or digits", () => {
-    expect(manager.parseString("#f008")).toEqual({ a: 0x88 / 0xff, b: 0, g: 0, r: 255 });
+    expect(manager.parseString("#f008")).toEqual({
+      a: 0x88 / 0xff,
+      b: 0,
+      g: 0,
+      r: 255,
+    });
     expect(manager.parseString("#ff000080")?.a).toBe(0x80 / 0xff);
 
-    for (const input of ["#12", "#12345", "#1234567", "#gggggg", "#fff trailing"]) {
+    for (const input of [
+      "#12",
+      "#12345",
+      "#1234567",
+      "#gggggg",
+      "#fff trailing",
+    ]) {
       expect(manager.parseString(input), input).toBeUndefined();
       expect(manager.parseStringOklch(input), input).toBeUndefined();
     }

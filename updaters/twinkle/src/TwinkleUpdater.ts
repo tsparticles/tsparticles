@@ -11,7 +11,11 @@ import {
   loadOptionProperty,
   rangeColorToOklch,
 } from "@tsparticles/engine";
-import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
+import type {
+  ITwinkleParticlesOptions,
+  TwinkeParticle,
+  TwinkleParticlesOptions,
+} from "./Types.js";
 import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 /** Twinkle updater plugin */
@@ -54,15 +58,25 @@ export class TwinkleUpdater implements IParticleUpdater {
     }
 
     const twinkle = twinkleOptions.particles,
-      twinkling = twinkle.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency,
+      twinkling =
+        twinkle.enable &&
+        getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency,
       zIndexOptions = particle.options.zIndex,
       zOffset = 1,
-      zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
+      zOpacityFactor =
+        (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
       twinklingOpacity = twinkling
-        ? getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn()) * zOpacityFactor
+        ? getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn()) *
+          zOpacityFactor
         : opacity,
-      twinkleFillRgb = rangeColorToOklch(this.#pluginManager, twinkle.fillColor),
-      twinkleStrokeRgb = rangeColorToOklch(this.#pluginManager, twinkle.strokeColor),
+      twinkleFillRgb = rangeColorToOklch(
+        this.#pluginManager,
+        twinkle.fillColor,
+      ),
+      twinkleStrokeRgb = rangeColorToOklch(
+        this.#pluginManager,
+        twinkle.strokeColor,
+      ),
       getTwinkleFillStyle = (): string | undefined => {
         if (!twinkleFillRgb) {
           return undefined;

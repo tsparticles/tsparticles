@@ -231,7 +231,11 @@ export function hsvToRgbFloat(hsv: IHsv): IRgb {
 export function hsvToRgb(hsv: IHsv): IRgb {
   const color = hsvToRgbFloat(hsv);
 
-  return { r: Math.floor(color.r), g: Math.floor(color.g), b: Math.floor(color.b) };
+  return {
+    r: Math.floor(color.r),
+    g: Math.floor(color.g),
+    b: Math.floor(color.b),
+  };
 }
 
 /**

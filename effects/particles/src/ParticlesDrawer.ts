@@ -88,10 +88,14 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
 
     particle.particlesNextSpawn =
-      currentTime + (particle.particlesSpawnRate ?? defaultSpawnRate * millisecondsToSeconds);
+      currentTime +
+      (particle.particlesSpawnRate ?? defaultSpawnRate * millisecondsToSeconds);
 
     const quantity = particle.particlesSpawnQuantity ?? defaultSpawnQuantity,
-      pOptions = deepExtend({}, particle.particlesData?.spawn?.particles) as RecursivePartial<IParticlesOptions>,
+      pOptions = deepExtend(
+        {},
+        particle.particlesData?.spawn?.particles,
+      ) as RecursivePartial<IParticlesOptions>,
       pos = { ...particle.getPosition() };
 
     for (let i = 0; i < quantity; i++) {
@@ -123,8 +127,11 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
       effectData?.spawn?.rate?.quantity ?? defaultSpawnQuantity,
       this.#container.engine.getRandomFn(),
     );
-    particle.particlesSpawnRate = (spawnRate > minSpawnRate ? spawnRate : defaultSpawnRate) * millisecondsToSeconds;
-    particle.particlesNextSpawn = performance.now() + particle.particlesSpawnRate;
+    particle.particlesSpawnRate =
+      (spawnRate > minSpawnRate ? spawnRate : defaultSpawnRate) *
+      millisecondsToSeconds;
+    particle.particlesNextSpawn =
+      performance.now() + particle.particlesSpawnRate;
     particle.particlesData = effectData;
   }
 }

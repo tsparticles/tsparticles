@@ -17,7 +17,9 @@ describe("review regressions", () => {
     vi.stubGlobal("document", undefined);
 
     try {
-      const listeners = new EventListeners({ actualOptions: { resize: { enable: false } } } as never);
+      const listeners = new EventListeners({
+        actualOptions: { resize: { enable: false } },
+      } as never);
 
       listeners.addListeners();
       listeners.removeListeners();
@@ -39,20 +41,24 @@ describe("review regressions", () => {
     try {
       const refresh = vi.fn(),
         plugin = new MotionPluginInstance({
-          actualOptions: { motion: { disable: true, reduce: { value: true, factor: 2 } } },
+          actualOptions: {
+            motion: { disable: true, reduce: { value: true, factor: 2 } },
+          },
           destroyed: false,
           retina: { reduceFactor: 1 },
           refresh,
         } as never);
 
       await plugin.init();
-      const staleCallback = addEventListener.mock.calls[0]?.[1] as EventListener;
+      const staleCallback = addEventListener.mock
+        .calls[0]?.[1] as EventListener;
 
       plugin.stop();
       staleCallback(new Event("change"));
 
       await plugin.init();
-      const currentCallback = addEventListener.mock.calls[1]?.[1] as EventListener;
+      const currentCallback = addEventListener.mock
+        .calls[1]?.[1] as EventListener;
 
       currentCallback(new Event("change"));
       await Promise.resolve();
@@ -72,8 +78,10 @@ describe("review regressions", () => {
   });
 
   it("removes and replaces the noise-field resize listener across init and destroy", () => {
-    const addEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
-      removeEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
+    const addEventListener =
+        vi.fn<(type: string, listener: EventListener) => void>(),
+      removeEventListener =
+        vi.fn<(type: string, listener: EventListener) => void>(),
       noiseGenerator = { noise4d: () => 0, seed: vi.fn() };
 
     vi.stubGlobal("addEventListener", addEventListener);
@@ -138,7 +146,13 @@ describe("review regressions", () => {
   it("does not install Poisson data when async initialization is stopped", async () => {
     const plugin = new PoissonDiscPluginInstance({
         actualOptions: {
-          poisson: { dimensions: 2, enable: true, radius: 10, retries: 5, steps: 0 },
+          poisson: {
+            dimensions: 2,
+            enable: true,
+            radius: 10,
+            retries: 5,
+            steps: 0,
+          },
           particles: { number: { value: 10 } },
         },
         canvas: { size: { width: 100, height: 100 } },
@@ -166,8 +180,14 @@ describe("review regressions", () => {
         destroyContainer: vi.fn(),
         initContainer: vi.fn(),
       },
-      emitters = new EmittersPluginInstance(emitterManager as never, container as never),
-      absorbers = new AbsorbersPluginInstance(container as never, absorberManager as never);
+      emitters = new EmittersPluginInstance(
+        emitterManager as never,
+        container as never,
+      ),
+      absorbers = new AbsorbersPluginInstance(
+        container as never,
+        absorberManager as never,
+      );
 
     emitters.stop();
     emitters.destroy();
@@ -228,7 +248,10 @@ describe("review regressions", () => {
         initContainer: () => undefined,
         getArray: () => [orbitingAbsorber, attractingAbsorber],
       },
-      plugin = new AbsorbersPluginInstance(container as never, instancesManager as never),
+      plugin = new AbsorbersPluginInstance(
+        container as never,
+        instancesManager as never,
+      ),
       particle = {
         position: Vector.create(testOrbitRadius, 0),
         velocity: Vector.create(-1, 0),

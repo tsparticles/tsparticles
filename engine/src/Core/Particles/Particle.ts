@@ -1,6 +1,13 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
-import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "../Interfaces/IParticleCanvasBounds.js";
+import type {
+  ICenterCoordinates,
+  ICoordinates,
+  ICoordinates3d,
+} from "../Interfaces/ICoordinates.js";
+import type {
+  IParticleCanvasBoundsData,
+  IParticleCanvasBoundsResult,
+} from "../Interfaces/IParticleCanvasBounds.js";
 import { Vector, Vector3d } from "./Vectors.js";
 import { alterOklch, getOklchFromAnimation } from "../../Utils/ColorUtils.js";
 import {
@@ -14,7 +21,12 @@ import {
   randomInRangeValue,
   setRangeValue,
 } from "../../Utils/MathUtils.js";
-import { deepExtend, getPosition, isInArray, itemFromSingleOrMultiple } from "../../Utils/Utils.js";
+import {
+  deepExtend,
+  getPosition,
+  isInArray,
+  itemFromSingleOrMultiple,
+} from "../../Utils/Utils.js";
 import {
   defaultAngle,
   defaultOpacity,
@@ -171,7 +183,11 @@ function normalizeAngle(angle: number, modulus: number): number {
  * @param id - The id
  * @param group - The group
  */
-function initParticleState(particle: Particle, id: number, group?: string): void {
+function initParticleState(
+  particle: Particle,
+  id: number,
+  group?: string,
+): void {
   particle.id = id;
   particle.group = group;
   particle.randomIndexData = undefined;
@@ -217,12 +233,26 @@ function resolveParticleOptions(
   overrideOptions?: RecursivePartial<IParticlesOptions>,
 ): ParticlesOptions {
   const mainOptions = container.actualOptions,
-    particlesOptions = loadParticlesOptions(pluginManager, container, mainOptions.particles),
+    particlesOptions = loadParticlesOptions(
+      pluginManager,
+      container,
+      mainOptions.particles,
+    ),
     reduceDuplicates = particlesOptions.reduceDuplicates,
     random = container.engine.getRandomFn();
 
-  particle.effect = itemFromSingleOrMultiple(particlesOptions.effect.type, particle.id, reduceDuplicates, random);
-  particle.shape = itemFromSingleOrMultiple(particlesOptions.shape.type, particle.id, reduceDuplicates, random);
+  particle.effect = itemFromSingleOrMultiple(
+    particlesOptions.effect.type,
+    particle.id,
+    reduceDuplicates,
+    random,
+  );
+  particle.shape = itemFromSingleOrMultiple(
+    particlesOptions.shape.type,
+    particle.id,
+    reduceDuplicates,
+    random,
+  );
 
   const effectOptions = particlesOptions.effect,
     shapeOptions = particlesOptions.shape;
@@ -232,7 +262,12 @@ function resolveParticleOptions(
       const overrideEffectType = overrideOptions.effect.type;
 
       if (overrideEffectType && overrideEffectType !== particle.effect) {
-        const effect = itemFromSingleOrMultiple(overrideEffectType, particle.id, reduceDuplicates, random);
+        const effect = itemFromSingleOrMultiple(
+          overrideEffectType,
+          particle.id,
+          reduceDuplicates,
+          random,
+        );
 
         if (effect) {
           particle.effect = effect;
@@ -246,7 +281,12 @@ function resolveParticleOptions(
       const overrideShapeType = overrideOptions.shape.type;
 
       if (overrideShapeType && overrideShapeType !== particle.shape) {
-        const shape = itemFromSingleOrMultiple(overrideShapeType, particle.id, reduceDuplicates, random);
+        const shape = itemFromSingleOrMultiple(
+          overrideShapeType,
+          particle.id,
+          reduceDuplicates,
+          random,
+        );
 
         if (shape) {
           particle.shape = shape;
@@ -260,20 +300,42 @@ function resolveParticleOptions(
   if (particle.effect === randomColorValue) {
     const availableEffects = [...container.effectDrawers.keys()];
 
-    particle.effect = availableEffects[Math.floor(getRandom(container.engine.getRandomFn()) * availableEffects.length)];
+    particle.effect =
+      availableEffects[
+        Math.floor(
+          getRandom(container.engine.getRandomFn()) * availableEffects.length,
+        )
+      ];
   }
 
   if (particle.shape === randomColorValue) {
     const availableShapes = [...container.shapeDrawers.keys()];
 
-    particle.shape = availableShapes[Math.floor(getRandom(container.engine.getRandomFn()) * availableShapes.length)];
+    particle.shape =
+      availableShapes[
+        Math.floor(
+          getRandom(container.engine.getRandomFn()) * availableShapes.length,
+        )
+      ];
   }
 
   particle.effectData = particle.effect
-    ? loadEffectData(particle.effect, effectOptions, particle.id, reduceDuplicates, random)
+    ? loadEffectData(
+        particle.effect,
+        effectOptions,
+        particle.id,
+        reduceDuplicates,
+        random,
+      )
     : undefined;
   particle.shapeData = particle.shape
-    ? loadShapeData(particle.shape, shapeOptions, particle.id, reduceDuplicates, random)
+    ? loadShapeData(
+        particle.shape,
+        shapeOptions,
+        particle.id,
+        reduceDuplicates,
+        random,
+      )
     : undefined;
 
   particlesOptions.load(overrideOptions);
@@ -301,7 +363,8 @@ function resolveParticleOptions(
  * @param container - The container to handle
  */
 function initParticleDrawers(particle: Particle, container: Container): void {
-  let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
+  let effectDrawer: IEffectDrawer | undefined,
+    shapeDrawer: IShapeDrawer | undefined;
 
   if (particle.effect) {
     effectDrawer = container.effectDrawers.get(particle.effect);
@@ -331,7 +394,10 @@ function initParticleDrawers(particle: Particle, container: Container): void {
  * @param updaters - The updaters
  * @param particle - The particle to process
  */
-function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): void {
+function runUpdaterPreInit(
+  updaters: IParticleUpdater[],
+  particle: Particle,
+): void {
   for (const updater of updaters) {
     updater.preInit?.(particle);
   }
@@ -342,7 +408,10 @@ function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): vo
  * @param updaters - The updaters
  * @param particle - The particle to process
  */
-function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void {
+function runUpdaterInit(
+  updaters: IParticleUpdater[],
+  particle: Particle,
+): void {
   for (const updater of updaters) {
     updater.init(particle);
   }
@@ -354,8 +423,12 @@ function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void 
  * @param particle - The particle to process
  */
 function runDrawerInit(container: Container, particle: Particle): void {
-  const shapeDrawer = particle.shape ? container.shapeDrawers.get(particle.shape) : undefined,
-    effectDrawer = particle.effect ? container.effectDrawers.get(particle.effect) : undefined;
+  const shapeDrawer = particle.shape
+      ? container.shapeDrawers.get(particle.shape)
+      : undefined,
+    effectDrawer = particle.effect
+      ? container.effectDrawers.get(particle.effect)
+      : undefined;
 
   effectDrawer?.particleInit?.(container, particle);
   shapeDrawer?.particleInit?.(container, particle);
@@ -366,7 +439,10 @@ function runDrawerInit(container: Container, particle: Particle): void {
  * @param container - The container to handle
  * @param particle - The particle to process
  */
-function runParticleCreatedPlugins(container: Container, particle: Particle): void {
+function runParticleCreatedPlugins(
+  container: Container,
+  particle: Particle,
+): void {
   for (const plugin of container.particleCreatedPlugins) {
     plugin.particleCreated?.(particle);
   }
@@ -629,8 +705,12 @@ export class Particle {
     this.clearModifiers();
 
     const container = this.container,
-      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
-      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;
+      shapeDrawer = this.shape
+        ? container.shapeDrawers.get(this.shape)
+        : undefined,
+      effectDrawer = this.effect
+        ? container.effectDrawers.get(this.effect)
+        : undefined;
 
     let destroyError: unknown,
       hasDestroyError = false;
@@ -706,7 +786,9 @@ export class Particle {
    * @returns the angle in radiants
    */
   getAngle(): number {
-    return this.rotation + (this.pathRotation ? this.velocity.angle : defaultAngle);
+    return (
+      this.rotation + (this.pathRotation ? this.velocity.angle : defaultAngle)
+    );
   }
 
   /**
@@ -714,7 +796,12 @@ export class Particle {
    * @returns the fill color object
    */
   getFillColor(): IOklcha | undefined {
-    return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.fillColor), m => m.fillColor));
+    return this.#getRollColor(
+      this.#applyModifiers(
+        getOklchFromAnimation(this.fillColor),
+        (m) => m.fillColor,
+      ),
+    );
   }
 
   /**
@@ -731,7 +818,7 @@ export class Particle {
    * @returns the modifier or undefined
    */
   getModifier(id: string): IParticleModifier | undefined {
-    return this.#modifiers.find(m => m.id === id);
+    return this.#modifiers.find((m) => m.id === id);
   }
 
   /**
@@ -742,13 +829,20 @@ export class Particle {
     const zIndexOptions = this.options.zIndex,
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-      baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity, this.container.engine.getRandomFn()),
-      modifierOpacity = this.#applyModifiers<number | undefined>(undefined, m => m.opacity),
+      baseOpacity = getRangeValue(
+        this.opacity?.value ?? defaultOpacity,
+        this.container.engine.getRandomFn(),
+      ),
+      modifierOpacity = this.#applyModifiers<number | undefined>(
+        undefined,
+        (m) => m.opacity,
+      ),
       opacity = modifierOpacity ?? baseOpacity;
 
     this.#cachedOpacityData.fillOpacity = this.fillOpacity ?? defaultOpacity;
     this.#cachedOpacityData.opacity = opacity * zOpacityFactor;
-    this.#cachedOpacityData.strokeOpacity = this.strokeOpacity ?? defaultOpacity;
+    this.#cachedOpacityData.strokeOpacity =
+      this.strokeOpacity ?? defaultOpacity;
 
     return this.#cachedOpacityData;
   }
@@ -770,7 +864,7 @@ export class Particle {
    * @returns the particle radius
    */
   getRadius(): number {
-    return this.#applyModifiers(this.size.value, m => m.radius);
+    return this.#applyModifiers(this.size.value, (m) => m.radius);
   }
 
   /**
@@ -791,7 +885,12 @@ export class Particle {
    * @returns the stroke color
    */
   getStrokeColor(): IOklcha | undefined {
-    return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.strokeColor), m => m.strokeColor));
+    return this.#getRollColor(
+      this.#applyModifiers(
+        getOklchFromAnimation(this.strokeColor),
+        (m) => m.strokeColor,
+      ),
+    );
   }
 
   /**
@@ -799,18 +898,22 @@ export class Particle {
    * @param externalTransform - The externalTransform
    * @returns get transform data
    */
-  getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
+  getTransformData(
+    externalTransform: Partial<IParticleTransformValues>,
+  ): IParticleTransformValues {
     const rotateData = this.getRotateData(),
       rotating = this.isRotating;
 
-    this.#cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);
+    this.#cachedTransform.a =
+      rotateData.cos * (externalTransform.a ?? defaultTransform.a);
     this.#cachedTransform.b = rotating
       ? rotateData.sin * (externalTransform.b ?? identity)
       : (externalTransform.b ?? defaultTransform.b);
     this.#cachedTransform.c = rotating
       ? -rotateData.sin * (externalTransform.c ?? identity)
       : (externalTransform.c ?? defaultTransform.c);
-    this.#cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);
+    this.#cachedTransform.d =
+      rotateData.cos * (externalTransform.d ?? defaultTransform.d);
 
     return this.#cachedTransform;
   }
@@ -832,7 +935,12 @@ export class Particle {
 
     initParticleState(this, id, group);
 
-    this.options = resolveParticleOptions(this, container, this.#pluginManager, overrideOptions);
+    this.options = resolveParticleOptions(
+      this,
+      container,
+      this.#pluginManager,
+      overrideOptions,
+    );
 
     container.retina.initParticle(this);
 
@@ -875,7 +983,10 @@ export class Particle {
    * @param direction - out mode direction
    * @returns true if the particle is still inside for the given strategy
    */
-  isInsideCanvasForOutMode(outMode: OutMode | keyof typeof OutMode, direction?: OutModeDirection): boolean {
+  isInsideCanvasForOutMode(
+    outMode: OutMode | keyof typeof OutMode,
+    direction?: OutModeDirection,
+  ): boolean {
     return this.#getInsideCanvasResult(direction, outMode).inside;
   }
 
@@ -893,7 +1004,10 @@ export class Particle {
     if (this.roll.horizontal && this.roll.vertical) {
       const adjustedAngle = normalizeAngle(angle, doublePI);
 
-      return adjustedAngle >= Math.PI * half && adjustedAngle < Math.PI * triple * half;
+      return (
+        adjustedAngle >= Math.PI * half &&
+        adjustedAngle < Math.PI * triple * half
+      );
     }
 
     if (this.roll.horizontal) {
@@ -924,7 +1038,7 @@ export class Particle {
    * @param id - The modifier id to remove
    */
   removeModifier(id: string): void {
-    const idx = this.#modifiers.findIndex(m => m.id === id);
+    const idx = this.#modifiers.findIndex((m) => m.id === id);
 
     if (idx >= defaultAngle) {
       this.#modifiers.splice(idx, identity);
@@ -940,7 +1054,10 @@ export class Particle {
     }
   }
 
-  #applyModifiers<T>(base: T, getter: (mod: IParticleModifier) => T | undefined): T {
+  #applyModifiers<T>(
+    base: T,
+    getter: (mod: IParticleModifier) => T | undefined,
+  ): T {
     let value = base;
 
     for (const mod of this.#modifiers) {
@@ -956,9 +1073,14 @@ export class Particle {
     return value;
   }
 
-  #calcPosition(position: ICoordinates | undefined, zIndex: number): Vector3d | undefined {
+  #calcPosition(
+    position: ICoordinates | undefined,
+    zIndex: number,
+  ): Vector3d | undefined {
     let tryCount = defaultRetryCount,
-      posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
+      posVec = position
+        ? Vector3d.create(position.x, position.y, zIndex)
+        : undefined;
 
     const container = this.container,
       plugins = container.particlePositionPlugins,
@@ -993,7 +1115,8 @@ export class Particle {
       let isValidPosition = true;
 
       for (const plugin of container.particles.checkParticlePositionPlugins) {
-        isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
+        isValidPosition =
+          plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
 
         if (!isValidPosition) {
           break;
@@ -1015,7 +1138,10 @@ export class Particle {
       baseVelocity = getParticleBaseVelocity(this.direction),
       res = baseVelocity.copy();
 
-    if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
+    if (
+      moveOptions.direction === MoveDirection.inside ||
+      moveOptions.direction === MoveDirection.outside
+    ) {
       return res;
     }
 
@@ -1028,7 +1154,10 @@ export class Particle {
       };
 
     if (!moveOptions.straight) {
-      res.angle += randomInRangeValue(setRangeValue(range.left, range.right), random);
+      res.angle += randomInRangeValue(
+        setRangeValue(range.left, range.right),
+        random,
+      );
     }
 
     if (moveOptions.random && typeof moveOptions.speed === "number") {
@@ -1038,7 +1167,11 @@ export class Particle {
     return res;
   }
 
-  #fixHorizontal(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
+  #fixHorizontal(
+    pos: ICoordinates,
+    radius: number,
+    outMode: OutMode | keyof typeof OutMode,
+  ): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -1049,7 +1182,11 @@ export class Particle {
     });
   }
 
-  #fixVertical(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
+  #fixVertical(
+    pos: ICoordinates,
+    radius: number,
+    outMode: OutMode | keyof typeof OutMode,
+  ): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -1077,28 +1214,36 @@ export class Particle {
 
     if (direction === OutModeDirection.bottom) {
       return {
-        inside: isBounce ? position.y + radius < canvasSize.height : position.y - radius < canvasSize.height,
+        inside: isBounce
+          ? position.y + radius < canvasSize.height
+          : position.y - radius < canvasSize.height,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.left) {
       return {
-        inside: isBounce ? position.x - radius > defaultAngle : position.x + radius > defaultAngle,
+        inside: isBounce
+          ? position.x - radius > defaultAngle
+          : position.x + radius > defaultAngle,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.right) {
       return {
-        inside: isBounce ? position.x + radius < canvasSize.width : position.x - radius < canvasSize.width,
+        inside: isBounce
+          ? position.x + radius < canvasSize.width
+          : position.x - radius < canvasSize.width,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.top) {
       return {
-        inside: isBounce ? position.y - radius > defaultAngle : position.y + radius > defaultAngle,
+        inside: isBounce
+          ? position.y - radius > defaultAngle
+          : position.y + radius > defaultAngle,
         reason: "default",
       };
     }
@@ -1142,10 +1287,17 @@ export class Particle {
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsResult {
-    const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode),
+    const defaultResult = this.#getDefaultInsideCanvasResult(
+        direction,
+        outMode,
+      ),
       container = this.container,
-      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
-      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;
+      shapeDrawer = this.shape
+        ? container.shapeDrawers.get(this.shape)
+        : undefined,
+      effectDrawer = this.effect
+        ? container.effectDrawers.get(this.effect)
+        : undefined;
 
     if (!shapeDrawer?.isInsideCanvas && !effectDrawer?.isInsideCanvas) {
       return defaultResult;
@@ -1153,18 +1305,29 @@ export class Particle {
 
     const callbackData = this.#getInsideCanvasCallbackData(direction, outMode),
       shapeResult = shapeDrawer?.isInsideCanvas
-        ? this.#normalizeInsideCanvasResult(shapeDrawer.isInsideCanvas(callbackData), "shape")
+        ? this.#normalizeInsideCanvasResult(
+            shapeDrawer.isInsideCanvas(callbackData),
+            "shape",
+          )
         : undefined,
       effectResult = effectDrawer?.isInsideCanvas
-        ? this.#normalizeInsideCanvasResult(effectDrawer.isInsideCanvas(callbackData), "effect")
+        ? this.#normalizeInsideCanvasResult(
+            effectDrawer.isInsideCanvas(callbackData),
+            "effect",
+          )
         : undefined;
 
     if (shapeResult && effectResult) {
-      const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle),
+      const margin = Math.max(
+          shapeResult.margin ?? defaultAngle,
+          effectResult.margin ?? defaultAngle,
+        ),
         useUnion = outMode === OutMode.destroy || outMode === OutMode.out;
 
       return {
-        inside: useUnion ? shapeResult.inside || effectResult.inside : shapeResult.inside && effectResult.inside,
+        inside: useUnion
+          ? shapeResult.inside || effectResult.inside
+          : shapeResult.inside && effectResult.inside,
         margin: margin > defaultAngle ? margin : undefined,
         reason: "combined",
       };
@@ -1195,8 +1358,16 @@ export class Particle {
 
   #initPosition(position?: ICoordinates): void {
     const container = this.container,
-      zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value, container.engine.getRandomFn())),
-      initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+      zIndexValue = Math.floor(
+        getRangeValue(
+          this.options.zIndex.value,
+          container.engine.getRandomFn(),
+        ),
+      ),
+      initialPosition = this.#calcPosition(
+        position,
+        clamp(zIndexValue, minZ, container.zLayers),
+      );
 
     if (!initialPosition) {
       throw new Error(getErrorMessage(ErrorCodes.particlePositionNotFound));
@@ -1244,7 +1415,10 @@ export class Particle {
    */
   #normalizeInsideCanvasResult(
     result: boolean | IParticleCanvasBoundsResult,
-    reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,
+    reason: Exclude<
+      IParticleCanvasBoundsResult["reason"],
+      "combined" | "default"
+    >,
   ): IParticleCanvasBoundsResult {
     if (typeof result === "boolean") {
       return {

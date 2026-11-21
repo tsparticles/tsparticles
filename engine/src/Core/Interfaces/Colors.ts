@@ -21,7 +21,17 @@ export interface IColor {
    * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
    */
   value: SingleOrMultiple<
-    IValueColor | IRgb | IHsl | IHsv | IHwb | ILab | ILch | IOklab | IOklch | IOklcha | SingleOrMultiple<string>
+    | IValueColor
+    | IRgb
+    | IHsl
+    | IHsv
+    | IHwb
+    | ILab
+    | ILch
+    | IOklab
+    | IOklch
+    | IOklcha
+    | SingleOrMultiple<string>
   >;
 }
 
