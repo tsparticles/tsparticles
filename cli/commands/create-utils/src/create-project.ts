@@ -889,30 +889,18 @@ export class ${pluginClass} implements IPlugin {
     rollupNameKey: "pluginName",
     rollupNameValue: `${nameData.pascalName} Color`,
     srcFiles: {
-      "src/ColorManager.ts": `import type { IColor, IColorManager, IOklcha, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
+      "src/ColorManager.ts": `import type { IColor, IColorManager, IOklcha, IRangeColor } from "@tsparticles/engine";
 
 export class ${managerClass} implements IColorManager {
   accepts(input: string): boolean {
     return input.startsWith("${nameData.camelName}(");
   }
 
-  handleColor(_color: IColor): IRgb | undefined {
-    return undefined;
-  }
-
   handleColorOklch(_color: IColor): IOklcha | undefined {
     return undefined;
   }
 
-  handleRangeColor(_color: IRangeColor): IRgb | undefined {
-    return undefined;
-  }
-
   handleRangeColorOklch(_color: IRangeColor): IOklcha | undefined {
-    return undefined;
-  }
-
-  parseString(_input: string): IRgba | undefined {
     return undefined;
   }
 

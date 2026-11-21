@@ -47,6 +47,18 @@ conversion. Engine-side RGB output requires a documented boundary need.
   keyword is rejected at the parser boundary because the canonical model has no
   missing-component representation. RGB accepts numeric or percentage channels;
   RGB and HSL accept modern slash alpha and retain legacy comma alpha.
+- Source interpretation is independent from output capabilities. Keep intrinsic
+  spaces from formats such as `color(display-p3 …)`; untagged hex/named/RGB/HSL
+  inputs continue to mean sRGB. New channel-object inputs must identify their
+  primaries explicitly (for example `space: "display-p3"`) rather than infer
+  them from the selected canvas. A `p3: true/false` shorthand is acceptable only
+  if it has the same unambiguous input-only meaning and cannot override an
+  intrinsically tagged format.
+- Do not accept a generic `hdr: true/false` as sufficient HDR source metadata.
+  HDR source decoding must identify its transfer function (such as PQ, HLG, or
+  linear), scale, reference white and any required absolute luminance. A boolean
+  can only be a shorthand for one fully specified encoding contract. The current
+  `HDROptions` remain output controls and must not reinterpret input channels.
 - Keep HSL and RGB conversion helpers as compatibility inputs/outputs where
   used by consumers. Remove `IHsl` from particle runtime animation contracts,
   not from accepted option syntax or conversion APIs. Legacy animation options
@@ -89,6 +101,11 @@ conversion. Engine-side RGB output requires a documented boundary need.
   uses the D65 relative scale and does not itself encode absolute luminance.
   `HDROptions.peakNits` and the negotiated canvas format control output range;
   203 nits remains the SDR reference white in the existing conversion path.
+- Relative OKLCH plus alpha does not carry absolute luminance. If HDR source
+  colors are supported, retain their required luminance metadata alongside the
+  canonical color until the output path consumes it; otherwise document that
+  inputs resolve as relative SDR colors. Do not silently clamp HDR input to
+  ordinary OKLCH or imply that output HDR support reverses lost source data.
 - Keep extended linear values until the destination boundary. Use the chosen
   P3/float16 or supported HDR context when available and keep a natural sRGB
   fallback. Apply the HDR transfer/tone mapping once, after color conversion

@@ -14,6 +14,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Breaking Changes
 
+- make `IColorManager` resolve canonical OKLCH; legacy sRGB managers must be wrapped with `adaptLegacyColorManager`
 - move random, logger and animation scheduler configuration from module-level APIs to `Engine` instances;
   see the v5 migration guide for replacements
 

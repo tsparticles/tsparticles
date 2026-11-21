@@ -6,9 +6,11 @@ import type {
   IOklcha,
   IRangeColor,
   IRangeOklch,
+  IRangeSpacedRgb,
   IRangeValueColor,
   IRgb,
   IRgba,
+  ISpacedRgb,
   IValueColor,
 } from "../Core/Interfaces/Colors.js";
 import {
@@ -55,7 +57,6 @@ import {
 } from "../Core/Utils/Constants.js";
 import {
   displayP3ToOklch,
-  mapOklchToDisplayP3,
   mapOklchToSrgb,
   mixOklch,
   oklchToDisplayP3Float,
@@ -74,14 +75,12 @@ import type { IParticleOklchAnimation } from "../Core/Interfaces/IParticleOklchA
 import type { OklchAnimation } from "../Options/Classes/OklchAnimation.js";
 import type { Particle } from "../Core/Particles/Particle.js";
 import type { PluginManager } from "../Core/Engine/PluginManager.js";
+import type { RangeValue } from "../Types/RangeValue.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
   maxStyleCacheSize = 2000,
   hueGradsPerTurn = 400,
-  oklchLightnessCachePrecision = 6,
-  oklchChromaCachePrecision = 6,
-  oklchHueCachePrecision = 4,
   rgbFixedPrecision = 2,
   hslFixedPrecision = 2,
   hdrRgbFixedPrecision = 4,
@@ -238,13 +237,10 @@ function stringToRgba(pluginManager: PluginManager, input: string): IRgba | unde
     return;
   }
 
-  for (const manager of pluginManager.colorManagers.values()) {
-    if (manager.accepts(input)) {
-      return manager.parseString(input);
-    }
-  }
+  const color = rangeColorToOklch(pluginManager, input),
+    mapped = color ? mapOklchToSrgb(color).rgb : undefined;
 
-  return undefined;
+  return color && mapped ? { ...mapped, a: color.a } : undefined;
 }
 
 /**
@@ -261,37 +257,15 @@ export function rangeColorToRgb(
   index?: number,
   useIndex = true,
 ): IRgb | undefined {
-  if (!input) {
-    return;
+  const raw = isString(input) ? input : input?.value;
+
+  if (raw === randomColorValue) {
+    return getRandomRgbColor(undefined, undefined, pluginManager.engine.getRandomFn());
   }
 
-  const color = isString(input) ? { value: input } : input;
+  const color = input ? rangeColorToOklch(pluginManager, input, index, useIndex) : undefined;
 
-  if (isString(color.value)) {
-    return colorToRgb(pluginManager, color.value, index, useIndex);
-  }
-
-  if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex, pluginManager.engine.getRandomFn());
-
-    if (!value) {
-      return;
-    }
-
-    return rangeColorToRgb(pluginManager, {
-      value,
-    });
-  }
-
-  for (const manager of pluginManager.colorManagers.values()) {
-    const res = manager.handleRangeColor(color);
-
-    if (res) {
-      return res;
-    }
-  }
-
-  return undefined;
+  return color ? mapOklchToSrgb(color).rgb : undefined;
 }
 
 /**
@@ -312,35 +286,41 @@ export function colorToRgb(
     return;
   }
 
-  const color = isString(input) ? { value: input } : input;
+  let raw: string | undefined;
 
-  if (isString(color.value)) {
-    return color.value === randomColorValue
-      ? getRandomRgbColor(undefined, undefined, pluginManager.engine.getRandomFn())
-      : stringToRgb(pluginManager, color.value);
+  if (isString(input)) {
+    raw = input;
+  } else if (isString(input.value)) {
+    raw = input.value;
   }
 
-  if (isArray(color.value)) {
-    const value = itemFromArray(color.value, index, useIndex, pluginManager.engine.getRandomFn());
+  if (raw === randomColorValue) {
+    return getRandomRgbColor(undefined, undefined, pluginManager.engine.getRandomFn());
+  }
 
-    if (!value) {
-      return;
-    }
+  if (isString(input) || raw !== undefined) {
+    return raw ? stringToRgb(pluginManager, raw) : undefined;
+  }
 
-    return colorToRgb(pluginManager, {
-      value,
-    });
+  if (isArray(input.value)) {
+    const value = itemFromArray(input.value, index, useIndex, pluginManager.engine.getRandomFn());
+
+    return value ? colorToRgb(pluginManager, { value }) : undefined;
   }
 
   for (const manager of pluginManager.colorManagers.values()) {
-    const res = manager.handleColor(color);
+    const handled = manager.handleColorOklch(input),
+      resolved = handled ? normalizeOklchaResult(handled) : undefined,
+      mapped = resolved ? mapOklchToSrgb(resolved).rgb : undefined;
 
-    if (res) {
-      return res;
+    if (mapped) {
+      return mapped;
     }
   }
 
-  return undefined;
+  const color = rangeColorToOklch(pluginManager, input, index, useIndex);
+
+  return color ? mapOklchToSrgb(color).rgb : undefined;
 }
 
 /**
@@ -396,7 +376,7 @@ function parseCssHueAngle(value: number, unit?: string): number {
 /** Resolves an input color to canonical OKLCH (lightness 0–100). */
 export function rangeColorToOklch(
   pluginManager: PluginManager,
-  color: string | IRangeColor | undefined,
+  color: string | IColor | IRangeColor | undefined,
   index?: number,
   useIndex = true,
 ): IOklcha | undefined {
@@ -407,7 +387,7 @@ export function rangeColorToOklch(
   if (isString(color)) {
     for (const manager of pluginManager.colorManagers.values()) {
       if (manager.accepts(color)) {
-        const resolved = manager.parseStringOklch?.(color),
+        const resolved = manager.parseStringOklch(color),
           normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
 
         if (normalized) {
@@ -472,8 +452,41 @@ export function rangeColorToOklch(
 
     return value ? rangeColorToOklch(pluginManager, isString(value) ? value : { value }) : undefined;
   } else if (typeof color.value === "object") {
+    const source = color.value as
+      | (Partial<ISpacedRgb & IRangeSpacedRgb> & {
+          a?: number | RangeValue;
+          b?: number | RangeValue;
+          colorSpace?: string;
+          g?: number | RangeValue;
+          r?: number | RangeValue;
+        })
+      | undefined;
+
+    if (
+      source &&
+      (source.colorSpace === "srgb" || source.colorSpace === "display-p3") &&
+      source.r !== undefined &&
+      source.g !== undefined &&
+      source.b !== undefined
+    ) {
+      const random = pluginManager.engine.getRandomFn(),
+        r = getRangeValue(source.r, random),
+        g = getRangeValue(source.g, random),
+        b = getRangeValue(source.b, random),
+        alpha = source.a === undefined ? defaultAlpha : getRangeValue(source.a, random);
+
+      if ([r, g, b, alpha].every(Number.isFinite) && alpha >= none && alpha <= identity) {
+        const channels = { b, g, r },
+          converted = source.colorSpace === "display-p3" ? displayP3ToOklch(channels) : rgbToOklch(channels);
+
+        return { ...converted, a: alpha };
+      }
+
+      return;
+    }
+
     for (const manager of pluginManager.colorManagers.values()) {
-      const resolved = manager.handleRangeColorOklch?.(color),
+      const resolved = manager.handleRangeColorOklch(color),
         normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
 
       if (normalized) {
@@ -509,17 +522,7 @@ export function rangeColorToOklch(
     }
   }
 
-  if (isString(color)) {
-    const rgba = stringToRgba(pluginManager, color);
-
-    if (rgba) {
-      return { ...rgbToOklch(rgba), a: rgba.a };
-    }
-  }
-
-  const rgb = rangeColorToRgb(pluginManager, color, index, useIndex);
-
-  return rgb ? { ...rgbToOklch(rgb), a: defaultAlpha } : undefined;
+  return undefined;
 }
 
 /**
@@ -855,10 +858,6 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
   return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
-function getDisplayP3StyleFromRgb(color: IRgb, opacity?: number): string {
-  return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
-}
-
 /**
  * Gets a CSS style string from a {@link IHsl} object and opacity value
  * @param color - the {@link IHsl} input color
@@ -895,19 +894,19 @@ export function getStyleFromOklch(
   opacity?: number,
   peakNits?: number,
   mode?: HdrMode,
-  outputColorSpace: PredefinedColorSpace = "srgb",
+  _outputColorSpace: PredefinedColorSpace = "srgb",
 ): string {
   const alpha = (opacity ?? defaultOpacity) * ("a" in color ? color.a : defaultAlpha),
-    key = `oklch-${color.l.toFixed(oklchLightnessCachePrecision)}-${color.c.toFixed(oklchChromaCachePrecision)}-${color.h.toFixed(oklchHueCachePrecision)}-${hdr ? "hdr" : outputColorSpace}-${alpha}-${peakNits ?? maxNits}-${mode ?? HdrMode.standard}`;
+    key = hdr
+      ? `oklch-hdr-${color.l}-${color.c}-${color.h}-${alpha}-${peakNits ?? maxNits}-${mode ?? HdrMode.standard}`
+      : `oklch-css-${color.l}-${color.c}-${color.h}-${alpha}`;
 
   return getCachedStyle(key, () => {
     if (hdr) {
       return getHdrStyleFromRgb(oklchToDisplayP3Float(color), alpha, peakNits, mode);
     }
 
-    return outputColorSpace === "display-p3"
-      ? getDisplayP3StyleFromRgb(mapOklchToDisplayP3(color).rgb, alpha)
-      : getSdrStyleFromRgb(mapOklchToSrgb(color).rgb, alpha);
+    return `oklch(${color.l.toString()}% ${color.c.toString()} ${color.h.toString()}° / ${alpha.toString()})`;
   });
 }
 

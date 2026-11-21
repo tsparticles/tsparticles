@@ -7,6 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Breaking changes
 
+- Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Replace the exported engine singleton with `createEngine()`. Applications own engine instances; supported wrappers receive an engine through their props, provider or service.
 - Replace implicit convenience instances with `createConfetti(engine)`, `createFireworks(engine)`, `createParticles(engine)` and `createRibbons(engine)`. `initPjs(engine)` returns compatibility APIs; `loadConfigs(engine)` registers the config catalog explicitly.
 - Standard browser module conditions resolve to pure ESM. Classic scripts expose factories and loaders through the `tsParticles` namespace. Concurrent ownership of the same canvas is rejected, including across independently loaded bundles.

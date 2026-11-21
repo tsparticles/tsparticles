@@ -1,41 +1,24 @@
 import type { IColor, IOklcha, IRangeColor, IRgb, IRgba } from "./Colors.js";
 
-/** Color manager interface for parsing and converting colors */
+/** Native color manager contract. Resolved values are always canonical OKLCH. */
 export interface IColorManager {
-  /**
-   * Checks if the manager accepts the given input string
-   * @returns The boolean value
-   */
+  /** Checks if the manager accepts the given input string. */
   accepts(input: string): boolean;
 
-  /**
-   * Converts a color to RGB
-   * @returns The value, or undefined if not available
-   */
+  /** Resolves a color to canonical OKLCH and alpha. */
+  handleColorOklch(color: IColor): IOklcha | undefined;
+
+  /** Resolves a range color to canonical OKLCH and alpha. */
+  handleRangeColorOklch(color: IRangeColor): IOklcha | undefined;
+
+  /** Parses a string directly to canonical OKLCH and alpha. */
+  parseStringOklch(input: string): IOklcha | undefined;
+}
+
+/** Previous sRGB-based manager contract, supported only through an explicit adapter. */
+export interface ILegacyColorManager {
+  accepts(input: string): boolean;
   handleColor(color: IColor): IRgb | undefined;
-
-  /**
-   * Resolves a color directly to canonical OKLCH when the manager can do so
-   * without converting through quantized RGB. Legacy managers can omit this
-   * method and are adapted from their RGB result by the engine.
-   */
-  handleColorOklch?(color: IColor): IOklcha | undefined;
-
-  /**
-   * Converts a range color to RGB
-   * @returns The value, or undefined if not available
-   */
   handleRangeColor(color: IRangeColor): IRgb | undefined;
-
-  /** Resolves a range color directly to canonical OKLCH. */
-  handleRangeColorOklch?(color: IRangeColor): IOklcha | undefined;
-
-  /**
-   * Parses a string into RGBA
-   * @returns The value, or undefined if not available
-   */
   parseString(input: string): IRgba | undefined;
-
-  /** Parses a string directly to canonical OKLCH, preserving alpha. */
-  parseStringOklch?(input: string): IOklcha | undefined;
 }

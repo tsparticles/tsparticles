@@ -71,19 +71,31 @@ one-to-one conversion.
 
 ## Output and gamut
 
-The particle keeps its floating-point OKLCH value through animation. SDR sRGB
-output reduces chroma at constant lightness and hue when needed, without
-rewriting the stored particle color. When the effective canvas color space is
-Display-P3, SDR output maps into that gamut. HDR requests a float16 Display-P3
-context only when the browser reports support; browser pixel checks and HDR
-validation remain part of the E5 rollout. Canvas and browser color management
-can produce small output differences from v4 HSL rendering.
+The engine keeps floating-point OKLCH through animation and serializes
+`oklch(...)` directly for ordinary CSS/Canvas output, including Display-P3
+contexts. The browser converts that value to the destination space; rendering in
+sRGB does not rewrite the stored color. HDR remains an explicit output path for
+peak-nits and tone mapping. P3 input metadata is separate from output canvas
+capabilities.
+
+For RGB object inputs that are not sRGB, set `colorSpace` explicitly:
+
+```ts
+const p3Red = {
+  value: { r: 255, g: 0, b: 0, colorSpace: "display-p3" },
+};
+```
+
+Untagged RGB objects, hex and ordinary RGB/HSL strings continue to mean sRGB.
+The source descriptor does not request P3 output. HDR source channels are not
+accepted through a generic `hdr: true` flag: their transfer function, scale and
+luminance reference must be specified before such an input can be converted.
 
 ## Custom color managers
 
-The existing `IColorManager` RGB methods remain supported during the migration.
-Built-in managers also implement `handleColorOklch`, `handleRangeColorOklch`
-and `parseStringOklch`; custom managers can implement them to keep canonical
-resolution out of the legacy RGB adapter. The engine falls back to the RGB
-result for custom managers that omit these methods. Preserve alpha when
-implementing the direct string method.
+Native `IColorManager` implementations resolve directly to `IOklcha` through
+`handleColorOklch`, `handleRangeColorOklch` and `parseStringOklch`. RGB hooks are
+not required. For an existing sRGB manager, wrap it explicitly with
+`adaptLegacyColorManager`; this converts its RGB result to OKLCH and keeps the
+legacy manager's precision and gamut limitations. Direct parsers must preserve
+alpha.

@@ -21,7 +21,18 @@ export interface IColor {
    * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
    */
   value: SingleOrMultiple<
-    IValueColor | IRgb | IHsl | IHsv | IHwb | ILab | ILch | IOklab | IOklch | IOklcha | SingleOrMultiple<string>
+    | IValueColor
+    | IRgb
+    | ISpacedRgb
+    | IHsl
+    | IHsv
+    | IHwb
+    | ILab
+    | ILch
+    | IOklab
+    | IOklch
+    | IOklcha
+    | SingleOrMultiple<string>
   >;
 }
 
@@ -36,6 +47,7 @@ export interface IRangeColor {
   value: SingleOrMultiple<
     | IRangeValueColor
     | IRangeRgb
+    | IRangeSpacedRgb
     | IRangeHsl
     | IRangeHsv
     | IRangeHwb
@@ -164,6 +176,14 @@ export interface IRgb {
   r: number;
 }
 
+/** RGB channels with explicit source primaries. Channels are encoded 0–255 values. */
+export interface ISpacedRgb extends IRgb {
+  /** Optional input alpha. */
+  a?: number;
+  /** Source primaries used to interpret these encoded channels. */
+  colorSpace: "srgb" | "display-p3";
+}
+
 /**
  * Range RGB Color
  * [[include:Color.md]]
@@ -183,6 +203,14 @@ export interface IRangeRgb {
    * Red
    */
   r: RangeValue;
+}
+
+/** Ranged RGB channels with explicit source primaries. */
+export interface IRangeSpacedRgb extends IRangeRgb {
+  /** Optional ranged input alpha. */
+  a?: RangeValue;
+  /** Source primaries used to interpret the sampled encoded channels. */
+  colorSpace: "srgb" | "display-p3";
 }
 
 /**

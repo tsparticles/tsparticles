@@ -5,11 +5,13 @@ import {
   type IColorManager,
   type IHsl,
   type IHsla,
+  type ILegacyColorManager,
   type IOklcha,
   type IParticleOklchAnimation,
   type IRgb,
   OklchAnimation,
   type Particle,
+  adaptLegacyColorManager,
   colorToRgb,
   createEngine,
   displayP3ToOklch,
@@ -343,7 +345,7 @@ describe("ColorUtils", async () => {
 
       expect(styles).to.have.length(2);
       expect(contextCalls.filter(call => call === "stroke")).to.have.length(2);
-      expect(styles[0]).to.not.equal(styles[1]);
+      expect(styles[0]).to.equal(styles[1]);
       expect(styles[0]).to.equal(getStyleFromOklch(color, false, undefined, 1000, undefined, "srgb"));
       expect(styles[1]).to.equal(getStyleFromOklch(color, false, undefined, 1000, undefined, "display-p3"));
     });
@@ -399,12 +401,10 @@ describe("ColorUtils", async () => {
       const color = { c: 0.3, h: 240, l: 90 },
         mapped = mapOklchToDisplayP3(color),
         style = getStyleFromOklch(color, false, 1, undefined, undefined, "display-p3"),
-        channels = /color\(display-p3 ([\d.]+) ([\d.]+) ([\d.]+) \/ ([\d.]+)\)/u.exec(style);
+        channels = /^oklch\(90% 0\.3 240° \/ 1\)$/u.exec(style);
 
       expect(channels).not.to.be.null;
-      expect(Number(channels?.[1]) * 255).to.be.closeTo(191, 9);
-      expect(Number(channels?.[2]) * 255).to.be.closeTo(227, 9);
-      expect(Number(channels?.[3]) * 255).to.be.closeTo(255, 9);
+      expect(style).to.equal("oklch(90% 0.3 240° / 1)");
       expect(mapped.color.c).to.be.lessThan(color.c);
     });
 
@@ -681,33 +681,15 @@ describe("ColorUtils", async () => {
       }
     });
 
-    it("prefers direct OKLCH manager methods over legacy RGB conversion", () => {
-      const direct = { a: 0.4, c: 0.17, h: 585, l: 62 },
-        legacyRgb = { b: 255, g: 0, r: 0 };
-      let legacyCalls = 0;
-
+    it("resolves through a native manager with no RGB hooks", () => {
+      const direct = { a: 0.4, c: 0.17, h: 585, l: 62 };
       const directManager: IColorManager = {
-          accepts: input => input.startsWith("direct("),
-          handleColor: () => {
-            legacyCalls++;
-
-            return legacyRgb;
-          },
-          handleColorOklch: () => direct,
-          handleRangeColor: () => {
-            legacyCalls++;
-
-            return legacyRgb;
-          },
-          handleRangeColorOklch: () => direct,
-          parseString: () => {
-            legacyCalls++;
-
-            return { ...legacyRgb, a: 1 };
-          },
-          parseStringOklch: () => direct,
-        },
-        directEngine = createEngine();
+        accepts: input => input.startsWith("direct("),
+        handleColorOklch: () => direct,
+        handleRangeColorOklch: () => direct,
+        parseStringOklch: () => direct,
+      };
+      const directEngine = createEngine();
 
       directEngine.pluginManager.addColorManager("direct", directManager);
 
@@ -716,66 +698,48 @@ describe("ColorUtils", async () => {
         ...direct,
         h: 225,
       });
-      expect(legacyCalls).to.equal(0);
     });
 
-    it("falls back when a custom manager returns invalid direct OKLCH data", () => {
+    it("rejects invalid direct OKLCH manager results", () => {
       const customEngine = createEngine(),
-        customRgb = { r: 12.5, g: 87.25, b: 194.75 },
         customManager: IColorManager = {
           accepts: input => input.startsWith("custom("),
-          handleColor: () => customRgb,
-          handleRangeColor: () => customRgb,
+          handleColorOklch: () => undefined,
           handleRangeColorOklch: () => ({ a: 1.1, c: 0.2, h: 30, l: 50 }),
-          parseString: () => ({ ...customRgb, a: 0.35 }),
           parseStringOklch: () => ({ a: Number.NaN, c: -0.1, h: Number.POSITIVE_INFINITY, l: 50 }),
         };
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
-      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.deep.equal({
-        ...rgbToOklch(customRgb),
-        a: 0.35,
-      });
-      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.deep.equal({
-        ...rgbToOklch(customRgb),
-        a: 1,
-      });
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
+      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.be.undefined;
     });
 
     it("rejects custom OKLCH manager lightness outside the canonical range", () => {
       const customEngine = createEngine(),
-        customRgb = { r: 12.5, g: 87.25, b: 194.75 },
         customManager: IColorManager = {
           accepts: input => input.startsWith("custom("),
-          handleColor: () => customRgb,
-          handleRangeColor: () => customRgb,
+          handleColorOklch: () => undefined,
           handleRangeColorOklch: () => ({ a: 0.6, c: 0.2, h: 30, l: -1 }),
-          parseString: () => ({ ...customRgb, a: 0.35 }),
           parseStringOklch: () => ({ a: 0.35, c: 0.2, h: 30, l: 101 }),
         };
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
-      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.deep.equal({
-        ...rgbToOklch(customRgb),
-        a: 0.35,
-      });
-      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.deep.equal({
-        ...rgbToOklch(customRgb),
-        a: 1,
-      });
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
+      expect(rangeColorToOklch(customEngine.pluginManager, { value: { custom: true } })).to.be.undefined;
     });
 
     it("adapts custom managers that only implement the legacy RGB contract", () => {
       const customEngine = createEngine(),
         customRgb = { r: 12.5, g: 87.25, b: 194.75 },
-        customManager: IColorManager = {
+        legacyManager: ILegacyColorManager = {
           accepts: input => input.startsWith("custom("),
           handleColor: () => customRgb,
           handleRangeColor: () => customRgb,
           parseString: () => ({ ...customRgb, a: 0.35 }),
-        };
+        },
+        customManager = adaptLegacyColorManager(legacyManager);
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
@@ -798,15 +762,23 @@ describe("ColorUtils", async () => {
       const resolved = rangeColorToOklch(pluginManager, "oklch(70% 0.2 -10 / 50%)");
 
       expect(resolved).to.deep.equal({ a: 0.5, c: 0.2, h: 350, l: 70 });
-      expect(getStyleFromOklch({ a: 0.5, c: 0.2, h: 350, l: 70 }, false, 0.4)).to.match(/^rgba\(.+, 0\.2\)$/u);
+      expect(getStyleFromOklch({ a: 0.5, c: 0.2, h: 350, l: 70 }, false, 0.4)).to.equal("oklch(70% 0.2 350° / 0.2)");
     });
 
-    it("maps out-of-sRGB colors by reducing chroma at the output boundary", () => {
+    it("uses explicit Display-P3 primaries for tagged RGB object input", () => {
+      const tagged = rangeColorToOklch(pluginManager, {
+          value: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 },
+        }),
+        css = rangeColorToOklch(pluginManager, "color(display-p3 1 0 0 / 40%)");
+
+      expect(tagged).to.deep.equal(css);
+    });
+
+    it("serializes canonical out-of-sRGB colors directly for browser conversion", () => {
       const mapped = mapOklchToSrgb({ c: 0.4, h: 145, l: 72 }),
         style = getStyleFromOklch({ c: 0.4, h: 145, l: 72 }, false);
 
-      expect(style).to.match(/^rgba\(/u);
-      expect(style).not.to.equal("rgba(255, 255, 255, 1)");
+      expect(style).to.equal("oklch(72% 0.4 145° / 1)");
       expect(mapped.color.c).to.be.lessThan(0.4);
 
       for (const channel of [mapped.rgb.r, mapped.rgb.g, mapped.rgb.b]) {

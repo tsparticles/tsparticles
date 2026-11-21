@@ -19,6 +19,8 @@ plan supersede historical implementation notes later in this checkpoint.
 Those notes remain evidence of past work, not instructions to preserve old paths.
 
 - [ ] Native managers resolve OKLCH; legacy RGB managers use an explicit adapter.
+- [ ] Input color-space metadata is distinct from output P3/HDR capabilities;
+      supported HDR source encodings have explicit transfer/scale/luminance data.
 - [ ] Every resolved semantic runtime color is OKLCH, including extension state.
 - [ ] Supported CSS/Canvas output defaults to `oklch(...)`, including P3 canvases.
 - [ ] Each manual RGB output exception has a concrete need and regression test.
@@ -40,7 +42,11 @@ Required next work for E5c/E5d:
    `parseString`, with optional OKLCH counterparts. Replace this transitional
    contract with canonical results and an explicit legacy sRGB input adapter.
    Migrate built-ins, exports, custom-manager examples and CLI generation in
-   the same buildable increment; test a native manager with no RGB hooks.
+   the same buildable increment; test a native manager with no RGB hooks. Define
+   source-space descriptors separately from render capabilities: P3 metadata
+   selects input primaries, while HDR input needs a defined transfer function,
+   scale and luminance reference. Do not ship an underspecified generic `hdr`
+   boolean.
 2. **C4 / 07+08 — Inventory all semantic colors beyond Particle.** Start with
    `plugins/emitters/src/IRandomPositionData.ts` (`color?: IRgb`), the
    `IOklcha | IRgb` fill/stroke helpers in `EmitterInstance.ts`, and sampled
@@ -65,8 +71,22 @@ Required next work for E5c/E5d:
    RGB/HSL state or implicit native-manager RGB fallback. E6/E7 optimization,
    E8 audit and E9/E10 release work do not own deferred color migration.
 
-This update changes planning only. Existing implementation, browser evidence,
-performance limits and other open E5 gates are unchanged.
+## Implementation increment — 2026-11-21
+
+- `IColorManager` now requires direct OKLCH resolution; RGB hooks are no longer
+  part of its contract. Existing sRGB managers can be registered through the
+  exported `adaptLegacyColorManager` adapter.
+- Non-HDR style output now serializes canonical `oklch(...)` directly for either
+  effective canvas gamut. The explicit HDR output path remains separate.
+- Added tagged RGB object input for `srgb` and `display-p3` primaries, including
+  ranged channels and alpha. Output canvas capabilities do not reinterpret the
+  source values.
+- Emitter sampled-pixel RGB remains a raw source boundary; it now converts to
+  OKLCH at the point where that pixel becomes particle fill state.
+- Updated the CLI manager template, color migration guide and color format docs.
+  Focused regressions were updated/added; they have not been run in this
+  increment. Full non-particle inventory and real-browser output verification
+  remain open, so E5 is still not accepted.
 
 ## Implemented in this checkpoint
 

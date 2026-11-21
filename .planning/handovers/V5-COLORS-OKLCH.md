@@ -47,6 +47,48 @@ Apply the following boundary rules to every color-bearing field and API:
   output artifacts. Key/invalidate them by canonical value and output settings;
   never reuse them as the source of animation or another destination's color.
 
+### Source color-space and HDR interpretation
+
+OKLCH is the canonical in-memory model, but converting an input to OKLCH still
+requires knowing what its source channels mean. Treat source interpretation as
+part of parsing/resolution, independently from the destination canvas and
+`HDROptions`:
+
+- Formats with an intrinsic space keep it: `oklch()`/`oklab()` are already
+  defined, Lab/LCH use their declared white point and adaptation, and CSS
+  `color(display-p3 …)` identifies Display-P3. Hex, named colors, ordinary
+  `rgb()`/`hsl()` and existing untagged RGB objects retain their documented
+  sRGB meaning.
+- For channel-based inputs whose space is otherwise ambiguous, consider
+  explicit source metadata (`space: "srgb" | "display-p3"`) and test
+  `true`/`false` convenience flags only as aliases with precise documented
+  semantics. A P3 flag selects the primaries used to interpret the _input_
+  channels before conversion to OKLCH; it does not request P3 output and must
+  not override a format that already names its space.
+- Do not define generic `hdr: true` as “convert these channels to OKLCH” without
+  specifying the source transfer function, channel scale, reference white and
+  luminance. HDR inputs may be PQ, HLG, or extended linear values and need
+  distinct decoding plus luminance/reference-white metadata. If E5 supports
+  HDR-tagged source values, model that explicitly (for example, a discriminated
+  source descriptor) and convert through the corresponding absolute/extended
+  colorimetry before producing canonical OKLCH and any separate luminance
+  metadata. A bare boolean may be a convenience only when one exact encoding
+  and scale are fixed by the input API.
+- Keep source metadata attached until resolution; resolve once, then discard
+  it only when all appearance-relevant information is represented in canonical
+  OKLCH plus alpha and any required luminance metadata. Ordinary relative
+  OKLCH is not itself an HDR encoding and must not imply absolute nits.
+- Add fixtures showing equivalent sRGB and Display-P3 colors resolve to the
+  same appearance where representable, that P3-only colors retain their gamut,
+  and that HDR decoding differs correctly for each supported transfer/scale.
+  Test that changing output P3/HDR capabilities never reinterprets source
+  channels or mutates canonical runtime state.
+
+This source-descriptor/API decision is an E5 input-contract item, not a change
+to the direct-OKLCH output default below. Record the selected representation,
+defaults, invalid combinations and migration behavior in the C0 decision log
+before implementing ambiguous RGB/HDR inputs.
+
 ### Output rule for implementers
 
 **Default: canonical OKLCH → CSS `oklch(...)` → browser output conversion.**
@@ -176,9 +218,10 @@ must document existing precision and gamut limitations.
 4. Keep optional input managers. Rendering resolved OKLCH must work when
    another manager supplies the color and `loadOklchColorPlugin` is absent.
 5. Add `color(display-p3 …)` input at least through an optional manager and
-   define a discriminated RGB object type with explicit space. Plan further
-   profiles (`srgb-linear`, Rec.2020, XYZ, and others) separately and list
-   implemented formats.
+   define a discriminated RGB object type with explicit space. Apply the source
+   color-space/HDR interpretation rules above; do not silently treat output
+   capability flags as input metadata. Plan further profiles (`srgb-linear`,
+   Rec.2020, XYZ, and others) separately and list implemented formats.
 6. Preserve wrapped inputs such as `{ oklch: … }` and `{ lch: … }` and legacy
    bare inputs. OKLCH/LCH and OKLab/Lab share field names. Verify historical
    manager order and precedence, prefer explicit forms in new examples, and

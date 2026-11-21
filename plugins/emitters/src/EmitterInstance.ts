@@ -9,7 +9,6 @@ import {
   type IOklcha,
   type IPaint,
   type IParticlesOptions,
-  type IRgb,
   Paint,
   PixelMode,
   type RecursivePartial,
@@ -28,6 +27,7 @@ import {
   percentDenominator,
   randomInRangeValue,
   rangeColorToOklch,
+  rgbToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
@@ -55,7 +55,7 @@ const defaultLifeDelay = 0,
  */
 function setParticlesOptionsFillColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IOklcha | IRgb,
+  color: IOklcha,
   opacity: number,
   enable: boolean,
 ): void {
@@ -77,7 +77,7 @@ function setParticlesOptionsFillColor(
  */
 function setParticlesOptionsStrokeColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IOklcha | IRgb,
+  color: IOklcha,
   opacity: number,
   width: number,
 ): void {
@@ -711,7 +711,7 @@ export class EmitterInstance {
           if (replaceData.color && shapePosData.color) {
             setParticlesOptionsFillColor(
               particlesOptions,
-              shapePosData.color,
+              { ...rgbToOklch(shapePosData.color), a: 1 },
               replaceData.opacity ? (shapePosData.opacity ?? defaultOpacity) : defaultOpacity,
               true,
             );
