@@ -157,6 +157,7 @@ export class CanvasManager {
 
   readonly #container;
   #generated;
+  #hdrListenerGeneration = 0;
   #hdrMediaListeners?: { handler: () => void; mql: MediaQueryList }[];
   #mutationObserver?: MutationObserver;
   #originalStyle?: CSSStyleDeclaration;
@@ -248,7 +249,11 @@ export class CanvasManager {
     this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
-    this.#mutationObserver = safeMutationObserver(records => {
+    const observer = safeMutationObserver(records => {
+      if (this.#mutationObserver !== observer) {
+        return;
+      }
+
       for (const record of records) {
         if (record.type === "attributes" && record.attributeName === "style") {
           this.#repairStyle();
@@ -256,6 +261,7 @@ export class CanvasManager {
       }
     });
 
+    this.#mutationObserver = observer;
     this.resize();
     this.#initStyle();
     this.#safeMutationObserver(obs => {
@@ -416,8 +422,10 @@ export class CanvasManager {
 
     if (this.#container.started) {
       container.particles.setResizeFactor({
-        width: currentSize.width / oldSize.width,
-        height: currentSize.height / oldSize.height,
+        // A previously hidden axis has no scale to preserve. Keep its coordinates
+        // until a nonzero size establishes a usable resize ratio.
+        width: oldSize.width > 0 ? currentSize.width / oldSize.width : defaultZoom,
+        height: oldSize.height > 0 ? currentSize.height / oldSize.height : defaultZoom,
       });
     }
 
@@ -583,9 +591,14 @@ export class CanvasManager {
   #initHdrListeners(): void {
     this.#removeHdrListeners();
 
-    const p3Query = safeMatchMedia("(color-gamut: p3)"),
+    const generation = this.#hdrListenerGeneration,
+      p3Query = safeMatchMedia("(color-gamut: p3)"),
       hdrQuery = safeMatchMedia("(dynamic-range: high)"),
       handleChange = (): void => {
+        if (generation !== this.#hdrListenerGeneration) {
+          return;
+        }
+
         /* The supplied canvas is always retained: a DOM-backed render canvas controls
          * the placeholder element's bitmap through its transfer, and a caller-provided
          * OffscreenCanvas is the exact surface the caller presents, so replacing either
@@ -640,6 +653,8 @@ export class CanvasManager {
   }
 
   #removeHdrListeners(): void {
+    this.#hdrListenerGeneration++;
+
     if (!this.#hdrMediaListeners) {
       return;
     }

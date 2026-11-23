@@ -1,0 +1,9 @@
+{
+  "url": "https://storage.googleapis.com/chrome-for-testing-public/157.0.8103.79/mac-arm64/chrome-mac-arm64.zip",
+  "bytes": 196632905,
+  "sha256": "3d72e157bd2678d4010dfc424ad1bf1acdb7e3727b546b3446b9e0eb4426c821",
+  "md5MatchesGoogleStorageHeader": true,
+  "destination": "/tmp/e7-chrome157",
+  "userBrowserModified": false,
+  "temporaryBrowserAndArchiveRemovedAfterMeasurement": true
+}

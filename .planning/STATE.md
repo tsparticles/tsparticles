@@ -1,3 +1,52 @@
+## Session status — 2026-11-24 — E7 technical work complete; acceptance pending
+
+- Full CanvasManager/RenderManager method and ownership review is complete.
+  Numeric layers retain live hooks; stale canvas callbacks, exceptional/nested
+  drawing, zero-size resize, worker DOM guards and invalid zLayers are repaired.
+- **953 primary tests / 85 workspace test targets / 453 build tasks** pass.
+  Twelve full-surface pixel matches, eight color cases, 135 matrix snapshots,
+  two 189-snapshot confirmations and extended HDR/retention checks pass.
+- All grows **164 gzip / 265 Brotli bytes**; minimal **130 / 140**. Helper and
+  chunk counts are unchanged. Relative runtime screens pass after confirmation.
+- Original E0 absolute ceilings still have exceedances, including fresh E6
+  control exceedances under Chrome 158 and Chrome for Testing 157. No new waiver
+  or automatic extension of the E5 exceptions is inferred. The user's decision
+  on technical E7 acceptance with absolute checks retained in E10 is pending.
+- See [E7 technical completion](handovers/evidence/e7/closure/README.md),
+  [review](handovers/V5-E7-REVIEW.md), [status](handovers/V5-E7-STATUS.md).
+  E7 remains formally open; E8–E10 remain pending. No commit/merge/publication.
+
+## Session status — 2026-11-23 — E7 started
+
+- E7's first repair prevents nonfinite particle coordinates when resizing a
+  previously zero-size DOM canvas. Five regression cases cover zero-size axes;
+  the initial three reproduce the defect on the pre-repair compiled engine.
+- Checks: **59 files / 931 primary tests** pass; downstream build targets pass
+  across the broad run and successful outside-sandbox retries of Electron and
+  Angular demos. Engine build, test lint and changed-file formatting pass.
+- See [E7 checkpoint](handovers/V5-E7-STATUS.md) for the review queue and checks.
+  Full rendering review, browser evidence and performance acceptance remain open.
+- Existing E6 edits and evidence are preserved; no commit/publication.
+
+## Session status — 2026-11-23 — E6 complete; E7 next
+
+- E6 completes the manager/grid/range method review and P1–P4/S1–S4 decisions.
+  The final source repair freezes draw membership/ID order, preserving live
+  particle state while preventing callback skips, duplicates and recycled entries.
+- Current merged-tree checks: **59 files / 926 primary tests**, all **85 test
+  targets** and **453 downstream build tasks** pass. A stale v4 test import was
+  adapted; missing local dependency files were restored without lockfile changes.
+- Chrome: **135 matrix + 108 confirmation snapshots match**. All relative
+  timing screens pass. Four initial E0 update flags pass nine-repeat matched
+  confirmation; originals remain recorded. Extended RNG/counts and 30-cycle
+  retention pass, with **114,908-byte** post-peak heap drift.
+- Full bundle delta vs accepted E5: **+1,144 gzip / +956 Brotli bytes**; final
+  draw repair vs preceding E6: **+109 gzip / +84 Brotli bytes**. Existing E5
+  M4/500, bundle and inherited M6 follow-ups remain E10 obligations.
+- See [E6 completion](handovers/evidence/e6/closure/README.md) and
+  [method review](handovers/V5-E6-REVIEW.md). E7 is next; E8–E10 remain pending.
+  No commit/publication by this continuation. Earlier checkpoints are historical.
+
 ## Session status — 2026-11-23 — E5 accepted; E6 started
 
 - E0–E5 are accepted. C1–C4 and the Particle/options review are complete;

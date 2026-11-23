@@ -119,7 +119,7 @@ export interface IOptions {
   style: RecursivePartial<CSSStyleDeclaration>;
 
   /**
-   * The maximum layers used in the z-axis
+   * Finite positive depth range. Fractional values use at least one bucket.
    */
   zLayers: number;
 }

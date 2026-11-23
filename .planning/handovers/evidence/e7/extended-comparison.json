@@ -1,0 +1,1030 @@
+{
+  "extended": [
+    {
+      "hdr": false,
+      "matchingSamples": 18,
+      "metrics": [
+        {
+          "scenario": "M6-extensions",
+          "count": 100,
+          "update": {
+            "baseline": 0.19999998807907104,
+            "candidate": 0.19999998807907104,
+            "delta": 0,
+            "allowanceMs": 0.299999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.10000002384185791,
+            "candidate": 0.10000002384185791,
+            "delta": 0,
+            "allowanceMs": 0.20000002384185792,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 0.5,
+            "candidate": 0.5,
+            "delta": 0,
+            "allowanceMs": 0.6,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 6.099999964237213,
+                "samples": [
+                  6.699999988079071,
+                  5.5,
+                  6.099999964237213
+                ]
+              },
+              "candidate": {
+                "median": 6.5,
+                "samples": [
+                  6.800000011920929,
+                  5.899999976158142,
+                  6.5
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.5,
+                "samples": [
+                  0.800000011920929,
+                  0.40000003576278687,
+                  0.5
+                ]
+              },
+              "candidate": {
+                "median": 0.5,
+                "samples": [
+                  1.7000000476837158,
+                  0.40000003576278687,
+                  0.5
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M6-extensions",
+          "count": 500,
+          "update": {
+            "baseline": 1,
+            "candidate": 0.8999999761581421,
+            "delta": -0.10000002384185791,
+            "allowanceMs": 1.1,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.699999988079071,
+            "candidate": 0.699999988079071,
+            "delta": 0,
+            "allowanceMs": 0.799999988079071,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 2.300000011920929,
+            "candidate": 2.299999952316284,
+            "delta": -5.960464477539063e-8,
+            "allowanceMs": 2.530000013113022,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 15,
+                "samples": [
+                  14.600000023841858,
+                  15.099999964237213,
+                  15
+                ]
+              },
+              "candidate": {
+                "median": 14.199999988079071,
+                "samples": [
+                  14.699999988079071,
+                  14.199999988079071,
+                  13.799999952316284
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.7000000476837158,
+                "samples": [
+                  0.7000000476837158,
+                  0.699999988079071,
+                  0.800000011920929
+                ]
+              },
+              "candidate": {
+                "median": 0.699999988079071,
+                "samples": [
+                  0.6000000238418579,
+                  0.7000000476837158,
+                  0.699999988079071
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M6-extensions",
+          "count": 1000,
+          "update": {
+            "baseline": 1.899999976158142,
+            "candidate": 1.699999988079071,
+            "delta": -0.19999998807907104,
+            "allowanceMs": 2.0899999737739563,
+            "pass": true
+          },
+          "render": {
+            "baseline": 1.199999988079071,
+            "candidate": 1.199999988079071,
+            "delta": 0,
+            "allowanceMs": 1.3199999868869783,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 3.799999952316284,
+            "candidate": 3.399999976158142,
+            "delta": -0.3999999761581421,
+            "allowanceMs": 4.179999947547913,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 24.5,
+                "samples": [
+                  28.5,
+                  24.30000001192093,
+                  24.5
+                ]
+              },
+              "candidate": {
+                "median": 23.19999998807907,
+                "samples": [
+                  24,
+                  22.899999976158142,
+                  23.19999998807907
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 1.300000011920929,
+                "samples": [
+                  1.300000011920929,
+                  1.300000011920929,
+                  1.300000011920929
+                ]
+              },
+              "candidate": {
+                "median": 0.9000000357627869,
+                "samples": [
+                  0.9000000357627869,
+                  1,
+                  0.7000000476837158
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 100,
+          "update": {
+            "baseline": 0.19999998807907104,
+            "candidate": 0.19999998807907104,
+            "delta": 0,
+            "allowanceMs": 0.299999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.10000002384185791,
+            "candidate": 0.10000002384185791,
+            "delta": 0,
+            "allowanceMs": 0.20000002384185792,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 0.40000003576278687,
+            "candidate": 0.40000003576278687,
+            "delta": 0,
+            "allowanceMs": 0.5000000357627868,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 5.600000023841858,
+                "samples": [
+                  5.700000047683716,
+                  5.600000023841858,
+                  5.5
+                ]
+              },
+              "candidate": {
+                "median": 5.099999964237213,
+                "samples": [
+                  5.099999964237213,
+                  4.600000023841858,
+                  5.199999988079071
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 0.5,
+                "samples": [
+                  0.3999999761581421,
+                  0.5,
+                  0.699999988079071
+                ]
+              },
+              "candidate": {
+                "median": 0.5,
+                "samples": [
+                  0.5,
+                  0.5,
+                  0.6000000238418579
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.30000001192092896,
+                "samples": [
+                  0.30000001192092896,
+                  0.19999998807907104,
+                  0.30000001192092896
+                ]
+              },
+              "candidate": {
+                "median": 0.19999998807907104,
+                "samples": [
+                  0.19999998807907104,
+                  0.30000001192092896,
+                  0.19999998807907104
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 500,
+          "update": {
+            "baseline": 0.699999988079071,
+            "candidate": 0.699999988079071,
+            "delta": 0,
+            "allowanceMs": 0.799999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.5999999642372131,
+            "candidate": 0.6000000238418579,
+            "delta": 5.960464477539063e-8,
+            "allowanceMs": 0.6999999642372131,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 1.5999999642372131,
+            "candidate": 1.5,
+            "delta": -0.09999996423721313,
+            "allowanceMs": 1.7599999606609347,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 13.799999952316284,
+                "samples": [
+                  13.799999952316284,
+                  14.399999976158142,
+                  13.699999988079071
+                ]
+              },
+              "candidate": {
+                "median": 13.199999988079071,
+                "samples": [
+                  13.199999988079071,
+                  13.599999964237213,
+                  12.100000023841858
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 1.600000023841858,
+                "samples": [
+                  1.800000011920929,
+                  1.600000023841858,
+                  1.600000023841858
+                ]
+              },
+              "candidate": {
+                "median": 1.5999999642372131,
+                "samples": [
+                  1.5999999642372131,
+                  1.5999999642372131,
+                  1.5
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.699999988079071,
+                "samples": [
+                  1,
+                  0.5,
+                  0.699999988079071
+                ]
+              },
+              "candidate": {
+                "median": 0.6000000238418579,
+                "samples": [
+                  0.7000000476837158,
+                  0.6000000238418579,
+                  0.6000000238418579
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 1000,
+          "update": {
+            "baseline": 1.4000000357627869,
+            "candidate": 1.399999976158142,
+            "delta": -5.960464477539063e-8,
+            "allowanceMs": 1.5400000393390656,
+            "pass": true
+          },
+          "render": {
+            "baseline": 1.100000023841858,
+            "candidate": 1.100000023841858,
+            "delta": 0,
+            "allowanceMs": 1.2100000262260437,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 3,
+            "candidate": 3,
+            "delta": 0,
+            "allowanceMs": 3.3000000000000003,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 22.400000035762787,
+                "samples": [
+                  23.30000001192093,
+                  22.400000035762787,
+                  22.19999998807907
+                ]
+              },
+              "candidate": {
+                "median": 21.899999976158142,
+                "samples": [
+                  22.30000001192093,
+                  21.899999976158142,
+                  21.600000023841858
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 3.299999952316284,
+                "samples": [
+                  3.299999952316284,
+                  2.900000035762787,
+                  3.400000035762787
+                ]
+              },
+              "candidate": {
+                "median": 2.899999976158142,
+                "samples": [
+                  2.899999976158142,
+                  3,
+                  2.899999976158142
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 1.0999999642372131,
+                "samples": [
+                  1.2000000476837158,
+                  0.8999999761581421,
+                  1.0999999642372131
+                ]
+              },
+              "candidate": {
+                "median": 0.8999999761581421,
+                "samples": [
+                  0.8999999761581421,
+                  0.800000011920929,
+                  0.9000000357627869
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "postPeakHeapDriftBytes": 100148,
+      "heapAfterWorkloads": 4404052,
+      "retentionHeaps": [
+        4387760,
+        4448308,
+        4504200
+      ],
+      "validations": {
+        "pageErrors": true,
+        "allContainersRemoved": true,
+        "domStable": true,
+        "retentionDomStable": true,
+        "rngStable": {
+          "M6-extensions:100": true,
+          "M6-extensions:500": true,
+          "M6-extensions:1000": true,
+          "M8-hdr-layers-resize:100": true,
+          "M8-hdr-layers-resize:500": true,
+          "M8-hdr-layers-resize:1000": true
+        }
+      }
+    },
+    {
+      "hdr": true,
+      "matchingSamples": 18,
+      "metrics": [
+        {
+          "scenario": "M6-extensions",
+          "count": 100,
+          "update": {
+            "baseline": 0.19999998807907104,
+            "candidate": 0.19999998807907104,
+            "delta": 0,
+            "allowanceMs": 0.299999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.10000002384185791,
+            "candidate": 0.19999998807907104,
+            "delta": 0.09999996423721313,
+            "allowanceMs": 0.20000002384185792,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 0.5,
+            "candidate": 0.5,
+            "delta": 0,
+            "allowanceMs": 0.6,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 5.899999976158142,
+                "samples": [
+                  6.800000011920929,
+                  5.600000023841858,
+                  5.899999976158142
+                ]
+              },
+              "candidate": {
+                "median": 6.700000047683716,
+                "samples": [
+                  6.899999976158142,
+                  6.099999964237213,
+                  6.700000047683716
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.5,
+                "samples": [
+                  0.6000000238418579,
+                  0.5,
+                  0.3999999761581421
+                ]
+              },
+              "candidate": {
+                "median": 0.5,
+                "samples": [
+                  0.5,
+                  0.3999999761581421,
+                  0.5
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M6-extensions",
+          "count": 500,
+          "update": {
+            "baseline": 0.9000000357627869,
+            "candidate": 0.8999999761581421,
+            "delta": -5.960464477539063e-8,
+            "allowanceMs": 1.000000035762787,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.6000000238418579,
+            "candidate": 0.6999999284744263,
+            "delta": 0.09999990463256836,
+            "allowanceMs": 0.7000000238418579,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 2.300000011920929,
+            "candidate": 2.199999988079071,
+            "delta": -0.10000002384185791,
+            "allowanceMs": 2.530000013113022,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 13.800000011920929,
+                "samples": [
+                  15.399999976158142,
+                  13.800000011920929,
+                  13.5
+                ]
+              },
+              "candidate": {
+                "median": 13.800000011920929,
+                "samples": [
+                  15.600000023841858,
+                  13.800000011920929,
+                  13.599999964237213
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.699999988079071,
+                "samples": [
+                  0.699999988079071,
+                  0.9000000357627869,
+                  0.6000000238418579
+                ]
+              },
+              "candidate": {
+                "median": 0.699999988079071,
+                "samples": [
+                  0.699999988079071,
+                  0.800000011920929,
+                  0.5999999642372131
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M6-extensions",
+          "count": 1000,
+          "update": {
+            "baseline": 1.600000023841858,
+            "candidate": 1.899999976158142,
+            "delta": 0.2999999523162842,
+            "allowanceMs": 1.7600000262260438,
+            "pass": false
+          },
+          "render": {
+            "baseline": 1.100000023841858,
+            "candidate": 1.199999988079071,
+            "delta": 0.09999996423721313,
+            "allowanceMs": 1.2100000262260437,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 3.300000011920929,
+            "candidate": 3.600000023841858,
+            "delta": 0.30000001192092896,
+            "allowanceMs": 3.630000013113022,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 22.899999976158142,
+                "samples": [
+                  23,
+                  22.80000001192093,
+                  22.899999976158142
+                ]
+              },
+              "candidate": {
+                "median": 23.899999976158142,
+                "samples": [
+                  22.80000001192093,
+                  24.5,
+                  23.899999976158142
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "candidate": {
+                "median": null,
+                "samples": [
+                  null,
+                  null,
+                  null
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.9000000357627869,
+                "samples": [
+                  1,
+                  0.9000000357627869,
+                  0.800000011920929
+                ]
+              },
+              "candidate": {
+                "median": 1.100000023841858,
+                "samples": [
+                  1.100000023841858,
+                  1.4000000357627869,
+                  0.9000000357627869
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 100,
+          "update": {
+            "baseline": 0.19999998807907104,
+            "candidate": 0.19999998807907104,
+            "delta": 0,
+            "allowanceMs": 0.299999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.10000002384185791,
+            "candidate": 0.10000002384185791,
+            "delta": 0,
+            "allowanceMs": 0.20000002384185792,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 0.40000003576278687,
+            "candidate": 0.40000003576278687,
+            "delta": 0,
+            "allowanceMs": 0.5000000357627868,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 5.399999976158142,
+                "samples": [
+                  5.399999976158142,
+                  4.800000011920929,
+                  5.5
+                ]
+              },
+              "candidate": {
+                "median": 5.199999988079071,
+                "samples": [
+                  5.800000011920929,
+                  4.899999976158142,
+                  5.199999988079071
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 0.6000000238418579,
+                "samples": [
+                  0.6000000238418579,
+                  0.6000000238418579,
+                  0.699999988079071
+                ]
+              },
+              "candidate": {
+                "median": 0.5,
+                "samples": [
+                  0.5,
+                  0.5,
+                  0.7000000476837158
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.30000001192092896,
+                "samples": [
+                  0.30000001192092896,
+                  0.19999998807907104,
+                  0.30000001192092896
+                ]
+              },
+              "candidate": {
+                "median": 0.20000004768371582,
+                "samples": [
+                  0.30000001192092896,
+                  0.20000004768371582,
+                  0.19999998807907104
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 500,
+          "update": {
+            "baseline": 0.699999988079071,
+            "candidate": 0.699999988079071,
+            "delta": 0,
+            "allowanceMs": 0.799999988079071,
+            "pass": true
+          },
+          "render": {
+            "baseline": 0.5999999642372131,
+            "candidate": 0.5999999642372131,
+            "delta": 0,
+            "allowanceMs": 0.6999999642372131,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 1.5,
+            "candidate": 1.5999999642372131,
+            "delta": 0.09999996423721313,
+            "allowanceMs": 1.6500000000000001,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 13.399999976158142,
+                "samples": [
+                  12.900000035762787,
+                  14.199999988079071,
+                  13.399999976158142
+                ]
+              },
+              "candidate": {
+                "median": 13.699999988079071,
+                "samples": [
+                  13.699999988079071,
+                  13.700000047683716,
+                  13.099999964237213
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 1.800000011920929,
+                "samples": [
+                  1.899999976158142,
+                  1.800000011920929,
+                  1.699999988079071
+                ]
+              },
+              "candidate": {
+                "median": 1.600000023841858,
+                "samples": [
+                  2,
+                  1.5999999642372131,
+                  1.600000023841858
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 0.6000000238418579,
+                "samples": [
+                  0.6000000238418579,
+                  0.699999988079071,
+                  0.6000000238418579
+                ]
+              },
+              "candidate": {
+                "median": 0.5999999642372131,
+                "samples": [
+                  0.6000000238418579,
+                  0.5,
+                  0.5999999642372131
+                ]
+              }
+            }
+          }
+        },
+        {
+          "scenario": "M8-hdr-layers-resize",
+          "count": 1000,
+          "update": {
+            "baseline": 1.4000000357627869,
+            "candidate": 1.4000000357627869,
+            "delta": 0,
+            "allowanceMs": 1.5400000393390656,
+            "pass": true
+          },
+          "render": {
+            "baseline": 1.100000023841858,
+            "candidate": 1.100000023841858,
+            "delta": 0,
+            "allowanceMs": 1.2100000262260437,
+            "pass": true
+          },
+          "frameP95": {
+            "baseline": 3,
+            "candidate": 3,
+            "delta": 0,
+            "allowanceMs": 3.3000000000000003,
+            "pass": true
+          },
+          "phases": {
+            "initMs": {
+              "baseline": {
+                "median": 22.19999998807907,
+                "samples": [
+                  22.5,
+                  22.100000023841858,
+                  22.19999998807907
+                ]
+              },
+              "candidate": {
+                "median": 21.80000001192093,
+                "samples": [
+                  21.80000001192093,
+                  21.600000023841858,
+                  21.900000035762787
+                ]
+              }
+            },
+            "resizeMs": {
+              "baseline": {
+                "median": 3.300000011920929,
+                "samples": [
+                  3.5,
+                  3.100000023841858,
+                  3.300000011920929
+                ]
+              },
+              "candidate": {
+                "median": 3.299999952316284,
+                "samples": [
+                  3.199999988079071,
+                  3.5,
+                  3.299999952316284
+                ]
+              }
+            },
+            "teardownMs": {
+              "baseline": {
+                "median": 1.199999988079071,
+                "samples": [
+                  1.300000011920929,
+                  1.199999988079071,
+                  0.800000011920929
+                ]
+              },
+              "candidate": {
+                "median": 1.2000000476837158,
+                "samples": [
+                  1.300000011920929,
+                  1.2000000476837158,
+                  1.100000023841858
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "postPeakHeapDriftBytes": 99448,
+      "heapAfterWorkloads": 4405448,
+      "retentionHeaps": [
+        4387360,
+        4447316,
+        4504896
+      ],
+      "validations": {
+        "pageErrors": true,
+        "allContainersRemoved": true,
+        "domStable": true,
+        "retentionDomStable": true,
+        "rngStable": {
+          "M6-extensions:100": true,
+          "M6-extensions:500": true,
+          "M6-extensions:1000": true,
+          "M8-hdr-layers-resize:100": true,
+          "M8-hdr-layers-resize:500": true,
+          "M8-hdr-layers-resize:1000": true
+        }
+      }
+    }
+  ]
+}

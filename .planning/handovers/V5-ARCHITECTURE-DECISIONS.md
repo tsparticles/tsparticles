@@ -134,3 +134,26 @@ extension verification; E4 owns partial-init cleanup and disposal.
   fixtures as the reference baseline.
 - Rebuild the engine and representative downstream consumers after any moves;
   rerun public ESM/CJS/browser/type and custom plugin checks.
+
+## E7 rendering integration — 2026-11-24
+
+Keep Canvas/Rendering as internal domains of the engine package. A single
+module-local numeric layer sequence removes enum-name enumeration per clear;
+live hook lookup, specialized phase lists and per-call deduplication remain.
+Retain direct context assignments because external drawers mutate canvas state,
+and retain distinct public draw records because callbacks may keep them. No
+unconditional dynamic import, capability package or universal scheduler is added.
+
+Ordinary particle draws retain reusable scratch objects. Only nested draws use
+independent scratch objects and context save/restore; exception paths restore
+alpha/transforms. CanvasManager owns observer/media generations; Engine owns the
+active canvas lease, while the transfer association belongs to the browser
+resource. Rendering destroy releases its context without replacing the caller's
+surface. DOM guards in interactivity restore full All worker startup/teardown.
+
+`zLayers` now rejects nonfinite/nonpositive inputs before depth allocation or
+division. Positive fractional ranges and existing descending layer/ID order are
+preserved; no new practical cap or bucket representation is introduced. Public
+exports and option-loader interfaces are unchanged. See the
+[E7 method/ownership review](V5-E7-REVIEW.md) and its verification checkpoint;
+E9/E10 retain final package, browser-policy and release-budget ownership.

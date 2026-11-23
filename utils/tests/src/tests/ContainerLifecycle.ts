@@ -306,6 +306,58 @@ describe("Container lifecycle", () => {
     container.destroy();
   });
 
+  it.each([
+    [0, canvasHeight, canvasWidth / 2, canvasHeight / 2],
+    [canvasWidth, 0, canvasWidth / 2, canvasHeight / 2],
+    [0, 0, canvasWidth / 2, canvasHeight / 2],
+    [0, canvasHeight, 0, canvasHeight / 2],
+    [canvasWidth, 0, canvasWidth / 2, 0],
+  ])("keeps coordinates finite when resizing %s x %s to %s x %s", async (width, height, newWidth, newHeight) => {
+    const element = document.createElement("canvas");
+
+    Object.defineProperties(element, {
+      offsetHeight: { configurable: true, value: height },
+      offsetWidth: { configurable: true, value: width },
+    });
+
+    const container = await loadContainer({ detectRetina: false, particles: { number: { value: 0 } } }, element);
+
+    try {
+      const particle = container.particles.addParticle({ x: 100, y: 50 });
+
+      expect(particle).toBeDefined();
+      container.particles.update({ factor: 0, value: 0 });
+
+      if (!particle) {
+        throw new Error("Missing resize test particle");
+      }
+
+      particle.position.x = particle.initialPosition.x = 100;
+      particle.position.y = particle.initialPosition.y = 50;
+      Object.defineProperties(element, {
+        offsetHeight: { configurable: true, value: newHeight },
+        offsetWidth: { configurable: true, value: newWidth },
+      });
+      container.started = true;
+
+      expect(container.canvas.resize()).toBe(true);
+      expect(container.canvas.resize()).toBe(false);
+      container.particles.update({ factor: 0, value: 0 });
+
+      const expectedX = width ? (100 * newWidth) / width : 100,
+        expectedY = height ? (50 * newHeight) / height : 50;
+
+      expect(particle.position.x).toBe(expectedX);
+      expect(particle.position.y).toBe(expectedY);
+      expect(particle.initialPosition.x).toBe(expectedX);
+      expect(particle.initialPosition.y).toBe(expectedY);
+      expect(container.canvas.renderCanvas?.width).toBe(newWidth);
+      expect(container.canvas.renderCanvas?.height).toBe(newHeight);
+    } finally {
+      container.destroy();
+    }
+  });
+
   it("re-resolves the particles after a refresh", async () => {
     const particleCount = 6,
       container = await loadContainer({

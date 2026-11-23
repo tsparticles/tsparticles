@@ -1,0 +1,67 @@
+{
+  "baselinePath": ".planning/handovers/evidence/e6/draw-m3-baseline.json",
+  "candidatePath": ".planning/handovers/evidence/e6/draw-m3-candidate.json",
+  "browser": "Chrome/157.0.8103.79",
+  "baselineBundleSha256": "4254165a851ee7559f70e91843702a82020ebcef2dfe521490173cebf414f52c",
+  "candidateBundleSha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d",
+  "sceneSnapshotsCompared": 27,
+  "sceneMismatches": [],
+  "comparable": true,
+  "timingPolicy": "Median across 9 repetitions; screening allowance is max(baseline * 1.10, baseline + 0.1 ms), with 1e-6 ms roundoff tolerance. This comparison does not waive E0 ceilings.",
+  "scenarios": [
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 20.599999964237213,
+          "candidate": 20.399999976158142,
+          "delta": -0.19999998807907104,
+          "ratio": 0.9902912626977532
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6279.212,
+          "candidate": 6297.64,
+          "delta": 18.427999999999884,
+          "ratio": 1.0029347631518095
+        },
+        "updateMedianMs": {
+          "baseline": 1.399999976158142,
+          "candidate": 1.399999976158142,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.5399999737739565,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1,
+          "candidate": 1.0999999642372131,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0999999642372131,
+          "allowanceMs": 1.1,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 2.800000011920929,
+          "candidate": 3,
+          "delta": 0.19999998807907104,
+          "ratio": 1.0714285668669914,
+          "allowanceMs": 3.0800000131130223,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 723737,
+          "candidate": 725469.8666666667,
+          "delta": 1732.8666666666977,
+          "ratio": 1.0023943320110298
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1605159.6666666667,
+          "candidate": 1615754.5333333334,
+          "delta": 10594.866666666698,
+          "ratio": 1.0066005064086045
+        }
+      }
+    }
+  ]
+}

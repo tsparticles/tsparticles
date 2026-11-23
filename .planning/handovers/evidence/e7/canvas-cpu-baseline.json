@@ -1,0 +1,590 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "bundleSha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d",
+  "attributes": {
+    "alpha": true,
+    "colorSpace": "display-p3",
+    "colorType": "float16",
+    "desynchronized": true,
+    "toneMapping": {
+      "mode": "standard"
+    },
+    "willReadFrequently": false
+  },
+  "submissionMs": 167.69999998807907,
+  "profileFrames": 120,
+  "operations": {
+    "frames": 60,
+    "particles": 1000,
+    "descriptors": [
+      "fillStyle",
+      "strokeStyle",
+      "globalCompositeOperation",
+      "globalAlpha",
+      "lineWidth"
+    ],
+    "counts": {
+      "clearRect": 60,
+      "fillStyle": 60120,
+      "fillRect": 120,
+      "globalCompositeOperation": 120,
+      "save": 60,
+      "translate": 120,
+      "scale": 60,
+      "setTransform": 120000,
+      "lineWidth": 60000,
+      "strokeStyle": 60000,
+      "beginPath": 60000,
+      "fill": 60000,
+      "resetTransform": 60000,
+      "restore": 60
+    }
+  },
+  "hot": [
+    {
+      "functionName": "#Ai",
+      "line": 1,
+      "selfSamples": 152,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 26,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 7,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 4,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 75,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 20,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 3,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "resetTransform",
+      "line": 0,
+      "selfSamples": 152,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 152,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "setTransform",
+      "line": 0,
+      "selfSamples": 105,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 105,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "drawParticle",
+      "line": 1,
+      "selfSamples": 103,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 103,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "",
+      "line": 1,
+      "selfSamples": 102,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 102,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "setTransform",
+      "line": 0,
+      "selfSamples": 94,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 94,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "fill",
+      "line": 0,
+      "selfSamples": 87,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 87,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getOpacity",
+      "line": 1,
+      "selfSamples": 38,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 38,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "closePath",
+      "line": 0,
+      "selfSamples": 21,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 21,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "clearRect",
+      "line": 0,
+      "selfSamples": 18,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 18,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "(garbage collector)",
+      "line": 0,
+      "selfSamples": 15
+    },
+    {
+      "functionName": "(program)",
+      "line": 0,
+      "selfSamples": 12
+    },
+    {
+      "functionName": "drawParticles",
+      "line": 1,
+      "selfSamples": 11,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 3,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "arc",
+      "line": 0,
+      "selfSamples": 9,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 9,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getColorStyles",
+      "line": 1,
+      "selfSamples": 8,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 8,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "draw",
+      "line": 1,
+      "selfSamples": 7,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 4,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 3,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "#bn",
+      "line": 1,
+      "selfSamples": 7,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 7,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "#Ni",
+      "line": 1,
+      "selfSamples": 6,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "drawParticleTransform",
+      "line": 1,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "",
+      "line": 1,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getTransformData",
+      "line": 1,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getTransformValues",
+      "line": 1,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 4,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "(idle)",
+      "line": 0,
+      "selfSamples": 3
+    },
+    {
+      "functionName": "getTransformValues",
+      "line": 1,
+      "selfSamples": 3,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 3,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "draw",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getZoomCenter",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "getRotateData",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "Ti",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 2,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    },
+    {
+      "functionName": "Ni",
+      "line": 1,
+      "selfSamples": 2,
+      "positionTicks": [
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        },
+        {
+          "line": 1,
+          "ticks": 1,
+          "source": "!function(t){t.__tsParticlesInternals=t.__tsParticlesInternals||{},t.__tsParticlesInternals.bundles=t.__tsParticlesInternals.bundles||{},t.__tsParticlesInternals.effects=t.__tsParticlesInternals.effects||{},t.__tsParticlesInternals.engine=t.__tsParticlesInternals.engine||{},t.__tsParticlesInternals.interactions=t.__tsParticlesInternals.interactions||{},t.__tsParticlesInternals.palettes=t.__tsParticlesInternals.palettes||{},t.__tsParticlesInternals.paths=t.__tsParticlesInternals.paths||{},t.__tsP"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Instrumented M8 frozen-geometry CPU submission and operation counts; not runtime budget timing.",
+    "Style/composite caches must invalidate across external callbacks; draw records are public and may escape.",
+    "Source lines are diagnostic only; minified baseline positions have no useful source-line granularity."
+  ]
+}

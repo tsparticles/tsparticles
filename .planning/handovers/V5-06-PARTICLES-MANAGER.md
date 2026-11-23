@@ -1,6 +1,6 @@
 # V5-06 — Full ParticlesManager review
 
-Status in progress (2026-11-23); E5 accepted. See the
+Status complete (2026-11-23); see the [E6 completion evidence](evidence/e6/closure/README.md) and [method review](V5-E6-REVIEW.md). E5 accepted. See the
 [E6 checkpoint](V5-E6-STATUS.md) for spatial contract fixtures, current-source
 findings, callback/identity fixes, P1–P4/S1–S4 decisions and current verification.
 Review the entire area, including work beyond signature adaptations.

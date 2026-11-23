@@ -1,0 +1,247 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "originalBaselineBrowser": "Chrome/157.0.8103.52",
+  "checks": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "pass": true
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.3,
+      "pass": true
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.699999988079071,
+      "ceiling": 0.7,
+      "pass": true
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.5000000596046448,
+      "ceiling": 0.7,
+      "pass": true
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.399999976158142,
+      "ceiling": 1.43,
+      "pass": true
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.100000023841858,
+      "ceiling": 1.32,
+      "pass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.30000001192092896,
+      "ceiling": 0.4,
+      "pass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.2999999523162842,
+      "ceiling": 0.3,
+      "pass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 3.700000047683716,
+      "ceiling": 3.52,
+      "pass": false
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 2.5,
+      "ceiling": 2.53,
+      "pass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 14,
+      "ceiling": 13.97,
+      "pass": false
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 8.5,
+      "ceiling": 9.02,
+      "pass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.3999999761581421,
+      "ceiling": 0.3,
+      "pass": false
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.2,
+      "pass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 4.699999988079071,
+      "ceiling": 4.62,
+      "pass": false
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.6000000238418579,
+      "ceiling": 0.8,
+      "pass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 17.900000035762787,
+      "ceiling": 17.82,
+      "pass": false
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.300000011920929,
+      "ceiling": 1.65,
+      "pass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "pass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.3,
+      "pass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.800000011920929,
+      "ceiling": 0.8,
+      "pass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.800000011920929,
+      "ceiling": 0.9,
+      "pass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.699999988079071,
+      "ceiling": 1.65,
+      "pass": false
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.5,
+      "ceiling": 1.76,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.2,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.7000000476837158,
+      "ceiling": 0.8,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.6000000238418579,
+      "ceiling": 0.8,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.4000000357627869,
+      "ceiling": 1.43,
+      "pass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.100000023841858,
+      "ceiling": 1.43,
+      "pass": true
+    }
+  ],
+  "policy": "Frozen E0 ceilings; browser changed to Chrome 158, so retain the matched fresh E6 control. No new waiver."
+}

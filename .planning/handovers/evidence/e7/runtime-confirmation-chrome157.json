@@ -1,0 +1,4725 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "repetitions": 9,
+  "warmupTicks": 30,
+  "measuredTicks": 60,
+  "sceneSnapshotsCompared": 189,
+  "bundleSha256": {
+    "baseline": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d",
+    "candidate": "13d8692e46896d7815593ee3e62e604763f6bcf960605afbdc8c126cdf8338ab"
+  },
+  "samples": [
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 5.299999952316284,
+        "p95": 6.300000011920929,
+        "max": 7.900000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 3,
+        "p95": 3.400000035762787,
+        "max": 4.400000035762787
+      },
+      "frameMs": {
+        "median": 8.299999952316284,
+        "p95": 10,
+        "max": 11.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.800000011920929,
+        "p95": 5.800000011920929,
+        "max": 21.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.700000047683716,
+        "p95": 3.600000023841858,
+        "max": 5.199999988079071
+      },
+      "frameMs": {
+        "median": 7.599999964237213,
+        "p95": 9.300000011920929,
+        "max": 25.200000047683716
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 20,
+        "p95": 22.69999998807907,
+        "max": 26.700000047683716
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9.199999988079071,
+        "p95": 9.999999940395355,
+        "max": 13.300000011920929
+      },
+      "frameMs": {
+        "median": 29.099999964237213,
+        "p95": 32.80000001192093,
+        "max": 36.69999998807907
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.399999976158142,
+        "p95": 20.80000001192093,
+        "max": 23.80000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.800000011920929,
+        "p95": 9.299999952316284,
+        "max": 11.300000011920929
+      },
+      "frameMs": {
+        "median": 28.100000023841858,
+        "p95": 30.299999952316284,
+        "max": 32.89999997615814
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.699999988079071,
+        "max": 0.8999999761581421
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.7000000476837158,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.30000001192092896
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6.199999988079071,
+        "max": 7.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.900000035762787,
+        "max": 8.200000047683716
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.800000011920929,
+        "p95": 6.399999976158142,
+        "max": 7.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.5,
+        "p95": 7.099999964237213,
+        "max": 8.199999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.600000023841858,
+        "p95": 22,
+        "max": 25.80000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5,
+        "p95": 1.7000000476837158,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 22.099999964237213,
+        "p95": 23.5,
+        "max": 27.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.399999976158142,
+        "p95": 21.30000001192093,
+        "max": 23.19999998807907
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5,
+        "p95": 1.699999988079071,
+        "max": 1.9000000357627869
+      },
+      "frameMs": {
+        "median": 21.80000001192093,
+        "p95": 22.69999998807907,
+        "max": 25.100000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.899999976158142,
+        "p95": 2.100000023841858,
+        "max": 3.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.800000011920929,
+        "p95": 2,
+        "max": 2.400000035762787
+      },
+      "frameMs": {
+        "median": 3.600000023841858,
+        "p95": 4,
+        "max": 5.600000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.7999999523162842,
+        "p95": 2.100000023841858,
+        "max": 3.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.7999999523162842,
+        "p95": 2.0000000596046448,
+        "max": 2.400000035762787
+      },
+      "frameMs": {
+        "median": 3.599999964237213,
+        "p95": 4,
+        "max": 5.600000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.800000011920929,
+        "p95": 1,
+        "max": 1.5999999642372131
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.5,
+        "p95": 1.9000000357627869,
+        "max": 2.699999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 0,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.800000011920929,
+        "p95": 1.300000011920929,
+        "max": 1.9000000357627869
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9999999403953552
+      },
+      "frameMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 2.800000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5.300000011920929,
+        "max": 7
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.600000023841858,
+        "p95": 2.900000035762787,
+        "max": 3.100000023841858
+      },
+      "frameMs": {
+        "median": 7.100000023841858,
+        "p95": 8,
+        "max": 10
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5.099999964237213,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.600000023841858,
+        "p95": 3.0000000596046448,
+        "max": 3.100000023841858
+      },
+      "frameMs": {
+        "median": 7.199999988079071,
+        "p95": 8,
+        "max": 9.700000047683716
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.5,
+        "p95": 22.30000001192093,
+        "max": 23.19999998807907
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.800000011920929,
+        "p95": 9.499999940395355,
+        "max": 10.600000023841858
+      },
+      "frameMs": {
+        "median": 28.5,
+        "p95": 31.19999998807907,
+        "max": 32.30000001192093
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.5,
+        "p95": 20.69999998807907,
+        "max": 22.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.999999940395355,
+        "p95": 9.5,
+        "max": 10.199999988079071
+      },
+      "frameMs": {
+        "median": 28.5,
+        "p95": 29.900000035762787,
+        "max": 31.69999998807907
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5,
+        "max": 0.7000000476837158
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.30000007152557373
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.8999999761581421
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.30000007152557373
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.7000000476837158,
+        "max": 1.0999999642372131
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.699999988079071,
+        "p95": 6.200000047683716,
+        "max": 7.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 6.399999976158142,
+        "p95": 7,
+        "max": 8.200000047683716
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.800000011920929,
+        "p95": 6.299999952316284,
+        "max": 7.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 6.5,
+        "p95": 7,
+        "max": 8.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.80000001192093,
+        "p95": 22.099999964237213,
+        "max": 23.900000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.699999988079071,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 22.19999998807907,
+        "p95": 23.69999998807907,
+        "max": 25.600000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.80000001192093,
+        "p95": 22.599999964237213,
+        "max": 25
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.7000000476837158,
+        "max": 2
+      },
+      "frameMs": {
+        "median": 22.19999998807907,
+        "p95": 24.100000023841858,
+        "max": 26.700000047683716
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.899999976158142,
+        "max": 3.099999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.800000011920929,
+        "max": 2.600000023841858
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.599999964237213,
+        "max": 5.699999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2.099999964237213,
+        "max": 3.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 2.599999964237213
+      },
+      "frameMs": {
+        "median": 3.300000011920929,
+        "p95": 3.699999988079071,
+        "max": 5.799999952316284
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7000000476837158,
+        "p95": 1.100000023841858,
+        "max": 1.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.800000011920929,
+        "max": 2.699999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 1,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.699999988079071,
+        "max": 2.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.899999976158142,
+        "p95": 5.5,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.799999952316284,
+        "p95": 3.099999964237213,
+        "max": 4.100000023841858
+      },
+      "frameMs": {
+        "median": 7.600000023841858,
+        "p95": 8.5,
+        "max": 9.800000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.600000023841858,
+        "p95": 5.400000035762787,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3.0000000596046448,
+        "max": 3.100000023841858
+      },
+      "frameMs": {
+        "median": 7.300000011920929,
+        "p95": 8.300000011920929,
+        "max": 9.800000011920929
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 20.80000001192093,
+        "max": 23.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9,
+        "p95": 9.499999940395355,
+        "max": 9.700000047683716
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 30,
+        "max": 32.80000001192093
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.599999964237213,
+        "p95": 21.69999998807907,
+        "max": 23.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.899999976158142,
+        "p95": 9.399999976158142,
+        "max": 9.500000059604645
+      },
+      "frameMs": {
+        "median": 28.399999976158142,
+        "p95": 31,
+        "max": 32.69999998807907
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.5999999642372131,
+        "p95": 0.7999999523162842,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.19999998807907104,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6.300000011920929,
+        "max": 7
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.800000011920929,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 6.200000047683716,
+        "p95": 7,
+        "max": 8
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.599999964237213,
+        "p95": 6.5,
+        "max": 7.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999165534973,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.300000011920929,
+        "p95": 7.100000023841858,
+        "max": 8.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.5,
+        "p95": 21.80000001192093,
+        "max": 24.30000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.699999988079071,
+        "max": 1.8000000715255737
+      },
+      "frameMs": {
+        "median": 22,
+        "p95": 23.19999998807907,
+        "max": 26.100000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.399999976158142,
+        "p95": 22.599999964237213,
+        "max": 25.30000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.600000023841858,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 21.899999976158142,
+        "p95": 24.19999998807907,
+        "max": 27
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 3
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.800000011920929,
+        "max": 2.399999976158142
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.599999964237213,
+        "max": 5.399999976158142
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.800000011920929,
+        "p95": 2.099999964237213,
+        "max": 3
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.699999988079071,
+        "p95": 1.9999999403953552,
+        "max": 2.5
+      },
+      "frameMs": {
+        "median": 3.5,
+        "p95": 4.100000023841858,
+        "max": 5.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7999999523162842,
+        "p95": 1,
+        "max": 1.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 1,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.9000000357627869,
+        "max": 2.800000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 2,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7999999523162842,
+        "p95": 1,
+        "max": 1.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.9000000357627869,
+        "max": 1.199999988079071
+      },
+      "frameMs": {
+        "median": 1.399999976158142,
+        "p95": 1.9000000357627869,
+        "max": 2.699999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.400000035762787,
+        "p95": 5.5,
+        "max": 6.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.600000023841858,
+        "p95": 3,
+        "max": 3
+      },
+      "frameMs": {
+        "median": 7,
+        "p95": 8.199999988079071,
+        "max": 9.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.5,
+        "p95": 5,
+        "max": 6.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.600000023841858,
+        "p95": 3.100000023841858,
+        "max": 3.900000035762787
+      },
+      "frameMs": {
+        "median": 7.100000023841858,
+        "p95": 8.099999964237213,
+        "max": 9.300000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 20.69999998807907,
+        "max": 22.900000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.899999976158142,
+        "p95": 9.399999976158142,
+        "max": 9.599999964237213
+      },
+      "frameMs": {
+        "median": 28.099999964237213,
+        "p95": 29.80000001192093,
+        "max": 32.30000001192093
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.299999952316284,
+        "p95": 22,
+        "max": 22.30000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9.099999964237213,
+        "p95": 9.400000035762787,
+        "max": 9.600000023841858
+      },
+      "frameMs": {
+        "median": 28.30000001192093,
+        "p95": 31.099999964237213,
+        "max": 31.600000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.7999999523162842
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1.100000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.399999976158142,
+        "p95": 6,
+        "max": 7.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.800000011920929,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.099999964237213,
+        "p95": 6.699999988079071,
+        "max": 8.100000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 6.099999964237213,
+        "p95": 6.699999988079071,
+        "max": 7.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.7999999523162842,
+        "p95": 0.9999999403953552,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 6.899999976158142,
+        "p95": 7.5,
+        "max": 8.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.69999998807907,
+        "p95": 21.69999998807907,
+        "max": 24.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.7000000476837158,
+        "max": 1.8000000715255737
+      },
+      "frameMs": {
+        "median": 22.19999998807907,
+        "p95": 23.19999998807907,
+        "max": 26.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.30000001192093,
+        "p95": 21.299999952316284,
+        "max": 23.80000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.600000023841858,
+        "max": 1.699999988079071
+      },
+      "frameMs": {
+        "median": 21.69999998807907,
+        "p95": 22.700000047683716,
+        "max": 25.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 2.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.800000011920929,
+        "max": 2.600000023841858
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.599999964237213,
+        "max": 5.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 3.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.899999976158142,
+        "max": 2.4999999403953552
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.699999988079071,
+        "max": 5.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.300000011920929
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.899999976158142,
+        "max": 2.800000011920929
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 3,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7000000476837158,
+        "p95": 1,
+        "max": 1.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.199999988079071
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.899999976158142,
+        "max": 2.699999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5,
+        "max": 6.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3.099999964237213,
+        "max": 3.199999988079071
+      },
+      "frameMs": {
+        "median": 7.299999952316284,
+        "p95": 8.099999964237213,
+        "max": 9.699999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5.100000023841858,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.600000023841858,
+        "p95": 2.900000035762787,
+        "max": 3.099999964237213
+      },
+      "frameMs": {
+        "median": 7.200000047683716,
+        "p95": 8,
+        "max": 9.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 20.69999998807907,
+        "max": 23.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.999999940395355,
+        "p95": 9.300000011920929,
+        "max": 9.700000047683716
+      },
+      "frameMs": {
+        "median": 28.299999952316284,
+        "p95": 29.80000001192093,
+        "max": 33.09999996423721
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19,
+        "p95": 22.099999964237213,
+        "max": 22.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.899999976158142,
+        "p95": 9.400000035762787,
+        "max": 9.699999988079071
+      },
+      "frameMs": {
+        "median": 28,
+        "p95": 30.599999964237213,
+        "max": 31.80000001192093
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.4999999403953552
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.2999999523162842
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6,
+        "max": 7.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8000000715255737,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.600000023841858,
+        "max": 8.100000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6,
+        "max": 7.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.699999988079071,
+        "max": 8.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 21,
+        "p95": 22.600000023841858,
+        "max": 23.30000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.699999988079071,
+        "max": 1.7000000476837158
+      },
+      "frameMs": {
+        "median": 22.599999964237213,
+        "p95": 24,
+        "max": 25
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.900000035762787,
+        "p95": 23.600000023841858,
+        "max": 24.69999998807907
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.600000023841858,
+        "max": 1.7000000476837158
+      },
+      "frameMs": {
+        "median": 22.399999976158142,
+        "p95": 25.100000023841858,
+        "max": 26.19999998807907
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2,
+        "max": 3.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 2.399999976158142
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.699999988079071,
+        "max": 5.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 3.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.899999976158142,
+        "max": 2.399999976158142
+      },
+      "frameMs": {
+        "median": 3.200000047683716,
+        "p95": 3.700000047683716,
+        "max": 5.699999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.800000011920929,
+        "p95": 1,
+        "max": 1.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.7999999523162842,
+        "max": 2.700000047683716
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 4,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7000000476837158,
+        "p95": 1.100000023841858,
+        "max": 1.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.800000011920929,
+        "max": 2.800000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5.100000023841858,
+        "max": 6.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3.100000023841858,
+        "max": 4
+      },
+      "frameMs": {
+        "median": 7.199999988079071,
+        "p95": 7.900000035762787,
+        "max": 9.599999964237213
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.599999964237213,
+        "p95": 5,
+        "max": 6.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.6999999284744263,
+        "p95": 3.0000000596046448,
+        "max": 3.399999976158142
+      },
+      "frameMs": {
+        "median": 7.199999988079071,
+        "p95": 7.900000035762787,
+        "max": 9.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.100000023841858,
+        "p95": 20.399999976158142,
+        "max": 23.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.899999916553497,
+        "p95": 9.400000035762787,
+        "max": 9.500000059604645
+      },
+      "frameMs": {
+        "median": 28,
+        "p95": 29.80000001192093,
+        "max": 32.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 20.399999976158142,
+        "max": 22.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9.099999964237213,
+        "p95": 9.599999964237213,
+        "max": 9.800000011920929
+      },
+      "frameMs": {
+        "median": 28.30000001192093,
+        "p95": 29.799999952316284,
+        "max": 31.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.9000000357627869
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.699999988079071,
+        "max": 0.8999999761581421
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.599999964237213,
+        "p95": 6.100000023841858,
+        "max": 7.599999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.800000011920929,
+        "max": 8.399999976158142
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6.100000023841858,
+        "max": 7.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8000000715255737,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.900000035762787,
+        "max": 8.299999952316284
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.399999976158142,
+        "p95": 21.599999964237213,
+        "max": 23.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.7000000476837158,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 21.80000001192093,
+        "p95": 23,
+        "max": 25.19999998807907
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.399999976158142,
+        "p95": 21.400000035762787,
+        "max": 24.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.699999988079071,
+        "max": 1.8000000715255737
+      },
+      "frameMs": {
+        "median": 21.80000001192093,
+        "p95": 22.900000035762787,
+        "max": 25.899999976158142
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.699999988079071,
+        "p95": 1.9000000357627869,
+        "max": 3.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.699999988079071,
+        "p95": 1.9000000357627869,
+        "max": 2.5
+      },
+      "frameMs": {
+        "median": 3.399999976158142,
+        "p95": 3.799999952316284,
+        "max": 5.600000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 3
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.899999976158142,
+        "max": 2.599999964237213
+      },
+      "frameMs": {
+        "median": 3.100000023841858,
+        "p95": 3.799999952316284,
+        "max": 5.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7000000476837158,
+        "p95": 1,
+        "max": 1.7000000476837158
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.9000000357627869,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 1.399999976158142,
+        "p95": 1.899999976158142,
+        "max": 2.700000047683716
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 5,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.800000011920929,
+        "p95": 1.0999999642372131,
+        "max": 1.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6999999284744263,
+        "p95": 0.9000000357627869,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.800000011920929,
+        "max": 2.300000011920929
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.5,
+        "p95": 5.200000047683716,
+        "max": 6.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.700000047683716,
+        "p95": 3.100000023841858,
+        "max": 3.199999988079071
+      },
+      "frameMs": {
+        "median": 7.399999976158142,
+        "p95": 8.199999988079071,
+        "max": 9.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.800000011920929,
+        "p95": 5.300000011920929,
+        "max": 7.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.800000011920929,
+        "p95": 3.199999988079071,
+        "max": 3.800000011920929
+      },
+      "frameMs": {
+        "median": 7.5,
+        "p95": 8.5,
+        "max": 10.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 21.099999964237213,
+        "max": 22.69999998807907
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9,
+        "p95": 9.400000035762787,
+        "max": 9.600000023841858
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 30.100000023841858,
+        "max": 32.09999996423721
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.5,
+        "p95": 22.100000023841858,
+        "max": 23.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.900000035762787,
+        "p95": 9.300000011920929,
+        "max": 9.800000011920929
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 31.19999998807907,
+        "max": 33.10000002384186
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.699999988079071,
+        "max": 0.9000000357627869
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.4999999403953552
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.399999976158142
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.2999999523162842
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.600000023841858,
+        "p95": 6.399999976158142,
+        "max": 7.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.300000011920929,
+        "p95": 7.199999988079071,
+        "max": 8.300000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.399999976158142,
+        "p95": 6.199999988079071,
+        "max": 7.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8000000715255737,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.099999964237213,
+        "p95": 7,
+        "max": 8.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 21.5,
+        "p95": 22.5,
+        "max": 25.799999952316284
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.699999988079071,
+        "max": 1.7999999523162842
+      },
+      "frameMs": {
+        "median": 23,
+        "p95": 24.100000023841858,
+        "max": 27.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.899999976158142,
+        "p95": 22.100000023841858,
+        "max": 24.200000047683716
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.699999988079071,
+        "max": 1.7999999523162842
+      },
+      "frameMs": {
+        "median": 22.399999976158142,
+        "p95": 23.600000023841858,
+        "max": 26
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2,
+        "max": 3
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 2.5
+      },
+      "frameMs": {
+        "median": 3.300000011920929,
+        "p95": 3.800000011920929,
+        "max": 5.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 3.099999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 2,
+        "max": 2.5
+      },
+      "frameMs": {
+        "median": 3.300000011920929,
+        "p95": 3.700000047683716,
+        "max": 5.599999964237213
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.4000000357627869
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.1999999284744263
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.800000011920929,
+        "max": 2.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 6,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.7999999523162842,
+        "p95": 1,
+        "max": 1.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.9000000357627869,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.800000011920929,
+        "max": 2.899999976158142
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.600000023841858,
+        "p95": 5.199999988079071,
+        "max": 6.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3.0000000596046448,
+        "max": 3.099999964237213
+      },
+      "frameMs": {
+        "median": 7.299999952316284,
+        "p95": 8.299999952316284,
+        "max": 9.600000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.5,
+        "p95": 5.400000035762787,
+        "max": 6.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3.100000023841858,
+        "max": 3.6999999284744263
+      },
+      "frameMs": {
+        "median": 7.199999988079071,
+        "p95": 8.5,
+        "max": 9.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19,
+        "p95": 20.400000035762787,
+        "max": 22.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9,
+        "p95": 9.5,
+        "max": 10.499999940395355
+      },
+      "frameMs": {
+        "median": 28.100000023841858,
+        "p95": 29.600000023841858,
+        "max": 31.899999976158142
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.30000001192093,
+        "p95": 20.5,
+        "max": 23.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9.099999904632568,
+        "p95": 9.599999964237213,
+        "max": 9.900000035762787
+      },
+      "frameMs": {
+        "median": 28.399999976158142,
+        "p95": 29.69999998807907,
+        "max": 32.19999998807907
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.7999999523162842,
+        "max": 1.300000011920929
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.2999999523162842,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1.0999999642372131
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6.100000023841858,
+        "max": 8
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.800000011920929,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.100000023841858,
+        "p95": 6.900000035762787,
+        "max": 8.900000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.5,
+        "p95": 6.199999988079071,
+        "max": 7.200000047683716
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.800000011920929,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.900000035762787,
+        "max": 8
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 21.099999964237213,
+        "p95": 22.100000023841858,
+        "max": 24.19999998807907
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.7999999523162842,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 22.5,
+        "p95": 23.600000023841858,
+        "max": 26
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.69999998807907,
+        "p95": 22.69999998807907,
+        "max": 25.900000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.7000000476837158,
+        "max": 1.899999976158142
+      },
+      "frameMs": {
+        "median": 22.19999998807907,
+        "p95": 24.19999998807907,
+        "max": 27.80000001192093
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2.099999964237213,
+        "max": 3.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.699999988079071,
+        "p95": 2.0000000596046448,
+        "max": 2.300000011920929
+      },
+      "frameMs": {
+        "median": 3.300000011920929,
+        "p95": 3.899999976158142,
+        "max": 5.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 3.099999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 2.5000000596046448
+      },
+      "frameMs": {
+        "median": 3.200000047683716,
+        "p95": 3.799999952316284,
+        "max": 5.600000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.899999976158142,
+        "max": 2.600000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 7,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.9000000357627869,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.800000011920929,
+        "max": 2.5
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.5,
+        "p95": 5.399999976158142,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.700000047683716,
+        "p95": 3.0000000596046448,
+        "max": 3.100000023841858
+      },
+      "frameMs": {
+        "median": 7.300000011920929,
+        "p95": 8.300000011920929,
+        "max": 9.800000011920929
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 4.699999988079071,
+        "p95": 5.399999976158142,
+        "max": 7.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.699999988079071,
+        "p95": 3,
+        "max": 3.200000047683716
+      },
+      "frameMs": {
+        "median": 7.399999976158142,
+        "p95": 8.600000023841858,
+        "max": 10.199999988079071
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.19999998807907,
+        "p95": 20.5,
+        "max": 22
+      },
+      "drawExcludingUpdateMs": {
+        "median": 9.099999964237213,
+        "p95": 9.5,
+        "max": 10.599999964237213
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 29.600000023841858,
+        "max": 31.100000023841858
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "4d245e6098350525386d9793528a9fc2d3b9a8afd628780d7c4737deaa0d97ce",
+        "randomCalls": 9024,
+        "links": 18469
+      },
+      "measuredScene": {
+        "sha256": "bea45c868be9198e13eff3aa19c37710230e8c57f9b2dbc513822d7b342631aa",
+        "randomCalls": 9077,
+        "links": 18560
+      },
+      "updateMs": {
+        "median": 19.200000047683716,
+        "p95": 20.69999998807907,
+        "max": 22.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 8.899999976158142,
+        "p95": 9.400000035762787,
+        "max": 9.699999988079071
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 29.69999998807907,
+        "max": 31.399999976158142
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1.199999988079071
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "3b9026728f11da55311c31d06f1ee884944cb9640242a1a973c65c070a501a6e",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "7317e4e0a20e204afdb87f88999604e4d93dc754febb8995d0501e2f30916de2",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "249aa590f04144306217576a863919a568275b843bd137315cc1f266d489a79a",
+        "randomCalls": 900,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.2999999523162842,
+        "max": 0.30000001192092896
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1.100000023841858
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.699999988079071,
+        "p95": 6.200000047683716,
+        "max": 7.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 0.9999999403953552
+      },
+      "frameMs": {
+        "median": 6.399999976158142,
+        "p95": 6.900000035762787,
+        "max": 8.599999964237213
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "e2276ac2f896fa398d7549c17599019ebc5373fb82ab8e3447de1d9708037100",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "bb1565887f3b7bb401148886f8c85beec26be66353404607b2eb04a318d2e846",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 5.399999976158142,
+        "p95": 5.900000035762787,
+        "max": 7.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 0.9000000357627869
+      },
+      "frameMs": {
+        "median": 6.099999964237213,
+        "p95": 6.699999988079071,
+        "max": 8.200000047683716
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 21.80000001192093,
+        "p95": 23.30000001192093,
+        "max": 24.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5,
+        "p95": 1.800000011920929,
+        "max": 1.8000000715255737
+      },
+      "frameMs": {
+        "median": 23.299999952316284,
+        "p95": 24.899999976158142,
+        "max": 26.19999998807907
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "ec102f3c7d2e079f5913ea2ab8d1030dcaa7835b3cfa81706bf7b96da0011c58",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "a1add98f42ec8762e1f7dd5f77c38dcebd6f3eabca0f63ae5aaca2ccf5e50e69",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "94290128cabb9656397016a000b6dfec770e047fa7c70943fb53cb3fa290d15c",
+        "randomCalls": 9000,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 20.399999976158142,
+        "p95": 21.5,
+        "max": 24
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.699999988079071,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 21.80000001192093,
+        "p95": 22.899999976158142,
+        "max": 25.80000001192093
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2,
+        "max": 2.900000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.600000023841858,
+        "p95": 1.9000000357627869,
+        "max": 2.5
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.699999988079071,
+        "max": 5.400000035762787
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "5f68cd761fd07c05666b538c487c985cb4c76ebdd93bb25af700ac25b0cc2a41",
+        "randomCalls": 10000,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "99bb68a8d3cf7895a9ebc6316bf10ee08ce5a50e604a05a65972151ef444ebc6",
+        "randomCalls": 10007,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "8ed9f07a40249e407e6f1a23126012dbb8c7d9c25338630eef11a8dff08e7ab5",
+        "randomCalls": 10031,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 1.600000023841858,
+        "p95": 2,
+        "max": 3
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 2.400000035762787
+      },
+      "frameMs": {
+        "median": 3.199999988079071,
+        "p95": 3.700000047683716,
+        "max": 5.400000035762787
+      }
+    },
+    {
+      "name": "baseline",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.4000000357627869
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.0999999642372131
+      },
+      "frameMs": {
+        "median": 1.399999976158142,
+        "p95": 1.800000011920929,
+        "max": 2.5
+      }
+    },
+    {
+      "name": "candidate",
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 8,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "b500ec51bde27309130528f7c778b51bf093186a85f126f13346ea68152a95b5",
+        "randomCalls": 4513,
+        "links": 0
+      },
+      "measuredScene": {
+        "sha256": "e564bbfa9815b759a7d64b0001f65cd70b34bce9e1fd55c7e2e946fb5254953b",
+        "randomCalls": 4535,
+        "links": 0
+      },
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1.100000023841858,
+        "max": 1.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.800000011920929,
+        "max": 2.600000023841858
+      }
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 4.599999964237213,
+          "candidate": 4.600000023841858,
+          "allowanceMs": 5.059999960660935,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 2.699999988079071,
+          "candidate": 2.699999988079071,
+          "allowanceMs": 2.9699999868869784,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 8.199999988079071,
+          "candidate": 8.299999952316284,
+          "allowanceMs": 9.01999998688698,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 19.19999998807907,
+          "candidate": 19.200000047683716,
+          "allowanceMs": 21.11999998688698,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 9.099999904632568,
+          "candidate": 8.899999976158142,
+          "allowanceMs": 10.009999895095826,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 29.900000035762787,
+          "candidate": 30.299999952316284,
+          "allowanceMs": 32.89000003933907,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 0.3999999761581421,
+          "candidate": 0.3999999761581421,
+          "allowanceMs": 0.49999997615814207,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.10000002384185791,
+          "allowanceMs": 0.20000002384185792,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.800000011920929,
+          "candidate": 0.800000011920929,
+          "allowanceMs": 0.9000000119209289,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 5.5,
+          "candidate": 5.5,
+          "allowanceMs": 6.050000000000001,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.699999988079071,
+          "allowanceMs": 0.799999988079071,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 6.900000035762787,
+          "candidate": 6.900000035762787,
+          "allowanceMs": 7.590000039339066,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 20.69999998807907,
+          "candidate": 20.69999998807907,
+          "allowanceMs": 22.76999998688698,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.4999999403953552,
+          "candidate": 1.4000000357627869,
+          "allowanceMs": 1.6499999344348908,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 24,
+          "candidate": 23.600000023841858,
+          "allowanceMs": 26.400000000000002,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 1.600000023841858,
+          "candidate": 1.600000023841858,
+          "allowanceMs": 1.7600000262260438,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.600000023841858,
+          "candidate": 1.600000023841858,
+          "allowanceMs": 1.7600000262260438,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 3.699999988079071,
+          "candidate": 3.700000047683716,
+          "allowanceMs": 4.0699999868869785,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metrics": {
+        "updateMedianMs": {
+          "baseline": 0.7000000476837158,
+          "candidate": 0.7000000476837158,
+          "allowanceMs": 0.8000000476837158,
+          "pass": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.6000000238418579,
+          "candidate": 0.6000000238418579,
+          "allowanceMs": 0.7000000238418579,
+          "pass": true
+        },
+        "frameP95Ms": {
+          "baseline": 1.800000011920929,
+          "candidate": 1.899999976158142,
+          "allowanceMs": 1.980000013113022,
+          "pass": true
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Alternating matched timing-only confirmation; intentionally omits allocation sampling after measuredScene.",
+    "Same prepare/tick/snapshot code and 30/60 warm/measured ticks as the full matrix; empty scenes and forced GC precede timing.",
+    "Original E0 ceilings remain unchanged; Chrome 158 matched E6 controls distinguish environment shifts from E7 regressions."
+  ]
+}

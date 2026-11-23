@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-24",
+  "stage": "E7",
+  "technicalWorkComplete": true,
+  "formalAcceptance": "pending explicit user decision on original absolute budgets",
+  "releaseReady": false,
+  "newBudgetWaiver": false,
+  "revision": "204172a4587e15aad3e5591f2fcb2826187dc14d",
+  "workingTree": true,
+  "bundleSha256": "13d8692e46896d7815593ee3e62e604763f6bcf960605afbdc8c126cdf8338ab",
+  "sourceHashes": {
+    "engine/src/Core/Canvas/CanvasManager.ts": "49169fac8e68acf5a27fdf7ae2da4483cef45d1c2193b5f998ca650f0369f408",
+    "engine/src/Core/Rendering/RenderManager.ts": "af16965064d046a584dd973d1d4cdacf95897c2e102aad7cb13dcd8a9bba198f",
+    "engine/src/Core/Interfaces/IContainerPlugin.ts": "fa556c7c43d3ad26560f81cffd56df1e5b6b32e738cf2eaf293c071d5becca0f",
+    "engine/src/Enums/DrawLayer.ts": "9e572e1ee1811f1743f2005a2f8b6e6e358640485e2afd67698ec3bdc970138c",
+    "engine/src/Options/Classes/Options.ts": "61ff93480a08f3a139c00ee0722c49d9d4546b2aa235e92ea9eae1439f6936d2",
+    "engine/src/Options/Interfaces/IOptions.ts": "a94c2cb4dfbacbdaef947c143e39c9fb803a8ac05d20113f96b5037836c6f2b3",
+    "plugins/interactivity/src/InteractionManager.ts": "dada22c60a6aa327992d2fb930514181f1723d2bdbffe7f5c90b4cb3455b871a",
+    "plugins/interactivity/src/InteractivityEventListeners.ts": "8c6ef8cf3d9893be5ac8b81bf7bfbe4c89355cfd5524f1f6af78166b42836f24",
+    "utils/tests/src/tests/ContainerLifecycle.ts": "4eda7fbd94b321c1807673fd6c720cf03f55364f781c913ce5cdff00e7efb544",
+    "utils/tests/src/tests/OptionsLoad.ts": "7069e0e6eefa66d16a3a0d6b2dffa2a2c90914fbf6096ba18b690591b3d0c3ac",
+    "utils/tests/src/tests/RenderingLifecycle.ts": "b6e2954a412c17d1249b21d3776cafa6a5e53a49b01d2ba22800f83f1b8b13db",
+    "utils/tests/src/tests/WorkerRendering.ts": "ab6aeaec775a971cb89400a5393eefb547342ea502b5097f6759d1bce61c698e"
+  },
+  "primaryTests": {
+    "files": 61,
+    "passed": 953
+  },
+  "workspaceTests": {
+    "targets": 85,
+    "passed": 85,
+    "report": "../workspace-tests.json"
+  },
+  "downstreamBuild": {
+    "requestedProjects": 235,
+    "dependencies": 218,
+    "tasks": 453,
+    "passed": 453,
+    "cached": 21,
+    "typeCommentOnlyEngineRebuild": "20/20 passed after broad build"
+  },
+  "browser": {
+    "version": "Chrome/158.0.8127.38",
+    "matrixSnapshotsMatch": 135,
+    "initialRelativeScreens": "44/45; M8/500 p95 flag preserved",
+    "alternatingConfirmation": {
+      "repetitions": 9,
+      "cases": 7,
+      "matchingSnapshots": 189,
+      "relativeScreensPassed": 21,
+      "relativeScreensTotal": 21
+    },
+    "pixelComparisons": 12,
+    "worker": {
+      "baseline": "document ReferenceError",
+      "candidate": {
+        "count": 5,
+        "remaining": 0
+      }
+    },
+    "colorCases": 8,
+    "hdrToneMapping": "pass",
+    "privateUpdaterAcrossRedrawRefresh": "pass"
+  },
+  "extended": {
+    "samplesPerArtifactPerMode": 18,
+    "retentionCyclesPerMode": 30,
+    "postPeakHeapDriftBytes": {
+      "sdr": 100148,
+      "hdr": 99448
+    },
+    "initialHdrM6UpdateFlag": "preserved; nine-repeat confirmation passes 18/18 relative screens",
+    "confirmationSamples": 54,
+    "confirmationHeapDriftBytes": 89976
+  },
+  "oldVersionDiagnostic": {
+    "browser": "Chrome/157.0.8103.79 (Chrome for Testing)",
+    "cases": 7,
+    "repetitions": 9,
+    "matchingSnapshots": 189,
+    "allRelativeScreensPass": true,
+    "absoluteE0CeilingsAllPass": false,
+    "freshE6ControlAlsoExceedsOriginalLimits": true,
+    "originalGoogleChromeBinaryRestored": false,
+    "temporaryOfficialArchive": "../chrome157-download.json",
+    "fullCodesignVerify": "fails: code has no resources but signature indicates they must be present; archive MD5 matches official Google Storage header; no signature modification or OS security bypass performed",
+    "temporaryBrowserAndArchiveRemovedAfterMeasurement": true
+  },
+  "payload": {
+    "baseline": {
+      "raw": 463944,
+      "gzip": 127754,
+      "brotli": 103309,
+      "sha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d"
+    },
+    "candidate": {
+      "raw": 464326,
+      "gzip": 127918,
+      "brotli": 103574,
+      "sha256": "13d8692e46896d7815593ee3e62e604763f6bcf960605afbdc8c126cdf8338ab"
+    },
+    "delta": {
+      "raw": 382,
+      "gzip": 164,
+      "brotli": 265
+    }
+  },
+  "budgets": {
+    "matchedIncrementalGate": "pass after recorded confirmations",
+    "originalAbsoluteReleaseGate": "open; no waiver inferred",
+    "reports": [
+      "../budget-screen.json",
+      "../confirmation-budget-screen.json",
+      "../runtime-confirmation-chrome157.json"
+    ],
+    "proposal": "User may accept technical E7 and retain all original absolute-budget checks for E10."
+  },
+  "preservedE6Sources": {
+    "engine/src/Core/Particles/ParticlesManager.ts": "4def12b433c0ae7111e726385443dd7168742d735933b661a9fb61f8e13bfe1c",
+    "engine/src/Core/Particles/SpatialHashGrid.ts": "a54b1170a1e22dac142519579f8373a395fc567c7aac6bae356858f33e63187e",
+    "engine/src/Core/Particles/Ranges.ts": "ed496d98ef543e219bd00191cbd1c6bc56a036bb20b0796a5792e163ae26ba20"
+  },
+  "httpFixture": {
+    "wholeRepositoryServer": "automatic approval review rejected; never started",
+    "completedAlternative": "14-file/68383-byte dedicated web root on loopback; server stopped"
+  },
+  "commitMergePublication": false
+}

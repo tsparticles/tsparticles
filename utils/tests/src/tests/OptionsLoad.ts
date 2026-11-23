@@ -860,6 +860,31 @@ describe("Options load tests", () => {
     container.destroy(false);
   });
 
+  it.each([0, -1, NaN, Infinity, -Infinity])(
+    "rejects invalid render depth %s before allocating layers",
+    async value => {
+      const container = await loadContainer();
+
+      try {
+        expect(() => container.options.load({ zLayers: value })).toThrow(RangeError);
+        expect(container.options.zLayers).toBe(100);
+      } finally {
+        container.destroy(false);
+      }
+    },
+  );
+
+  it("preserves positive fractional render depth", async () => {
+    const container = await loadContainer();
+
+    try {
+      container.options.load({ zLayers: 10.5 });
+      expect(container.options.zLayers).toBe(10.5);
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("Options accepts boolean hdr and fullScreen shorthand", async () => {
     const container = await loadContainer({ autoPlay: false, hdr: true, fullScreen: true }),
       options = container.options;

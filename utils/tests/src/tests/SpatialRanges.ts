@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import {
-  Circle,
-  Rectangle,
-} from "../../../../engine/src/Core/Particles/Ranges.js";
+import { Circle, Rectangle } from "../../../../engine/src/Core/Particles/Ranges.js";
 import { describe, expect, it } from "vitest";
 
 describe("spatial range intersection geometry", () => {
@@ -52,11 +49,7 @@ describe("spatial range intersection geometry", () => {
   it("retains strict overlap for circle/circle and rectangle/rectangle", () => {
     expect(new Circle(0, 0, 1).intersects(new Circle(2, 0, 1))).toBe(false);
     expect(new Circle(0, 0, 1).intersects(new Circle(1, 0, 1))).toBe(true);
-    expect(
-      new Rectangle(0, 0, 1, 1).intersects(new Rectangle(1, 0, 1, 1)),
-    ).toBe(false);
-    expect(
-      new Rectangle(0, 0, 2, 2).intersects(new Rectangle(1, 0, 1, 1)),
-    ).toBe(true);
+    expect(new Rectangle(0, 0, 1, 1).intersects(new Rectangle(1, 0, 1, 1))).toBe(false);
+    expect(new Rectangle(0, 0, 2, 2).intersects(new Rectangle(1, 0, 1, 1))).toBe(true);
   });
 });

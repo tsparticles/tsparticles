@@ -16,6 +16,8 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { isBoolean } from "../../Utils/TypeUtils.js";
 import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
 
+const minZLayers = 0;
+
 /** Default themes configuration */
 export interface DefaultThemes {
   /** The default dark theme */
@@ -127,6 +129,11 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
 
     loadProperty(this, "pauseOnBlur", data.pauseOnBlur);
     loadProperty(this, "pauseOnOutsideViewport", data.pauseOnOutsideViewport);
+
+    if (data.zLayers !== undefined && (!Number.isFinite(data.zLayers) || data.zLayers <= minZLayers)) {
+      throw new RangeError("zLayers must be a finite positive number");
+    }
+
     loadProperty(this, "zLayers", data.zLayers);
 
     this.background.load(data.background);

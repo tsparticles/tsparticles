@@ -1,6 +1,6 @@
 # V5-IMP-03 — Groups, deferred removal, pooling, and ordering
 
-Status in progress; see the [E6 checkpoint](../V5-E6-STATUS.md) for current-source findings and the measured P2 candidate. High priority. Handover 06 owns this plan, with
+Status complete for E6; [completion evidence](../evidence/e6/closure/README.md) and [method review](../V5-E6-REVIEW.md); see the [E6 checkpoint](../V5-E6-STATUS.md) for current-source findings and the measured P2 candidate. High priority. Handover 06 owns this plan, with
 Particle contracts in 07 and plugins in 08. Requires
 [IMP-01](V5-IMP-01-MEASUREMENT.md) and stable state and lifecycle contracts.
 
@@ -95,3 +95,19 @@ Explicit removal clears collision immunity before disposing and pooling a partic
 Invalid nonfinite or unsafe addition targets become zero before entering loops;
 positive fractions retain their existing ceiling behavior. Removal quotas are
 bounded by the starting active count even when listeners refill the collection.
+
+## Draw-pass completion
+
+A live bucket iterator does not survive arbitrary drawer callbacks: regression
+fixtures show skipped entries after removal and mixed/repeated entries after
+clear, reuse or migration. Keep update phases live, but capture draw membership,
+ID identity and initial bucket order in owner-local reusable buffers. Additions
+are drawn on the next pass. Nested draws use different buffers; finally clears
+particle references and destroy releases capacity.
+
+`draw-traversal.json` compares fifteen alternating samples per count, with three
+warmups and no-op drawers. At 1,000 particles the additional traversal cost is
+approximately 0.0055 ms; at 5,000, 0.0375 ms. Diagnostic inspection finds zero
+retained particle references after each pass. This cost is accepted only with
+final browser scene/retention verification; it is a correctness repair rather
+than an optimization claim. No new public API or per-particle fields are added.

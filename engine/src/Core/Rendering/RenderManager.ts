@@ -24,7 +24,8 @@ import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
 import type { Particle } from "../Particles/Particle.js";
 import type { PluginManager } from "../Engine/PluginManager.js";
 
-const fColorIndex = 0,
+const drawLayers = Object.values(DrawLayer).filter((layer): layer is DrawLayer => typeof layer === "number"),
+  fColorIndex = 0,
   sColorIndex = 1;
 
 /**
@@ -59,6 +60,7 @@ export class RenderManager {
    */
   #context: OffscreenCanvasRenderingContext2D | null;
   #contextSettings?: CanvasRenderingContext2DSettings;
+  #drawingParticle = false;
   #drawParticlePlugins: IContainerPlugin[];
   #drawParticlesCleanupPlugins: IContainerPlugin[];
   #drawParticlesSetupPlugins: IContainerPlugin[];
@@ -157,17 +159,15 @@ export class RenderManager {
       }
     }
 
-    /* then check all layer plugins, skipping plugins that already handled canvasClear */
-    for (const layer of Object.values(DrawLayer)) {
-      if (typeof layer === "number") {
-        for (const plugin of this.#getLayerPlugins(layer)) {
-          if (visited.has(plugin)) {
-            continue;
-          }
-          visited.add(plugin);
-          if (plugin.canvasClear?.() ?? false) {
-            return plugin;
-          }
+    /* then check all layer plugins, skipping plugins already visited */
+    for (const layer of drawLayers) {
+      for (const plugin of this.#getLayerPlugins(layer)) {
+        if (visited.has(plugin)) {
+          continue;
+        }
+        visited.add(plugin);
+        if (plugin.canvasClear?.() ?? false) {
+          return plugin;
         }
       }
     }
@@ -183,6 +183,7 @@ export class RenderManager {
   destroy(): void {
     this.stop();
 
+    this.#context = null;
     this.#backgroundElement = null;
     this.#backgroundWarnings.clear();
     this.#preDrawUpdaters = [];
@@ -192,10 +193,8 @@ export class RenderManager {
     this.#drawParticlePlugins = [];
     this.#drawParticlesCleanupPlugins = [];
     this.#drawParticlesSetupPlugins = [];
-    for (const layer of Object.values(DrawLayer)) {
-      if (typeof layer === "number") {
-        this.#layers[layer] = [];
-      }
+    for (const layer of drawLayers) {
+      this.#layers[layer] = [];
     }
   }
 
@@ -246,8 +245,9 @@ export class RenderManager {
       zIndexOptions = particle.options.zIndex,
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
-      transform = this.#reusableTransform,
-      colorStyles = this.#reusableColorStyles,
+      nested = this.#drawingParticle,
+      transform: Partial<IParticleTransformValues> = nested ? {} : this.#reusableTransform,
+      colorStyles: IParticleColorStyle = nested ? {} : this.#reusableColorStyles,
       fill = fColor
         ? getStyleFromOklch(
             fColor,
@@ -275,27 +275,38 @@ export class RenderManager {
     colorStyles.stroke = stroke;
 
     this.draw((context): void => {
-      for (const plugin of this.#drawParticlesSetupPlugins) {
-        plugin.drawParticleSetup?.(context, particle, delta);
+      if (nested) {
+        context.save();
       }
+      this.#drawingParticle = true;
+      try {
+        for (const plugin of this.#drawParticlesSetupPlugins) {
+          plugin.drawParticleSetup?.(context, particle, delta);
+        }
 
-      this.#applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
+        this.#applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
 
-      this.#drawParticle({
-        container,
-        context,
-        particle,
-        delta,
-        colorStyles,
-        radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
-        opacity: opacity,
-        transform,
-      });
+        this.#drawParticle({
+          container,
+          context,
+          particle,
+          delta,
+          colorStyles,
+          radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
+          opacity: opacity,
+          transform,
+        });
 
-      this.#applyPostDrawUpdaters(particle);
+        this.#applyPostDrawUpdaters(particle);
 
-      for (const plugin of this.#drawParticlesCleanupPlugins) {
-        plugin.drawParticleCleanup?.(context, particle, delta);
+        for (const plugin of this.#drawParticlesCleanupPlugins) {
+          plugin.drawParticleCleanup?.(context, particle, delta);
+        }
+      } finally {
+        this.#drawingParticle = nested;
+        if (nested) {
+          context.restore();
+        }
       }
     });
   }
@@ -421,10 +432,8 @@ export class RenderManager {
     this.#drawParticlesSetupPlugins = [];
     this.#drawParticlesCleanupPlugins = [];
 
-    for (const layer of Object.values(DrawLayer)) {
-      if (typeof layer === "number") {
-        this.#layers[layer] = [];
-      }
+    for (const layer of drawLayers) {
+      this.#layers[layer] = [];
     }
 
     this.#initPluginsArray();
@@ -495,15 +504,17 @@ export class RenderManager {
 
       ctx.globalAlpha = opacity;
 
-      ctx.drawImage(
-        image,
-        originPoint.x,
-        originPoint.y,
-        this.#canvasManager.size.width,
-        this.#canvasManager.size.height,
-      );
-
-      ctx.globalAlpha = prevAlpha;
+      try {
+        ctx.drawImage(
+          image,
+          originPoint.x,
+          originPoint.y,
+          this.#canvasManager.size.width,
+          this.#canvasManager.size.height,
+        );
+      } finally {
+        ctx.globalAlpha = prevAlpha;
+      }
     });
   }
 
@@ -648,20 +659,22 @@ export class RenderManager {
       drawScale,
     };
 
-    for (const plugin of container.plugins) {
-      plugin.drawParticleTransform?.(drawData);
+    try {
+      for (const plugin of container.plugins) {
+        plugin.drawParticleTransform?.(drawData);
+      }
+
+      const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined,
+        shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;
+
+      this.#drawBeforeEffect(effect, drawData);
+      this.#drawShapeBeforeDraw(shape, drawData);
+      this.#drawShape(shape, drawData);
+      this.#drawShapeAfterDraw(shape, drawData);
+      this.#drawAfterEffect(effect, drawData);
+    } finally {
+      context.resetTransform();
     }
-
-    const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined,
-      shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;
-
-    this.#drawBeforeEffect(effect, drawData);
-    this.#drawShapeBeforeDraw(shape, drawData);
-    this.#drawShape(shape, drawData);
-    this.#drawShapeAfterDraw(shape, drawData);
-    this.#drawAfterEffect(effect, drawData);
-
-    context.resetTransform();
   }
 
   #drawParticlePlugin(

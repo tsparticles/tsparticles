@@ -1,6 +1,6 @@
 # V5-IMP-04 — SpatialHashGrid and query cost
 
-Status in progress; see the [E6 checkpoint](../V5-E6-STATUS.md) for validation, insertion and live sparse-query work. High priority. Handover 06 owns this plan, with
+Status complete for E6; [completion evidence](../evidence/e6/closure/README.md) and [method review](../V5-E6-REVIEW.md); see the [E6 checkpoint](../V5-E6-STATUS.md) for validation, insertion and live sparse-query work. High priority. Handover 06 owns this plan, with
 consumer verification in 08. Requires [IMP-01](V5-IMP-01-MEASUREMENT.md).
 
 ## Evidence and goal

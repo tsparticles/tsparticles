@@ -1,11 +1,46 @@
 # E6 — Collections and spatial index
 
-Started 2026-11-23 on the accepted E5 working tree. **Implementation and measurement continuation verified; E6 acceptance open.**
-Production changes cover geometry, spatial query lifetime, collection callbacks,
-pooled identity, limits and ordered buckets. P1–P4/S1–S4 alternatives are evaluated
-below. Historical checkpoints retain their original measurements.
+**E6 complete — 2026-11-23.** The source/method review and P1–P4/S1–S4
+evaluations are complete. Callback-safe drawing closes the final uncovered
+collection traversal. See [completion evidence](evidence/e6/closure/README.md)
+and the [method review](V5-E6-REVIEW.md).
 
-## Current implementation
+Final checks: **926 primary tests / 85 test targets / 453 build tasks**;
+135 matching matrix snapshots plus 108 matching confirmation snapshots;
+18 extended samples per artifact and 30 stable retention cycles. Initial timing
+flags and matched confirmations are retained. No new budget waiver; existing
+E5/E10 exceptions remain open. E7 is next, and E8–E10 remain pending.
+
+The sections below retain earlier checkpoint findings and measurements. Their
+open status and earlier test counts are historical, superseded by the completion
+evidence above. No new commit or publication performed in this continuation.
+
+## Draw-pass continuation
+
+The final method review found live bucket traversal still skipped or repeated
+particles when a drawer removed/recycled entries, cleared the manager or caused
+bucket migration. Five regressions fail on the previous implementation.
+`drawParticles` now captures membership, IDs and order at entry in reusable,
+depth-indexed buffers. Particle state stays live; additions wait for the next
+draw, removed/recycled identities are skipped and clear retires the old pass.
+Finally releases particle references without dropping buffer capacity; destroy
+drops the buffers. Nested calls and exception recovery have a separate regression.
+
+The [method review](V5-E6-REVIEW.md) records all manager/grid/range responsibilities,
+retained code and boundaries. A real-manager phase test additionally specifies
+that postUpdate movement changes geometry immediately while cell membership is
+rebuilt at the next update. No fluid trajectory or neighbor order is changed.
+
+Synthetic traversal with no-op drawers: at 1,000 particles, live traversal takes
+approximately 0.0154 ms and the snapshot 0.0209 ms (+0.0055 ms); at 5,000,
+0.0925/0.1301 ms. All diagnostic snapshot particle-reference counts are zero
+after drawing. This establishes an explicit correctness cost, not an FPS claim.
+Final artifact, build, browser and retention verification is recorded in the
+[completion report](evidence/e6/closure/README.md). The quiet final-source
+diagnostic adds approximately 0.0047 ms at 1,000 particles; the earlier
+0.0055-ms result is retained separately.
+
+## Initial production implementation (historical)
 
 - Correct circle/rectangle intersection using the closest point on a top-left
   rectangle. Circle/rectangle tangency remains inclusive; circle/circle and
@@ -53,7 +88,7 @@ manager sources are archived under `evidence/e6/baseline`; outputs include raw
 samples, variance, module sizes and diagnostic limits. Browser scene acceptance
 is separate from these synthetic Node measurements.
 
-## Current-source findings
+## Initial production source findings (historical)
 
 - P1: `#countGroup` already counts without a temporary array. The original
   `filter(...).length` starting evidence is historical. Public mutable `group`

@@ -1,0 +1,801 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "bundleSha256": "13d8692e46896d7815593ee3e62e604763f6bcf960605afbdc8c126cdf8338ab",
+  "viewport": {
+    "width": 800,
+    "height": 600,
+    "deviceScaleFactor": 2
+  },
+  "results": [
+    {
+      "mode": "natural",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.20000004768371582,
+        "pairInitializationMs": 24,
+        "resizeMs": 0.20000004768371582,
+        "redrawMs": 3.300000011920929,
+        "refreshMs": 4.099999964237213,
+        "teardownMs": 0.3999999761581421
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 0,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "natural",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22,
+        "resizeMs": 0.10000002384185791,
+        "redrawMs": 3.300000011920929,
+        "refreshMs": 3.600000023841858,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 1,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "natural",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 23,
+        "resizeMs": 0.19999998807907104,
+        "redrawMs": 3.599999964237213,
+        "refreshMs": 3.300000011920929,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 2,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "forced-hdr",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": true,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22.80000001192093,
+        "resizeMs": 0.19999998807907104,
+        "redrawMs": 3.600000023841858,
+        "refreshMs": 3.399999976158142,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 112351,
+      "repetition": 0,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9"
+    },
+    {
+      "mode": "forced-hdr",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": true,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22.400000035762787,
+        "resizeMs": 0.30000001192092896,
+        "redrawMs": 3.300000011920929,
+        "refreshMs": 3.399999976158142,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 112351,
+      "repetition": 1,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9"
+    },
+    {
+      "mode": "forced-hdr",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": true,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 23.30000001192093,
+        "resizeMs": 0.09999996423721313,
+        "redrawMs": 3.600000023841858,
+        "refreshMs": 3.699999988079071,
+        "teardownMs": 0.2999999523162842
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 112351,
+      "repetition": 2,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9"
+    },
+    {
+      "mode": "fallback",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 12,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22.100000023841858,
+        "resizeMs": 0.19999998807907104,
+        "redrawMs": 3.199999988079071,
+        "refreshMs": 3.199999988079071,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 0,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "fallback",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 12,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22,
+        "resizeMs": 0.10000002384185791,
+        "redrawMs": 3.200000047683716,
+        "refreshMs": 2.899999976158142,
+        "teardownMs": 0.19999998807907104
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 1,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "fallback",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 12,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.2999999523162842,
+        "pairInitializationMs": 22.099999964237213,
+        "resizeMs": 0.19999998807907104,
+        "redrawMs": 3.199999988079071,
+        "refreshMs": 3.599999964237213,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 55987,
+      "repetition": 2,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38"
+    },
+    {
+      "mode": "trail",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.20000004768371582,
+        "pairInitializationMs": 22.099999964237213,
+        "resizeMs": 0.09999996423721313,
+        "redrawMs": 3.400000035762787,
+        "refreshMs": 3.699999988079071,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 61125,
+      "repetition": 0,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e"
+    },
+    {
+      "mode": "trail",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.19999998807907104,
+        "pairInitializationMs": 22.600000023841858,
+        "resizeMs": 0.10000002384185791,
+        "redrawMs": 3.199999988079071,
+        "refreshMs": 3.400000035762787,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 61125,
+      "repetition": 1,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e"
+    },
+    {
+      "mode": "trail",
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "hdr": false,
+      "failedRequests": 0,
+      "backgrounds": 35,
+      "updater": [
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 1280,
+          "draw": 1280
+        },
+        {
+          "init": 40,
+          "update": 80,
+          "draw": 80
+        },
+        {
+          "init": 0,
+          "update": 0,
+          "draw": 0
+        },
+        {
+          "init": 40,
+          "update": 40,
+          "draw": 40
+        }
+      ],
+      "randomCalls": 1083,
+      "resize": {
+        "height": 480,
+        "width": 640
+      },
+      "phaseMs": {
+        "factoryAndLoadersMs": 0.30000001192092896,
+        "pairInitializationMs": 21.100000023841858,
+        "resizeMs": 0.19999998807907104,
+        "redrawMs": 3.199999988079071,
+        "refreshMs": 3.600000023841858,
+        "teardownMs": 0.30000001192092896
+      },
+      "mediaCount": 0,
+      "observers": 0,
+      "transfers": [
+        1,
+        1
+      ],
+      "imageBytes": 61125,
+      "repetition": 2,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e"
+    }
+  ],
+  "worker": {
+    "count": 5,
+    "remaining": 0
+  },
+  "errors": [],
+  "limitations": [
+    "Forced HDR tests actual float16/P3 context plus SDR fallback; no physical display luminance claim.",
+    "Image export supported for DOM canvas; explicit OffscreenCanvas export remains the documented absent-result path.",
+    "PNG artifacts and readback hashes are captured on the live render surface before resize/teardown."
+  ]
+}

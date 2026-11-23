@@ -1,0 +1,54 @@
+{
+  "primary": "included in other group; final 2 production error-code fixtures added after the build suite",
+  "totalTargets": 85,
+  "runs": [
+    {
+      "group": "other",
+      "targets": 83,
+      "exit": 0,
+      "command": [
+        "pnpm",
+        "nx",
+        "run-many",
+        "-t",
+        "test",
+        "--projects",
+        "@tsparticles/cli-command-build-bundle-rolldown,@tsparticles/cli-command-build-bundle-webpack,@tsparticles/cli-command-build-bundle-rollup,@tsparticles/cli-command-build-circular-deps,@tsparticles/cli-command-create-interaction,@tsparticles/cli-command-build-distfiles,@tsparticles/cli-command-build-diststats,@tsparticles/cli-command-build-prettier,@tsparticles/cli-command-create-palette,@tsparticles/cli-command-create-updater,@tsparticles/cli-command-create-bundle,@tsparticles/cli-command-create-effect,@tsparticles/cli-command-create-plugin,@tsparticles/cli-command-create-preset,@tsparticles/plugin-easing-smoothstep,angular-fireworks,@tsparticles/cli-command-build-eslint,@tsparticles/cli-command-create-shape,@tsparticles/cli-create-utils,angular-confetti,@tsparticles/cli-command-build-clear,@tsparticles/cli-command-create-path,@tsparticles/plugin-easing-gaussian,@tsparticles/cli-command-create-app,@tsparticles/cli-create,@tsparticles/mcp-server,@tsparticles/plugin-easing-elastic,@tsparticles/plugin-easing-sigmoid,@tsparticles/cli-build,@tsparticles/cli-command-build-tsc,@tsparticles/cli-nx-plugin,@tsparticles/plugin-background-mask,@tsparticles/plugin-easing-bounce,@tsparticles/plugin-easing-linear,@tsparticles/smooth-value-noise,@tsparticles/webcomponents,@tsparticles/plugin-easing-cubic,@tsparticles/plugin-easing-quart,@tsparticles/plugin-easing-quint,@tsparticles/animation-utils,@tsparticles/plugin-easing-back,@tsparticles/plugin-easing-circ,@tsparticles/plugin-easing-expo,@tsparticles/plugin-easing-quad,@tsparticles/plugin-easing-sine,@tsparticles/plugin-named-color,@tsparticles/plugin-oklab-color,@tsparticles/plugin-oklch-color,@tsparticles/cli-command-create,@tsparticles/cli-command-build,@tsparticles/fractal-noise,@tsparticles/plugin-hex-color,@tsparticles/plugin-hsl-color,@tsparticles/plugin-hsv-color,@tsparticles/plugin-hwb-color,@tsparticles/plugin-lab-color,@tsparticles/plugin-lch-color,@tsparticles/plugin-rgb-color,@tsparticles/simplex-noise,@tsparticles/wordpress,@tsparticles/canvas-utils,@tsparticles/perlin-noise,@tsparticles/angular,@tsparticles/inferno,@tsparticles/noise-field,@tsparticles/stencil,@tsparticles/jquery,@tsparticles/nextjs,@tsparticles/path-utils,@tsparticles/preact,@tsparticles/svelte,@tsparticles/astro,@tsparticles/ember,@tsparticles/nuxt4,@tsparticles/react,@tsparticles/solid,@tsparticles/qwik,@tsparticles/riot,@tsparticles/vue3,@tsparticles/lit,@tsparticles/tests,@tsparticles/ember-demo,@tsparticles/riot-demo",
+        "--parallel=4",
+        "--output-style=static"
+      ]
+    },
+    {
+      "group": "angular",
+      "targets": 1,
+      "exit": 0,
+      "command": [
+        "pnpm",
+        "nx",
+        "run",
+        "@tsparticles/angular-demo:test",
+        "--output-style=static",
+        "--",
+        "--watch=false",
+        "--browsers=ChromeHeadless",
+        "--reporters=progress"
+      ]
+    },
+    {
+      "group": "ionic",
+      "targets": 1,
+      "exit": 0,
+      "command": [
+        "pnpm",
+        "nx",
+        "run",
+        "@tsparticles/ionic-demo:test",
+        "--output-style=static",
+        "--",
+        "--watch=false",
+        "--browsers=ChromeHeadless",
+        "--reporters=progress"
+      ]
+    }
+  ]
+}

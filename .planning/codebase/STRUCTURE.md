@@ -102,6 +102,16 @@ engine remains one package and keeps its root and `/lazy` public entrypoints.
 - Generated `dist/` and `docs/` are ignored build outputs; their presence on disk
   does not mean they are tracked or current.
 
+### E7 rendering overlay — 2026-11-24
+
+CanvasManager retains DOM/offscreen surface ownership, CSS, size/Retina and
+context capability setup; RenderManager retains the specialized layer/draw
+pipeline. Module-local numeric layers do not add a package or subpath. Retired
+observers/media callbacks cannot repair a replacement scene; destroyed renderers
+release their context. Nested particle draws isolate scratch and canvas state.
+Interactivity DOM guards allow the All composition to start/stop in a worker.
+See [the method and ownership inventory](../handovers/V5-E7-REVIEW.md).
+
 ## Key File Locations
 
 **Entry Points:**

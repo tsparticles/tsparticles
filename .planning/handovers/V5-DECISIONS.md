@@ -41,14 +41,14 @@
 
 ## Experiment register
 
-| Plan   | Current status      | Evidence / next gate                                        |
-| ------ | ------------------- | ----------------------------------------------------------- |
-| IMP-01 | Under analysis      | E0 baseline and budgets complete; final comparisons pending |
-| IMP-02 | Pending measurement | Consumer graph and CDN totals before E9 changes             |
-| IMP-03 | Pending measurement | Collections after E5 model contracts                        |
-| IMP-04 | Pending measurement | Spatial fixtures and predicate/snapshot measurements in E6  |
-| IMP-05 | Pending measurement | Particle state after canonical OKLCH in E5                  |
-| IMP-06 | Pending measurement | Lifecycle E4 and rendering E7                               |
+| Plan   | Current status                                      | Evidence / next gate                                        |
+| ------ | --------------------------------------------------- | ----------------------------------------------------------- |
+| IMP-01 | Under analysis                                      | E0 baseline and budgets complete; final comparisons pending |
+| IMP-02 | Pending measurement                                 | Consumer graph and CDN totals before E9 changes             |
+| IMP-03 | Pending measurement                                 | Collections after E5 model contracts                        |
+| IMP-04 | Pending measurement                                 | Spatial fixtures and predicate/snapshot measurements in E6  |
+| IMP-05 | Pending measurement                                 | Particle state after canonical OKLCH in E5                  |
+| IMP-06 | Technical verification complete; acceptance pending | R1–R4 in E7; see V5-E7-STATUS.md                            |
 
 G1–G7 remain open in `V5-ENGINE-AUDIT.md` and apply to the package matrix.
 ARCH-01–04 and C0 decisions are recorded in the E3 decision files; their verification is still in progress. C1–C5 remain open.
@@ -114,3 +114,20 @@ see V5-E1-ENGINE.md for current verification. E2–E10 and all corresponding acc
 - **D3.3 — Preserve typed mutable option loaders.** Keep per-container resolved objects, current merge/order semantics, and plugin/updater loader extension points; E4/E5 own lifecycle and particle/reset changes.
 - **D3.4 — Keep specialized extension registries.** Document duplicate, order, ownership, and failure behavior per capability before claiming a unified lifecycle contract.
 - **D3.5 — C0 target.** OKLCH becomes the proposed canonical model with independent alpha, shortest hue interpolation, rectangular OKLab mixing, bounded chroma mapping, and explicit SDR/HDR output boundaries. This is a target contract only; C1–C5 implementation and validation remain open.
+
+## E7 technical checkpoint — 2026-11-24
+
+R1–R4 source review and measured decisions are complete. Keep live clear hooks
+and per-call Set deduplication; use one numeric enum sequence. Reject the slower
+pooled Set and unsupported global state caches/batching. Fix nested/exceptional
+canvas state, stale subscriptions, destroyed contexts, zero-size axes, worker
+DOM guards and nonfinite/nonpositive zLayers. Keep E6 collection/grid sources,
+public exports, caller surfaces and specialized phase order.
+
+953 primary tests, 85 workspace targets and 453 build tasks pass. All increment:
+164 gzip/265 Brotli; minimal: 130/140; helper/chunks unchanged. Pixel, state/RNG,
+HDR/fallback, updater identity, worker and retention evidence is archived in
+[e7/closure](evidence/e7/closure/README.md). Matched relative screens pass after
+recorded confirmations. Original E0 absolute ceilings still have exceedances,
+also in fresh E6 controls; a user's formal acceptance decision is pending. Do
+not silently extend the E5 exception or mark original budgets as passing.

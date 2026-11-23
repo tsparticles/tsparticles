@@ -1,7 +1,9 @@
 # V5-05 — CanvasManager, rendering, and other core costs
 
-Status pending. Color/output migration runs in E5 with 07/08 after E4.
-Complete rendering optimizations and the remaining full review in E7, after E6.
+Status: E5 color/output migration is accepted. E7 implementation, full review
+and matched incremental verification are complete; formal acceptance is pending
+the original absolute-budget decision. See [E7 status](V5-E7-STATUS.md),
+[method review](V5-E7-REVIEW.md) and [evidence](evidence/e7/closure/README.md).
 See the [execution sequence](V5-EXECUTION.md); this handover has two checkpoints.
 
 ## Ownership

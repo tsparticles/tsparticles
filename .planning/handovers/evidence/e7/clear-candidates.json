@@ -1,0 +1,1132 @@
+{
+  "node": "v26.13.0",
+  "sourceSha256": "37aa5a56fca69e126b0011f776b52f9c08a00b3cc22ed16f464733fe11a081fc",
+  "repetitions": 9,
+  "count": 200000,
+  "warmupCalls": 20000,
+  "samples": [
+    {
+      "scenario": "empty",
+      "repetition": 0,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 30.43283300000001,
+      "nsPerCall": 152.16416500000005,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 0,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 8.787333000000004,
+      "nsPerCall": 43.93666500000002,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 0,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 11.009208000000001,
+      "nsPerCall": 55.04604000000001,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 1,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.0685,
+      "nsPerCall": 50.3425,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 1,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 8.697417000000002,
+      "nsPerCall": 43.48708500000001,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 1,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 30.908625,
+      "nsPerCall": 154.543125,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 2,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 30.041833999999994,
+      "nsPerCall": 150.20916999999997,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 2,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.793082999999996,
+      "nsPerCall": 38.96541499999998,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 2,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.217332999999996,
+      "nsPerCall": 51.08666499999998,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 3,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.28316700000002,
+      "nsPerCall": 51.4158350000001,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 3,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.887207999999987,
+      "nsPerCall": 39.436039999999934,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 3,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 31.716041999999987,
+      "nsPerCall": 158.58020999999994,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 4,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 30.458124999999995,
+      "nsPerCall": 152.29062499999998,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 4,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.858707999999979,
+      "nsPerCall": 39.293539999999894,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 4,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.255791999999985,
+      "nsPerCall": 51.27895999999993,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 5,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.346625000000017,
+      "nsPerCall": 51.733125000000086,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 5,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.662290999999982,
+      "nsPerCall": 38.31145499999991,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 5,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 29.59058299999998,
+      "nsPerCall": 147.9529149999999,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 6,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 29.445416000000023,
+      "nsPerCall": 147.22708000000011,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 6,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.651542000000006,
+      "nsPerCall": 38.25771000000003,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 6,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.538207999999997,
+      "nsPerCall": 52.691039999999994,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 7,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.34004200000004,
+      "nsPerCall": 51.7002100000002,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 7,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.608042000000012,
+      "nsPerCall": 38.04021000000006,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 7,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 29.37495899999999,
+      "nsPerCall": 146.87479499999995,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 8,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 29.805416999999977,
+      "nsPerCall": 149.0270849999999,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 8,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.8900409999999965,
+      "nsPerCall": 39.45020499999998,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "empty",
+      "repetition": 8,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.202291999999943,
+      "nsPerCall": 51.01145999999971,
+      "hooks": 0,
+      "clears": 200000
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 0,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 7.056541000000038,
+      "nsPerCall": 35.28270500000019,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 0,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.941000000000031,
+      "nsPerCall": 39.705000000000155,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 0,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 10.894541000000004,
+      "nsPerCall": 54.47270500000002,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 1,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 9.25045799999998,
+      "nsPerCall": 46.25228999999991,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 1,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 7.202916999999957,
+      "nsPerCall": 36.014584999999784,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 1,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 7.015540999999985,
+      "nsPerCall": 35.07770499999992,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 2,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 6.027249999999981,
+      "nsPerCall": 30.1362499999999,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 2,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 6.0262500000000045,
+      "nsPerCall": 30.131250000000023,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 2,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 9.336999999999989,
+      "nsPerCall": 46.684999999999945,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 3,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.173625000000015,
+      "nsPerCall": 40.86812500000008,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 3,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.4041670000000295,
+      "nsPerCall": 27.020835000000147,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 3,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.436166999999955,
+      "nsPerCall": 27.180834999999778,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 4,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.544958999999949,
+      "nsPerCall": 27.724794999999745,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 4,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.394083000000023,
+      "nsPerCall": 26.970415000000116,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 4,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.026499999999942,
+      "nsPerCall": 40.13249999999971,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 5,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.084917000000019,
+      "nsPerCall": 40.42458500000009,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 5,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.652458000000024,
+      "nsPerCall": 28.26229000000012,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 5,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.446291999999971,
+      "nsPerCall": 27.231459999999856,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 6,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.3140840000000935,
+      "nsPerCall": 26.570420000000464,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 6,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.300791000000004,
+      "nsPerCall": 26.50395500000002,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 6,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.13108299999999,
+      "nsPerCall": 40.65541499999995,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 7,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.21829200000002,
+      "nsPerCall": 41.0914600000001,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 7,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.384417000000099,
+      "nsPerCall": 26.922085000000493,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 7,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.388749999999959,
+      "nsPerCall": 26.943749999999795,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 8,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 5.6239590000000135,
+      "nsPerCall": 28.119795000000064,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 8,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 5.525624999999991,
+      "nsPerCall": 27.628124999999955,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "dedicated-true",
+      "repetition": 8,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 8.489625000000046,
+      "nsPerCall": 42.44812500000023,
+      "hooks": 200000,
+      "clears": 0
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 0,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.502583999999956,
+      "nsPerCall": 187.51291999999978,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 0,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.282249999999976,
+      "nsPerCall": 76.41124999999988,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 0,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.201374999999985,
+      "nsPerCall": 91.00687499999992,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 1,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.495874999999955,
+      "nsPerCall": 87.47937499999978,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 1,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.848459000000048,
+      "nsPerCall": 74.24229500000024,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 1,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 38.0222500000001,
+      "nsPerCall": 190.1112500000005,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 2,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 38.39991699999996,
+      "nsPerCall": 191.99958499999983,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 2,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.284291999999937,
+      "nsPerCall": 76.42145999999968,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 2,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.088833000000022,
+      "nsPerCall": 90.44416500000011,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 3,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 23.42937500000005,
+      "nsPerCall": 117.14687500000024,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 3,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 17.868542000000048,
+      "nsPerCall": 89.34271000000024,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 3,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 38.06333300000006,
+      "nsPerCall": 190.31666500000028,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 4,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.92070899999999,
+      "nsPerCall": 189.6035449999999,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 4,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.292957999999999,
+      "nsPerCall": 76.46479,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 4,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.909625000000005,
+      "nsPerCall": 89.54812500000001,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 5,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.4056250000001,
+      "nsPerCall": 92.0281250000005,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 5,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.167416999999887,
+      "nsPerCall": 75.83708499999943,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 5,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 38.914999999999964,
+      "nsPerCall": 194.57499999999982,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 6,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 38.03449999999998,
+      "nsPerCall": 190.1724999999999,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 6,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.686749999999847,
+      "nsPerCall": 73.43374999999924,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 6,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.88754199999994,
+      "nsPerCall": 89.4377099999997,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 7,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.942332999999962,
+      "nsPerCall": 89.71166499999981,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 7,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.057209000000057,
+      "nsPerCall": 75.28604500000029,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 7,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.28366699999992,
+      "nsPerCall": 186.41833499999962,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 8,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.56204099999991,
+      "nsPerCall": 187.81020499999954,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 8,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.64629100000002,
+      "nsPerCall": 73.2314550000001,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "multi-layer-false",
+      "repetition": 8,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.826042000000143,
+      "nsPerCall": 89.1302100000007,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 0,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 36.98129099999983,
+      "nsPerCall": 184.90645499999914,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 0,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.784458000000086,
+      "nsPerCall": 73.92229000000043,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 0,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.741167000000132,
+      "nsPerCall": 93.70583500000068,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 1,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.64058399999999,
+      "nsPerCall": 93.20291999999995,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 1,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.235333000000082,
+      "nsPerCall": 76.17666500000041,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 1,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.02670899999998,
+      "nsPerCall": 185.1335449999999,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 2,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.5876659999999,
+      "nsPerCall": 187.93832999999947,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 2,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.006375000000162,
+      "nsPerCall": 75.03187500000081,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 2,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.024749999999813,
+      "nsPerCall": 90.12374999999906,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 3,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.05529200000001,
+      "nsPerCall": 90.27646000000004,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 3,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.204791000000114,
+      "nsPerCall": 76.02395500000057,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 3,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.02862500000015,
+      "nsPerCall": 185.14312500000074,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 4,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.484042000000045,
+      "nsPerCall": 187.42021000000022,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 4,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 15.058416999999963,
+      "nsPerCall": 75.29208499999982,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 4,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.812166999999818,
+      "nsPerCall": 89.06083499999909,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 5,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.04820800000016,
+      "nsPerCall": 90.2410400000008,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 5,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.929333999999926,
+      "nsPerCall": 74.64666999999963,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 5,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.47958300000005,
+      "nsPerCall": 187.3979150000002,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 6,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.60812499999997,
+      "nsPerCall": 188.04062499999986,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 6,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.9877919999999,
+      "nsPerCall": 74.9389599999995,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 6,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 18.16274999999996,
+      "nsPerCall": 90.8137499999998,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 7,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.687374999999975,
+      "nsPerCall": 88.43687499999987,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 7,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.979166999999961,
+      "nsPerCall": 74.8958349999998,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 7,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.87520900000027,
+      "nsPerCall": 189.37604500000134,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 8,
+      "name": "original",
+      "calls": 200000,
+      "elapsedMs": 37.739374999999654,
+      "nsPerCall": 188.6968749999983,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 8,
+      "name": "numeric",
+      "calls": 200000,
+      "elapsedMs": 14.971416999999747,
+      "nsPerCall": 74.85708499999873,
+      "hooks": 200000,
+      "clears": 200000
+    },
+    {
+      "scenario": "late-clear",
+      "repetition": 8,
+      "name": "pooled",
+      "calls": 200000,
+      "elapsedMs": 17.661000000000058,
+      "nsPerCall": 88.30500000000029,
+      "hooks": 200000,
+      "clears": 200000
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "empty",
+      "variants": {
+        "original": 150.20916999999997,
+        "numeric": 39.293539999999894,
+        "pooled": 51.4158350000001
+      }
+    },
+    {
+      "scenario": "dedicated-true",
+      "variants": {
+        "original": 27.724794999999745,
+        "numeric": 27.628124999999955,
+        "pooled": 41.0914600000001
+      }
+    },
+    {
+      "scenario": "multi-layer-false",
+      "variants": {
+        "original": 190.1112500000005,
+        "numeric": 75.83708499999943,
+        "pooled": 89.71166499999981
+      }
+    },
+    {
+      "scenario": "late-clear",
+      "variants": {
+        "original": 187.42021000000022,
+        "numeric": 74.9389599999995,
+        "pooled": 90.2410400000008
+      }
+    }
+  ],
+  "allocationModel": {
+    "original": "one Set plus enum values array per clear",
+    "numeric": "one Set per clear; layer array once per module",
+    "pooled": "one Set per concurrent depth plus pool array; released in finally"
+  },
+  "limitations": [
+    "Node microbenchmark of the actual compiled RenderManager; not browser frame timings or measured allocation bytes.",
+    "Pooled variant is an experiment only; dynamic fields replace prospective private fields."
+  ]
+}

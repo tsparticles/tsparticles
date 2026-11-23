@@ -1,0 +1,92 @@
+{
+  "node": "v26.13.0",
+  "sources": {
+    "engine/src/Core/Particles/ParticlesManager.ts": "4def12b433c0ae7111e726385443dd7168742d735933b661a9fb61f8e13bfe1c",
+    "engine/src/Core/Particles/SpatialHashGrid.ts": "a54b1170a1e22dac142519579f8373a395fc567c7aac6bae356858f33e63187e",
+    "engine/src/Core/Particles/Ranges.ts": "ed496d98ef543e219bd00191cbd1c6bc56a036bb20b0796a5792e163ae26ba20",
+    "plugins/interactivity/src/InteractionManager.ts": "234d9facf2b8a4c6765b92e2a992fbe906c0448c068ead25d08dbbf87753c901"
+  },
+  "modules": {
+    "ParticlesManager": {
+      "baseline": {
+        "sha256": "fa4b7a2ef1b70832fd0a459a99e3e23ebe7d704c4f1899bc19fa02fd5c37e792",
+        "raw": 7722,
+        "gzip": 2640,
+        "brotli": 2423
+      },
+      "candidate": {
+        "sha256": "13d2b43b1a9de90323959ada8297d73ebae0c5655a6a95183f0d73f340ee5d4d",
+        "raw": 9455,
+        "gzip": 3265,
+        "brotli": 2972
+      },
+      "delta": {
+        "raw": 1733,
+        "gzip": 625,
+        "brotli": 549
+      }
+    },
+    "SpatialHashGrid": {
+      "baseline": {
+        "sha256": "db81eba266fd247664a972bb3fa59003f336e53ede17c5d1c2e12bbe4809d35b",
+        "raw": 1923,
+        "gzip": 883,
+        "brotli": 802
+      },
+      "candidate": {
+        "sha256": "421632006f77bbbccea12dd9e8c373f6e69075a0594bf52660512015bfc1dd4c",
+        "raw": 3256,
+        "gzip": 1426,
+        "brotli": 1278
+      },
+      "delta": {
+        "raw": 1333,
+        "gzip": 543,
+        "brotli": 476
+      }
+    },
+    "Ranges": {
+      "baseline": {
+        "sha256": "e6899d300756dc84e2982b530a7e7928cd93f87b4267c2450e5bd74e4e50980a",
+        "raw": 1426,
+        "gzip": 586,
+        "brotli": 541
+      },
+      "candidate": {
+        "sha256": "eda5b5e58a75210e0aa0d7dd6f10c6381881ea19a82be73cd72f64ab56c0be6d",
+        "raw": 1444,
+        "gzip": 595,
+        "brotli": 541
+      },
+      "delta": {
+        "raw": 18,
+        "gzip": 9,
+        "brotli": 0
+      }
+    }
+  },
+  "allStandalone": {
+    "baseline": {
+      "sha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+      "raw": 460687,
+      "gzip": 126610,
+      "brotli": 102353
+    },
+    "candidate": {
+      "sha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d",
+      "raw": 463944,
+      "gzip": 127754,
+      "brotli": 103309
+    },
+    "delta": {
+      "raw": 3257,
+      "gzip": 1144,
+      "brotli": 956
+    }
+  },
+  "limitations": [
+    "Module sizes are isolated minified modules and are not consumer payloads.",
+    "All comparison uses the archived accepted E5 artifact and the current rebuilt standalone artifact.",
+    "E5 bundle-growth and runtime exceptions are not reclassified as passing by this incremental comparison."
+  ]
+}

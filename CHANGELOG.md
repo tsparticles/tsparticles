@@ -7,6 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Breaking changes
 
+- Reject zero, negative and nonfinite `zLayers` with `RangeError` before allocating render layers; positive fractional depth ranges remain supported.
+
 - Reject nonfinite or nonpositive `SpatialHashGrid` cell sizes with `RangeError`, including deferred size assignments.
 - Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Add input-only `p3` metadata for RGB channel objects and reject ambiguous `hdr`-tagged source channels; HDR options continue to control output rendering.
@@ -19,6 +21,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - Retire Vue 2, Nuxt 2 and Nuxt 3 wrappers, demos and template variants. Upgrade applications to Vue 3 or Nuxt 4 before using v5. The installer and app generator no longer recommend these retired integrations.
 
 ### Bug fixes
+
+- Isolate nested particle drawing and restore transforms/alpha on draw failures; release destroyed rendering contexts and ignore retired canvas observers/HDR callbacks.
+- Allow interactivity startup and teardown in workers without `document` or `HTMLElement`; keep DOM canvas transfer and export surfaces unchanged.
+- Reuse the fixed numeric draw-layer sequence instead of enumerating enum names on every clear, preserving live hook lookup and callback order.
+
+- Preserve finite particle coordinates when a zero-size DOM canvas becomes visible, while scaling previously nonzero axes proportionally.
+
+- Freeze draw-pass membership and ID order so callback removals, pooled reuse and bucket migrations cannot skip or duplicate particles; defer additions to the next draw and isolate nested draw buffers.
 
 - Guard invalid particle allocation counts and bound removal work when listeners refill the collection.
 

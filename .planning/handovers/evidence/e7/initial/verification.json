@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-23",
+  "stage": "E7 in progress; initial resize repair only",
+  "head": "204172a4587e15aad3e5591f2fcb2826187dc14d",
+  "sourceSha256": {
+    "engine/src/Core/Canvas/CanvasManager.ts": "659b5133ca392c5d72a7379b1a6b8db82e1b46e06c05594d6d15eccb89f1a597",
+    "utils/tests/src/tests/ContainerLifecycle.ts": "4eda7fbd94b321c1807673fd6c720cf03f55364f781c913ce5cdff00e7efb544"
+  },
+  "regressions": {
+    "initialPreRepairRun": "3 zero-size recovery cases fail with Infinity",
+    "candidateFocused": {
+      "files": 1,
+      "tests": 22,
+      "newCases": 5,
+      "passed": true
+    }
+  },
+  "primarySuite": {
+    "files": 59,
+    "tests": 931,
+    "passed": true,
+    "log": "downstream-build.log.gz"
+  },
+  "engineBuild": {
+    "passed": true,
+    "prerequisiteTasks": 19
+  },
+  "testLint": {
+    "passed": true
+  },
+  "downstreamBuild": {
+    "requestedProjects": 235,
+    "dependencyTasks": 218,
+    "initialFailures": [
+      "@tsparticles/electron-demo:build (packaging fetch failed; webpack passed)",
+      "@tsparticles/angular-demo:build (Abort trap: 6)"
+    ],
+    "failedTargetsRetry": {
+      "passed": true,
+      "outsideSandbox": true,
+      "projects": 2,
+      "dependencyTasks": 88,
+      "log": "demo-retry.log.gz"
+    },
+    "result": "All requested targets succeeded across initial run and failed-target retry; not a single all-green run"
+  },
+  "earlierAttempts": {
+    "overlappingPrimarySuite": "859 tests pass; 3 files fail import resolution while dist outputs rebuild",
+    "duplicateDirectVitest": "coverage-directory lock; no tests run"
+  },
+  "browserParity": "not run; E7 gate remains open",
+  "performance": "no rendering optimization adopted or performance claim",
+  "commit": "none"
+}

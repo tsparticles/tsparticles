@@ -45,8 +45,8 @@ export interface IContainerPlugin {
    * the plugin implements (e.g., `drawSettingsSetup`→CanvasSetup, `canvasPaint`→BackgroundMask,
    * `drawSettingsCleanup`/`clearDraw`→CanvasCleanup), so a plugin can be active on multiple layers.
    *
-   * This property serves as documentation of the plugin's primary rendering role and is used
-   * as a fallback for layers that have no dedicated hook method.
+   * This property documents the plugin's primary rendering role. Hook membership is
+   * determined by the implemented methods, independently of this metadata.
    * @see DrawLayer
    */
   layer?: DrawLayer;

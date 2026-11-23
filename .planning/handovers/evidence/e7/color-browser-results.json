@@ -1,0 +1,302 @@
+{
+  "revision": "204172a4587e15aad3e5591f2fcb2826187dc14d",
+  "workingTree": true,
+  "formatterSha256": "d12f10ff6aeca2586286bce4c3434b48c3fb934b1224ed037b54060bdb52b88e",
+  "errors": [],
+  "browserVersion": "Chrome/158.0.8127.38",
+  "fixtureDate": "2026-11-23T22:46:15.423Z",
+  "hdrLuminanceComparison": "pass",
+  "results": [
+    {
+      "alpha": 255,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.20720000000000027,
+        0.08849999999999625,
+        0.2985999999999933
+      ],
+      "expected": [
+        58.7928,
+        80.9115,
+        210.7014
+      ],
+      "label": "sRGB CSS Color 4 / WPT blue",
+      "pixel": [
+        59,
+        81,
+        211
+      ],
+      "readbackColorSpace": "srgb",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "oklch(50% 0.2 270 / 1)",
+      "target": "srgb",
+      "tolerance": 2
+    },
+    {
+      "alpha": 255,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        4,
+        0,
+        0
+      ],
+      "expected": [
+        191,
+        227,
+        255
+      ],
+      "label": "Display-P3 WPT gamut-mapped OKLCH highlight",
+      "pixel": [
+        195,
+        227,
+        255
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "oklch(90% 0.059390294551849354 240 / 1)",
+      "target": "display-p3",
+      "tolerance": 9
+    },
+    {
+      "alpha": 255,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        5,
+        4.77000000000001,
+        0
+      ],
+      "expected": [
+        255,
+        139.23,
+        0
+      ],
+      "label": "Display-P3 CSS Color 4 §14.2 high-chroma example",
+      "pixel": [
+        250,
+        144,
+        0
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "oklch(76% 0.20370948851108547 60 / 1)",
+      "target": "display-p3",
+      "tolerance": 9
+    },
+    {
+      "alpha": 1,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.0008124088807179852,
+        0.000051664345278978896,
+        0.00011638461113427923
+      ],
+      "expected": [
+        1.062335846380718,
+        0.495412992470279,
+        -0.3113956814861343
+      ],
+      "label": "Extended Display-P3 HDR style through float16 canvas",
+      "pixel": [
+        1.0615234375,
+        0.495361328125,
+        -0.311279296875
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 1.062335846380718 0.495412992470279 -0.3113956814861343 / 1)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    },
+    {
+      "alpha": 51,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        255,
+        145,
+        20
+      ],
+      "label": "Mapped srgb alpha and unchanged shared source",
+      "pixel": [
+        255,
+        145,
+        20
+      ],
+      "readbackColorSpace": "srgb",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "oklch(76% 0.17427317261695863 60 / 0.2)",
+      "target": "srgb",
+      "tolerance": 2
+    },
+    {
+      "alpha": 51,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        250,
+        144,
+        0
+      ],
+      "label": "Mapped display-p3 alpha and unchanged shared source",
+      "pixel": [
+        250,
+        145,
+        0
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "oklch(76% 0.20370948851108547 60 / 0.2)",
+      "target": "display-p3",
+      "tolerance": 2
+    },
+    {
+      "alpha": 0.5,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.0007318124072315246,
+        0.00017462806365331485,
+        0.00001049041748046875
+      ],
+      "expected": [
+        1.3376458749072315,
+        0.6310340030636533,
+        0
+      ],
+      "label": "Natural HDR tone mapping at 400 nits",
+      "luminanceNits": 140.35258453755665,
+      "pixel": [
+        1.3369140625,
+        0.630859375,
+        0.00001049041748046875
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 1.3376458749072315 0.6310340030636533 0 / 0.5)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    },
+    {
+      "alpha": 0.5,
+      "sourceUnchanged": true,
+      "context": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "difference": [
+        0.00034777864340296283,
+        0.00003364394717886299,
+        0.00004291534423828125
+      ],
+      "expected": [
+        1.472027466143403,
+        0.6972319810528211,
+        0
+      ],
+      "label": "Natural HDR tone mapping at 1000 nits",
+      "luminanceNits": 175.20479736237235,
+      "pixel": [
+        1.4716796875,
+        0.697265625,
+        -0.00004291534423828125
+      ],
+      "readbackColorSpace": "display-p3",
+      "readbackMode": "explicit-colorSpace",
+      "status": "pass",
+      "style": "color(display-p3 1.472027466143403 0.6972319810528211 0 / 0.5)",
+      "target": "display-p3",
+      "tolerance": 0.001
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36"
+}

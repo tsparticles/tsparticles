@@ -218,7 +218,9 @@ export class InteractivityEventListeners {
 
     this.#manageInteractivityListeners(add);
 
-    manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
+    if (typeof document !== "undefined") {
+      manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
+    }
   }
 
   /**

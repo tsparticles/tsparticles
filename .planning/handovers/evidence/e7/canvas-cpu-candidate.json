@@ -1,0 +1,605 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "bundleSha256": "7c11b0a1868b8acd49430730f066ef4524e5e01aa78fbb812581cebc7dbe73f0",
+  "attributes": {
+    "alpha": true,
+    "colorSpace": "display-p3",
+    "colorType": "float16",
+    "desynchronized": true,
+    "toneMapping": {
+      "mode": "standard"
+    },
+    "willReadFrequently": false
+  },
+  "submissionMs": 163.30000001192093,
+  "profileFrames": 120,
+  "operations": {
+    "frames": 60,
+    "particles": 1000,
+    "descriptors": [
+      "fillStyle",
+      "strokeStyle",
+      "globalCompositeOperation",
+      "globalAlpha",
+      "lineWidth"
+    ],
+    "counts": {
+      "clearRect": 60,
+      "fillStyle": 60120,
+      "fillRect": 120,
+      "globalCompositeOperation": 120,
+      "save": 60,
+      "translate": 120,
+      "scale": 60,
+      "setTransform": 120000,
+      "lineWidth": 60000,
+      "strokeStyle": 60000,
+      "beginPath": 60000,
+      "fill": 60000,
+      "resetTransform": 60000,
+      "restore": 60
+    }
+  },
+  "hot": [
+    {
+      "functionName": "drawParticle",
+      "line": 22644,
+      "selfSamples": 185,
+      "positionTicks": [
+        {
+          "line": 22644,
+          "ticks": 185,
+          "source": "drawParticle(particle, delta) {"
+        }
+      ]
+    },
+    {
+      "functionName": "resetTransform",
+      "line": 0,
+      "selfSamples": 143,
+      "positionTicks": [
+        {
+          "line": 22912,
+          "ticks": 143,
+          "source": "context.resetTransform();"
+        }
+      ]
+    },
+    {
+      "functionName": "#drawParticle",
+      "line": 22871,
+      "selfSamples": 138,
+      "positionTicks": [
+        {
+          "line": 22902,
+          "ticks": 7,
+          "source": "plugin.drawParticleTransform?.(drawData);"
+        },
+        {
+          "line": 22876,
+          "ticks": 2,
+          "source": "context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);"
+        },
+        {
+          "line": 22897,
+          "ticks": 1,
+          "source": "drawPosition,"
+        },
+        {
+          "line": 22887,
+          "ticks": 1,
+          "source": "particle,"
+        },
+        {
+          "line": 22894,
+          "ticks": 1,
+          "source": "stroke: strokeWidth > minStrokeWidth,"
+        },
+        {
+          "line": 22883,
+          "ticks": 14,
+          "source": "context.strokeStyle = colorStyles.stroke;"
+        },
+        {
+          "line": 22892,
+          "ticks": 2,
+          "source": "pixelRatio: container.retina.pixelRatio,"
+        },
+        {
+          "line": 22901,
+          "ticks": 53,
+          "source": "for (const plugin of container.plugins) {"
+        },
+        {
+          "line": 22872,
+          "ticks": 1,
+          "source": "const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data, { effectDrawers, shapeDrawers } = container, pos = particle.getPosition(), transformData = particle.getTransformData(transform), drawScale = defaultZoom, drawPosition = {"
+        },
+        {
+          "line": 22896,
+          "ticks": 24,
+          "source": "position: { ...pos },"
+        },
+        {
+          "line": 22904,
+          "ticks": 1,
+          "source": "const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined, shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;"
+        },
+        {
+          "line": 22877,
+          "ticks": 1,
+          "source": "if (colorStyles.fill) {"
+        },
+        {
+          "line": 22904,
+          "ticks": 1,
+          "source": "const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined, shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;"
+        },
+        {
+          "line": 22901,
+          "ticks": 9,
+          "source": "for (const plugin of container.plugins) {"
+        },
+        {
+          "line": 22878,
+          "ticks": 8,
+          "source": "context.fillStyle = colorStyles.fill;"
+        },
+        {
+          "line": 22881,
+          "ticks": 7,
+          "source": "context.lineWidth = strokeWidth;"
+        },
+        {
+          "line": 22912,
+          "ticks": 2,
+          "source": "context.resetTransform();"
+        },
+        {
+          "line": 22885,
+          "ticks": 3,
+          "source": "const drawData = {"
+        }
+      ]
+    },
+    {
+      "functionName": "setTransform",
+      "line": 0,
+      "selfSamples": 117,
+      "positionTicks": [
+        {
+          "line": 30875,
+          "ticks": 117,
+          "source": "context.setTransform(transformData.a * zoom, transformData.b * zoom, transformData.c * zoom, transformData.d * zoom, zoomedX, zoomedY);"
+        }
+      ]
+    },
+    {
+      "functionName": "fill",
+      "line": 0,
+      "selfSamples": 97,
+      "positionTicks": [
+        {
+          "line": 22935,
+          "ticks": 97,
+          "source": "context.fill();"
+        }
+      ]
+    },
+    {
+      "functionName": "setTransform",
+      "line": 0,
+      "selfSamples": 95,
+      "positionTicks": [
+        {
+          "line": 22876,
+          "ticks": 95,
+          "source": "context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);"
+        }
+      ]
+    },
+    {
+      "functionName": "getOpacity",
+      "line": 23884,
+      "selfSamples": 26,
+      "positionTicks": [
+        {
+          "line": 23884,
+          "ticks": 26,
+          "source": "getOpacity() {"
+        }
+      ]
+    },
+    {
+      "functionName": "clearRect",
+      "line": 0,
+      "selfSamples": 15,
+      "positionTicks": [
+        {
+          "line": 22596,
+          "ticks": 15,
+          "source": "ctx.clearRect(originPoint.x, originPoint.y, this.#canvasManager.size.width, this.#canvasManager.size.height);"
+        }
+      ]
+    },
+    {
+      "functionName": "(program)",
+      "line": 0,
+      "selfSamples": 11
+    },
+    {
+      "functionName": "(garbage collector)",
+      "line": 0,
+      "selfSamples": 11
+    },
+    {
+      "functionName": "drawParticles",
+      "line": 24563,
+      "selfSamples": 10,
+      "positionTicks": [
+        {
+          "line": 24580,
+          "ticks": 1,
+          "source": "if (particle &&"
+        },
+        {
+          "line": 24588,
+          "ticks": 1,
+          "source": "snapshot.particles.fill(undefined, minIndex, count);"
+        },
+        {
+          "line": 24578,
+          "ticks": 1,
+          "source": "for (let i = minIndex; i < count && particles === this.#array; i++) {"
+        },
+        {
+          "line": 24573,
+          "ticks": 1,
+          "source": "for (const particle of bucket) {"
+        },
+        {
+          "line": 24575,
+          "ticks": 1,
+          "source": "snapshot.ids[count++] = particle.id;"
+        },
+        {
+          "line": 24575,
+          "ticks": 1,
+          "source": "snapshot.ids[count++] = particle.id;"
+        },
+        {
+          "line": 24578,
+          "ticks": 2,
+          "source": "for (let i = minIndex; i < count && particles === this.#array; i++) {"
+        },
+        {
+          "line": 24574,
+          "ticks": 2,
+          "source": "snapshot.particles[count] = particle;"
+        }
+      ]
+    },
+    {
+      "functionName": "getStyleFromOklch",
+      "line": 2674,
+      "selfSamples": 10,
+      "positionTicks": [
+        {
+          "line": 2679,
+          "ticks": 1,
+          "source": "last.alpha === alpha &&"
+        },
+        {
+          "line": 2676,
+          "ticks": 1,
+          "source": "if (last?.color.l === color.l &&"
+        },
+        {
+          "line": 2675,
+          "ticks": 1,
+          "source": "const alpha = (opacity ?? defaultOpacity$3) * (\"a\" in color ? color.a : defaultAlpha), last = lastOklchStyle;"
+        },
+        {
+          "line": 2682,
+          "ticks": 1,
+          "source": "last.outputColorSpace === outputColorSpace &&"
+        },
+        {
+          "line": 2678,
+          "ticks": 1,
+          "source": "last.color.h === color.h &&"
+        },
+        {
+          "line": 2674,
+          "ticks": 5,
+          "source": "function getStyleFromOklch(color, hdr, opacity, peakNits, mode, outputColorSpace = \"srgb\") {"
+        }
+      ]
+    },
+    {
+      "functionName": "#drawShape",
+      "line": 22921,
+      "selfSamples": 8,
+      "positionTicks": [
+        {
+          "line": 22931,
+          "ticks": 1,
+          "source": "if (particle.shapeClose) {"
+        },
+        {
+          "line": 22935,
+          "ticks": 4,
+          "source": "context.fill();"
+        },
+        {
+          "line": 22929,
+          "ticks": 1,
+          "source": "context.beginPath();"
+        },
+        {
+          "line": 22932,
+          "ticks": 1,
+          "source": "context.closePath();"
+        },
+        {
+          "line": 22938,
+          "ticks": 1,
+          "source": "context.stroke();"
+        }
+      ]
+    },
+    {
+      "functionName": "arc",
+      "line": 0,
+      "selfSamples": 8,
+      "positionTicks": [
+        {
+          "line": 11474,
+          "ticks": 8,
+          "source": "context.arc(originPoint.x, originPoint.y, radius, circleRange.min, circleRange.max, false);"
+        }
+      ]
+    },
+    {
+      "functionName": "#applyModifiers",
+      "line": 23977,
+      "selfSamples": 7,
+      "positionTicks": [
+        {
+          "line": 23977,
+          "ticks": 7,
+          "source": "#applyModifiers(base, getter) {"
+        }
+      ]
+    },
+    {
+      "functionName": "getColorStyles",
+      "line": 16337,
+      "selfSamples": 7,
+      "positionTicks": [
+        {
+          "line": 16337,
+          "ticks": 7,
+          "source": "getColorStyles(particle, _context, _radius, opacity) {"
+        }
+      ]
+    },
+    {
+      "functionName": "closePath",
+      "line": 0,
+      "selfSamples": 6,
+      "positionTicks": [
+        {
+          "line": 22932,
+          "ticks": 6,
+          "source": "context.closePath();"
+        }
+      ]
+    },
+    {
+      "functionName": "getTransformValues",
+      "line": 11365,
+      "selfSamples": 6,
+      "positionTicks": [
+        {
+          "line": 11365,
+          "ticks": 6,
+          "source": "getTransformValues(particle) {"
+        }
+      ]
+    },
+    {
+      "functionName": "",
+      "line": 22711,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 22742,
+          "ticks": 2,
+          "source": "plugin.drawSettingsCleanup?.(ctx, delta);"
+        },
+        {
+          "line": 22739,
+          "ticks": 3,
+          "source": "particles.drawParticles(delta);"
+        }
+      ]
+    },
+    {
+      "functionName": "drawParticleTransform",
+      "line": 30866,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 30874,
+          "ticks": 1,
+          "source": "data.drawPosition = { x: zoomedX, y: zoomedY };"
+        },
+        {
+          "line": 30872,
+          "ticks": 1,
+          "source": "data.drawScale = zoom;"
+        },
+        {
+          "line": 30875,
+          "ticks": 2,
+          "source": "context.setTransform(transformData.a * zoom, transformData.b * zoom, transformData.c * zoom, transformData.d * zoom, zoomedX, zoomedY);"
+        },
+        {
+          "line": 30867,
+          "ticks": 1,
+          "source": "const container = this.#container, canvas = container.canvas, zoom = canvas.zoom;"
+        }
+      ]
+    },
+    {
+      "functionName": "drawCircle",
+      "line": 11470,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 11470,
+          "ticks": 1,
+          "source": "function drawCircle(data) {"
+        },
+        {
+          "line": 11474,
+          "ticks": 4,
+          "source": "context.arc(originPoint.x, originPoint.y, radius, circleRange.min, circleRange.max, false);"
+        }
+      ]
+    },
+    {
+      "functionName": "getTransformData",
+      "line": 23909,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 23918,
+          "ticks": 1,
+          "source": "this.#cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);"
+        },
+        {
+          "line": 23911,
+          "ticks": 1,
+          "source": "this.#cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);"
+        },
+        {
+          "line": 23911,
+          "ticks": 2,
+          "source": "this.#cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);"
+        },
+        {
+          "line": 23912,
+          "ticks": 1,
+          "source": "this.#cachedTransform.b = rotating"
+        }
+      ]
+    },
+    {
+      "functionName": "rangeColorToOklch",
+      "line": 2439,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 2441,
+          "ticks": 1,
+          "source": "return;"
+        },
+        {
+          "line": 2440,
+          "ticks": 4,
+          "source": "if (!color) {"
+        }
+      ]
+    },
+    {
+      "functionName": "getColorStyles",
+      "line": 17291,
+      "selfSamples": 5,
+      "positionTicks": [
+        {
+          "line": 17291,
+          "ticks": 5,
+          "source": "getColorStyles(particle, context, radius, opacity) {"
+        }
+      ]
+    },
+    {
+      "functionName": "draw",
+      "line": 23867,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 23867,
+          "ticks": 4,
+          "source": "draw(delta) {"
+        }
+      ]
+    },
+    {
+      "functionName": "#getPluginParticleColors",
+      "line": 22964,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 22964,
+          "ticks": 4,
+          "source": "#getPluginParticleColors(particle) {"
+        }
+      ]
+    },
+    {
+      "functionName": "drawParticle",
+      "line": 27452,
+      "selfSamples": 4,
+      "positionTicks": [
+        {
+          "line": 27452,
+          "ticks": 4,
+          "source": "drawParticle(context, particle) {"
+        }
+      ]
+    },
+    {
+      "functionName": "(idle)",
+      "line": 0,
+      "selfSamples": 3
+    },
+    {
+      "functionName": "",
+      "line": 1,
+      "selfSamples": 3,
+      "positionTicks": [
+        {
+          "line": 3,
+          "ticks": 2,
+          "source": "/* tsParticles v4.6.0 */"
+        },
+        {
+          "line": 2,
+          "ticks": 1,
+          "source": "(function (g) {"
+        }
+      ]
+    },
+    {
+      "functionName": "#getPluginParticleColors",
+      "line": 22964,
+      "selfSamples": 3,
+      "positionTicks": [
+        {
+          "line": 22964,
+          "ticks": 3,
+          "source": "#getPluginParticleColors(particle) {"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Instrumented M8 frozen-geometry CPU submission and operation counts; not runtime budget timing.",
+    "Style/composite caches must invalidate across external callbacks; draw records are public and may escape.",
+    "Source lines are diagnostic only; minified baseline positions have no useful source-line granularity."
+  ]
+}
