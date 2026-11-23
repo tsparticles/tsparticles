@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createConfetti } from "@tsparticles/confetti";
-const confetti = createConfetti(engine);
 import { engine } from "../../particlesEngine";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

@@ -2,8 +2,9 @@ import { useEffect, useState } from "preact/hooks";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
-const confetti = createConfetti(engine);
 import "./App.css";
+
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;

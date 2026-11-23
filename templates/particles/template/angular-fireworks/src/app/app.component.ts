@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { NgParticlesService } from "@tsparticles/angular";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../../particlesEngine";
+
+const particles = createParticles(engine);
 
 @Component({
   standalone: false,

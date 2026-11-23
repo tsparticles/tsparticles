@@ -44,7 +44,7 @@ export default function App() {
       <Particles engine={engine} id="tsparticles" options={options} />
       <nav id="navbar">
         {navItems.map(item => (
-          <a href={`#${item.toLowerCase()}`} class="nav-link">
+          <a key={item} href={`#${item.toLowerCase()}`} class="nav-link">
             {item}
           </a>
         ))}
@@ -71,7 +71,7 @@ export default function App() {
           <h2>Projects</h2>
           <div class="project-grid">
             {projects.map(p => (
-              <div class="project-card">
+              <div key={p.title} class="project-card">
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
               </div>
@@ -83,7 +83,7 @@ export default function App() {
         <div class="container">
           <h2>Skills</h2>
           {skills.map(s => (
-            <div class="skill-bar">
+            <div key={s.name} class="skill-bar">
               <span class="skill-name">{s.name}</span>
               <div class="bar">
                 <div class="fill" style={{ width: `${s.pct}%` }}></div>

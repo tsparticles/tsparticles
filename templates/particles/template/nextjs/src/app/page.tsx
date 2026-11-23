@@ -3,8 +3,9 @@
 import { NextParticles, NextParticlesProvider } from "@tsparticles/nextjs";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../../particlesEngine";
+
+const particles = createParticles(engine);
 
 async function init(): Promise<void> {
   await particles.init();

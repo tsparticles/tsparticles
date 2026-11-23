@@ -2,8 +2,9 @@ import { LitElement, css, html } from "lit";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "./particlesEngine";
-const confetti = createConfetti(engine);
 import { state } from "lit/decorators.js";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

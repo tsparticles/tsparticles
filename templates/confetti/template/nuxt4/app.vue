@@ -89,13 +89,13 @@ button {
   font-size: 1.1em;
   border: none;
   border-radius: 8px;
-  background: #e94560;
+  background: #c72c48;
   color: #fff;
   cursor: pointer;
   transition: background 0.2s;
 }
 button:hover {
-  background: #ff6b81;
+  background: #d32f50;
 }
 select {
   padding: 0.8em 1em;

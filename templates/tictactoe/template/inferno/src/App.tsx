@@ -3,9 +3,10 @@ import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { Component } from "inferno";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
-const confetti = createConfetti(engine);
 import { loadSlim } from "@tsparticles/slim";
 import "./App.css";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

@@ -2,14 +2,17 @@ import { ParticlesProvider } from "@tsparticles/react";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
 import { useState } from "react";
-const confetti = createConfetti(engine);
 import "./App.css";
+
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
 }
 
-async function init(): Promise<void> {}
+async function init(): Promise<void> {
+  await confetti.init();
+}
 
 export default function App() {
   const [mode, setMode] = useState("cannon");

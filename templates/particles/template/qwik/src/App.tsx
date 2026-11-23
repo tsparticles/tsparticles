@@ -2,8 +2,9 @@ import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../particlesEngine";
+
+const particles = createParticles(engine);
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },

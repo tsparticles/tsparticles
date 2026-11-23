@@ -1,5 +1,5 @@
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { engine } from "../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
@@ -9,11 +9,10 @@ export default component$(() => {
   const init = useSignal(false);
 
   useVisibleTask$(async () => {
-    initParticlesEngine(engine, async engine => {
+    await initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
-    }).then(() => {
-      init.value = true;
     });
+    init.value = true;
     readyEngine.value = noSerialize(engine);
   });
 

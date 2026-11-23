@@ -2,9 +2,10 @@ import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
 import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
-const particles = createParticles(engine);
 import { useEffect } from "preact/hooks";
 import "./App.css";
+
+const particles = createParticles(engine);
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },

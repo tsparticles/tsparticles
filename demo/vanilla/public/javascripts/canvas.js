@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+async function startDemo() {
   const engine = tsParticles.createEngine(),
     confetti = tsParticles.createConfetti(engine),
     fireworks = tsParticles.createFireworks(engine),
@@ -19,41 +19,43 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   console.log(canvas);
 
-  function confettiFrame() {
-    fetti({
-      particleCount: 2,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0, y: 0.5 },
-      colors: colors,
-    });
-    fetti({
-      particleCount: 2,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1, y: 0.5 },
-      colors: colors,
-    });
+  async function confettiFrame() {
+    await Promise.all([
+      fetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      }),
+      fetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      }),
+    ]);
 
     if (performance.now() < end) {
       setTimeout(() => {
-        confettiFrame();
+        void confettiFrame().catch(console.error);
       }, 15);
     }
   }
 
-  function fireworksFrame() {
-    fworks();
+  async function fireworksFrame() {
+    await fworks();
   }
 
-  function particlesFrame() {
-    prtcls({
+  async function particlesFrame() {
+    await prtcls({
       links: true,
     });
   }
 
-  function standardFrame() {
-    standard({
+  async function standardFrame() {
+    await standard({
       fullScreen: {
         enable: false,
       },
@@ -74,7 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   //confettiFrame();
   //fireworksFrame();
   //particlesFrame();
-  standardFrame();
+  await standardFrame();
 
   console.log("started");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  void startDemo().catch(console.error);
 });

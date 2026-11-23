@@ -1,4 +1,4 @@
-import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { engine } from "../particlesEngine";
@@ -42,6 +42,7 @@ export default component$(() => {
     await initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
+    readyEngine.value = noSerialize(engine);
     theme.value = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", theme.value);
   });
@@ -159,9 +160,9 @@ export default component$(() => {
           </form>
           <p class="toggle-text">
             <span>{isLogin.value ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick$={toggleMode}>
+            <button type="button" onClick$={toggleMode}>
               {isLogin.value ? "Register" : "Login"}
-            </a>
+            </button>
           </p>
         </div>
       </div>

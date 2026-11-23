@@ -2,8 +2,9 @@ import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
 import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
-const particles = createParticles(engine);
 import { onMount } from "solid-js";
+
+const particles = createParticles(engine);
 
 export default function App() {
   onMount(() => {

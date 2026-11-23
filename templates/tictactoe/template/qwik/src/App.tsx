@@ -1,10 +1,11 @@
-import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
-const confetti = createConfetti(engine);
 import { loadSlim } from "@tsparticles/slim";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

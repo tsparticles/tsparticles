@@ -1,8 +1,9 @@
 import { Component, h } from "@stencil/core";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../../../particlesEngine";
+
+const particles = createParticles(engine);
 
 @Component({
   tag: "app-home",

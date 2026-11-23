@@ -1,9 +1,10 @@
 import { createConfetti } from "@tsparticles/confetti";
 import "./style.css";
 import { engine } from "../particlesEngine";
-const confetti = createConfetti(engine);
 
 import { loadSlim } from "@tsparticles/slim";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

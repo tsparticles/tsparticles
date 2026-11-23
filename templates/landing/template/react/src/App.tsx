@@ -59,8 +59,8 @@ export default function App() {
               { icon: "\ud83d\udd12", title: "Secure", desc: "Enterprise-grade security built into every layer." },
               { icon: "\ud83c\udf0d", title: "Global Scale", desc: "Deploy anywhere with our global infrastructure." },
               { icon: "\ud83c\udfa8", title: "Customizable", desc: "Tailor every aspect to your brand and needs." },
-            ].map((f, i) => (
-              <div key={i} className="feature-card">
+            ].map(f => (
+              <div key={f.title} className="feature-card">
                 <div className="feature-icon">{f.icon}</div>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
@@ -86,16 +86,16 @@ export default function App() {
                 price: "$99",
                 features: ["Everything in Pro", "Dedicated support", "SLA guarantee", "Custom deployment"],
               },
-            ].map((p, i) => (
-              <div key={i} className={`pricing-card${p.featured ? " featured" : ""}`}>
+            ].map(p => (
+              <div key={p.plan} className={`pricing-card${p.featured ? " featured" : ""}`}>
                 <h3>{p.plan}</h3>
                 <p className="price">
                   {p.price}
                   <span>/mo</span>
                 </p>
                 <ul>
-                  {p.features.map((f, j) => (
-                    <li key={j}>{f}</li>
+                  {p.features.map(f => (
+                    <li key={f}>{f}</li>
                   ))}
                 </ul>
                 <a href="#" className={`btn ${p.featured ? "btn-primary" : "btn-secondary"}`}>
@@ -119,8 +119,8 @@ export default function App() {
                 text: "The best investment we made this year. The performance gains are incredible.",
                 author: "Michael R., Developer",
               },
-            ].map((t, i) => (
-              <div key={i} className="testimonial-card">
+            ].map(t => (
+              <div key={t.author} className="testimonial-card">
                 <p>"{t.text}"</p>
                 <span className="author">\u2014 {t.author}</span>
               </div>

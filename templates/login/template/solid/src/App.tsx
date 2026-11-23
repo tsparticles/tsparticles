@@ -158,15 +158,15 @@ export default function App() {
           </form>
           <p class="toggle-text">
             <span>{isLogin() ? "Don't have an account?" : "Already have an account?"}</span>
-            <a
-              href="#"
+            <button
+              type="button"
               onClick={e => {
                 e.preventDefault();
                 toggleMode();
               }}
             >
               {isLogin() ? "Register" : "Login"}
-            </a>
+            </button>
           </p>
         </div>
       </div>

@@ -2,9 +2,10 @@ import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { Component } from "inferno";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../particlesEngine";
 import "./App.css";
+
+const particles = createParticles(engine);
 
 async function init(): Promise<void> {
   await particles.init();

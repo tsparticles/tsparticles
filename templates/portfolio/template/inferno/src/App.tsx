@@ -45,7 +45,7 @@ export default class App extends Component {
         <Particles engine={engine} id="tsparticles" options={options} />
         <nav id="navbar">
           {navItems.map(item => (
-            <a href={`#${item.toLowerCase()}`} className="nav-link">
+            <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
               {item}
             </a>
           ))}
@@ -72,7 +72,7 @@ export default class App extends Component {
             <h2>Projects</h2>
             <div className="project-grid">
               {projects.map(p => (
-                <div className="project-card">
+                <div key={p.title} className="project-card">
                   <h3>{p.title}</h3>
                   <p>{p.desc}</p>
                 </div>
@@ -84,7 +84,7 @@ export default class App extends Component {
           <div className="container">
             <h2>Skills</h2>
             {skills.map(s => (
-              <div className="skill-bar">
+              <div key={s.name} className="skill-bar">
                 <span className="skill-name">{s.name}</span>
                 <div className="bar">
                   <div className="fill" style={{ width: `${s.pct}%` }}></div>

@@ -3,8 +3,9 @@ import type { ISourceOptions } from "@tsparticles/engine";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
-const confetti = createConfetti(engine);
 import { loadSlim } from "@tsparticles/slim";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

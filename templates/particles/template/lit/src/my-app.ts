@@ -3,8 +3,9 @@ import { customElement, state } from "lit/decorators.js";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { createParticles } from "@tsparticles/particles";
 import { engine } from "./particlesEngine";
-const particles = createParticles(engine);
 import { initParticlesEngine } from "@tsparticles/lit";
+
+const particles = createParticles(engine);
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },

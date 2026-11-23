@@ -172,9 +172,9 @@ export class AppHome {
             </form>
             <p class="toggle-text">
               <span>{this.isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-              <a href="#" onClick={this.toggleMode}>
+              <button type="button" onClick={this.toggleMode}>
                 {this.isLogin ? "Register" : "Login"}
-              </a>
+              </button>
             </p>
           </div>
         </div>

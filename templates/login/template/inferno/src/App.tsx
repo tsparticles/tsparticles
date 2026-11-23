@@ -170,9 +170,9 @@ class App extends Component<Record<string, unknown>, AppState> {
             </form>
             <p className="toggle-text">
               <span>{this.state.isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-              <a href="#" onClick={this.toggleMode}>
+              <button type="button" onClick={this.toggleMode}>
                 {this.state.isLogin ? "Register" : "Login"}
-              </a>
+              </button>
             </p>
           </div>
         </div>

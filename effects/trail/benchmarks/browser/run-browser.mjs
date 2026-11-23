@@ -821,7 +821,8 @@ function machineDetails() {
 
   if (platform() === "darwin") {
     try {
-      processor = execFileSync("sysctl", ["-n", "machdep.cpu.brand_string"], { encoding: "utf8" }).trim() || processor;
+      processor =
+        execFileSync("/usr/sbin/sysctl", ["-n", "machdep.cpu.brand_string"], { encoding: "utf8" }).trim() || processor;
     } catch {
       // The Node CPU model remains available when sysctl is not.
     }

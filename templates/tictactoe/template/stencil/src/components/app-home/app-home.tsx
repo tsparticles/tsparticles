@@ -1,9 +1,10 @@
 import { Component, State, h } from "@stencil/core";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
 import { createConfetti } from "@tsparticles/confetti";
-const confetti = createConfetti(engine);
 import { engine } from "../../../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

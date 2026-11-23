@@ -4,9 +4,10 @@ import { useCallback, useState } from "react";
 import type { ISourceOptions } from "@tsparticles/engine";
 import Particles from "@tsparticles/react";
 import Providers from "./providers";
-const confetti = createConfetti(engine);
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../../particlesEngine";
+
+const confetti = createConfetti(engine);
 
 type Player = "X" | "O";
 

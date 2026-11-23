@@ -2,9 +2,10 @@ import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcom
 import "./style.css";
 
 import type { ISourceOptions } from "@tsparticles/engine";
-const particles = createParticles(engine);
 import { createParticles } from "@tsparticles/particles";
 import { engine } from "../particlesEngine";
+
+const particles = createParticles(engine);
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },

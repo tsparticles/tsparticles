@@ -1,9 +1,10 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../particlesEngine";
 import "./App.css";
+
+const particles = createParticles(engine);
 
 async function init(): Promise<void> {
   await particles.init();

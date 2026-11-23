@@ -153,9 +153,9 @@ export default function App() {
           </form>
           <p class="toggle-text">
             <span>{isLogin ? "Don't have an account?" : "Already have an account?"}</span>
-            <a href="#" onClick={toggleMode}>
+            <button type="button" onClick={toggleMode}>
               {isLogin ? "Register" : "Login"}
-            </a>
+            </button>
           </p>
         </div>
       </div>

@@ -2,8 +2,9 @@ import App from "./App.vue";
 import Particles from "@tsparticles/vue3";
 import { createApp } from "vue";
 import { createParticles } from "@tsparticles/particles";
-const particles = createParticles(engine);
 import { engine } from "../particlesEngine";
+
+const particles = createParticles(engine);
 
 const app = createApp(App);
 

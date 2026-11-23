@@ -1,10 +1,11 @@
 import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { Component } from "inferno";
 import type { Engine } from "@tsparticles/engine";
-const confetti = createConfetti(engine);
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
 import "./App.css";
+
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;

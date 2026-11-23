@@ -1,10 +1,13 @@
 import { ParticlesProvider } from "@tsparticles/react";
 import { createRibbons } from "@tsparticles/ribbons";
 import { engine } from "../particlesEngine";
-const ribbons = createRibbons(engine);
 import "./App.css";
 
-async function init(): Promise<void> {}
+const ribbons = createRibbons(engine);
+
+async function init(): Promise<void> {
+  await ribbons.init();
+}
 
 export default function App() {
   function fireRibbons() {

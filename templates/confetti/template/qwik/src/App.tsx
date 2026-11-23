@@ -1,5 +1,5 @@
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { createConfetti } from "@tsparticles/confetti";
 import { engine } from "../particlesEngine";
 const confetti = createConfetti(engine);
@@ -13,7 +13,10 @@ export default component$(() => {
   const mode = useSignal("cannon");
 
   useVisibleTask$(async () => {
-    await initParticlesEngine(engine, () => Promise.resolve());
+    await initParticlesEngine(engine, async () => {
+      await confetti.init();
+    });
+    readyEngine.value = noSerialize(engine);
   });
 
   const fireConfetti = () => {
