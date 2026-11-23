@@ -1,15 +1,5 @@
-import {
-  type IMovePathGenerator,
-  type MoveEngine,
-  loadMovePlugin,
-} from "@tsparticles/plugin-move";
-import {
-  type ISourceOptions,
-  Vector,
-  createEngine,
-  defaultFps,
-  millisecondsToSeconds,
-} from "@tsparticles/engine";
+import { type IMovePathGenerator, type MoveEngine, loadMovePlugin } from "@tsparticles/plugin-move";
+import { type ISourceOptions, Vector, createEngine, defaultFps, millisecondsToSeconds } from "@tsparticles/engine";
 // Keep workspace imports grouped after external packages per repository convention.
 
 import { beforeAll, describe, expect, it } from "vitest";
@@ -19,9 +9,7 @@ import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 const tsParticles = createEngine();
 
-type MoveOptions = NonNullable<
-  NonNullable<ISourceOptions["particles"]>["move"]
->;
+type MoveOptions = NonNullable<NonNullable<ISourceOptions["particles"]>["move"]>;
 
 const canvasHeight = 600,
   canvasWidth = 800,
@@ -57,10 +45,7 @@ async function simulateMove(
 ): Promise<{ distance: number; velocity: number }> {
   const container = await tsParticles.load({
     autoPlay: false,
-    element: createCustomCanvas(
-      canvasWidth,
-      canvasHeight,
-    ) as unknown as HTMLCanvasElement,
+    element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
     options: {
       fpsLimit: fps,
       particles: {
@@ -100,7 +85,7 @@ describe("Move timing", () => {
   beforeAll(async () => {
     await loadMovePlugin(tsParticles);
 
-    await tsParticles.pluginManager.register((current) => {
+    await tsParticles.pluginManager.register(current => {
       const moveEngine = current as MoveEngine,
         addPathGenerator = moveEngine.pluginManager.addPathGenerator;
 
@@ -118,16 +103,11 @@ describe("Move timing", () => {
       at30 = await simulateMove(fps30, framesAt30Fps, move),
       at120 = await simulateMove(fps120, framesAt120Fps, move);
 
-    expect(at60.velocity).toBeCloseTo(
-      -(decayMultiplier ** framesAt60Fps),
-      comparisonPrecision,
-    );
+    expect(at60.velocity).toBeCloseTo(-(decayMultiplier ** framesAt60Fps), comparisonPrecision);
 
     for (const result of [at30, at120]) {
       expect(result.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
-      expect(
-        Math.abs(result.distance - at60.distance) / at60.distance,
-      ).toBeLessThan(distanceTolerance);
+      expect(Math.abs(result.distance - at60.distance) / at60.distance).toBeLessThan(distanceTolerance);
     }
   });
 
@@ -137,10 +117,7 @@ describe("Move timing", () => {
       at30 = await simulateMove(fps30, framesAt30Fps, move),
       at120 = await simulateMove(fps120, framesAt120Fps, move);
 
-    expect(at60.velocity).toBeCloseTo(
-      -(strongDecayMultiplier ** framesAt60Fps),
-      comparisonPrecision,
-    );
+    expect(at60.velocity).toBeCloseTo(-(strongDecayMultiplier ** framesAt60Fps), comparisonPrecision);
     expect(at30.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
     expect(at120.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
     expect(at30.distance).toBeCloseTo(at60.distance, comparisonPrecision);
@@ -169,12 +146,8 @@ describe("Move timing", () => {
 
     expect(at30.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
     expect(at120.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
-    expect(
-      Math.abs(at30.distance - at60.distance) / at60.distance,
-    ).toBeLessThan(distanceTolerance);
-    expect(
-      Math.abs(at120.distance - at60.distance) / at60.distance,
-    ).toBeLessThan(distanceTolerance);
+    expect(Math.abs(at30.distance - at60.distance) / at60.distance).toBeLessThan(distanceTolerance);
+    expect(Math.abs(at120.distance - at60.distance) / at60.distance).toBeLessThan(distanceTolerance);
   });
 
   it("scales displacement by elapsed time at the gravity speed limit", async () => {
@@ -197,10 +170,7 @@ describe("Move timing", () => {
   it("clears move extension state when a pooled particle is reinitialized", async () => {
     const container = await tsParticles.load({
       autoPlay: false,
-      element: createCustomCanvas(
-        canvasWidth,
-        canvasHeight,
-      ) as unknown as HTMLCanvasElement,
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
       options: { particles: { move: { enable: true }, number: { value: 0 } } },
     });
 

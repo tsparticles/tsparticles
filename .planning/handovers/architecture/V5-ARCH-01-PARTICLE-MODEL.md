@@ -1,11 +1,11 @@
 # V5-ARCH-01 — Particle state, behavior, and serialization
 
-Status pending evaluation. Owner 07 with 06, public contracts in 03, consumers
-in 08. Agree on the contract in 03 before changing 06.
+Status: E5 model evaluation complete; retain the runtime class. Owner 07 with
+06, public contracts in 03, consumers in 08. No snapshot or ECS API is introduced.
 
 ## Evidence and problem
 
-`engine/src/Core/Particle.ts` holds public data, vectors with behavior,
+`engine/src/Core/Particles/Particle.ts` holds public data, vectors with behavior,
 `ParticlesOptions`, private Container/PluginManager references, modifiers, and
 caches. `init()` coordinates Retina, updaters, drawers, and plugins.
 `destroy()` emits hooks and events. `draw()` uses the container renderer.
@@ -87,3 +87,31 @@ those contracts, promise snapshots only for declared data.
 Record ownership, the chosen alternative and rationale, serialization scope,
 and evidence in ARCH-01. Full runtime serialization and an ECS rewrite remain
 optional design choices.
+
+## E5 decision — 2026-11-23
+
+Retain the class facade, owner-local live getters and four eagerly constructed
+scratch objects. The matched in-memory lazy prototype creates none of those
+objects at load but all four per particle after the first rendering workload.
+Across M3/M8/M6-options at 1,000 particles, warm retained heap medians differ
+by only +1/+3/+7 bytes per particle. Getter counters establish that these are
+active caches, rather than optional fields with a demonstrated warm saving.
+A phase snapshot becomes stale after a supported position mutation.
+
+An eight-number inspection snapshot survives structured clone, but adds roughly
+76–82 bytes per particle in this diagnostic. No consumer requires it, so no
+public snapshot, validation, codec or restoration API is adopted. A shallow
+plain-state copy aliases options and velocity, loses methods, and cannot borrow
+private-brand methods. This rules out that prototype as a compatible migration;
+it does not establish that every possible plain-state implementation is slower.
+
+Core owns geometry, identity, options and scratch state; drawers/updaters/plugins
+own their extension state and disposal hooks. Existing pool rollback, reset,
+modifier, Retina and two-engine regressions define the supported lifecycle.
+Arbitrary third-party state still requires the extension's cleanup hooks. Pool
+policy and collection algorithms remain E6 work. Full serialization and a
+separate data-oriented experiment are optional future work, not E5 blockers.
+
+Evidence: `../evidence/e5/closure/model-evaluation.json` (18 diagnostic samples,
+three scenarios, three repetitions per variant). Instrumented unminified timing
+is not compared against production runtime budgets.

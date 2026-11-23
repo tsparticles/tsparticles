@@ -29,10 +29,7 @@ const width = 1920,
  * @param options - The options to load
  * @returns the loaded container
  */
-async function loadContainer(
-  id: string,
-  options: ISourceOptions,
-): Promise<Container> {
+async function loadContainer(id: string, options: ISourceOptions): Promise<Container> {
   const container = await tsParticles.load({
     id,
     options,
@@ -99,8 +96,8 @@ describe("ParticleEvents", async () => {
       });
 
       expect(added).to.have.length(5);
-      expect(added.filter((t) => t.group === "g1")).to.have.length(2);
-      expect(added.filter((t) => t.group === undefined)).to.have.length(3);
+      expect(added.filter(t => t.group === "g1")).to.have.length(2);
+      expect(added.filter(t => t.group === undefined)).to.have.length(3);
     } finally {
       tsParticles.removeEventListener(EventType.particleAdded, onAdded);
       fresh.destroy(false);
@@ -218,7 +215,7 @@ describe("ParticleEvents", async () => {
     const updater: IParticleUpdater = {
       init: () => undefined,
       isEnabled: () => false,
-      particleDestroyed: (particle) => {
+      particleDestroyed: particle => {
         destroyed.push(particle);
 
         if (particle === particles[0]) {
@@ -234,7 +231,7 @@ describe("ParticleEvents", async () => {
       fresh.particles.clear();
 
       expect(destroyed).to.eql(particles);
-      expect(particles.every((particle) => particle.destroyed)).to.be.true;
+      expect(particles.every(particle => particle.destroyed)).to.be.true;
       expect(fresh.particles.count).to.equal(0);
     } finally {
       fresh.particleUpdaters.splice(fresh.particleUpdaters.indexOf(updater), 1);
@@ -300,8 +297,8 @@ describe("ParticleEvents", async () => {
       fresh.particles.push(2, undefined, undefined, "g2");
 
       expect(added).to.have.length(9);
-      expect(added.filter((t) => t.group === "g1")).to.have.length(3);
-      expect(added.filter((t) => t.group === "g2")).to.have.length(2);
+      expect(added.filter(t => t.group === "g1")).to.have.length(3);
+      expect(added.filter(t => t.group === "g2")).to.have.length(2);
 
       removed.length = 0;
       fresh.particles.removeQuantity(2, "g1");
@@ -335,17 +332,14 @@ describe("ParticleEvents", async () => {
       init: () => undefined,
       isEnabled: () => false,
       update: () => undefined,
-      particleDestroyed: (destroyed) => {
+      particleDestroyed: destroyed => {
         expect(destroyed).to.equal(particle);
         order.push("updater");
       },
     };
 
     const onDestroyed = (args?: CustomEventArgs): void => {
-      if (
-        args?.container === fresh &&
-        (args.data as { particle: Particle }).particle === particle
-      ) {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
         order.push("event");
       }
     };
@@ -386,17 +380,14 @@ describe("ParticleEvents", async () => {
         needsPlugin: () => true,
       };
 
-    await engine.pluginManager.register((current) => {
+    await engine.pluginManager.register(current => {
       current.pluginManager.addPlugin(plugin);
     });
     await loadCircleShape(engine);
 
     const fresh = await engine.load({
         id: "test-events-destroy-error",
-        element: createCustomCanvas(
-          width,
-          height,
-        ) as unknown as HTMLCanvasElement,
+        element: createCustomCanvas(width, height) as unknown as HTMLCanvasElement,
         options: {
           detectRetina: false,
           autoPlay: false,
@@ -409,9 +400,7 @@ describe("ParticleEvents", async () => {
       throw new Error("test particle not initialized");
     }
 
-    const shapeDrawer = particle.shape
-      ? fresh.shapeDrawers.get(particle.shape)
-      : undefined;
+    const shapeDrawer = particle.shape ? fresh.shapeDrawers.get(particle.shape) : undefined;
 
     if (!shapeDrawer) {
       throw new Error("test particle shape drawer not initialized");
@@ -449,39 +438,27 @@ describe("ParticleEvents", async () => {
       };
 
     const onDestroyedError = (args?: CustomEventArgs): void => {
-      if (
-        args?.container === fresh &&
-        (args.data as { particle: Particle }).particle === particle
-      ) {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
         order.push("throwing destroyed listener");
         throw listenerError;
       }
     };
 
     const onDestroyed = (args?: CustomEventArgs): void => {
-      if (
-        args?.container === fresh &&
-        (args.data as { particle: Particle }).particle === particle
-      ) {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
         order.push("destroyed event");
       }
     };
 
     const onRemovedError = (args?: CustomEventArgs): void => {
-      if (
-        args?.container === fresh &&
-        (args.data as { particle: Particle }).particle === particle
-      ) {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
         order.push("throwing removed listener");
         throw listenerError;
       }
     };
 
     const onRemoved = (args?: CustomEventArgs): void => {
-      if (
-        args?.container === fresh &&
-        (args.data as { particle: Particle }).particle === particle
-      ) {
+      if (args?.container === fresh && (args.data as { particle: Particle }).particle === particle) {
         order.push("removed event");
       }
     };
@@ -590,12 +567,8 @@ describe("ParticleEvents", async () => {
 
         expect(fresh.particles.count).to.be.at.most(100);
         expect(fresh.particles.count).to.be.greaterThan(0);
-        expect(
-          fresh.particles.filter((t) => t.group === "g1"),
-        ).to.have.length.at.most(50);
-        expect(
-          fresh.particles.filter((t) => t.group === "g2"),
-        ).to.have.length.at.most(25);
+        expect(fresh.particles.filter(t => t.group === "g1")).to.have.length.at.most(50);
+        expect(fresh.particles.filter(t => t.group === "g2")).to.have.length.at.most(25);
       }
     } finally {
       fresh.destroy(false);

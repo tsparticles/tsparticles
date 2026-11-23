@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E4 are complete; E5–E10 remain pending. This is the
+Replanned on 2026-11-13. E0–E5 are complete; [E6 is in progress](V5-E6-STATUS.md), E7–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -216,22 +216,29 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E2 — Isolated services — engine ownership, consumer migration, entrypoints and tests accepted; see [E2 evidence](V5-02-ENGINE-SERVICES.md)
 - [x] E3 — Contracts and boundaries — decisions, consumer probes, boundary rules and C0 recorded in [E3 verification](V5-E3-VERIFICATION.md)
 - [x] E4 — Lifecycle — lifecycle regressions, compressed sizes, matched headless timing and forced-GC retention pass; M6/500 and M8/500 p95 exceedances carried to E10 ([status](evidence/e4/measurement-status.md))
-- [ ] E5 — Particle/options and OKLCH — in progress; see [checkpoint](V5-E5-STATUS.md)
+- [x] E5 — Particle/options and OKLCH — accepted 2026-11-23, with explicit M4/500 runtime and bundle-growth exceptions for E5; final verification in E10 ([evidence](evidence/e5/closure/README.md))
 - [ ] E6 — Collections and spatial index
 - [ ] E7 — Rendering optimization and review closure
 - [ ] E8 — Ecosystem audit closure
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: complete the canonical-manager contract and per-file color-boundary
-inventory in the E5 scope clarification, alongside Particle lifecycle/consumer
-closure and the remaining supported-syntax, schema and custom-manager audit
-listed in the
-[E5 checkpoint](V5-E5-STATUS.md). Independent cusp references and sRGB/P3
-browser pixel readback now pass, including extended Display-P3 float16 values;
-HDR luminance/tone-mapping conformance and particle cost measurements remain
-open. Group color precedence and delayed SVG completion after reuse cases have
-regressions. Split destroy offsets and Fireworks split chroma now use canonical
+Current action: **E6 collections and spatial index**, starting with contract fixtures and source review. E5 C1–C4 and the
+Particle/options review are accepted: full build:ci passes 457 projects, all
+85 test targets pass, and the primary suite has 817 tests. Eight formatter
+pixel cases and four exact link scenes pass. ARCH-01/03 and T1–T4 decisions
+are recorded in the [acceptance](evidence/e5/closure/README.md).
+
+The user explicitly accepted the remaining M4/500 deviation for E5: quiet
+update 3.70 ms vs E0 ceiling 3.52; frame p95 7.50 vs matched E4 6.50
+(screen 7.15). Keep these values and the inherited M6/500 release item in
+E10; the exception does not change budgets or close release readiness.
+Current M4 draw medians are 2.40/8.30 ms at 500/1000, within E0 ceilings.
+All 135 scene snapshots match E4. Bundle growth is waived for E5 and current
+complete payload deltas remain recorded. No source color work is deferred.
+
+Group color precedence and delayed SVG completion after reuse cases
+have regressions. Split destroy offsets and Fireworks split chroma use canonical
 OKLCH h/c/l units, with a passing split-offset regression. E4 timing budget
 follow-up remains recorded for E10; later-stage
 source reviews remain assigned in the engine audit.

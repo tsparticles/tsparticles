@@ -34,7 +34,7 @@ export interface ICannon {
   spread: number;
 
   /**
-   * CSS color string for the aim line and power circle.
+   * Color input for the aim line and power circle, parsed by the registered engine color managers.
    */
   vectorColor: string;
 

@@ -18,28 +18,19 @@ import { FireworkOptions } from "./FireworkOptions.js";
 import type { FireworksInstance } from "./FireworksInstance.js";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
-const instances = new Map<
-  string,
-  FireworksInstance | Promise<FireworksInstance | undefined>
->();
+const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
 
 /**
  * @param id - The cache key
  * @param instance - The instance expected to be cached
  * @internal
  */
-export function deleteFireworksInstance(
-  id: string,
-  instance: FireworksInstance,
-): void {
+export function deleteFireworksInstance(id: string, instance: FireworksInstance): void {
   const cached = instances.get(id);
 
   if (
     cached === instance ||
-    (cached &&
-      !(cached instanceof Promise) &&
-      cached.destroyed &&
-      cached.hasSameContainer(instance))
+    (cached && !(cached instanceof Promise) && cached.destroyed && cached.hasSameContainer(instance))
   ) {
     instances.delete(id);
   }
@@ -62,10 +53,7 @@ export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
  * @param canvas - The canvas
  * @returns the options for the tsParticles instance
  */
-export function getOptions(
-  options: IFireworkOptions,
-  canvas?: HTMLCanvasElement,
-): ISourceOptions {
+export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISourceOptions {
   const identity = 1;
 
   return {

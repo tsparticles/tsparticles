@@ -85,4 +85,19 @@ describe("RgbColorManager", () => {
     expect(manager.parseString("rgb(calc(100) 0 0)")).toBeUndefined();
     expect(manager.parseString("rgb(1e2 0 0)")).toBeUndefined();
   });
+
+  it("samples optional ranged alpha after RGB channels for canonical resolution", () => {
+    const rangeManager = new RgbColorManager(() => 0.5),
+      color = rangeManager.handleRangeColorOklch({
+        value: {
+          a: { min: 0, max: 1 },
+          b: 0,
+          g: 0,
+          r: 255,
+        },
+      });
+
+    expect(color?.a).toBe(0.5);
+    expect(color?.l).toBeGreaterThan(0);
+  });
 });

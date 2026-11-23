@@ -133,8 +133,12 @@ cleanup also fails. Failed candidate containers are removed from the engine;
 `utils/tests/src/tests/ContainerLifecycle.ts` covers both error paths. Late
 plugin instances are disposed best-effort after container destruction, and
 cleanup failures are logged instead of escaping cancelled initialization.
-Retention of the old scene during replacement and fetch cancellation remain
-open.
+Engine loads now abort a superseded configuration fetch for the same id and
+discard stale results before container installation. Replacement keeps the old
+container until canvas setup and start succeed; it stops old canvas resources
+while the candidate takes ownership, restores the old canvas and ownership on
+failure, and destroys the old container only after success. Regression coverage
+is in `ContainerLifecycle.ts` and `LoadOrdering.ts`.
 
 ### G4 — Time, units and finite numeric domains
 

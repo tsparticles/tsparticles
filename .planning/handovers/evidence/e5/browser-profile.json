@@ -1,0 +1,5501 @@
+{
+  "measuredAt": "2026-11-22T11:43:56.302Z",
+  "revision": "6e8ca78dfe76515af222c666d85809f225544ac5",
+  "workingTree": true,
+  "bundleSha256": "9ea1122f7ffeeb8df6f9814435978bf30d23609c185a1d0349a1346a8fbd1934",
+  "browser": "Chrome/157.0.8103.79",
+  "seed": 123456789,
+  "repetitions": 3,
+  "warmupTicks": 30,
+  "measuredTicks": 60,
+  "samplingIntervalBytes": 512,
+  "errors": [],
+  "samples": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 10.299999952316284,
+      "retainedHeapDeltaBytes": 1697772,
+      "retainedBytesPerParticle": 16977.72,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.20000004768371582,
+        "max": 0.3999999761581421
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.6000000238418579
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 146093.26666666666,
+          "sampleRecords": 16682,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1799420
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1255772
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 881896
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 725964
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 468300
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 425900
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 329460
+            },
+            {
+              "functionName": "go",
+              "sampledBytes": 316464
+            },
+            {
+              "functionName": "go",
+              "sampledBytes": 296064
+            },
+            {
+              "functionName": "go",
+              "sampledBytes": 295536
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 272355.4,
+          "sampleRecords": 30837,
+          "largestSites": [
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1837124
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 1608128
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1460740
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 916156
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 912072
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 868820
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 760632
+            },
+            {
+              "functionName": "getColorStyles",
+              "sampledBytes": 684676
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 670536
+            },
+            {
+              "functionName": "get",
+              "sampledBytes": 530148
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 6.100000023841858,
+      "retainedHeapDeltaBytes": 801472,
+      "retainedBytesPerParticle": 8014.72,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.30000001192092896
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.20000004768371582,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.40000003576278687,
+        "max": 0.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 122107.2,
+          "sampleRecords": 13921,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1949308
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 853652
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 721080
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 468820
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 422184
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 414904
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 302496
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 283728
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 281616
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 266592
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 247189.33333333334,
+          "sampleRecords": 27975,
+          "largestSites": [
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1896404
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 1620348
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1406960
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 966116
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 958384
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 889180
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 704668
+            },
+            {
+              "functionName": "getColorStyles",
+              "sampledBytes": 688316
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 501700
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 427368
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 6,
+      "retainedHeapDeltaBytes": 797924,
+      "retainedBytesPerParticle": 7979.24,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.20000004768371582,
+        "max": 0.2999999523162842
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.6000000238418579
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 123894.73333333334,
+          "sampleRecords": 14125,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1935232
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 933560
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 715696
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 485000
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 424260
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 394104
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 300912
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 286944
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 281616
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 279984
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 240077.66666666666,
+          "sampleRecords": 27134,
+          "largestSites": [
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1880472
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 1575960
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1427840
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 951140
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 934516
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 885480
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 770068
+            },
+            {
+              "functionName": "getColorStyles",
+              "sampledBytes": 665184
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 420636
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 417444
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 19.80000001192093,
+      "retainedHeapDeltaBytes": 3642420,
+      "retainedBytesPerParticle": 7284.84,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.7999999523162842,
+        "p95": 1,
+        "max": 1.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.9000000357627869,
+        "max": 1.199999988079071
+      },
+      "frameMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.800000011920929,
+        "max": 2.399999976158142
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 363381.5333333333,
+          "sampleRecords": 41140,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5691588
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2190204
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1781800
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1454640
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1451424
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1446048
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1443408
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1433184
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1410144
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1108572
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 922272.1333333333,
+          "sampleRecords": 102497,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 7979688
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7257740
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5787252
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5702840
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3929560
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2130108
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 2000328
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1815220
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1521168
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1484160
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 13.300000011920929,
+      "retainedHeapDeltaBytes": 3216644,
+      "retainedBytesPerParticle": 6433.288,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.5999999642372131,
+        "p95": 0.7000000476837158,
+        "max": 1.300000011920929
+      },
+      "frameMs": {
+        "median": 1.2000000476837158,
+        "p95": 1.600000023841858,
+        "max": 2.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 362566.6666666667,
+          "sampleRecords": 41041,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5732636
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2147724
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1807380
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1490592
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1463232
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1429968
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1417632
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1415472
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1404240
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1047960
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 899652.8666666667,
+          "sampleRecords": 101412,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 7915716
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7193540
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5675240
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4008872
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 2569168
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 2330464
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2183472
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 2078472
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1874740
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1447680
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 12.899999976158142,
+      "retainedHeapDeltaBytes": 3181740,
+      "retainedBytesPerParticle": 6363.48,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.2000000476837158
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.5999999642372131,
+        "p95": 0.7000000476837158,
+        "max": 1.0999999642372131
+      },
+      "frameMs": {
+        "median": 1.199999988079071,
+        "p95": 1.5999999642372131,
+        "max": 2.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 361215.8,
+          "sampleRecords": 40891,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5704500
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2181396
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1757800
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1490592
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1453584
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1441776
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1432128
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1412832
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1367232
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1032936
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 924442.3333333334,
+          "sampleRecords": 102713,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 8025008
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7272360
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5804688
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5637928
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3943068
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2153424
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 2082580
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1849680
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1457328
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1451424
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 21.5,
+      "retainedHeapDeltaBytes": 6267060,
+      "retainedBytesPerParticle": 6267.06,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.699999988079071,
+        "p95": 2.300000011920929,
+        "max": 2.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.300000011920929,
+        "p95": 1.600000023841858,
+        "max": 1.7000000476837158
+      },
+      "frameMs": {
+        "median": 3.099999964237213,
+        "p95": 3.699999988079071,
+        "max": 4.199999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 727632.5333333333,
+          "sampleRecords": 82365,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11592664
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4392324
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3671160
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2924832
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2923776
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2921616
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2861040
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2855664
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2843856
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2185536
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1818698.6666666667,
+          "sampleRecords": 202012,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 15922572
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14449200
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11556876
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11257676
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7963296
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4345176
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 4117012
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3590240
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3275536
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2932368
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 22.400000035762787,
+      "retainedHeapDeltaBytes": 6265316,
+      "retainedBytesPerParticle": 6265.316,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.800000011920929,
+        "max": 2.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.100000023841858,
+        "p95": 1.4999999403953552,
+        "max": 1.6999999284744263
+      },
+      "frameMs": {
+        "median": 2.599999964237213,
+        "p95": 3.100000023841858,
+        "max": 4.099999964237213
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 729267.2666666667,
+          "sampleRecords": 82549,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11548236
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4356576
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3600680
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2957568
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2923248
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2920032
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2916816
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2880864
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2840640
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2195904
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1777800.4666666666,
+          "sampleRecords": 200351,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 15826656
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14478960
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11614440
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7926448
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5058704
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 4499504
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4317204
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 4056696
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3620520
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3210968
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 22.400000035762787,
+      "retainedHeapDeltaBytes": 6279064,
+      "retainedBytesPerParticle": 6279.064,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 2.599999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.199999988079071,
+        "p95": 1.5,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 2.799999952316284,
+        "p95": 3.299999952316284,
+        "max": 4.199999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 721867.4,
+          "sampleRecords": 81711,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11419916
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4314612
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3671680
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2898576
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2882496
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2872848
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2846544
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2844912
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2840640
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2147724
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1768262.3333333333,
+          "sampleRecords": 199707,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 15936468
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14479480
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11587508
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 9623544
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7910996
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4319796
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 4096748
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3702480
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3228624
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2901792
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 4.5,
+      "retainedHeapDeltaBytes": 894452,
+      "retainedBytesPerParticle": 8944.52,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.8999999761581421,
+        "max": 1.100000023841858
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 391052.73333333334,
+          "sampleRecords": 44950,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 4592940
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 2878512
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2419604
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2209488
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1573672
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1271128
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 1174156
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1110228
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 890640
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 712204
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 520829.06666666665,
+          "sampleRecords": 59431,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 6958136
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4246740
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 3465240
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1855224
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 1586652
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1448740
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1253872
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 876084
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 858312
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 771184
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.399999976158142,
+      "retainedHeapDeltaBytes": 839132,
+      "retainedBytesPerParticle": 8391.32,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.3999999761581421,
+        "max": 0.5
+      },
+      "frameMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 394612.6666666667,
+          "sampleRecords": 45268,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 4599124
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 2791204
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2411064
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2264544
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1535588
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1218844
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 1172608
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1103392
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 895444
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 743876
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 539590.3333333334,
+          "sampleRecords": 61502,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 6937864
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4387872
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 3466308
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 2105872
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1778780
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1444560
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1307424
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 928476
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 879372
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 866668
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.5,
+      "retainedHeapDeltaBytes": 820312,
+      "retainedBytesPerParticle": 8203.12,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.40000003576278687,
+        "max": 0.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.6000000238418579
+      },
+      "frameMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.0999999642372131
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 395976.26666666666,
+          "sampleRecords": 45426,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 4435440
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 2830444
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2387936
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2376060
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1482360
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 1246928
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1213900
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1189580
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 888080
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 746972
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 526859.6,
+          "sampleRecords": 60051,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 6875980
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4324176
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 3398468
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 2071996
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1817164
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1425240
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1272784
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 893700
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 884016
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 844188
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 12.800000011920929,
+      "retainedHeapDeltaBytes": 3497432,
+      "retainedBytesPerParticle": 6994.864,
+      "randomCalls": 4587,
+      "updateMs": {
+        "median": 3.600000023841858,
+        "p95": 4.300000011920929,
+        "max": 6.099999964237213
+      },
+      "drawExcludingUpdateMs": {
+        "median": 3.5,
+        "p95": 3.800000011920929,
+        "max": 3.899999976158142
+      },
+      "frameMs": {
+        "median": 7.100000023841858,
+        "p95": 8.099999964237213,
+        "max": 9.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4403598.8,
+          "sampleRecords": 509861,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 151981312
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 67949676
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21748272
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5737752
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2213520
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1905184
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1817300
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1470192
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1457856
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1450368
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6897106.333333333,
+          "sampleRecords": 790749,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 150385964
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 73097324
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 67415252
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 42096340
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21654868
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10586960
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7206580
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5747516
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5606064
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4019624
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 12.399999976158142,
+      "retainedHeapDeltaBytes": 3479316,
+      "retainedBytesPerParticle": 6958.632,
+      "randomCalls": 4587,
+      "updateMs": {
+        "median": 3.799999952316284,
+        "p95": 4.800000011920929,
+        "max": 6.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 3.599999964237213,
+        "p95": 3.899999976158142,
+        "max": 4
+      },
+      "frameMs": {
+        "median": 7.200000047683716,
+        "p95": 8.5,
+        "max": 10.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4399449.266666667,
+          "sampleRecords": 509385,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 151884784
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 68059156
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21583024
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5692288
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2194860
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1919248
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1851240
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1458384
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1440144
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1431600
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6887906.866666666,
+          "sampleRecords": 789689,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 150560780
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 73128524
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 67231456
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 41828128
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21704156
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10482904
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7210760
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5675140
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5620756
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3932688
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 12.399999976158142,
+      "retainedHeapDeltaBytes": 3477836,
+      "retainedBytesPerParticle": 6955.672,
+      "randomCalls": 4587,
+      "updateMs": {
+        "median": 3.600000023841858,
+        "p95": 4.699999988079071,
+        "max": 6.200000047683716
+      },
+      "drawExcludingUpdateMs": {
+        "median": 3.5,
+        "p95": 3.699999988079071,
+        "max": 4.100000023841858
+      },
+      "frameMs": {
+        "median": 7.099999964237213,
+        "p95": 8.199999988079071,
+        "max": 9.800000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4405235.666666667,
+          "sampleRecords": 510053,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 152163208
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 67915120
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21855160
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5625192
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2176740
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 1941676
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1723340
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1471296
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1461600
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1446048
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6900873.4,
+          "sampleRecords": 791164,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 150438208
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 72825656
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 67466976
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 42055252
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 21899488
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10425528
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7147080
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5722976
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5674732
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4035324
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 21.400000035762787,
+      "retainedHeapDeltaBytes": 7233844,
+      "retainedBytesPerParticle": 7233.844,
+      "randomCalls": 9186,
+      "updateMs": {
+        "median": 15.399999976158142,
+        "p95": 16.5,
+        "max": 21.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 12.799999952316284,
+        "p95": 13.399999976158142,
+        "max": 14.800000011920929
+      },
+      "frameMs": {
+        "median": 28.19999998807907,
+        "p95": 29.80000001192093,
+        "max": 34.30000001192093
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 16520471.4,
+          "sampleRecords": 1912945,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 601760188
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 263313084
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 84206592
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11519932
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4386108
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 3771080
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3648720
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2929152
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2917872
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2884080
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 25098354.333333332,
+          "sampleRecords": 2883603,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 597262056
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 427766372
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 261698572
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 82668896
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 22802788
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 21008456
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14619380
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11355584
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11293092
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7942500
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 21.899999976158142,
+      "retainedHeapDeltaBytes": 7228340,
+      "retainedBytesPerParticle": 7228.34,
+      "randomCalls": 9186,
+      "updateMs": {
+        "median": 13.699999988079071,
+        "p95": 14.599999964237213,
+        "max": 24
+      },
+      "drawExcludingUpdateMs": {
+        "median": 12.299999952316284,
+        "p95": 12.899999976158142,
+        "max": 13.500000059604645
+      },
+      "frameMs": {
+        "median": 25.899999976158142,
+        "p95": 27.200000047683716,
+        "max": 36.69999998807907
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 16527505.466666667,
+          "sampleRecords": 1913774,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 601936092
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 263408008
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 84410204
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11638376
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4340004
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 3832768
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3604340
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2930736
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2899104
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2874432
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 25107099.866666667,
+          "sampleRecords": 2884633,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 597200204
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 427886468
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 262223732
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 82791788
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 22887656
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 20941824
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14456500
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11577100
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11359972
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 8012300
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 20.899999976158142,
+      "retainedHeapDeltaBytes": 7221596,
+      "retainedBytesPerParticle": 7221.596,
+      "randomCalls": 9186,
+      "updateMs": {
+        "median": 13.699999988079071,
+        "p95": 14.600000023841858,
+        "max": 21.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 12.300000011920929,
+        "p95": 13.099999964237213,
+        "max": 14
+      },
+      "frameMs": {
+        "median": 25.899999976158142,
+        "p95": 27.400000035762787,
+        "max": 34.09999996423721
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 16521416.266666668,
+          "sampleRecords": 1913044,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 602376672
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 262741964
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 84266004
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11567496
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4345704
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 3850672
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3620520
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2950080
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2921088
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2914128
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 25093575.333333332,
+          "sampleRecords": 2883106,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 597284732
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 426882064
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 262075352
+            },
+            {
+              "functionName": "interact",
+              "sampledBytes": 82898416
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 23213020
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 20795400
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14406900
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11481720
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11247512
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7880580
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 5.400000035762787,
+      "retainedHeapDeltaBytes": 857804,
+      "retainedBytesPerParticle": 8578.04,
+      "randomCalls": 900,
+      "updateMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5,
+        "max": 0.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.2999999523162842
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 438090.4666666667,
+          "sampleRecords": 50442,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 5004716
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 3958720
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2780828
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 2180880
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 1945804
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1536640
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 1188348
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1124396
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 903800
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 704048
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 522782.86666666664,
+          "sampleRecords": 59893,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 8483336
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 4357232
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 3595428
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 2050740
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1491540
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 917124
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 912624
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 905320
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 874080
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 714460
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.5,
+      "retainedHeapDeltaBytes": 830804,
+      "retainedBytesPerParticle": 8308.04,
+      "randomCalls": 900,
+      "updateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.6000000238418579
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.30000001192092896
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 0.800000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 440678.13333333336,
+          "sampleRecords": 50742,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 5199924
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 3985132
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2827212
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 2169480
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 1915812
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1490672
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 1176432
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1116768
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 879204
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 743508
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 523952.73333333334,
+          "sampleRecords": 60026,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 8500176
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 4336284
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 3616620
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 2087844
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1445600
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 941948
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 904728
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 885520
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 880828
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 743452
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.599999964237213,
+      "retainedHeapDeltaBytes": 826056,
+      "retainedBytesPerParticle": 8260.56,
+      "randomCalls": 900,
+      "updateMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.7000000476837158
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.30000001192092896,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.5,
+        "p95": 0.699999988079071,
+        "max": 1
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 444007.73333333334,
+          "sampleRecords": 51121,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 5104948
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 4006196
+            },
+            {
+              "functionName": "query",
+              "sampledBytes": 2810660
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 2190720
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 1933872
+            },
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1488080
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 1222536
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1163812
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 924748
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 768576
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 524837.8,
+          "sampleRecords": 60129,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 8497564
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 4366332
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 3644808
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 2118996
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1421284
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 935720
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 910812
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 891908
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 839600
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 730976
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 12.5,
+      "retainedHeapDeltaBytes": 3234596,
+      "retainedBytesPerParticle": 6469.192,
+      "randomCalls": 4500,
+      "updateMs": {
+        "median": 4.400000035762787,
+        "p95": 4.900000035762787,
+        "max": 6.100000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 0.8999999761581421
+      },
+      "frameMs": {
+        "median": 5,
+        "p95": 5.600000023841858,
+        "max": 7
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 5523125.666666667,
+          "sampleRecords": 640694,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 172397056
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 82335168
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 49731092
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5716212
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 3698172
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2201604
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 2140992
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1762500
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1484160
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1450896
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6261419.866666666,
+          "sampleRecords": 724009,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 174944824
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 83525064
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 54005148
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10439176
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7181520
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5658040
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4799308
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 4214640
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4003828
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3489636
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 12.100000023841858,
+      "retainedHeapDeltaBytes": 3244116,
+      "retainedBytesPerParticle": 6488.232,
+      "randomCalls": 4500,
+      "updateMs": {
+        "median": 4.5,
+        "p95": 5.100000023841858,
+        "max": 6.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1
+      },
+      "frameMs": {
+        "median": 5.199999988079071,
+        "p95": 5.899999976158142,
+        "max": 7.5
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 5524939.466666667,
+          "sampleRecords": 640910,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 172432236
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 82740780
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 49283076
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5693088
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 3827160
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 2192796
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2090220
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1846540
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1462176
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1457856
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6263141.666666667,
+          "sampleRecords": 724207,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 174789160
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 83465496
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 54052936
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10456380
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7253580
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5818868
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4776164
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 4156620
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3993196
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3464940
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 12.699999988079071,
+      "retainedHeapDeltaBytes": 3242496,
+      "retainedBytesPerParticle": 6484.992,
+      "randomCalls": 4500,
+      "updateMs": {
+        "median": 4.399999976158142,
+        "p95": 4.899999976158142,
+        "max": 6.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 5,
+        "p95": 5.599999964237213,
+        "max": 7.400000035762787
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 5521981.266666667,
+          "sampleRecords": 640566,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 172060264
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 82579152
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 49771216
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5670620
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 3806436
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2114568
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 2089188
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1798000
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1471824
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1463232
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6266102.6,
+          "sampleRecords": 724532,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 174687808
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 83615196
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 54071956
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 10584676
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7189360
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5777800
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 4803080
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 4172676
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3959340
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3480836
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 21.600000023841858,
+      "retainedHeapDeltaBytes": 6341916,
+      "retainedBytesPerParticle": 6341.916,
+      "randomCalls": 9000,
+      "updateMs": {
+        "median": 17.399999976158142,
+        "p95": 19.899999976158142,
+        "max": 20.30000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.399999976158142,
+        "p95": 1.600000023841858,
+        "max": 1.7000000476837158
+      },
+      "frameMs": {
+        "median": 18.700000047683716,
+        "p95": 21.19999998807907,
+        "max": 21.80000001192093
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 20930547.133333333,
+          "sampleRecords": 2430665,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 703502768
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 344014704
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 152559688
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 12014520
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11464052
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 4326528
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4258668
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3557360
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2914128
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2908224
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 22777491.733333334,
+          "sampleRecords": 2640408,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 725774024
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 355244412
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 159495108
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 20843728
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14551000
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 12680700
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11585464
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 9729888
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7837768
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5520744
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 21.600000023841858,
+      "retainedHeapDeltaBytes": 6334224,
+      "retainedBytesPerParticle": 6334.224,
+      "randomCalls": 9000,
+      "updateMs": {
+        "median": 17.19999998807907,
+        "p95": 17.799999952316284,
+        "max": 18.80000001192093
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.399999976158142,
+        "p95": 1.699999988079071,
+        "max": 1.699999988079071
+      },
+      "frameMs": {
+        "median": 18.599999964237213,
+        "p95": 19.19999998807907,
+        "max": 20.19999998807907
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 20919150.4,
+          "sampleRecords": 2429352,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 703176420
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 343626180
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 152817648
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 11992248
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11367892
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 4323420
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4297524
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3569880
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2942016
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2914656
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 22772771.666666668,
+          "sampleRecords": 2639856,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 725596088
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 355006128
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 159741524
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 21063640
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14545260
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 12645468
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11484756
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 9613864
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7974392
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5540704
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 21.700000047683716,
+      "retainedHeapDeltaBytes": 6335216,
+      "retainedBytesPerParticle": 6335.216,
+      "randomCalls": 9000,
+      "updateMs": {
+        "median": 17.399999976158142,
+        "p95": 18,
+        "max": 20.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.4999999403953552,
+        "p95": 1.699999988079071,
+        "max": 1.800000011920929
+      },
+      "frameMs": {
+        "median": 18.80000001192093,
+        "p95": 19.599999964237213,
+        "max": 22
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 20904005.266666666,
+          "sampleRecords": 2427608,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 702548944
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 343712700
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 152495212
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 11940960
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11410376
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4295964
+            },
+            {
+              "functionName": "getPosition",
+              "sampledBytes": 4294416
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3599640
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2900160
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2876592
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 22786463.4,
+          "sampleRecords": 2641474,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "sampledBytes": 726589300
+            },
+            {
+              "functionName": "Ah.#De",
+              "sampledBytes": 355668672
+            },
+            {
+              "functionName": "solve",
+              "sampledBytes": 159292384
+            },
+            {
+              "functionName": "zi",
+              "sampledBytes": 21022832
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14545780
+            },
+            {
+              "functionName": "#Ge",
+              "sampledBytes": 12674484
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11391752
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 9605044
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7869816
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5519732
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 4.800000011920929,
+      "retainedHeapDeltaBytes": 770328,
+      "retainedBytesPerParticle": 7703.28,
+      "randomCalls": 1012,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.30000001192092896
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.3999999761581421,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5999999642372131,
+        "max": 0.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 146801.06666666668,
+          "sampleRecords": 16691,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1830188
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1190900
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 895924
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 722888
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 471940
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 408476
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 382912
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 299856
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 289632
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 287520
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 252517.33333333334,
+          "sampleRecords": 28629,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2280632
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1458680
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1210260
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 912020
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 906316
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 895008
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 740600
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 665964
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 636020
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 427040
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.899999976158142,
+      "retainedHeapDeltaBytes": 755216,
+      "retainedBytesPerParticle": 7552.16,
+      "randomCalls": 1012,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.30000001192092896
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.3999999761581421,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.6000000238418579,
+        "max": 0.7000000476837158
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 144892.4,
+          "sampleRecords": 16470,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1801024
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1141796
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 905300
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 739160
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 465680
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 395264
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 381248
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 299856
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 298224
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 293952
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 253661,
+          "sampleRecords": 28732,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2298688
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1414800
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1285464
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 934572
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 921732
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 877652
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 756960
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 660864
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 619916
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 440892
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.700000047683716,
+      "retainedHeapDeltaBytes": 766168,
+      "retainedBytesPerParticle": 7661.68,
+      "randomCalls": 1012,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.30000001192092896
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.40000003576278687,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.3999999761581421,
+        "p95": 0.5,
+        "max": 0.7000000476837158
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 148116.06666666668,
+          "sampleRecords": 16834,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1828664
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1201240
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 890708
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 709944
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 486040
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 404952
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 395968
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 319680
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 306288
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 284832
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 252552.73333333334,
+          "sampleRecords": 28623,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2256432
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1449800
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1313960
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 904440
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 897624
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 889720
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 747388
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 654824
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 629676
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 436184
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 12.100000023841858,
+      "retainedHeapDeltaBytes": 3219544,
+      "retainedBytesPerParticle": 6439.088,
+      "randomCalls": 5043,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.2000000476837158
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.800000011920929,
+        "p95": 1.100000023841858,
+        "max": 1.600000023841858
+      },
+      "frameMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 2.700000047683716
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 363291.73333333334,
+          "sampleRecords": 41106,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5773468
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2155500
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1767720
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1470192
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1462704
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1443408
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1428912
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1424592
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1396176
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1074384
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1005026.8,
+          "sampleRecords": 112260,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 11161868
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7215460
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 6634704
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5707684
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3924120
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3530556
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2196936
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1756740
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1451424
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1437504
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 12.300000011920929,
+      "retainedHeapDeltaBytes": 3207732,
+      "retainedBytesPerParticle": 6415.464,
+      "randomCalls": 5043,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.300000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.800000011920929,
+        "p95": 1.0000000596046448,
+        "max": 1.399999976158142
+      },
+      "frameMs": {
+        "median": 1.5,
+        "p95": 1.9000000357627869,
+        "max": 2.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 363973.93333333335,
+          "sampleRecords": 41202,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5725576
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2188128
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1811560
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1478784
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1464288
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1443936
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1432656
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1421376
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1419792
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1080084
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1009305.0666666667,
+          "sampleRecords": 112737,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 11267884
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7186220
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 6691188
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5734676
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3964596
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3444288
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2186580
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1805300
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1468608
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1438560
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 12.300000011920929,
+      "retainedHeapDeltaBytes": 3209648,
+      "retainedBytesPerParticle": 6419.296,
+      "randomCalls": 5043,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1,
+        "max": 1.399999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.800000011920929,
+        "p95": 1.0999999642372131,
+        "max": 1.300000011920929
+      },
+      "frameMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 2.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 361613.4666666667,
+          "sampleRecords": 40929,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5777780
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2156532
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1818360
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1434288
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1433712
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1419264
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1418688
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1416576
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1381680
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1090956
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1011538.0666666667,
+          "sampleRecords": 112963,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 11251260
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7174740
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 6722780
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5756016
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3986280
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3598536
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2154456
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1800080
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1490592
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1460016
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 22.299999952316284,
+      "retainedHeapDeltaBytes": 6345168,
+      "retainedBytesPerParticle": 6345.168,
+      "randomCalls": 10093,
+      "updateMs": {
+        "median": 1.5,
+        "p95": 2,
+        "max": 2.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5,
+        "p95": 1.800000011920929,
+        "max": 2.199999988079071
+      },
+      "frameMs": {
+        "median": 3,
+        "p95": 3.700000047683716,
+        "max": 5.099999964237213
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 724716.2666666667,
+          "sampleRecords": 82041,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11526372
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4424436
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3602240
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2909856
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2887296
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2874960
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2858880
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2853504
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2829360
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2190204
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1974114.6666666667,
+          "sampleRecords": 220298,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 22682064
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14337480
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 13372768
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11556500
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7954708
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5542324
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4321356
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3626780
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3270064
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2908224
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 20.700000047683716,
+      "retainedHeapDeltaBytes": 6306784,
+      "retainedBytesPerParticle": 6306.784,
+      "randomCalls": 10093,
+      "updateMs": {
+        "median": 1.4000000357627869,
+        "p95": 1.800000011920929,
+        "max": 2.800000011920929
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5,
+        "p95": 1.899999976158142,
+        "max": 1.9000000357627869
+      },
+      "frameMs": {
+        "median": 2.900000035762787,
+        "p95": 3.400000035762787,
+        "max": 4.600000023841858
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 724468,
+          "sampleRecords": 81991,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11557868
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4269552
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3606420
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2947920
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2907696
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2904480
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2903952
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2874960
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2803632
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2222844
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1974607.7333333334,
+          "sampleRecords": 220427,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 22475636
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14449720
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 13311448
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11467012
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7977308
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5517544
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4301664
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3606940
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3280716
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2950080
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 19.899999976158142,
+      "retainedHeapDeltaBytes": 6318384,
+      "retainedBytesPerParticle": 6318.384,
+      "randomCalls": 10093,
+      "updateMs": {
+        "median": 1.5,
+        "p95": 1.9000000357627869,
+        "max": 2.899999976158142
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 2.100000023841858
+      },
+      "frameMs": {
+        "median": 3.100000023841858,
+        "p95": 3.600000023841858,
+        "max": 5
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 725569.8,
+          "sampleRecords": 82127,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11542376
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4330152
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3672720
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2928624
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2909856
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2903376
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2877120
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2855136
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2831520
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2159640
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1979917.4666666666,
+          "sampleRecords": 220954,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 22570568
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 14389160
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 13562344
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11537452
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7945928
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5505452
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4394916
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3728580
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3278672
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2936112
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 4.599999964237213,
+      "retainedHeapDeltaBytes": 774228,
+      "retainedBytesPerParticle": 7742.28,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.40000003576278687
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.3999999761581421
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.6000000238418579
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 146948.06666666668,
+          "sampleRecords": 16780,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1871400
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1532864
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 904884
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 759644
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 487080
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 404524
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 303600
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 283200
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 281616
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 269808
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 248579.2,
+          "sampleRecords": 28082,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2097496
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1570076
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1082396
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 923636
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 881768
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 854668
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 771528
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 755912
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 638012
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 414236
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.5,
+      "retainedHeapDeltaBytes": 757344,
+      "retainedBytesPerParticle": 7573.44,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.30000001192092896
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.2999999523162842,
+        "max": 0.40000003576278687
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.5,
+        "max": 0.7000000476837158
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 146718.53333333333,
+          "sampleRecords": 16681,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1859920
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1169016
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 911656
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 731824
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 482380
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 396544
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 394792
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 306816
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 283200
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 279984
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 248599.86666666667,
+          "sampleRecords": 28060,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2128228
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1581728
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1072776
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 899084
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 895944
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 863924
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 746472
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 671648
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 626952
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 410412
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.5,
+      "retainedHeapDeltaBytes": 748516,
+      "retainedBytesPerParticle": 7485.16,
+      "randomCalls": 921,
+      "updateMs": {
+        "median": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "max": 0.3999999761581421
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "max": 0.30000001192092896
+      },
+      "frameMs": {
+        "median": 0.30000001192092896,
+        "p95": 0.40000003576278687,
+        "max": 0.699999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 146730.73333333334,
+          "sampleRecords": 16687,
+          "largestSites": [
+            {
+              "functionName": "#gs",
+              "sampledBytes": 1882344
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 1208416
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 891812
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 746944
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 482920
+            },
+            {
+              "functionName": "insert",
+              "sampledBytes": 433436
+            },
+            {
+              "functionName": "mult",
+              "sampledBytes": 372544
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 308928
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 273552
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 271392
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 248002.93333333332,
+          "sampleRecords": 27991,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 2120484
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 1549112
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 1022256
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 907500
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 844236
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 838720
+            },
+            {
+              "functionName": "particleUpdate",
+              "sampledBytes": 753628
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 646844
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 635768
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 407816
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 12.300000011920929,
+      "retainedHeapDeltaBytes": 3176332,
+      "retainedBytesPerParticle": 6352.664,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 1.0999999642372131,
+        "max": 1.2999999523162842
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.3000000715255737
+      },
+      "frameMs": {
+        "median": 1.300000011920929,
+        "p95": 1.7999999523162842,
+        "max": 2.600000023841858
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 362703.2,
+          "sampleRecords": 41059,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5653076
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2165856
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1784940
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1481472
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1456272
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1455168
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1453056
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1438560
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1420848
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1106496
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 993520.6666666666,
+          "sampleRecords": 110299,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 10376144
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7732820
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5753112
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5688304
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 3945076
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3488696
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2116128
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1792240
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1490064
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1474512
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 12.099999964237213,
+      "retainedHeapDeltaBytes": 3172108,
+      "retainedBytesPerParticle": 6344.216,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.9000000357627869,
+        "max": 1.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.2000000476837158
+      },
+      "frameMs": {
+        "median": 1.2000000476837158,
+        "p95": 1.699999988079071,
+        "max": 2.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 360029.86666666664,
+          "sampleRecords": 40753,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5771584
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2131152
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1781280
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1463760
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1456272
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1438560
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1436928
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1419792
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1366128
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1044336
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 992906.8666666667,
+          "sampleRecords": 110284,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 10399456
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7743260
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5700908
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5565604
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4080800
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3490728
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2185020
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1726460
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1479312
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1467504
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 12.299999952316284,
+      "retainedHeapDeltaBytes": 3173792,
+      "retainedBytesPerParticle": 6347.584,
+      "randomCalls": 4592,
+      "updateMs": {
+        "median": 0.699999988079071,
+        "p95": 0.8999999761581421,
+        "max": 1.199999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 0.6000000238418579,
+        "p95": 0.800000011920929,
+        "max": 1.100000023841858
+      },
+      "frameMs": {
+        "median": 1.199999988079071,
+        "p95": 1.600000023841858,
+        "max": 2.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 363424.6,
+          "sampleRecords": 41135,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 5790100
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2165856
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1798520
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1470720
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1465920
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1450896
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1434288
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1425168
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 1412256
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 1081632
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1003052.4,
+          "sampleRecords": 111377,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 10564060
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 7904580
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 5849316
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5729220
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 4000584
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 3524484
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 2230608
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 1780240
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1477200
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 1451952
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 20.30000001192093,
+      "retainedHeapDeltaBytes": 6270664,
+      "retainedBytesPerParticle": 6270.664,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.300000011920929,
+        "p95": 1.7000000476837158,
+        "max": 2.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.199999988079071,
+        "p95": 1.5,
+        "max": 1.600000023841858
+      },
+      "frameMs": {
+        "median": 2.5,
+        "p95": 3.100000023841858,
+        "max": 4
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 728173.4,
+          "sampleRecords": 82428,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11530464
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4458624
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3635140
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2935584
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2918400
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2901792
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2898576
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2892144
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2854608
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2145648
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1947169.2666666666,
+          "sampleRecords": 216077,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 20854784
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 15578940
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11602148
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11294288
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7934424
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5558256
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4269552
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3566740
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3293440
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2989776
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 21.100000023841858,
+      "retainedHeapDeltaBytes": 6250316,
+      "retainedBytesPerParticle": 6250.316,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.5999999642372131,
+        "p95": 1.9000000357627869,
+        "max": 2.299999952316284
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.300000011920929,
+        "p95": 1.5000000596046448,
+        "max": 1.600000023841858
+      },
+      "frameMs": {
+        "median": 2.899999976158142,
+        "p95": 3.400000035762787,
+        "max": 3.799999952316284
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 723846.2666666667,
+          "sampleRecords": 81929,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11612844
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4313064
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3536460
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2905536
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2903952
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2902320
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2881920
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2863728
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2848704
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2175180
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1898288.3333333333,
+          "sampleRecords": 213529,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 20826196
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 15732440
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11435444
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7943680
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5436544
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 5023872
+            },
+            {
+              "functionName": "getFillColor",
+              "sampledBytes": 4465380
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4370904
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3554220
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3222240
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 19.69999998807907,
+      "retainedHeapDeltaBytes": 6251120,
+      "retainedBytesPerParticle": 6251.12,
+      "randomCalls": 9182,
+      "updateMs": {
+        "median": 1.399999976158142,
+        "p95": 1.7000000476837158,
+        "max": 2.400000035762787
+      },
+      "drawExcludingUpdateMs": {
+        "median": 1.2000000476837158,
+        "p95": 1.4999999403953552,
+        "max": 1.600000023841858
+      },
+      "frameMs": {
+        "median": 2.599999964237213,
+        "p95": 3,
+        "max": 3.899999976158142
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 722423.3333333334,
+          "sampleRecords": 81770,
+          "largestSites": [
+            {
+              "functionName": "#us",
+              "sampledBytes": 11494488
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4321872
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3541680
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2927520
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2917344
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2901792
+            },
+            {
+              "functionName": "clear",
+              "sampledBytes": 2876064
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2840112
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2831520
+            },
+            {
+              "functionName": "update",
+              "sampledBytes": 2154972
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 1943570.4,
+          "sampleRecords": 215697,
+          "largestSites": [
+            {
+              "functionName": "zi",
+              "sampledBytes": 20966012
+            },
+            {
+              "functionName": "next",
+              "sampledBytes": 15683360
+            },
+            {
+              "functionName": "#us",
+              "sampledBytes": 11470224
+            },
+            {
+              "functionName": "drawParticle",
+              "sampledBytes": 11198440
+            },
+            {
+              "functionName": "#Ai",
+              "sampledBytes": 7862304
+            },
+            {
+              "functionName": "",
+              "sampledBytes": 5540004
+            },
+            {
+              "functionName": "gy",
+              "sampledBytes": 4341036
+            },
+            {
+              "functionName": "#kn",
+              "sampledBytes": 3600160
+            },
+            {
+              "functionName": "drawParticles",
+              "sampledBytes": 3232644
+            },
+            {
+              "functionName": "isEnabled",
+              "sampledBytes": 2929152
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "initializationMs": 6.100000023841858,
+      "retainedBytesPerParticle": 8014.72,
+      "updateMedianMs": 0.19999998807907104,
+      "drawMedianMs": 0.10000002384185791,
+      "frameP95Ms": 0.5,
+      "updateSampledBytesPerTick": 123894.73333333334,
+      "frameSampledBytesPerTick": 247189.33333333334
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "initializationMs": 13.300000011920929,
+      "retainedBytesPerParticle": 6433.288,
+      "updateMedianMs": 0.699999988079071,
+      "drawMedianMs": 0.5999999642372131,
+      "frameP95Ms": 1.600000023841858,
+      "updateSampledBytesPerTick": 362566.6666666667,
+      "frameSampledBytesPerTick": 922272.1333333333
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "initializationMs": 22.400000035762787,
+      "retainedBytesPerParticle": 6267.06,
+      "updateMedianMs": 1.5,
+      "drawMedianMs": 1.199999988079071,
+      "frameP95Ms": 3.299999952316284,
+      "updateSampledBytesPerTick": 727632.5333333333,
+      "frameSampledBytesPerTick": 1777800.4666666666
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "initializationMs": 4.5,
+      "retainedBytesPerParticle": 8391.32,
+      "updateMedianMs": 0.30000001192092896,
+      "drawMedianMs": 0.30000001192092896,
+      "frameP95Ms": 0.800000011920929,
+      "updateSampledBytesPerTick": 394612.6666666667,
+      "frameSampledBytesPerTick": 526859.6
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "initializationMs": 12.399999976158142,
+      "retainedBytesPerParticle": 6958.632,
+      "updateMedianMs": 3.600000023841858,
+      "drawMedianMs": 3.5,
+      "frameP95Ms": 8.199999988079071,
+      "updateSampledBytesPerTick": 4403598.8,
+      "frameSampledBytesPerTick": 6897106.333333333
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "initializationMs": 21.400000035762787,
+      "retainedBytesPerParticle": 7228.34,
+      "updateMedianMs": 13.699999988079071,
+      "drawMedianMs": 12.300000011920929,
+      "frameP95Ms": 27.400000035762787,
+      "updateSampledBytesPerTick": 16521416.266666668,
+      "frameSampledBytesPerTick": 25098354.333333332
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "initializationMs": 4.599999964237213,
+      "retainedBytesPerParticle": 8308.04,
+      "updateMedianMs": 0.30000001192092896,
+      "drawMedianMs": 0.10000002384185791,
+      "frameP95Ms": 0.699999988079071,
+      "updateSampledBytesPerTick": 440678.13333333336,
+      "frameSampledBytesPerTick": 523952.73333333334
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "initializationMs": 12.5,
+      "retainedBytesPerParticle": 6484.992,
+      "updateMedianMs": 4.400000035762787,
+      "drawMedianMs": 0.6000000238418579,
+      "frameP95Ms": 5.600000023841858,
+      "updateSampledBytesPerTick": 5523125.666666667,
+      "frameSampledBytesPerTick": 6263141.666666667
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "initializationMs": 21.600000023841858,
+      "retainedBytesPerParticle": 6335.216,
+      "updateMedianMs": 17.399999976158142,
+      "drawMedianMs": 1.399999976158142,
+      "frameP95Ms": 19.599999964237213,
+      "updateSampledBytesPerTick": 20919150.4,
+      "frameSampledBytesPerTick": 22777491.733333334
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "initializationMs": 4.800000011920929,
+      "retainedBytesPerParticle": 7661.68,
+      "updateMedianMs": 0.19999998807907104,
+      "drawMedianMs": 0.19999998807907104,
+      "frameP95Ms": 0.5999999642372131,
+      "updateSampledBytesPerTick": 146801.06666666668,
+      "frameSampledBytesPerTick": 252552.73333333334
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "initializationMs": 12.300000011920929,
+      "retainedBytesPerParticle": 6419.296,
+      "updateMedianMs": 0.699999988079071,
+      "drawMedianMs": 0.800000011920929,
+      "frameP95Ms": 2,
+      "updateSampledBytesPerTick": 363291.73333333334,
+      "frameSampledBytesPerTick": 1009305.0666666667
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "initializationMs": 20.700000047683716,
+      "retainedBytesPerParticle": 6318.384,
+      "updateMedianMs": 1.5,
+      "drawMedianMs": 1.5,
+      "frameP95Ms": 3.600000023841858,
+      "updateSampledBytesPerTick": 724716.2666666667,
+      "frameSampledBytesPerTick": 1974607.7333333334
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "initializationMs": 4.5,
+      "retainedBytesPerParticle": 7573.44,
+      "updateMedianMs": 0.19999998807907104,
+      "drawMedianMs": 0.10000002384185791,
+      "frameP95Ms": 0.5,
+      "updateSampledBytesPerTick": 146730.73333333334,
+      "frameSampledBytesPerTick": 248579.2
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "initializationMs": 12.299999952316284,
+      "retainedBytesPerParticle": 6347.584,
+      "updateMedianMs": 0.699999988079071,
+      "drawMedianMs": 0.6000000238418579,
+      "frameP95Ms": 1.699999988079071,
+      "updateSampledBytesPerTick": 362703.2,
+      "frameSampledBytesPerTick": 993520.6666666666
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "initializationMs": 20.30000001192093,
+      "retainedBytesPerParticle": 6251.12,
+      "updateMedianMs": 1.399999976158142,
+      "drawMedianMs": 1.2000000476837158,
+      "frameP95Ms": 3.100000023841858,
+      "updateSampledBytesPerTick": 723846.2666666667,
+      "frameSampledBytesPerTick": 1943570.4
+    }
+  ],
+  "limitations": [
+    "Headless CPU submission timings exclude GPU completion and physical display appearance.",
+    "Allocation sampling includes collected objects but estimates JS bytes; native canvas/GPU memory is excluded.",
+    "Frame allocation includes update; it must not be described as isolated draw allocation.",
+    "Retained heap subtracts an empty container in the same scenario after forced GC; realm caches and renderer overhead remain included.",
+    "E0 M3-M5/M7 artifacts use an older Chrome patch; E4 has only M6/M8 extended timings. A matched E4 M3-M5/M7 run is required for causal regression attribution.",
+    "Profiling phase order advances state; timings are captured before allocation sampling.",
+    "M8 here covers background mask only; HDR/layers/resize use the separate extended harness."
+  ]
+}

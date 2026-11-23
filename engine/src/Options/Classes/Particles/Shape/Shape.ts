@@ -24,10 +24,7 @@ export class Shape extends OptionLoader<IShape> implements IShape {
         const item = options[shape];
 
         if (item) {
-          this.options[shape] = deepExtend(
-            this.options[shape] ?? {},
-            item,
-          ) as IShapeValues[];
+          this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
         }
       }
     }

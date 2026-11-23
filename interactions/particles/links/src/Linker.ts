@@ -8,12 +8,7 @@ import {
   loadOptionProperty,
   originPoint,
 } from "@tsparticles/engine";
-import type {
-  IParticlesLinkOptions,
-  LinkContainer,
-  LinkParticle,
-  ParticlesLinkOptions,
-} from "./Types.js";
+import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
 import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
@@ -28,11 +23,7 @@ const opacityOffset = 1,
  * @param canvasSize - the canvas size
  * @returns the squared distance with canvas wrapping
  */
-function getWarpDistanceSq(
-  dx: number,
-  dy: number,
-  canvasSize: IDimension,
-): number {
+function getWarpDistanceSq(dx: number, dy: number, canvasSize: IDimension): number {
   const absX = Math.abs(dx),
     absY = Math.abs(dy),
     x = Math.min(absX, canvasSize.width - absX),
@@ -42,10 +33,7 @@ function getWarpDistanceSq(
 }
 
 /** Particles link interactor */
-export class Linker extends ParticlesInteractorBase<
-  LinkContainer,
-  LinkParticle
-> {
+export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
   #maxDistance;
   readonly #pluginManager;
 
@@ -84,12 +72,7 @@ export class Linker extends ParticlesInteractorBase<
       container = this.container,
       canvasSize = container.canvas.size;
 
-    if (
-      pos1.x < originPoint.x ||
-      pos1.y < originPoint.y ||
-      pos1.x > canvasSize.width ||
-      pos1.y > canvasSize.height
-    ) {
+    if (pos1.x < originPoint.x || pos1.y < originPoint.y || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
       return;
     }
 
@@ -100,9 +83,7 @@ export class Linker extends ParticlesInteractorBase<
       warp = linkOpt1.warp,
       query = (
         warp
-          ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize).query(
-              container.particles.grid,
-            )
+          ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize).query(container.particles.grid)
           : container.particles.grid.queryCircle(pos1, optDistance)
       ) as LinkParticle[];
 
@@ -116,20 +97,15 @@ export class Linker extends ParticlesInteractorBase<
         p2.spawning ||
         p2.destroyed ||
         !p2.links ||
-        p1.links.some((t) => t.destination === p2) ||
-        p2.links.some((t) => t.destination === p1)
+        p1.links.some(t => t.destination === p2) ||
+        p2.links.some(t => t.destination === p1)
       ) {
         continue;
       }
 
       const pos2 = p2.getPosition();
 
-      if (
-        pos2.x < originPoint.x ||
-        pos2.y < originPoint.y ||
-        pos2.x > canvasSize.width ||
-        pos2.y > canvasSize.height
-      ) {
+      if (pos2.x < originPoint.x || pos2.y < originPoint.y || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
         continue;
       }
 
@@ -137,10 +113,7 @@ export class Linker extends ParticlesInteractorBase<
       const dx = pos1.x - pos2.x,
         dy = pos1.y - pos2.y,
         distDirectSq = dx * dx + dy * dy,
-        distWarpSq =
-          warp && linkOpt2.warp
-            ? getWarpDistanceSq(dx, dy, canvasSize)
-            : distDirectSq,
+        distWarpSq = warp && linkOpt2.warp ? getWarpDistanceSq(dx, dy, canvasSize) : distDirectSq,
         distanceSq = Math.min(distDirectSq, distWarpSq);
 
       if (distanceSq > optDistanceSq) {
@@ -210,12 +183,7 @@ export class Linker extends ParticlesInteractorBase<
       return;
     }
 
-    linkColor = getLinkRandomColor(
-      this.#pluginManager,
-      linksOptions.color,
-      linksOptions.blink,
-      linksOptions.consent,
-    );
+    linkColor = getLinkRandomColor(this.#pluginManager, linksOptions.color, linksOptions.blink, linksOptions.consent);
 
     if (linksOptions.id === undefined) {
       container.particles.linksColor = linkColor;

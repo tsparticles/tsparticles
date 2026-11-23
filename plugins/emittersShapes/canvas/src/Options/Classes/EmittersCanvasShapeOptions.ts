@@ -40,7 +40,8 @@ export class EmittersCanvasShapeOptions
    * @param pixel - The pixel
    * @returns The boolean value
    */
-  filter: string | ((pixel: IRgba) => boolean) = (pixel): boolean => pixel.a > minAlpha;
+  filter: string | ((pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean) = (pixel): boolean =>
+    pixel.a > minAlpha;
 
   /**
    * Loads the canvas shape options from the given data

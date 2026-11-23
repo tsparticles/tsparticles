@@ -51,11 +51,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IOklab);
 
-    if (
-      !("l" in oklabColor) ||
-      !("aAxis" in oklabColor) ||
-      !("bAxis" in oklabColor)
-    ) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 
@@ -66,11 +62,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IOklab);
 
-    if (
-      !("l" in oklabColor) ||
-      !("aAxis" in oklabColor) ||
-      !("bAxis" in oklabColor)
-    ) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 
@@ -92,11 +84,7 @@ export class OklabColorManager implements IColorManager {
     return {
       a: alpha,
       c: chroma,
-      h:
-        chroma < achromaticThreshold
-          ? 0
-          : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) %
-            hMax,
+      h: chroma < achromaticThreshold ? 0 : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) % hMax,
       l: oklabColor.l,
     };
   }
@@ -110,11 +98,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IRangeOklab);
 
-    if (
-      !("l" in oklabColor) ||
-      !("aAxis" in oklabColor) ||
-      !("bAxis" in oklabColor)
-    ) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 
@@ -129,11 +113,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IRangeOklab);
 
-    if (
-      !("l" in oklabColor) ||
-      !("aAxis" in oklabColor) ||
-      !("bAxis" in oklabColor)
-    ) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 
@@ -142,22 +122,14 @@ export class OklabColorManager implements IColorManager {
       bAxis = getRangeValue(oklabColor.bAxis, this.#random),
       chroma = Math.hypot(aAxis, bAxis);
 
-    if (
-      ![l, aAxis, bAxis, chroma].every(Number.isFinite) ||
-      l < none ||
-      l > percentDenominator
-    ) {
+    if (![l, aAxis, bAxis, chroma].every(Number.isFinite) || l < none || l > percentDenominator) {
       return;
     }
 
     return {
       a: defaultAlpha,
       c: chroma,
-      h:
-        chroma < achromaticThreshold
-          ? 0
-          : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) %
-            hMax,
+      h: chroma < achromaticThreshold ? 0 : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) % hMax,
       l,
     };
   }
@@ -202,21 +174,13 @@ export class OklabColorManager implements IColorManager {
       }
     }
 
-    const alpha = result[indexes.a]
-        ? parseAlpha(result[indexes.a])
-        : defaultAlpha,
+    const alpha = result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
       aAxis =
-        Number.parseFloat(result[indexes.aAxis] ?? "0") *
-        (result[indexes.aAxisPercent] ? oklabAxisPercentScale : 1),
+        Number.parseFloat(result[indexes.aAxis] ?? "0") * (result[indexes.aAxisPercent] ? oklabAxisPercentScale : 1),
       bAxis =
-        Number.parseFloat(result[indexes.bAxis] ?? "0") *
-        (result[indexes.bAxisPercent] ? oklabAxisPercentScale : 1);
+        Number.parseFloat(result[indexes.bAxis] ?? "0") * (result[indexes.bAxisPercent] ? oklabAxisPercentScale : 1);
 
-    if (
-      ![alpha, aAxis, bAxis].every(Number.isFinite) ||
-      alpha < none ||
-      alpha > identity
-    ) {
+    if (![alpha, aAxis, bAxis].every(Number.isFinite) || alpha < none || alpha > identity) {
       return undefined;
     }
 
@@ -241,12 +205,8 @@ export class OklabColorManager implements IColorManager {
 
     const rawL = Number.parseFloat(result[1] ?? "0"),
       lightness = rawL * (result[2] ? identity : percentDenominator),
-      aAxis =
-        Number.parseFloat(result[3] ?? "0") *
-        (result[4] ? oklabAxisPercentScale : 1),
-      bAxis =
-        Number.parseFloat(result[5] ?? "0") *
-        (result[6] ? oklabAxisPercentScale : 1),
+      aAxis = Number.parseFloat(result[3] ?? "0") * (result[4] ? oklabAxisPercentScale : 1),
+      bAxis = Number.parseFloat(result[5] ?? "0") * (result[6] ? oklabAxisPercentScale : 1),
       chroma = Math.hypot(aAxis, bAxis),
       alpha = result[7] ? parseAlpha(result[7]) : defaultAlpha;
 
@@ -254,9 +214,7 @@ export class OklabColorManager implements IColorManager {
       ![lightness, aAxis, bAxis, alpha].every(Number.isFinite) ||
       alpha < none ||
       alpha > identity ||
-      (result[2]
-        ? rawL < none || rawL > percentDenominator
-        : rawL < none || rawL > identity)
+      (result[2] ? rawL < none || rawL > percentDenominator : rawL < none || rawL > identity)
     ) {
       return;
     }
@@ -264,11 +222,7 @@ export class OklabColorManager implements IColorManager {
     return {
       a: alpha,
       c: chroma,
-      h:
-        chroma < achromaticThreshold
-          ? 0
-          : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) %
-            hMax,
+      h: chroma < achromaticThreshold ? 0 : ((Math.atan2(bAxis, aAxis) * hMax) / (double * Math.PI) + hMax) % hMax,
       l: lightness,
     };
   }

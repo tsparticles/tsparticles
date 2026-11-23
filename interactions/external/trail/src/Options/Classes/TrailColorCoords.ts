@@ -2,9 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { ITrailColorCoords } from "../Interfaces/ITrailColorCoords.js";
 import { TrailColorComponent } from "./TrailColorComponent.js";
 
-export class TrailColorCoords
-  implements ITrailColorCoords, IOptionLoader<ITrailColorCoords>
-{
+export class TrailColorCoords implements ITrailColorCoords, IOptionLoader<ITrailColorCoords> {
   c?: TrailColorComponent = new TrailColorComponent();
   h?: TrailColorComponent = new TrailColorComponent();
   l?: TrailColorComponent = new TrailColorComponent();

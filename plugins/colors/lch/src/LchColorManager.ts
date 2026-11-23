@@ -148,9 +148,7 @@ export class LchColorManager implements IColorManager {
     }
 
     const lch = {
-        c:
-          Number.parseFloat(result[indexes.c] ?? "0") *
-          (result[indexes.cPercent] ? lchChromaPercentScale : 1),
+        c: Number.parseFloat(result[indexes.c] ?? "0") * (result[indexes.cPercent] ? lchChromaPercentScale : 1),
         h: parseLchHue(result[indexes.h] ?? "0"),
         l: Number.parseFloat(result[indexes.l] ?? "0"),
       },
@@ -183,9 +181,7 @@ export class LchColorManager implements IColorManager {
 
     const lch = {
         l: Number.parseFloat(result[1] ?? "0"),
-        c:
-          Number.parseFloat(result[2] ?? "0") *
-          (result[3] ? lchChromaPercentScale : 1),
+        c: Number.parseFloat(result[2] ?? "0") * (result[3] ? lchChromaPercentScale : 1),
         h: parseLchHue(result[4] ?? "0"),
       },
       alpha = result[5] ? parseAlpha(result[5]) : defaultAlpha;

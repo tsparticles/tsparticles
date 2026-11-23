@@ -70,8 +70,7 @@ function parseHwbHue(input: string): number {
  * @returns The RGB representation
  */
 function hwbToRgbFloat(hwb: IHwb): IRgb {
-  const normalizedHue =
-      (((hwb.h % maxDegree) + maxDegree) % maxDegree) / maxDegree,
+  const normalizedHue = (((hwb.h % maxDegree) + maxDegree) % maxDegree) / maxDegree,
     whiteness = hwb.w / maxPercentage,
     blackness = hwb.b / maxPercentage,
     totalWhitenessBlackness = whiteness + blackness;
@@ -86,16 +85,11 @@ function hwbToRgbFloat(hwb: IHwb): IRgb {
     blue = greyShade;
   } else {
     const calculateChannel = (channelOffset: number): number => {
-      const sectorPosition =
-          (channelOffset + normalizedHue * hueSectors) % hueSectors,
+      const sectorPosition = (channelOffset + normalizedHue * hueSectors) % hueSectors,
         availableChroma = unitValue - whiteness - blackness,
         intensityFactor = Math.max(
           clampingMin,
-          Math.min(
-            sectorPosition,
-            clampingReference - sectorPosition,
-            clampingMax,
-          ),
+          Math.min(sectorPosition, clampingReference - sectorPosition, clampingMax),
         );
 
       return unitValue - blackness - availableChroma * intensityFactor;
@@ -239,10 +233,7 @@ export class HwbColorManager implements IColorManager {
       w = wValue(result[HwbIndexes.w]),
       b = wValue(result[HwbIndexes.b]),
       hwb = {
-        a:
-          result.length > minLength
-            ? parseAlpha(result[HwbIndexes.a])
-            : defaultAlpha,
+        a: result.length > minLength ? parseAlpha(result[HwbIndexes.a]) : defaultAlpha,
         h: h !== undefined ? parseHwbHue(h) : defaultFallbackValue,
         w,
         b,
@@ -277,10 +268,7 @@ export class HwbColorManager implements IColorManager {
         w: wValue(result[HwbIndexes.w]),
         b: wValue(result[HwbIndexes.b]),
       },
-      alpha =
-        result.length > minLength
-          ? parseAlpha(result[HwbIndexes.a])
-          : defaultAlpha;
+      alpha = result.length > minLength ? parseAlpha(result[HwbIndexes.a]) : defaultAlpha;
 
     if (
       ![hwb.h, hwb.w, hwb.b, alpha].every(Number.isFinite) ||

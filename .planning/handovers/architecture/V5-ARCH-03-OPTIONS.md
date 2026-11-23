@@ -1,6 +1,7 @@
 # V5-ARCH-03 — Options pipeline and resolved configuration
 
-Status pending evaluation. Owner 03 for contracts and audit, 07 for per-particle
+Status: E5 options-model evaluation complete; retain typed constructors/loaders
+and per-particle ownership. Owner 03 for contracts and audit, 07 for per-particle
 cost, 04 for refresh/lifecycle, and 08 for extensions. Related to ARCH-01/02/04.
 
 ## Evidence and starting recommendation
@@ -102,3 +103,28 @@ caches for high-cardinality overrides.
 Record pipeline and precedence, ARCH-03 decision, mutability and invalidation
 contract, measurements, and migration. Justify class changes by measured or
 contract benefits and account for cost shifted into the frame.
+
+## E5 decision — 2026-11-23
+
+Retain one resolved container base and independent particle option instances,
+constructed through the existing typed loaders. Preserve precedence and plugin
+hooks rather than introducing a generic clone/template protocol. The diagnostic
+compares 500 copies through the loader, a recursively copied normalized object
+with preserved prototypes, and a plain deep copy. The prototype-preserving copy
+fails a subsequent load because its private Container brand is absent; the
+plain copy has no load method. Their timings are not admissible speedups.
+
+All probes preserve source ownership and the tested source/group/override/
+effect/shape order (speed 1 → 2 → 5 → 3 → 4). Mutating the source drift is
+observed by a fresh loader and missed by the previously normalized template.
+Free mutation, themes, refresh and plugin loaders therefore preclude an
+identity-only persistent template cache without a new invalidation contract.
+No such cache, deep-freeze requirement or runtime validator is introduced.
+
+OptionsLoad, PluginOptions, Particle lifecycle and engine-isolation regressions
+cover supported precedence, overrides, reset and hooks; downstream builds check
+derived classes and IOptionLoader consumers. Retina remains per-container and
+per-particle, with engine RNG sampling and refresh/resize tests. This decision
+does not change worker/DOM support or claim arbitrary plugin serialization.
+See `../evidence/e5/closure/model-evaluation.json`; its M6-options scene enables
+absorber/emitter option families but is a diagnostic, not the M6 runtime budget.

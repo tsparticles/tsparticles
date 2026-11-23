@@ -1,0 +1,26 @@
+{
+  "originalSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "patchedSha256": "ba77b91f3e2e32565b0ad4c1b107b37252e031b58fd2e6ef3a52c1bfc4015f6b",
+  "minifiedSha256": "58697dacc1bf48485ba6d86b59d9ff71c859780ab79f285e111b7c3c04ea57ab",
+  "patches": [
+    [
+      "return this.#applyModifiers(this.size.value, m => m.radius);",
+      "const radius = this.size.value; return this.#modifiers.length ? this.#applyModifiers(radius, m => m.radius) : radius;"
+    ],
+    [
+      "return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.fillColor), m => m.fillColor));",
+      "const color = getOklchFromAnimation(this.fillColor); return this.#getRollColor(this.#modifiers.length ? this.#applyModifiers(color, m => m.fillColor) : color);"
+    ],
+    [
+      "return this.#getRollColor(this.#applyModifiers(getOklchFromAnimation(this.strokeColor), m => m.strokeColor));",
+      "const color = getOklchFromAnimation(this.strokeColor); return this.#getRollColor(this.#modifiers.length ? this.#applyModifiers(color, m => m.strokeColor) : color);"
+    ],
+    [
+      "this.#applyModifiers(undefined, m => m.opacity)",
+      "(this.#modifiers.length ? this.#applyModifiers(undefined, m => m.opacity) : undefined)"
+    ]
+  ],
+  "limitations": [
+    "In-memory getter prototype, no production source changed; default Terser settings differ from the release bundle configuration."
+  ]
+}

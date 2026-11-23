@@ -1,0 +1,23 @@
+{
+  "sourceCache": ".nx/cache/1299484874123005961/bundles/all/dist/",
+  "reference": ".planning/handovers/evidence/e4/bundle-sizes.json",
+  "referenceRevision": "acd31e69dac2a468739596c281db90220cc9e3ea",
+  "referenceWorkingTree": true,
+  "checks": [
+    {
+      "filename": "tsparticles.all.bundle.js",
+      "sha256": "fb4f2d3365daeba8508cf2146f7f343bdfcf6a996c862bc11d185a7db973d4ea",
+      "raw": 1193110,
+      "gzip": 182818,
+      "brotli": 138169
+    },
+    {
+      "filename": "tsparticles.all.bundle.min.js",
+      "sha256": "fe02ad0285f011b08eabc2ac3a28d74d5ec6f4d61f667997c4d2ab332e1abeed",
+      "raw": 435531,
+      "gzip": 118216,
+      "brotli": 96340
+    }
+  ],
+  "identification": "Six raw/gzip/Brotli sizes match the recorded E4 distributions. The report did not record original SHA-256; these hashes identify the recovered bytes from this point forward."
+}

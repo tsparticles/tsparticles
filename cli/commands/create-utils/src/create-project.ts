@@ -11,20 +11,11 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 export type CreateProjectKind =
-  | "bundle"
-  | "effect"
-  | "interaction"
-  | "palette"
-  | "path"
-  | "plugin"
-  | "preset"
-  | "shape"
-  | "updater";
+  "bundle" | "effect" | "interaction" | "palette" | "path" | "plugin" | "preset" | "shape" | "updater";
 
 export type InteractionType = "external" | "generic" | "particles";
 
-export type PluginType =
-  "color-manager" | "easing" | "emitters-shape" | "export" | "generic";
+export type PluginType = "color-manager" | "easing" | "emitters-shape" | "export" | "generic";
 
 type SubType = InteractionType | PluginType | undefined;
 
@@ -230,10 +221,7 @@ await ${config.loadFunction}(tsParticles);
  * @param description - The description
  * @returns The result
  */
-function createBundleConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createBundleConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}`;
 
   return {
@@ -276,10 +264,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param description - The description
  * @returns The result
  */
-function createEffectConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createEffectConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Effect`,
     drawerName = `${nameData.pascalName}EffectDrawer`;
 
@@ -331,11 +316,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param type - The type
  * @returns The result
  */
-function createInteractionConfig(
-  nameData: INameData,
-  description: string,
-  type: InteractionType,
-): IProjectConfig {
+function createInteractionConfig(nameData: INameData, description: string, type: InteractionType): IProjectConfig {
   const isExternal = type === "external" || type === "generic",
     isParticles = type === "particles" || type === "generic";
 
@@ -480,10 +461,7 @@ ${
  * @param description - The description
  * @returns The result
  */
-function createPaletteConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createPaletteConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Palette`;
 
   return {
@@ -530,10 +508,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param description - The description
  * @returns The result
  */
-function createPathConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createPathConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Path`,
     generatorName = `${nameData.pascalName}PathGenerator`;
 
@@ -609,10 +584,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param pluginClass - The pluginClass
  * @returns The string value
  */
-function createGenericPluginIndex(
-  loadFunction: string,
-  pluginClass: string,
-): string {
+function createGenericPluginIndex(loadFunction: string, pluginClass: string): string {
   return `import type { Engine } from "@tsparticles/engine";
 import { ${pluginClass} } from "./${pluginClass}.js";
 
@@ -635,11 +607,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param type - The type
  * @returns The result
  */
-function createPluginConfig(
-  nameData: INameData,
-  description: string,
-  type: PluginType,
-): IProjectConfig {
+function createPluginConfig(nameData: INameData, description: string, type: PluginType): IProjectConfig {
   if (type === "generic") {
     const loadFunction = `load${nameData.pascalName}Plugin`,
       pluginClass = `${nameData.pascalName}Plugin`;
@@ -967,10 +935,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param description - The description
  * @returns The result
  */
-function createPresetConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createPresetConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Preset`;
 
   return {
@@ -1020,10 +985,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param description - The description
  * @returns The result
  */
-function createShapeConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createShapeConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Shape`,
     className = `${nameData.pascalName}ShapeDrawer`;
 
@@ -1079,10 +1041,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param description - The description
  * @returns The result
  */
-function createUpdaterConfig(
-  nameData: INameData,
-  description: string,
-): IProjectConfig {
+function createUpdaterConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Updater`,
     className = `${nameData.pascalName}Updater`;
 
@@ -1144,10 +1103,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
  * @param nameData - The nameData
  * @returns The result
  */
-function resolveProjectConfig(
-  options: ICreateProjectOptions,
-  nameData: INameData,
-): IProjectConfig {
+function resolveProjectConfig(options: ICreateProjectOptions, nameData: INameData): IProjectConfig {
   switch (options.kind) {
     case "bundle":
       return createBundleConfig(nameData, options.description);
@@ -1164,11 +1120,7 @@ function resolveProjectConfig(
     case "path":
       return createPathConfig(nameData, options.description);
     case "plugin":
-      return createPluginConfig(
-        nameData,
-        options.description,
-        (options.type as PluginType | undefined) ?? "generic",
-      );
+      return createPluginConfig(nameData, options.description, (options.type as PluginType | undefined) ?? "generic");
     case "preset":
       return createPresetConfig(nameData, options.description);
     case "shape":
@@ -1185,10 +1137,7 @@ function resolveProjectConfig(
  * @param destination - The destination point
  * @param srcFiles - The srcFiles
  */
-async function writeSourceFiles(
-  destination: string,
-  srcFiles: Record<string, string>,
-): Promise<void> {
+async function writeSourceFiles(destination: string, srcFiles: Record<string, string>): Promise<void> {
   for (const [filePath, content] of Object.entries(srcFiles)) {
     const targetPath = path.join(destination, filePath),
       folderPath = path.dirname(targetPath);
@@ -1202,9 +1151,7 @@ async function writeSourceFiles(
  *
  * @param options - The options to handle
  */
-export async function createProjectTemplate(
-  options: ICreateProjectOptions,
-): Promise<void> {
+export async function createProjectTemplate(options: ICreateProjectOptions): Promise<void> {
   const nameData = getNameData(options.name, options.destination),
     config = resolveProjectConfig(options, nameData),
     repoUrl = getRepoUrl(options.repositoryUrl, config.packageSuffix),
@@ -1218,14 +1165,8 @@ export async function createProjectTemplate(
 
   await copyEmptyTemplateFiles(options.destination);
   await writeSourceFiles(options.destination, config.srcFiles);
-  await writeFile(
-    path.join(options.destination, "rollup.config.js"),
-    getRollupConfig(config),
-  );
-  await writeFile(
-    path.join(options.destination, "README.md"),
-    getReadme(config),
-  );
+  await writeFile(path.join(options.destination, "rollup.config.js"), getRollupConfig(config));
+  await writeFile(path.join(options.destination, "README.md"), getReadme(config));
   await updatePackageFile(options.destination, metadata);
   await updatePackageDistFile(options.destination, metadata);
 

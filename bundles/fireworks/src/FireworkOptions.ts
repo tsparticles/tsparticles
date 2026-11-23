@@ -11,9 +11,7 @@ import {
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 /** Firework options class */
-export class FireworkOptions
-  implements IFireworkOptions, IOptionLoader<IFireworkOptions>
-{
+export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {
   /** Background color */
   background: string;
   /** Brightness offset for stroke colors */

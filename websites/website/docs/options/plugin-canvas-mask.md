@@ -17,6 +17,8 @@ canvasMask: {
 
 - Supports image masks, text masks, and pixel-based sampling.
 - The mask position is expressed in percent by default.
+- Pixel filter callbacks receive the RGBA pixel and an optional second `colorSpace` argument (`"srgb"` or `"display-p3"`). Readback uses RGBA-unorm8, so samples do not retain HDR headroom. Sampled colors retain their source space when converted to OKLCH for particles.
+- If both color and opacity overrides are enabled, source pixel alpha is applied once through particle opacity.
 
 ## Source reference
 

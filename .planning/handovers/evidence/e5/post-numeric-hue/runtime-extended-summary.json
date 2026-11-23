@@ -1,0 +1,127 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "e4Browser": "Chrome/157.0.8103.79",
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "current": {
+        "update": 0.19999998807907104,
+        "render": 0.10000002384185791,
+        "frame": 0.5
+      },
+      "e4": {
+        "update": 0.20000000298023224,
+        "render": 0.19999999552965164,
+        "frame": 0.6000000014901161
+      },
+      "frameP95CeilingMs": 0.7,
+      "frameWithinE0Ceiling": true
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "current": {
+        "update": 0.9000000357627869,
+        "render": 0.699999988079071,
+        "frame": 2.099999964237213
+      },
+      "e4": {
+        "update": 0.8000000044703484,
+        "render": 0.7000000029802322,
+        "frame": 2
+      },
+      "frameP95CeilingMs": 1.87,
+      "frameWithinE0Ceiling": false
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "current": {
+        "update": 1.600000023841858,
+        "render": 1.2000000476837158,
+        "frame": 3.5
+      },
+      "e4": {
+        "update": 1.6999999955296516,
+        "render": 1.5,
+        "frame": 3.600000001490116
+      },
+      "frameP95CeilingMs": 4.07,
+      "frameWithinE0Ceiling": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "current": {
+        "update": 0.10000002384185791,
+        "render": 0.10000002384185791,
+        "frame": 0.40000003576278687
+      },
+      "e4": {
+        "update": 0.19999999552965164,
+        "render": 0.19999999552965164,
+        "frame": 0.4000000059604645
+      },
+      "frameP95CeilingMs": 0.5,
+      "frameWithinE0Ceiling": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "current": {
+        "update": 0.6000000238418579,
+        "render": 0.6000000238418579,
+        "frame": 1.5
+      },
+      "e4": {
+        "update": 0.6999999955296516,
+        "render": 0.7000000029802322,
+        "frame": 1.6999999955296516
+      },
+      "frameP95CeilingMs": 1.65,
+      "frameWithinE0Ceiling": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "current": {
+        "update": 1.300000011920929,
+        "render": 1.199999988079071,
+        "frame": 2.900000035762787
+      },
+      "e4": {
+        "update": 1.3000000044703484,
+        "render": 1.3999999985098839,
+        "frame": 3.2999999970197678
+      },
+      "frameP95CeilingMs": 3.3,
+      "frameWithinE0Ceiling": true
+    }
+  ],
+  "errors": [],
+  "longFrames": 0,
+  "postWarmupRetainedHeapDriftBytes": 116168,
+  "retentionDomNodes": [
+    9,
+    9,
+    9
+  ],
+  "retentionMediaListeners": [
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  ]
+}

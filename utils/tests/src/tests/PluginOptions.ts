@@ -644,6 +644,38 @@ describe("Plugin options tests", async () => {
     }
   });
 
+  it("clears infection state when reusing a pooled particle", async () => {
+    const container = await loadContainer({
+      autoPlay: false,
+      infection: { enable: true, infections: 0 },
+      particles: { number: { value: 0 } },
+    });
+
+    try {
+      const particle = container.particles.addParticle();
+
+      expect(particle).to.not.be.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      const infectable = particle as typeof particle & {
+        infection?: { delay?: number; delayStage?: number; stage?: number; time?: number };
+      };
+
+      infectable.infection = { delay: 2, delayStage: 1, stage: 1, time: 5 };
+      container.particles.remove(particle);
+
+      const reused = container.particles.addParticle();
+
+      expect(reused).to.equal(particle);
+      expect((reused as typeof infectable | undefined)?.infection).to.be.undefined;
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("poisson disc options resolve through the container", async () => {
     const container = await loadContainer({
       autoPlay: false,

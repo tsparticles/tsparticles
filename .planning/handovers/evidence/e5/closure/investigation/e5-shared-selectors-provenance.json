@@ -1,0 +1,31 @@
+{
+  "mode": "shared-selectors",
+  "originalSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "patchedSha256": "6a4b757338ddb590b07259ebc5882d66e06bad64d724b28a39fb9d69027bd759",
+  "minifiedSha256": "a807fc7bf7d5c7e90d83d314fba7f722cb50e1c823d01047c3b9028a646744c0",
+  "patches": [
+    [
+      "m => m.radius",
+      "e5ModifierRadius"
+    ],
+    [
+      "m => m.fillColor",
+      "e5ModifierFill"
+    ],
+    [
+      "m => m.strokeColor",
+      "e5ModifierStroke"
+    ],
+    [
+      "m => m.opacity",
+      "e5ModifierOpacity"
+    ],
+    [
+      "class Particle {",
+      "const e5ModifierRadius = m => m.radius, e5ModifierFill = m => m.fillColor, e5ModifierStroke = m => m.strokeColor, e5ModifierOpacity = m => m.opacity; class Particle {"
+    ]
+  ],
+  "limitations": [
+    "In-memory getter prototype, no production source changed; default Terser settings differ from the release bundle configuration."
+  ]
+}

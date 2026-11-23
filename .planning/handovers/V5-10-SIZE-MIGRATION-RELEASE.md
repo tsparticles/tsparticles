@@ -112,3 +112,31 @@ failure/lifecycle, timing/numeric, sampling and spatial regression evidence.
 Unresolved mandatory checks keep E10 open. The [optional E11 backlog](V5-11-OPTIONAL-PLUGINS.md)
 is explicitly excluded from release-readiness completion; if later investigation
 finds a correctness defect, return it to the responsible mandatory gate.
+
+## E5 acceptance exceptions requiring final E10 verification — 2026-11-23
+
+The user explicitly accepts the remaining M4/500 deviation and closes E5,
+with final verification in E10: “Accettare lo scostamento e chiudere E5, con
+verifica finale in E10”. This is an E5 acceptance exception; do not change
+the original budgets or report the measured exceedances as passing.
+
+- [ ] Rerun M4/500 with the final source and matched same-browser controls.
+      Current quiet nine-repetition E5 update is 3.70 ms vs E0 ceiling 3.52;
+      frame p95 is 7.50 vs matched E4 6.50 (screen 7.15). The full matrix
+      instead has update 3.50/p95 7.70; retain dispersion and all reports.
+- [ ] Recheck the inherited E4 M6/500 release item. Current E5 p95 is 2.10 ms
+      vs E0 ceiling 1.87; a fresh prior-E5 corrected-RNG control gives 2.30.
+      Historical unseeded M6 runs are not comparable deterministic evidence.
+- [ ] Recheck the earlier E4 M8/500 item against final output; current E5
+      extended p95 1.40 passes the 1.65 ceiling, but does not close E10 early.
+- [ ] Review final consumer, distribution and all-chunk size deltas. The user
+      waived bundle growth for E5; this is not a claim that the 2% targets pass.
+- [ ] Complete final supported-browser, physical HDR and release checks with
+      their recorded support-policy limitations. E5 headless readback does not
+      certify display output or GPU completion.
+
+Evidence and archived artifacts: `evidence/e5/closure/README.md`,
+`verification.json`, `investigation/quiet-*.json`, `post-final/summary.json`
+and `payloads/deltas.json`. All E5 source/consumer work, model decisions,
+457-project build:ci, 85 test targets and 817 primary tests are complete;
+no mandatory C1–C4 migration is deferred to E10.

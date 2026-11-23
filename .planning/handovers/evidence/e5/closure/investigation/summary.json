@@ -1,0 +1,186 @@
+{
+  "productionSourceSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "productionMinSha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+  "rows": [
+    {
+      "report": "quiet-e4.json",
+      "samples": 9,
+      "bundleSha256": "fe02ad0285f011b08eabc2ac3a28d74d5ec6f4d61f667997c4d2ab332e1abeed",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 11.199999988079071,
+        "retainedBytesPerParticle": 6435.32,
+        "updateMedianMs": 3.5,
+        "drawMedianMs": 2.399999976158142,
+        "frameP95Ms": 6.5,
+        "updateSampledBytesPerTick": 4398924.8,
+        "frameSampledBytesPerTick": 6108444
+      },
+      "frameP95Repetitions": [
+        7.5,
+        6.800000011920929,
+        6.600000023841858,
+        6.399999976158142,
+        6.5,
+        6.400000035762787,
+        6.5,
+        6.5,
+        6.699999988079071
+      ]
+    },
+    {
+      "report": "quiet-e5.json",
+      "samples": 9,
+      "bundleSha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 13.399999976158142,
+        "retainedBytesPerParticle": 7045.624,
+        "updateMedianMs": 3.699999988079071,
+        "drawMedianMs": 2.400000035762787,
+        "frameP95Ms": 7.5,
+        "updateSampledBytesPerTick": 4413241.733333333,
+        "frameSampledBytesPerTick": 5063855.266666667
+      },
+      "frameP95Repetitions": [
+        9.699999988079071,
+        7,
+        7,
+        7.199999988079071,
+        7.5,
+        7.599999964237213,
+        8.199999988079071,
+        7.5,
+        7
+      ]
+    },
+    {
+      "report": "rejected-gradient-profile.json",
+      "samples": 9,
+      "bundleSha256": "5867a73c2373d163defff5f8de8c4c6a0261896a673b6424ad7d944b7f5aefaf",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 13.199999988079071,
+        "retainedBytesPerParticle": 7027.208,
+        "updateMedianMs": 3.600000023841858,
+        "drawMedianMs": 2.099999964237213,
+        "frameP95Ms": 7.100000023841858,
+        "updateSampledBytesPerTick": 4415867.466666667,
+        "frameSampledBytesPerTick": 5062407.6
+      },
+      "frameP95Repetitions": [
+        9.100000023841858,
+        6.600000023841858,
+        7.300000011920929,
+        7.399999976158142,
+        7,
+        7.100000023841858,
+        6.699999988079071,
+        7.300000011920929,
+        7.100000023841858
+      ]
+    },
+    {
+      "report": "rejected-empty-getters-profile.json",
+      "samples": 9,
+      "bundleSha256": "58697dacc1bf48485ba6d86b59d9ff71c859780ab79f285e111b7c3c04ea57ab",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 14.399999976158142,
+        "retainedBytesPerParticle": 7003.168,
+        "updateMedianMs": 4,
+        "drawMedianMs": 2.600000023841858,
+        "frameP95Ms": 8.099999964237213,
+        "updateSampledBytesPerTick": 4413362.8,
+        "frameSampledBytesPerTick": 5042989
+      },
+      "frameP95Repetitions": [
+        7.800000011920929,
+        7.800000011920929,
+        8.099999964237213,
+        8.300000011920929,
+        8.099999964237213,
+        8.100000023841858,
+        8,
+        8.5,
+        8.200000047683716
+      ]
+    },
+    {
+      "report": "reminified-control-profile.json",
+      "samples": 3,
+      "bundleSha256": "2ade7f06d95557e12c83babdcf4363ca7e6f7f70dd6548fb409b549c8d24a4d4",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 17.19999998807907,
+        "retainedBytesPerParticle": 7748.656,
+        "updateMedianMs": 3.600000023841858,
+        "drawMedianMs": 2.5,
+        "frameP95Ms": 7.599999964237213,
+        "updateSampledBytesPerTick": 4410639.266666667,
+        "frameSampledBytesPerTick": 5056297.933333334
+      },
+      "frameP95Repetitions": [
+        9.599999964237213,
+        7.599999964237213,
+        7.400000035762787
+      ]
+    },
+    {
+      "report": "rejected-shared-selectors-profile.json",
+      "samples": 3,
+      "bundleSha256": "a807fc7bf7d5c7e90d83d314fba7f722cb50e1c823d01047c3b9028a646744c0",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 18.400000035762787,
+        "retainedBytesPerParticle": 7755.344,
+        "updateMedianMs": 3.800000011920929,
+        "drawMedianMs": 2.400000035762787,
+        "frameP95Ms": 7.799999952316284,
+        "updateSampledBytesPerTick": 4415191.2,
+        "frameSampledBytesPerTick": 5055142.266666667
+      },
+      "frameP95Repetitions": [
+        8.699999988079071,
+        7.600000023841858,
+        7.799999952316284
+      ]
+    },
+    {
+      "report": "rejected-inline-radius-profile.json",
+      "samples": 3,
+      "bundleSha256": "04c63bfdab9623970b0dbc579d72fbfcab2903e9a6eba18094030883d1d53de3",
+      "summary": {
+        "scenario": "M4",
+        "count": 500,
+        "initializationMs": 17.100000023841858,
+        "retainedBytesPerParticle": 7756.872,
+        "updateMedianMs": 3.799999952316284,
+        "drawMedianMs": 2.5,
+        "frameP95Ms": 7.899999976158142,
+        "updateSampledBytesPerTick": 4413667.466666667,
+        "frameSampledBytesPerTick": 5042302.4
+      },
+      "frameP95Repetitions": [
+        8,
+        7.899999976158142,
+        7.699999988079071
+      ]
+    }
+  ],
+  "productionSourceChangedByPrototypes": false,
+  "limitations": [
+    "Quiet pair ran after builds/tests and without repository writes during either run; artifacts were first written under /tmp.",
+    "Prototype bundles use default Terser settings, so use their reminified control; they are not release bundles.",
+    "Gradient prototype fails exact pixels and exceeds visible channel tolerances; rejected despite lower timing.",
+    "Getter prototypes show no sufficient performance benefit; none were shipped."
+  ],
+  "node": "v26.13.0",
+  "terser": "5.51.2"
+}

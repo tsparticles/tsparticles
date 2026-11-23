@@ -7,10 +7,11 @@ import {
   type IRgb,
   type IRgba,
   double,
-  getStyleFromHsl,
+  getStyleFromOklch,
   half,
   percentDenominator,
   rgbMax,
+  rgbToOklch,
 } from "@tsparticles/engine";
 
 /**
@@ -76,6 +77,7 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
  * @param peakNits - the peak brightness in nits
  * @param mode - the HDR mode
  * @returns the CSS style string
+ * @deprecated Use the engine's output-aware OKLCH formatter for new engine color output.
  */
 export function getStyleFromHsv(
   color: IHsv,
@@ -84,7 +86,7 @@ export function getStyleFromHsv(
   peakNits?: number,
   mode?: HdrMode,
 ): string {
-  return getStyleFromHsl(hsvToHsl(color), hdr, opacity, peakNits, mode);
+  return getStyleFromOklch(rgbToOklch(hsvToRgbFloat(color)), hdr, opacity, peakNits, mode);
 }
 
 /**

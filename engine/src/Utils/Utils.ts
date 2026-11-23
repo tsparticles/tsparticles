@@ -502,18 +502,30 @@ export async function getItemMapFromInitializer<TItem, TInitializer extends Gene
 export async function getDataFromUrl(
   data: DataFromUrlParams,
 ): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
-  const { logger, random } = data,
+  const { logger, random, signal } = data,
     url = itemFromSingleOrMultiple(data.url, data.index, undefined, random);
+
+  if (signal?.aborted) {
+    return undefined;
+  }
 
   if (!url) {
     return data.fallback;
   }
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, signal ? { signal } : undefined);
+
+    if (signal?.aborted) {
+      return undefined;
+    }
 
     if (response.ok) {
       const current = (await response.json()) as unknown;
+
+      if (signal?.aborted) {
+        return undefined;
+      }
 
       if (isSourceOptionsValue(current)) {
         return current;
@@ -524,6 +536,10 @@ export async function getDataFromUrl(
       logger.error(`${response.status.toString()} while retrieving config file`);
     }
   } catch (error) {
+    if (signal?.aborted) {
+      return undefined;
+    }
+
     logger.error(`error while retrieving config file: ${error as string}`);
   }
 

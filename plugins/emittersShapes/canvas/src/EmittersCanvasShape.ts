@@ -18,7 +18,7 @@ import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanva
 const maxRetries = 100;
 
 export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
-  filter: (pixel: IRgba) => boolean;
+  filter: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean;
   pixelData: CanvasPixelData;
   scale: number;
 
@@ -38,11 +38,14 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     const filter = options.filter,
       minAlpha = 0;
 
-    let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
+    let filterFunc: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean = (pixel): boolean =>
+      pixel.a > minAlpha;
 
     if (isString(filter)) {
       if (filter in globalThis) {
-        const wndFilter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
+        const wndFilter = (
+          globalThis as unknown as Record<string, (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean>
+        )[filter];
 
         if (isFunction(wndFilter)) {
           filterFunc = wndFilter;
@@ -137,7 +140,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         continue;
       }
 
-      const shouldCreateParticle = this.filter(pixel);
+      const shouldCreateParticle = this.filter(pixel, data.colorSpace ?? "srgb");
 
       if (!shouldCreateParticle) {
         continue;
@@ -149,6 +152,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
           y: pixelPos.y * scale + positionOffset.y,
         },
         color: { ...pixel },
+        colorSpace: data.colorSpace ?? "srgb",
         opacity: pixel.a,
       };
     }

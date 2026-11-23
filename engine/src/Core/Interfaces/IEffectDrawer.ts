@@ -1,7 +1,4 @@
-import type {
-  IParticleCanvasBoundsData,
-  IParticleCanvasBoundsResult,
-} from "./IParticleCanvasBounds.js";
+import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./IParticleCanvasBounds.js";
 import type { Container } from "../Container/Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particles/Particle.js";
@@ -38,9 +35,7 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
    * Optional effect-owned canvas bounds check.
    * @param data - the data used for bounds evaluation
    */
-  isInsideCanvas?: (
-    data: IParticleCanvasBoundsData<TParticle>,
-  ) => boolean | IParticleCanvasBoundsResult;
+  isInsideCanvas?: (data: IParticleCanvasBoundsData<TParticle>) => boolean | IParticleCanvasBoundsResult;
 
   /**
    * Effect load function

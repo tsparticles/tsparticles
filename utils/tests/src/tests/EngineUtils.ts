@@ -143,6 +143,35 @@ describe("EngineUtils", () => {
         globalThis.fetch = originalFetch;
       }
     });
+
+    it("skips an already-cancelled configuration request without logging a failure", async () => {
+      const controller = new AbortController(),
+        engine = createEngine(),
+        errors: unknown[][] = [],
+        originalFetch = globalThis.fetch,
+        fetch = vi.fn();
+
+      controller.abort();
+      engine.setLogger({ error: (...args: unknown[]): void => errors.push(args) });
+      globalThis.fetch = fetch;
+
+      try {
+        const result = await getDataFromUrl({
+          fallback: undefined,
+          index: undefined,
+          logger: engine.getLogger(),
+          random: Math.random,
+          signal: controller.signal,
+          url: "https://example.test/options.json",
+        });
+
+        expect(result).toBeUndefined();
+        expect(fetch).not.toHaveBeenCalled();
+        expect(errors).toEqual([]);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
   });
 
   describe("range helpers", () => {

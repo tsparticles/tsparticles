@@ -70,6 +70,7 @@
         "engine/dist/browser/Utils/ErrorMessages.js",
         "engine/dist/browser/Utils/ErrorUtils.js",
         "engine/dist/browser/Utils/EventDispatcher.js",
+        "engine/dist/browser/Utils/LegacyColorManagerAdapter.js",
         "engine/dist/browser/Utils/LogUtils.js",
         "engine/dist/browser/Utils/MathUtils.js",
         "engine/dist/browser/Utils/OklchUtils.js",

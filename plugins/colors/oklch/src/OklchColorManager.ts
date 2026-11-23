@@ -49,9 +49,7 @@ function parseOklchString(input: string): IOklcha | undefined {
 
   const rawL = Number.parseFloat(result[1] ?? "0"),
     lightness = rawL * (result[2] ? identity : percentDenominator),
-    chroma =
-      Number.parseFloat(result[3] ?? "0") *
-      (result[4] ? oklchChromaPercentScale : 1),
+    chroma = Number.parseFloat(result[3] ?? "0") * (result[4] ? oklchChromaPercentScale : 1),
     hue = parseOklchHue(result[5] ?? "0"),
     alpha = result[6] ? parseAlpha(result[6]) : defaultAlpha;
 
@@ -113,9 +111,7 @@ export class OklchColorManager implements IColorManager {
     const alpha = (oklchColor as { a?: number }).a ?? defaultAlpha;
 
     if (
-      ![alpha, oklchColor.c, oklchColor.h, oklchColor.l].every(
-        Number.isFinite,
-      ) ||
+      ![alpha, oklchColor.c, oklchColor.h, oklchColor.l].every(Number.isFinite) ||
       alpha < none ||
       alpha > identity ||
       oklchColor.c < none ||
@@ -165,12 +161,7 @@ export class OklchColorManager implements IColorManager {
       c = getRangeValue(oklchColor.c, this.#random),
       h = getRangeValue(oklchColor.h, this.#random);
 
-    if (
-      ![l, c, h].every(Number.isFinite) ||
-      c < none ||
-      l < none ||
-      l > percentDenominator
-    ) {
+    if (![l, c, h].every(Number.isFinite) || c < none || l < none || l > percentDenominator) {
       return;
     }
 

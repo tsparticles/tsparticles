@@ -58,14 +58,7 @@ export function drawRoundedCard(
   if (flipped) {
     drawRoundedCardBack(ctx, radius);
   } else {
-    const cacheKey = getCacheKey(
-        radius,
-        hdr,
-        cardData,
-        peakNits,
-        mode,
-        outputColorSpace,
-      ),
+    const cacheKey = getCacheKey(radius, hdr, cardData, peakNits, mode, outputColorSpace),
       cardWidth = radius * cardWidthRatio,
       cardHeight = radius * cardHeightRatio,
       halfWidth = cardWidth * half,
@@ -80,20 +73,9 @@ export function drawRoundedCard(
       if (cacheCtx) {
         cacheCtx.translate(halfWidth, halfHeight);
 
-        drawRoundedCardFront(
-          cacheCtx,
-          radius,
-          cardData,
-          hdr,
-          peakNits,
-          mode,
-          outputColorSpace,
-        );
+        drawRoundedCardFront(cacheCtx, radius, cardData, hdr, peakNits, mode, outputColorSpace);
 
-        cachedData =
-          cacheCanvas instanceof HTMLCanvasElement
-            ? cacheCanvas
-            : cacheCanvas.transferToImageBitmap();
+        cachedData = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
 
         cardsCache.set(cacheKey, cachedData);
       }
@@ -102,15 +84,7 @@ export function drawRoundedCard(
     if (cachedData) {
       ctx.drawImage(cachedData, -halfWidth, -halfHeight, cardWidth, cardHeight);
     } else {
-      drawRoundedCardFront(
-        ctx,
-        radius,
-        cardData,
-        hdr,
-        peakNits,
-        mode,
-        outputColorSpace,
-      );
+      drawRoundedCardFront(ctx, radius, cardData, hdr, peakNits, mode, outputColorSpace);
     }
   }
 }
@@ -138,10 +112,7 @@ function getCacheKey(
  * @param ctx - The rendering context
  * @param radius - The radius
  */
-function drawRoundedCardBack(
-  ctx: OffscreenCanvasRenderingContext2D,
-  radius: number,
-): void {
+function drawRoundedCardBack(ctx: OffscreenCanvasRenderingContext2D, radius: number): void {
   drawCardBody(ctx, radius);
 }
 
@@ -177,45 +148,17 @@ function drawRoundedCardFront(
     suitEdgeBuffer = radius * suitEdgeBufferFactor,
     isRed = suit === SuitType.hearts || suit === SuitType.diamonds,
     color = isRed
-      ? getStyleFromOklch(
-          redSuitColor,
-          hdr,
-          undefined,
-          peakNits,
-          mode,
-          outputColorSpace,
-        )
-      : getStyleFromOklch(
-          blackSuitColor,
-          hdr,
-          undefined,
-          peakNits,
-          mode,
-          outputColorSpace,
-        );
+      ? getStyleFromOklch(redSuitColor, hdr, undefined, peakNits, mode, outputColorSpace)
+      : getStyleFromOklch(blackSuitColor, hdr, undefined, peakNits, mode, outputColorSpace);
 
   ctx.save();
 
   // --- 1. Drawing Card Body ---
   drawCardBody(ctx, radius);
 
-  ctx.fillStyle = getStyleFromOklch(
-    white,
-    hdr,
-    undefined,
-    peakNits,
-    mode,
-    outputColorSpace,
-  );
+  ctx.fillStyle = getStyleFromOklch(white, hdr, undefined, peakNits, mode, outputColorSpace);
   ctx.fill();
-  ctx.strokeStyle = getStyleFromOklch(
-    black,
-    hdr,
-    undefined,
-    peakNits,
-    mode,
-    outputColorSpace,
-  );
+  ctx.strokeStyle = getStyleFromOklch(black, hdr, undefined, peakNits, mode, outputColorSpace);
   ctx.stroke();
 
   // --- 2. Text and Suit Style Configuration ---
@@ -241,10 +184,7 @@ function drawRoundedCardFront(
 
   // --- 4. Lower Right Corner (Suit then Value, Rotated) ---
   ctx.save();
-  ctx.translate(
-    halfWidth - cornerPadding - suitEdgeBuffer,
-    halfHeight - cornerPadding - cornerFontSize * half,
-  );
+  ctx.translate(halfWidth - cornerPadding - suitEdgeBuffer, halfHeight - cornerPadding - cornerFontSize * half);
   ctx.rotate(Math.PI);
 
   // Suit relative to rotation
@@ -278,10 +218,7 @@ function drawRoundedCardFront(
  * @param ctx - The rendering context
  * @param radius - The radius
  */
-function drawCardBody(
-  ctx: OffscreenCanvasRenderingContext2D,
-  radius: number,
-): void {
+function drawCardBody(ctx: OffscreenCanvasRenderingContext2D, radius: number): void {
   const cardWidth = radius * cardWidthRatio,
     cardHeight = radius * cardHeightRatio,
     halfWidth = cardWidth * half,
@@ -291,32 +228,12 @@ function drawCardBody(
   ctx.beginPath();
   ctx.moveTo(-halfWidth + cornerRadius, -halfHeight);
   ctx.lineTo(halfWidth - cornerRadius, -halfHeight);
-  ctx.quadraticCurveTo(
-    halfWidth,
-    -halfHeight,
-    halfWidth,
-    -halfHeight + cornerRadius,
-  );
+  ctx.quadraticCurveTo(halfWidth, -halfHeight, halfWidth, -halfHeight + cornerRadius);
   ctx.lineTo(halfWidth, halfHeight - cornerRadius);
-  ctx.quadraticCurveTo(
-    halfWidth,
-    halfHeight,
-    halfWidth - cornerRadius,
-    halfHeight,
-  );
+  ctx.quadraticCurveTo(halfWidth, halfHeight, halfWidth - cornerRadius, halfHeight);
   ctx.lineTo(-halfWidth + cornerRadius, halfHeight);
-  ctx.quadraticCurveTo(
-    -halfWidth,
-    halfHeight,
-    -halfWidth,
-    halfHeight - cornerRadius,
-  );
+  ctx.quadraticCurveTo(-halfWidth, halfHeight, -halfWidth, halfHeight - cornerRadius);
   ctx.lineTo(-halfWidth, -halfHeight + cornerRadius);
-  ctx.quadraticCurveTo(
-    -halfWidth,
-    -halfHeight,
-    -halfWidth + cornerRadius,
-    -halfHeight,
-  );
+  ctx.quadraticCurveTo(-halfWidth, -halfHeight, -halfWidth + cornerRadius, -halfHeight);
   ctx.closePath();
 }

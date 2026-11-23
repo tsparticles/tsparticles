@@ -1,8 +1,13 @@
 # E5 checkpoint — Particle/options and OKLCH
 
-Status: in progress, not accepted. This checkpoint records the first coordinated
-runtime and consumer migration. It does not satisfy the E5 exit gate in
-[V5-EXECUTION.md](V5-EXECUTION.md).
+Status: **accepted on 2026-11-23**. C1–C4 and the Particle/options review are
+complete. The user explicitly accepts the remaining M4/500 runtime deviation
+for E5, with final verification in E10. Bundle growth is also waived for E5.
+These exceptions do not mark the original budgets as passing.
+
+Read the [final acceptance and evidence](evidence/e5/closure/README.md) first.
+All earlier checkpoints below are historical; statements that E5 is open are
+superseded by the final acceptance entry. Next stage: **E6**.
 
 ## Planning correction — 2026-11-21 (implementation still open)
 
@@ -11,6 +16,12 @@ is an acceptance requirement for all resolved engine/extension colors. Earlier
 entries below describe partial implementation and test runs, not acceptance of
 the final manager contract or a complete non-particle state audit.
 
+Latest outcome: 457 build:ci projects, all 85 workspace test targets and 817
+primary tests pass. Eight formatter pixel cases and four exact link pixel
+scenes pass. T1–T4 and ARCH-01/03 decisions are recorded. M4/500's quiet
+nine-repetition update/p95 deviation remains explicit in E10, under the user's
+acceptance exception. No E5 color implementation is deferred.
+
 ### Agent entry checklist
 
 Read this correction first, then the numbered output rules linked below. For
@@ -18,58 +29,119 @@ color architecture/output decisions, this correction and the current color
 plan supersede historical implementation notes later in this checkpoint.
 Those notes remain evidence of past work, not instructions to preserve old paths.
 
-- [ ] Native managers resolve OKLCH; legacy RGB managers use an explicit adapter.
-- [ ] Input color-space metadata is distinct from output P3/HDR capabilities;
+- [x] Native managers resolve OKLCH; legacy RGB managers use an explicit adapter.
+- [x] Input color-space metadata is distinct from output P3/HDR capabilities;
       supported HDR source encodings have explicit transfer/scale/luminance data.
-- [ ] Every resolved semantic runtime color is OKLCH, including extension state.
-- [ ] Supported CSS/Canvas output defaults to `oklch(...)`, including P3 canvases.
-- [ ] Each manual RGB output exception has a concrete need and regression test.
-- [ ] Gamut mapping operates on a copy; HDR processing and alpha remain correct.
-- [ ] Remaining RGB/HSL uses are classified per file, with no runtime migration left.
-- [ ] Tests cover direct serialization, non-particle consumers, unchanged source
-      state, real-browser sRGB/P3 output, fallback and HDR for the new path.
+- [x] Every resolved semantic runtime color is OKLCH, including extension state.
+- [x] Supported CSS/Canvas output defaults to `oklch(...)`, including P3 canvases.
+- [x] Each remaining manual RGB output is an explicit compatibility or pixel
+      boundary with tests; runtime extension output uses the OKLCH formatter.
+- [x] Gamut mapping operates on a copy; HDR processing and alpha remain correct.
+- [x] Remaining RGB/HSL uses are classified per file, with no runtime migration left.
+- [x] Unit/integration tests cover direct serialization, non-particle consumers,
+      unchanged source state, output fallback and HDR math for the current path.
+- [x] Refresh real-browser sRGB/P3/HDR pixel readback for the mapped OKLCH
+      formatter; eight current Chrome cases pass (see the numeric-hue continuation below).
 
 Complete these color gates AND the existing Particle lifecycle, consumer,
 performance and verification gates before marking E5 accepted. Do not defer
 color migration to E6–E10 or mark these boxes based on old test results alone.
+The current file-by-file RGB/HSL classification is in
+[V5-COLOR-INVENTORY.md](V5-COLOR-INVENTORY.md). The structural source search is
+complete for workspace TypeScript, including dynamically loaded pixel filters
+and browser-only color examples. The current mapped-output browser pixel
+fixture passes after the numeric-hue correction recorded below.
 
-### Implementation tasks
+### Historical implementation tasks
 
-Required next work for E5c/E5d:
+The tasks below describe the migration checkpoints. They are completed by the
+final acceptance; retain them as implementation history:
 
-1. **C2 / 03+08 — Finish the native manager contract.** The current
-   `IColorManager` still requires RGB `handleColor` / `handleRangeColor` and RGBA
-   `parseString`, with optional OKLCH counterparts. Replace this transitional
-   contract with canonical results and an explicit legacy sRGB input adapter.
-   Migrate built-ins, exports, custom-manager examples and CLI generation in
-   the same buildable increment; test a native manager with no RGB hooks. Define
-   source-space descriptors separately from render capabilities: P3 metadata
-   selects input primaries, while HDR input needs a defined transfer function,
-   scale and luminance reference. Do not ship an underspecified generic `hdr`
-   boolean.
-2. **C4 / 07+08 — Inventory all semantic colors beyond Particle.** Start with
-   `plugins/emitters/src/IRandomPositionData.ts` (`color?: IRgb`), the
-   `IOklcha | IRgb` fill/stroke helpers in `EmitterInstance.ts`, and sampled
-   colors from `plugins/emittersShapes/canvas`. Trace where raw pixels become
-   spawn colors and establish a single canonical resolution boundary. Audit
-   all other state, getters, caches and non-particle consumers listed in the
-   color plan. These are review seeds, not an exhaustive inventory or a claim
-   that every RGB occurrence is a defect.
-3. **C1/C2 / 03+05 — Default to direct OKLCH output.** Follow the numbered
-   [output implementation rules](V5-COLORS-OKLCH.md#output-rule-for-implementers).
-   Use CSS `oklch(...)` for supported CSS/Canvas destinations, including P3
-   contexts. The current HDR route (`getStyleFromOklch` →
-   `oklchToDisplayP3Float` → `getHdrStyleFromRgb`) is not automatically the target
-   design. Keep manual RGB output only for verified fallback/API/HDR needs;
-   P3 capability alone is insufficient. Preserve explicit gamut mapping on a
-   copy and isolate required HDR math. Add direct-format/no-unnecessary-conversion
-   tests and rerun browser pixels, alpha, gamut and HDR tests for this path.
-   Prior browser results validate the old implementation only.
-4. **C4 acceptance — Record evidence.** Supply the per-file remaining-use
-   classification, canonical manager tests, pixel-to-runtime boundary tests and
-   non-particle state/output checks. E5 cannot close with unresolved semantic
-   RGB/HSL state or implicit native-manager RGB fallback. E6/E7 optimization,
-   E8 audit and E9/E10 release work do not own deferred color migration.
+1. **C2 / 03+08 — Verify the native manager contract.** `IColorManager` now
+   requires direct OKLCH results; legacy sRGB managers use the explicit
+   `adaptLegacyColorManager` adapter. Built-ins, exports, migration examples and
+   CLI generation use the native contract. Full workspace tests cover managers
+   without RGB hooks, P3 aliases/conflicts and rejection of underspecified HDR
+   channel metadata. HDR source decoding remains unsupported until transfer,
+   scale, reference white and luminance are defined.
+2. **C4 / 07+08 — Finish dynamic and browser consumer review.** The per-file
+   inventory and structural TypeScript search found no remaining semantic RGB/
+   HSL runtime state. Raw sampled pixels convert at emitter/canvas-mask adoption;
+   RGBA-unorm8 readback preserves sRGB/P3 primaries but drops HDR headroom.
+   The pixel-format, Float16 fallback, alpha-composition and sampled-emitter
+   source-primary regressions now pass. Dynamic canvas-mask/emitter callbacks
+   receive raw pixel channels plus source-space metadata and return only a
+   boolean filter decision; the browser-only config examples likewise inspect
+   pixels without returning or storing semantic colors. The source color is
+   converted at emitter particle-state adoption. This callback/example review
+   is complete; current mapped-output browser pixel verification also passes.
+3. **C1/C2 / 03+05 — Verify output mapping.** SDR output serializes CSS
+   `oklch(...)` after reducing chroma on a copy for the effective sRGB or P3
+   gamut. The HDR route remains isolated from ordinary P3 output. Verify the
+   mapped style in both destinations, unchanged canonical state, alpha and HDR
+   behavior have unit coverage. Current Chrome pixel verification passes with
+   the corrected numeric-hue formatter, including mapped sRGB/P3 alpha and HDR
+   float16 output (see the browser output correction below).
+4. **C4 acceptance — Record remaining evidence.** Dynamic callback and browser-
+   only config review and the current mapped-output browser fixture pass.
+   Close the existing Particle lifecycle, consumer and performance gates.
+   The canonical manager, sampled-pixel conversion helper and unit-level
+   non-particle output paths are covered; E5 stays open until the remaining
+   evidence passes.
+
+### Verification update — 2026-11-21
+
+- The complete `@tsparticles/tests:test` target passes: 797 tests across 52
+  files. This caught and fixed `rangeColorToOklch()` skipping string-valued
+  `IColor.value`, which left paint, effect, roll/orbit and gradient colors
+  unresolved. Untagged RGB objects now resolve as sRGB, including nested
+  `value.rgb`, and ranged alpha is sampled with the engine RNG.
+- `@tsparticles/engine:build` passes, and `@tsparticles/tests:build` passes all
+  187 tasks, including downstream compile, lint and formatting targets in its
+  dependency graph. The follow-up emitter, cannon and bubble builds pass 24/24
+  tasks; the basic/slim/full/all bundle rebuild passes 156/156 tasks.
+- Added/updated regressions for nested source metadata and alpha, sRGB/P3
+  mapped serialization, alpha-aware link mixing, canvas RGBA-unorm8 readback,
+  normalized legacy Float16 pixel fallback, and emitter sampled-pixel conversion
+  with both sRGB and P3 primaries. The cannon interactor now resolves its input
+  once to canonical OKLCH, and the bubble highlight uses the shared output
+  formatter. No HDR source decoding is enabled; ambiguous `hdr`-tagged RGB
+  inputs are rejected.
+- The refreshed browser fixture could not run in this sandbox: Puppeteer Chrome
+  exited during startup, and binding the local fixture server was denied. The
+  old browser report predates mapped OKLCH output and is not valid evidence for
+  the current formatter. The fixture now includes a Display-P3 highlight that
+  is outside sRGB and exercises the mapped style. Re-run
+  `evidence/tools/check-e5-color-browser.mjs` in an environment that can launch
+  Chrome and bind localhost before closing the browser-output gate.
+- E5 remains in progress: browser pixel verification and existing
+  performance/bundle-size gates still need evidence. The dynamic callback and
+  browser-only example review is complete: callbacks return filter decisions
+  only, and sampled colors are converted when adopted into particle state. Nx also
+  reported remote-cache `ENOTFOUND`; local task results above completed
+  successfully.
+- Refreshed bundle measurements after the emitter/cannon/bubble changes. The
+  factory consumer is +1,985 gzip / +1,599 Brotli bytes (+8.58% / +7.77%) from
+  E4; the minimal scene is +2,189 / +1,847 bytes (+7.49% / +7.06%). The engine
+  minified distribution is +14.90% gzip / +13.68% Brotli. Rollup attribution
+  shows the new canonical animation and conversion modules (`OklchAnimation`
+  and `OklchUtils`) in both factory and minimal consumers. No redundant
+  compatibility module was found to remove without changing the E5 contract;
+  the 2% budget remains open for further optimization or explicit budget review.
+  Refreshed details are in `evidence/e5/bundle-delta-vs-e4.json` and
+  `evidence/e5/bundle-sizes.json`.
+- The Particle pool audit found that the Infection plugin did not clear its
+  stage/delay/timer object when a pooled particle began a new lifetime. Its
+  `particleCreated` hook now resets that field; a regression confirms same-object
+  reuse starts without prior infection data. A review of Life, Opacity, Rotate,
+  and Tilt found their per-particle option loaders recreate defaults during
+  initialization, so no extra reset hooks were needed. Infection and the
+  affected updater builds pass; the full test suite passes 797/797 across 52
+  files.
+- Closed the workspace custom-manager migration audit: every concrete
+  `IColorManager` implementation resolves the direct OKLCH contract; RGB-only
+  custom manager support is isolated to the explicit legacy adapter. The CLI
+  manager template and tests also expose the direct-only contract.
 
 ## Implementation increment — 2026-11-21
 
@@ -87,6 +159,41 @@ Required next work for E5c/E5d:
   Focused regressions were updated/added; they have not been run in this
   increment. Full non-particle inventory and real-browser output verification
   remain open, so E5 is still not accepted.
+- SDR `getStyleFromOklch()` now uses its effective output gamut: it reduces
+  chroma on a copy while retaining lightness and hue, then serializes that
+  mapped value as `oklch(...)`. This prevents the style cache from conflating
+  sRGB and Display-P3 output and leaves canonical runtime state unchanged.
+  The migration guide now documents this boundary behavior. No regression or
+  browser verification was run for this follow-up; the mapping gate remains
+  open pending focused output-space assertions.
+- A follow-up workspace search for structurally typed RGB and color-bearing
+  runtime state found no additional persistent semantic RGB/HSL fields beyond
+  those classified in `V5-COLOR-INVENTORY.md`. PJS inputs and sampled pixel
+  buffers remain explicit source boundaries. The later dynamic-callback audit
+  confirms canvas-mask/emitter filters return booleans only; browser-only config
+  examples do not return or retain semantic RGB colors.
+- Deprecated the OKLCH plugin's package-local CSS formatter in its API docs;
+  it does not know the active canvas gamut. New callers should use the engine's
+  output-aware formatter. Existing consumers remain source-compatible.
+- Marked the engine's RGB/HSL CSS style helpers as deprecated compatibility
+  APIs, directing new engine output through the canonical OKLCH formatter.
+  Workspace source search found no runtime consumers of these legacy helpers
+  outside their own compatibility implementations.
+- Marked the HSV plugin's package-local CSS formatter deprecated as well; it
+  delegates to the legacy HSL formatter and has no runtime workspace callers.
+- Fixed the canonical RGB manager's ranged-object path to sample an optional
+  alpha range after the RGB channels, preserving the shared RNG call order and
+  returning alpha for canonical validation.
+- Extended the input types and source-space resolver to accept `colorSpace`,
+  `p3` and alpha in wrapped `value.rgb` objects. The resolver now applies P3
+  primaries before manager fallback and rejects ambiguous/HDR tags in both
+  wrapped and direct channel-object forms.
+- Canvas pixel extraction now explicitly requests RGBA-unorm8 while retaining
+  the `ImageData` color space. If a legacy browser returns Float16 data instead,
+  the compatibility boundary clamps and quantizes those samples to 8-bit SDR
+  channels rather than passing unit-scale values into RGB-to-OKLCH conversion.
+  The public pixel docs now state that this sampling path does not retain HDR
+  headroom. Pixel-format and Float16 fallback regressions remain open.
 
 ## Implemented in this checkpoint
 
@@ -302,9 +409,37 @@ CSS Color 4 `lab()`/`lch()` permit unitless lightness and percentage axes or
 chroma. Those input scales are now converted to the canonical numeric values
 before the existing range checks and color conversion.
 
-## Open work required before E5 can close
+## Historical open work before E5 acceptance
 
 ### Latest continuation
+
+- Made the RGB object source-space shorthand explicit: `p3: true/false` now
+  selects Display-P3/sRGB input primaries and must agree with `colorSpace` when
+  both are present. Objects carrying a generic `hdr` field are rejected before
+  manager fallback, so legacy RGB parsers cannot silently reinterpret HDR-tagged
+  channels as SDR sRGB. Updated the color guide and C0 decision log; focused
+  conversion regressions and engine/downstream builds pass. HDR source decoding
+  remains unsupported until a transfer/scale/reference-white descriptor is
+  defined.
+- Added `colorMixOklch()` as the canonical public wrapper over the existing
+  rectangular-OKLab mixer. The RGB-returning `colorMix()` remains available as
+  a deprecated compatibility helper; no runtime workspace call sites use it.
+  The migration guide now includes native-manager and explicit legacy-adapter
+  examples; the color-format guides no longer describe the deprecated RGB
+  helper as the canonical perceptual mixer. Canonical mixer tests and public API
+  documentation are still open.
+- Updated the shared rectangular-OKLab mixer to weight color coordinates by
+  input alpha while interpolating output alpha separately. Zero total weights
+  split evenly; if both alphas are zero, finite deterministic coordinates remain
+  available under zero output alpha. Focused tests cover transparent endpoints,
+  unequal alpha and zero weights.
+- Preserved the effective `ImageData` color space in canvas pixel buffers and
+  passed it through canvas-mask and emitter filter callbacks. Canvas-mask pixel
+  colors now enter particle options with their source primaries; emitter samples
+  convert through the matching sRGB or Display-P3 path at spawn-state adoption.
+  Canvas-mask color/opacity overrides no longer apply pixel alpha twice when
+  both are enabled. Pixel-readback, P3 emitter, and alpha-composition
+  regressions pass. The end-to-end mapped-output browser fixture remains open.
 
 - Full `@tsparticles/tests` suite passes 752/752 across 52 files after rebuilding
   the engine, destroy updater and Fireworks dependency graph.
@@ -415,9 +550,9 @@ before the existing range checks and color conversion.
   this environment. It reached demo tasks, including the known Angular
   `Abort trap: 6`, then stopped producing output; I interrupted it after it
   remained stalled. The focused engine/Trail dependency build passed.
-- The custom color-manager project generator now scaffolds the three optional
-  direct OKLCH methods alongside the legacy RGB methods. Its template regression
-  passes, and the CLI create-utils build passes. A source audit confirms there
+- The custom color-manager project generator now scaffolds the three required
+  canonical OKLCH methods only. Its template regression covers the direct
+  contract, and the CLI create-utils build passes. A source audit confirms there
   are no migrated runtime calls to legacy RGB/HSL style helpers and no remaining
   `particle.color` property references; standalone conversion utilities and the
   HSL color-input plugin remain intentionally available.
@@ -492,8 +627,8 @@ before the existing range checks and color conversion.
   Expanded the MCP resource with per-channel limits and shared animation
   properties, and added a resource regression. Extended `OptionsLoad.ts` to
   verify independent channel bounds/speeds and the default sync behavior. The
-  custom color-manager scaffold already exposes all three optional direct
-  OKLCH hooks and has a focused template regression. The `@tsparticles/tests`
+  custom color-manager scaffold exposes the three required direct OKLCH methods
+  and has a focused template regression. The `@tsparticles/tests`
   suite passes 767/767; the focused MCP options-guide test passes 1/1. The full
   MCP suite has four existing HTTP-server cases blocked by sandbox `listen
 EPERM`; its other 266 tests pass. All ten published paint-option locales now
@@ -595,15 +730,14 @@ EPERM`; its other 266 tests pass. All ten published paint-option locales now
    with maxima computed independently using Color.js 0.7.1 across lightness
    for four hues. Continue defining invalid-input rules across supported
    syntax, including colors outside both target gamuts.
-2. **C2 manager contract:** legacy RGB/RGBA methods remain available for
-   compatibility, and all built-in managers now implement the optional direct
-   OKLCH methods for strings and range/object inputs. Continuous conversions
-   keep floating-point RGB intermediates; OKLab maps directly to rectangular
-   coordinates. Custom managers still use the RGB fallback; string/object
-   fallback behavior now has regression coverage. Optional direct custom
-   manager results are checked for finite values, lightness in 0–100,
-   nonnegative chroma, valid alpha, and canonical hue before use; invalid outputs
-   fall through to legacy RGB conversion. The OKLCH, Lab and LCH
+2. **C2 manager contract:** the current `IColorManager` requires canonical
+   OKLCH results; old RGB/RGBA managers are supported only through the explicit
+   `adaptLegacyColorManager` adapter. Built-in managers retain RGB methods as
+   compatibility APIs while resolving their native values directly to OKLCH.
+   Continuous conversions keep floating-point RGB intermediates; OKLab maps
+   directly to rectangular coordinates. An older implementation note below
+   records the transitional implicit RGB fallback; that behavior has since been
+   removed. The OKLCH, Lab and LCH
    string parsers reject trailing input and invalid alpha, handle
    case-insensitive function names, and preserve alpha through legacy RGB
    parsing. RGB/HSL/HSV/HWB now have complete-input and channel/alpha parsing
@@ -686,8 +820,10 @@ EPERM`; its other 266 tests pass. All ten published paint-option locales now
    now migrated to `particle.fillColor` h/c/l state. The file passes 71/71.
    The sRGB, Display-P3 SDR, Display-P3 float16 and HDR luminance browser
    readbacks pass in Chrome 157 (see `evidence/e5/browser-color-results.json`).
-   The standalone schema decision is recorded in ARCH-03; parser coverage and
-   the custom-manager migration audit remain open.
+   The standalone schema decision is recorded in ARCH-03; the custom-manager
+   migration audit is complete. Accepted parser syntax and rejection cases are
+   covered by the manager suites; the current mapped-output browser fixture
+   remains a separate closure gate.
 6. **Particle review:** the current field inventory and init/destroy/remove order
    are recorded in V5-07, and repeated-destroy ordering has a focused test.
    `ContainerLifecycle.ts` verifies Retina-scaled particle motion is recomputed
@@ -718,13 +854,15 @@ EPERM`; its other 266 tests pass. All ten published paint-option locales now
 
 ## Current limitations
 
-The canonical Particle model and built-in manager inputs are switched; custom
-managers that omit the direct OKLCH methods still pass through their legacy RGB
-results. P3/HDR context selection and destination mapping are implemented for
-the migrated OKLCH consumers. Real-browser sRGB/P3 SDR output, extended
-Display-P3 float16 style readback and linear P3 HDR tone-mapped luminance have
-been verified. Physical-display calibration, bundle/runtime comparison and the
-remaining E5 gates stay open.
+The canonical Particle model and native manager contract are switched; legacy
+custom managers require the explicit sRGB adapter. RGB channel source-space
+metadata supports `colorSpace` and the `p3` alias; generic HDR-tagged channel
+objects are rejected because HDR source decoding is not implemented. P3/HDR
+context selection and destination mapping are implemented for migrated OKLCH
+consumers. Earlier browser readback verified the previous style path; the mapped
+OKLCH formatter has unit coverage, but its sRGB/P3 pixels and HDR output still
+need a refreshed browser run. Physical-display calibration, bundle/runtime
+comparison and the remaining E5 gates stay open.
 
 ### G3 follow-up — video export settlement
 
@@ -772,3 +910,413 @@ destruction. The focused lifecycle suite passes 15/15 and the full suite passes
 lint, Prettier and `git diff --check` pass. Late plugin instances are disposed
 safely after cancellation, even when their cleanup hook throws. Old-scene
 retention during replacement and fetch cancellation remain open G3 questions.
+
+### E5 follow-up — direct Display-P3 conversion
+
+`displayP3ToOklch()` now transforms decoded Display-P3 channels into linear-sRGB
+coordinates and feeds those directly to the shared OKLCH matrix conversion. It
+no longer re-encodes those intermediate channels to sRGB, allocates a temporary
+RGB object, and decodes the channels again. Existing Display-P3 primary and
+out-of-sRGB reference-vector tests pass. `OptionsLoad.ts` now also checks that
+the complete loaded option/shape/effect object graphs for two particles share
+no mutable references. `@tsparticles/tests:build` passes with 798/798 tests and
+all 186 dependency tasks; test lint, Prettier and `git diff --check` pass. The
+M6/M8 runtime evidence shows no regression against E4, zero long frames, and
+88,852 bytes of retained-heap drift after 30 churn cycles. M6/500 remains at the
+same 2.0 ms p95 as E4, above the original 1.87 ms E0 ceiling; this is recorded
+as a baseline deviation rather than an E5 regression. The user has explicitly
+waived bundle growth as an E5 blocker; measurements remain in
+`evidence/e5/bundle-delta-vs-e4.json`. The mapped-output browser pixel readback
+and detailed per-particle heap/allocation plus M3–M5/M7 runtime comparisons
+remain unverified.
+
+### E5 closure pass — 2026-11-22
+
+- The full-bundle ownership regression loads all extensions, traverses two
+  particles' complete options, shape data, and effect data, and verifies they
+  share no mutable object references.
+- `@tsparticles/tests:build` passes: 798 tests across 52 files and all 186
+  dependency tasks. The engine and direct downstream graph build; test lint,
+  formatting, and `git diff --check` pass.
+- The existing M6/M8 measurements show no regression from E4, zero long frames,
+  and 88,852 bytes of retained-heap drift after 30 churn cycles. M6/500 stays at
+  2.0 ms p95 in E4 and E5, against the 1.87 ms E0 ceiling; it is recorded as an
+  inherited baseline deviation, not an E5 regression.
+- Bundle growth is waived as an E5 blocker per the user's instruction; the
+  measured deltas remain recorded.
+- A supplementary forced-GC Node profile estimates M3 retained JavaScript
+  heap at 11,505–11,973 bytes per particle across 500–2,000 particles, using
+  five repetitions and an empty-container baseline. Raw samples and harness
+  are in `evidence/e5/node-particle-heap.json` and
+  `evidence/tools/measure-e5-node-particle-heap.mjs`. This is not comparable
+  with Chrome/CDP heap, excludes allocation volume and native canvas memory,
+  and does not replace the M8 or M3–M7 browser cost comparison.
+- A Node+jsdom runtime diagnostic now covers M3/M4/M5/M7 at 100, 500, and
+  1,000 particles (three repetitions, 30 warm-up and 60 measured ticks, fixed
+  seed). RNG call counts match across repetitions. At 1,000 particles, median
+  per-tick update/draw p95 values are M3 2.60/8.87 ms, M4 19.17/85.50 ms,
+  M5 25.00/31.54 ms, and M7 2.77/9.52 ms. These `@napi-rs/canvas` CPU timings
+  are diagnostic only and must not be compared with browser/GPU timing or E0;
+  the full sample set is `evidence/e5/node-runtime.json`.
+- A separate V8 allocation-sampling pass recorded update and draw profiles for
+  the same matrix (512-byte sampling interval, three repetitions). At 1,000
+  particles, estimated sampled JS allocation bytes/tick for update/draw are
+  M3 1,915/1,908; M4 29,165/29,424; M5 1,721/1,866; and M7 1,957/1,775. These
+  are sampling estimates, not exact object/allocation counts; profile samples
+  and limits are in `evidence/e5/node-allocations.json`.
+- Native Skia canvas readback also exercised the mapped formatter in sRGB and
+  Display-P3 with alpha. The high-chroma source rendered as RGBA [255,145,20,51]
+  and [250,145,0,51], each within one 8-bit channel value of the mapped
+  reference. This confirms native canvas parsing/readback only: Skia required
+  the equivalent unitless hue because it rejects the formatter's valid CSS
+  degree suffix. The check is automated in
+  `utils/tests/src/tests/ColorPixelReadback.ts`. It is not browser pixel
+  evidence; see `evidence/e5/node-color-pixels.json`.
+- The mapped-OKLCH browser pixel fixture could not run under this environment's
+  browser policy. Browser-comparable M3–M5/M7 runtime and allocation profiles
+  remain unmeasured. E5 remains in progress until the mapped browser-output gate
+  is verified; the previous browser report does not verify the new mapped output
+  path. Bundle growth is the only gate waived by the user.
+
+### E5 HDR numeric verification — 2026-11-22
+
+- Added canonical OKLCH HDR regressions for all non-standard tone-map modes:
+  output channels stay within the selected peak headroom, source color state is
+  unchanged, and color alpha composes with particle opacity.
+- Added an absolute-luminance check using linear Display-P3 coordinates for
+  canonical OKLCH output: the natural mode measures 140.497 nits at 400-nit
+  peak and 175.260 nits at 1,000-nit peak.
+- Added CanvasMask consumer regressions for raw P3 metadata reaching the pixel
+  filter and pixel alpha being applied once whether opacity override is on or
+  off. The inventory now reflects the verified manager and callback coverage.
+- Added an emitter canvas-shape regression for P3 pixels: the filter receives
+  source-space metadata, spawn data retains it, and the sampled color resolves
+  to canonical OKLCH at adoption.
+- `NX_DAEMON=false pnpm nx run @tsparticles/tests:test --output-style=static`
+  passes 805 tests across 55 files. Nx Cloud was unavailable (`ENOTFOUND`), but
+  the local test task succeeded.
+- `NX_DAEMON=false pnpm nx run @tsparticles/tests:build --output-style=static`
+  also passes across its 186-task dependency graph; the test package reran lint,
+  Prettier and all 805 tests. Nx reused 186 cached tasks and executed the test
+  build locally. Nx Cloud could not store artifacts (`ENOTFOUND`).
+- This closes the unit-level HDR headroom/alpha/luminance math gate. Real-browser
+  mapped pixels and browser-comparable runtime/allocation profiling remain open.
+
+### E5 downstream workspace build — 2026-11-22
+
+- `pnpm nx show projects --json | jq -r '.[]' | grep -vE 'cli|website|palette' | xargs pnpm nx run-many -t build --projects`
+  completed 453 targets: 450 succeeded and three demo targets failed outside
+  the migrated package graph. Electron's build reached webpack but could not
+  prepare its `pnpm dlx` cache under the user Library path because sandbox file
+  access was denied. Next.js failed to fetch Inter from Google Fonts because
+  network access is unavailable. Angular's `ng build` reported `Abort trap: 6`.
+  Core engine, color managers, plugins, bundles and other downstream
+  packages succeeded. Nx Cloud was unavailable; local task execution completed.
+- Re-ran `@tsparticles/angular-demo:build` in isolation. The `angular-fireworks`
+  library and its dependency graph build successfully, but `ng build` again
+  aborts with signal 6 immediately after starting and emits no Angular or
+  TypeScript diagnostic. The local Node 26.13.0 version satisfies the installed
+  Angular CLI/build engine constraints, so the demo failure remains an
+  unexplained tool-process crash rather than a confirmed E5 source error.
+
+### E5 sequential output immutability — 2026-11-22
+
+- Added a regression that formats the same alpha-bearing canonical OKLCH value
+  sequentially for sRGB SDR, Display-P3 SDR, Display-P3 HDR and sRGB SDR again.
+  It verifies direct `oklch(...)` SDR output, P3 `color(...)` HDR output,
+  composed alpha, identical repeated sRGB output and unchanged canonical state.
+- Added an engine-to-Particle integration regression with all built-in color
+  managers loaded. Hex, named, RGB, HSL, HSV, HWB, Lab, LCH, OKLab and OKLCH
+  inputs now each verify their resolved canonical value survives paint option
+  loading and Particle fill-state initialization.
+- `NX_DAEMON=false pnpm nx run @tsparticles/tests:test --output-style=static`
+  passes 807 tests across 55 files; `@tsparticles/tests:lint:ci` passes.
+- These close the unit regressions for sequential multi-destination formatting
+  and the input-format-to-Particle boundary; browser mapped-pixel and
+  browser-comparable performance gates remain open.
+
+### E5 G3 engine-load recovery — 2026-11-22
+
+- Configuration fetches now receive an `AbortSignal`; a newer load for the
+  same id cancels the older request, and stale results are discarded before
+  container creation.
+- Same-id replacement retains the existing container until candidate canvas
+  setup and start succeed. The previous canvas resources are stopped while the
+  candidate takes ownership; a failed candidate is cleaned up, then the previous
+  container, canvas ownership, observers and animation state are restored.
+- Added regressions for superseded fetch cancellation and failed canvas setup
+  and plugin-start failure preserving the prior container. Anonymous-host and
+  sequential same-id load coverage also passes.
+- `engine:build` passes across browser, CJS, ESM and type builds. The complete
+  Nx test target passes 810 tests across 55 files with Vitest 5.1.0; test lint
+  and Prettier checks pass. Nx Cloud was unavailable (`ENOTFOUND`), but local
+  tasks completed.
+- G3 engine-load retention and fetch-cancellation items are closed. Real-browser
+  mapped pixels and browser-comparable runtime/allocation profiles remain open
+  E5 acceptance gates.
+
+### E5 browser output correction — 2026-11-22
+
+- Running the current fixture in real Chrome exposed an invalid output token:
+  the formatter emitted a degree sign (`270°`), which CSS rejects. Canvas kept
+  its black default fill, so all three SDR pixel cases failed. A unit test had
+  removed the sign before sending the style to Skia and concealed this error.
+- The engine and deprecated OKLCH plugin formatter now emit a numeric hue,
+  accepted by CSS Color 4. Parser compatibility with degree-sign input remains
+  unchanged. Skia pixel tests and the native pixel harness now draw the original
+  formatter string without rewriting it.
+- The refreshed Chrome 157 fixture passes eight cases: sRGB blue, two mapped
+  Display-P3 references, extended-P3 float16, sRGB/P3 alpha composition using
+  the same canonical source, and canonical OKLCH natural HDR at 400/1,000 nits.
+  Every case verifies unchanged source state. `CSS.supports` rejects invalid
+  formatter output before drawing; the runner verifies actual context and
+  readback primaries, float16 HDR storage, and increasing HDR luminance.
+- The report in `evidence/e5/browser-color-results.json` now records the tested
+  formatter SHA-256, revision, working-tree flag and browser version. Failed
+  pixel reports are also saved before assertions so their diagnostics survive.
+- This closes the current mapped-output browser pixel gate. Earlier claims
+  that the degree-sign formatter was valid CSS, or that stripping its suffix
+  verified the original output, are superseded by this correction. Physical
+  HDR display appearance is not inferred from headless float16 readback.
+- Browser particle profiling and final build/test verification continue below;
+  E5 is not yet accepted.
+
+### E5 current downstream verification — 2026-11-22
+
+- The complete non-CLI/non-website/non-palette workspace selection passes:
+  453/453 build targets, with 186 cache hits. Transitive palette/config
+  dependencies still belong to that graph. Engine, all color managers,
+  extensions, wrappers, bundles and demos build successfully. The earlier
+  Electron cache, Next.js font-download and Angular build failures did not
+  recur when the build ran outside the sandbox.
+- The main suite passes 810 tests across 55 files, including native canvas
+  readback without style rewriting. The OKLCH plugin suite passes 25 tests,
+  including legacy-helper numeric-hue output. Tests-package build steps include
+  lint and Prettier; the OKLCH package lint and build pass as well.
+- A wider `pnpm nx run-many -t test --output-style=static` checks 85 projects.
+  Two demo targets fail: Ember cannot resolve `@tsparticles/particlesEngine`
+  from the application controller; Riot's Node ESM loader cannot resolve its
+  extensionless `particlesEngine` import. Their source files were not changed
+  by this continuation. Record these demo-import failures separately from the
+  passing core/color tests; the complete workspace test run is not green.
+- Build/test commands, results and Nx run links are recorded in
+  `evidence/e5/verification-2026-11-22.json`; the compact downstream build log is
+  `evidence/e5/downstream-build-2026-11-22.txt`.
+- Initial overlapping build invocations were stopped after they removed each
+  other's generated outputs. They are not used as verification evidence; the
+  single subsequent downstream graph above is the authoritative build result.
+- No commit or publication performed.
+
+### E5 current Chrome particle profiles — 2026-11-22
+
+- `evidence/tools/profile-e5-browser.mjs` records 45 samples: M3/M4/M5/M7/M8,
+  100/500/1,000 particles, three repetitions, fixed RNG, 30 warm-up and 60
+  measured ticks, 800×600 at DPR 1. Chrome 157.0.8103.79 reports no page errors;
+  RNG call counts match across repetitions and every container is destroyed.
+- `evidence/e5/browser-profile.json` includes unsampled update/draw timings,
+  forced-GC retained heap relative to an empty container in the same scenario,
+  and separate update/full-frame allocation sampling. The report identifies
+  the exact bundle SHA-256. Its M8 scene is the background-mask baseline;
+  HDR/layers/resize remain the separate extended workload.
+- At 1,000 particles, median estimated retained JS bytes per particle are
+  M3 6,267; M4 7,228; M5 6,335; M7 6,318; M8 6,251. These estimates include
+  renderer/realm cache overhead and exclude native canvas/GPU memory.
+- Sampling uses a 512-byte interval and includes objects collected by both
+  minor and major GC. At 1,000 particles, estimated update/full-frame bytes
+  per tick are M3 727,633/1,777,800; M4 16,521,416/25,098,354;
+  M5 20,919,150/22,777,492; M7 724,716/1,974,608; M8 723,846/1,943,570.
+  These are sampled JS byte estimates, not exact object counts. A full frame
+  includes update; do not describe it as isolated draw allocation. Earlier
+  Node sampling used different collection behavior and is not an allocation
+  baseline for these numbers. Minified allocation sites need source attribution
+  before choosing an optimization.
+- Screening the timings against E0 ceilings finds M3/1,000 update at 1.50 vs
+  1.43 ms; M4/500 update at 3.60 vs 3.52 ms and draw at 3.50 vs 2.53 ms;
+  M4/1,000 draw at 12.30 vs 9.02 ms. See
+  `evidence/e5/browser-profile-budget-screen.json`. E0 used Chrome patch .52,
+  while these profiles use .79; E4 has no matching M3–M5/M7 matrix. This limits
+  attribution and does not explain or waive the exceedances. A matched baseline
+  and investigation are still required before performance acceptance.
+- Refreshed M6/M8 with the corrected bundle: 18 samples, zero long frames,
+  zero remaining containers, stable nine-node DOM and zero live media listeners
+  after 30 retention cycles. Post-warm-up forced-GC heap drift is 116,168 bytes
+  (<1 MiB). The same-Chrome E4 comparison is in
+  `evidence/e5/post-numeric-hue/runtime-extended-summary.json`. M6/500 frame p95
+  is 2.10 ms (E4 2.00; E0 ceiling 1.87); the other five frame medians pass their
+  E0 ceilings. M8/500 now measures 1.50 ms (E4 1.70).
+- Browser pixels, actual browser heap/allocation capture, and downstream builds
+  are now verified. E5 remains open for the budget investigations, matched
+  particle-cost comparisons and IMP-05 T1–T4 decisions, plus the two recorded
+  demo-import test failures. Bundle growth remains the only user-waived gate.
+
+### E5 recovered matched E4 baseline — 2026-11-22
+
+- Recovered a self-contained E4 all-bundle from local Nx cache entry
+  `1299484874123005961`. Both normal and minified files match all six raw,
+  gzip-9 and Brotli-11 sizes in the recorded E4 bundle report. The original
+  report did not contain cryptographic hashes, so this is identification by
+  the recorded size fingerprint, not proof against an original SHA-256.
+- The recovered minified bytes are preserved as
+  `evidence/e5/matched-baseline/e4-all.bundle.min.js.gz`; SHA-256 and the size
+  checks are in `matched-baseline/provenance.json`. The working-tree baseline
+  is not represented as a clean build of its recorded Git revision.
+- Extended `profile-e5-browser.mjs` to accept an explicit bundle (including
+  gzip), hash the exact bytes loaded, and capture initial/warm/measured scene
+  fingerprints. The snapshots include every particle's position, velocity,
+  radius and link count, plus the engine RNG call count.
+- Fresh E4 and pre-optimization E5 runs use Chrome 157.0.8103.79 and the same
+  45-case matrix. All 135 scene snapshots match exactly. See `e4-profile.json`,
+  `e5-before-profile.json`, and `e4-vs-e5-before.json` in `matched-baseline/`.
+  The comparison is reproducible with `evidence/tools/compare-e5-profiles.mjs`.
+- M3/1,000 update is 1.30 ms in E4 and 1.40 in E5, within the 1.43 ms E0
+  ceiling in this run. M4/500 update is 3.60 ms in both; its draw grows from
+  2.50 to 3.40 ms. M4/1,000 update is 13.40 vs 13.60; draw grows from 8.60
+  to 12.40 ms. The M4 drawing regression is real for these matched scenes;
+  the Chrome patch difference no longer prevents attribution.
+- A local bounded-cache/value-fast-path prototype and mutation/HDR/gamut/churn
+  regressions are under verification. Do not treat the prototype as accepted
+  or the M4 performance gate as closed before the post-change profiles pass.
+
+### E5 cache and consumer verification — 2026-11-22
+
+- The link style cache now retains at most 2,000 entries. A separate last-value
+  entry compares canonical coordinates, alpha and all output settings before
+  constructing a string key. It owns a copy of the color values, reuses that
+  copy on misses, and resets on plugin initialization. It neither quantizes
+  canonical colors nor changes draw ordering or alpha composition.
+- Fixed the shared engine style-cache boundary to clear before an insertion
+  would exceed 2,000 entries. A 5,000-color churn regression observes cache
+  cardinality and checks the final output. The link-style regression now uses
+  an out-of-gamut source and verifies distinct sRGB/P3 output, in-place color
+  mutations and HDR enable/mode/peak changes.
+- Moved Ember's application engine module into `app/utils/particles-engine.ts`,
+  where Ember includes it in the application module graph. Riot now uses its
+  explicit `.js` import and exposes the imported engine on the component;
+  the component regression checks that the bound engine is the intended owner.
+  The existing Ember canvas acceptance test also passes.
+- The full downstream graph now passes 453/453 tasks (final confirmation is
+  cached after actual uncached execution); the main suite passes 811 tests
+  across 55 files with lint and Prettier. All 85 workspace test targets pass,
+  including the previously failing Ember and Riot demos. Build and test run
+  links and results are in `evidence/e5/matched-baseline/verification.json`.
+- The initial cache prototype needed an optional-chain lint adjustment and
+  explicit descriptions of the test geometry no-ops/borrowed Map method.
+  The passing results above supersede those failed verification attempts and
+  the earlier demo-import failures. No commit or publication performed.
+
+### E5 absorber RNG correction — 2026-11-22
+
+- Two supplemental post-cache M6/M8 runs failed the within-run RNG stability
+  assertion: M6/1,000 recorded 10,113/10,113/10,114 calls, and a fresh repeat
+  recorded 5,580/5,581/5,580 at M6/500. Both reports are preserved in
+  `matched-baseline/post-cache/runtime-extended-rng-failed*.json` and are not
+  passing timing evidence.
+- The absorber recycle path called `calcPositionOrRandomFromSize` without its
+  owning engine RNG, so particle relocation used ambient `Math.random`. The
+  same omission exists in the recovered E4 bundle. Matching engine-RNG call
+  counts in old M6 reports was therefore insufficient to prove deterministic
+  trajectories. Those old observations remain historical, not a causal M6
+  regression comparison after the correction.
+- Absorber initial/ranged/resized placement likewise omitted its RNG argument.
+  Both paths now pass the owning engine provider. New regressions deliberately
+  give ambient randomness and two engines different values; they verify
+  placement, resize, recycling and cleared orbit/velocity state.
+- The main tests-package build now passes 813 tests across 55 files, lint and
+  formatting. The recovered E4/E5 M3/M4/M5/M7/background-mask-M8 comparison is
+  unaffected by this issue: those scenes configure no absorbers, and the
+  absorber plugin does not instantiate without them. The saved cache-stage
+  artifact and its SHA-256 identify exactly the code measured there.
+
+### E5 cache outcome and next work — 2026-11-22
+
+- The bounded link-cache/value fast path is accepted as a measured increment:
+  at 1,000 particles M4 draw falls from 12.40 to 9.60 ms (22.6%) and sampled
+  full-frame allocation from 25.08 to 18.53 MB/tick (26.1%). At 500 particles,
+  draw falls from 3.40 to 2.70 ms and sampled frame allocation falls 24.0%.
+  All 135 scene snapshots still match E4 and pre-change E5 exactly. See the
+  preserved cache-stage artifacts and comparisons in `matched-baseline/`.
+- M3/1,000 update is now 1.30 ms, within its 1.43 ms E0 ceiling. The remaining
+  M4 draw values (2.70/9.60 ms at 500/1,000) exceed E0 ceilings (2.53/9.02);
+  M4/1,000 also exceeds the matched-E4 10% screen (9.46). No threshold is
+  waived. M7/500 frame p95 screens at 2.00 vs a 1.98 ms allowance, but its
+  repetition range overlaps E4 (2.0–2.1 vs 1.7–2.2 ms); investigate dispersion
+  before attributing a regression.
+- After the absorber RNG correction, all 18 M6/M8 samples pass their RNG,
+  page-error, container removal and DOM assertions. Thirty retention cycles
+  keep nine DOM nodes, zero live media listeners and 114,876 bytes of
+  post-warm-up heap drift (<1 MiB), with zero long frames. M6/500 p95 is
+  1.90 ms vs the 1.87 E0 ceiling; the other five extended frame medians pass.
+  See `matched-baseline/post-cache/summary.json` and its final bundle archive.
+- Final source verification passes 453 build targets and all 85 test targets;
+  the primary suite passes 813 tests across 55 files with lint/format checks.
+  The eight passing browser pixel cases still match the current formatter's
+  SHA-256. Earlier failed RNG reports and demo tests are retained as history,
+  superseded by the corrected final runs.
+- All-bundle cache/final increment bytes (raw/gzip/Brotli) are recorded in
+  `matched-baseline/bundle-impact.json`; earlier factory/minimal reports remain
+  historical.
+- Next work: investigate residual M4 drawing/formatter costs and M7 dispersion,
+  complete T1 normalized-options and T3 optional-state comparisons, and finish
+  the remaining T2 getter/source attribution and T4 HDR cache hit/miss/churn
+  cost decisions. Do not replace these decisions with an unmeasured state
+  rewrite or mark E5 accepted. The M6/500 release-budget item remains recorded.
+  Bundle growth is still the only user-waived gate; no commit or publication.
+
+### E5 model and runtime closure work — 2026-11-23
+
+- Closed the T1–T4 architecture evaluations: retain typed loaders, independent
+  options, live owner scratch and the class facade; reject incompatible cloning,
+  lazy warm-state savings and a snapshot API without a consumer. ARCH-01/03 and
+  IMP-05 now record measurements and compatibility limits.
+- Added a last-value formatter fast path and adaptive exact HDR cache policy.
+  Links avoid redundant canvas assignments and temporarily neutralize unused
+  fill paint with exact native save/restore, including exceptional exits.
+  Regression coverage passes: 55 files / 817 tests; the dependent build passes
+  187 targets. All eight current formatter pixel cases pass. Three link scenes
+  retain byte-identical pixel hashes, geometry and RNG.
+- The 45-sample final matrix matches all 135 E4 scene snapshots. All 30 E0
+  update/draw ceilings pass; M4 draw is 2.40/8.30 ms at 500/1000 particles.
+  M7's previous frame-p95 screen no longer flags. The M4/500 frame-p95 screen
+  does flag: 7.70 vs 6.70 ms. A separate nine-repetition comparison confirms
+  7.70 vs 6.60 ms, over the 7.26 ms screen. Confirmation update medians are
+  3.70 vs 3.60 ms, both above E0's original 3.52 ms ceiling. These results are
+  retained rather than replaced by the passing first matrix.
+- Instrumented full-frame profiles explain the current cost boundary; an
+  alpha-in-paint prototype doubles total time and is rejected. The unsampled
+  p95 still needs a supported disposition before E5 acceptance.
+- Fresh M6/M8: 18 samples, all RNG checks stable, zero long frames, 30 retention
+  cycles, stable 9 DOM nodes / zero media listeners, 113380-byte heap drift.
+  M6/500 frame p95 is 2.10 ms vs E0's 1.87; a fresh prior-E5 corrected-RNG
+  control measures 2.30 ms. The inherited release-budget issue is still open.
+- Final all-bundle increment over the prior checkpoint is +791 raw / +354 gzip /
+  +234 Brotli bytes. Full E4 delta and exact bundle/formatter hashes are in
+  `evidence/e5/closure/bundle-impact.json`. Bundle-growth waiver remains limited
+  to size. The earlier complete consumer payload reports are historical.
+- Full `build:ci` has been started, then restarted with eight parallel targets
+  and static output; final outcome is pending. No commit or publication.
+
+### Final E5 acceptance — 2026-11-23
+
+E5 is accepted. The user explicitly chose: “Accettare lo scostamento e chiudere
+E5, con verifica finale in E10”. This applies to the remaining M4/500 runtime
+deviation; it does not change measured values or close E10.
+
+- Full build:ci passes 457 projects, with 364 cache hits. All 85 workspace test
+  targets pass; the primary suite passes 55 files / 817 tests.
+- Eight current formatter pixel cases and four link scenes pass. The latter
+  have exact pixel, geometry and RNG identity, including HDR stroke-only.
+- C1–C4, the file inventory, Particle/Retina/reset/option ownership and the
+  T1–T4 model decisions are complete. No source migration is deferred to E6.
+- The full 45-sample matrix matches 135 E4 scenes and passes all 30 E0 update/
+  draw checks; M4 draw is 2.40/8.30 ms at 500/1000. Quiet nine-repetition
+  confirmation still has M4/500 update 3.70 ms vs ceiling 3.52, and frame p95
+  7.50 vs E4 6.50 (screen 7.15). These are the explicitly accepted E5 exception.
+- M6/500's inherited release item remains: p95 2.10 vs E0 ceiling 1.87, with
+  fresh prior-E5 control 2.30. All other extended frame ceilings pass.
+  RNG, zero long frames, stable DOM/listeners and 113380-byte heap drift pass.
+- Rejected paint/getter prototypes are preserved as diagnostics, never shipped.
+  Current complete consumer payloads and exact compiled artifacts are archived.
+
+See `evidence/e5/closure/README.md`, `verification.json`, `investigation/`, and
+the explicit E10 follow-up in V5-10-SIZE-MIGRATION-RELEASE.md. E0–E5 are
+accepted; E6–E10 remain open. No commit or publication performed.

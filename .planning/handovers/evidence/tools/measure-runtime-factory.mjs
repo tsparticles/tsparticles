@@ -49,7 +49,7 @@ try {
             seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
             return seed / 4294967296;
           };
-          globalThis.__tsParticlesInternals.engine.setRandom(rng);
+          sceneEngine.setRandom(rng);
           const options = {
             autoPlay: false,
             fullScreen: false,

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import puppeteer from "puppeteer";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { gunzipSync } from "node:zlib";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 const forceHdr = process.argv.includes("--force-hdr");
@@ -17,7 +19,13 @@ try {
   await page.setContent('<body style="margin:0"><div id="v5-baseline" style="width:800px;height:600px"></div></body>');
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.addScriptTag({ path: path.resolve("bundles/all/dist/tsparticles.all.bundle.min.js") });
+  const bundlePath =
+      process.argv.find((arg) => arg.startsWith("--bundle="))?.slice("--bundle=".length) ??
+      "bundles/all/dist/tsparticles.all.bundle.min.js",
+    bundleBytes = await readFile(bundlePath),
+    bundle = bundlePath.endsWith(".gz") ? gunzipSync(bundleBytes) : bundleBytes,
+    bundleSha256 = createHash("sha256").update(bundle).digest("hex");
+  await page.addScriptTag({ content: bundle.toString("utf8") });
   await page.evaluate(
     async ({ forceHdr }) => {
       globalThis.sceneEngine = globalThis.tsParticles.createEngine();
@@ -242,6 +250,8 @@ try {
     JSON.stringify(
       {
         workingTree: true,
+        bundleSha256,
+        bundlePath,
         measuredAt: new Date().toISOString(),
         revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
         forceHdr,

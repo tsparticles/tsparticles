@@ -8,10 +8,7 @@ const oklchChromaAnimationMax = 0.4,
   oklchLightnessAnimationMax = 100;
 
 /** Loaded animation settings for canonical OKLCH channels. */
-export class OklchAnimation
-  extends OptionLoader<IOklchAnimation>
-  implements IOklchAnimation
-{
+export class OklchAnimation extends OptionLoader<IOklchAnimation> implements IOklchAnimation {
   readonly c = new ColorAnimation(0, oklchChromaAnimationMax);
   readonly h = new ColorAnimation(0, oklchHueAnimationMax);
   readonly l = new ColorAnimation(0, oklchLightnessAnimationMax);

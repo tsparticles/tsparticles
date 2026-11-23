@@ -38,7 +38,9 @@ import {
   createEngine,
   loadProperty,
   loadRangeProperty,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
+import { loadAll } from "@tsparticles/all";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -75,6 +77,24 @@ async function loadContainer(options: Record<string, unknown> = {}) {
   }
 
   return container;
+}
+
+function collectObjects(value: unknown, objects = new Set<object>()): Set<object> {
+  if (typeof value !== "object" || value === null || objects.has(value)) {
+    return objects;
+  }
+
+  objects.add(value);
+
+  for (const key of Reflect.ownKeys(value)) {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+
+    if (descriptor && "value" in descriptor) {
+      collectObjects(descriptor.value, objects);
+    }
+  }
+
+  return objects;
 }
 
 describe("Options load tests", () => {
@@ -161,6 +181,95 @@ describe("Options load tests", () => {
       expect(secondPaint?.fill?.opacity).toBe(0.5);
       expect(secondPaint?.stroke?.width).toEqual({ min: 1, max: 3 });
       expect(second.shapeData?.particles?.move?.speed).toBe(2);
+    }
+
+    container.destroy();
+  });
+
+  it("isolates every loaded particle option object across live particles", async () => {
+    const engine = createEngine();
+
+    await loadAll(engine);
+
+    const container = await engine.load({
+        id: "options-load-all-option-ownership",
+        options: {
+          autoPlay: false,
+          detectRetina: false,
+          particles: {
+            number: { value: 0 },
+            paint: [
+              {
+                fill: { color: { value: "oklch(65% 0.2 30)" }, opacity: 0.5 },
+                stroke: { color: { value: "oklch(45% 0.15 250)" }, opacity: 0.75, width: { min: 1, max: 3 } },
+              },
+            ],
+            shape: { options: { circle: { particles: { move: { speed: 2 } } } } },
+          },
+        },
+        element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
+      }),
+      first = container?.particles.addParticle(),
+      second = container?.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+    expect(second).not.toBeUndefined();
+
+    if (first && second) {
+      const firstObjects = collectObjects([first.options, first.shapeData, first.effectData]),
+        secondObjects = collectObjects([second.options, second.shapeData, second.effectData]);
+
+      for (const object of firstObjects) {
+        expect(secondObjects.has(object)).toBe(false);
+      }
+    }
+
+    container?.destroy();
+  });
+
+  it("resolves supported color syntaxes into canonical particle fill state", async () => {
+    const engine = createEngine();
+
+    await loadAll(engine);
+
+    const container = await engine.load({
+      id: "options-load-color-syntax-to-particle",
+      options: {
+        autoPlay: false,
+        detectRetina: false,
+        particles: { number: { value: 0 } },
+      },
+      element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
+    });
+
+    expect(container).not.toBeUndefined();
+
+    if (!container) {
+      return;
+    }
+
+    const inputs = [
+      ["hex", "#ff0000"],
+      ["named", "red"],
+      ["RGB", "rgb(255, 0, 0)"],
+      ["HSL", "hsl(0 100% 50%)"],
+      ["HSV", "hsv(0°, 100%, 100%)"],
+      ["HWB", "hwb(0 0% 0%)"],
+      ["Lab", "lab(54.2943% 80.8192 69.8969)"],
+      ["LCH", "lch(54.2943% 106.8519 40.855)"],
+      ["OKLab", "oklab(0.627955 0.224863 0.125846)"],
+      ["OKLCH", "oklch(62.7955% 0.2577 29.2339)"],
+    ] as const;
+
+    for (const [name, value] of inputs) {
+      const expected = rangeColorToOklch(container.engine.pluginManager, value),
+        particle = container.particles.addParticle(undefined, {
+          paint: { color: { value }, fill: { enable: true } },
+        }),
+        actual = particle?.getFillColor();
+
+      expect(expected, `${name} source resolves`).toBeDefined();
+      expect(actual, `${name} particle fill`).toEqual(expected);
     }
 
     container.destroy();

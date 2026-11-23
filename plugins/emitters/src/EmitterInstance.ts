@@ -27,7 +27,6 @@ import {
   percentDenominator,
   randomInRangeValue,
   rangeColorToOklch,
-  rgbToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
@@ -36,6 +35,7 @@ import type { EmittersPluginManager } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
+import { sampledPixelToOklcha } from "./PixelColorUtils.js";
 
 const defaultLifeDelay = 0,
   minLifeCount = 0,
@@ -711,7 +711,7 @@ export class EmitterInstance {
           if (replaceData.color && shapePosData.color) {
             setParticlesOptionsFillColor(
               particlesOptions,
-              { ...rgbToOklch(shapePosData.color), a: 1 },
+              sampledPixelToOklcha(shapePosData.color, shapePosData.colorSpace),
               replaceData.opacity ? (shapePosData.opacity ?? defaultOpacity) : defaultOpacity,
               true,
             );

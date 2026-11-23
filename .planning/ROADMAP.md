@@ -18,6 +18,10 @@ V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
 ## Current execution — v5 major
 
+Status on 2026-11-23: E0–E5 accepted; [E6 is in progress](handovers/V5-E6-STATUS.md). E5 includes the user-approved
+M4/500 runtime exception with final E10 verification, alongside the earlier
+bundle-growth exception. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
+
 **Status.** E0–E3 complete on branch `v5`, with package version `4.6.0`.
 Follow the [handover index](handovers/README.md) and capture a clean baseline
 from the actual starting commit before removing the singleton.

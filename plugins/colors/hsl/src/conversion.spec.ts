@@ -62,15 +62,9 @@ describe("HslColorManager", () => {
   it("parses CSS hue units, fractional components, and modern slash alpha", () => {
     const expected = manager.parseString("hsl(120deg 100% 50% / 25%)");
 
-    expect(
-      manager.parseString("hsl(2.094395102rad 100% 50% / 25%)"),
-    ).toMatchObject(expected ?? {});
-    expect(
-      manager.parseString("hsl(133.333333grad 100% 50% / 25%)"),
-    ).toMatchObject(expected ?? {});
-    expect(
-      manager.parseString("hsl(.333333turn 100% 50% / 25%)"),
-    ).toMatchObject(expected ?? {});
+    expect(manager.parseString("hsl(2.094395102rad 100% 50% / 25%)")).toMatchObject(expected ?? {});
+    expect(manager.parseString("hsl(133.333333grad 100% 50% / 25%)")).toMatchObject(expected ?? {});
+    expect(manager.parseString("hsl(.333333turn 100% 50% / 25%)")).toMatchObject(expected ?? {});
     expect(manager.parseString("hsl(120 99.5% 50.5% / 25%)")?.a).toBe(0.25);
   });
 

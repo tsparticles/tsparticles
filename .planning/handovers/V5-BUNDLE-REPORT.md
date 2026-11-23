@@ -204,3 +204,13 @@ workloads and retention cycles, total listeners 5 → 53. Heap reaches about
 canvas resources while the existing Motion listener retains the container.
 Fixing the root listener lifetime and verifying resource return to baseline are
 mandatory; the extra retained DOM nodes are not dismissed as an optimization.
+
+### E5 acceptance exception — 2026-11-23
+
+E5 is accepted with an explicit user-authorized M4/500 runtime exception and
+final E10 verification. The quiet nine-repetition update is 3.70 ms vs E0
+ceiling 3.52; frame p95 is 7.50 vs matched E4 6.50 (screen 7.15). Original
+budgets remain unchanged and these results remain exceedances. The earlier
+bundle-growth exception also applies only to E5. See the
+[E5 acceptance](evidence/e5/closure/README.md) and the E10 checklist; neither
+exception establishes final release readiness.

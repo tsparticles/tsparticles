@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers -- fixed CSS Color 4 OKLab/sRGB coefficients */
-import type {
-  ILab,
-  ILch,
-  IOklch,
-  IOklcha,
-  IRgb,
-} from "../Core/Interfaces/Colors.js";
+import type { ILab, ILch, IOklch, IOklcha, IRgb } from "../Core/Interfaces/Colors.js";
 
 const achromaticThreshold = 1e-7,
   rgbScale = 255,
@@ -24,19 +18,14 @@ function srgbToLinear(value: number): number {
 /** Converts a linear sRGB channel to its encoded form in the 0–255 range. */
 function linearToSrgb(value: number): number {
   const channel =
-    Math.abs(value) <= 0.0031308
-      ? 12.92 * value
-      : Math.sign(value) * (1.055 * Math.abs(value) ** (1 / 2.4) - 0.055);
+    Math.abs(value) <= 0.0031308 ? 12.92 * value : Math.sign(value) * (1.055 * Math.abs(value) ** (1 / 2.4) - 0.055);
 
   return channel * rgbScale;
 }
 
-/** Converts an sRGB color to OKLCH without quantizing intermediate values. */
-export function rgbToOklch(color: IRgb): IOklch {
-  const r = srgbToLinear(color.r),
-    g = srgbToLinear(color.g),
-    b = srgbToLinear(color.b),
-    l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b),
+/** Converts linear-light sRGB channels to OKLCH without quantizing intermediates. */
+function linearSrgbToOklch(r: number, g: number, b: number): IOklch {
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b),
     m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b),
     s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b),
     lightness = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
@@ -46,12 +35,14 @@ export function rgbToOklch(color: IRgb): IOklch {
 
   return {
     c: chroma,
-    h:
-      chroma < achromaticThreshold
-        ? 0
-        : (Math.atan2(bAxis, a) * degreesPerRadian + 360) % 360,
+    h: chroma < achromaticThreshold ? 0 : (Math.atan2(bAxis, a) * degreesPerRadian + 360) % 360,
     l: lightness * 100,
   };
+}
+
+/** Converts an sRGB color to OKLCH without quantizing intermediate values. */
+export function rgbToOklch(color: IRgb): IOklch {
+  return linearSrgbToOklch(srgbToLinear(color.r), srgbToLinear(color.g), srgbToLinear(color.b));
 }
 
 /** Converts CSS CIELAB (D50) directly to OKLCH (D65), without an sRGB round trip. */
@@ -67,40 +58,20 @@ export function labToOklch(color: ILab): IOklch {
     x50 = xr * 0.96422,
     y50 = yr,
     z50 = zr * 0.82521,
-    x =
-      0.955473421488075 * x50 -
-      0.02309845494876471 * y50 +
-      0.06325924320057072 * z50,
-    y =
-      -0.0283697093338637 * x50 +
-      1.0099953980813041 * y50 +
-      0.021041441191917323 * z50,
-    z =
-      0.012314014864481998 * x50 -
-      0.020507649298898964 * y50 +
-      1.330365926242124 * z50,
-    l = Math.cbrt(
-      0.819022437996703 * x + 0.3619062600528904 * y - 0.1288737815209879 * z,
-    ),
-    m = Math.cbrt(
-      0.0329836539323885 * x + 0.9292868615863434 * y + 0.0361446663506424 * z,
-    ),
-    s = Math.cbrt(
-      0.0481771893596242 * x + 0.2642395317527308 * y + 0.6335478284694309 * z,
-    ),
-    lightness =
-      0.210454268309314 * l + 0.7936177747023054 * m - 0.0040720430116193 * s,
+    x = 0.955473421488075 * x50 - 0.02309845494876471 * y50 + 0.06325924320057072 * z50,
+    y = -0.0283697093338637 * x50 + 1.0099953980813041 * y50 + 0.021041441191917323 * z50,
+    z = 0.012314014864481998 * x50 - 0.020507649298898964 * y50 + 1.330365926242124 * z50,
+    l = Math.cbrt(0.819022437996703 * x + 0.3619062600528904 * y - 0.1288737815209879 * z),
+    m = Math.cbrt(0.0329836539323885 * x + 0.9292868615863434 * y + 0.0361446663506424 * z),
+    s = Math.cbrt(0.0481771893596242 * x + 0.2642395317527308 * y + 0.6335478284694309 * z),
+    lightness = 0.210454268309314 * l + 0.7936177747023054 * m - 0.0040720430116193 * s,
     a = 1.9779985324311684 * l - 2.4285922420485799 * m + 0.450593709617411 * s,
-    b =
-      0.0259040424655478 * l + 0.7827717124575296 * m - 0.8086757549230774 * s,
+    b = 0.0259040424655478 * l + 0.7827717124575296 * m - 0.8086757549230774 * s,
     chroma = Math.hypot(a, b);
 
   return {
     c: chroma,
-    h:
-      chroma < achromaticThreshold
-        ? 0
-        : (Math.atan2(b, a) * degreesPerRadian + 360) % 360,
+    h: chroma < achromaticThreshold ? 0 : (Math.atan2(b, a) * degreesPerRadian + 360) % 360,
     l: lightness * 100,
   };
 }
@@ -116,23 +87,17 @@ export function lchToOklch(color: ILch): IOklch {
   });
 }
 
-/** Converts Display-P3 encoded channels to OKLCH through linear-light sRGB. */
+/** Converts Display-P3 encoded channels to OKLCH through linear-light sRGB coordinates. */
 export function displayP3ToOklch(color: IRgb): IOklch {
   const r = srgbToLinear(color.r),
     g = srgbToLinear(color.g),
-    b = srgbToLinear(color.b),
-    linearSrgb = {
-      r: 1.22494017628056 * r - 0.22494017628056 * g,
-      g: -0.04205695470969 * r + 1.04205695470969 * g,
-      b:
-        -0.0196375545903344 * r - 0.0786360455506319 * g + 1.09827360014097 * b,
-    };
+    b = srgbToLinear(color.b);
 
-  return rgbToOklch({
-    b: linearToSrgb(linearSrgb.b),
-    g: linearToSrgb(linearSrgb.g),
-    r: linearToSrgb(linearSrgb.r),
-  });
+  return linearSrgbToOklch(
+    1.22494017628056 * r - 0.22494017628056 * g,
+    -0.04205695470969 * r + 1.04205695470969 * g,
+    -0.0196375545903344 * r - 0.0786360455506319 * g + 1.09827360014097 * b,
+  );
 }
 
 /** Converts encoded sRGB channels to encoded Display-P3 coordinates. */
@@ -168,19 +133,11 @@ export function oklchToRgbFloat(color: IOklch): IRgb {
   };
 }
 
-function mapOklchToGamut(
-  color: IOklch,
-  convert: (color: IOklch) => IRgb,
-): { color: IOklch; rgb: IRgb } {
+function mapOklchToGamut(color: IOklch, convert: (color: IOklch) => IRgb): { color: IOklch; rgb: IRgb } {
   const candidate = { ...color, l: Math.min(100, Math.max(0, color.l)) },
     candidateRgb = convert(candidate),
     inGamut = (rgb: IRgb): boolean =>
-      rgb.r >= 0 &&
-      rgb.r <= rgbScale &&
-      rgb.g >= 0 &&
-      rgb.g <= rgbScale &&
-      rgb.b >= 0 &&
-      rgb.b <= rgbScale;
+      rgb.r >= 0 && rgb.r <= rgbScale && rgb.g >= 0 && rgb.g <= rgbScale && rgb.b >= 0 && rgb.b <= rgbScale;
 
   if (inGamut(candidateRgb)) {
     return { color: candidate, rgb: candidateRgb };
@@ -242,7 +199,7 @@ export function mapOklchToDisplayP3(color: IOklch): {
   return mapOklchToGamut(color, oklchToDisplayP3Float);
 }
 
-/** Mixes two colors by interpolating their rectangular OKLab coordinates. */
+/** Mixes rectangular OKLab coordinates with premultiplied color weights and independently mixed alpha. */
 export function mixOklch(
   color1: IOklch | IOklcha,
   color2: IOklch | IOklcha,
@@ -252,26 +209,22 @@ export function mixOklch(
   const totalWeight = weight1 + weight2,
     firstWeight = totalWeight > 0 ? weight1 / totalWeight : 0.5,
     secondWeight = totalWeight > 0 ? weight2 / totalWeight : 0.5,
+    firstAlpha = "a" in color1 ? color1.a : 1,
+    secondAlpha = "a" in color2 ? color2.a : 1,
+    alpha = firstAlpha * firstWeight + secondAlpha * secondWeight,
+    firstColorWeight = alpha > 0 ? (firstAlpha * firstWeight) / alpha : firstWeight,
+    secondColorWeight = alpha > 0 ? (secondAlpha * secondWeight) / alpha : secondWeight,
     firstAngle = color1.h * radiansPerDegree,
     secondAngle = color2.h * radiansPerDegree,
-    a =
-      color1.c * Math.cos(firstAngle) * firstWeight +
-      color2.c * Math.cos(secondAngle) * secondWeight,
-    b =
-      color1.c * Math.sin(firstAngle) * firstWeight +
-      color2.c * Math.sin(secondAngle) * secondWeight,
+    a = color1.c * Math.cos(firstAngle) * firstColorWeight + color2.c * Math.cos(secondAngle) * secondColorWeight,
+    b = color1.c * Math.sin(firstAngle) * firstColorWeight + color2.c * Math.sin(secondAngle) * secondColorWeight,
     chroma = Math.hypot(a, b);
 
   return {
-    a:
-      ("a" in color1 ? color1.a : 1) * firstWeight +
-      ("a" in color2 ? color2.a : 1) * secondWeight,
+    a: alpha,
     c: chroma,
-    h:
-      chroma < achromaticThreshold
-        ? 0
-        : (Math.atan2(b, a) * degreesPerRadian + 360) % 360,
-    l: color1.l * firstWeight + color2.l * secondWeight,
+    h: chroma < achromaticThreshold ? 0 : (Math.atan2(b, a) * degreesPerRadian + 360) % 360,
+    l: color1.l * firstColorWeight + color2.l * secondColorWeight,
   };
 }
 

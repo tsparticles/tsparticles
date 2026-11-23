@@ -1,9 +1,4 @@
-import {
-  type Container,
-  type IShapeDrawData,
-  type IShapeDrawer,
-  deepExtend,
-} from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
 import type { CardParticle } from "../CardParticle.js";
 import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";

@@ -20,6 +20,7 @@
   the particles. It is disabled by default, so set `emitters.draw: true` to make the emitter
   visible.
 - Emitters of every shape can be dragged with the mouse when `emitters.draggable` is enabled.
+- The canvas shape's filter callback receives the sampled RGBA pixel and an optional second `colorSpace` argument (`"srgb"` or `"display-p3"`). Readback uses RGBA-unorm8, so samples do not retain HDR headroom. Sampled fill colors are converted to OKLCH using that source space.
 
 ## Source reference
 

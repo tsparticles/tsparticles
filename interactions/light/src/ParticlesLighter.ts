@@ -1,13 +1,6 @@
-import {
-  type IInteractivityData,
-  ParticlesInteractorBase,
-} from "@tsparticles/plugin-interactivity";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { LightContainer, LightParticle } from "./Types.js";
-import {
-  type PluginManager,
-  isInArray,
-  rangeColorToOklch,
-} from "@tsparticles/engine";
+import { type PluginManager, isInArray, rangeColorToOklch } from "@tsparticles/engine";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 /** Particles lighter interactor */
@@ -31,17 +24,11 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     // do nothing
   }
 
-  interact(
-    particle: LightParticle,
-    interactivityData: IInteractivityData,
-  ): void {
+  interact(particle: LightParticle, interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions;
 
-    if (
-      !options.interactivity?.events.onHover.enable ||
-      interactivityData.status !== "pointermove"
-    ) {
+    if (!options.interactivity?.events.onHover.enable || interactivityData.status !== "pointermove") {
       return;
     }
 
@@ -51,15 +38,12 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
       return;
     }
 
-    container.canvas.render.draw((ctx) => {
+    container.canvas.render.draw(ctx => {
       drawParticleShadow(container, ctx, particle, mousePos);
     });
   }
 
-  isEnabled(
-    particle: LightParticle,
-    interactivityData: IInteractivityData,
-  ): boolean {
+  isEnabled(particle: LightParticle, interactivityData: IInteractivityData): boolean {
     const interactivity = particle.interactivity,
       mouse = interactivityData.mouse,
       events = interactivity.events;
@@ -73,10 +57,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     if (res && interactivity.modes.light) {
       const shadowOptions = interactivity.modes.light.shadow;
 
-      particle.lightShadow = rangeColorToOklch(
-        this.#pluginManager,
-        shadowOptions.color,
-      );
+      particle.lightShadow = rangeColorToOklch(this.#pluginManager, shadowOptions.color);
     }
 
     return res;

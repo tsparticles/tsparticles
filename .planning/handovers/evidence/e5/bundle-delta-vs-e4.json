@@ -1,7 +1,7 @@
 {
-  "comparison": "E4 bundle-sizes.json vs E5 bundle-sizes.json",
+  "comparison": "E4 bundle-sizes.json vs current E5 bundle-sizes.json",
   "e4MeasuredAt": "2026-11-17T07:04:24.472Z",
-  "e5MeasuredAt": "2026-11-20T22:08:26.322Z",
+  "e5MeasuredAt": "2026-11-21T22:52:53.638Z",
   "toolchain": {
     "node": "v26.13.0",
     "rollup": "4.67.4",
@@ -49,19 +49,19 @@
         "brotli": 20572
       },
       "e5": {
-        "raw": 74525,
-        "gzip": 24974,
-        "brotli": 22043
+        "raw": 74660,
+        "gzip": 25121,
+        "brotli": 22206
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1828,
-        "brotli": 1471
+        "raw": 4538,
+        "gzip": 1975,
+        "brotli": 1634
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.9,
-        "brotli": 7.15
+        "raw": 6.47,
+        "gzip": 8.53,
+        "brotli": 7.94
       }
     },
     {
@@ -73,19 +73,19 @@
         "brotli": 20553
       },
       "e5": {
-        "raw": 74553,
-        "gzip": 24988,
-        "brotli": 22046
+        "raw": 74688,
+        "gzip": 25132,
+        "brotli": 22186
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1834,
-        "brotli": 1493
+        "raw": 4538,
+        "gzip": 1978,
+        "brotli": 1633
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.92,
-        "brotli": 7.26
+        "raw": 6.47,
+        "gzip": 8.54,
+        "brotli": 7.95
       }
     },
     {
@@ -97,19 +97,19 @@
         "brotli": 26143
       },
       "e5": {
-        "raw": 95359,
-        "gzip": 31231,
-        "brotli": 27793
+        "raw": 95531,
+        "gzip": 31396,
+        "brotli": 27926
       },
       "delta": {
-        "raw": 5174,
-        "gzip": 2021,
-        "brotli": 1650
+        "raw": 5346,
+        "gzip": 2186,
+        "brotli": 1783
       },
       "percent": {
-        "raw": 5.74,
-        "gzip": 6.92,
-        "brotli": 6.31
+        "raw": 5.93,
+        "gzip": 7.48,
+        "brotli": 6.82
       }
     },
     {
@@ -121,19 +121,19 @@
         "brotli": 20597
       },
       "e5": {
-        "raw": 74535,
-        "gzip": 24985,
-        "brotli": 22043
+        "raw": 74670,
+        "gzip": 25132,
+        "brotli": 22198
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1832,
-        "brotli": 1446
+        "raw": 4538,
+        "gzip": 1979,
+        "brotli": 1601
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.91,
-        "brotli": 7.02
+        "raw": 6.47,
+        "gzip": 8.55,
+        "brotli": 7.77
       }
     },
     {
@@ -169,19 +169,19 @@
         "brotli": 20572
       },
       "e5": {
-        "raw": 74525,
-        "gzip": 24974,
-        "brotli": 22043
+        "raw": 74660,
+        "gzip": 25121,
+        "brotli": 22206
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1828,
-        "brotli": 1471
+        "raw": 4538,
+        "gzip": 1975,
+        "brotli": 1634
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.9,
-        "brotli": 7.15
+        "raw": 6.47,
+        "gzip": 8.53,
+        "brotli": 7.94
       }
     },
     {
@@ -193,19 +193,19 @@
         "brotli": 20553
       },
       "e5": {
-        "raw": 74553,
-        "gzip": 24988,
-        "brotli": 22046
+        "raw": 74688,
+        "gzip": 25132,
+        "brotli": 22186
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1834,
-        "brotli": 1493
+        "raw": 4538,
+        "gzip": 1978,
+        "brotli": 1633
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.92,
-        "brotli": 7.26
+        "raw": 6.47,
+        "gzip": 8.54,
+        "brotli": 7.95
       }
     },
     {
@@ -217,19 +217,19 @@
         "brotli": 26143
       },
       "e5": {
-        "raw": 95359,
-        "gzip": 31231,
-        "brotli": 27793
+        "raw": 95531,
+        "gzip": 31396,
+        "brotli": 27926
       },
       "delta": {
-        "raw": 5174,
-        "gzip": 2021,
-        "brotli": 1650
+        "raw": 5346,
+        "gzip": 2186,
+        "brotli": 1783
       },
       "percent": {
-        "raw": 5.74,
-        "gzip": 6.92,
-        "brotli": 6.31
+        "raw": 5.93,
+        "gzip": 7.48,
+        "brotli": 6.82
       }
     },
     {
@@ -241,19 +241,19 @@
         "brotli": 20597
       },
       "e5": {
-        "raw": 74535,
-        "gzip": 24985,
-        "brotli": 22043
+        "raw": 74670,
+        "gzip": 25132,
+        "brotli": 22198
       },
       "delta": {
-        "raw": 4403,
-        "gzip": 1832,
-        "brotli": 1446
+        "raw": 4538,
+        "gzip": 1979,
+        "brotli": 1601
       },
       "percent": {
-        "raw": 6.28,
-        "gzip": 7.91,
-        "brotli": 7.02
+        "raw": 6.47,
+        "gzip": 8.55,
+        "brotli": 7.77
       }
     }
   ],
@@ -268,19 +268,19 @@
       },
       "e5": {
         "file": "engine/dist/tsparticles.engine.js",
-        "raw": 252177,
-        "gzip": 45909,
-        "brotli": 38456
+        "raw": 256977,
+        "gzip": 46785,
+        "brotli": 39259
       },
       "delta": {
-        "raw": 22375,
-        "gzip": 4709,
-        "brotli": 3875
+        "raw": 27175,
+        "gzip": 5585,
+        "brotli": 4678
       },
       "percent": {
-        "raw": 9.74,
-        "gzip": 11.43,
-        "brotli": 11.21
+        "raw": 11.83,
+        "gzip": 13.56,
+        "brotli": 13.53
       }
     },
     {
@@ -293,19 +293,19 @@
       },
       "e5": {
         "file": "engine/dist/tsparticles.engine.min.js",
-        "raw": 93138,
-        "gzip": 30107,
-        "brotli": 25753
+        "raw": 94797,
+        "gzip": 30684,
+        "brotli": 26246
       },
       "delta": {
-        "raw": 8310,
-        "gzip": 3393,
-        "brotli": 2687
+        "raw": 9969,
+        "gzip": 3970,
+        "brotli": 3180
       },
       "percent": {
-        "raw": 9.8,
-        "gzip": 12.7,
-        "brotli": 11.65
+        "raw": 11.75,
+        "gzip": 14.86,
+        "brotli": 13.79
       }
     },
     {
@@ -318,19 +318,19 @@
       },
       "e5": {
         "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
-        "raw": 307876,
-        "gzip": 53713,
-        "brotli": 44685
+        "raw": 312734,
+        "gzip": 54599,
+        "brotli": 45408
       },
       "delta": {
-        "raw": 27578,
-        "gzip": 5424,
-        "brotli": 4342
+        "raw": 32436,
+        "gzip": 6310,
+        "brotli": 5065
       },
       "percent": {
-        "raw": 9.84,
-        "gzip": 11.23,
-        "brotli": 10.76
+        "raw": 11.57,
+        "gzip": 13.07,
+        "brotli": 12.55
       }
     },
     {
@@ -343,19 +343,19 @@
       },
       "e5": {
         "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
-        "raw": 114090,
-        "gzip": 34833,
-        "brotli": 30394
+        "raw": 115735,
+        "gzip": 35382,
+        "brotli": 30943
       },
       "delta": {
-        "raw": 10183,
-        "gzip": 3843,
-        "brotli": 3032
+        "raw": 11828,
+        "gzip": 4392,
+        "brotli": 3581
       },
       "percent": {
-        "raw": 9.8,
-        "gzip": 12.4,
-        "brotli": 11.08
+        "raw": 11.38,
+        "gzip": 14.17,
+        "brotli": 13.09
       }
     },
     {
@@ -418,19 +418,19 @@
       },
       "e5": {
         "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
-        "raw": 497436,
-        "gzip": 82355,
-        "brotli": 66168
+        "raw": 502296,
+        "gzip": 83249,
+        "brotli": 66868
       },
       "delta": {
-        "raw": 28857,
-        "gzip": 5588,
-        "brotli": 4409
+        "raw": 33717,
+        "gzip": 6482,
+        "brotli": 5109
       },
       "percent": {
-        "raw": 6.16,
-        "gzip": 7.28,
-        "brotli": 7.14
+        "raw": 7.2,
+        "gzip": 8.44,
+        "brotli": 8.27
       }
     },
     {
@@ -443,19 +443,19 @@
       },
       "e5": {
         "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
-        "raw": 180954,
-        "gzip": 52377,
-        "brotli": 45032
+        "raw": 182599,
+        "gzip": 52957,
+        "brotli": 45580
       },
       "delta": {
-        "raw": 10640,
-        "gzip": 3972,
-        "brotli": 3148
+        "raw": 12285,
+        "gzip": 4552,
+        "brotli": 3696
       },
       "percent": {
-        "raw": 6.25,
-        "gzip": 8.21,
-        "brotli": 7.52
+        "raw": 7.21,
+        "gzip": 9.4,
+        "brotli": 8.82
       }
     },
     {
@@ -518,19 +518,19 @@
       },
       "e5": {
         "file": "bundles/full/dist/tsparticles.bundle.js",
-        "raw": 629517,
-        "gzip": 101679,
-        "brotli": 80716
+        "raw": 634626,
+        "gzip": 102630,
+        "brotli": 81513
       },
       "delta": {
-        "raw": 30190,
-        "gzip": 6091,
-        "brotli": 4529
+        "raw": 35299,
+        "gzip": 7042,
+        "brotli": 5326
       },
       "percent": {
-        "raw": 5.04,
-        "gzip": 6.37,
-        "brotli": 5.94
+        "raw": 5.89,
+        "gzip": 7.37,
+        "brotli": 6.99
       }
     },
     {
@@ -543,19 +543,19 @@
       },
       "e5": {
         "file": "bundles/full/dist/tsparticles.bundle.min.js",
-        "raw": 228103,
-        "gzip": 64340,
-        "brotli": 54837
+        "raw": 229826,
+        "gzip": 64940,
+        "brotli": 55361
       },
       "delta": {
-        "raw": 11239,
-        "gzip": 4392,
-        "brotli": 3314
+        "raw": 12962,
+        "gzip": 4992,
+        "brotli": 3838
       },
       "percent": {
-        "raw": 5.18,
-        "gzip": 7.33,
-        "brotli": 6.43
+        "raw": 5.98,
+        "gzip": 8.33,
+        "brotli": 7.45
       }
     },
     {
@@ -618,19 +618,19 @@
       },
       "e5": {
         "file": "bundles/all/dist/tsparticles.all.bundle.js",
-        "raw": 1244138,
-        "gzip": 191924,
-        "brotli": 143929
+        "raw": 1255599,
+        "gzip": 193974,
+        "brotli": 145527
       },
       "delta": {
-        "raw": 51028,
-        "gzip": 9106,
-        "brotli": 5760
+        "raw": 62489,
+        "gzip": 11156,
+        "brotli": 7358
       },
       "percent": {
-        "raw": 4.28,
-        "gzip": 4.98,
-        "brotli": 4.17
+        "raw": 5.24,
+        "gzip": 6.1,
+        "brotli": 5.33
       }
     },
     {
@@ -643,19 +643,19 @@
       },
       "e5": {
         "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
-        "raw": 454662,
-        "gzip": 124421,
-        "brotli": 100650
+        "raw": 458664,
+        "gzip": 125767,
+        "brotli": 101763
       },
       "delta": {
-        "raw": 19131,
-        "gzip": 6205,
-        "brotli": 4310
+        "raw": 23133,
+        "gzip": 7551,
+        "brotli": 5423
       },
       "percent": {
-        "raw": 4.39,
-        "gzip": 5.25,
-        "brotli": 4.47
+        "raw": 5.31,
+        "gzip": 6.39,
+        "brotli": 5.63
       }
     },
     {
@@ -709,5 +709,5 @@
       }
     }
   ],
-  "assessment": "Pure helper is unchanged. E4-to-E5 factory and minimal consumer payloads, plus shipped bundles, exceed the 2% comparison target; this is an open E5 size gate requiring attribution and optimization or an explicitly approved budget revision."
+  "assessment": "Current factory and minimal consumers and shipped engine/bundles exceed the 2% growth comparison target. The E5 bundle-size gate remains open; changes in the canonical color/runtime surface require attribution and optimization or an explicitly approved budget revision."
 }

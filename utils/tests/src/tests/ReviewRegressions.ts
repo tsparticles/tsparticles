@@ -1,4 +1,6 @@
+import { Vector, createEngine } from "@tsparticles/engine";
 import { describe, expect, it, vi } from "vitest";
+import { AbsorberInstance } from "../../../../plugins/absorbers/src/AbsorberInstance.js";
 import { AbsorbersPluginInstance } from "../../../../plugins/absorbers/src/AbsorbersPluginInstance.js";
 import { EmittersPluginInstance } from "../../../../plugins/emitters/src/EmittersPluginInstance.js";
 import { EventListeners } from "../../../../engine/src/Core/Container/EventListeners.js";
@@ -7,10 +9,15 @@ import { MotionPluginInstance } from "../../../../plugins/motion/src/MotionPlugi
 import { NoiseFieldGenerator } from "../../../../utils/noiseField/src/NoiseFieldGenerator.js";
 import { PoissonDiscPluginInstance } from "../../../../plugins/poisson/src/PoissonDiscPluginInstance.js";
 import { Responsive } from "../../../../plugins/responsive/src/Options/Classes/Responsive.js";
-import { Vector } from "@tsparticles/engine";
 
 const testOrbitRadius = 10,
-  testRandomValue = 0.5;
+  testRandomValue = 0.5,
+  testFirstEngineRandom = 0.25,
+  testSecondEngineRandom = 0.75,
+  testFallbackRandom = 0.99,
+  testCanvasSize = 100,
+  testRecycledVelocity = 5,
+  testAbsorberPosition = { x: { min: 10, max: 30 }, y: { min: 20, max: 60 } };
 
 describe("review regressions", () => {
   it("adds and removes listeners without a document in a worker", () => {
@@ -50,15 +57,13 @@ describe("review regressions", () => {
         } as never);
 
       await plugin.init();
-      const staleCallback = addEventListener.mock
-        .calls[0]?.[1] as EventListener;
+      const staleCallback = addEventListener.mock.calls[0]?.[1] as EventListener;
 
       plugin.stop();
       staleCallback(new Event("change"));
 
       await plugin.init();
-      const currentCallback = addEventListener.mock
-        .calls[1]?.[1] as EventListener;
+      const currentCallback = addEventListener.mock.calls[1]?.[1] as EventListener;
 
       currentCallback(new Event("change"));
       await Promise.resolve();
@@ -78,10 +83,8 @@ describe("review regressions", () => {
   });
 
   it("removes and replaces the noise-field resize listener across init and destroy", () => {
-    const addEventListener =
-        vi.fn<(type: string, listener: EventListener) => void>(),
-      removeEventListener =
-        vi.fn<(type: string, listener: EventListener) => void>(),
+    const addEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
+      removeEventListener = vi.fn<(type: string, listener: EventListener) => void>(),
       noiseGenerator = { noise4d: () => 0, seed: vi.fn() };
 
     vi.stubGlobal("addEventListener", addEventListener);
@@ -180,14 +183,8 @@ describe("review regressions", () => {
         destroyContainer: vi.fn(),
         initContainer: vi.fn(),
       },
-      emitters = new EmittersPluginInstance(
-        emitterManager as never,
-        container as never,
-      ),
-      absorbers = new AbsorbersPluginInstance(
-        container as never,
-        absorberManager as never,
-      );
+      emitters = new EmittersPluginInstance(emitterManager as never, container as never),
+      absorbers = new AbsorbersPluginInstance(container as never, absorberManager as never);
 
     emitters.stop();
     emitters.destroy();
@@ -226,6 +223,83 @@ describe("review regressions", () => {
     }
   });
 
+  it("uses each engine RNG for absorber placement and resize", () => {
+    const fallback = vi.spyOn(Math, "random").mockReturnValue(testFallbackRandom);
+
+    try {
+      for (const sample of [testFirstEngineRandom, testSecondEngineRandom]) {
+        const engine = createEngine();
+
+        engine.setRandom(() => sample);
+        const container = {
+            engine,
+            canvas: { size: { width: testCanvasSize, height: testCanvasSize } },
+            retina: { pixelRatio: 1, reduceFactor: 1 },
+          },
+          absorber = new AbsorberInstance(engine.pluginManager, container as never, {
+            position: testAbsorberPosition,
+          });
+
+        expect(absorber.position.x).to.equal(
+          testAbsorberPosition.x.min + (testAbsorberPosition.x.max - testAbsorberPosition.x.min) * sample,
+        );
+        expect(absorber.position.y).to.equal(
+          testAbsorberPosition.y.min + (testAbsorberPosition.y.max - testAbsorberPosition.y.min) * sample,
+        );
+        engine.setRandom(() => 1 - sample);
+        absorber.resize();
+        expect(absorber.position.x).to.equal(
+          testAbsorberPosition.x.min + (testAbsorberPosition.x.max - testAbsorberPosition.x.min) * (1 - sample),
+        );
+        expect(absorber.position.y).to.equal(
+          testAbsorberPosition.y.min + (testAbsorberPosition.y.max - testAbsorberPosition.y.min) * (1 - sample),
+        );
+      }
+    } finally {
+      fallback.mockRestore();
+    }
+  });
+
+  it("recycles absorbed particles with their owning engine RNG", () => {
+    const fallback = vi.spyOn(Math, "random").mockReturnValue(testFallbackRandom);
+
+    try {
+      for (const sample of [testFirstEngineRandom, testSecondEngineRandom]) {
+        const container = {
+            canvas: { size: { width: testCanvasSize, height: testCanvasSize } },
+            engine: { getRandomFn: () => () => sample },
+          },
+          instancesManager = {
+            initContainer: () => undefined,
+            getArray: () => [{ orbits: false, getForce: () => Vector.origin, attract: () => undefined }],
+          },
+          plugin = new AbsorbersPluginInstance(container as never, instancesManager as never),
+          particle = {
+            position: Vector.origin,
+            velocity: Vector.create(testRecycledVelocity, testRecycledVelocity),
+            initialVelocity: Vector.create(1, 2),
+            absorberOrbit: Vector.create(testOrbitRadius, 0) as Vector | undefined,
+            absorberOrbitDirection: "clockwise" as string | undefined,
+            destroyed: false,
+            needsNewPosition: true,
+            getPosition() {
+              return this.position;
+            },
+          };
+
+        plugin.particleUpdate(particle as never, { value: 1, factor: 1 });
+        expect(particle.position.x).to.equal(testCanvasSize * sample);
+        expect(particle.position.y).to.equal(testCanvasSize * sample);
+        expect(particle.velocity).to.deep.equal(particle.initialVelocity);
+        expect(particle.needsNewPosition).to.equal(false);
+        expect(particle.absorberOrbit).to.equal(undefined);
+        expect(particle.absorberOrbitDirection).to.equal(undefined);
+      }
+    } finally {
+      fallback.mockRestore();
+    }
+  });
+
   it("mirrors tangential force for counterclockwise absorber orbits", () => {
     const orbitingAbsorber = {
         orbits: true,
@@ -248,10 +322,7 @@ describe("review regressions", () => {
         initContainer: () => undefined,
         getArray: () => [orbitingAbsorber, attractingAbsorber],
       },
-      plugin = new AbsorbersPluginInstance(
-        container as never,
-        instancesManager as never,
-      ),
+      plugin = new AbsorbersPluginInstance(container as never, instancesManager as never),
       particle = {
         position: Vector.create(testOrbitRadius, 0),
         velocity: Vector.create(-1, 0),

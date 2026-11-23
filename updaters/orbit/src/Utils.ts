@@ -1,11 +1,4 @@
-import {
-  type IOklcha,
-  type Particle,
-  degToRad,
-  double,
-  getStyleFromOklch,
-  half,
-} from "@tsparticles/engine";
+import { type IOklcha, type Particle, degToRad, double, getStyleFromOklch, half } from "@tsparticles/engine";
 import type { OrbitContainer } from "./Types.js";
 
 const minWidth = 0;
@@ -57,14 +50,6 @@ export function drawEllipse(
   const rotationRadian = degToRad(rotation);
 
   context.beginPath();
-  context.ellipse(
-    pos.x,
-    pos.y,
-    radius * half,
-    radius * double,
-    rotationRadian,
-    start,
-    end,
-  );
+  context.ellipse(pos.x, pos.y, radius * half, radius * double, rotationRadian, start, end);
   context.stroke();
 }

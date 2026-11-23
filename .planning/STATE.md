@@ -1,3 +1,42 @@
+## Session status — 2026-11-23 — E5 accepted; E6 started
+
+- E0–E5 are accepted. C1–C4 and the Particle/options review are complete;
+  ARCH-01/03 and IMP-05 record the measured model/cache decisions.
+- Full build:ci passes 457 projects; all 85 workspace test targets pass,
+  including 817 primary tests. Eight formatter pixel cases and four exact
+  link scenes pass on the archived compiled artifact.
+- The 45-sample matrix matches 135 E4 scenes and passes all 30 E0 update/draw
+  checks. M4 draw is 2.40/8.30 ms at 500/1000 particles. Quiet confirmation
+  still finds M4/500 update 3.70 vs 3.52 ceiling and frame p95 7.50 vs E4
+  6.50 (screen 7.15). The user explicitly accepts this deviation for E5,
+  with final verification in E10. No runtime budget is reported as passing
+  because of that exception. The earlier bundle-growth exception also persists.
+- M6/500's inherited release issue remains: p95 2.10 vs 1.87 ceiling; fresh
+  prior-E5 control 2.30. Final M6/M8 RNG and 30-cycle retention checks pass.
+- E6 started with six direct-source spatial contract regressions, a current-source
+  review map and a reproduced circle/rectangle intersection defect. Production
+  algorithms are unchanged; P1–P4/S1–S4, integration and measurement gates remain
+  open. See [E6 checkpoint](handovers/V5-E6-STATUS.md). E7–E10 follow in order.
+  No commit/publication. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
+  Earlier checkpoints below retain their original historical measurements.
+
+## Session status — 2026-11-22 — E5 cache/RNG increments verified; acceptance open
+
+- Recovered the recorded E4 all-bundle and captured matched E4/pre/post-cache
+  E5 profiles. All 135 scene snapshots agree. M4/1,000 draw improves from 12.40
+  to 9.60 ms and sampled frame allocation falls 26.1%; residual M4 draw budgets
+  and M7 dispersion still need investigation. T1–T4 cost decisions remain open.
+- Bounded color-style caches and verified color mutations, gamut, alpha, HDR
+  mode and peak. Corrected Ember/Riot engine imports and absorber placement/
+  recycling that had used ambient randomness instead of the owner's RNG.
+- Final build passes 453 targets; all 85 test targets pass, including 813
+  primary tests. Eight browser pixel cases pass and match the current formatter.
+- Fresh M6/M8 runs pass RNG stability and lifecycle assertions across 18 samples
+  and 30 retention cycles: stable DOM/listeners, 114,876-byte heap drift. M6/500
+  p95 remains 1.90 ms vs its 1.87 ceiling; old unseeded M6 runs are historical.
+- See [current E5 checkpoint](handovers/V5-E5-STATUS.md) and matched evidence.
+  E5 remains open. Bundle growth is waived; no commit or publication performed.
+
 ## Session status — 2026-11-17 — E4 accepted
 
 - E0–E4 are accepted. E4 lifecycle cleanup has focused regressions, compressed
@@ -50,7 +89,7 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus.** v5 E4 Container lifecycle on branch `v5`, with package version `4.6.0`.
+**Current focus.** v5 E6 collections and spatial index on branch `v5`, with package version `4.6.0`.
 
 ## Session status — 2026-11-14 — E0 closed, E1 retirement verified
 

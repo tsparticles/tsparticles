@@ -1,0 +1,35 @@
+{
+  "measuredAt": "2026-11-23T14:39:45.509Z",
+  "node": "v26.13.0",
+  "scope": "all minified standalone bundle; previous complete consumer payload report remains historical",
+  "e4": {
+    "sha256": "fe02ad0285f011b08eabc2ac3a28d74d5ec6f4d61f667997c4d2ab332e1abeed",
+    "raw": 435531,
+    "gzip": 118216,
+    "brotli": 96340
+  },
+  "prior": {
+    "sha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+    "raw": 459896,
+    "gzip": 126256,
+    "brotli": 102119
+  },
+  "final": {
+    "sha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+    "raw": 460687,
+    "gzip": 126610,
+    "brotli": 102353
+  },
+  "deltaVsE4": {
+    "raw": 25156,
+    "gzip": 8394,
+    "brotli": 6013
+  },
+  "deltaVsPrior": {
+    "raw": 791,
+    "gzip": 354,
+    "brotli": 234
+  },
+  "formatterSha256": "d12f10ff6aeca2586286bce4c3434b48c3fb934b1224ed037b54060bdb52b88e",
+  "bundleGrowthWaivedForE5": true
+}

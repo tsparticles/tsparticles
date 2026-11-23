@@ -69,11 +69,7 @@ export class PaintUpdater implements IParticleUpdater {
           (strokeColor?.c.value !== undefined && strokeColor.c.enable) ||
           (strokeColor?.l.value !== undefined && strokeColor.l.enable));
 
-    return (
-      !particle.destroyed &&
-      !particle.spawning &&
-      (fillEnabled || strokeEnabled)
-    );
+    return !particle.destroyed && !particle.spawning && (fillEnabled || strokeEnabled);
   }
 
   /**
@@ -86,25 +82,11 @@ export class PaintUpdater implements IParticleUpdater {
       return;
     }
 
-    updateColor(
-      particle.fillColor,
-      delta,
-      this.#container.hdr,
-      this.#container.engine.getRandomFn(),
-    );
-    updateColor(
-      particle.strokeColor,
-      delta,
-      this.#container.hdr,
-      this.#container.engine.getRandomFn(),
-    );
+    updateColor(particle.fillColor, delta, this.#container.hdr, this.#container.engine.getRandomFn());
+    updateColor(particle.strokeColor, delta, this.#container.hdr, this.#container.engine.getRandomFn());
   }
 
-  #initFill(
-    paint: Paint | undefined,
-    particle: PaintParticle,
-    container: Container,
-  ): void {
+  #initFill(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
     const fill = paint?.fill,
       color = (paint as { color?: unknown } | undefined)?.color,
       paintColor = color ?? undefined;
@@ -119,17 +101,12 @@ export class PaintUpdater implements IParticleUpdater {
     }
 
     const fillColor = AnimatableColor.create(
-      paintColor === undefined
-        ? undefined
-        : AnimatableColor.create(undefined, paintColor),
+      paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
       fill.color,
     );
 
     particle.fillEnabled = fill.enable;
-    particle.fillOpacity = getRangeValue(
-      fill.opacity,
-      this.#container.engine.getRandomFn(),
-    );
+    particle.fillOpacity = getRangeValue(fill.opacity, this.#container.engine.getRandomFn());
     particle.fillAnimation = fillColor.animation;
 
     const fillOklchColor = rangeColorToOklch(this.#pluginManager, fillColor);
@@ -145,11 +122,7 @@ export class PaintUpdater implements IParticleUpdater {
     );
   }
 
-  #initStroke(
-    paint: Paint | undefined,
-    particle: PaintParticle,
-    container: Container,
-  ): void {
+  #initStroke(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
     const stroke = paint?.stroke,
       color = (paint as { color?: unknown } | undefined)?.color,
       paintColor = color ?? undefined;
@@ -164,24 +137,16 @@ export class PaintUpdater implements IParticleUpdater {
     }
 
     const strokeColor = AnimatableColor.create(
-      paintColor === undefined
-        ? undefined
-        : AnimatableColor.create(undefined, paintColor),
+      paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
       stroke.color,
     );
 
     particle.strokeWidth =
-      getRangeValue(stroke.width, this.#container.engine.getRandomFn()) *
-      container.retina.pixelRatio;
-    particle.strokeOpacity = getRangeValue(
-      stroke.opacity ?? defaultOpacity,
-      this.#container.engine.getRandomFn(),
-    );
+      getRangeValue(stroke.width, this.#container.engine.getRandomFn()) * container.retina.pixelRatio;
+    particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity, this.#container.engine.getRandomFn());
     particle.strokeAnimation = strokeColor.animation;
 
-    const strokeOklchColor =
-      rangeColorToOklch(this.#pluginManager, strokeColor) ??
-      particle.getFillColor();
+    const strokeOklchColor = rangeColorToOklch(this.#pluginManager, strokeColor) ?? particle.getFillColor();
 
     if (!strokeOklchColor) {
       return;

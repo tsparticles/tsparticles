@@ -130,10 +130,7 @@ export class HsvColorManager implements IColorManager {
     }
 
     const hsv = {
-      a:
-        result.length > fullLength
-          ? parseAlpha(result[indexes.a])
-          : defaultAlpha,
+      a: result.length > fullLength ? parseAlpha(result[indexes.a]) : defaultAlpha,
       h: Number.parseInt(result[indexes.h] ?? "0", radix),
       s: Number.parseInt(result[indexes.s] ?? "0", radix),
       v: Number.parseInt(result[indexes.v] ?? "0", radix),
@@ -169,10 +166,7 @@ export class HsvColorManager implements IColorManager {
         s: Number.parseInt(result[indexes.s] ?? "0", radix),
         v: Number.parseInt(result[indexes.v] ?? "0", radix),
       },
-      alpha =
-        result.length > fullLength
-          ? parseAlpha(result[indexes.a])
-          : defaultAlpha;
+      alpha = result.length > fullLength ? parseAlpha(result[indexes.a]) : defaultAlpha;
 
     if (
       ![hsv.h, hsv.s, hsv.v, alpha].every(Number.isFinite) ||

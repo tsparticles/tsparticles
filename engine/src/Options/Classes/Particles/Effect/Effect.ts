@@ -24,10 +24,7 @@ export class Effect extends OptionLoader<IEffect> implements IEffect {
         const item = options[effect];
 
         if (item) {
-          this.options[effect] = deepExtend(
-            this.options[effect] ?? {},
-            item,
-          ) as IShapeValues[];
+          this.options[effect] = deepExtend(this.options[effect] ?? {}, item) as IShapeValues[];
         }
       }
     }

@@ -49,16 +49,17 @@ conversion. Engine-side RGB output requires a documented boundary need.
   RGB and HSL accept modern slash alpha and retain legacy comma alpha.
 - Source interpretation is independent from output capabilities. Keep intrinsic
   spaces from formats such as `color(display-p3 …)`; untagged hex/named/RGB/HSL
-  inputs continue to mean sRGB. New channel-object inputs must identify their
-  primaries explicitly (for example `space: "display-p3"`) rather than infer
-  them from the selected canvas. A `p3: true/false` shorthand is acceptable only
-  if it has the same unambiguous input-only meaning and cannot override an
-  intrinsically tagged format.
+  inputs continue to mean sRGB. RGB channel objects can declare `colorSpace:
+  "srgb" | "display-p3"`; the input-only `p3: true/false` shorthand maps to
+  Display-P3/sRGB and is rejected when it conflicts with `colorSpace`. Neither
+  setting selects the output canvas space or overrides an intrinsically tagged
+  string.
 - Do not accept a generic `hdr: true/false` as sufficient HDR source metadata.
   HDR source decoding must identify its transfer function (such as PQ, HLG, or
-  linear), scale, reference white and any required absolute luminance. A boolean
-  can only be a shorthand for one fully specified encoding contract. The current
-  `HDROptions` remain output controls and must not reinterpret input channels.
+  linear), scale, reference white and any required absolute luminance. RGB
+  channel objects containing `hdr` are rejected until such a descriptor is
+  defined. The current `HDROptions` remain output controls and must not
+  reinterpret input channels.
 - Keep HSL and RGB conversion helpers as compatibility inputs/outputs where
   used by consumers. Remove `IHsl` from particle runtime animation contracts,
   not from accepted option syntax or conversion APIs. Legacy animation options
@@ -73,8 +74,11 @@ conversion. Engine-side RGB output requires a documented boundary need.
   separate.
 - For operations that mix arbitrary colors (links, gradients, and plugin
   color mixing), use linear interpolation in rectangular OKLab with alpha
-  handled separately. This avoids the hue singularity at neutral colors.
-  Preserve existing timing, random samples, and interpolation endpoints.
+  handled separately: premultiply the normalized color weights by each input
+  alpha, then interpolate output alpha independently. A zero total color weight
+  uses equal weights; when both inputs are transparent, retain deterministic
+  unpremultiplied coordinates. This avoids the hue singularity at neutral
+  colors. Preserve existing timing, random samples, and interpolation endpoints.
 - Tests must establish tolerances against independent reference calculations;
   the chosen model is not a claim of pixel identity with the old HSL pipeline.
 

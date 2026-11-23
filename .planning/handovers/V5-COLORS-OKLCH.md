@@ -1,8 +1,9 @@
 # V5-COLOR — Adopt OKLCH as the canonical color model
 
 Initial plan dated 2026-11-06 on branch `v5`, based on `4.5.2` source.
-Implementation is in progress and acceptance remains open; see the
-[E5 checkpoint](V5-E5-STATUS.md). Use the current checkout and the clean
+C1–C4 implementation and E5 acceptance are complete as of 2026-11-23; see
+[the acceptance and explicit runtime exception](evidence/e5/closure/README.md).
+C5 distribution/release verification remains assigned to E9/E10. Use the current checkout and the clean
 measurement procedure in the [handover index](README.md) for execution.
 
 ## Required outcome
@@ -59,21 +60,17 @@ part of parsing/resolution, independently from the destination canvas and
   `color(display-p3 …)` identifies Display-P3. Hex, named colors, ordinary
   `rgb()`/`hsl()` and existing untagged RGB objects retain their documented
   sRGB meaning.
-- For channel-based inputs whose space is otherwise ambiguous, consider
-  explicit source metadata (`space: "srgb" | "display-p3"`) and test
-  `true`/`false` convenience flags only as aliases with precise documented
-  semantics. A P3 flag selects the primaries used to interpret the _input_
-  channels before conversion to OKLCH; it does not request P3 output and must
-  not override a format that already names its space.
-- Do not define generic `hdr: true` as “convert these channels to OKLCH” without
-  specifying the source transfer function, channel scale, reference white and
-  luminance. HDR inputs may be PQ, HLG, or extended linear values and need
-  distinct decoding plus luminance/reference-white metadata. If E5 supports
-  HDR-tagged source values, model that explicitly (for example, a discriminated
-  source descriptor) and convert through the corresponding absolute/extended
-  colorimetry before producing canonical OKLCH and any separate luminance
-  metadata. A bare boolean may be a convenience only when one exact encoding
-  and scale are fixed by the input API.
+- Channel-based RGB inputs use optional source metadata
+  (`colorSpace: "srgb" | "display-p3"`); absent metadata remains sRGB for
+  compatibility. `p3: true/false` is an input-only alias for Display-P3/sRGB
+  and must agree with `colorSpace` when both are present. It does not request
+  P3 output and cannot override a format that names its own space.
+- HDR source colors are not currently supported. A generic `hdr: true/false`
+  does not specify source transfer, channel scale, reference white or absolute
+  luminance, so channel objects carrying `hdr` are rejected instead of being
+  decoded as sRGB. Adding HDR source support requires a typed descriptor for
+  those values and explicit conversion to canonical OKLCH plus any retained
+  luminance metadata.
 - Keep source metadata attached until resolution; resolve once, then discard
   it only when all appearance-relevant information is represented in canonical
   OKLCH plus alpha and any required luminance metadata. Ordinary relative
@@ -91,12 +88,13 @@ before implementing ambiguous RGB/HDR inputs.
 
 ### Output rule for implementers
 
-**Default: canonical OKLCH → CSS `oklch(...)` → browser output conversion.**
-This applies to supported CSS/Canvas color-string destinations, including a
-Canvas2D context configured as `display-p3`. OKLCH represents colors inside and
-outside the P3 gamut; selecting P3 does not require engine-side conversion to
-`color(display-p3 ...)`. Syntax support and actual canvas gamut/precision must
-still be detected independently. See [CSS Color 4](https://www.w3.org/TR/2026/CRD-css-color-4-20261027/).
+**Default: canonical OKLCH → destination gamut mapping on a copy → CSS
+`oklch(...)` → browser output conversion.** This applies to supported CSS/Canvas
+color-string destinations, including a Canvas2D context configured as
+`display-p3`. OKLCH represents colors inside and outside the P3 gamut; selecting
+P3 does not require engine-side conversion to `color(display-p3 ...)`. Syntax
+support and actual canvas gamut/precision must still be detected independently.
+See [CSS Color 4](https://www.w3.org/TR/2026/CRD-css-color-4-20261027/).
 
 Implement this decision in E5c/C2:
 
@@ -104,14 +102,15 @@ Implement this decision in E5c/C2:
    `l` is 0–100, so serialize it as a percentage; preserve chroma/hue precision
    and apply input alpha and paint opacity exactly once. Do not require the
    optional OKLCH input-parser plugin to render canonical colors.
-2. Keep effective canvas gamut selection (`srgb`/`display-p3`) separate from
-   color-string serialization. Test direct OKLCH in both contexts, including
-   colors inside P3 but outside sRGB, gradients, shadows and auxiliary surfaces.
-3. Preserve the explicit chroma-reduction gamut policy below: when engine-side
-   mapping is required by that contract, map a copy in OKLCH and serialize the
-   mapped OKLCH value. Temporary RGB probes may test gamut membership; RGB
-   serialization is not required. Do not add another engine mapping pass or
-   mutate the canonical source. Record browser mapping differences in pixel tests.
+2. Keep source-space metadata separate from effective canvas gamut selection.
+   Pass the destination gamut (`srgb`/`display-p3`) to the output formatter.
+   Test both contexts, including colors inside P3 but outside sRGB, gradients,
+   shadows and auxiliary surfaces.
+3. Apply the explicit chroma-reduction policy at the output boundary: map a
+   copy in OKLCH and serialize the mapped OKLCH value. Temporary RGB probes may
+   test gamut membership; RGB serialization is not required. Do not add another
+   engine mapping pass or mutate the canonical source. Record browser mapping
+   differences in pixel tests.
 4. Retain manual RGB conversion only for a demonstrated boundary requirement:
    unsupported OKLCH syntax, a pixel/binary API requiring RGB, or an explicit
    HDR/linear-light operation. For each retained path record the caller,
@@ -410,28 +409,49 @@ before collection and rendering optimizations in E6/E7.
 
 ## Documentation and completion
 
-- [ ] `IOklch` / `IOklcha` and h/c/l animation are the sole canonical runtime
+- [x] `IOklch` / `IOklcha` and h/c/l animation are the sole canonical runtime
       color model throughout engine and extensions, not only particles.
       The per-file RGB/HSL inventory has no unresolved runtime migration.
-- [ ] Native v5 managers resolve to OKLCH without required RGB methods; legacy
+- [x] Native v5 managers resolve to OKLCH without required RGB methods; legacy
       custom managers use an explicit input adapter with documented limitations.
-- [ ] Managers cover historical color value formats. Document the new schema,
+- [x] Managers cover historical color value formats. Document the new schema,
       alpha, and migration or conversion of external managers.
-- [ ] Preserve wide gamut through parsing, state, modifiers, and output.
-      Verify P3 SDR independently from HDR and float16.
-- [ ] Direct `oklch(...)` is the default supported CSS/Canvas output; every
+- [x] Preserve wide gamut through parsing, state, modifiers and mapped output.
+      Eight current Chrome formatter cases and four exact link scenes pass,
+      including P3/HDR float16, alpha, immutability and stroke-only HDR.
+      Physical display certification remains part of release verification.
+- [x] Direct `oklch(...)` is the default supported CSS/Canvas output; every
       retained manual RGB output path has a documented need and regression test.
-- [ ] Implement and verify HDR and gamut mapping decisions, including actual
-      coordinate conversions and absolute luminance.
-- [ ] Complete the package matrix with verification results beyond compilation.
-- [ ] Pass numerical and browser tests, benchmarks, and budgets. Record open
-      checks with reproduction and required environment.
-- [ ] Update `markdown/Color.md`, paint/color options, color plugin docs, API docs,
+- [x] Implement and verify HDR and gamut mapping decisions, including actual
+      coordinate conversions and absolute luminance through deterministic unit
+      references for canonical OKLCH output. Real-browser output remains a
+      separate unchecked pixel-readback gate.
+- [x] Complete the color-manager and runtime-consumer package matrix with unit
+      and integration results beyond compilation; the downstream `tests:build`
+      graph passes 186 dependency tasks.
+- [x] Complete IMP-05 T1–T4 option/state/getter/cache comparisons and record
+      retained class/loaders/live scratch and bounded/adaptive cache decisions.
+      M4 draw now meets E0 ceilings at 500/1000 (2.40/8.30 ms).
+- [x] Close E5 runtime acceptance with the user's explicit 2026-11-23 exception:
+      quiet M4/500 update 3.70 vs 3.52 ceiling; frame p95 7.50 vs E4 6.50
+      (screen 7.15). Final verification remains E10. The exception does not
+      make these budgets pass. Bundle growth is also waived for E5; current
+      complete payload measurements and attribution are retained.
+- [x] Update `markdown/Color.md`, paint/color options, color plugin docs, API docs,
       schema, affected demos, presets, wrappers, generators, breaking changelog,
       and the v4 → v5 guide with before/after examples for managers, animation, and offsets.
 - [ ] Gate 10 collects `V5-COLOR-DECISIONS.md` and `V5-COLOR-REPORT.md`.
 
-The proposed APIs and improvements remain pending implementation and verification.
+The canonical manager contract, color parsing/conversion APIs, OKLCH runtime
+state, gamut mapper, output formatter, consumer migration and Particle review
+are accepted for E5. Numerical, tick, current browser and complete downstream
+verification pass; T1–T4 decisions are measured. The user explicitly accepts
+the remaining M4/500 runtime deviation for E5 with final verification in E10.
+The inherited M6/500 release-budget item and the bundle-growth measurements
+remain visible. No C1–C4 source migration is deferred. C5 and physical HDR/
+final distribution checks remain E9/E10 work. See the
+[final acceptance](evidence/e5/closure/README.md), including limitations and
+rejected prototypes; the historical checkpoints retain their original results.
 
 ## Technical references
 

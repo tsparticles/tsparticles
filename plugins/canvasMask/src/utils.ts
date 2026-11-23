@@ -27,7 +27,7 @@ export function addParticlesFromCanvasPixels(
   position: ICoordinates,
   scale: number,
   override: ICanvasMaskOverride,
-  filter: (pixel: IRgba) => boolean,
+  filter: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean,
 ): void {
   const { height, width } = data,
     numPixels = height * width,
@@ -61,7 +61,8 @@ export function addParticlesFromCanvasPixels(
       continue;
     }
 
-    const shouldCreateParticle = filter(pixel);
+    const colorSpace = data.colorSpace ?? "srgb",
+      shouldCreateParticle = filter(pixel, colorSpace);
 
     if (!shouldCreateParticle) {
       continue;
@@ -77,7 +78,7 @@ export function addParticlesFromCanvasPixels(
       pOptions.paint = {
         fill: {
           color: {
-            value: pixel,
+            value: { ...pixel, a: override.opacity ? 1 : pixel.a, colorSpace },
           },
           enable: true,
         },

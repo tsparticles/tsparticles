@@ -1,18 +1,6 @@
-import type {
-  EffectInitializer,
-  ShapeInitializer,
-  UpdaterInitializer,
-} from "../../Types/EngineInitializers.js";
-import {
-  defaultFps,
-  defaultFpsLimit,
-  millisecondsToSeconds,
-  minFpsLimit,
-} from "../Utils/Constants.js";
-import {
-  getItemMapFromInitializer,
-  getItemsFromInitializer,
-} from "../../Utils/Utils.js";
+import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../../Types/EngineInitializers.js";
+import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "../Utils/Constants.js";
+import { getItemMapFromInitializer, getItemsFromInitializer } from "../../Utils/Utils.js";
 import { CanvasManager } from "../Canvas/CanvasManager.js";
 import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
 import type { Engine } from "../Engine/Engine.js";
@@ -65,16 +53,9 @@ function guardCheck(container: Container): boolean {
  * @param fpsLimit - the fps limit
  * @param smooth - if true, uses smooth delta
  */
-function updateDelta(
-  delta: IDelta,
-  value: number,
-  fpsLimit = defaultFps,
-  smooth = false,
-): void {
+function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth = false): void {
   delta.value = value;
-  delta.factor = smooth
-    ? defaultFps / fpsLimit
-    : (defaultFps * value) / millisecondsToSeconds;
+  delta.factor = smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds;
 }
 
 /**
@@ -234,8 +215,7 @@ export class Container {
    */
   constructor(params: ContainerParams) {
     this.engine = params.engine;
-    const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } =
-      params;
+    const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
 
     this.#pluginManager = pluginManager;
     this.#dispatchCallback = dispatchCallback;
@@ -422,19 +402,17 @@ export class Container {
 
     let refreshTime = force;
 
-    this.#drawAnimationFrame = this.engine.animate(
-      (timestamp: number): void => {
-        this.#drawAnimationFrame = undefined;
+    this.#drawAnimationFrame = this.engine.animate((timestamp: number): void => {
+      this.#drawAnimationFrame = undefined;
 
-        if (refreshTime) {
-          this.#lastFrameTime = undefined;
+      if (refreshTime) {
+        this.#lastFrameTime = undefined;
 
-          refreshTime = false;
-        }
+        refreshTime = false;
+      }
 
-        this.#nextFrame(timestamp);
-      },
-    );
+      this.#nextFrame(timestamp);
+    });
   }
 
   /**
@@ -443,10 +421,7 @@ export class Container {
    * @param options - The options to handle
    * @returns the promise for the export data
    */
-  async export(
-    type: string,
-    options: Record<string, unknown> = {},
-  ): Promise<Blob | undefined> {
+  async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
     for (const plugin of this.plugins) {
       if (!plugin.export) {
         continue;
@@ -487,10 +462,7 @@ export class Container {
         } catch (error: unknown) {
           this.engine
             .getLogger()
-            .warning(
-              "Error cleaning up a container plugin after initialization was cancelled",
-              error,
-            );
+            .warning("Error cleaning up a container plugin after initialization was cancelled", error);
         }
 
         return;
@@ -516,17 +488,8 @@ export class Container {
     }
 
     /* options settings */
-    this.#options = loadContainerOptions(
-      this.#pluginManager,
-      this,
-      this.#initialSourceOptions,
-      this.sourceOptions,
-    );
-    this.actualOptions = loadContainerOptions(
-      this.#pluginManager,
-      this,
-      this.#options,
-    );
+    this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this.#pluginManager, this, this.#options);
 
     this.#initPlugins(allContainerPlugins);
 
@@ -545,11 +508,8 @@ export class Container {
     this.hdrMode = toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard);
     this.peakNits = hdrOptions.peakNits;
     this.zLayers = zLayers;
-    this.#duration =
-      getRangeValue(duration, this.engine.getRandomFn()) *
-      millisecondsToSeconds;
-    this.#delay =
-      getRangeValue(delay, this.engine.getRandomFn()) * millisecondsToSeconds;
+    this.#duration = getRangeValue(duration, this.engine.getRandomFn()) * millisecondsToSeconds;
+    this.#delay = getRangeValue(delay, this.engine.getRandomFn()) * millisecondsToSeconds;
     this.#lifeTime = 0;
     this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
     this.#smooth = smooth;
@@ -584,18 +544,18 @@ export class Container {
   async initDrawersAndUpdaters(): Promise<void> {
     const pluginManager = this.#pluginManager;
 
-    this.effectDrawers = await getItemMapFromInitializer<
-      IEffectDrawer,
-      EffectInitializer
-    >(this, pluginManager.initializers.effects);
-    this.shapeDrawers = await getItemMapFromInitializer<
-      IShapeDrawer,
-      ShapeInitializer
-    >(this, pluginManager.initializers.shapes);
-    this.particleUpdaters = await getItemsFromInitializer<
-      IParticleUpdater,
-      UpdaterInitializer
-    >(this, pluginManager.initializers.updaters);
+    this.effectDrawers = await getItemMapFromInitializer<IEffectDrawer, EffectInitializer>(
+      this,
+      pluginManager.initializers.effects,
+    );
+    this.shapeDrawers = await getItemMapFromInitializer<IShapeDrawer, ShapeInitializer>(
+      this,
+      pluginManager.initializers.shapes,
+    );
+    this.particleUpdaters = await getItemsFromInitializer<IParticleUpdater, UpdaterInitializer>(
+      this,
+      pluginManager.initializers.updaters,
+    );
   }
 
   /**
@@ -688,17 +648,8 @@ export class Container {
 
     this.#initialSourceOptions = sourceOptions;
     this.#sourceOptions = sourceOptions;
-    this.#options = loadContainerOptions(
-      this.#pluginManager,
-      this,
-      this.#initialSourceOptions,
-      this.sourceOptions,
-    );
-    this.actualOptions = loadContainerOptions(
-      this.#pluginManager,
-      this,
-      this.#options,
-    );
+    this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this.#pluginManager, this, this.#options);
 
     return this.refresh();
   }
@@ -717,7 +668,7 @@ export class Container {
 
     const generation = ++this.#startGeneration;
     let cancel!: () => void;
-    const cancelled = new Promise<void>((resolve) => {
+    const cancelled = new Promise<void>(resolve => {
       cancel = resolve;
     });
 
@@ -733,7 +684,7 @@ export class Container {
         this.started = true;
 
         await Promise.race([
-          new Promise<void>((resolve) => {
+          new Promise<void>(resolve => {
             this.#delayResolve = resolve;
             this.#delayTimeout = setTimeout(() => {
               this.#delayTimeout = undefined;
@@ -773,12 +724,7 @@ export class Container {
           try {
             this.stop();
           } catch (cleanupError: unknown) {
-            this.engine
-              .getLogger()
-              .warning(
-                "Error cleaning up after container start failed",
-                cleanupError,
-              );
+            this.engine.getLogger().warning("Error cleaning up after container start failed", cleanupError);
           }
         }
 
@@ -932,9 +878,7 @@ export class Container {
       }
     }
 
-    this.#pendingPlugins = this.#pendingPlugins.filter((plugin) =>
-      activePlugins.has(plugin),
-    );
+    this.#pendingPlugins = this.#pendingPlugins.filter(plugin => activePlugins.has(plugin));
   }
 
   #nextFrame(timestamp: DOMHighResTimeStamp): void {
@@ -951,12 +895,7 @@ export class Container {
 
       this.#lastFrameTime ??= timestamp;
 
-      updateDelta(
-        this.#delta,
-        timestamp - this.#lastFrameTime,
-        this.fpsLimit,
-        this.#smooth,
-      );
+      updateDelta(this.#delta, timestamp - this.#lastFrameTime, this.fpsLimit, this.#smooth);
 
       this.addLifeTime(this.#delta.value);
       this.#lastFrameTime = timestamp;

@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-23",
+  "workingTree": true,
+  "accepted": true,
+  "buildCi": {
+    "exitCode": 0,
+    "projects": 457,
+    "cached": 364,
+    "runUrl": "https://cloud.nx.app/runs/V8MmU5tvOH",
+    "command": "NX_DAEMON=false NX_ISOLATE_PLUGINS=false pnpm run build:ci --parallel=8 --output-style=static",
+    "initialAttempt": "Stopped and restarted with static output and higher parallelism; not a successful run."
+  },
+  "testsBuild": {
+    "exitCode": 0,
+    "targets": 187,
+    "cached": 19,
+    "runUrl": "https://cloud.nx.app/runs/pJ84OcORGQ"
+  },
+  "workspaceTests": {
+    "exitCode": 0,
+    "projects": 85
+  },
+  "primaryTests": {
+    "files": 55,
+    "passed": 817
+  },
+  "browserPixels": {
+    "passed": 8,
+    "formatterSha256": "d12f10ff6aeca2586286bce4c3434b48c3fb934b1224ed037b54060bdb52b88e"
+  },
+  "linkPixelScenes": {
+    "passed": 4,
+    "exactPixelGeometryAndRngParity": true
+  },
+  "bundleSha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+  "performance": {
+    "matrixSamples": 45,
+    "matchingSceneSnapshots": 135,
+    "e0UpdateDrawChecksPassed": 30,
+    "status": "Accepted for E5 with explicit user exception; exceedances are retained for E10.",
+    "inheritedM6_500": {
+      "frameP95Ms": 2.1,
+      "e0FrameP95CeilingMs": 1.87,
+      "priorE5ControlMs": 2.3,
+      "owner": "E10"
+    }
+  },
+  "modelEvaluations": {
+    "samples": 18,
+    "T1": "retain typed owned loaders",
+    "T2": "retain live scratch; optimize output boundary",
+    "T3": "retain class and eager scratch; no public snapshot",
+    "T4": "bounded map, last-value fast path and adaptive exact HDR bypass"
+  },
+  "notes": [
+    "No commit or publication performed.",
+    "Headless canvas/CPU evidence does not certify physical HDR appearance."
+  ],
+  "acceptanceDate": "2026-11-23",
+  "runtimeBudgetException": {
+    "scope": "E5 acceptance only; E10 final verification remains required",
+    "authorizedBy": "User",
+    "statement": "Accettare lo scostamento e chiudere E5, con verifica finale in E10",
+    "scenario": "M4",
+    "count": 500,
+    "updateMedianMs": 3.7,
+    "e0UpdateCeilingMs": 3.52,
+    "frameP95Ms": 7.5,
+    "matchedE4FrameP95Ms": 6.5,
+    "matchedScreenMs": 7.15
+  },
+  "finalEvidenceChecks": {
+    "format": "pass",
+    "toolSyntax": 13,
+    "engineInventoryRows": 161,
+    "planningEvidenceLinksChecked": 81,
+    "gitDiffCheck": "pass",
+    "compiledHashes": "match",
+    "rejectedPrototypesShipped": false
+  }
+}

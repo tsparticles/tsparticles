@@ -1,0 +1,800 @@
+{
+  "measuredAt": "2026-11-22T00:39:14.643Z",
+  "revision": "6e8ca78dfe76515af222c666d85809f225544ac5",
+  "workingTree": true,
+  "runtime": "Node v26.13.0 + V8 allocation sampling + jsdom + @napi-rs/canvas",
+  "samplingIntervalBytes": 512,
+  "scenarios": [
+    "M3",
+    "M4",
+    "M5",
+    "M7"
+  ],
+  "counts": [
+    100,
+    500,
+    1000
+  ],
+  "repetitions": 3,
+  "warmupTicks": 30,
+  "measuredTicks": 60,
+  "seed": 123456789,
+  "samples": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 59080,
+        "sampleRecords": 62,
+        "sampledBytesPerTick": 984.6666666666666
+      },
+      "drawProfile": {
+        "sampledBytes": 142384,
+        "sampleRecords": 135,
+        "sampledBytesPerTick": 2373.0666666666666
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 30336,
+        "sampleRecords": 47,
+        "sampledBytesPerTick": 505.6
+      },
+      "drawProfile": {
+        "sampledBytes": 73200,
+        "sampleRecords": 99,
+        "sampledBytesPerTick": 1220
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 21552,
+        "sampleRecords": 38,
+        "sampledBytesPerTick": 359.2
+      },
+      "drawProfile": {
+        "sampledBytes": 54248,
+        "sampleRecords": 61,
+        "sampledBytesPerTick": 904.1333333333333
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 57064,
+        "sampleRecords": 104,
+        "sampledBytesPerTick": 951.0666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 73624,
+        "sampleRecords": 122,
+        "sampledBytesPerTick": 1227.0666666666666
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 57512,
+        "sampleRecords": 106,
+        "sampledBytesPerTick": 958.5333333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 62680,
+        "sampleRecords": 105,
+        "sampledBytesPerTick": 1044.6666666666667
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 54664,
+        "sampleRecords": 100,
+        "sampledBytesPerTick": 911.0666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 72264,
+        "sampleRecords": 121,
+        "sampledBytesPerTick": 1204.4
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 118512,
+        "sampleRecords": 216,
+        "sampledBytesPerTick": 1975.2
+      },
+      "drawProfile": {
+        "sampledBytes": 111328,
+        "sampleRecords": 191,
+        "sampledBytesPerTick": 1855.4666666666667
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 114904,
+        "sampleRecords": 209,
+        "sampledBytesPerTick": 1915.0666666666666
+      },
+      "drawProfile": {
+        "sampledBytes": 114480,
+        "sampleRecords": 197,
+        "sampledBytesPerTick": 1908
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 112072,
+        "sampleRecords": 204,
+        "sampledBytesPerTick": 1867.8666666666666
+      },
+      "drawProfile": {
+        "sampledBytes": 120624,
+        "sampleRecords": 207,
+        "sampledBytesPerTick": 2010.4
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 124440,
+        "sampleRecords": 136,
+        "sampledBytesPerTick": 2074
+      },
+      "drawProfile": {
+        "sampledBytes": 134360,
+        "sampleRecords": 138,
+        "sampledBytesPerTick": 2239.3333333333335
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 64600,
+        "sampleRecords": 80,
+        "sampledBytesPerTick": 1076.6666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 91744,
+        "sampleRecords": 111,
+        "sampledBytesPerTick": 1529.0666666666666
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 43088,
+        "sampleRecords": 73,
+        "sampledBytesPerTick": 718.1333333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 51992,
+        "sampleRecords": 79,
+        "sampledBytesPerTick": 866.5333333333333
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 531584,
+        "sampleRecords": 912,
+        "sampledBytesPerTick": 8859.733333333334
+      },
+      "drawProfile": {
+        "sampledBytes": 504160,
+        "sampleRecords": 859,
+        "sampledBytesPerTick": 8402.666666666666
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 506664,
+        "sampleRecords": 871,
+        "sampledBytesPerTick": 8444.4
+      },
+      "drawProfile": {
+        "sampledBytes": 500016,
+        "sampleRecords": 849,
+        "sampledBytesPerTick": 8333.6
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 475448,
+        "sampleRecords": 820,
+        "sampledBytesPerTick": 7924.133333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 513632,
+        "sampleRecords": 875,
+        "sampledBytesPerTick": 8560.533333333333
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 1755432,
+        "sampleRecords": 2983,
+        "sampledBytesPerTick": 29257.2
+      },
+      "drawProfile": {
+        "sampledBytes": 1753952,
+        "sampleRecords": 2973,
+        "sampledBytesPerTick": 29232.533333333333
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 1748200,
+        "sampleRecords": 2974,
+        "sampledBytesPerTick": 29136.666666666668
+      },
+      "drawProfile": {
+        "sampledBytes": 1772192,
+        "sampleRecords": 3005,
+        "sampledBytesPerTick": 29536.533333333333
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 1749928,
+        "sampleRecords": 2979,
+        "sampledBytesPerTick": 29165.466666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 1765424,
+        "sampleRecords": 2987,
+        "sampledBytesPerTick": 29423.733333333334
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 78520,
+        "sampleRecords": 50,
+        "sampledBytesPerTick": 1308.6666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 38464,
+        "sampleRecords": 43,
+        "sampledBytesPerTick": 641.0666666666667
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 58520,
+        "sampleRecords": 62,
+        "sampledBytesPerTick": 975.3333333333334
+      },
+      "drawProfile": {
+        "sampledBytes": 74512,
+        "sampleRecords": 74,
+        "sampledBytesPerTick": 1241.8666666666666
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 13568,
+        "sampleRecords": 25,
+        "sampledBytesPerTick": 226.13333333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 48928,
+        "sampleRecords": 50,
+        "sampledBytesPerTick": 815.4666666666667
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 58792,
+        "sampleRecords": 107,
+        "sampledBytesPerTick": 979.8666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 82936,
+        "sampleRecords": 114,
+        "sampledBytesPerTick": 1382.2666666666667
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 50544,
+        "sampleRecords": 89,
+        "sampledBytesPerTick": 842.4
+      },
+      "drawProfile": {
+        "sampledBytes": 62856,
+        "sampleRecords": 106,
+        "sampledBytesPerTick": 1047.6
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 55072,
+        "sampleRecords": 101,
+        "sampledBytesPerTick": 917.8666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 62040,
+        "sampleRecords": 104,
+        "sampledBytesPerTick": 1034
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 103272,
+        "sampleRecords": 187,
+        "sampledBytesPerTick": 1721.2
+      },
+      "drawProfile": {
+        "sampledBytes": 111944,
+        "sampleRecords": 194,
+        "sampledBytesPerTick": 1865.7333333333333
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 106832,
+        "sampleRecords": 193,
+        "sampledBytesPerTick": 1780.5333333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 108168,
+        "sampleRecords": 185,
+        "sampledBytesPerTick": 1802.8
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 100816,
+        "sampleRecords": 182,
+        "sampledBytesPerTick": 1680.2666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 116440,
+        "sampleRecords": 200,
+        "sampledBytesPerTick": 1940.6666666666667
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 19280,
+        "sampleRecords": 35,
+        "sampledBytesPerTick": 321.3333333333333
+      },
+      "drawProfile": {
+        "sampledBytes": 34512,
+        "sampleRecords": 31,
+        "sampledBytesPerTick": 575.2
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 11536,
+        "sampleRecords": 21,
+        "sampledBytesPerTick": 192.26666666666668
+      },
+      "drawProfile": {
+        "sampledBytes": 39768,
+        "sampleRecords": 38,
+        "sampledBytesPerTick": 662.8
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 12400,
+        "sampleRecords": 22,
+        "sampledBytesPerTick": 206.66666666666666
+      },
+      "drawProfile": {
+        "sampledBytes": 23912,
+        "sampleRecords": 34,
+        "sampledBytesPerTick": 398.53333333333336
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 48376,
+        "sampleRecords": 88,
+        "sampledBytesPerTick": 806.2666666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 60168,
+        "sampleRecords": 100,
+        "sampledBytesPerTick": 1002.8
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 67224,
+        "sampleRecords": 123,
+        "sampledBytesPerTick": 1120.4
+      },
+      "drawProfile": {
+        "sampledBytes": 64024,
+        "sampleRecords": 104,
+        "sampledBytesPerTick": 1067.0666666666666
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 62352,
+        "sampleRecords": 114,
+        "sampledBytesPerTick": 1039.2
+      },
+      "drawProfile": {
+        "sampledBytes": 61944,
+        "sampleRecords": 105,
+        "sampledBytesPerTick": 1032.4
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 0,
+      "updateProfile": {
+        "sampledBytes": 117416,
+        "sampleRecords": 214,
+        "sampledBytesPerTick": 1956.9333333333334
+      },
+      "drawProfile": {
+        "sampledBytes": 97696,
+        "sampleRecords": 165,
+        "sampledBytesPerTick": 1628.2666666666667
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 1,
+      "updateProfile": {
+        "sampledBytes": 132712,
+        "sampleRecords": 243,
+        "sampledBytesPerTick": 2211.866666666667
+      },
+      "drawProfile": {
+        "sampledBytes": 106504,
+        "sampleRecords": 173,
+        "sampledBytesPerTick": 1775.0666666666666
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 2,
+      "updateProfile": {
+        "sampledBytes": 100328,
+        "sampleRecords": 183,
+        "sampledBytesPerTick": 1672.1333333333334
+      },
+      "drawProfile": {
+        "sampledBytes": 118664,
+        "sampleRecords": 206,
+        "sampledBytesPerTick": 1977.7333333333333
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "updateSampledBytesPerTickMedian": 505.6,
+      "updateSampleRecordsPerTickMedian": 0.7833333333333333,
+      "drawSampledBytesPerTickMedian": 1220,
+      "drawSampleRecordsPerTickMedian": 1.65,
+      "randomCalls": [
+        918,
+        918,
+        918
+      ]
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "updateSampledBytesPerTickMedian": 951.0666666666667,
+      "updateSampleRecordsPerTickMedian": 1.7333333333333334,
+      "drawSampledBytesPerTickMedian": 1204.4,
+      "drawSampleRecordsPerTickMedian": 2.0166666666666666,
+      "randomCalls": [
+        4576,
+        4576,
+        4576
+      ]
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "updateSampledBytesPerTickMedian": 1915.0666666666666,
+      "updateSampleRecordsPerTickMedian": 3.4833333333333334,
+      "drawSampledBytesPerTickMedian": 1908,
+      "drawSampleRecordsPerTickMedian": 3.283333333333333,
+      "randomCalls": [
+        9156,
+        9156,
+        9156
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "updateSampledBytesPerTickMedian": 1076.6666666666667,
+      "updateSampleRecordsPerTickMedian": 1.3333333333333333,
+      "drawSampledBytesPerTickMedian": 1529.0666666666666,
+      "drawSampleRecordsPerTickMedian": 1.85,
+      "randomCalls": [
+        918,
+        918,
+        918
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "updateSampledBytesPerTickMedian": 8444.4,
+      "updateSampleRecordsPerTickMedian": 14.516666666666667,
+      "drawSampledBytesPerTickMedian": 8402.666666666666,
+      "drawSampleRecordsPerTickMedian": 14.316666666666666,
+      "randomCalls": [
+        4577,
+        4577,
+        4577
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "updateSampledBytesPerTickMedian": 29165.466666666667,
+      "updateSampleRecordsPerTickMedian": 49.65,
+      "drawSampledBytesPerTickMedian": 29423.733333333334,
+      "drawSampleRecordsPerTickMedian": 49.78333333333333,
+      "randomCalls": [
+        9151,
+        9151,
+        9151
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "updateSampledBytesPerTickMedian": 975.3333333333334,
+      "updateSampleRecordsPerTickMedian": 0.8333333333333334,
+      "drawSampledBytesPerTickMedian": 815.4666666666667,
+      "drawSampleRecordsPerTickMedian": 0.8333333333333334,
+      "randomCalls": [
+        900,
+        900,
+        900
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "updateSampledBytesPerTickMedian": 917.8666666666667,
+      "updateSampleRecordsPerTickMedian": 1.6833333333333333,
+      "drawSampledBytesPerTickMedian": 1047.6,
+      "drawSampleRecordsPerTickMedian": 1.7666666666666666,
+      "randomCalls": [
+        4500,
+        4500,
+        4500
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "updateSampledBytesPerTickMedian": 1721.2,
+      "updateSampleRecordsPerTickMedian": 3.1166666666666667,
+      "drawSampledBytesPerTickMedian": 1865.7333333333333,
+      "drawSampleRecordsPerTickMedian": 3.2333333333333334,
+      "randomCalls": [
+        9000,
+        9000,
+        9000
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "updateSampledBytesPerTickMedian": 206.66666666666666,
+      "updateSampleRecordsPerTickMedian": 0.36666666666666664,
+      "drawSampledBytesPerTickMedian": 575.2,
+      "drawSampleRecordsPerTickMedian": 0.5666666666666667,
+      "randomCalls": [
+        1008,
+        1008,
+        1008
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "updateSampledBytesPerTickMedian": 1039.2,
+      "updateSampleRecordsPerTickMedian": 1.9,
+      "drawSampledBytesPerTickMedian": 1032.4,
+      "drawSampleRecordsPerTickMedian": 1.7333333333333334,
+      "randomCalls": [
+        5036,
+        5036,
+        5036
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "updateSampledBytesPerTickMedian": 1956.9333333333334,
+      "updateSampleRecordsPerTickMedian": 3.566666666666667,
+      "drawSampledBytesPerTickMedian": 1775.0666666666666,
+      "drawSampleRecordsPerTickMedian": 2.8833333333333333,
+      "randomCalls": [
+        10074,
+        10074,
+        10074
+      ]
+    }
+  ],
+  "limitations": [
+    "V8 sampling estimates JavaScript heap allocation bytes and counts; it is not an exact allocation trace.",
+    "Profiles are same-runtime diagnostics and are not comparable with Chrome/CDP allocation profiles.",
+    "Native canvas allocations and GPU work are not represented; sampled tick phases omit initialization and teardown.",
+    "The profiler changes timing and profile overhead is excluded from the separate runtime timing report."
+  ]
+}

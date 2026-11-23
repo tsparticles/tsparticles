@@ -1,9 +1,4 @@
-import {
-  type Container,
-  type IShapeDrawData,
-  type IShapeDrawer,
-  deepExtend,
-} from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
 import type { IShapePathData } from "./IShapePathData.js";
 import type { PathParticle } from "./PathParticle.js";
 import { drawPath } from "@tsparticles/path-utils";

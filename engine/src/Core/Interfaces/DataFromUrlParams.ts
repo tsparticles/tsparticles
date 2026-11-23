@@ -7,5 +7,6 @@ export interface DataFromUrlParams {
   index?: number;
   logger: ILogger;
   random: () => number;
+  signal?: AbortSignal;
   url: SingleOrMultiple<string>;
 }

@@ -1,13 +1,14 @@
 # V5-07 — Full Particle review
 
-Status in progress; the E5 acceptance gate remains open. Execute after E4 and
-before the collection/pool optimizations
-in E6. Coordinate color/output and consumers with 05/08. Verify reset against the
-existing manager and establish invariants for 06. See the [execution sequence](V5-EXECUTION.md).
+Status: **E5 review accepted on 2026-11-23**. Particle/options ownership,
+initialization, Retina, live getters and reset contracts are reviewed and tested
+against the existing manager. ARCH-01/03 and IMP-05 record the model choices.
+Collection/pool and spatial-index algorithms remain E6 work.
 
-The current partial implementation and outstanding E5 evidence are tracked in
-the [E5 checkpoint](V5-E5-STATUS.md). Do not treat the OKLCH migration as
-accepted until C1–C4 and the Particle review pass their listed gates.
+The [final E5 acceptance](evidence/e5/closure/README.md) records 457 build:ci
+projects, 85 test targets, 817 primary tests and current browser evidence.
+The user explicitly accepts M4/500's remaining runtime deviation for E5 with
+final E10 verification. This is not a passing budget result.
 
 ## Ownership
 
@@ -81,9 +82,17 @@ references consistently.
 The pool reuses the entire `Particle` object, including public fields added by
 plugins. Core rebuilds known options, motion, Retina and drawer state along the
 initialization path, but it has no generic registry to clear arbitrary plugin
-fields. Extension-state isolation therefore depends on plugin destroy/create
-hooks today and remains an open acceptance item; do not claim arbitrary plugin
-state is reset until representative extension tests cover it.
+fields. Extension-state isolation depends on plugin destroy/create hooks. The
+representative Move, Infection, Gradient, Orbit, Roll, Destroy, drawer/effect
+and custom-updater regressions below cover this supported contract. Arbitrary
+third-party fields require their extension's cleanup hooks; core does not promise
+a generic reset or serializer for unknown plugin state.
+
+The Infection plugin had a concrete missing reset: its `infection` stage,
+delay and timer object could survive reuse because it did not implement a
+particle-created hook. It now clears that field when a pooled particle is
+initialized for its next life. A focused regression seeds infection state,
+removes the particle, and verifies the same object is reused without that state.
 
 When `Particle.init()` fails partway through, or a custom `addParticle`
 initializer rejects or throws, the manager now runs destroy hooks before
@@ -158,7 +167,9 @@ after removal.
   defaults, effect particle options layer over group values, shape particle
   options layer over effect values, and explicit shape/effect overrides replace
   container defaults. It also covers clearing `randomIndexData` on pooled
-  Particle reuse. Other plugin-specific shape/effect combinations remain open.
+  Particle reuse. A full-bundle regression traverses the loaded option,
+  shape-data, and effect-data graphs for two particles and verifies that no
+  mutable object references are shared across plugin-loaded option families.
 - `OptionsLoad.ts` verifies the caller's nested options remain unchanged after
   container loading, grouped particle creation, and refresh. Root `preset`
   arrays are copied when loaded, and a regression verifies neither the caller
@@ -169,8 +180,9 @@ after removal.
   live particles; nested fill-opacity and stroke-width mutations do not leak to
   siblings. `shapeData` and its shape-specific nested particle options are also
   isolated. The shape's `move` override takes precedence over base particle
-  options. Check remaining mutable option families and plugin-owned references
-  as part of the ownership review.
+  options. Plugin-owned runtime state is reset by its extension lifecycle hooks
+  and covered by pool-reuse tests for Move, Infection, Gradient, Orbit, Roll,
+  Destroy, effects, shapes, and a custom updater.
 - `Particles.ts` verifies an explicit input position is not retained by
   reference, `position` and `initialPosition` are separate snapshots, and the
   same is true for `velocity` and `initialVelocity`. It also confirms per-add
@@ -179,11 +191,15 @@ after removal.
   releases it in `particleDestroyed`, and verifies the same pooled Particle is
   reused without stale state when that extension feature is disabled. Arbitrary
   plugin state still requires each extension to implement its cleanup hook.
+- Infection state is now reset in `particleCreated`; a pool-reuse regression
+  verifies stale infection stage, delay, and timer data cannot carry into the
+  next particle lifetime.
 - Container lifecycle coverage now changes `devicePixelRatio` from 2 to 3,
   refreshes, and verifies newly initialized particles get the corresponding
   Retina-scaled move speed. A DOM-canvas resize test verifies bitmap dimensions
   and proportional particle position scaling after the initial tick clears
-  `ignoresResizeRatio`; shape/effect and Retina option precedence remain open.
+  `ignoresResizeRatio`; grouped shape/effect option precedence is covered by
+  `OptionsLoad.ts`, and Retina motion is checked before and after refresh.
 - Document and preserve hook/modifier/updater/drawer order. Verify that error
   paths and restarts do not duplicate destroy or particleCreated callbacks.
 - Check representative consumers including move/outModes,
@@ -196,19 +212,26 @@ after removal.
   speed limits when changing particle movement state or its update contract.
   Run the full suite, lint/format, and downstream builds.
 
-The E5 checkpoint now includes a matched M6/M8 headless runtime sample against
-E4 at 100, 500 and 1,000 particles, with deterministic RNG and 30 forced-GC
-retention cycles. M6/500 remains the only sampled p95 exception (2.0 ms versus
-the 1.87 ms E0 ceiling); the other five frame p95 medians pass their ceilings.
-Retention drift is 88,852 bytes, below the 1 MiB allowance. See the raw and
-aggregated results in `evidence/e5/runtime-extended.json` and
-`evidence/e5/runtime-extended-summary.json`. This does not replace the missing
-per-particle heap/allocation and M3–M8 complete cost comparison.
-The matching E4-to-E5 bundle comparison also exceeds the 2% growth target for
-the minimal and factory consumers (+6.92% and +7.90% gzip, respectively); the
-minified engine is +12.70% gzip and the all bundle +5.25%. Keep the size gate
-open while attributing and reducing this growth. See
-`evidence/e5/bundle-delta-vs-e4.json`.
+The current E5 profile comparison uses recovered E4 and preserved pre/post-cache
+E5 all-bundles in the same Chrome 157.0.8103.79. The 45-case matrices have 135
+matching initial/warm/measured scene snapshots. The accepted bounded-cache
+increment reduces M4/1,000 draw from 12.40 to 9.60 ms and sampled full-frame
+allocation by 26.1%. M4 draw still exceeds E0 ceilings at 500/1,000 particles;
+M3/1,000 update now passes at 1.30 ms. M7/500 frame p95 needs dispersion review.
+Raw profiles, gzip artifacts, size/hash provenance and comparisons are in
+`evidence/e5/matched-baseline/`. Full-frame allocation includes update.
+
+Fresh M6/M8 evidence after fixing ambient randomness in absorber placement and
+recycling passes 18 samples and 30 retention cycles. DOM nodes and listeners
+remain stable, heap drift is 114,876 bytes, and M6/500 p95 is 1.90 ms vs the
+1.87 E0 ceiling. Historical unseeded M6 runs are not causal regression baselines;
+see `matched-baseline/post-cache/summary.json` and `V5-E5-STATUS.md`.
+
+Final verification passes 453 build targets, all 85 workspace test targets and
+813 primary tests. T1/T3 option/state alternatives, remaining T2 getter/source
+attribution and T4 HDR cache hit/miss/churn costs remain open. The user waived
+bundle growth as an E5 blocker; preserve its measurements and new increment
+bundle deltas alongside the earlier E4 comparison.
 
 ## Deliverables
 
@@ -252,10 +275,10 @@ active rejection, rejection after reuse, stale success after replacement, and
 the existing delayed colorized-SVG particle-init path. Video export now covers
 missing MediaRecorder, duration units, recorder errors, concurrent export
 cancellation on plugin destruction, and recorder/stream cleanup in
-`Exports.ts`; wider engine-load rollback and fetch cancellation remain open G3
-questions. Container teardown now continues through throwing plugin/resource
+`Exports.ts`. Engine loading now cancels superseded configuration fetches and
+retains the previous container through replacement canvas setup/start; failure
+restores the previous canvas owner. Container teardown now continues through throwing plugin/resource
 cleanup hooks, preserves the original start/load error, and removes failed load
 candidates; late plugin instances are also disposed safely when initialization
 finishes after container destruction. `ContainerLifecycle.ts` covers these
-failure paths. Old-scene retention during replacement and fetch cancellation
-remain open.
+failure paths. `LoadOrdering.ts` covers same-id and anonymous-host replacement.

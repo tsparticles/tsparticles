@@ -1,7 +1,7 @@
 import { CONFETTI_OPTIONS, LINK_OPTIONS, SNOW_OPTIONS } from "../utils/options";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import Controller from "@ember/controller";
-import { engine } from "../../particlesEngine";
+import { engine } from "../utils/particles-engine";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadFull } from "tsparticles";
 import { loadSnowPreset } from "@tsparticles/preset-snow";

@@ -1,6 +1,8 @@
 # V5-06 — Full ParticlesManager review
 
-Status pending. Execute in E6 after the E5 Particle/options and color gate.
+Status in progress (2026-11-23); E5 accepted. See the
+[E6 checkpoint](V5-E6-STATUS.md) for spatial contract fixtures, current-source
+findings and the remaining review/measurement queue.
 Review the entire area, including work beyond signature adaptations.
 See the [execution sequence](V5-EXECUTION.md).
 

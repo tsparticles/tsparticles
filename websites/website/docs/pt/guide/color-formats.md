@@ -57,7 +57,7 @@ hdr: {
 },
 ```
 
-Note that `mode` and `peakNits` only take effect when `enable` is `true` and rendering is actually HDR; the SDR path ignores them. Colors produced by `colorMix()` and color gradients are mixed in linear space in HDR mode for perceptually correct blends.
+Note that `mode` and `peakNits` only affect output when `enable` is `true` and HDR rendering is available; SDR ignores them. For canonical perceptual mixing, use `colorMixOklch()`, which interpolates rectangular OKLab and returns OKLCH. The deprecated `colorMix()` helper returns RGB.
 
 ## Practical guidance
 

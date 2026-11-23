@@ -41,10 +41,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
   #lastPosition?: ICoordinates;
   readonly #pluginManager;
 
-  constructor(
-    pluginManager: InteractivityPluginManager,
-    container: TrailContainer,
-  ) {
+  constructor(pluginManager: InteractivityPluginManager, container: TrailContainer) {
     super(container);
     this.#pluginManager = pluginManager;
     this.#delay = 0;
@@ -72,9 +69,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       return;
     }
 
-    const optDelay =
-      (trailOptions.delay * millisecondsToSeconds) /
-      this.container.retina.reduceFactor;
+    const optDelay = (trailOptions.delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
 
     if (this.#delay < optDelay) {
       this.#delay += delta.value;
@@ -88,8 +83,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       canEmit = !(
         trailOptions.pauseOnStop &&
         (mousePos === this.#lastPosition ||
-          (mousePos?.x === this.#lastPosition?.x &&
-            mousePos?.y === this.#lastPosition?.y))
+          (mousePos?.x === this.#lastPosition?.x && mousePos?.y === this.#lastPosition?.y))
       );
 
     if (mousePos) {
@@ -121,9 +115,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             }
 
             const w = comp?.weights,
-              factor =
-                norm.x * (w?.x ?? defaultWeight) +
-                norm.y * (w?.y ?? defaultWeight),
+              factor = norm.x * (w?.x ?? defaultWeight) + norm.y * (w?.y ?? defaultWeight),
               rangeSource = comp?.value ?? originalValue,
               min = getRangeMin(rangeSource ?? defaultMin),
               max = getRangeMax(rangeSource ?? defaultMax),
@@ -142,10 +134,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
           fillData = trailPaintOptions?.fill,
           // Resolve the trail color once into the canonical OKLCH model.
           baseOklch = fillData
-            ? rangeColorToOklch(
-                this.#pluginManager,
-                AnimatableColor.create(undefined, fillData.color),
-              )
+            ? rangeColorToOklch(this.#pluginManager, AnimatableColor.create(undefined, fillData.color))
             : undefined,
           h = calculateValue(colorCoords.h, baseOklch?.h, hMax),
           c = calculateValue(colorCoords.c, baseOklch?.c, trailChromaMax),
@@ -170,20 +159,13 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
       }
 
-      container.particles.push(
-        trailOptions.quantity,
-        mousePos,
-        particleOptions,
-      );
+      container.particles.push(trailOptions.quantity, mousePos, particleOptions);
     }
 
     this.#delay -= optDelay;
   }
 
-  isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -191,20 +173,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
     return (
       !!events &&
-      ((mouse.clicking &&
-        mouse.inside &&
-        !!mouse.position &&
-        isInArray(trailMode, events.onClick.mode)) ||
-        (mouse.inside &&
-          !!mouse.position &&
-          isInArray(trailMode, events.onHover.mode)))
+      ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
+        (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode)))
     );
   }
 
-  loadModeOptions(
-    options: Modes & TrailMode,
-    ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
-  ): void {
+  loadModeOptions(options: Modes & TrailMode, ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]): void {
     loadOptionProperty(options, "trail", Trail, ...sources);
   }
 

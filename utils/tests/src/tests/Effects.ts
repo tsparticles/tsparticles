@@ -276,12 +276,13 @@ describe("Effects", async () => {
       drawer = container.effectDrawers.get("bubble"),
       { context, record } = createRecordingContext();
 
-    drawer?.drawAfter?.({ context, radius: 30 } as any);
+    drawer?.drawAfter?.({ context, particle: firstParticle(container), radius: 30 } as any);
 
     expect(record.arc).to.not.be.undefined;
     expect(record.arc.radius).to.equal(10);
     expect(record.arc.x).to.equal(10);
     expect(record.arc.y).to.equal(-10);
+    expect(context.fillStyle).to.equal("oklch(100% 0 0 / 0.6)");
 
     container.destroy(false);
   }, 30000);

@@ -126,7 +126,7 @@ export class TrailPluginInstance implements IContainerPlugin {
           resolve();
         });
 
-        img.addEventListener("error", (evt) => {
+        img.addEventListener("error", evt => {
           this.#container.engine.getLogger().error(evt);
 
           reject(new Error("Error loading image"));

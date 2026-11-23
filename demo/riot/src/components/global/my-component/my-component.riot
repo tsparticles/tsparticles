@@ -11,7 +11,7 @@
                     particlesLoaded='{particlesLoaded}'/>
 
     <script>
-import { engine } from "../../../../particlesEngine";
+import { engine } from "../../../../particlesEngine.js";
 
         import { initParticlesEngine } from "@tsparticles/riot";
         import { loadFull } from "tsparticles";
@@ -20,6 +20,7 @@ import { engine } from "../../../../particlesEngine";
         let toggle = false;
 
         export default {
+            engine,
             particlesConfig: configs.basic,
             particlesLoaded: (container) => console.log(container),
             onBeforeMount() {

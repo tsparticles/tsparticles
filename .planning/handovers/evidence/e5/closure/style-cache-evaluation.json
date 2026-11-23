@@ -1,0 +1,836 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "measuredAt": "2026-11-23T14:25:36.228Z",
+  "bundleSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "results": [
+    {
+      "name": "static-srgb",
+      "distinctColors": 1,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 42.799999952316284,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 41.10000002384186,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 40.80000001192093,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 1,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 0.800000011920929,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 0.5999999642372131,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "static-p3",
+      "distinctColors": 1,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 94.79999995231628,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 94.19999998807907,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 95.30000001192093,
+          "checksum": 638976,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 0.7999999523162842,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 0.3999999761581421,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 0.3999999761581421,
+          "checksum": 638976,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "static-hdr",
+      "distinctColors": 1,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 7.899999976158142,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 7.699999988079071,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 7.599999964237213,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 0.8999999761581421,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 0.800000011920929,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 0.699999988079071,
+          "checksum": 1032192,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 16384,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 1,
+            "bypasses": 0,
+            "entries": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "palette-hdr",
+      "distinctColors": 32,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 8.699999988079071,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 8.100000023841858,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 7.699999988079071,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 3.700000047683716,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 32,
+            "bypasses": 0,
+            "entries": 32
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 3.5,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 32,
+            "bypasses": 0,
+            "entries": 32
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 3,
+          "checksum": 1134592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 32,
+            "bypasses": 0,
+            "entries": 32
+          }
+        }
+      ]
+    },
+    {
+      "name": "animated-srgb",
+      "distinctColors": 8192,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 54.60000002384186,
+          "checksum": 804592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 55.10000002384186,
+          "checksum": 804592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 54.90000003576279,
+          "checksum": 804592,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 56.30000001192093,
+          "checksum": 804592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 54.39999997615814,
+          "checksum": 804592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 56.09999996423721,
+          "checksum": 804592,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        }
+      ]
+    },
+    {
+      "name": "animated-p3",
+      "distinctColors": 8192,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 94,
+          "checksum": 788540,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 91.59999996423721,
+          "checksum": 788540,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 91.39999997615814,
+          "checksum": 788540,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 92.69999998807907,
+          "checksum": 788540,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 94,
+          "checksum": 788540,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 91.59999996423721,
+          "checksum": 788540,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 1000,
+            "misses": 15384,
+            "clears": 8,
+            "maxEntries": 2000,
+            "bypasses": 0,
+            "entries": 384
+          }
+        }
+      ]
+    },
+    {
+      "name": "animated-hdr",
+      "distinctColors": 8192,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 7.699999988079071,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 7.800000011920929,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 8.199999988079071,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 9.300000011920929,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 122,
+            "misses": 1243,
+            "clears": 0,
+            "maxEntries": 1321,
+            "bypasses": 15019,
+            "entries": 1321
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 8.099999964237213,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 122,
+            "misses": 1243,
+            "clears": 0,
+            "maxEntries": 1321,
+            "bypasses": 15019,
+            "entries": 1321
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 8.699999988079071,
+          "checksum": 1138184,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 122,
+            "misses": 1243,
+            "clears": 0,
+            "maxEntries": 1321,
+            "bypasses": 15019,
+            "entries": 1321
+          }
+        }
+      ]
+    },
+    {
+      "name": "changing-hdr-output",
+      "distinctColors": 1,
+      "mismatches": 0,
+      "measurements": [
+        {
+          "cached": false,
+          "repetition": 0,
+          "ms": 8.700000047683716,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 1,
+          "ms": 7.199999988079071,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": false,
+          "repetition": 2,
+          "ms": 7.100000023841858,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 0,
+            "lastHits": 0,
+            "mapHits": 0,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 0,
+            "bypasses": 0,
+            "entries": 0
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 0,
+          "ms": 2.600000023841858,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 4,
+            "bypasses": 0,
+            "entries": 4
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 1,
+          "ms": 2.400000035762787,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 4,
+            "bypasses": 0,
+            "entries": 4
+          }
+        },
+        {
+          "cached": true,
+          "repetition": 2,
+          "ms": 2.599999964237213,
+          "checksum": 1040384,
+          "stats": {
+            "calls": 16384,
+            "lastHits": 0,
+            "mapHits": 16384,
+            "misses": 0,
+            "clears": 0,
+            "maxEntries": 4,
+            "bypasses": 0,
+            "entries": 4
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Instrumented unminified diagnostic; Map/counter wrappers affect timing and favor the uncached reference. It is not the runtime budget benchmark.",
+    "Uncached reference executes the exact production generator body without Map/key/last-value machinery.",
+    "Cases include frozen shared sources, alpha, P3, 8192 animated colors and changing HDR peak/mode; no new quantization is used."
+  ]
+}

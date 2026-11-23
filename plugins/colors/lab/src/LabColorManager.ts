@@ -49,11 +49,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       labColor = colorValue.lab ?? (color.value as ILab);
 
-    if (
-      !("l" in labColor) ||
-      !("aAxis" in labColor) ||
-      !("bAxis" in labColor)
-    ) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 
@@ -64,11 +60,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       labColor = colorValue.lab ?? (color.value as ILab);
 
-    if (
-      !("l" in labColor) ||
-      !("aAxis" in labColor) ||
-      !("bAxis" in labColor)
-    ) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 
@@ -86,11 +78,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       labColor = colorValue.lab ?? (color.value as IRangeLab); // Support for LAB
 
-    if (
-      !("l" in labColor) ||
-      !("aAxis" in labColor) ||
-      !("bAxis" in labColor)
-    ) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 
@@ -105,11 +93,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       labColor = colorValue.lab ?? (color.value as IRangeLab);
 
-    if (
-      !("l" in labColor) ||
-      !("aAxis" in labColor) ||
-      !("bAxis" in labColor)
-    ) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 
@@ -148,11 +132,9 @@ export class LabColorManager implements IColorManager {
 
     const color = {
         aAxis:
-          Number.parseFloat(result[indexes.aAxis] ?? "0") *
-          (result[indexes.aAxisPercent] ? labAxisPercentScale : 1),
+          Number.parseFloat(result[indexes.aAxis] ?? "0") * (result[indexes.aAxisPercent] ? labAxisPercentScale : 1),
         bAxis:
-          Number.parseFloat(result[indexes.bAxis] ?? "0") *
-          (result[indexes.bAxisPercent] ? labAxisPercentScale : 1),
+          Number.parseFloat(result[indexes.bAxis] ?? "0") * (result[indexes.bAxisPercent] ? labAxisPercentScale : 1),
         l: Number.parseFloat(result[indexes.l] ?? "0"),
       },
       alpha = result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha;
@@ -183,12 +165,8 @@ export class LabColorManager implements IColorManager {
 
     const lab = {
         l: Number.parseFloat(result[1] ?? "0"),
-        aAxis:
-          Number.parseFloat(result[2] ?? "0") *
-          (result[3] ? labAxisPercentScale : 1),
-        bAxis:
-          Number.parseFloat(result[4] ?? "0") *
-          (result[5] ? labAxisPercentScale : 1),
+        aAxis: Number.parseFloat(result[2] ?? "0") * (result[3] ? labAxisPercentScale : 1),
+        bAxis: Number.parseFloat(result[4] ?? "0") * (result[5] ? labAxisPercentScale : 1),
       },
       alpha = result[6] ? parseAlpha(result[6]) : defaultAlpha;
 

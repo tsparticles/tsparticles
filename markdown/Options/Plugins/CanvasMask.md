@@ -21,6 +21,8 @@ Behavior & notes
 - `override`, `pixels`, `image`, and `text` are nested option objects — see the plugin's `Options` classes for nested fields and defaults.
 - `position` is expressed in percent by default (50/50 centers the mask).
 - When `element` is provided it must be a real `HTMLCanvasElement` instance (the class checks instanceof before assigning).
+- Pixel filter callbacks receive the RGBA pixel and an optional second `colorSpace` argument (`"srgb"` or `"display-p3"`). Readback uses RGBA-unorm8, so pixel samples do not retain HDR headroom. When pixel color overrides are enabled, sampled colors retain that source space through OKLCH conversion.
+- When both color and opacity overrides are enabled, the source pixel alpha is applied once through particle opacity.
 
 Example
 

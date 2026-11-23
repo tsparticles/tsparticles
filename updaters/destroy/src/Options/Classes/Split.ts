@@ -51,10 +51,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     }
 
     if (data.strokeColor !== undefined) {
-      this.strokeColor = OptionsColor.create(
-        this.strokeColor,
-        data.strokeColor,
-      );
+      this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
     loadProperty(this, "count", data.count);
@@ -62,7 +59,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     this.factor.load(data.factor);
     this.rate.load(data.rate);
 
-    this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
+    this.particles = executeOnSingleOrMultiple(data.particles, particles => {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
     });
 

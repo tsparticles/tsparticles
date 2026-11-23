@@ -9,6 +9,7 @@ import {
 import {
   type ICoordinates,
   type IDelta,
+  type IOklcha,
   type RecursivePartial,
   Vector,
   degToRad,
@@ -16,10 +17,13 @@ import {
   doublePI,
   getDistance,
   getRandomInRange,
+  getStyleFromOklch,
   identity,
   loadOptionProperty,
   none,
+  percentDenominator,
   quarter,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { Cannon } from "./Options/Classes/Cannon.js";
 
@@ -36,7 +40,16 @@ const cannonMode = "cannon",
   powerRadiusMaxFactor = identity / powerRadiusMaxDenominator,
   minTapsLength = 2,
   piDeg = 180,
-  minDistance = 0;
+  minDistance = 0,
+  // Alpha from the previous #ffffff80 input fallback, retained exactly.
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  cannonFallbackAlpha = 0x80 / 0xff,
+  cannonFallbackColor: IOklcha = {
+    a: cannonFallbackAlpha,
+    c: 0,
+    h: 0,
+    l: percentDenominator,
+  };
 
 /**
  * Computes the angle in radians between two points.
@@ -70,8 +83,8 @@ interface CannonData {
   /** Spread half-angle in radians */
   spread: number;
 
-  /** CSS color for the aiming line */
-  vectorColor: string;
+  /** Canonical aiming-line color */
+  vectorColor: IOklcha;
 
   /** Velocity multiplier from drag distance */
   velocityFactor: number;
@@ -102,7 +115,7 @@ interface CannonGesture {
  * - `minParticles` — minimum burst size regardless of drag length (default 5)
  * - `maxParticles` — cap for burst size (default 200)
  * - `drawVector` — whether to render the aiming line while dragging (default true)
- * - `vectorColor` — CSS color for the aiming line (default "#ffffff80")
+ * - `vectorColor` — registered-engine color input for the aiming line (default "#ffffff80")
  */
 export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   readonly maxDistance = 0;
@@ -145,7 +158,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       minParticles: options.minParticles,
       maxParticles: options.maxParticles,
       drawVector: options.drawVector,
-      vectorColor: options.vectorColor,
+      vectorColor: rangeColorToOklch(this.container.engine.pluginManager, options.vectorColor) ?? cannonFallbackColor,
     };
   }
 
@@ -241,6 +254,14 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       }
 
       const { origin, current } = this.#gesture,
+        vectorStyle = getStyleFromOklch(
+          opts.vectorColor,
+          this.container.hdr,
+          1,
+          this.container.peakNits,
+          this.container.hdrMode,
+          this.container.outputColorSpace,
+        ),
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
@@ -250,7 +271,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
         clampedY = origin.y + (current.y - origin.y) * clampRatio;
 
       ctx.save();
-      ctx.strokeStyle = opts.vectorColor;
+      ctx.strokeStyle = vectorStyle;
       ctx.lineWidth = double * pxRatio;
       ctx.beginPath();
       ctx.moveTo(origin.x, origin.y);
@@ -262,7 +283,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
 
       ctx.beginPath();
       ctx.arc(origin.x, origin.y, radius, minAngle, doublePI);
-      ctx.strokeStyle = opts.vectorColor;
+      ctx.strokeStyle = vectorStyle;
       ctx.lineWidth = double * pxRatio;
       ctx.stroke();
       ctx.restore();

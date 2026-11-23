@@ -176,12 +176,14 @@ export interface IRgb {
   r: number;
 }
 
-/** RGB channels with explicit source primaries. Channels are encoded 0–255 values. */
+/** RGB input channels. Channels are encoded 0–255 values; absent metadata means sRGB. */
 export interface ISpacedRgb extends IRgb {
   /** Optional input alpha. */
   a?: number;
   /** Source primaries used to interpret these encoded channels. */
-  colorSpace: "srgb" | "display-p3";
+  colorSpace?: "srgb" | "display-p3";
+  /** Input-only shorthand: true means Display-P3; false means sRGB. */
+  p3?: boolean;
 }
 
 /**
@@ -205,12 +207,14 @@ export interface IRangeRgb {
   r: RangeValue;
 }
 
-/** Ranged RGB channels with explicit source primaries. */
+/** Ranged RGB input channels. Absent source metadata means sRGB. */
 export interface IRangeSpacedRgb extends IRangeRgb {
   /** Optional ranged input alpha. */
   a?: RangeValue;
   /** Source primaries used to interpret the sampled encoded channels. */
-  colorSpace: "srgb" | "display-p3";
+  colorSpace?: "srgb" | "display-p3";
+  /** Input-only shorthand: true means Display-P3; false means sRGB. */
+  p3?: boolean;
 }
 
 /**
@@ -490,7 +494,7 @@ export interface IValueColor {
   /**
    * Rgb Value
    */
-  rgb?: IRgb;
+  rgb?: ISpacedRgb;
 }
 
 /**
@@ -536,5 +540,5 @@ export interface IRangeValueColor {
   /**
    * Rgb Value
    */
-  rgb?: IRangeRgb;
+  rgb?: IRangeSpacedRgb;
 }

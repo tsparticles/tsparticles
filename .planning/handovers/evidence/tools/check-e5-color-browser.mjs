@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import path from "node:path";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import puppeteer from "puppeteer";
 
 const browser = await puppeteer.launch({
@@ -29,11 +31,31 @@ try {
   const resultsText = await page.$eval("#result", (node) => node.textContent),
     fixture = JSON.parse(resultsText ?? "null");
 
+  const report = {
+    revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+    workingTree: true,
+    formatterSha256: createHash("sha256")
+      .update(await readFile("engine/dist/esm/Utils/ColorUtils.js"))
+      .digest("hex"),
+    errors,
+    browserVersion: await browser.version(),
+    fixtureDate: fixture.date,
+    hdrLuminanceComparison: fixture.hdrLuminanceComparison,
+    results: fixture.results,
+    userAgent: fixture.browser,
+  };
+
+  await writeFile(
+    path.resolve(".planning/handovers/evidence/e5/browser-color-results.json"),
+    `${JSON.stringify(report, null, 2)}\n`,
+  );
+
   assert.deepEqual(errors, []);
-  assert.equal(fixture.results.length, 5);
+  assert.equal(fixture.results.length, 8);
 
   for (const result of fixture.results) {
     assert.equal(result.status, "pass", result.label);
+    assert.equal(result.sourceUnchanged, true, `${result.label} source mutation`);
     assert.equal(result.context.colorSpace, result.target, `${result.label} context space`);
     assert.equal(result.readbackColorSpace, result.target, `${result.label} readback space`);
   }
@@ -46,18 +68,6 @@ try {
     assert.ok(result.luminanceNits > 0, `${result.label} luminance`);
   }
 
-  const report = {
-    browserVersion: await browser.version(),
-    fixtureDate: fixture.date,
-    hdrLuminanceComparison: fixture.hdrLuminanceComparison,
-    results: fixture.results,
-    userAgent: fixture.browser,
-  };
-
-  await writeFile(
-    path.resolve(".planning/handovers/evidence/e5/browser-color-results.json"),
-    `${JSON.stringify(report, null, 2)}\n`,
-  );
   console.log(JSON.stringify(report, null, 2));
 } finally {
   await browser.close();

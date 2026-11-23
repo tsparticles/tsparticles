@@ -87,10 +87,12 @@ export function oklchaToRgba(oklcha: IOklcha): IRgba {
  * @param color - the OKLCH ({@link IOklch}) object
  * @param opacity - the opacity value
  * @returns the CSS style string
+ * @deprecated Use the engine's output-aware getStyleFromOklch helper to map a copy into the active canvas
+ * gamut.
  */
 export function getStyleFromOklch(color: IOklch, opacity?: number): string {
   const { l, c, h } = color,
     alpha = opacity !== undefined ? ` / ${opacity.toString()}` : "";
 
-  return `oklch(${l.toString()}% ${c.toString()} ${h.toString()}°${alpha})`;
+  return `oklch(${l.toString()}% ${c.toString()} ${h.toString()}${alpha})`;
 }

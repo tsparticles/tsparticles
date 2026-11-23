@@ -15,10 +15,7 @@ import type {
   SVGPathSegLinetoVerticalAbs,
   SVGPathSegLinetoVerticalRel,
 } from "./pathseg.js";
-import type {
-  SvgAbsoluteCoordinatesTypes,
-  SvgRelativeCoordinatesTypes,
-} from "./types.js";
+import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types.js";
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 
@@ -67,14 +64,7 @@ export function drawPolygonMask(
   }
 
   context.closePath();
-  context.strokeStyle = getStyleFromOklch(
-    color,
-    hdr,
-    undefined,
-    peakNits,
-    mode,
-    outputColorSpace,
-  );
+  context.strokeStyle = getStyleFromOklch(color, hdr, undefined, peakNits, mode, outputColorSpace);
   context.lineWidth = stroke.width;
   context.stroke();
 }
@@ -115,14 +105,7 @@ export function drawPolygonMaskPath(
     return;
   }
 
-  context.strokeStyle = getStyleFromOklch(
-    color,
-    hdr,
-    stroke.opacity,
-    peakNits,
-    mode,
-    outputColorSpace,
-  );
+  context.strokeStyle = getStyleFromOklch(color, hdr, stroke.opacity, peakNits, mode, outputColorSpace);
   context.lineWidth = stroke.width;
   context.stroke(path);
   context.resetTransform();
@@ -134,11 +117,7 @@ export function drawPolygonMaskPath(
  * @param offset - The offset
  * @returns the coordinates of the points
  */
-export function parsePaths(
-  paths: ISvgPath[],
-  scale: number,
-  offset: ICoordinates,
-): ICoordinates[] {
+export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
   const res: ICoordinates[] = [],
     defaultCount = 0;
 
@@ -265,11 +244,7 @@ export function calcClosestPointOnSegment(
  * @param stop - The stop
  * @param velocity - The velocity
  */
-export function segmentBounce(
-  start: ICoordinates,
-  stop: ICoordinates,
-  velocity: Vector,
-): void {
+export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
   const dx = start.x - stop.x,
     dy = start.y - stop.y,
     wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;

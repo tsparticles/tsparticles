@@ -1,0 +1,298 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "reportOnly": true,
+  "results": [
+    {
+      "scenario": "white-links",
+      "runs": [
+        {
+          "name": "before",
+          "bundleSha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+          "pixelSha256": "52bc840402e6d655bdca6b8cfe26125f6186e1e73db05c950fff742fcb0df176",
+          "geometrySha256": "454edcd4e5c06098d5a081fcc4afd2e575dd794afa7967ca94421fdd6570d677",
+          "stats": {
+            "strokeStyle": 93036,
+            "lineWidth": 93036,
+            "globalAlpha": 92083
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "srgb",
+            "colorType": "unorm8",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1474,
+          "remaining": 0
+        },
+        {
+          "name": "after",
+          "bundleSha256": "5867a73c2373d163defff5f8de8c4c6a0261896a673b6424ad7d944b7f5aefaf",
+          "pixelSha256": "84322a428b852dc7ef52fc5df564b04948a3da0d0c604bb4cfe701ae5ac2bedd",
+          "geometrySha256": "454edcd4e5c06098d5a081fcc4afd2e575dd794afa7967ca94421fdd6570d677",
+          "stats": {
+            "strokeStyle": 26894,
+            "lineWidth": 26894,
+            "globalAlpha": 83436
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "srgb",
+            "colorType": "unorm8",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1474,
+          "remaining": 0
+        }
+      ],
+      "pixelDifference": {
+        "maxDifference": [
+          255,
+          255,
+          255,
+          0
+        ],
+        "maxPremultipliedDifference": [
+          3.0117647058823565,
+          3.074509803921572,
+          3.074509803921572
+        ],
+        "maxVisibleDifference": [
+          10,
+          10,
+          10
+        ],
+        "changedChannels": 14224,
+        "changedPixels": 5133,
+        "totalPixels": 76800,
+        "units": "unorm8 channel steps"
+      }
+    },
+    {
+      "scenario": "mixed-alpha",
+      "runs": [
+        {
+          "name": "before",
+          "bundleSha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+          "pixelSha256": "db287496ba2fa0f69132aa8351208bda2f14c9a1fbb43ef5768ac11b94bddad0",
+          "geometrySha256": "41805f05901f87c1b58d754f395c2746d455c174ee066c517e4df9d18b9ff4ac",
+          "stats": {
+            "strokeStyle": 101412,
+            "lineWidth": 101412,
+            "globalAlpha": 100532
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "srgb",
+            "colorType": "unorm8",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1627,
+          "remaining": 0
+        },
+        {
+          "name": "after",
+          "bundleSha256": "5867a73c2373d163defff5f8de8c4c6a0261896a673b6424ad7d944b7f5aefaf",
+          "pixelSha256": "50bf63a2733a08a0857952919a0525070df51633f5bb8f5508e71f7ffb788a30",
+          "geometrySha256": "41805f05901f87c1b58d754f395c2746d455c174ee066c517e4df9d18b9ff4ac",
+          "stats": {
+            "strokeStyle": 67787,
+            "lineWidth": 27040,
+            "globalAlpha": 91812
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "srgb",
+            "colorType": "unorm8",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1627,
+          "remaining": 0
+        }
+      ],
+      "pixelDifference": {
+        "maxDifference": [
+          255,
+          255,
+          255,
+          0
+        ],
+        "maxPremultipliedDifference": [
+          3.3882352941176492,
+          4.0627450980392155,
+          4.0627450980392155
+        ],
+        "maxVisibleDifference": [
+          11,
+          11,
+          11
+        ],
+        "changedChannels": 28685,
+        "changedPixels": 11504,
+        "totalPixels": 76800,
+        "units": "unorm8 channel steps"
+      }
+    },
+    {
+      "scenario": "p3-hdr-triangles",
+      "runs": [
+        {
+          "name": "before",
+          "bundleSha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+          "pixelSha256": "16f00664a41ae5c3bdfc9ba1a4f289c7bee4194172ad470af8aad8f86a0858a0",
+          "geometrySha256": "cf062152f6b187e4c4cc5f6abecc74697651d2281c0029a8b6ae1091435322cd",
+          "stats": {
+            "strokeStyle": 99460,
+            "lineWidth": 99460,
+            "globalAlpha": 483828
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "display-p3",
+            "colorType": "float16",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 19315,
+          "remaining": 0
+        },
+        {
+          "name": "after",
+          "bundleSha256": "5867a73c2373d163defff5f8de8c4c6a0261896a673b6424ad7d944b7f5aefaf",
+          "pixelSha256": "16f00664a41ae5c3bdfc9ba1a4f289c7bee4194172ad470af8aad8f86a0858a0",
+          "geometrySha256": "cf062152f6b187e4c4cc5f6abecc74697651d2281c0029a8b6ae1091435322cd",
+          "stats": {
+            "strokeStyle": 57979,
+            "lineWidth": 18273,
+            "globalAlpha": 483828
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "display-p3",
+            "colorType": "float16",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 19315,
+          "remaining": 0
+        }
+      ],
+      "pixelDifference": {
+        "maxDifference": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "maxPremultipliedDifference": [
+          0,
+          0,
+          0
+        ],
+        "maxVisibleDifference": [
+          0,
+          0,
+          0
+        ],
+        "changedChannels": 0,
+        "changedPixels": 0,
+        "totalPixels": 76800,
+        "units": "normalized float"
+      }
+    },
+    {
+      "scenario": "p3-hdr-strokes",
+      "runs": [
+        {
+          "name": "before",
+          "bundleSha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+          "pixelSha256": "2bdcadf07897f890dfae1199d385f75c537997a707d3c50f50a66cf20da21dbd",
+          "geometrySha256": "41805f05901f87c1b58d754f395c2746d455c174ee066c517e4df9d18b9ff4ac",
+          "stats": {
+            "strokeStyle": 101412,
+            "lineWidth": 101412,
+            "globalAlpha": 100532
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "display-p3",
+            "colorType": "float16",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1627,
+          "remaining": 0
+        },
+        {
+          "name": "after",
+          "bundleSha256": "5867a73c2373d163defff5f8de8c4c6a0261896a673b6424ad7d944b7f5aefaf",
+          "pixelSha256": "5e014172d439c71dd175b41bfa20d6530041e776c58ad3d88ab34c1d2cd63196",
+          "geometrySha256": "41805f05901f87c1b58d754f395c2746d455c174ee066c517e4df9d18b9ff4ac",
+          "stats": {
+            "strokeStyle": 67787,
+            "lineWidth": 27040,
+            "globalAlpha": 91812
+          },
+          "attributes": {
+            "alpha": true,
+            "colorSpace": "display-p3",
+            "colorType": "float16",
+            "desynchronized": true,
+            "toneMapping": {
+              "mode": "standard"
+            },
+            "willReadFrequently": false
+          },
+          "randomCalls": 1627,
+          "remaining": 0
+        }
+      ],
+      "pixelDifference": {
+        "maxDifference": [
+          0.0009765625,
+          0.00146484375,
+          0.0009765625,
+          0
+        ],
+        "maxPremultipliedDifference": [
+          0.0008797645568847656,
+          0.0009303092956542969,
+          0.0009188652038574219
+        ],
+        "maxVisibleDifference": [
+          0.0009765625,
+          0.0009765625,
+          0.0009765625
+        ],
+        "changedChannels": 10208,
+        "changedPixels": 9652,
+        "totalPixels": 76800,
+        "units": "normalized float"
+      }
+    }
+  ]
+}

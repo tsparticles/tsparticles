@@ -62,9 +62,7 @@ describe("LCH conversion", () => {
 
 describe("CSS LCH to OKLCH conversion", () => {
   it("converts the D50 CSS LCH red reference directly to D65 OKLCH", () => {
-    const result = new LchColorManager().parseStringOklch(
-      "lch(54.2943% 106.8519 40.855 / 25%)",
-    );
+    const result = new LchColorManager().parseStringOklch("lch(54.2943% 106.8519 40.855 / 25%)");
 
     expect(result?.l).toBeCloseTo(62.8, 1);
     expect(result?.c).toBeCloseTo(0.2577, 3);
@@ -77,12 +75,8 @@ describe("CSS LCH to OKLCH conversion", () => {
       resolved = manager.parseStringOklch("LCH(50% 20 -30 / 25%)");
 
     expect(resolved?.a).toBe(0.25);
-    expect([resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite)).toBe(
-      true,
-    );
-    expect(
-      manager.parseStringOklch("lch(50% 20 -30) trailing"),
-    ).toBeUndefined();
+    expect([resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite)).toBe(true);
+    expect(manager.parseStringOklch("lch(50% 20 -30) trailing")).toBeUndefined();
     expect(manager.parseStringOklch("lch(50% 20 -30 / 101%)")).toBeUndefined();
     expect(manager.parseString("lch(101% 20 -30)")).toBeUndefined();
   });
@@ -92,10 +86,7 @@ describe("CSS LCH to OKLCH conversion", () => {
       expectedHue = manager.parseStringOklch("lch(50% 20 180)")?.h;
 
     for (const hue of ["180deg", "200grad", "3.141592653589793rad", ".5turn"]) {
-      expect(manager.parseStringOklch(`lch(50% 20 ${hue})`)?.h).toBeCloseTo(
-        expectedHue ?? 0,
-        10,
-      );
+      expect(manager.parseStringOklch(`lch(50% 20 ${hue})`)?.h).toBeCloseTo(expectedHue ?? 0, 10);
     }
 
     expect(manager.parseStringOklch("lch(50% 20 none)")).toBeUndefined();
@@ -107,18 +98,10 @@ describe("CSS LCH to OKLCH conversion", () => {
       percentChroma = "lch(52.2345% 48.13333333333333% 56.2 / 25%)",
       percentage = "lch(52.2345% 72.2 56.2 / 25%)";
 
-    expect(manager.parseString(numeric)).toEqual(
-      manager.parseString(percentage),
-    );
-    expect(manager.parseString(percentChroma)).toEqual(
-      manager.parseString(percentage),
-    );
-    expect(manager.parseStringOklch(numeric)).toEqual(
-      manager.parseStringOklch(percentage),
-    );
-    expect(manager.parseStringOklch(percentChroma)).toEqual(
-      manager.parseStringOklch(percentage),
-    );
+    expect(manager.parseString(numeric)).toEqual(manager.parseString(percentage));
+    expect(manager.parseString(percentChroma)).toEqual(manager.parseString(percentage));
+    expect(manager.parseStringOklch(numeric)).toEqual(manager.parseStringOklch(percentage));
+    expect(manager.parseStringOklch(percentChroma)).toEqual(manager.parseStringOklch(percentage));
   });
 
   it("rejects calc() and exponent notation", () => {

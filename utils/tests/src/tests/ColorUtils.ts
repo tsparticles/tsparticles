@@ -34,19 +34,20 @@ import {
   stringToRgb,
   updateColor,
 } from "@tsparticles/engine";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
 import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadHwbColorPlugin } from "@tsparticles/plugin-hwb-color";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
+import { sampledPixelToOklcha } from "../../../../plugins/emitters/src/PixelColorUtils.js";
 
 const tsParticles = createEngine();
 
 describe("ColorUtils", async () => {
   const pluginManager = tsParticles.pluginManager;
 
-  await pluginManager.register(async (engine) => {
+  await pluginManager.register(async engine => {
     await loadHexColorPlugin(engine);
     await loadHslColorPlugin(engine);
     await loadHsvColorPlugin(engine);
@@ -68,8 +69,7 @@ describe("ColorUtils", async () => {
         value: "#ff0000",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 2", () => {
@@ -77,8 +77,7 @@ describe("ColorUtils", async () => {
         value: "rgb(255, 0, 0)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 3", () => {
@@ -86,8 +85,7 @@ describe("ColorUtils", async () => {
         value: "rgba(255, 0, 0, 1)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 4", () => {
@@ -95,8 +93,7 @@ describe("ColorUtils", async () => {
         value: "rgb(255 0 0)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 5", () => {
@@ -104,8 +101,7 @@ describe("ColorUtils", async () => {
         value: "rgba(255 0 0 1)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 6", () => {
@@ -113,8 +109,7 @@ describe("ColorUtils", async () => {
         value: "hsla(0, 100%, 50%, 1)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("string value 7", () => {
@@ -122,8 +117,7 @@ describe("ColorUtils", async () => {
         value: "hsla(0 100% 50% 1)",
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("array string value", () => {
@@ -147,8 +141,7 @@ describe("ColorUtils", async () => {
         },
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("IValueColor w/ hsl value", () => {
@@ -162,8 +155,7 @@ describe("ColorUtils", async () => {
         },
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("rgb value", () => {
@@ -175,8 +167,7 @@ describe("ColorUtils", async () => {
         },
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("hsl value", () => {
@@ -188,8 +179,7 @@ describe("ColorUtils", async () => {
         },
       };
 
-      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(colorToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("invalid string value", () => {
@@ -217,15 +207,13 @@ describe("ColorUtils", async () => {
     it("from hex with alpha string to alpha value", () => {
       const value = "#ff0000ff";
 
-      expect(stringToAlpha(pluginManager, value)).to.equal(1).and.be.not
-        .undefined;
+      expect(stringToAlpha(pluginManager, value)).to.equal(1).and.be.not.undefined;
     });
 
     it("from hex without alpha string to alpha value", () => {
       const value = "#ff0000";
 
-      expect(stringToAlpha(pluginManager, value)).to.equal(1).and.be.not
-        .undefined;
+      expect(stringToAlpha(pluginManager, value)).to.equal(1).and.be.not.undefined;
     });
 
     it("invalid string value", () => {
@@ -239,8 +227,7 @@ describe("ColorUtils", async () => {
     it("from hex string to rgb value", () => {
       const color = "#ff0000";
 
-      expect(stringToRgb(pluginManager, color)).to.include(red).and.not.be
-        .undefined.and.not.be.null;
+      expect(stringToRgb(pluginManager, color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("invalid string value", () => {
@@ -258,8 +245,7 @@ describe("ColorUtils", async () => {
         s: 100,
       };
 
-      expect(hslToRgb(color)).to.include(red).and.not.be.undefined.and.not.be
-        .null;
+      expect(hslToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
     });
 
     it("hsl value zero saturation", () => {
@@ -274,8 +260,7 @@ describe("ColorUtils", async () => {
           r: 128,
         };
 
-      expect(hslToRgb(color)).to.include(grey).and.not.be.undefined.and.not.be
-        .null;
+      expect(hslToRgb(color)).to.include(grey).and.not.be.undefined.and.not.be.null;
     });
   });
 
@@ -293,33 +278,30 @@ describe("ColorUtils", async () => {
           getRadius: () => 30,
           getStrokeColor: () => undefined,
         } as unknown as Particle,
+        expectedSourceWeight = (sourceColor.a * 0.25) / 0.7,
+        expectedDestinationWeight = (destinationColor.a * 0.75) / 0.7,
         expectedA =
-          sourceColor.c * Math.cos((sourceColor.h * Math.PI) / 180) * 0.25 +
-          destinationColor.c *
-            Math.cos((destinationColor.h * Math.PI) / 180) *
-            0.75,
+          sourceColor.c * Math.cos((sourceColor.h * Math.PI) / 180) * expectedSourceWeight +
+          destinationColor.c * Math.cos((destinationColor.h * Math.PI) / 180) * expectedDestinationWeight,
         expectedB =
-          sourceColor.c * Math.sin((sourceColor.h * Math.PI) / 180) * 0.25 +
-          destinationColor.c *
-            Math.sin((destinationColor.h * Math.PI) / 180) *
-            0.75,
+          sourceColor.c * Math.sin((sourceColor.h * Math.PI) / 180) * expectedSourceWeight +
+          destinationColor.c * Math.sin((destinationColor.h * Math.PI) / 180) * expectedDestinationWeight,
         result = getLinkColor(source, destination, "mid");
 
       expect(result?.a).to.be.closeTo(0.7, 1e-12);
-      expect(result?.l).to.equal(72.5);
-      expect(result?.c).to.be.closeTo(Math.hypot(expectedA, expectedB), 1e-12);
-      expect(result?.h).to.be.closeTo(
-        ((Math.atan2(expectedB, expectedA) * 180) / Math.PI + 360) % 360,
-        1e-10,
+      expect(result?.l).to.be.closeTo(
+        sourceColor.l * expectedSourceWeight + destinationColor.l * expectedDestinationWeight,
+        1e-12,
       );
+      expect(result?.c).to.be.closeTo(Math.hypot(expectedA, expectedB), 1e-12);
+      expect(result?.h).to.be.closeTo(((Math.atan2(expectedB, expectedA) * 180) / Math.PI + 360) % 360, 1e-10);
     });
 
     it("recomputes cached link styles when the output gamut changes", async () => {
       let currentStrokeStyle = "";
 
-      const { LinkInstance } =
-          await import("../../../../interactions/particles/links/src/LinkInstance.js"),
-        color = { a: 0.8, c: 0.2, h: 270, l: 60 },
+      const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
+        color = { a: 0.8, c: 0.27, h: 60, l: 76 },
         container = {
           hdr: false,
           hdrMode: undefined,
@@ -370,23 +352,240 @@ describe("ColorUtils", async () => {
       instance.drawParticle(context as never, particle as never);
 
       expect(styles).to.have.length(2);
-      expect(contextCalls.filter((call) => call === "stroke")).to.have.length(
-        2,
-      );
-      expect(styles[0]).to.equal(styles[1]);
-      expect(styles[0]).to.equal(
-        getStyleFromOklch(color, false, undefined, 1000, undefined, "srgb"),
-      );
-      expect(styles[1]).to.equal(
-        getStyleFromOklch(
-          color,
-          false,
-          undefined,
-          1000,
-          undefined,
-          "display-p3",
-        ),
-      );
+      expect(contextCalls.filter(call => call === "stroke")).to.have.length(2);
+      expect(styles[0]).not.to.equal(styles[1]);
+      expect(styles[0]).to.equal(getStyleFromOklch(color, false, undefined, 1000, undefined, "srgb"));
+      expect(styles[1]).to.equal(getStyleFromOklch(color, false, undefined, 1000, undefined, "display-p3"));
+
+      for (const patch of [{ h: 200 }, { c: 0.1 }, { l: 40 }, { a: 0.3 }]) {
+        Object.assign(color, patch);
+        instance.drawParticle(context as never, particle as never);
+        expect(styles.at(-1)).to.equal(getStyleFromOklch(color, false, undefined, 1000, undefined, "display-p3"));
+      }
+
+      for (const output of [
+        { hdr: true, hdrMode: HdrMode.natural, peakNits: 400 },
+        { hdr: true, hdrMode: HdrMode.natural, peakNits: 1000 },
+        { hdr: true, hdrMode: HdrMode.vivid, peakNits: 1000 },
+        { hdr: false, hdrMode: HdrMode.vivid, peakNits: 1000 },
+      ]) {
+        Object.assign(container, output);
+        instance.drawParticle(context as never, particle as never);
+        expect(styles.at(-1)).to.equal(
+          getStyleFromOklch(color, output.hdr, undefined, output.peakNits, output.hdrMode, "display-p3"),
+        );
+      }
+    });
+
+    it("preserves link strokes while changing only the necessary canvas state", async () => {
+      const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
+        color = { a: 0.8, c: 0.1, h: 120, l: 50 },
+        other = { ...color, h: 240 },
+        destination = { getPosition: () => ({ x: 10, y: 0 }) },
+        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        particle = {
+          getPosition: () => ({ x: 0, y: 0 }),
+          links: [
+            { color, destination, opacity: 0.4 },
+            { color, destination, opacity: 0.8 },
+            { color: other, destination, opacity: 0.8 },
+          ],
+          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          retina: { linksWidth: 2 },
+        },
+        strokes: { alpha: number; style: string; width: number }[] = [];
+      let style = "",
+        alpha = 1,
+        width = 0,
+        styleWrites = 0,
+        widthWrites = 0;
+      const context = {
+          beginPath: () => undefined,
+          lineTo: () => undefined,
+          moveTo: () => undefined,
+          get strokeStyle() {
+            return style;
+          },
+          set strokeStyle(value: string) {
+            style = value;
+            styleWrites++;
+          },
+          get lineWidth() {
+            return width;
+          },
+          set lineWidth(value: number) {
+            width = value;
+            widthWrites++;
+          },
+          get globalAlpha() {
+            return alpha;
+          },
+          set globalAlpha(value: number) {
+            alpha = value;
+          },
+          stroke() {
+            strokes.push({ style, alpha, width });
+          },
+        },
+        instance = new LinkInstance(pluginManager, container as never);
+
+      instance.drawParticle(context as never, particle as never);
+      expect(strokes).to.deep.equal([
+        { style: getStyleFromOklch(color, false), alpha: 0.4, width: 2 },
+        { style: getStyleFromOklch(color, false), alpha: 0.8, width: 2 },
+        { style: getStyleFromOklch(other, false), alpha: 0.8, width: 2 },
+      ]);
+      expect(styleWrites).to.equal(2);
+      expect(widthWrites).to.equal(1);
+      expect(context.globalAlpha).to.equal(1);
+    });
+
+    it("restores unused fill paint and alpha even when a link stroke throws", async () => {
+      const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
+        color = { a: 0.8, c: 0.1, h: 120, l: 50 },
+        originalFill = { pattern: true },
+        states: { alpha: number; fill: unknown; style: string; width: number }[] = [],
+        seenFills: unknown[] = [],
+        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        destination = { getPosition: () => ({ x: 10, y: 0 }) },
+        particle = {
+          getPosition: () => ({ x: 0, y: 0 }),
+          links: [
+            { color, destination, opacity: 0.4 },
+            { color, destination, opacity: 0.8 },
+          ],
+          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          retina: { linksWidth: 2 },
+        };
+      let alpha = 0.7,
+        fill: unknown = originalFill,
+        shouldThrow = false,
+        style = "original",
+        width = 3;
+      const context = {
+          beginPath: () => undefined,
+          lineTo: () => undefined,
+          moveTo: () => undefined,
+          get fillStyle() {
+            return fill;
+          },
+          set fillStyle(value: unknown) {
+            fill = value;
+          },
+          get strokeStyle() {
+            return style;
+          },
+          set strokeStyle(value: string) {
+            style = value;
+          },
+          get globalAlpha() {
+            return alpha;
+          },
+          set globalAlpha(value: number) {
+            alpha = value;
+          },
+          get lineWidth() {
+            return width;
+          },
+          set lineWidth(value: number) {
+            width = value;
+          },
+          save() {
+            states.push({ alpha, fill, style, width });
+          },
+          restore() {
+            const saved = states.pop();
+
+            if (saved) {
+              alpha = saved.alpha;
+              fill = saved.fill;
+              style = saved.style;
+              width = saved.width;
+            }
+          },
+          stroke() {
+            if (shouldThrow) {
+              throw new Error("stroke failure");
+            }
+            seenFills.push(fill);
+          },
+        },
+        instance = new LinkInstance(pluginManager, container as never);
+
+      instance.drawParticle(context as never, particle as never);
+      expect(seenFills).to.deep.equal(["transparent", "transparent"]);
+      expect(context.fillStyle).to.equal(originalFill);
+      expect(context.globalAlpha).to.equal(0.7);
+      expect(context.strokeStyle).to.equal(getStyleFromOklch(color, false));
+      expect(context.lineWidth).to.equal(2);
+      expect(states).to.have.length(0);
+
+      shouldThrow = true;
+      expect(() => {
+        instance.drawParticle(context as never, particle as never);
+      }).to.throw("stroke failure");
+      expect(context.fillStyle).to.equal(originalFill);
+      expect(context.globalAlpha).to.equal(0.7);
+      expect(states).to.have.length(0);
+    });
+
+    it("bounds style caches while link colors animate", async () => {
+      const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
+        color = { a: 0.8, c: 0.1, h: 0, l: 50 },
+        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        particle = {
+          getPosition: () => ({ x: 0, y: 0 }),
+          links: [{ color, destination: { getPosition: () => ({ x: 10, y: 0 }) }, opacity: 0.5 }],
+          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          retina: { linksWidth: 1 },
+        },
+        context = {
+          beginPath(): void {
+            // Geometry is irrelevant to this style-cache fixture.
+          },
+          globalAlpha: 1,
+          lineTo(): void {
+            // Geometry is irrelevant to this style-cache fixture.
+          },
+          lineWidth: 0,
+          moveTo(): void {
+            // Geometry is irrelevant to this style-cache fixture.
+          },
+          stroke(): void {
+            // Geometry is irrelevant to this style-cache fixture.
+          },
+          strokeStyle: "",
+        },
+        instance = new LinkInstance(pluginManager, container as never),
+        // eslint-disable-next-line @typescript-eslint/unbound-method -- Invoked below with an explicit Map receiver.
+        originalSet = Map.prototype.set as Map<unknown, unknown>["set"];
+      let largestStyleCache = 0;
+      const set = vi.spyOn(Map.prototype, "set").mockImplementation(function (
+        this: Map<unknown, unknown>,
+        key: unknown,
+        value: unknown,
+      ): Map<unknown, unknown> {
+        const result = originalSet.call(this, key, value);
+
+        if (typeof value === "string" && value.startsWith("oklch(")) {
+          largestStyleCache = Math.max(largestStyleCache, this.size);
+        }
+
+        return result;
+      });
+
+      try {
+        for (let index = 0; index < 5000; index++) {
+          color.h = index / 100;
+          instance.drawParticle(context as never, particle as never);
+        }
+
+        expect(largestStyleCache).to.be.greaterThan(0);
+        expect(largestStyleCache).to.be.at.most(2000);
+        expect(context.strokeStyle).to.equal(getStyleFromOklch(color, false));
+      } finally {
+        set.mockRestore();
+      }
     });
 
     it("matches the CSS Color 4 sRGB red reference", () => {
@@ -439,18 +638,10 @@ describe("ColorUtils", async () => {
       // [191, 227, 255] with a 9-channel tolerance for this color.
       const color = { c: 0.3, h: 240, l: 90 },
         mapped = mapOklchToDisplayP3(color),
-        style = getStyleFromOklch(
-          color,
-          false,
-          1,
-          undefined,
-          undefined,
-          "display-p3",
-        ),
-        channels = /^oklch\(90% 0\.3 240° \/ 1\)$/u.exec(style);
+        style = getStyleFromOklch(color, false, 1, undefined, undefined, "display-p3"),
+        expectedStyle = `oklch(${mapped.color.l.toString()}% ${mapped.color.c.toString()} ${mapped.color.h.toString()} / 1)`;
 
-      expect(channels).not.to.be.null;
-      expect(style).to.equal("oklch(90% 0.3 240° / 1)");
+      expect(style).to.equal(expectedStyle);
       expect(mapped.color.c).to.be.lessThan(color.c);
     });
 
@@ -538,36 +729,18 @@ describe("ColorUtils", async () => {
         for (const cusp of values) {
           const mapped = map({ ...cusp, c: cusp.c * 1.25 });
 
-          expect(mapped.color.l, `${gamut} L at h=${cusp.h}`).to.be.closeTo(
-            cusp.l,
-            0.001,
-          );
+          expect(mapped.color.l, `${gamut} L at h=${cusp.h}`).to.be.closeTo(cusp.l, 0.001);
           expect(mapped.color.h, `${gamut} h=${cusp.h}`).to.equal(cusp.h);
-          expect(mapped.color.c, `${gamut} C at h=${cusp.h}`).to.be.closeTo(
-            cusp.c,
-            0.0003,
-          );
-          expect(mapped.rgb.r, `${gamut} red at h=${cusp.h}`).to.be.closeTo(
-            cusp.rgb.r,
-            0.5,
-          );
-          expect(mapped.rgb.g, `${gamut} green at h=${cusp.h}`).to.be.closeTo(
-            cusp.rgb.g,
-            0.5,
-          );
-          expect(mapped.rgb.b, `${gamut} blue at h=${cusp.h}`).to.be.closeTo(
-            cusp.rgb.b,
-            0.5,
-          );
+          expect(mapped.color.c, `${gamut} C at h=${cusp.h}`).to.be.closeTo(cusp.c, 0.0003);
+          expect(mapped.rgb.r, `${gamut} red at h=${cusp.h}`).to.be.closeTo(cusp.rgb.r, 0.5);
+          expect(mapped.rgb.g, `${gamut} green at h=${cusp.h}`).to.be.closeTo(cusp.rgb.g, 0.5);
+          expect(mapped.rgb.b, `${gamut} blue at h=${cusp.h}`).to.be.closeTo(cusp.rgb.b, 0.5);
         }
       }
     });
 
     it("parses CSS Display-P3 input without collapsing it into clipped sRGB", () => {
-      const resolved = rangeColorToOklch(
-          pluginManager,
-          "color(display-p3 1 0 0 / 40%)",
-        ),
+      const resolved = rangeColorToOklch(pluginManager, "color(display-p3 1 0 0 / 40%)"),
         reference = displayP3ToOklch({ r: 255, g: 0, b: 0 });
 
       expect(resolved?.a).to.equal(0.4);
@@ -660,14 +833,8 @@ describe("ColorUtils", async () => {
     it("preserves extended Display-P3 channels when resolving to OKLCH", () => {
       // CSS Color 4 §14.1.1 gives this out-of-P3 color as an equivalent
       // to oklch(85.07% 0.4873 151.4), before destination gamut mapping.
-      const result = rangeColorToOklch(
-          pluginManager,
-          "color(display-p3 -0.5782 1.067 -0.2363)",
-        ),
-        percentage = rangeColorToOklch(
-          pluginManager,
-          "color(display-p3 -57.82% 106.7% -23.63%)",
-        );
+      const result = rangeColorToOklch(pluginManager, "color(display-p3 -0.5782 1.067 -0.2363)"),
+        percentage = rangeColorToOklch(pluginManager, "color(display-p3 -57.82% 106.7% -23.63%)");
 
       expect(result?.l).to.be.closeTo(85.07, 0.05);
       expect(result?.c).to.be.closeTo(0.4873, 0.0003);
@@ -694,14 +861,10 @@ describe("ColorUtils", async () => {
       expect(roundTrip.r).to.be.closeTo(extended.r, 0.0003);
       expect(roundTrip.g).to.be.closeTo(extended.g, 0.0003);
       expect(roundTrip.b).to.be.closeTo(extended.b, 0.0003);
-      expect(rangeColorToOklch(pluginManager, "color(display-p3 1 0 0 / 101%)"))
-        .to.be.undefined;
-      expect(rangeColorToOklch(pluginManager, "oklch(70% 0.2 30) extra")).to.be
-        .undefined;
-      expect(rangeColorToOklch(pluginManager, "oklch(120% 0.2 30)")).to.be
-        .undefined;
-      expect(rangeColorToOklch(pluginManager, "oklch(0.7 -0.2 30)")).to.be
-        .undefined;
+      expect(rangeColorToOklch(pluginManager, "color(display-p3 1 0 0 / 101%)")).to.be.undefined;
+      expect(rangeColorToOklch(pluginManager, "oklch(70% 0.2 30) extra")).to.be.undefined;
+      expect(rangeColorToOklch(pluginManager, "oklch(120% 0.2 30)")).to.be.undefined;
+      expect(rangeColorToOklch(pluginManager, "oklch(0.7 -0.2 30)")).to.be.undefined;
       expect(
         rangeColorToOklch(pluginManager, {
           value: { oklch: { c: 0.2, h: 30, l: 101 } },
@@ -725,24 +888,15 @@ describe("ColorUtils", async () => {
         "3.141592653589793rad",
         ".5turn",
       ]) {
-        expect(
-          rangeColorToOklch(bareEngine.pluginManager, `oklch(70% 0.2 ${hue})`)
-            ?.h,
-          hue,
-        ).to.be.closeTo(180, 1e-10);
+        expect(rangeColorToOklch(bareEngine.pluginManager, `oklch(70% 0.2 ${hue})`)?.h, hue).to.be.closeTo(180, 1e-10);
       }
     });
 
     it("keeps alpha and canonical channels when a built-in HSL manager resolves a string", () => {
-      const resolved = rangeColorToOklch(
-        pluginManager,
-        "hsla(210, 35%, 42%, 0.3)",
-      );
+      const resolved = rangeColorToOklch(pluginManager, "hsla(210, 35%, 42%, 0.3)");
 
       expect(resolved?.a).to.equal(0.3);
-      expect(
-        [resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite),
-      ).to.equal(true);
+      expect([resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite)).to.equal(true);
       expect(resolved?.c).to.be.greaterThan(0);
     });
 
@@ -773,10 +927,7 @@ describe("ColorUtils", async () => {
         hsl = rangeColorToOklch(pluginManager, "HSLA(-150, 35%, 42%, 0.3)"),
         hsv = rangeColorToOklch(pluginManager, "HSVA(-240°, 40%, 50%, 37%)"),
         hwbDeg = rangeColorToOklch(pluginManager, "HWBA(90deg 10% 20% / 0.4)"),
-        hwbRad = rangeColorToOklch(
-          pluginManager,
-          "hwb(1.5707963267948966rad 10% 20%)",
-        ),
+        hwbRad = rangeColorToOklch(pluginManager, "hwb(1.5707963267948966rad 10% 20%)"),
         hwbTurn = rangeColorToOklch(pluginManager, "hwb(0.25turn 10% 20%)"),
         hwbGrad = rangeColorToOklch(pluginManager, "hwb(100grad 10% 20%)"),
         hwbNegative = rangeColorToOklch(pluginManager, "hwb(-270deg 10% 20%)");
@@ -789,11 +940,7 @@ describe("ColorUtils", async () => {
       expect(hwbTurn?.l).to.be.closeTo(hwbDeg?.l ?? 0, 0.0001);
       expect(hwbGrad?.l).to.be.closeTo(hwbDeg?.l ?? 0, 0.0001);
       expect(hwbNegative?.l).to.be.closeTo(hwbDeg?.l ?? 0, 0.0001);
-      expect(
-        [rgb?.l, hsl?.l, hsv?.l, hwbDeg?.l, hwbNegative?.l].every(
-          Number.isFinite,
-        ),
-      ).to.equal(true);
+      expect([rgb?.l, hsl?.l, hsv?.l, hwbDeg?.l, hwbNegative?.l].every(Number.isFinite)).to.equal(true);
     });
 
     it("uses the engine RNG to resolve RGB, HSL, HSV and HWB ranges", () => {
@@ -862,9 +1009,7 @@ describe("ColorUtils", async () => {
           const resolved = rangeColorToOklch(pluginManager, ranged);
 
           expect(randomCalls, `${name} RNG calls`).to.equal(3);
-          expect(resolved, `${name} sampled result`).to.deep.equal(
-            rangeColorToOklch(pluginManager, fixed),
-          );
+          expect(resolved, `${name} sampled result`).to.deep.equal(rangeColorToOklch(pluginManager, fixed));
         } finally {
           tsParticles.setRandom();
         }
@@ -874,7 +1019,7 @@ describe("ColorUtils", async () => {
     it("resolves through a native manager with no RGB hooks", () => {
       const direct = { a: 0.4, c: 0.17, h: 585, l: 62 },
         directManager: IColorManager = {
-          accepts: (input) => input.startsWith("direct("),
+          accepts: input => input.startsWith("direct("),
           handleColorOklch: () => direct,
           handleRangeColorOklch: () => direct,
           parseStringOklch: () => direct,
@@ -883,9 +1028,7 @@ describe("ColorUtils", async () => {
 
       directEngine.pluginManager.addColorManager("direct", directManager);
 
-      expect(
-        rangeColorToOklch(directEngine.pluginManager, "direct(color)"),
-      ).to.deep.equal({ ...direct, h: 225 });
+      expect(rangeColorToOklch(directEngine.pluginManager, "direct(color)")).to.deep.equal({ ...direct, h: 225 });
       expect(
         rangeColorToOklch(directEngine.pluginManager, {
           value: { direct: true },
@@ -899,7 +1042,7 @@ describe("ColorUtils", async () => {
     it("rejects invalid direct OKLCH manager results", () => {
       const customEngine = createEngine(),
         customManager: IColorManager = {
-          accepts: (input) => input.startsWith("custom("),
+          accepts: input => input.startsWith("custom("),
           handleColorOklch: () => undefined,
           handleRangeColorOklch: () => ({ a: 1.1, c: 0.2, h: 30, l: 50 }),
           parseStringOklch: () => ({
@@ -912,8 +1055,7 @@ describe("ColorUtils", async () => {
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
-      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to
-        .be.undefined;
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
       expect(
         rangeColorToOklch(customEngine.pluginManager, {
           value: { custom: true },
@@ -924,7 +1066,7 @@ describe("ColorUtils", async () => {
     it("rejects custom OKLCH manager lightness outside the canonical range", () => {
       const customEngine = createEngine(),
         customManager: IColorManager = {
-          accepts: (input) => input.startsWith("custom("),
+          accepts: input => input.startsWith("custom("),
           handleColorOklch: () => undefined,
           handleRangeColorOklch: () => ({ a: 0.6, c: 0.2, h: 30, l: -1 }),
           parseStringOklch: () => ({ a: 0.35, c: 0.2, h: 30, l: 101 }),
@@ -932,8 +1074,7 @@ describe("ColorUtils", async () => {
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
-      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to
-        .be.undefined;
+      expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
       expect(
         rangeColorToOklch(customEngine.pluginManager, {
           value: { custom: true },
@@ -945,7 +1086,7 @@ describe("ColorUtils", async () => {
       const customEngine = createEngine(),
         customRgb = { r: 12.5, g: 87.25, b: 194.75 },
         legacyManager: ILegacyColorManager = {
-          accepts: (input) => input.startsWith("custom("),
+          accepts: input => input.startsWith("custom("),
           handleColor: () => customRgb,
           handleRangeColor: () => customRgb,
           parseString: () => ({ ...customRgb, a: 0.35 }),
@@ -954,10 +1095,7 @@ describe("ColorUtils", async () => {
 
       customEngine.pluginManager.addColorManager("custom", customManager);
 
-      const parsed = rangeColorToOklch(
-        customEngine.pluginManager,
-        "custom(color)",
-      );
+      const parsed = rangeColorToOklch(customEngine.pluginManager, "custom(color)");
 
       expect(parsed).to.deep.equal({ ...rgbToOklch(customRgb), a: 0.35 });
       expect(
@@ -971,25 +1109,16 @@ describe("ColorUtils", async () => {
     });
 
     it("selects an indexed color-array entry before canonical parsing", () => {
-      const resolved = rangeColorToOklch(
-        pluginManager,
-        { value: ["oklch(20% 0.1 10)", "oklch(30% 0.2 20)"] },
-        1,
-      );
+      const resolved = rangeColorToOklch(pluginManager, { value: ["oklch(20% 0.1 10)", "oklch(30% 0.2 20)"] }, 1);
 
       expect(resolved).to.deep.equal({ a: 1, c: 0.2, h: 20, l: 30 });
     });
 
     it("resolves native OKLCH syntax without an RGB round trip and keeps alpha", () => {
-      const resolved = rangeColorToOklch(
-        pluginManager,
-        "oklch(70% 0.2 -10 / 50%)",
-      );
+      const resolved = rangeColorToOklch(pluginManager, "oklch(70% 0.2 -10 / 50%)");
 
       expect(resolved).to.deep.equal({ a: 0.5, c: 0.2, h: 350, l: 70 });
-      expect(
-        getStyleFromOklch({ a: 0.5, c: 0.2, h: 350, l: 70 }, false, 0.4),
-      ).to.equal("oklch(70% 0.2 350° / 0.2)");
+      expect(getStyleFromOklch({ a: 0.5, c: 0.2, h: 350, l: 70 }, false, 0.4)).to.equal("oklch(70% 0.2 350 / 0.2)");
     });
 
     it("uses explicit Display-P3 primaries for tagged RGB object input", () => {
@@ -1001,16 +1130,109 @@ describe("ColorUtils", async () => {
       expect(tagged).to.deep.equal(css);
     });
 
-    it("serializes canonical out-of-sRGB colors directly for browser conversion", () => {
+    it("honors source metadata and alpha on wrapped RGB objects", () => {
+      pluginManager.engine.setRandom(() => 1);
+
+      const wrapped = rangeColorToOklch(pluginManager, {
+          value: { rgb: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 } },
+        }),
+        direct = rangeColorToOklch(pluginManager, {
+          value: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 },
+        }),
+        ranged = rangeColorToOklch(pluginManager, {
+          value: { rgb: { a: { min: 0.4, max: 0.4 }, b: 0, g: 0, r: 255 } },
+        });
+
+      pluginManager.engine.setRandom();
+
+      expect(wrapped).to.deep.equal(direct);
+      expect(ranged?.a).to.be.closeTo(0.4, 1e-12);
+      expect(
+        rangeColorToOklch(pluginManager, {
+          value: { rgb: { b: 0, colorSpace: "display-p3", g: 0, p3: false, r: 255 } },
+        }),
+      ).to.be.undefined;
+      expect(
+        rangeColorToOklch(pluginManager, {
+          value: { rgb: { b: 0, g: 0, hdr: true, r: 255 } },
+        }),
+      ).to.be.undefined;
+    });
+
+    it("converts sampled emitter pixels with their source primaries", () => {
+      const pixel: IRgb = { b: 0, g: 0, r: 255 },
+        srgb = sampledPixelToOklcha(pixel, "srgb"),
+        p3 = sampledPixelToOklcha(pixel, "display-p3");
+
+      expect(srgb).to.deep.equal({ ...rgbToOklch(pixel), a: 1 });
+      expect(p3).to.deep.equal({ ...displayP3ToOklch(pixel), a: 1 });
+      expect(p3).not.to.deep.equal(srgb);
+    });
+
+    it("serializes an sRGB-mapped copy of canonical out-of-gamut colors", () => {
       const mapped = mapOklchToSrgb({ c: 0.4, h: 145, l: 72 }),
         style = getStyleFromOklch({ c: 0.4, h: 145, l: 72 }, false);
 
-      expect(style).to.equal("oklch(72% 0.4 145° / 1)");
+      expect(style).to.equal(
+        `oklch(${mapped.color.l.toString()}% ${mapped.color.c.toString()} ${mapped.color.h.toString()} / 1)`,
+      );
       expect(mapped.color.c).to.be.lessThan(0.4);
 
       for (const channel of [mapped.rgb.r, mapped.rgb.g, mapped.rgb.b]) {
         expect(channel).to.be.at.least(0).and.at.most(255);
       }
+    });
+
+    it("does not reuse a style after in-place canonical color or opacity changes", () => {
+      const color = { a: 0.8, c: 0.1, h: 120, l: 50 };
+
+      for (const patch of [{}, { h: 130 }, { c: 0.12 }, { l: 55 }, { a: 0.3 }]) {
+        Object.assign(color, patch);
+        const expected = `oklch(${color.l}% ${color.c} ${color.h} / ${color.a * 0.5})`;
+
+        expect(getStyleFromOklch(color, false, 0.5)).to.equal(expected);
+        expect(getStyleFromOklch({ ...color }, false, 0.5)).to.equal(expected);
+      }
+
+      expect(getStyleFromOklch(color, false, 1)).to.equal("oklch(55% 0.12 130 / 0.3)");
+      expect(getStyleFromOklch(Object.freeze({ ...color }), false, 1)).to.equal("oklch(55% 0.12 130 / 0.3)");
+    });
+
+    it("preserves exact HDR output across cache churn and later palette reuse", () => {
+      for (let index = 0; index < 400; index++) {
+        const color = Object.freeze({ a: 0.6, c: 0.1, h: index / 2, l: 55 }),
+          p3 = oklchToDisplayP3Float(color),
+          expected = `color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 0.3)`;
+
+        expect(getStyleFromOklch(color, true, 0.5, 400, HdrMode.standard)).to.equal(expected);
+      }
+
+      for (let index = 0; index < 400; index++) {
+        const color = Object.freeze({ a: 0.6, c: 0.1, h: index % 16, l: 55 }),
+          p3 = oklchToDisplayP3Float(color);
+
+        expect(getStyleFromOklch(color, true, 0.5, 1000, HdrMode.standard)).to.equal(
+          `color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 0.3)`,
+        );
+      }
+    });
+
+    it("preserves canonical color and alpha across sequential output destinations", () => {
+      const color = { a: 0.6, c: 0.4, h: 145, l: 72 },
+        original = { ...color },
+        srgbStyle = getStyleFromOklch(color, false, 0.4, undefined, undefined, "srgb"),
+        p3Style = getStyleFromOklch(color, false, 0.4, undefined, undefined, "display-p3"),
+        hdrStyle = getStyleFromOklch(color, true, 0.4, 1000, HdrMode.natural, "display-p3"),
+        finalSrgbStyle = getStyleFromOklch(color, false, 0.4, undefined, undefined, "srgb");
+
+      expect(srgbStyle).to.match(/^oklch\(/u);
+      expect(p3Style).to.match(/^oklch\(/u);
+      expect(hdrStyle).to.match(/^color\(display-p3 /u);
+      expect(srgbStyle).to.include(" / 0.24)");
+      expect(p3Style).to.include(" / 0.24)");
+      expect(hdrStyle).to.include(" / 0.24)");
+      expect(finalSrgbStyle).to.equal(srgbStyle);
+      expect(color).to.deep.equal(original);
     });
 
     it("keeps sRGB and Display-P3 cusp-boundary results in gamut", () => {
@@ -1033,16 +1255,11 @@ describe("ColorUtils", async () => {
 
           expect(mapped.color.l, `${target.name} lightness`).to.equal(color.l);
           expect(mapped.color.h, `${target.name} hue`).to.equal(color.h);
-          expect(mapped.color.c, `${target.name} chroma`)
-            .to.be.at.least(0)
-            .and.lessThan(color.c);
+          expect(mapped.color.c, `${target.name} chroma`).to.be.at.least(0).and.lessThan(color.c);
 
           for (const channel of [mapped.rgb.r, mapped.rgb.g, mapped.rgb.b]) {
-            expect(Number.isFinite(channel), `${target.name} finite channel`).to
-              .be.true;
-            expect(channel, `${target.name} channel range`)
-              .to.be.at.least(0)
-              .and.at.most(255);
+            expect(Number.isFinite(channel), `${target.name} finite channel`).to.be.true;
+            expect(channel, `${target.name} channel range`).to.be.at.least(0).and.at.most(255);
           }
         }
       }
@@ -1061,11 +1278,7 @@ describe("ColorUtils", async () => {
         h: { enable: true, max: 100, min: 30, speed: 30, sync: true },
       });
 
-      const animation = getOklchAnimationFromOklch(
-        { c: 0.1, h: 95, l: 50 },
-        animationOptions,
-        1,
-      );
+      const animation = getOklchAnimationFromOklch({ c: 0.1, h: 95, l: 50 }, animationOptions, 1);
 
       expect(animation.h.velocity).to.equal(30);
 
@@ -1074,10 +1287,7 @@ describe("ColorUtils", async () => {
     });
 
     it("wraps hue across multiple configured turns in both directions", () => {
-      const makeAnimation = (
-          h: number,
-          velocity: number,
-        ): IParticleOklchAnimation => ({
+      const makeAnimation = (h: number, velocity: number): IParticleOklchAnimation => ({
           a: 1,
           c: { enable: false, max: 0.4, min: 0, value: 0 },
           h: { enable: true, max: 100, min: 30, value: h, velocity },
@@ -1124,11 +1334,7 @@ describe("ColorUtils", async () => {
         },
       });
 
-      const animation = getOklchAnimationFromOklch(
-        { c: 0.1, h: 30, l: 50 },
-        options,
-        1,
-      );
+      const animation = getOklchAnimationFromOklch({ c: 0.1, h: 30, l: 50 }, options, 1);
 
       updateColor(animation, { factor: 1, value: 500 });
       expect(animation.h.value).to.equal(30);
@@ -1152,11 +1358,7 @@ describe("ColorUtils", async () => {
         h: { enable: true, max: 360, min: 0, speed: 200, count: 1, sync: true },
       });
 
-      const animation = getOklchAnimationFromOklch(
-        { c: 0.1, h: 300, l: 50 },
-        options,
-        1,
-      );
+      const animation = getOklchAnimationFromOklch({ c: 0.1, h: 300, l: 50 }, options, 1);
 
       updateColor(animation, { factor: 1, value: 16 });
       expect(animation.h.value).to.equal(140);
@@ -1174,11 +1376,7 @@ describe("ColorUtils", async () => {
         c: { enable: true, max: 1, min: 0, speed: 0.2, count: 1, sync: true },
       });
 
-      const animation = getOklchAnimationFromOklch(
-        { c: 0.9, h: 120, l: 50 },
-        options,
-        1,
-      );
+      const animation = getOklchAnimationFromOklch({ c: 0.9, h: 120, l: 50 }, options, 1);
 
       for (let tick = 0; tick < 7; tick++) {
         updateColor(animation, { factor: 1, value: 16 });
@@ -1209,36 +1407,22 @@ describe("ColorUtils", async () => {
         },
       });
 
-      const animation = getOklchAnimationFromOklch(
-        { c: 0.1, h: 120, l: 50 },
-        options,
-        2,
-        () => {
-          return samples[randomCalls++] ?? 0;
-        },
-      );
+      const animation = getOklchAnimationFromOklch({ c: 0.1, h: 120, l: 50 }, options, 2, () => {
+        return samples[randomCalls++] ?? 0;
+      });
 
       expect(animation.h.velocity).to.equal(10);
       expect(animation.h.value).to.equal(60);
       expect(animation.h.initialValue).to.equal(60);
 
-      updateColor(
-        animation,
-        { factor: 1, value: 16 },
-        false,
-        () => samples[randomCalls++] ?? 0,
-      );
+      updateColor(animation, { factor: 1, value: 16 }, false, () => samples[randomCalls++] ?? 0);
 
       expect(animation.h.value).to.equal(73);
       expect(randomCalls).to.equal(3);
     });
 
     it("composes static color alpha with particle opacity without animating alpha", () => {
-      const animation = getOklchAnimationFromOklch(
-        { a: 0.4, c: 0.1, h: 120, l: 50 },
-        new OklchAnimation(),
-        1,
-      );
+      const animation = getOklchAnimationFromOklch({ a: 0.4, c: 0.1, h: 120, l: 50 }, new OklchAnimation(), 1);
 
       updateColor(animation, { factor: 1, value: 16 });
 
@@ -1254,7 +1438,7 @@ describe("ColorUtils", async () => {
           false,
           0.5,
         ),
-      ).to.include(", 0.2)");
+      ).to.equal("oklch(50% 0.1 120 / 0.2)");
     });
   });
 
@@ -1270,8 +1454,7 @@ describe("ColorUtils", async () => {
 
       console.log("rgb", rgb, red);
 
-      expect(rgb).include(red).and.to.include({ a: 1 }).and.not.be.undefined.and
-        .not.be.null;
+      expect(rgb).include(red).and.to.include({ a: 1 }).and.not.be.undefined.and.not.be.null;
     });
   });
 
@@ -1332,24 +1515,19 @@ describe("ColorUtils", async () => {
   // });
 
   describe("getRandomRgbColor", () => {
-    const checkRange = (n: number, min?: number): boolean =>
-        n >= (min ?? 0) && n < 256,
+    const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n < 256,
       checkColor = (rgb: IRgb, min?: number): boolean =>
-        checkRange(rgb.r, min) &&
-        checkRange(rgb.g, min) &&
-        checkRange(rgb.b, min);
+        checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
 
     it("totally random color", () => {
-      expect(getRandomRgbColor()).to.satisfy((rgb: IRgb) => checkColor(rgb)).and
-        .not.be.undefined.and.not.be.null;
+      expect(getRandomRgbColor()).to.satisfy((rgb: IRgb) => checkColor(rgb)).and.not.be.undefined.and.not.be.null;
     });
 
     it("random color with min seed", () => {
       const min = 200;
 
-      expect(getRandomRgbColor(min)).to.satisfy((rgb: IRgb) =>
-        checkColor(rgb, min),
-      ).and.not.be.undefined.and.not.be.null;
+      expect(getRandomRgbColor(min)).to.satisfy((rgb: IRgb) => checkColor(rgb, min)).and.not.be.undefined.and.not.be
+        .null;
     });
   });
 
@@ -1384,13 +1562,9 @@ describe("ColorUtils", async () => {
       displayP3ToLinear = (channel: number): number =>
         Math.abs(channel) <= 0.04045
           ? channel / 12.92
-          : Math.sign(channel) *
-            Math.pow((Math.abs(channel) + 0.055) / 1.055, 2.4),
+          : Math.sign(channel) * Math.pow((Math.abs(channel) + 0.055) / 1.055, 2.4),
       parseDisplayP3 = (style: string): { b: number; g: number; r: number } => {
-        const match =
-          /^color\(display-p3 ([\d.]+) ([\d.]+) ([\d.]+) \/ ([\d.]+)\)$/u.exec(
-            style,
-          );
+        const match = /^color\(display-p3 ([\d.]+) ([\d.]+) ([\d.]+) \/ ([\d.]+)\)$/u.exec(style);
 
         expect(match).not.be.null;
 
@@ -1404,9 +1578,7 @@ describe("ColorUtils", async () => {
     it("standard mode outputs untone-mapped normalized channels", () => {
       const p3 = rgbToDisplayP3Float(red);
 
-      expect(getStyleFromRgb(red, true)).to.equal(
-        `color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 1)`,
-      );
+      expect(getStyleFromRgb(red, true)).to.equal(`color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 1)`);
       expect(p3.r / 255).to.be.closeTo(0.91755205, 0.000001);
       expect(p3.g / 255).to.be.closeTo(0.20030383, 0.000001);
       expect(p3.b / 255).to.be.closeTo(0.13857343, 0.000001);
@@ -1427,15 +1599,51 @@ describe("ColorUtils", async () => {
         p3 = oklchToDisplayP3Float(color),
         expected = `color(display-p3 ${p3.r / 255} ${p3.g / 255} ${p3.b / 255} / 1)`;
 
-      expect(
-        getStyleFromOklch(color, true, 1, 400, HdrMode.standard, "display-p3"),
-      ).to.equal(expected);
+      expect(getStyleFromOklch(color, true, 1, 400, HdrMode.standard, "display-p3")).to.equal(expected);
+    });
+
+    it("keeps canonical OKLCH HDR channels within headroom and composes alpha", () => {
+      const color = { a: 0.5, c: 0.27, h: 60, l: 76 },
+        original = { ...color },
+        maxLinearChannel = 400 / referenceWhiteNits;
+
+      for (const mode of [HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic]) {
+        const style = getStyleFromOklch(color, true, 0.4, 400, mode, "display-p3"),
+          channels = parseDisplayP3(style);
+
+        expect(style.endsWith("/ 0.2)")).to.be.true;
+
+        for (const channel of [channels.r, channels.g, channels.b]) {
+          const linearChannel = displayP3ToLinear(channel);
+
+          expect(linearChannel).to.be.at.least(0).and.to.be.at.most(maxLinearChannel);
+        }
+      }
+
+      expect(color).to.deep.equal(original);
+    });
+
+    it("measures canonical OKLCH HDR output in absolute luminance units", () => {
+      const color = { c: 0.27, h: 60, l: 76 },
+        luminanceNits = (channels: { b: number; g: number; r: number }): number =>
+          referenceWhiteNits *
+          (0.2289745641 * displayP3ToLinear(channels.r) +
+            0.6917385218 * displayP3ToLinear(channels.g) +
+            0.0792869141 * displayP3ToLinear(channels.b)),
+        luminance400 = luminanceNits(
+          parseDisplayP3(getStyleFromOklch(color, true, 1, 400, HdrMode.natural, "display-p3")),
+        ),
+        luminance1000 = luminanceNits(
+          parseDisplayP3(getStyleFromOklch(color, true, 1, 1000, HdrMode.natural, "display-p3")),
+        );
+
+      expect(luminance400).to.be.closeTo(140.49721, 0.01);
+      expect(luminance1000).to.be.closeTo(175.25986, 0.01);
+      expect(luminance1000).to.be.above(luminance400);
     });
 
     it("SDR output ignores HDR-only params", () => {
-      expect(getStyleFromRgb(red, false, 1, 1000, HdrMode.vivid)).to.equal(
-        "rgba(255, 0, 0, 1)",
-      );
+      expect(getStyleFromRgb(red, false, 1, 1000, HdrMode.vivid)).to.equal("rgba(255, 0, 0, 1)");
     });
 
     it("keeps linear Display-P3 channels within the display headroom for every mode", () => {
@@ -1445,9 +1653,7 @@ describe("ColorUtils", async () => {
         HdrMode.cinematic,
         HdrMode.dynamic,
       ]) {
-        const channels = parseDisplayP3(
-            getStyleFromRgb(red, true, 1, 400, mode),
-          ),
+        const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, mode)),
           maxChannel = Math.max(1, 400 / referenceWhiteNits);
 
         for (const channel of [channels.r, channels.g, channels.b]) {
@@ -1459,21 +1665,15 @@ describe("ColorUtils", async () => {
     });
 
     it("allows channels beyond 1 for bright colors on capable displays", () => {
-      const channels = parseDisplayP3(
-        getStyleFromRgb(red, true, 1, 400, HdrMode.natural),
-      );
+      const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, HdrMode.natural));
 
       expect(channels.r).to.be.above(1);
     });
 
     it("vivid mode keeps linear channels within the display headroom", () => {
-      const channels = parseDisplayP3(
-        getStyleFromRgb(red, true, 1, 400, HdrMode.vivid),
-      );
+      const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, HdrMode.vivid));
 
-      expect(displayP3ToLinear(channels.r)).to.be.at.most(
-        400 / referenceWhiteNits,
-      );
+      expect(displayP3ToLinear(channels.r)).to.be.at.most(400 / referenceWhiteNits);
     });
 
     it("dynamic mode keeps the blue channel intact", () => {
@@ -1482,9 +1682,7 @@ describe("ColorUtils", async () => {
           g: 0,
           r: 0,
         },
-        channels = parseDisplayP3(
-          getStyleFromRgb(blue, true, 1, 400, HdrMode.dynamic),
-        );
+        channels = parseDisplayP3(getStyleFromRgb(blue, true, 1, 400, HdrMode.dynamic));
 
       expect(channels.b).to.be.at.least(0.9);
     });
@@ -1502,7 +1700,7 @@ describe("ColorUtils", async () => {
             HdrMode.vivid,
             HdrMode.cinematic,
             HdrMode.dynamic,
-          ].map((mode) => getStyleFromRgb(color, true, 1, 400, mode)),
+          ].map(mode => getStyleFromRgb(color, true, 1, 400, mode)),
         );
 
       expect(styles.size).to.equal(5);
@@ -1514,23 +1712,13 @@ describe("ColorUtils", async () => {
           g: 180,
           r: 200,
         },
-        luminanceNits = (channels: {
-          b: number;
-          g: number;
-          r: number;
-        }): number =>
+        luminanceNits = (channels: { b: number; g: number; r: number }): number =>
           referenceWhiteNits *
           (0.2289745641 * displayP3ToLinear(channels.r) +
             0.6917385218 * displayP3ToLinear(channels.g) +
             0.0792869141 * displayP3ToLinear(channels.b)),
-        luminance400 = luminanceNits(
-          parseDisplayP3(getStyleFromRgb(color, true, 1, 400, HdrMode.natural)),
-        ),
-        luminance1000 = luminanceNits(
-          parseDisplayP3(
-            getStyleFromRgb(color, true, 1, 1000, HdrMode.natural),
-          ),
-        );
+        luminance400 = luminanceNits(parseDisplayP3(getStyleFromRgb(color, true, 1, 400, HdrMode.natural))),
+        luminance1000 = luminanceNits(parseDisplayP3(getStyleFromRgb(color, true, 1, 1000, HdrMode.natural)));
 
       expect(luminance1000).to.be.above(luminance400);
       expect(luminance400).to.be.closeTo(155.88603, 0.01);

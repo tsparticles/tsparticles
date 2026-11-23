@@ -1,10 +1,5 @@
 import type { GrabContainer, LinkParticle } from "./Types.js";
-import {
-  type HdrMode,
-  type ICoordinates,
-  type IOklcha,
-  getStyleFromOklch,
-} from "@tsparticles/engine";
+import { type HdrMode, type ICoordinates, type IOklcha, getStyleFromOklch } from "@tsparticles/engine";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const defaultWidth = 0;
@@ -35,14 +30,7 @@ export function drawGrabLine(
 ): void {
   drawLine(context, begin, end);
 
-  context.strokeStyle = getStyleFromOklch(
-    colorLine,
-    hdr,
-    opacity,
-    peakNits,
-    mode,
-    outputColorSpace,
-  );
+  context.strokeStyle = getStyleFromOklch(colorLine, hdr, opacity, peakNits, mode, outputColorSpace);
   context.lineWidth = width;
   context.stroke();
 }
@@ -62,7 +50,7 @@ export function drawGrab(
   opacity: number,
   mousePos: ICoordinates,
 ): void {
-  container.canvas.render.draw((ctx) => {
+  container.canvas.render.draw(ctx => {
     const beginPos = particle.getPosition();
 
     drawGrabLine(

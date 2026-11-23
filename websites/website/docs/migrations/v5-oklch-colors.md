@@ -51,8 +51,9 @@ paint: {
 Hue animates in degrees, chroma in OKLab units, and lightness in the `0`–`100`
 range. The default chroma animation maximum is a convenience bound; it
 does not limit valid static colors. Hue animation wraps within its configured
-bounds. Color mixing interpolates rectangular OKLab coordinates; lightness and
-chroma channel animation remain independent.
+bounds. Color mixing interpolates rectangular OKLab coordinates with
+premultiplied alpha; zero total weights split evenly. Lightness and chroma
+channel animation remain independent.
 
 Legacy `animation.s` input reports a migration error. For migration, resolve the
 old static color to OKLCH and choose a chroma animation range and speed for the
@@ -73,8 +74,9 @@ one-to-one conversion.
 
 The engine keeps floating-point OKLCH through animation and serializes
 `oklch(...)` directly for ordinary CSS/Canvas output, including Display-P3
-contexts. The browser converts that value to the destination space; rendering in
-sRGB does not rewrite the stored color. HDR remains an explicit output path for
+contexts. Before serialization, it maps a copy into the effective destination
+gamut by reducing chroma while preserving lightness and hue. The canonical
+runtime color remains unchanged. HDR remains an explicit output path for
 peak-nits and tone mapping. P3 input metadata is separate from output canvas
 capabilities.
 
@@ -86,10 +88,17 @@ const p3Red = {
 };
 ```
 
+For channel objects, `p3: true` is a shorthand for
+`colorSpace: "display-p3"`, and `p3: false` means sRGB. If both are present,
+they must agree. These flags describe input channels and do not choose the
+output canvas space. The metadata and optional alpha also work in wrapped
+`value.rgb` objects and ranged RGB channel objects.
+
 Untagged RGB objects, hex and ordinary RGB/HSL strings continue to mean sRGB.
 The source descriptor does not request P3 output. HDR source channels are not
-accepted through a generic `hdr: true` flag: their transfer function, scale and
-luminance reference must be specified before such an input can be converted.
+supported and channel objects with an `hdr` property are rejected. A complete
+HDR source descriptor would need to specify transfer function, scale, reference
+white and absolute luminance before conversion.
 
 ## Custom color managers
 
@@ -99,3 +108,23 @@ not required. For an existing sRGB manager, wrap it explicitly with
 `adaptLegacyColorManager`; this converts its RGB result to OKLCH and keeps the
 legacy manager's precision and gamut limitations. Direct parsers must preserve
 alpha.
+
+```ts
+const nativeManager: IColorManager = {
+  accepts: (input) => input.startsWith("brand("),
+  handleColorOklch: (color) => resolveBrandColor(color.value),
+  handleRangeColorOklch: (color) => resolveBrandRange(color.value),
+  parseStringOklch: (input) => parseBrandString(input),
+};
+
+engine.pluginManager.addColorManager("brand", nativeManager);
+
+const compatibleManager = adaptLegacyColorManager(existingSrgbManager);
+
+engine.pluginManager.addColorManager("legacy-brand", compatibleManager);
+```
+
+`resolveBrandColor`, `resolveBrandRange` and `parseBrandString` stand for the
+format-specific parsers. They return `{ l, c, h, a }` directly; native managers
+should not quantize through 8-bit RGB. Existing managers can implement
+`ILegacyColorManager` and use the adapter while they are migrated.

@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-22",
+  "workingTree": true,
+  "downstreamBuild": {
+    "exitCode": 0,
+    "targets": 453,
+    "succeeded": 453,
+    "cached": 427,
+    "runUrl": "https://cloud.nx.app/runs/bKUUtcmyT7"
+  },
+  "testsBuild": {
+    "exitCode": 0,
+    "dependencyTargets": 187,
+    "runUrl": "https://cloud.nx.app/runs/Pyot0sjPo6"
+  },
+  "workspaceTests": {
+    "exitCode": 0,
+    "projects": 85,
+    "demoEmber": "pass",
+    "demoRiot": "pass",
+    "runUrl": "https://cloud.nx.app/runs/03lArncpcS"
+  },
+  "primaryTests": {
+    "files": 55,
+    "passed": 813
+  },
+  "notes": [
+    "Final verification includes the absorber RNG correction.",
+    "No commit or publication performed."
+  ],
+  "extendedRuntime": {
+    "exitCode": 0,
+    "samples": 18,
+    "retentionCycles": 30,
+    "rngStable": true,
+    "postWarmupHeapDriftBytes": 114876,
+    "report": "post-cache/summary.json"
+  },
+  "browserPixels": {
+    "passed": 8,
+    "report": "../browser-color-results.json"
+  }
+}

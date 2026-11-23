@@ -34,13 +34,13 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
   async init(container: Container): Promise<void> {
     const options = container.actualOptions;
 
-    if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+    if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
       const shapeOptions = validTypes
-          .map((t) => options.particles.shape.options[t])
-          .find((t) => !!t) as SingleOrMultiple<ITextShape>,
+          .map(t => options.particles.shape.options[t])
+          .find(t => !!t) as SingleOrMultiple<ITextShape>,
         promises: Promise<void>[] = [];
 
-      executeOnSingleOrMultiple(shapeOptions, (shape) => {
+      executeOnSingleOrMultiple(shapeOptions, shape => {
         promises.push(loadFont(shape.font, shape.weight));
       });
 
@@ -80,14 +80,11 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
     }
 
     particle.textLines =
-      itemFromSingleOrMultiple(
-        textData,
-        particle.randomIndexData,
-        undefined,
-        container.engine.getRandomFn(),
-      )?.split("\n") ?? [];
+      itemFromSingleOrMultiple(textData, particle.randomIndexData, undefined, container.engine.getRandomFn())?.split(
+        "\n",
+      ) ?? [];
     particle.maxTextLength = particle.textLines.length
-      ? Math.max(...particle.textLines.map((t) => t.length))
+      ? Math.max(...particle.textLines.map(t => t.length))
       : (particle.textLines[firstIndex]?.length ?? minLength);
   }
 }

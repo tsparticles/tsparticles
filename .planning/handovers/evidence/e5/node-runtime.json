@@ -1,0 +1,996 @@
+{
+  "measuredAt": "2026-11-22T00:33:37.229Z",
+  "revision": "6e8ca78dfe76515af222c666d85809f225544ac5",
+  "workingTree": true,
+  "runtime": "Node v26.13.0 + jsdom + @napi-rs/canvas",
+  "machine": "darwin arm64",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "scenarios": [
+    "M3",
+    "M4",
+    "M5",
+    "M7"
+  ],
+  "counts": [
+    100,
+    500,
+    1000
+  ],
+  "repetitions": 3,
+  "warmupTicks": 30,
+  "measuredTicks": 60,
+  "seed": 123456789,
+  "samples": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 47.81570799999997,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.19116600000006656,
+        "p95": 0.27604200000007495,
+        "min": 0.1607920000001286,
+        "max": 0.3816669999999931
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.8451250000000528,
+        "p95": 1.1812499999999773,
+        "min": 0.7883749999998599,
+        "max": 1.5109579999999596
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 10.063041000000112,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.15550000000007458,
+        "p95": 0.21100000000001273,
+        "min": 0.14949999999998909,
+        "max": 0.2832499999999527
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.7700000000002092,
+        "p95": 0.9502079999999751,
+        "min": 0.7412080000001424,
+        "max": 1.4754159999999956
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 10.3226659999998,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.15399999999999636,
+        "p95": 0.18399999999996908,
+        "min": 0.15004100000010112,
+        "max": 0.21587499999986903
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.7521249999999782,
+        "p95": 0.8267920000000686,
+        "min": 0.7361670000000231,
+        "max": 1.3687079999999696
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 30.717125000000124,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.8268340000001899,
+        "p95": 1.1524169999997866,
+        "min": 0.7609999999999673,
+        "max": 1.4030840000000353
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 3.896582999999964,
+        "p95": 4.574207999999999,
+        "min": 3.5829579999999623,
+        "max": 4.7106659999999465
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 15.315624999999955,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.8537919999998849,
+        "p95": 1.1387500000000728,
+        "min": 0.7537919999999758,
+        "max": 1.2732499999999618
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 3.7564580000002934,
+        "p95": 4.28979100000015,
+        "min": 3.5577500000003965,
+        "max": 4.598833000000013
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 15.835125000000062,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.8948340000001735,
+        "p95": 1.3222500000001673,
+        "min": 0.8037920000001577,
+        "max": 1.5335829999999078
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 3.8199579999995876,
+        "p95": 4.425999999999931,
+        "min": 3.629374999999982,
+        "max": 4.687916999999743
+      },
+      "randomCalls": 4576,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 26.96349999999984,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.262833000000228,
+        "p95": 2.5817910000000666,
+        "min": 1.7607920000000377,
+        "max": 2.8350829999999405
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.090166000000409,
+        "p95": 8.890375000000404,
+        "min": 7.4541659999999865,
+        "max": 9.104416000000128
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 26.368167000000085,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.1522079999999733,
+        "p95": 2.5961660000002666,
+        "min": 1.7428750000008222,
+        "max": 2.9325830000002497
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.108166999999412,
+        "p95": 8.866375000000062,
+        "min": 7.457000000000335,
+        "max": 9.339792000000216
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 24.659999999999854,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.23345800000061,
+        "p95": 2.6532079999997222,
+        "min": 1.7919999999994616,
+        "max": 2.9928749999999127
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.08916599999975,
+        "p95": 8.749167000000853,
+        "min": 7.469834000000446,
+        "max": 9.169624999999542
+      },
+      "randomCalls": 9156,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 5.825334000000112,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.35183300000062445,
+        "p95": 0.4696670000002996,
+        "min": 0.3152090000003227,
+        "max": 0.5779579999998532
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.6782499999999345,
+        "p95": 1.868083000000297,
+        "min": 1.4887920000001031,
+        "max": 2.2633340000002136
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.681875000000218,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.3329169999997248,
+        "p95": 0.4900000000006912,
+        "min": 0.3086249999996653,
+        "max": 0.688959000000068
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.596292000000176,
+        "p95": 1.8309580000004644,
+        "min": 1.489875000000211,
+        "max": 1.9926670000004378
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.880875000000742,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.31858400000055553,
+        "p95": 0.37774999999965075,
+        "min": 0.3069580000001224,
+        "max": 0.6922080000003916
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.5299169999998412,
+        "p95": 1.6646670000000086,
+        "min": 1.4442089999993186,
+        "max": 2.0904160000000047
+      },
+      "randomCalls": 918,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 16.722332999999708,
+      "updateMs": {
+        "samples": 60,
+        "median": 5.2474160000001575,
+        "p95": 5.781500000000051,
+        "min": 4.435040999999728,
+        "max": 6.226540999999997
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 22.533957999999984,
+        "p95": 23.75904200000059,
+        "min": 21.083832999999686,
+        "max": 24.56762500000059
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 13.930790999998862,
+      "updateMs": {
+        "samples": 60,
+        "median": 5.007999999999811,
+        "p95": 5.9537080000009155,
+        "min": 4.3894579999996495,
+        "max": 6.221250000000509
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 22.551499999999578,
+        "p95": 24.15387499999997,
+        "min": 20.68633299999965,
+        "max": 25.302750000000742
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 14.707374999999956,
+      "updateMs": {
+        "samples": 60,
+        "median": 5.07129200000054,
+        "p95": 5.637166000000434,
+        "min": 4.399540999998862,
+        "max": 13.755959000000075
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 22.473707999999533,
+        "p95": 24.070207999999184,
+        "min": 20.576084000000264,
+        "max": 41.190292000001136
+      },
+      "randomCalls": 4577,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 26.23741599999994,
+      "updateMs": {
+        "samples": 60,
+        "median": 17.558709000000817,
+        "p95": 19.016999999999825,
+        "min": 16.370041999998648,
+        "max": 27.097125000000233
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 82.07624999999825,
+        "p95": 85.50166700000045,
+        "min": 75.86125000000175,
+        "max": 85.88737499999843
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 25.2400000000016,
+      "updateMs": {
+        "samples": 60,
+        "median": 17.73645899999974,
+        "p95": 19.17004199999792,
+        "min": 16.405040999998164,
+        "max": 24.995708999998897
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 82.75795800000196,
+        "p95": 85.1205839999966,
+        "min": 78.30145899999843,
+        "max": 86.50158400000146
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 26.765625,
+      "updateMs": {
+        "samples": 60,
+        "median": 18.532874999997148,
+        "p95": 20.048917000000074,
+        "min": 17.238540999998804,
+        "max": 31.091749999999593
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 83.08733299999585,
+        "p95": 86.16541699999652,
+        "min": 78.62458399999741,
+        "max": 88.19774999999936
+      },
+      "randomCalls": 9151,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 5.596917000002577,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.47987499999726424,
+        "p95": 0.545166000003519,
+        "min": 0.4250000000029104,
+        "max": 0.681416999999783
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.1136250000054133,
+        "p95": 1.2422499999956926,
+        "min": 1.0272919999988517,
+        "max": 1.3801670000029844
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.977083000005223,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.46649999999499414,
+        "p95": 0.6592499999969732,
+        "min": 0.37770799999998417,
+        "max": 5.1634590000030585
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.0737499999959255,
+        "p95": 1.6775420000049053,
+        "min": 0.976249999999709,
+        "max": 4.962584000000788
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 10.838000000003376,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.49491699999634875,
+        "p95": 0.562792000004265,
+        "min": 0.41179099999862956,
+        "max": 0.7270409999982803
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 1.151624999998603,
+        "p95": 1.276333000001614,
+        "min": 1.0337499999950523,
+        "max": 1.4151249999995343
+      },
+      "randomCalls": 900,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 12.632458000000042,
+      "updateMs": {
+        "samples": 60,
+        "median": 6.468874999998661,
+        "p95": 7.00604100000055,
+        "min": 6.00458300000173,
+        "max": 7.321499999998196
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 9.850665999998455,
+        "p95": 10.5615420000031,
+        "min": 9.108041999999841,
+        "max": 10.806125000002794
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 14.553500000001804,
+      "updateMs": {
+        "samples": 60,
+        "median": 7.327041999997164,
+        "p95": 8.067625000003318,
+        "min": 6.540791999999783,
+        "max": 8.403166000003694
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 10.745915999999852,
+        "p95": 11.775125000000116,
+        "min": 9.746832999997423,
+        "max": 12.378832999995211
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 13.09616599999572,
+      "updateMs": {
+        "samples": 60,
+        "median": 6.540000000000873,
+        "p95": 7.127749999999651,
+        "min": 5.857666000003519,
+        "max": 7.324625000001106
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 10.005457999999635,
+        "p95": 10.601958999999624,
+        "min": 8.922791999997571,
+        "max": 10.859125000002678
+      },
+      "randomCalls": 4500,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 24.041292000001704,
+      "updateMs": {
+        "samples": 60,
+        "median": 23.28279100000509,
+        "p95": 24.389250000000175,
+        "min": 22.020416999999725,
+        "max": 24.848958000002312
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 30.31220900000335,
+        "p95": 31.543666999998095,
+        "min": 28.44133399999555,
+        "max": 31.793665999997756
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 25.22229199999856,
+      "updateMs": {
+        "samples": 60,
+        "median": 23.355290999999852,
+        "p95": 25.003165999994962,
+        "min": 21.506792000000132,
+        "max": 25.913000000000466
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 30.101999999998952,
+        "p95": 31.4073339999959,
+        "min": 28.56358299999556,
+        "max": 31.836042000002635
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 25.007666999998037,
+      "updateMs": {
+        "samples": 60,
+        "median": 23.538500000002387,
+        "p95": 25.067334000006667,
+        "min": 21.54200000000128,
+        "max": 26.027458000004117
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 30.256790999999794,
+        "p95": 31.73045799999818,
+        "min": 27.850250000003143,
+        "max": 32.18300000000454
+      },
+      "randomCalls": 9000,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 0,
+      "initializationMs": 5.303916999997455,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.15991599999688333,
+        "p95": 0.18391599999449681,
+        "min": 0.15416600000025937,
+        "max": 0.3228750000052969
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.7850000000034925,
+        "p95": 0.845792000000074,
+        "min": 0.7677909999983967,
+        "max": 1.485207999998238
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 1,
+      "initializationMs": 4.856874999997672,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.1572089999972377,
+        "p95": 0.185749999996915,
+        "min": 0.15270800000143936,
+        "max": 0.21541699999943376
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.7854999999981374,
+        "p95": 0.9146659999969415,
+        "min": 0.7599999999947613,
+        "max": 1.3404579999987618
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetition": 2,
+      "initializationMs": 4.66729199999827,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.15995799999654992,
+        "p95": 0.17695900000398979,
+        "min": 0.1534590000010212,
+        "max": 0.7878330000021379
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 0.7727079999967827,
+        "p95": 0.8574999999982538,
+        "min": 0.7536670000044978,
+        "max": 1.1172500000029686
+      },
+      "randomCalls": 1008,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 13.334041999994952,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.9643750000032014,
+        "p95": 1.4694579999995767,
+        "min": 0.8372500000041327,
+        "max": 1.5197909999988042
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 4.071374999999534,
+        "p95": 4.554166000001715,
+        "min": 3.7497910000020056,
+        "max": 4.992707999997947
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 12.829833000003418,
+      "updateMs": {
+        "samples": 60,
+        "median": 0.9582910000026459,
+        "p95": 1.2833749999990687,
+        "min": 0.8077090000006137,
+        "max": 1.4173330000048736
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 4.07050000000163,
+        "p95": 4.696250000000873,
+        "min": 3.744166000004043,
+        "max": 4.934041000000434
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 14.99345799999719,
+      "updateMs": {
+        "samples": 60,
+        "median": 1.0577080000002752,
+        "p95": 1.5267089999979362,
+        "min": 0.8566249999930733,
+        "max": 1.6262920000008307
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 4.148291999998037,
+        "p95": 4.654167000000598,
+        "min": 3.769000000000233,
+        "max": 4.890833999997994
+      },
+      "randomCalls": 5036,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 0,
+      "initializationMs": 25.62512499999866,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.2805830000070273,
+        "p95": 2.6169169999993755,
+        "min": 1.9356249999982538,
+        "max": 2.7397909999999683
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.65887500000099,
+        "p95": 9.517207999997481,
+        "min": 7.8735409999935655,
+        "max": 10.098750000004657
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 1,
+      "initializationMs": 25.65820800000074,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.512249999999767,
+        "p95": 2.9304159999956028,
+        "min": 1.9600419999987935,
+        "max": 2.975250000003143
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.74500000000262,
+        "p95": 9.818124999997963,
+        "min": 7.798750000001746,
+        "max": 10.373791999998502
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetition": 2,
+      "initializationMs": 24.096083999997063,
+      "updateMs": {
+        "samples": 60,
+        "median": 2.385499999996682,
+        "p95": 2.766250000000582,
+        "min": 1.8893750000061118,
+        "max": 3.0367499999993015
+      },
+      "drawMs": {
+        "samples": 60,
+        "median": 8.501416999999492,
+        "p95": 9.417750000000524,
+        "min": 7.702624999998079,
+        "max": 9.562708999997994
+      },
+      "randomCalls": 10074,
+      "remainingContainers": 0
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "initializationMsMedian": 10.3226659999998,
+      "updateMsMedian": 0.15550000000007458,
+      "updateMsP95": 0.21100000000001273,
+      "drawMsMedian": 0.7700000000002092,
+      "drawMsP95": 0.9502079999999751,
+      "randomCalls": [
+        918,
+        918,
+        918
+      ]
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "initializationMsMedian": 15.835125000000062,
+      "updateMsMedian": 0.8537919999998849,
+      "updateMsP95": 1.1524169999997866,
+      "drawMsMedian": 3.8199579999995876,
+      "drawMsP95": 4.425999999999931,
+      "randomCalls": [
+        4576,
+        4576,
+        4576
+      ]
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "initializationMsMedian": 26.368167000000085,
+      "updateMsMedian": 2.23345800000061,
+      "updateMsP95": 2.5961660000002666,
+      "drawMsMedian": 8.090166000000409,
+      "drawMsP95": 8.866375000000062,
+      "randomCalls": [
+        9156,
+        9156,
+        9156
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "initializationMsMedian": 4.880875000000742,
+      "updateMsMedian": 0.3329169999997248,
+      "updateMsP95": 0.4696670000002996,
+      "drawMsMedian": 1.596292000000176,
+      "drawMsP95": 1.8309580000004644,
+      "randomCalls": [
+        918,
+        918,
+        918
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "initializationMsMedian": 14.707374999999956,
+      "updateMsMedian": 5.07129200000054,
+      "updateMsP95": 5.781500000000051,
+      "drawMsMedian": 22.533957999999984,
+      "drawMsP95": 24.070207999999184,
+      "randomCalls": [
+        4577,
+        4577,
+        4577
+      ]
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "initializationMsMedian": 26.23741599999994,
+      "updateMsMedian": 17.73645899999974,
+      "updateMsP95": 19.17004199999792,
+      "drawMsMedian": 82.75795800000196,
+      "drawMsP95": 85.50166700000045,
+      "randomCalls": [
+        9151,
+        9151,
+        9151
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "initializationMsMedian": 5.596917000002577,
+      "updateMsMedian": 0.47987499999726424,
+      "updateMsP95": 0.562792000004265,
+      "drawMsMedian": 1.1136250000054133,
+      "drawMsP95": 1.276333000001614,
+      "randomCalls": [
+        900,
+        900,
+        900
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "initializationMsMedian": 13.09616599999572,
+      "updateMsMedian": 6.540000000000873,
+      "updateMsP95": 7.127749999999651,
+      "drawMsMedian": 10.005457999999635,
+      "drawMsP95": 10.601958999999624,
+      "randomCalls": [
+        4500,
+        4500,
+        4500
+      ]
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "initializationMsMedian": 25.007666999998037,
+      "updateMsMedian": 23.355290999999852,
+      "updateMsP95": 25.003165999994962,
+      "drawMsMedian": 30.256790999999794,
+      "drawMsP95": 31.543666999998095,
+      "randomCalls": [
+        9000,
+        9000,
+        9000
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "initializationMsMedian": 4.856874999997672,
+      "updateMsMedian": 0.15991599999688333,
+      "updateMsP95": 0.18391599999449681,
+      "drawMsMedian": 0.7850000000034925,
+      "drawMsP95": 0.8574999999982538,
+      "randomCalls": [
+        1008,
+        1008,
+        1008
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "initializationMsMedian": 13.334041999994952,
+      "updateMsMedian": 0.9643750000032014,
+      "updateMsP95": 1.4694579999995767,
+      "drawMsMedian": 4.071374999999534,
+      "drawMsP95": 4.654167000000598,
+      "randomCalls": [
+        5036,
+        5036,
+        5036
+      ]
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "initializationMsMedian": 25.62512499999866,
+      "updateMsMedian": 2.385499999996682,
+      "updateMsP95": 2.766250000000582,
+      "drawMsMedian": 8.65887500000099,
+      "drawMsP95": 9.517207999997481,
+      "randomCalls": [
+        10074,
+        10074,
+        10074
+      ]
+    }
+  ],
+  "limitations": [
+    "Node/jsdom timings are same-runtime diagnostic values and are not comparable with Chrome/CDP or visible browser performance.",
+    "Draw timing measures @napi-rs/canvas CPU work and does not represent browser GPU submission or display output.",
+    "Forced-GC heapUsed includes runtime/plugin/container overhead and does not report allocation volume or native canvas memory.",
+    "Use equal random call counts to check deterministic scenario setup; per-frame state equivalence to the E0 browser harness is not asserted."
+  ]
+}

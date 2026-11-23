@@ -1,10 +1,4 @@
-import {
-  type ICoordinates,
-  doublePI,
-  getStyleFromOklch,
-  half,
-  quarter,
-} from "@tsparticles/engine";
+import { type ICoordinates, doublePI, getStyleFromOklch, half, quarter } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
 
 const gradientPos = {

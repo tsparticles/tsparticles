@@ -49,11 +49,7 @@ const defaultParticleDist = 8,
  * @param width - The width
  * @param height - The height
  */
-export function setRibbonBounds(
-  particle: RibbonParticle,
-  width: number,
-  height: number,
-): void {
+export function setRibbonBounds(particle: RibbonParticle, width: number, height: number): void {
   particle.ribbonBounds = Vector.create(width, height);
 }
 
@@ -117,10 +113,7 @@ function getOscillationDistance(particle: RibbonParticle): number {
  * @returns the ribbon head
  */
 function getHead(particle: RibbonParticle): Vector {
-  particle.ribbonHead ??= Vector.create(
-    particle.position.x,
-    particle.position.y,
-  );
+  particle.ribbonHead ??= Vector.create(particle.position.x, particle.position.y);
 
   return particle.ribbonHead;
 }
@@ -131,10 +124,7 @@ function getHead(particle: RibbonParticle): Vector {
  * @returns the previous ribbon head
  */
 function getPreviousHead(particle: RibbonParticle): Vector {
-  particle.ribbonPreviousHead ??= Vector.create(
-    particle.position.x,
-    particle.position.y,
-  );
+  particle.ribbonPreviousHead ??= Vector.create(particle.position.x, particle.position.y);
 
   return particle.ribbonPreviousHead;
 }
@@ -146,24 +136,13 @@ function getPreviousHead(particle: RibbonParticle): Vector {
 export function createRibbonState(particle: RibbonParticle): void {
   const shapeData = particle.shapeData,
     countConfig = shapeData?.count ?? defaultPointCount,
-    count = Math.max(
-      minPointCount,
-      Math.round(
-        getRangeValue(countConfig, particle.container.engine.getRandomFn()),
-      ),
-    ),
+    count = Math.max(minPointCount, Math.round(getRangeValue(countConfig, particle.container.engine.getRandomFn()))),
     particleDist = getRangeValue(
       shapeData?.particleDist ?? defaultParticleDist,
       particle.container.engine.getRandomFn(),
     ),
-    mass = getRangeValue(
-      shapeData?.mass ?? defaultMass,
-      particle.container.engine.getRandomFn(),
-    ),
-    drag = getRangeValue(
-      shapeData?.drag ?? defaultDrag,
-      particle.container.engine.getRandomFn(),
-    ),
+    mass = getRangeValue(shapeData?.mass ?? defaultMass, particle.container.engine.getRandomFn()),
+    drag = getRangeValue(shapeData?.drag ?? defaultDrag, particle.container.engine.getRandomFn()),
     velocityInherit = getRangeValue(
       shapeData?.velocityInherit ?? defaultVelocityInherit,
       particle.container.engine.getRandomFn(),
@@ -176,10 +155,7 @@ export function createRibbonState(particle: RibbonParticle): void {
       shapeData?.oscillationDistance ?? defaultOscillationDistance,
       particle.container.engine.getRandomFn(),
     ),
-    angle = getRangeValue(
-      shapeData?.angle ?? defaultAngle,
-      particle.container.engine.getRandomFn(),
-    ),
+    angle = getRangeValue(shapeData?.angle ?? defaultAngle, particle.container.engine.getRandomFn()),
     angleRad = (Math.PI / degrees) * angle,
     head = Vector.create(particle.position.x, particle.position.y),
     bounds = particle.ribbonBounds;
@@ -196,18 +172,11 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonVelocityInherit = velocityInherit;
   particle.ribbonOscillationSpeed = oscillationSpeed;
   particle.ribbonOscillationDistance = oscillationDistance;
-  particle.ribbonTime =
-    getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
-  particle.ribbonOffsets = Vector.create(
-    Math.cos(angleRad),
-    Math.sin(angleRad),
-  );
+  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
+  particle.ribbonOffsets = Vector.create(Math.cos(angleRad), Math.sin(angleRad));
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
-  particle.ribbonPreviousPosition = Vector.create(
-    particle.position.x,
-    particle.position.y,
-  );
+  particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
 
   const trailAngle = particle.velocity.angle + Math.PI,
     noiseScale = particleDist * half;
@@ -216,20 +185,14 @@ export function createRibbonState(particle: RibbonParticle): void {
 
   for (let i = noPoint; i < count; i++) {
     const offset = i * particleDist,
-      perpNoise =
-        (getRandom(particle.container.engine.getRandomFn()) - half) *
-        noiseScale,
+      perpNoise = (getRandom(particle.container.engine.getRandomFn()) - half) * noiseScale,
       perpAngle = trailAngle + Math.PI * half;
 
     particle.ribbonPoints[i] = {
       force: Vector.origin,
       position: Vector.create(
-        head.x +
-          Math.cos(trailAngle) * offset +
-          Math.cos(perpAngle) * perpNoise,
-        head.y +
-          Math.sin(trailAngle) * offset +
-          Math.sin(perpAngle) * perpNoise,
+        head.x + Math.cos(trailAngle) * offset + Math.cos(perpAngle) * perpNoise,
+        head.y + Math.sin(trailAngle) * offset + Math.sin(perpAngle) * perpNoise,
       ),
       velocity: Vector.origin,
     };
@@ -265,8 +228,7 @@ function resetRibbonState(particle: RibbonParticle): void {
   particle.ribbonHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousPosition = Vector.create(position.x, position.y);
-  particle.ribbonTime =
-    getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
+  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
 
   for (let i = noPoint; i < points.length; i++) {
     const point = points[i];
@@ -275,10 +237,7 @@ function resetRibbonState(particle: RibbonParticle): void {
       continue;
     }
 
-    point.position = Vector.create(
-      position.x,
-      position.y - i * getParticleDist(particle),
-    );
+    point.position = Vector.create(position.x, position.y - i * getParticleDist(particle));
     point.force = Vector.origin;
     point.velocity = Vector.origin;
   }
@@ -290,11 +249,7 @@ function resetRibbonState(particle: RibbonParticle): void {
  * @param index - The index
  * @param force - The force
  */
-function addPointForce(
-  particle: RibbonParticle,
-  index: number,
-  force: Vector,
-): void {
+function addPointForce(particle: RibbonParticle, index: number, force: Vector): void {
   const point = particle.ribbonPoints?.[index];
 
   if (!point) {
@@ -310,11 +265,7 @@ function addPointForce(
  * @param index - The index
  * @param dt - The dt
  */
-function integratePoint(
-  particle: RibbonParticle,
-  index: number,
-  dt: number,
-): void {
+function integratePoint(particle: RibbonParticle, index: number, dt: number): void {
   const point = particle.ribbonPoints?.[index];
 
   if (!point) {
@@ -351,31 +302,25 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
     return;
   }
 
-  const dt = Math.min(
-      fixedDuration,
-      Math.max(delta.value / millisecondsToSeconds, minDelta),
-    ),
+  const dt = Math.min(fixedDuration, Math.max(delta.value / millisecondsToSeconds, minDelta)),
     head = getHead(particle),
     previousHead = getPreviousHead(particle),
     velocityInherit = getVelocityInherit(particle),
     followsParticleMotion = particle.options.move.enable,
     oscillationSpeed = getOscillationSpeed(particle);
 
-  particle.ribbonTime =
-    (particle.ribbonTime ?? noPoint) + dt * oscillationSpeed;
+  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * oscillationSpeed;
 
   if (followsParticleMotion) {
     const oscillationDistance = getOscillationDistance(particle),
       oscillationOffset = oscillationSpeed
-        ? (Math.cos(particle.ribbonTime) * oscillationDistance) /
-          oscillationSpeed
+        ? (Math.cos(particle.ribbonTime) * oscillationDistance) / oscillationSpeed
         : noDistance;
 
     head.x = particle.position.x + oscillationOffset;
     head.y = particle.position.y;
   } else {
-    head.x +=
-      Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
+    head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
   }
 
   if (particle.justWarped) {
@@ -398,10 +343,7 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
 
       const offset = i * dist;
 
-      point.position = Vector.create(
-        head.x + Math.cos(trailAngle) * offset,
-        head.y + Math.sin(trailAngle) * offset,
-      );
+      point.position = Vector.create(head.x + Math.cos(trailAngle) * offset, head.y + Math.sin(trailAngle) * offset);
       point.velocity = Vector.origin;
       point.force = Vector.origin;
     }
@@ -426,16 +368,10 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
   const dX = previousHead.x - head.x,
     dY = previousHead.y - head.y,
     movement = Math.sqrt(dX * dX + dY * dY),
-    velocityFactor = Math.min(
-      (movement / dt) * velocityInherit,
-      maxVelocityInherit,
-    );
+    velocityFactor = Math.min((movement / dt) * velocityInherit, maxVelocityInherit);
 
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
-  particle.ribbonPreviousPosition = Vector.create(
-    particle.position.x,
-    particle.position.y,
-  );
+  particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
 
   for (let i = firstPoint; i < points.length; i++) {
     const point = points[i],
@@ -494,14 +430,7 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
  * @param y3 - The y3
  * @returns the segment side
  */
-function getSegmentSide(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  x3: number,
-  y3: number,
-): number {
+function getSegmentSide(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): number {
   return (x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2);
 }
 
@@ -520,10 +449,7 @@ function getMidpoint(a: Vector, b: Vector): Vector {
  * @param context - The rendering context
  * @param drawData - The drawData
  */
-function drawPolygonSegment(
-  context: OffscreenCanvasRenderingContext2D,
-  drawData: IRibbonDrawData,
-): void {
+function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData: IRibbonDrawData): void {
   context.beginPath();
   context.moveTo(drawData.a.x, drawData.a.y);
   context.lineTo(drawData.b.x, drawData.b.y);
@@ -576,20 +502,10 @@ function resolveBackFill(
       const altered = alterOklch(
         frontHsl,
         AlterType.darken,
-        getRangeValue(
-          shapeData.darken.value,
-          particle.container.engine.getRandomFn(),
-        ),
+        getRangeValue(shapeData.darken.value, particle.container.engine.getRandomFn()),
       );
 
-      backFill = getStyleFromOklch(
-        altered,
-        hdr,
-        undefined,
-        peakNits,
-        mode,
-        particle.container.outputColorSpace,
-      );
+      backFill = getStyleFromOklch(altered, hdr, undefined, peakNits, mode, particle.container.outputColorSpace);
     }
   } else if (shapeData?.enlighten?.enable) {
     const frontHsl = getOklchFromAnimation(particle.fillColor);
@@ -598,20 +514,10 @@ function resolveBackFill(
       const altered = alterOklch(
         frontHsl,
         AlterType.enlighten,
-        getRangeValue(
-          shapeData.enlighten.value,
-          particle.container.engine.getRandomFn(),
-        ),
+        getRangeValue(shapeData.enlighten.value, particle.container.engine.getRandomFn()),
       );
 
-      backFill = getStyleFromOklch(
-        altered,
-        hdr,
-        undefined,
-        peakNits,
-        mode,
-        particle.container.outputColorSpace,
-      );
+      backFill = getStyleFromOklch(altered, hdr, undefined, peakNits, mode, particle.container.outputColorSpace);
     }
   }
 
@@ -703,32 +609,16 @@ export function drawRibbon(
     hasFill = data.fill,
     hasStroke = data.stroke;
 
-  if (
-    !points ||
-    !offsets ||
-    !bounds ||
-    points.length < minPointCount ||
-    (!hasFill && !hasStroke)
-  ) {
+  if (!points || !offsets || !bounds || points.length < minPointCount || (!hasFill && !hasStroke)) {
     return;
   }
 
   const drawOffsets = offsets.mult(radius),
     center = particle.position,
     frontFill = typeof context.fillStyle === "string" ? context.fillStyle : "",
-    frontStroke =
-      typeof context.strokeStyle === "string" ? context.strokeStyle : "",
+    frontStroke = typeof context.strokeStyle === "string" ? context.strokeStyle : "",
     shapeData = particle.shapeData,
-    backFill = resolveBackFill(
-      hasStroke,
-      frontFill,
-      frontStroke,
-      shapeData,
-      particle,
-      hdr,
-      peakNits,
-      mode,
-    );
+    backFill = resolveBackFill(hasStroke, frontFill, frontStroke, shapeData, particle, hdr, peakNits, mode);
 
   context.lineWidth = lineWidth;
   context.lineJoin = "round";
@@ -763,18 +653,8 @@ export function drawRibbon(
     nextSide.setTo(nextOffset);
     nextSide.subFrom(center);
 
-    const minY = Math.min(
-        current.position.y,
-        next.position.y,
-        currentOffset.y,
-        nextOffset.y,
-      ),
-      maxY = Math.max(
-        current.position.y,
-        next.position.y,
-        currentOffset.y,
-        nextOffset.y,
-      ),
+    const minY = Math.min(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
+      maxY = Math.max(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
       isFront =
         getSegmentSide(
           current.position.x,
@@ -797,41 +677,11 @@ export function drawRibbon(
     }
 
     if (i === noPoint) {
-      drawEdgeSegments(
-        context,
-        currentBase,
-        nextBase,
-        currentSide,
-        nextSide,
-        true,
-        false,
-        hasFill,
-        hasStroke,
-      );
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, true, false, hasFill, hasStroke);
     } else if (i === points.length - secondPoint) {
-      drawEdgeSegments(
-        context,
-        currentBase,
-        nextBase,
-        currentSide,
-        nextSide,
-        false,
-        true,
-        hasFill,
-        hasStroke,
-      );
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, false, true, hasFill, hasStroke);
     } else {
-      drawEdgeSegments(
-        context,
-        currentBase,
-        nextBase,
-        currentSide,
-        nextSide,
-        false,
-        false,
-        hasFill,
-        hasStroke,
-      );
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, false, false, hasFill, hasStroke);
     }
   }
 

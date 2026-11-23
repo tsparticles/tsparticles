@@ -53,8 +53,7 @@ export function initOptions(): ISourceOptions {
       if (shortRegex.test(hexValue)) {
         hexValue = hexValue.replace(
           shortRegex,
-          (_m, r: string, g: string, b: string, a?: string) =>
-            r + r + g + g + b + b + (a ? a + a : ""),
+          (_m, r: string, g: string, b: string, a?: string) => r + r + g + g + b + b + (a ? a + a : ""),
         );
       }
 
@@ -97,7 +96,7 @@ export function initOptions(): ISourceOptions {
       "#0000FF",
       "#FF00FF",
     ]
-      .map((color) => {
+      .map(color => {
         const rgb = hexToRgba(color);
 
         if (!rgb) {
@@ -208,7 +207,7 @@ export function initOptions(): ISourceOptions {
           },
         };
       })
-      .filter((t) => t !== undefined);
+      .filter(t => t !== undefined);
 
   return {
     detectRetina: true,

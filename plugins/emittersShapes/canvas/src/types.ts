@@ -2,6 +2,8 @@ import type { IRgba } from "@tsparticles/engine";
 
 /** Canvas pixel data extracted from an image or canvas element */
 export interface CanvasPixelData {
+  /** Color space of the sampled pixel channels. */
+  colorSpace?: "display-p3" | "srgb";
   /** The pixel data height */
   height: number;
   /** The pixel data as a 2D array of RGBA values */
