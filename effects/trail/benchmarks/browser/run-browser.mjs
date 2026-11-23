@@ -19,7 +19,10 @@ const scriptDirectory = dirname(fileURLToPath(import.meta.url)),
   outputDirectory = resolve(packageRoot, "benchmarks/output"),
   sourceFiles = {
     current: resolve(packageRoot, "src/TrailDrawer.ts"),
-    original: resolve(packageRoot, "benchmarks/reference/TrailDrawer.original.ts"),
+    original: resolve(
+      packageRoot,
+      "benchmarks/reference/TrailDrawer.original.ts",
+    ),
   },
   widthCases = [
     { name: "unset" },
@@ -57,7 +60,11 @@ async function buildBrowserModules() {
 
     assert(
       diagnostics.length === 0,
-      diagnostics.map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")).join("\n"),
+      diagnostics
+        .map((diagnostic) =>
+          ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"),
+        )
+        .join("\n"),
     );
 
     const destination = resolve(outputDirectory, name, "TrailDrawer.js");
@@ -102,7 +109,10 @@ function createStaticServer() {
   const server = createServer(async (request, response) => {
     try {
       const requestUrl = new URL(request.url ?? "/", "http://127.0.0.1"),
-        filePath = resolve(repositoryRoot, `.${decodeURIComponent(requestUrl.pathname)}`);
+        filePath = resolve(
+          repositoryRoot,
+          `.${decodeURIComponent(requestUrl.pathname)}`,
+        );
 
       if (!filePath.startsWith(`${repositoryRoot}${sep}`)) {
         response.writeHead(403).end("Forbidden");
@@ -128,7 +138,10 @@ function createStaticServer() {
 async function openBrowserPage() {
   const executablePath = await resolveChromium();
 
-  assert(executablePath, "No Chromium executable found; set CHROME_BIN to a Chromium or Chrome binary.");
+  assert(
+    executablePath,
+    "No Chromium executable found; set CHROME_BIN to a Chromium or Chrome binary.",
+  );
   assert(cpus().length > 0, "Unable to identify the host CPU.");
   console.log(`Launching Chromium from ${executablePath}.`);
 
@@ -159,9 +172,12 @@ async function openBrowserPage() {
   });
   page.setDefaultTimeout(120000);
   await page.setViewport({ width: 1000, height: 800, deviceScaleFactor: 1 });
-  await page.goto(`http://127.0.0.1:${address.port}/effects/trail/benchmarks/browser/index.html`, {
-    waitUntil: "domcontentloaded",
-  });
+  await page.goto(
+    `http://127.0.0.1:${address.port}/effects/trail/benchmarks/browser/index.html`,
+    {
+      waitUntil: "domcontentloaded",
+    },
+  );
   const ready = await page.evaluate(() =>
     Promise.race([
       window.trailHarnessReady.then(() => true),
@@ -169,7 +185,10 @@ async function openBrowserPage() {
     ]),
   );
 
-  assert(ready, `Browser harness did not initialize.\n${[...pageErrors, ...consoleErrors].join("\n")}`);
+  assert(
+    ready,
+    `Browser harness did not initialize.\n${[...pageErrors, ...consoleErrors].join("\n")}`,
+  );
   console.log("Browser harness initialized.");
 
   return {
@@ -205,7 +224,9 @@ function changedPixels(original, current) {
           name,
           original: original.data[offset + channel],
           current: current.data[offset + channel],
-          delta: Math.abs(original.data[offset + channel] - current.data[offset + channel]),
+          delta: Math.abs(
+            original.data[offset + channel] - current.data[offset + channel],
+          ),
         }));
 
       changed.push({ x, y, channels });
@@ -240,7 +261,9 @@ function resolvedStrokes(strokes) {
       }
     }
 
-    throw new Error("Geometry trace contained a stroke without a quadratic segment.");
+    throw new Error(
+      "Geometry trace contained a stroke without a quadratic segment.",
+    );
   });
 }
 
@@ -250,8 +273,14 @@ function closestPointOnStroke(point, stroke) {
   for (let step = 0; step <= 100; step++) {
     const t = step / 100,
       inverse = 1 - t,
-      x = inverse * inverse * stroke.start.x + 2 * inverse * t * stroke.control.x + t * t * stroke.end.x,
-      y = inverse * inverse * stroke.start.y + 2 * inverse * t * stroke.control.y + t * t * stroke.end.y,
+      x =
+        inverse * inverse * stroke.start.x +
+        2 * inverse * t * stroke.control.x +
+        t * t * stroke.end.x,
+      y =
+        inverse * inverse * stroke.start.y +
+        2 * inverse * t * stroke.control.y +
+        t * t * stroke.end.y,
       distance = Math.hypot(point.x - x, point.y - y),
       edgeDistance = Math.abs(distance - stroke.lineWidth / 2);
 
@@ -267,7 +296,10 @@ function nearestStrokeEdge(pixel, strokes) {
   let nearest;
 
   for (let index = 0; index < strokes.length; index++) {
-    const edge = closestPointOnStroke({ x: pixel.x + 0.5, y: pixel.y + 0.5 }, strokes[index]);
+    const edge = closestPointOnStroke(
+      { x: pixel.x + 0.5, y: pixel.y + 0.5 },
+      strokes[index],
+    );
 
     if (!nearest || edge.edgeDistance < nearest.edgeDistance) {
       nearest = { ...edge, strokeIndex: index };
@@ -309,7 +341,12 @@ function geometryDelta(original, current) {
     );
   }
 
-  return { current: newStrokes, maxCoordinateDelta, maxStyleDelta, original: oldStrokes };
+  return {
+    current: newStrokes,
+    maxCoordinateDelta,
+    maxStyleDelta,
+    original: oldStrokes,
+  };
 }
 
 function copyPng(target, source, offsetX, offsetY) {
@@ -317,7 +354,12 @@ function copyPng(target, source, offsetX, offsetY) {
     const sourceStart = y * source.width * 4,
       targetStart = ((y + offsetY) * target.width + offsetX) * 4;
 
-    source.data.copy(target.data, targetStart, sourceStart, sourceStart + source.width * 4);
+    source.data.copy(
+      target.data,
+      targetStart,
+      sourceStart,
+      sourceStart + source.width * 4,
+    );
   }
 }
 
@@ -363,7 +405,12 @@ function markAnnotatedPixel(image, x, y, index, panelOffset, color) {
     for (let digitX = 0; digitX < pattern[digitY].length; digitX++) {
       if (pattern[digitY][digitX] === "1") {
         putPixel(image, centerX + 3 + digitX, y - 2 + digitY, background);
-        putPixel(image, centerX + 4 + digitX, y - 2 + digitY, [255, 255, 255, 255]);
+        putPixel(
+          image,
+          centerX + 4 + digitX,
+          y - 2 + digitY,
+          [255, 255, 255, 255],
+        );
       }
     }
   }
@@ -414,7 +461,9 @@ function summarizeChannelDeltas(pixels) {
 
   for (const name of channels) {
     const values = pixels.flatMap((pixel) =>
-      pixel.channels.filter((channel) => channel.name === name).map((channel) => channel.delta),
+      pixel.channels
+        .filter((channel) => channel.name === name)
+        .map((channel) => channel.delta),
     );
 
     result[name] = values.length
@@ -485,13 +534,19 @@ async function runPixelComparison(page) {
                   return window.trailHarness.runPixelScenario(scenarioConfig);
                 }, config);
 
-              assert(result.dpr === dpr, `Browser reported DPR ${result.dpr} for requested DPR ${dpr}.`);
+              assert(
+                result.dpr === dpr,
+                `Browser reported DPR ${result.dpr} for requested DPR ${dpr}.`,
+              );
               scenarioConfigs.set(scenario, config);
 
               for (const implementation of ["current", "original"]) {
                 const state = result.contextStates[implementation];
 
-                assert(state, `No context state recorded for ${implementation} (${scenario}).`);
+                assert(
+                  state,
+                  `No context state recorded for ${implementation} (${scenario}).`,
+                );
                 assert(
                   state.restored,
                   `Context state changed for ${implementation} (${scenario}): ${JSON.stringify(state)}.`,
@@ -503,20 +558,35 @@ async function runPixelComparison(page) {
                   original = decodePngDataUrl(capture.original);
 
                 assert(
-                  current.width === original.width && current.height === original.height,
+                  current.width === original.width &&
+                    current.height === original.height,
                   `Canvas dimensions differ for ${scenario}, frame ${capture.frame}.`,
                 );
 
-                const diff = new PNG({ width: current.width, height: current.height }),
+                const diff = new PNG({
+                    width: current.width,
+                    height: current.height,
+                  }),
                   // Use an exact comparison so edge-coverage differences are reported, not tolerated.
-                  differingPixels = pixelmatch(original.data, current.data, diff.data, current.width, current.height, {
-                    includeAA: true,
-                    threshold: 0,
-                  });
+                  differingPixels = pixelmatch(
+                    original.data,
+                    current.data,
+                    diff.data,
+                    current.width,
+                    current.height,
+                    {
+                      includeAA: true,
+                      threshold: 0,
+                    },
+                  );
                 let currentPixelIsUniformBackground = true,
                   originalPixelIsUniformBackground = true;
 
-                for (let offset = 0; offset < current.data.length; offset += 4) {
+                for (
+                  let offset = 0;
+                  offset < current.data.length;
+                  offset += 4
+                ) {
                   const currentBackground =
                       current.data[offset] === 16 &&
                       current.data[offset + 1] === 24 &&
@@ -547,16 +617,25 @@ async function runPixelComparison(page) {
                     `Unexpected original zero-width rendering in ${scenario}, frame ${capture.frame}.`,
                   );
                   if (differingPixels > 0) {
-                    zeroWidthFrames.push({ scenario, frame: capture.frame, differingPixels });
+                    zeroWidthFrames.push({
+                      scenario,
+                      frame: capture.frame,
+                      differingPixels,
+                    });
                   }
                 }
 
-                const isGeometryCandidate = !transform && dpr === 2 && widthCase.name !== "zero" && differingPixels > 0,
+                const isGeometryCandidate =
+                    !transform &&
+                    dpr === 2 &&
+                    widthCase.name !== "zero" &&
+                    differingPixels > 0,
                   record = {
                     scenario,
                     frame: capture.frame,
                     differingPixels,
-                    intentionalZeroWidthDifference: widthCase.name === "zero" && differingPixels > 0,
+                    intentionalZeroWidthDifference:
+                      widthCase.name === "zero" && differingPixels > 0,
                     equivalentGeometryAaDifference: false,
                     transform,
                     dpr,
@@ -570,7 +649,10 @@ async function runPixelComparison(page) {
                     pixels.length === differingPixels,
                     `Pixel detail count mismatch for ${scenario}, frame ${capture.frame}.`,
                   );
-                  geometryCandidates.set(`${scenario}@${capture.frame}`, { pixels, record });
+                  geometryCandidates.set(`${scenario}@${capture.frame}`, {
+                    pixels,
+                    record,
+                  });
                 }
 
                 if (differingPixels > 0) {
@@ -579,15 +661,24 @@ async function runPixelComparison(page) {
                   await mkdir(diffDirectory, { recursive: true });
                   await Promise.all([
                     writeFile(
-                      resolve(diffDirectory, `${scenario}_frame-${capture.frame}_original.png`),
+                      resolve(
+                        diffDirectory,
+                        `${scenario}_frame-${capture.frame}_original.png`,
+                      ),
                       PNG.sync.write(original),
                     ),
                     writeFile(
-                      resolve(diffDirectory, `${scenario}_frame-${capture.frame}_current.png`),
+                      resolve(
+                        diffDirectory,
+                        `${scenario}_frame-${capture.frame}_current.png`,
+                      ),
                       PNG.sync.write(current),
                     ),
                     writeFile(
-                      resolve(diffDirectory, `${scenario}_frame-${capture.frame}_diff.png`),
+                      resolve(
+                        diffDirectory,
+                        `${scenario}_frame-${capture.frame}_diff.png`,
+                      ),
                       PNG.sync.write(diff),
                     ),
                   ]);
@@ -617,7 +708,11 @@ async function runPixelComparison(page) {
   for (const [key, candidate] of geometryCandidates) {
     const [scenario, frameText] = key.split("@"),
       frame = Number(frameText),
-      config = { ...scenarioConfigs.get(scenario), recordGeometry: true, traceFrame: frame },
+      config = {
+        ...scenarioConfigs.get(scenario),
+        recordGeometry: true,
+        traceFrame: frame,
+      },
       traced = await page.evaluate(async (scenarioConfig) => {
         await window.trailHarnessReady;
 
@@ -625,7 +720,10 @@ async function runPixelComparison(page) {
       }, config),
       capture = traced.captures.find((item) => item.frame === frame);
 
-    assert(capture, `No traced image capture was returned for ${scenario}, frame ${frame}.`);
+    assert(
+      capture,
+      `No traced image capture was returned for ${scenario}, frame ${frame}.`,
+    );
 
     const original = decodePngDataUrl(capture.original),
       current = decodePngDataUrl(capture.current),
@@ -640,16 +738,27 @@ async function runPixelComparison(page) {
           originalNearestEdge: originalEdge,
           currentNearestEdge: currentEdge,
           withinEdgeTolerance:
-            originalEdge.edgeDistance <= edgeTolerancePx && currentEdge.edgeDistance <= edgeTolerancePx,
+            originalEdge.edgeDistance <= edgeTolerancePx &&
+            currentEdge.edgeDistance <= edgeTolerancePx,
         };
       }),
       channelDeltas = summarizeChannelDeltas(pixels);
-    const captureMaxChannelDelta = Math.max(0, ...Object.values(channelDeltas).map((channel) => channel.max));
+    const captureMaxChannelDelta = Math.max(
+      0,
+      ...Object.values(channelDeltas).map((channel) => channel.max),
+    );
 
-    pixelmatch(original.data, current.data, diff.data, current.width, current.height, {
-      includeAA: true,
-      threshold: 0,
-    });
+    pixelmatch(
+      original.data,
+      current.data,
+      diff.data,
+      current.width,
+      current.height,
+      {
+        includeAA: true,
+        threshold: 0,
+      },
+    );
 
     const report = {
       scenario,
@@ -658,7 +767,9 @@ async function runPixelComparison(page) {
       maxCoordinateDeltaDevicePx: traces.maxCoordinateDelta,
       maxStyleDelta: traces.maxStyleDelta,
       maxChannelDelta: captureMaxChannelDelta,
-      allPixelsWithinEdgeTolerance: pixels.every((pixel) => pixel.withinEdgeTolerance),
+      allPixelsWithinEdgeTolerance: pixels.every(
+        (pixel) => pixel.withinEdgeTolerance,
+      ),
       channelDeltas,
       pixels,
     };
@@ -671,7 +782,10 @@ async function runPixelComparison(page) {
       captureMaxChannelDelta <= maxAllowedAaChannelDelta &&
       report.allPixelsWithinEdgeTolerance;
 
-    if (!worstAaCapture || report.differingPixels > worstAaCapture.report.differingPixels) {
+    if (
+      !worstAaCapture ||
+      report.differingPixels > worstAaCapture.report.differingPixels
+    ) {
       worstAaCapture = { current, diff, original, pixels, report };
     }
 
@@ -680,27 +794,48 @@ async function runPixelComparison(page) {
     }
   }
 
-  const antialiasingFrames = results.filter((result) => result.equivalentGeometryAaDifference),
-    antialiasingPixels = antialiasingFrames.reduce((sum, result) => sum + result.differingPixels, 0),
-    maxAntialiasingPixels = Math.max(0, ...antialiasingFrames.map((result) => result.differingPixels)),
+  const antialiasingFrames = results.filter(
+      (result) => result.equivalentGeometryAaDifference,
+    ),
+    antialiasingPixels = antialiasingFrames.reduce(
+      (sum, result) => sum + result.differingPixels,
+      0,
+    ),
+    maxAntialiasingPixels = Math.max(
+      0,
+      ...antialiasingFrames.map((result) => result.differingPixels),
+    ),
     unexpected = results.filter(
       (result) =>
-        result.differingPixels > 0 && !result.intentionalZeroWidthDifference && !result.equivalentGeometryAaDifference,
+        result.differingPixels > 0 &&
+        !result.intentionalZeroWidthDifference &&
+        !result.equivalentGeometryAaDifference,
     ),
     differingFrames = results.filter((result) => result.differingPixels > 0),
     intentionalZeroWidthPixels = results
       .filter((result) => result.intentionalZeroWidthDifference)
       .reduce((sum, result) => sum + result.differingPixels, 0),
-    totalDifferingPixels = results.reduce((sum, result) => sum + result.differingPixels, 0),
-    allAaPixelsWithinEdge = geometryReports.every((report) => report.allPixelsWithinEdgeTolerance),
-    maxCoordinateDeltaDevicePx = Math.max(0, ...geometryReports.map((report) => report.maxCoordinateDeltaDevicePx)),
+    totalDifferingPixels = results.reduce(
+      (sum, result) => sum + result.differingPixels,
+      0,
+    ),
+    allAaPixelsWithinEdge = geometryReports.every(
+      (report) => report.allPixelsWithinEdgeTolerance,
+    ),
+    maxCoordinateDeltaDevicePx = Math.max(
+      0,
+      ...geometryReports.map((report) => report.maxCoordinateDeltaDevicePx),
+    ),
     maxChannelDelta = Math.max(
       0,
-      ...geometryReports.flatMap((report) => Object.values(report.channelDeltas).map((channel) => channel.max)),
+      ...geometryReports.flatMap((report) =>
+        Object.values(report.channelDeltas).map((channel) => channel.max),
+      ),
     ),
     channelDeltas = summarizeChannelDeltas(pixelDeltas),
     report = {
-      comparison: "pixelmatch threshold=0, includeAA=true; zero-width differences are explicit behavior changes",
+      comparison:
+        "pixelmatch threshold=0, includeAA=true; zero-width differences are explicit behavior changes",
       scenarios: scenarioCount,
       captures: results.length,
       totalDifferingPixels,
@@ -743,7 +878,10 @@ async function runPixelComparison(page) {
         worstAaCapture.pixels,
       ),
       annotationDirectory = resolve(outputDirectory, "pixel-diffs"),
-      annotationBase = resolve(annotationDirectory, "worst-dpr2-edge-annotated");
+      annotationBase = resolve(
+        annotationDirectory,
+        "worst-dpr2-edge-annotated",
+      );
 
     await Promise.all([
       writeFile(`${annotationBase}.png`, PNG.sync.write(annotated)),
@@ -754,7 +892,8 @@ async function runPixelComparison(page) {
             panels,
             scenario: worstAaCapture.report.scenario,
             frame: worstAaCapture.report.frame,
-            coordinateDeltaDevicePx: worstAaCapture.report.maxCoordinateDeltaDevicePx,
+            coordinateDeltaDevicePx:
+              worstAaCapture.report.maxCoordinateDeltaDevicePx,
             perChannelDeltas: worstAaCapture.report.channelDeltas,
             pixels: worstAaCapture.report.pixels,
           },
@@ -765,7 +904,10 @@ async function runPixelComparison(page) {
     ]);
   }
 
-  await writeFile(resolve(outputDirectory, "pixel-comparison.json"), JSON.stringify(report, null, 2));
+  await writeFile(
+    resolve(outputDirectory, "pixel-comparison.json"),
+    JSON.stringify(report, null, 2),
+  );
   console.log(
     `Pixel comparison: ${scenarioCount} scenarios, ${results.length} captures, ${totalDifferingPixels} differing pixels; ${intentionalZeroWidthPixels} intentional maxWidth:0 pixels, ${antialiasingPixels} DPR 2 edge-antialiasing pixels across ${antialiasingFrames.length} captures, ${unexpected.length} unexpected captures.`,
   );
@@ -773,14 +915,22 @@ async function runPixelComparison(page) {
     `DPR 2 geometry: max coordinate delta ${maxCoordinateDeltaDevicePx} device px; differing pixel channel deltas ${JSON.stringify(channelDeltas)}.`,
   );
 
-  const consistency = await page.evaluate(() => window.trailHarness.runConsistency());
+  const consistency = await page.evaluate(() =>
+    window.trailHarness.runConsistency(),
+  );
 
-  await writeFile(resolve(outputDirectory, "bounds-consistency.json"), JSON.stringify(consistency, null, 2));
+  await writeFile(
+    resolve(outputDirectory, "bounds-consistency.json"),
+    JSON.stringify(consistency, null, 2),
+  );
   console.log(
     `Bounds consistency: ${consistency.length} mode/direction runs × 1,000 frames; ${consistency.reduce((sum, item) => sum + item.checkedBreakSteps, 0)} break steps checked; the active trail length was verified after every frame.`,
   );
 
-  assert(scenarioCount === 480, `Expected 480 pixel scenarios, ran ${scenarioCount}.`);
+  assert(
+    scenarioCount === 480,
+    `Expected 480 pixel scenarios, ran ${scenarioCount}.`,
+  );
   assert(
     intentionalZeroWidthPixels > 0,
     "The maxWidth: 0 behavior-change scenarios did not produce the expected difference from the original.",
@@ -789,7 +939,10 @@ async function runPixelComparison(page) {
     geometryReports.length === antialiasingFrames.length,
     "At least one DPR 2 geometry difference was not proven to be an edge antialiasing difference.",
   );
-  assert(allAaPixelsWithinEdge, "At least one DPR 2 differing pixel was not within one device pixel of a stroke edge.");
+  assert(
+    allAaPixelsWithinEdge,
+    "At least one DPR 2 differing pixel was not within one device pixel of a stroke edge.",
+  );
   assert(
     maxAntialiasingPixels <= maxAllowedAaPixelsPerCapture,
     `DPR 2 antialiasing count ${maxAntialiasingPixels} exceeds the explicit per-capture limit ${maxAllowedAaPixelsPerCapture}.`,
@@ -798,7 +951,10 @@ async function runPixelComparison(page) {
     maxChannelDelta <= maxAllowedAaChannelDelta,
     `DPR 2 antialiasing channel delta ${maxChannelDelta} exceeds the explicit limit ${maxAllowedAaChannelDelta}.`,
   );
-  assert(unexpected.length === 0, `Found ${unexpected.length} unexpected pixel-difference frames.`);
+  assert(
+    unexpected.length === 0,
+    `Found ${unexpected.length} unexpected pixel-difference frames.`,
+  );
 
   return { pixelReport: report, consistency };
 }
@@ -806,7 +962,10 @@ async function runPixelComparison(page) {
 function summarizeTimings(samples) {
   const sorted = [...samples].sort((a, b) => a - b),
     middle = Math.floor(sorted.length / 2),
-    median = sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
+    median =
+      sorted.length % 2
+        ? sorted[middle]
+        : (sorted[middle - 1] + sorted[middle]) / 2;
 
   return {
     medianMs: median,
@@ -822,13 +981,19 @@ function machineDetails() {
   if (platform() === "darwin") {
     try {
       processor =
-        execFileSync("/usr/sbin/sysctl", ["-n", "machdep.cpu.brand_string"], { encoding: "utf8" }).trim() || processor;
+        execFileSync("/usr/sbin/sysctl", ["-n", "machdep.cpu.brand_string"], {
+          encoding: "utf8",
+        }).trim() || processor;
     } catch {
       // The Node CPU model remains available when sysctl is not.
     }
   }
 
-  return { platform: `${platform()} ${release()}`, architecture: arch(), processor };
+  return {
+    platform: `${platform()} ${release()}`,
+    architecture: arch(),
+    processor,
+  };
 }
 
 async function runBrowserBenchmark(page, version) {
@@ -853,12 +1018,23 @@ async function runBrowserBenchmark(page, version) {
     for (const transform of [false, true]) {
       const measurements = { current: [], original: [] };
 
-      for (let repetition = 0; repetition < report.configuration.repetitions; repetition++) {
-        const order = repetition % 2 === 0 ? ["original", "current"] : ["current", "original"];
+      for (
+        let repetition = 0;
+        repetition < report.configuration.repetitions;
+        repetition++
+      ) {
+        const order =
+          repetition % 2 === 0
+            ? ["original", "current"]
+            : ["current", "original"];
 
         for (const implementation of order) {
           const sample = await page.evaluate(
-            (implementationName, config) => window.trailHarness.benchmarkIteration(implementationName, config),
+            (implementationName, config) =>
+              window.trailHarness.benchmarkIteration(
+                implementationName,
+                config,
+              ),
             implementation,
             {
               animateSize: true,
@@ -892,15 +1068,25 @@ async function runBrowserBenchmark(page, version) {
     }
   }
 
-  await writeFile(resolve(outputDirectory, "browser-benchmark.json"), JSON.stringify(report, null, 2));
+  await writeFile(
+    resolve(outputDirectory, "browser-benchmark.json"),
+    JSON.stringify(report, null, 2),
+  );
   console.log(`Chromium: ${report.chromium}`);
-  console.log(`Machine: ${report.machine.processor}; ${report.machine.platform}; ${report.machine.architecture}`);
+  console.log(
+    `Machine: ${report.machine.processor}; ${report.machine.platform}; ${report.machine.architecture}`,
+  );
   console.log(report.cpuThrottling);
-  console.log("| Transform | DPR | Original median (min-max) ms/frame | Current median (min-max) ms/frame | Change |");
+  console.log(
+    "| Transform | DPR | Original median (min-max) ms/frame | Current median (min-max) ms/frame | Change |",
+  );
   console.log("|---|---:|---:|---:|---:|");
 
   for (const result of report.results) {
-    const change = ((result.current.medianMs / result.original.medianMs - 1) * 100).toFixed(1);
+    const change = (
+      (result.current.medianMs / result.original.medianMs - 1) *
+      100
+    ).toFixed(1);
 
     console.log(
       `| ${result.transform} | ${result.dpr} | ${result.original.medianMs.toFixed(3)} (${result.original.minMs.toFixed(3)}-${result.original.maxMs.toFixed(3)}) | ${result.current.medianMs.toFixed(3)} (${result.current.minMs.toFixed(3)}-${result.current.maxMs.toFixed(3)}) | ${change}% |`,
@@ -913,11 +1099,15 @@ async function runBrowserBenchmark(page, version) {
 async function main() {
   const mode = process.argv[2];
 
-  assert(mode === "compare" || mode === "benchmark", "Usage: run-browser.mjs <compare|benchmark>");
+  assert(
+    mode === "compare" || mode === "benchmark",
+    "Usage: run-browser.mjs <compare|benchmark>",
+  );
   await buildBrowserModules();
   await mkdir(outputDirectory, { recursive: true });
 
-  const { browser, page, pageErrors, server, version } = await openBrowserPage();
+  const { browser, page, pageErrors, server, version } =
+    await openBrowserPage();
 
   try {
     if (mode === "compare") {
@@ -926,10 +1116,15 @@ async function main() {
       await runBrowserBenchmark(page, version);
     }
 
-    assert(pageErrors.length === 0, `Browser page errors:\n${pageErrors.join("\n")}`);
+    assert(
+      pageErrors.length === 0,
+      `Browser page errors:\n${pageErrors.join("\n")}`,
+    );
   } finally {
     await browser.close();
-    await new Promise((resolveClose, reject) => server.close((error) => (error ? reject(error) : resolveClose())));
+    await new Promise((resolveClose, reject) =>
+      server.close((error) => (error ? reject(error) : resolveClose())),
+    );
   }
 }
 
