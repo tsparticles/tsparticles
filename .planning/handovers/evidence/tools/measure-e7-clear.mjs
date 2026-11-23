@@ -22,7 +22,7 @@ const start = numeric.indexOf("    clear() {"),
     numeric.slice(0, start) +
     method
       .replace("const visited = new Set();", "const visited = this.e7Pool?.pop() ?? new Set(); try {")
-      .replace(/\n    }\s*$/, "\n } finally { visited.clear(); (this.e7Pool ??= []).push(visited); }\n    }\n") +
+      .replace(/\n {4}}\s*$/, "\n } finally { visited.clear(); (this.e7Pool ??= []).push(visited); }\n    }\n") +
     numeric.slice(end),
   variants = { original, numeric, pooled },
   classes = {};

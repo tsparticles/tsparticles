@@ -85,7 +85,11 @@ describe("render hook contracts", () => {
   it("visits late clear hooks in layer order and deduplicates identities", () => {
     const calls: string[] = [],
       cleanup: IContainerPlugin = { clearDraw: () => undefined },
-      multi: IContainerPlugin = { canvasPaint: () => false, draw: () => undefined, clearDraw: () => undefined },
+      multi: IContainerPlugin = {
+        canvasPaint: () => false,
+        draw: () => undefined,
+        clearDraw: () => undefined,
+      },
       setupPlugin: IContainerPlugin = { drawSettingsSetup: () => undefined },
       { render } = setup([cleanup, setupPlugin, multi]);
 
@@ -137,7 +141,10 @@ describe("render hook contracts", () => {
   it("isolates nested clears and recovers after a thrown hook", () => {
     let nested = false;
     const calls: string[] = [],
-      plugin: IContainerPlugin = { canvasPaint: () => false, draw: () => undefined },
+      plugin: IContainerPlugin = {
+        canvasPaint: () => false,
+        draw: () => undefined,
+      },
       { render } = setup([plugin]);
 
     plugin.canvasClear = () => {
@@ -249,7 +256,11 @@ describe("render hook contracts", () => {
 it("ignores HDR callbacks captured before stop or replacement", () => {
   const handlers: (() => void)[] = [],
     remove = vi.fn(),
-    context = { clearRect: vi.fn(), fillRect: vi.fn(), getContextAttributes: () => ({ colorSpace: "srgb" }) },
+    context = {
+      clearRect: vi.fn(),
+      fillRect: vi.fn(),
+      getContextAttributes: () => ({ colorSpace: "srgb" }),
+    },
     getContext = vi.fn(() => context),
     container = {
       actualOptions: {
@@ -271,7 +282,11 @@ it("ignores HDR callbacks captured before stop or replacement", () => {
     },
     removeEventListener: remove,
   }));
-  manager.loadCanvas({ width: 80, height: 60, getContext } as unknown as OffscreenCanvas);
+  manager.loadCanvas({
+    width: 80,
+    height: 60,
+    getContext,
+  } as unknown as OffscreenCanvas);
   manager.init();
   const first = handlers[0];
 
@@ -302,7 +317,12 @@ function drawingParticle(id: number): Particle {
     getStrokeColor: () => undefined,
     getOpacity: () => ({ fillOpacity: 1, opacity: 1, strokeOpacity: 1 }),
     getPosition: () => ({ x: id * 10, y: 20 }),
-    getTransformData: (transform: { a?: number }) => ({ a: transform.a ?? 1, b: 0, c: 0, d: 1 }),
+    getTransformData: (transform: { a?: number }) => ({
+      a: transform.a ?? 1,
+      b: 0,
+      c: 0,
+      d: 1,
+    }),
   } as unknown as Particle;
 }
 
@@ -310,7 +330,11 @@ it("resets a particle transform after a throwing shape", () => {
   const { container, context, render } = setup(),
     failure = new Error("shape failed");
 
-  Object.assign(context, { setTransform: vi.fn(), resetTransform: vi.fn(), beginPath: vi.fn() });
+  Object.assign(context, {
+    setTransform: vi.fn(),
+    resetTransform: vi.fn(),
+    beginPath: vi.fn(),
+  });
   container.shapeDrawers.set("test", {
     draw: () => {
       throw failure;
@@ -338,7 +362,7 @@ it("isolates reusable styles and transforms during nested particle drawing", () 
     restore: vi.fn(),
   });
   container.shapeDrawers.set("test", {
-    draw: data => {
+    draw: (data) => {
       colors.push(data.context.fillStyle);
       transforms.push(data.transformData.a);
     },
@@ -347,9 +371,11 @@ it("isolates reusable styles and transforms during nested particle drawing", () 
     init: () => undefined,
     isEnabled: () => true,
     update: () => undefined,
-    getColorStyles: particle => ({ fill: particle === first ? "red" : "blue" }),
-    getTransformValues: particle => ({ a: particle === first ? 2 : 3 }),
-    beforeDraw: particle => {
+    getColorStyles: (particle) => ({
+      fill: particle === first ? "red" : "blue",
+    }),
+    getTransformValues: (particle) => ({ a: particle === first ? 2 : 3 }),
+    beforeDraw: (particle) => {
       if (particle === first) {
         render.drawParticle(second, { factor: 1, value: 16 });
       }
@@ -366,7 +392,11 @@ it("isolates reusable styles and transforms during nested particle drawing", () 
 it("does not let a disconnected MutationObserver repair the replacement scene", () => {
   const callbacks: MutationCallback[] = [],
     disconnect = vi.fn(),
-    context = { clearRect: vi.fn(), fillRect: vi.fn(), getContextAttributes: () => ({ colorSpace: "srgb" }) },
+    context = {
+      clearRect: vi.fn(),
+      fillRect: vi.fn(),
+      getContextAttributes: () => ({ colorSpace: "srgb" }),
+    },
     element = document.createElement("canvas"),
     container = {
       actualOptions: {
@@ -400,7 +430,9 @@ it("does not let a disconnected MutationObserver repair the replacement scene", 
   manager.init();
   manager.stop();
   const background = vi.spyOn(manager, "initBackground"),
-    records = [{ type: "attributes", attributeName: "style" }] as MutationRecord[],
+    records = [
+      { type: "attributes", attributeName: "style" },
+    ] as MutationRecord[],
     observer = {} as MutationObserver;
 
   callbacks[0](records, observer);
@@ -423,16 +455,21 @@ it("reapplies styles after external drawers mutate the context and preserves esc
     second = drawingParticle(2),
     plugins: IContainerPlugin[] = [
       {
-        drawParticleTransform: value => {
+        drawParticleTransform: (value) => {
           data.push(value);
         },
       },
     ];
 
-  Object.assign(context, { setTransform: vi.fn(), resetTransform: vi.fn(), beginPath: vi.fn(), fill: vi.fn() });
+  Object.assign(context, {
+    setTransform: vi.fn(),
+    resetTransform: vi.fn(),
+    beginPath: vi.fn(),
+    fill: vi.fn(),
+  });
   Object.assign(container, { plugins });
   container.shapeDrawers.set("test", {
-    draw: value => {
+    draw: (value) => {
       styles.push(value.context.fillStyle);
       value.context.fillStyle = "green";
     },
@@ -457,21 +494,24 @@ it("reapplies styles after external drawers mutate the context and preserves esc
 it.each([
   ["unsupported", "TSP-1101"],
   ["failed", "TSP-1102"],
-])("reports the stable production code for an %s canvas transfer", (mode, code) => {
-  vi.stubEnv("NODE_ENV", "production");
-  const element = document.createElement("canvas"),
-    container = { retina: { pixelRatio: 1 } } as Container,
-    manager = new CanvasManager({} as PluginManager, container);
+])(
+  "reports the stable production code for an %s canvas transfer",
+  (mode, code) => {
+    vi.stubEnv("NODE_ENV", "production");
+    const element = document.createElement("canvas"),
+      container = { retina: { pixelRatio: 1 } } as Container,
+      manager = new CanvasManager({} as PluginManager, container);
 
-  Object.defineProperty(element, "transferControlToOffscreen", {
-    value:
-      mode === "unsupported"
-        ? undefined
-        : () => {
-            throw new Error("transfer rejected");
-          },
-  });
-  expect(() => {
-    manager.loadCanvas(element);
-  }).toThrow(`[tsParticles Error ${code}]`);
-});
+    Object.defineProperty(element, "transferControlToOffscreen", {
+      value:
+        mode === "unsupported"
+          ? undefined
+          : () => {
+              throw new Error("transfer rejected");
+            },
+    });
+    expect(() => {
+      manager.loadCanvas(element);
+    }).toThrow(`[tsParticles Error ${code}]`);
+  },
+);
