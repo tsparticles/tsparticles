@@ -382,7 +382,12 @@ describe("ColorUtils", async () => {
         color = { a: 0.8, c: 0.1, h: 120, l: 50 },
         other = { ...color, h: 240 },
         destination = { getPosition: () => ({ x: 10, y: 0 }) },
-        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        container = {
+          hdr: false,
+          outputColorSpace: "srgb",
+          particles: { linksColors: new Map() },
+          peakNits: 400,
+        },
         particle = {
           getPosition: () => ({ x: 0, y: 0 }),
           links: [
@@ -390,7 +395,9 @@ describe("ColorUtils", async () => {
             { color, destination, opacity: 0.8 },
             { color: other, destination, opacity: 0.8 },
           ],
-          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          options: {
+            links: { enable: true, frequency: 1, triangles: { enable: false } },
+          },
           retina: { linksWidth: 2 },
         },
         strokes: { alpha: number; style: string; width: number }[] = [];
@@ -444,9 +451,19 @@ describe("ColorUtils", async () => {
       const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
         color = { a: 0.8, c: 0.1, h: 120, l: 50 },
         originalFill = { pattern: true },
-        states: { alpha: number; fill: unknown; style: string; width: number }[] = [],
+        states: {
+          alpha: number;
+          fill: unknown;
+          style: string;
+          width: number;
+        }[] = [],
         seenFills: unknown[] = [],
-        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        container = {
+          hdr: false,
+          outputColorSpace: "srgb",
+          particles: { linksColors: new Map() },
+          peakNits: 400,
+        },
         destination = { getPosition: () => ({ x: 10, y: 0 }) },
         particle = {
           getPosition: () => ({ x: 0, y: 0 }),
@@ -454,7 +471,9 @@ describe("ColorUtils", async () => {
             { color, destination, opacity: 0.4 },
             { color, destination, opacity: 0.8 },
           ],
-          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          options: {
+            links: { enable: true, frequency: 1, triangles: { enable: false } },
+          },
           retina: { linksWidth: 2 },
         };
       let alpha = 0.7,
@@ -532,11 +551,24 @@ describe("ColorUtils", async () => {
     it("bounds style caches while link colors animate", async () => {
       const { LinkInstance } = await import("../../../../interactions/particles/links/src/LinkInstance.js"),
         color = { a: 0.8, c: 0.1, h: 0, l: 50 },
-        container = { hdr: false, outputColorSpace: "srgb", particles: { linksColors: new Map() }, peakNits: 400 },
+        container = {
+          hdr: false,
+          outputColorSpace: "srgb",
+          particles: { linksColors: new Map() },
+          peakNits: 400,
+        },
         particle = {
           getPosition: () => ({ x: 0, y: 0 }),
-          links: [{ color, destination: { getPosition: () => ({ x: 10, y: 0 }) }, opacity: 0.5 }],
-          options: { links: { enable: true, frequency: 1, triangles: { enable: false } } },
+          links: [
+            {
+              color,
+              destination: { getPosition: () => ({ x: 10, y: 0 }) },
+              opacity: 0.5,
+            },
+          ],
+          options: {
+            links: { enable: true, frequency: 1, triangles: { enable: false } },
+          },
           retina: { linksWidth: 1 },
         },
         context = {
@@ -1134,7 +1166,9 @@ describe("ColorUtils", async () => {
       pluginManager.engine.setRandom(() => 1);
 
       const wrapped = rangeColorToOklch(pluginManager, {
-          value: { rgb: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 } },
+          value: {
+            rgb: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 },
+          },
         }),
         direct = rangeColorToOklch(pluginManager, {
           value: { a: 0.4, b: 0, colorSpace: "display-p3", g: 0, r: 255 },
@@ -1149,7 +1183,9 @@ describe("ColorUtils", async () => {
       expect(ranged?.a).to.be.closeTo(0.4, 1e-12);
       expect(
         rangeColorToOklch(pluginManager, {
-          value: { rgb: { b: 0, colorSpace: "display-p3", g: 0, p3: false, r: 255 } },
+          value: {
+            rgb: { b: 0, colorSpace: "display-p3", g: 0, p3: false, r: 255 },
+          },
         }),
       ).to.be.undefined;
       expect(
@@ -1186,7 +1222,13 @@ describe("ColorUtils", async () => {
     it("does not reuse a style after in-place canonical color or opacity changes", () => {
       const color = { a: 0.8, c: 0.1, h: 120, l: 50 };
 
-      for (const patch of [{}, { h: 130 }, { c: 0.12 }, { l: 55 }, { a: 0.3 }]) {
+      for (const patch of [
+        {},
+        { h: 130 },
+        { c: 0.12 },
+        { l: 55 },
+        { a: 0.3 },
+      ]) {
         Object.assign(color, patch);
         const expected = `oklch(${color.l}% ${color.c} ${color.h} / ${color.a * 0.5})`;
 
@@ -1607,7 +1649,12 @@ describe("ColorUtils", async () => {
         original = { ...color },
         maxLinearChannel = 400 / referenceWhiteNits;
 
-      for (const mode of [HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic]) {
+      for (const mode of [
+        HdrMode.natural,
+        HdrMode.vivid,
+        HdrMode.cinematic,
+        HdrMode.dynamic,
+      ]) {
         const style = getStyleFromOklch(color, true, 0.4, 400, mode, "display-p3"),
           channels = parseDisplayP3(style);
 

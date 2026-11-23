@@ -271,7 +271,13 @@ describe("review regressions", () => {
           },
           instancesManager = {
             initContainer: () => undefined,
-            getArray: () => [{ orbits: false, getForce: () => Vector.origin, attract: () => undefined }],
+            getArray: () => [
+              {
+                orbits: false,
+                getForce: () => Vector.origin,
+                attract: () => undefined,
+              },
+            ],
           },
           plugin = new AbsorbersPluginInstance(container as never, instancesManager as never),
           particle = {

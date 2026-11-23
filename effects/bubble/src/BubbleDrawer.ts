@@ -12,7 +12,12 @@ const bubbleFactor = 3,
   // Alpha from the previous #RGBA highlight style, retained exactly.
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   bubbleHighlightAlpha = 0x99 / 0xff,
-  bubbleHighlightColor: IOklcha = { a: bubbleHighlightAlpha, c: 0, h: 0, l: percentDenominator };
+  bubbleHighlightColor: IOklcha = {
+    a: bubbleHighlightAlpha,
+    c: 0,
+    h: 0,
+    l: percentDenominator,
+  };
 
 /** Bubble effect drawer plugin */
 export class BubbleDrawer implements IEffectDrawer {

@@ -122,8 +122,12 @@ describe("EngineUtils", () => {
         errorsB: unknown[][] = [],
         originalFetch = globalThis.fetch;
 
-      engineA.setLogger({ error: (...args: unknown[]): void => errorsA.push(args) });
-      engineB.setLogger({ error: (...args: unknown[]): void => errorsB.push(args) });
+      engineA.setLogger({
+        error: (...args: unknown[]): void => errorsA.push(args),
+      });
+      engineB.setLogger({
+        error: (...args: unknown[]): void => errorsB.push(args),
+      });
       globalThis.fetch = (): Promise<Response> => Promise.reject(new Error("engine A fetch failure"));
 
       try {
@@ -152,7 +156,9 @@ describe("EngineUtils", () => {
         fetch = vi.fn();
 
       controller.abort();
-      engine.setLogger({ error: (...args: unknown[]): void => errors.push(args) });
+      engine.setLogger({
+        error: (...args: unknown[]): void => errors.push(args),
+      });
       globalThis.fetch = fetch;
 
       try {
@@ -277,7 +283,11 @@ describe("EngineUtils", () => {
     });
 
     it("getDistances returns the signed deltas and the hypotenuse", () => {
-      expect(getDistances({ x: 0, y: 0 }, { x: 3, y: 4 })).to.eql({ dx: -3, dy: -4, distance: 5 });
+      expect(getDistances({ x: 0, y: 0 }, { x: 3, y: 4 })).to.eql({
+        dx: -3,
+        dy: -4,
+        distance: 5,
+      });
     });
 
     it.each([1e-200, 1e200])("getDistances preserves the length of a delta of %s", delta => {
@@ -308,7 +318,10 @@ describe("EngineUtils", () => {
     });
 
     it("calcPositionOrRandomFromSize uses the random source without a position", () => {
-      expect(calcPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({ x: 400, y: 300 });
+      expect(calcPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({
+        x: 400,
+        y: 300,
+      });
       expect(calcPositionOrRandomFromSize({ size, position: { x: 25, y: 75 } })).to.eql({ x: 200, y: 450 });
     });
 
@@ -323,7 +336,10 @@ describe("EngineUtils", () => {
 
     it("calcExactPositionOrRandomFromSize keeps exact coordinates or samples pixels", () => {
       expect(calcExactPositionOrRandomFromSize({ size, position: { x: 10, y: 20 } })).to.eql({ x: 10, y: 20 });
-      expect(calcExactPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({ x: 400, y: 300 });
+      expect(calcExactPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({
+        x: 400,
+        y: 300,
+      });
     });
   });
 
@@ -364,7 +380,10 @@ describe("EngineUtils", () => {
     });
 
     it("executeOnSingleOrMultiple maps arrays and wraps single values", () => {
-      expect(executeOnSingleOrMultiple([1, 2], value => value * 2)).to.eql([2, 4]);
+      expect(executeOnSingleOrMultiple([1, 2], value => value * 2)).to.eql([
+        2,
+        4,
+      ]);
       expect(executeOnSingleOrMultiple(3, value => value + 1)).to.equal(4);
     });
   });
@@ -387,32 +406,63 @@ describe("EngineUtils", () => {
 
     it("rgbToHsl and hslToRgb are inverse for pure hues", () => {
       expect(rgbToHsl(red)).to.eql({ h: 0, s: 100, l: 50 });
-      expect(rgbToHsl({ r: 0, g: 255, b: 0 })).to.eql({ h: 120, s: 100, l: 50 });
-      expect(hslToRgb({ h: 120, s: 100, l: 50 })).to.eql({ r: 0, g: 255, b: 0 });
-      expect(hslToRgbFloat({ h: 240, s: 100, l: 50 })).to.eql({ r: 0, g: 0, b: 255 });
+      expect(rgbToHsl({ r: 0, g: 255, b: 0 })).to.eql({
+        h: 120,
+        s: 100,
+        l: 50,
+      });
+      expect(hslToRgb({ h: 120, s: 100, l: 50 })).to.eql({
+        r: 0,
+        g: 255,
+        b: 0,
+      });
+      expect(hslToRgbFloat({ h: 240, s: 100, l: 50 })).to.eql({
+        r: 0,
+        g: 0,
+        b: 255,
+      });
     });
 
     it("rgbToHsl handles grayscale", () => {
       expect(rgbToHsl(black)).to.eql({ h: 0, s: 0, l: 0 });
-      expect(rgbToHsl({ r: 255, g: 255, b: 255 })).to.eql({ h: 0, s: 0, l: 100 });
+      expect(rgbToHsl({ r: 255, g: 255, b: 255 })).to.eql({
+        h: 0,
+        s: 0,
+        l: 100,
+      });
     });
 
     it("hslaToRgba keeps the alpha channel", () => {
-      expect(hslaToRgba({ h: 0, s: 100, l: 50, a: 0.25 })).to.eql({ r: 255, g: 0, b: 0, a: 0.25 });
+      expect(hslaToRgba({ h: 0, s: 100, l: 50, a: 0.25 })).to.eql({
+        r: 255,
+        g: 0,
+        b: 0,
+        a: 0.25,
+      });
     });
 
     it("alterHsl shifts lightness and keeps hue and saturation", () => {
       const base: IHsl = { h: 200, s: 50, l: 40 };
 
-      expect(alterHsl(base, AlterType.enlighten, 10)).to.eql({ h: 200, s: 50, l: 50 });
-      expect(alterHsl(base, AlterType.darken, 10)).to.eql({ h: 200, s: 50, l: 30 });
+      expect(alterHsl(base, AlterType.enlighten, 10)).to.eql({
+        h: 200,
+        s: 50,
+        l: 50,
+      });
+      expect(alterHsl(base, AlterType.darken, 10)).to.eql({
+        h: 200,
+        s: 50,
+        l: 30,
+      });
     });
   });
 
   describe("deepExtend", () => {
     it("merges nested objects and preserves untouched keys", () => {
       const destination = { a: 1, nested: { x: 1, y: 2 } },
-        result = deepExtend(destination, { nested: { y: 3, z: 4 } }) as typeof destination;
+        result = deepExtend(destination, {
+          nested: { y: 3, z: 4 },
+        }) as typeof destination;
 
       expect(result).to.eql({ a: 1, nested: { x: 1, y: 3, z: 4 } });
     });

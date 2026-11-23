@@ -34,7 +34,9 @@ function getImageDataColorSpace(
 
   try {
     const contextColorSpace = (
-      context as unknown as { getContextAttributes?: () => { colorSpace?: string } }
+      context as unknown as {
+        getContextAttributes?: () => { colorSpace?: string };
+      }
     ).getContextAttributes?.().colorSpace;
 
     return contextColorSpace === "display-p3" ? "display-p3" : "srgb";

@@ -12,7 +12,11 @@ describe("OKLCH canvas pixel readback", () => {
 
   for (const { colorSpace, map, name } of [
     { colorSpace: "srgb" as const, map: mapOklchToSrgb, name: "sRGB" },
-    { colorSpace: "display-p3" as const, map: mapOklchToDisplayP3, name: "Display-P3" },
+    {
+      colorSpace: "display-p3" as const,
+      map: mapOklchToDisplayP3,
+      name: "Display-P3",
+    },
   ]) {
     it(`renders mapped ${name} output with alpha`, () => {
       const canvas = createCanvas(2, 2),

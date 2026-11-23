@@ -399,7 +399,15 @@ describe("SpatialHashGrid", () => {
       outside = particleAt({ x: 12_000, y: 12_000 }),
       out = [prefix];
 
-    for (const particle of [fifth, fourth, second, outsideCircle, outside, third, first]) {
+    for (const particle of [
+      fifth,
+      fourth,
+      second,
+      outsideCircle,
+      outside,
+      third,
+      first,
+    ]) {
       grid.insert(particle);
     }
 

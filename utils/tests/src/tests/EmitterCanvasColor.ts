@@ -8,8 +8,16 @@ import { sampledPixelToOklcha } from "../../../../plugins/emitters/src/PixelColo
 describe("canvas emitter sampled color", () => {
   it("retains source primaries through filtering and canonical color adoption", () => {
     const pixel = { a: half, b: 0, g: 0, r: 255 },
-      pixelData: CanvasPixelData = { colorSpace: "display-p3", height: 1, pixels: [[pixel]], width: 1 },
-      filterCalls: { colorSpace?: "display-p3" | "srgb"; pixel: typeof pixel }[] = [],
+      pixelData: CanvasPixelData = {
+        colorSpace: "display-p3",
+        height: 1,
+        pixels: [[pixel]],
+        width: 1,
+      },
+      filterCalls: {
+        colorSpace?: "display-p3" | "srgb";
+        pixel: typeof pixel;
+      }[] = [],
       options = new EmittersCanvasShapeOptions();
 
     options.filter = (value, colorSpace) => {

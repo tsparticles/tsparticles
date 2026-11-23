@@ -329,7 +329,14 @@ export class LinkInstance implements IContainerPlugin {
       last.peakNits = peakNits;
       last.style = style;
     } else {
-      this.#lastStyle = { color: { ...color }, hdr, hdrMode, outputColorSpace, peakNits, style };
+      this.#lastStyle = {
+        color: { ...color },
+        hdr,
+        hdrMode,
+        outputColorSpace,
+        peakNits,
+        style,
+      };
     }
 
     return style;
