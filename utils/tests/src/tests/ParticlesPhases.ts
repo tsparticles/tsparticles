@@ -14,13 +14,16 @@ import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 const delta = { value: 1000 / 60, factor: 1 };
 
-async function loadPhaseContainer(factory: (container: Container) => IContainerPlugin, count = 2): Promise<Container> {
+async function loadPhaseContainer(
+  factory: (container: Container) => IContainerPlugin,
+  count = 2,
+): Promise<Container> {
   const engine = createEngine();
 
-  await engine.pluginManager.register(current => {
+  await engine.pluginManager.register((current) => {
     current.pluginManager.addPlugin({
       id: "e6-phase-contract",
-      getPlugin: container => Promise.resolve(factory(container)),
+      getPlugin: (container) => Promise.resolve(factory(container)),
       needsPlugin: () => true,
       loadOptions: () => undefined,
     });
@@ -29,7 +32,11 @@ async function loadPhaseContainer(factory: (container: Container) => IContainerP
   const container = await engine.load({
     id: "e6-phase-contract",
     element: createCustomCanvas(100, 100) as unknown as HTMLCanvasElement,
-    options: { autoPlay: false, detectRetina: false, particles: { number: { value: count } } },
+    options: {
+      autoPlay: false,
+      detectRetina: false,
+      particles: { number: { value: count } },
+    },
   });
 
   if (!container) {
@@ -42,7 +49,13 @@ async function loadPhaseContainer(factory: (container: Container) => IContainerP
 describe("particle update phase contracts", () => {
   globalThis.window = TestWindow;
 
-  for (const quantity of [Infinity, -Infinity, NaN, Number.MAX_VALUE, Number.MAX_SAFE_INTEGER + 1]) {
+  for (const quantity of [
+    Infinity,
+    -Infinity,
+    NaN,
+    Number.MAX_VALUE,
+    Number.MAX_SAFE_INTEGER + 1,
+  ]) {
     it(`does not enter the push loop for invalid quantity ${quantity}`, async () => {
       const container = await loadPhaseContainer(() => ({}), 0),
         originalAdd = container.particles.addParticle.bind(container.particles);
@@ -102,7 +115,10 @@ describe("particle update phase contracts", () => {
       expect(removed).toBe(2);
       expect(container.particles.count).toBe(2);
     } finally {
-      container.engine.removeEventListener(EventType.particleRemoved, onRemoved);
+      container.engine.removeEventListener(
+        EventType.particleRemoved,
+        onRemoved,
+      );
       container.destroy(false);
     }
   });
@@ -127,7 +143,7 @@ describe("particle update phase contracts", () => {
   it("does not repeat destruction when clear follows an explicit destroy", async () => {
     const destroyed: number[] = [],
       container = await loadPhaseContainer(() => ({
-        particleDestroyed: particle => {
+        particleDestroyed: (particle) => {
           destroyed.push(particle.id);
         },
       })),
@@ -159,11 +175,16 @@ describe("particle update phase contracts", () => {
 
     try {
       expect(
-        container.particles.addParticle(undefined, undefined, undefined, particle => {
-          particle.destroy();
+        container.particles.addParticle(
+          undefined,
+          undefined,
+          undefined,
+          (particle) => {
+            particle.destroy();
 
-          return false;
-        }),
+            return false;
+          },
+        ),
       ).toBeUndefined();
       expect(destroyed).toBe(1);
     } finally {
@@ -174,7 +195,7 @@ describe("particle update phase contracts", () => {
   it("cleans up collision-immune particles before explicit removal and pool reuse", async () => {
     const destroyed: number[] = [],
       container = await loadPhaseContainer(() => ({
-        particleDestroyed: particle => {
+        particleDestroyed: (particle) => {
           destroyed.push(particle.id);
         },
       })),
@@ -200,8 +221,8 @@ describe("particle update phase contracts", () => {
     let armed = false,
       changed = false,
       replacement: Particle | undefined;
-    const container = await loadPhaseContainer(current => ({
-        particleUpdate: particle => {
+    const container = await loadPhaseContainer((current) => ({
+        particleUpdate: (particle) => {
           if (armed && !changed && particle === current.particles.get(1)) {
             changed = true;
             const first = current.particles.get(0);
@@ -223,7 +244,10 @@ describe("particle update phase contracts", () => {
       }
       armed = true;
       container.particles.update(delta);
-      const neighbors = container.particles.grid.queryRectangle({ x: -1000, y: -1000 }, { width: 2000, height: 2000 });
+      const neighbors = container.particles.grid.queryRectangle(
+        { x: -1000, y: -1000 },
+        { width: 2000, height: 2000 },
+      );
 
       expect(neighbors).toEqual([second, replacement]);
       expect(new Set(neighbors).size).toBe(2);
@@ -251,7 +275,10 @@ describe("particle update phase contracts", () => {
       container.particles.removeAt(1, 2);
       expect(container.particles.filter(() => true)).toEqual([particles[3]]);
     } finally {
-      container.engine.removeEventListener(EventType.particleRemoved, onRemoved);
+      container.engine.removeEventListener(
+        EventType.particleRemoved,
+        onRemoved,
+      );
       container.destroy(false);
     }
   });
@@ -278,7 +305,10 @@ describe("particle update phase contracts", () => {
       expect(entered).toBe(true);
       expect(container.particles.filter(() => true)).toEqual([replacement]);
     } finally {
-      container.engine.removeEventListener(EventType.particleRemoved, onRemoved);
+      container.engine.removeEventListener(
+        EventType.particleRemoved,
+        onRemoved,
+      );
       container.destroy(false);
     }
   });
@@ -287,7 +317,14 @@ describe("particle update phase contracts", () => {
     const container = await loadPhaseContainer(() => ({}), 0);
 
     try {
-      expect(container.particles.addParticle(undefined, undefined, undefined, () => false)).toBeUndefined();
+      expect(
+        container.particles.addParticle(
+          undefined,
+          undefined,
+          undefined,
+          () => false,
+        ),
+      ).toBeUndefined();
       expect(container.particles.addParticle()?.id).toBe(0);
     } finally {
       container.destroy(false);
@@ -312,7 +349,11 @@ describe("particle update phase contracts", () => {
         container.particles.update(delta);
         drawn.length = 0;
         container.particles.drawParticles(delta);
-        expect(drawn).toEqual(particles.toSorted((a, b) => b.position.z - a.position.z || a.id - b.id).map(p => p.id));
+        expect(drawn).toEqual(
+          particles
+            .toSorted((a, b) => b.position.z - a.position.z || a.id - b.id)
+            .map((p) => p.id),
+        );
       }
     } finally {
       container.destroy(false);
@@ -324,11 +365,16 @@ describe("particle update phase contracts", () => {
     let child: Particle | undefined;
 
     try {
-      const parent = container.particles.addParticle(undefined, undefined, undefined, () => {
-        child = container.particles.addParticle();
+      const parent = container.particles.addParticle(
+        undefined,
+        undefined,
+        undefined,
+        () => {
+          child = container.particles.addParticle();
 
-        return true;
-      });
+          return true;
+        },
+      );
 
       expect(parent).toBeDefined();
       expect(child).toBeDefined();
@@ -386,11 +432,16 @@ describe("particle update phase contracts", () => {
       container.actualOptions.particles.number.limit.value = 1;
       container.actualOptions.particles.number.limit.mode = LimitMode.wait;
       container.particles.setDensity();
-      const parent = container.particles.addParticle(undefined, undefined, undefined, () => {
-        child = container.particles.addParticle();
+      const parent = container.particles.addParticle(
+        undefined,
+        undefined,
+        undefined,
+        () => {
+          child = container.particles.addParticle();
 
-        return true;
-      });
+          return true;
+        },
+      );
 
       expect(parent).toBeUndefined();
       expect(container.particles.filter(() => true)).toEqual([child]);
@@ -403,7 +454,7 @@ describe("particle update phase contracts", () => {
     it(`stops the old collection when a ${phase} callback clears and repopulates it`, async () => {
       let callback = (_particle: Particle): void => undefined;
       const container = await loadPhaseContainer(() => ({
-          particleUpdate: particle => {
+          particleUpdate: (particle) => {
             if (phase === "move") {
               callback(particle);
             }
@@ -419,7 +470,7 @@ describe("particle update phase contracts", () => {
       let cleared = false,
         replacement: Particle | undefined;
 
-      callback = particle => {
+      callback = (particle) => {
         visited.push(particle.id);
         if (!cleared) {
           cleared = true;
@@ -431,7 +482,7 @@ describe("particle update phase contracts", () => {
         container.particleUpdaters.push({
           init: () => undefined,
           isEnabled: () => true,
-          update: particle => {
+          update: (particle) => {
             callback(particle);
           },
         });
@@ -451,7 +502,7 @@ describe("particle update phase contracts", () => {
     it(`does not skip the next particle after current removal and reuse during ${phase}`, async () => {
       let callback = (_particle: Particle): void => undefined;
       const container = await loadPhaseContainer(() => ({
-          particleUpdate: particle => {
+          particleUpdate: (particle) => {
             if (phase === "move") {
               callback(particle);
             }
@@ -470,7 +521,7 @@ describe("particle update phase contracts", () => {
       let replacement: Particle | undefined,
         changed = false;
 
-      callback = particle => {
+      callback = (particle) => {
         visited.push(particle.id);
         if (!changed && particle === first) {
           changed = true;
@@ -482,7 +533,7 @@ describe("particle update phase contracts", () => {
         container.particleUpdaters.push({
           init: () => undefined,
           isEnabled: () => true,
-          update: particle => {
+          update: (particle) => {
             callback(particle);
           },
         });
@@ -502,7 +553,7 @@ describe("particle update phase contracts", () => {
       let callback = (_particle: Particle): void => undefined;
       const container = await loadPhaseContainer(
           () => ({
-            particleUpdate: particle => {
+            particleUpdate: (particle) => {
               if (phase === "move") {
                 callback(particle);
               }
@@ -513,7 +564,7 @@ describe("particle update phase contracts", () => {
         particles = container.particles.filter(() => true),
         visited: number[] = [];
 
-      callback = particle => {
+      callback = (particle) => {
         visited.push(particle.id);
         if (particle === particles[1]) {
           for (const removed of particles.slice(0, 2)) {
@@ -525,7 +576,7 @@ describe("particle update phase contracts", () => {
         container.particleUpdaters.push({
           init: () => undefined,
           isEnabled: () => true,
-          update: particle => {
+          update: (particle) => {
             callback(particle);
           },
         });
@@ -533,7 +584,7 @@ describe("particle update phase contracts", () => {
 
       try {
         container.particles.update(delta);
-        expect(visited).toEqual(particles.map(particle => particle.id));
+        expect(visited).toEqual(particles.map((particle) => particle.id));
         expect(container.particles.filter(() => true)).toEqual([particles[2]]);
       } finally {
         container.destroy(false);
@@ -546,15 +597,15 @@ describe("particle update phase contracts", () => {
       changed = false,
       replacement: Particle | undefined;
     const visited: number[] = [],
-      container = await loadPhaseContainer(current => ({
-        particleReset: particle => {
+      container = await loadPhaseContainer((current) => ({
+        particleReset: (particle) => {
           if (armed && !changed) {
             changed = true;
             current.particles.remove(particle, particle.group);
             replacement = current.particles.addParticle();
           }
         },
-        particleUpdate: particle => {
+        particleUpdate: (particle) => {
           if (armed) {
             visited.push(particle.id);
           }
@@ -576,7 +627,7 @@ describe("particle update phase contracts", () => {
       entered = false,
       replacement: Particle | undefined;
     const container = await loadPhaseContainer(() => ({
-        particleUpdate: particle => {
+        particleUpdate: (particle) => {
           if (armed) {
             particle.destroy();
           }
@@ -601,7 +652,10 @@ describe("particle update phase contracts", () => {
       expect(container.particles.filter(() => true)).toEqual([replacement]);
       expect(replacement?.destroyed).toBe(false);
     } finally {
-      container.engine.removeEventListener(EventType.particleRemoved, onRemoved);
+      container.engine.removeEventListener(
+        EventType.particleRemoved,
+        onRemoved,
+      );
       container.destroy(false);
     }
   });
@@ -609,8 +663,8 @@ describe("particle update phase contracts", () => {
   it("does not remove a recycled identity queued for deferred removal before postUpdate", async () => {
     let armed = false,
       replacement: Particle | undefined;
-    const container = await loadPhaseContainer(current => ({
-      particleUpdate: particle => {
+    const container = await loadPhaseContainer((current) => ({
+      particleUpdate: (particle) => {
         if (armed && particle === current.particles.get(0)) {
           particle.destroy();
         }
@@ -692,15 +746,15 @@ describe("particle update phase contracts", () => {
     const order: string[] = [],
       container = await loadPhaseContainer(() => ({
         update: () => order.push("update"),
-        particleReset: particle => order.push(`reset:${particle.id}`),
-        particleUpdate: particle => order.push(`move:${particle.id}`),
+        particleReset: (particle) => order.push(`reset:${particle.id}`),
+        particleUpdate: (particle) => order.push(`move:${particle.id}`),
         postUpdate: () => order.push("postUpdate"),
-        postParticleUpdate: particle => order.push(`interact:${particle.id}`),
+        postParticleUpdate: (particle) => order.push(`interact:${particle.id}`),
       })),
       updater: IParticleUpdater = {
         init: () => undefined,
         isEnabled: () => true,
-        update: particle => {
+        update: (particle) => {
           order.push(`updater:${particle.id}`);
         },
       };
@@ -709,14 +763,14 @@ describe("particle update phase contracts", () => {
     order.length = 0;
 
     try {
-      const ids = container.particles.filter(() => true).map(p => p.id);
+      const ids = container.particles.filter(() => true).map((p) => p.id);
 
       container.particles.update(delta);
       expect(order).toEqual([
         "update",
-        ...ids.flatMap(id => [`reset:${id}`, `move:${id}`]),
+        ...ids.flatMap((id) => [`reset:${id}`, `move:${id}`]),
         "postUpdate",
-        ...ids.flatMap(id => [`updater:${id}`, `interact:${id}`]),
+        ...ids.flatMap((id) => [`updater:${id}`, `interact:${id}`]),
       ]);
     } finally {
       container.destroy(false);
@@ -726,8 +780,8 @@ describe("particle update phase contracts", () => {
   it("removes phase-one destruction once after phase two and omits it from the grid", async () => {
     const order: string[] = [];
     let armed = false;
-    const container = await loadPhaseContainer(current => ({
-      particleUpdate: particle => {
+    const container = await loadPhaseContainer((current) => ({
+      particleUpdate: (particle) => {
         if (armed && particle === current.particles.get(0)) {
           particle.destroy();
         }
@@ -739,11 +793,14 @@ describe("particle update phase contracts", () => {
 
         order.push(`postUpdate:${current.particles.count}`);
         expect(
-          current.particles.grid.queryRectangle({ x: -1000, y: -1000 }, { width: 2000, height: 2000 }),
+          current.particles.grid.queryRectangle(
+            { x: -1000, y: -1000 },
+            { width: 2000, height: 2000 },
+          ),
         ).toHaveLength(1);
       },
-      postParticleUpdate: particle => order.push(`interact:${particle.id}`),
-      particleDestroyed: particle => order.push(`destroy:${particle.id}`),
+      postParticleUpdate: (particle) => order.push(`interact:${particle.id}`),
+      particleDestroyed: (particle) => order.push(`destroy:${particle.id}`),
     }));
 
     try {
@@ -756,7 +813,11 @@ describe("particle update phase contracts", () => {
       order.length = 0;
       container.particles.update(delta);
 
-      expect(order).toEqual([`destroy:${first?.id}`, "postUpdate:2", `interact:${second?.id}`]);
+      expect(order).toEqual([
+        `destroy:${first?.id}`,
+        "postUpdate:2",
+        `interact:${second?.id}`,
+      ]);
       expect(container.particles.count).toBe(1);
       expect(container.particles.get(0)).toBe(second);
     } finally {
@@ -768,8 +829,8 @@ describe("particle update phase contracts", () => {
     const failure = new Error("phase failure");
     let armed = false,
       fail = true;
-    const container = await loadPhaseContainer(current => ({
-      particleUpdate: particle => {
+    const container = await loadPhaseContainer((current) => ({
+      particleUpdate: (particle) => {
         if (!armed) {
           return;
         }
@@ -810,7 +871,7 @@ describe("particle update phase contracts", () => {
             throw failure;
           }
         },
-        particleUpdate: particle => {
+        particleUpdate: (particle) => {
           if (armed) {
             particle.destroy();
           }
@@ -844,7 +905,10 @@ describe("particle update phase contracts", () => {
       expect(container.particles.count).toBe(0);
       container.particles.update(delta);
     } finally {
-      container.engine.removeEventListener(EventType.particleRemoved, onRemoved);
+      container.engine.removeEventListener(
+        EventType.particleRemoved,
+        onRemoved,
+      );
       container.destroy(false);
     }
   });
