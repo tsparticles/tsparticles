@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type ICoordinates, createEngine } from "@tsparticles/engine";
+import { type ICoordinates, Rectangle, createEngine } from "@tsparticles/engine";
 import type { LinkContainer, LinkParticle } from "../../../../interactions/particles/links/src/Types.js";
 import { describe, expect, it } from "vitest";
 import { CircleWarp } from "../../../../interactions/particles/links/src/CircleWarp.js";
@@ -90,6 +90,14 @@ async function checkLinks(
 
 describe("Warped links", () => {
   globalThis.window = TestWindow;
+  it("rejects distant rectangles and includes rectangles tangent across a wrapped corner", () => {
+    const circle = new CircleWarp(0, 0, 5, { width, height });
+
+    expect(circle.intersects(new Rectangle(400, 0, 1, 1))).toBe(false);
+    expect(circle.intersects(new Rectangle(width - 4, height - 5, 1, 1))).toBe(true);
+    expect(circle.intersects(new Rectangle(width - 5, height - 5, 1, 1))).toBe(false);
+  });
+
   it("includes the wrapped corner at the exact radius", () => {
     const circle = new CircleWarp(0, 0, 5, { width, height });
 

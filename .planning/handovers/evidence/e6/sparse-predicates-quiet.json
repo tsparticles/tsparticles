@@ -1,0 +1,881 @@
+{
+  "node": "v26.13.0",
+  "scenarios": [
+    {
+      "count": 1,
+      "radius": 10000,
+      "samples": {
+        "baseline": [
+          7.85391700000001,
+          9.458917,
+          7.676625000000001,
+          9.275125000000003,
+          8.375957999999997,
+          8.010250000000013,
+          8.379250000000013,
+          7.392459000000002,
+          7.1207919999999945
+        ],
+        "liveSparse": [
+          0.03483399999998937,
+          0.03408299999999542,
+          0.03608300000000497,
+          0.005707999999998492,
+          0.025708999999977777,
+          0.004291999999992413,
+          0.03258300000001668,
+          0.01720800000001077,
+          0.016416999999989912
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 1,
+          "keyVisits": 2
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 8.010250000000013,
+          "p95": 9.275125000000003,
+          "min": 7.1207919999999945,
+          "max": 9.458917
+        },
+        "liveSparse": {
+          "median": 0.025708999999977777,
+          "p95": 0.03483399999998937,
+          "min": 0.004291999999992413,
+          "max": 0.03608300000000497
+        }
+      }
+    },
+    {
+      "count": 10,
+      "radius": 10000,
+      "samples": {
+        "baseline": [
+          8.098749999999995,
+          7.764750000000021,
+          7.630915999999985,
+          9.681750000000022,
+          7.9538340000000005,
+          8.041708,
+          7.9275829999999985,
+          8.15304100000003,
+          7.7380829999999605
+        ],
+        "liveSparse": [
+          0.042374999999992724,
+          0.019417000000004236,
+          0.03462500000000546,
+          0.020749999999992497,
+          0.05154200000001197,
+          0.023667000000017424,
+          0.047416999999995824,
+          0.034500000000036835,
+          0.05391700000001265
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 10,
+          "keyVisits": 110
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 7.9538340000000005,
+          "p95": 8.15304100000003,
+          "min": 7.630915999999985,
+          "max": 9.681750000000022
+        },
+        "liveSparse": {
+          "median": 0.03462500000000546,
+          "p95": 0.05154200000001197,
+          "min": 0.019417000000004236,
+          "max": 0.05391700000001265
+        }
+      }
+    },
+    {
+      "count": 100,
+      "radius": 10000,
+      "samples": {
+        "baseline": [
+          8.160124999999994,
+          7.912208999999962,
+          8.182166999999993,
+          7.612291999999968,
+          7.8204580000000306,
+          7.288792000000001,
+          7.880875000000003,
+          7.243833999999993,
+          7.808959000000016
+        ],
+        "liveSparse": [
+          8.466042000000016,
+          7.5831249999999955,
+          7.866665999999952,
+          7.609166000000016,
+          7.845000000000027,
+          8.340958,
+          7.982082999999989,
+          7.457374999999956,
+          8.080708000000016
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 7.8204580000000306,
+          "p95": 8.160124999999994,
+          "min": 7.243833999999993,
+          "max": 8.182166999999993
+        },
+        "liveSparse": {
+          "median": 7.866665999999952,
+          "p95": 8.340958,
+          "min": 7.457374999999956,
+          "max": 8.466042000000016
+        }
+      }
+    },
+    {
+      "count": 1000,
+      "radius": 10000,
+      "samples": {
+        "baseline": [
+          7.8722080000000005,
+          9.042541000000028,
+          7.97687499999995,
+          8.486167000000023,
+          8.143082999999933,
+          9.865375000000085,
+          8.007583999999952,
+          8.478665999999976,
+          11.036624999999958
+        ],
+        "liveSparse": [
+          7.561666000000059,
+          9.239916999999991,
+          7.799957999999947,
+          8.081000000000017,
+          7.680957999999919,
+          8.422374999999988,
+          7.78870900000004,
+          7.789999999999964,
+          8.92516599999999
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 98596,
+          "keyVisits": 0
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 8.478665999999976,
+          "p95": 9.865375000000085,
+          "min": 7.8722080000000005,
+          "max": 11.036624999999958
+        },
+        "liveSparse": {
+          "median": 7.799957999999947,
+          "p95": 8.92516599999999,
+          "min": 7.561666000000059,
+          "max": 9.239916999999991
+        }
+      }
+    },
+    {
+      "count": 1,
+      "radius": 50000,
+      "samples": {
+        "baseline": [
+          573.123458,
+          545.4871669999998,
+          539.891333,
+          454.70825000000013,
+          507.5482090000005,
+          486.48070800000005,
+          452.93254199999956,
+          473.393333,
+          537.7005000000008
+        ],
+        "liveSparse": [
+          0.014749999999821739,
+          0.0010420000003250607,
+          0.0152909999997064,
+          0.0009170000002995948,
+          0.012542000000394182,
+          0.0010000000002037268,
+          0.013791999999739346,
+          0.0010830000001078588,
+          0.013417000000117696
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 2446096,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 1,
+          "keyVisits": 2
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 507.5482090000005,
+          "p95": 545.4871669999998,
+          "min": 452.93254199999956,
+          "max": 573.123458
+        },
+        "liveSparse": {
+          "median": 0.012542000000394182,
+          "p95": 0.014749999999821739,
+          "min": 0.0009170000002995948,
+          "max": 0.0152909999997064
+        }
+      }
+    },
+    {
+      "count": 10,
+      "radius": 50000,
+      "samples": {
+        "baseline": [
+          474.6592079999991,
+          511.16904199999954,
+          500.9853750000002,
+          500.23099999999977,
+          541.3155000000006,
+          551.763167000001,
+          471.37745800000084,
+          536.7771670000002,
+          565.2230419999996
+        ],
+        "liveSparse": [
+          0.023166999999375548,
+          0.009625000000596629,
+          0.025125000000116415,
+          0.011334000000715605,
+          0.02675000000090222,
+          0.00999999999839929,
+          0.024582999998528976,
+          0.009749999999257852,
+          0.024166999999579275
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 2446096,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 10,
+          "keyVisits": 110
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 511.16904199999954,
+          "p95": 551.763167000001,
+          "min": 471.37745800000084,
+          "max": 565.2230419999996
+        },
+        "liveSparse": {
+          "median": 0.023166999999375548,
+          "p95": 0.025125000000116415,
+          "min": 0.009625000000596629,
+          "max": 0.02675000000090222
+        }
+      }
+    },
+    {
+      "count": 100,
+      "radius": 50000,
+      "samples": {
+        "baseline": [
+          576.5890419999996,
+          571.6964589999989,
+          608.5608749999992,
+          575.4004999999997,
+          578.156334000003,
+          489.01970900000015,
+          477.1479169999984,
+          563.0441659999997,
+          574.494917
+        ],
+        "liveSparse": [
+          0.7037500000005821,
+          0.696749999999156,
+          0.7523330000003625,
+          0.7749169999988226,
+          0.7797500000015134,
+          0.7099579999994603,
+          0.7597500000010768,
+          0.8464170000006561,
+          0.5174169999991136
+        ]
+      },
+      "counters": {
+        "baseline": {
+          "cellLookups": 2446096,
+          "keyVisits": 0
+        },
+        "liveSparse": {
+          "cellLookups": 100,
+          "keyVisits": 10100
+        }
+      },
+      "summary": {
+        "baseline": {
+          "median": 574.494917,
+          "p95": 578.156334000003,
+          "min": 477.1479169999984,
+          "max": 608.5608749999992
+        },
+        "liveSparse": {
+          "median": 0.7523330000003625,
+          "p95": 0.7797500000015134,
+          "min": 0.5174169999991136,
+          "max": 0.8464170000006561
+        }
+      }
+    }
+  ],
+  "mutationComparisons": [
+    {
+      "seed": 0,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 0,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 1,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 1,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 2,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 2,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 3,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 3,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 4,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 4,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 5,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 5,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 6,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 6,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 7,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 7,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 8,
+      "shape": "circle",
+      "visits": 6
+    },
+    {
+      "seed": 8,
+      "shape": "rectangle",
+      "visits": 6
+    },
+    {
+      "seed": 9,
+      "shape": "circle",
+      "visits": 5
+    },
+    {
+      "seed": 9,
+      "shape": "rectangle",
+      "visits": 5
+    },
+    {
+      "seed": 10,
+      "shape": "circle",
+      "visits": 5
+    },
+    {
+      "seed": 10,
+      "shape": "rectangle",
+      "visits": 5
+    },
+    {
+      "seed": 11,
+      "shape": "circle",
+      "visits": 5
+    },
+    {
+      "seed": 11,
+      "shape": "rectangle",
+      "visits": 5
+    },
+    {
+      "seed": 12,
+      "shape": "circle",
+      "visits": 5
+    },
+    {
+      "seed": 12,
+      "shape": "rectangle",
+      "visits": 5
+    },
+    {
+      "seed": 13,
+      "shape": "circle",
+      "visits": 4
+    },
+    {
+      "seed": 13,
+      "shape": "rectangle",
+      "visits": 4
+    },
+    {
+      "seed": 14,
+      "shape": "circle",
+      "visits": 4
+    },
+    {
+      "seed": 14,
+      "shape": "rectangle",
+      "visits": 4
+    },
+    {
+      "seed": 15,
+      "shape": "circle",
+      "visits": 4
+    },
+    {
+      "seed": 15,
+      "shape": "rectangle",
+      "visits": 4
+    },
+    {
+      "seed": 16,
+      "shape": "circle",
+      "visits": 4
+    },
+    {
+      "seed": 16,
+      "shape": "rectangle",
+      "visits": 4
+    },
+    {
+      "seed": 17,
+      "shape": "circle",
+      "visits": 4
+    },
+    {
+      "seed": 17,
+      "shape": "rectangle",
+      "visits": 4
+    },
+    {
+      "seed": 18,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 18,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 19,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 19,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 20,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 20,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 21,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 21,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 22,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 22,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 23,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 23,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 24,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 24,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 25,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 25,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 26,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 26,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 27,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 27,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 28,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 28,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 29,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 29,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 30,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 30,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 31,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 31,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 32,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 32,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 33,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 33,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 34,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 34,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 35,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 35,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 36,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 36,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 37,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 37,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 38,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 38,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 39,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 39,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 40,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 40,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 41,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 41,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 42,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 42,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 43,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 43,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 44,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 44,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 45,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 45,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 46,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 46,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 47,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 47,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 48,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 48,
+      "shape": "rectangle",
+      "visits": 3
+    },
+    {
+      "seed": 49,
+      "shape": "circle",
+      "visits": 3
+    },
+    {
+      "seed": 49,
+      "shape": "rectangle",
+      "visits": 3
+    }
+  ],
+  "hugeLiveMutation": {
+    "radius": 1000000,
+    "cellLookups": 2,
+    "keyVisits": 5
+  },
+  "limitations": [
+    "Node synthetic predicate queries, not browser scene acceptance.",
+    "Alternating order, 2 warmups and 9 samples per workload; output ID order compared exactly.",
+    "Counters use a separate instrumented pass; huge-area case is candidate-only to avoid a billion-cell baseline traversal."
+  ]
+}

@@ -7,6 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Breaking changes
 
+- Reject nonfinite or nonpositive `SpatialHashGrid` cell sizes with `RangeError`, including deferred size assignments.
 - Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Add input-only `p3` metadata for RGB channel objects and reject ambiguous `hdr`-tagged source channels; HDR options continue to control output rendering.
 - Add `colorMixOklch()` for canonical rectangular-OKLab mixing and deprecate the RGB-returning `colorMix()` compatibility helper.
@@ -19,6 +20,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug fixes
 
+- Guard invalid particle allocation counts and bound removal work when listeners refill the collection.
+
+- Keep destruction idempotent through clear and rejected initialization, and release collision-immune particles correctly on explicit removal.
+- Unlink spatial entries before pooled reuse and invalidate queries of retired collections, preserving live cell traversal without returning removed or destroyed entries.
+- Preserve phase traversal and deferred identities when hooks remove, clear or recycle particles; reserve IDs before reentrant initialization and recheck admission limits before insertion.
+- Maintain immediate ID order with ordered bucket insertion instead of repeatedly sorting populated buckets on depth changes.
+- Bound sparse spatial queries with live predicates by occupied cells while preserving callback mutation and result order; avoid a second cell lookup during insertion.
+- Reuse the manager's deferred-removal buffer, isolate reentrant updates and release particle references on exceptional exits.
+- Preserve valid spatial cell sizes when no interactor declares a positive finite distance or Retina scaling overflows.
+- Correct circle/rectangle intersection checks for distant shapes, corners and translated rectangles while preserving inclusive circle/rectangle tangency.
 - Restore unused fill paint exactly around stroke-only links and bypass repeated HDR cache misses while periodically checking for reuse.
 
 - Avoid redundant canvas color and width assignments when only link opacity changes, preserving stroke order and composition.

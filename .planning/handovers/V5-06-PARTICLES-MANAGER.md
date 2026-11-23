@@ -2,7 +2,7 @@
 
 Status in progress (2026-11-23); E5 accepted. See the
 [E6 checkpoint](V5-E6-STATUS.md) for spatial contract fixtures, current-source
-findings and the remaining review/measurement queue.
+findings, callback/identity fixes, P1–P4/S1–S4 decisions and current verification.
 Review the entire area, including work beyond signature adaptations.
 See the [execution sequence](V5-EXECUTION.md).
 

@@ -74,8 +74,7 @@ const report = {
   sceneSnapshotsCompared: candidate.samples.length * 3,
   sceneMismatches: mismatches,
   comparable: mismatches.length === 0,
-  timingPolicy:
-    "Median across three repetitions; screening allowance is max(baseline * 1.10, baseline + 0.1 ms), with 1e-6 ms roundoff tolerance. This comparison does not waive E0 ceilings.",
+  timingPolicy: `Median across ${candidate.repetitions} repetitions; screening allowance is max(baseline * 1.10, baseline + 0.1 ms), with 1e-6 ms roundoff tolerance. This comparison does not waive E0 ceilings.`,
   scenarios,
 };
 await writeFile(outputPath, JSON.stringify(report, null, 2) + "\n");

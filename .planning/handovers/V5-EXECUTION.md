@@ -223,7 +223,7 @@ new capability packages need a separate demonstrated consumer benefit.
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Current action: **E6 collections and spatial index**, starting with contract fixtures and source review. E5 C1–C4 and the
+Current action: **E6 collections and spatial index**, verifying callback-safe traversal, pool identity, ordered buckets and spatial retirement on the rebuilt artifact. P1–P4/S1–S4 alternatives and tradeoffs are recorded in the E6 checkpoint. E5 C1–C4 and the
 Particle/options review are accepted: full build:ci passes 457 projects, all
 85 test targets pass, and the primary suite has 817 tests. Eight formatter
 pixel cases and four exact link scenes pass. ARCH-01/03 and T1–T4 decisions

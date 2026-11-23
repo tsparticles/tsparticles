@@ -5,6 +5,7 @@ import { SpatialHashGrid } from "../../../../engine/src/Core/Particles/SpatialHa
 const cellSize = 64,
   largeCellSize = 1_024,
   resizedCellSize = 32,
+  hugeRadius = 1_000_000,
   sparseRadius = 10_000,
   outerRadius = 1_000;
 
@@ -13,6 +14,219 @@ function particleAt({ x, y }: { x: number; y: number }): Particle {
 }
 
 describe("SpatialHashGrid", () => {
+  it("does not skip neighbors or return an old entry after removal and reinsertion from a predicate", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      first = particleAt({ x: 0, y: 0 }),
+      second = particleAt({ x: 1, y: 0 }),
+      visited: Particle[] = [];
+    let changed = false;
+
+    grid.insert(first);
+    grid.insert(second);
+    expect(
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
+        visited.push(p);
+        if (!changed && p === first) {
+          changed = true;
+          grid.remove(first);
+          grid.insert(first);
+        }
+
+        return true;
+      }),
+    ).toEqual([second, first]);
+    expect(visited).toEqual([first, second, first]);
+  });
+
+  it("removes references from a current cell retained across a nested clear", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      first = particleAt({ x: 0, y: 0 }),
+      second = particleAt({ x: 1, y: 0 });
+
+    grid.insert(first);
+    grid.insert(second);
+    expect(
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
+        if (p === first) {
+          grid.clear();
+          grid.remove(second);
+        }
+
+        return true;
+      }),
+    ).toEqual([first]);
+  });
+
+  it("invalidates all active cells when their collection is retired", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      first = particleAt({ x: 0, y: 0 }),
+      second = particleAt({ x: 1, y: 0 });
+
+    grid.insert(first);
+    grid.insert(second);
+    expect(
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, () => {
+        expect(
+          grid.queryCircle({ x: 0, y: 0 }, cellSize, () => {
+            grid.clear(true);
+            grid.insert(particleAt({ x: cellSize, y: 0 }));
+
+            return true;
+          }),
+        ).toEqual([]);
+
+        return true;
+      }),
+    ).toEqual([]);
+    grid.clear();
+    grid.insert(first);
+    expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual([first]);
+  });
+
+  it("filters destroyed entries after allowing the predicate to observe their live state", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      particle = particleAt({ x: 0, y: 0 });
+
+    grid.insert(particle);
+    particle.destroyed = true;
+    expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual([]);
+    expect(
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
+        p.destroyed = false;
+
+        return true;
+      }),
+    ).toEqual([particle]);
+  });
+
+  it("does not return a particle removed from inside getPosition without a predicate", () => {
+    const grid = new SpatialHashGrid(cellSize);
+    let armed = false;
+    const particle = {
+      getPosition: () => {
+        if (armed) {
+          grid.remove(particle);
+        }
+
+        return { x: 0, y: 0, z: 0 };
+      },
+    } as Particle;
+
+    grid.insert(particle);
+    armed = true;
+    expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual([]);
+  });
+
+  it("keeps sparse predicate traversal live, ordered, and independent of empty coordinate area", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      first = particleAt({ x: -64, y: 0 }),
+      sameCell = particleAt({ x: -63, y: 0 }),
+      earlier = particleAt({ x: -128, y: 0 }),
+      futureY = particleAt({ x: -64, y: 64 }),
+      futureX = particleAt({ x: 64, y: -64 }),
+      distant = particleAt({ x: 640, y: 640 }),
+      visited: Particle[] = [];
+
+    grid.insert(distant);
+    grid.insert(first);
+
+    const result = grid.queryCircle({ x: 0, y: 0 }, hugeRadius, particle => {
+      visited.push(particle);
+
+      if (particle === first) {
+        grid.insert(futureX);
+        grid.insert(futureY);
+        grid.insert(earlier);
+        grid.insert(sameCell);
+        expect(grid.queryCircle({ x: 64, y: -64 }, 0)).toEqual([futureX]);
+      }
+
+      return true;
+    });
+
+    expect(visited).toEqual([first, sameCell, futureY, futureX, distant]);
+    expect(result).toEqual(visited);
+  });
+
+  it("rechecks future occupied cells after a predicate clears and resizes the grid", () => {
+    const grid = new SpatialHashGrid(cellSize),
+      first = particleAt({ x: 0, y: 0 }),
+      stale = particleAt({ x: 640, y: 0 }),
+      replacement = particleAt({ x: 128, y: 0 }),
+      out = [stale];
+
+    grid.insert(first);
+    grid.insert(stale);
+
+    expect(
+      grid.queryCircle(
+        { x: 0, y: 0 },
+        sparseRadius,
+        particle => {
+          if (particle === first) {
+            grid.cellSize = resizedCellSize;
+            grid.clear();
+            grid.insert(replacement);
+          }
+
+          return true;
+        },
+        out,
+      ),
+    ).toBe(out);
+    expect(out).toEqual([stale, first, replacement]);
+  });
+
+  it("keeps the remaining scan order when a callback makes the grid dense", () => {
+    const columns = 10,
+      grid = new SpatialHashGrid(1),
+      first = particleAt({ x: 0, y: 0 }),
+      added = Array.from({ length: 128 }, (_, index) =>
+        particleAt({
+          x: (index + 1) % columns,
+          y: Math.floor((index + 1) / columns),
+        }),
+      ),
+      expected = [first, ...added].toSorted((a, b) => {
+        const posA = a.getPosition(),
+          posB = b.getPosition();
+
+        return posA.x - posB.x || posA.y - posB.y;
+      });
+
+    grid.insert(first);
+
+    expect(
+      grid.queryRectangle({ x: 0, y: 0 }, { width: 100, height: 100 }, particle => {
+        if (particle === first) {
+          for (const item of added.toReversed()) {
+            grid.insert(item);
+          }
+        }
+
+        return true;
+      }),
+    ).toEqual(expected);
+  });
+
+  it.each([0, -1, NaN, Infinity, -Infinity])("rejects invalid cell size %s without corrupting pending state", value => {
+    expect(() => new SpatialHashGrid(value)).toThrow(RangeError);
+
+    const grid = new SpatialHashGrid(cellSize),
+      particle = particleAt({ x: 1, y: 1 });
+
+    grid.insert(particle);
+    grid.cellSize = resizedCellSize;
+
+    expect(() => {
+      grid.cellSize = value;
+    }).toThrow(RangeError);
+    expect(grid.cellSize).toBe(cellSize);
+    expect(grid.queryCircle({ x: 1, y: 1 }, 0)).toEqual([particle]);
+    grid.clear();
+    expect(grid.cellSize).toBe(resizedCellSize);
+  });
+
   it("matches independent geometric fixtures in dense and sparse scans", () => {
     const positions = [
         { x: -64, y: 0 },

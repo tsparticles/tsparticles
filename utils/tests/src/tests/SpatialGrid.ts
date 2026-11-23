@@ -53,11 +53,11 @@ describe("SpatialGrid tests", () => {
   describe("Circle (776, 352, 200)", () => {
     const circle1 = new Circle(776, 352, 200);
 
-    it("should intersect with a (-634, -190, 1143, 3807) rectangle", () => {
+    it("should not intersect a rectangle ending 267 units left of the center", () => {
       const rect2 = new Rectangle(-634, -190, 1143, 3807);
 
-      expect(circle1.intersects(rect2)).to.be.true;
-      expect(rect2.intersects(circle1)).to.be.true;
+      expect(circle1.intersects(rect2)).to.be.false;
+      expect(rect2.intersects(circle1)).to.be.false;
     });
   });
 });

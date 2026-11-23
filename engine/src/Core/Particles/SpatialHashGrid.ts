@@ -10,6 +10,8 @@ interface RangeBounds {
   minY: number;
 }
 
+type ParticleCell = (Particle | undefined)[];
+
 const sparseQueryCellRatio = 16,
   sparseQueryMinArea = 64;
 
@@ -17,15 +19,20 @@ const sparseQueryCellRatio = 16,
  * SpatialHashGrid for fast particle lookup
  */
 export class SpatialHashGrid {
-  readonly #cells = new Map<string, Particle[]>();
+  #activeCellCount = 0;
+  readonly #activeCells: (ParticleCell | undefined)[] = [];
+  readonly #cells = new Map<string, ParticleCell>();
   #cellSize: number;
   readonly #circlePool: Circle[] = [];
   #circlePoolIdx;
   #pendingCellSize?: number;
+  #queryVersion = 0;
   readonly #rectanglePool: Rectangle[] = [];
   #rectanglePoolIdx;
 
   constructor(cellSize: number) {
+    this.#validateCellSize(cellSize);
+
     this.#cellSize = cellSize;
 
     this.#circlePoolIdx = 0;
@@ -41,18 +48,33 @@ export class SpatialHashGrid {
    * @param value - the new cell size
    */
   set cellSize(value: number) {
+    this.#validateCellSize(value);
+
     this.#pendingCellSize = value;
   }
 
   /**
    * Clears the grid for the next frame
+   * @param invalidateQueries - whether traversals of a retired collection should stop
    */
-  clear(): void {
+  clear(invalidateQueries = false): void {
+    if (invalidateQueries) {
+      this.#queryVersion++;
+
+      for (let index = 0; index < this.#activeCellCount; index++) {
+        const cell = this.#activeCells[index];
+
+        if (cell) {
+          cell.length = 0;
+        }
+      }
+    }
+
     this.#cells.clear();
 
     const pendingCellSize = this.#pendingCellSize;
 
-    if (pendingCellSize) {
+    if (pendingCellSize !== undefined) {
       this.#cellSize = pendingCellSize;
     }
 
@@ -67,24 +89,28 @@ export class SpatialHashGrid {
     const { x, y } = particle.getPosition(),
       key = this.#cellKeyFromCoords(x, y);
 
-    if (!this.#cells.has(key)) {
-      this.#cells.set(key, []);
+    let cell = this.#cells.get(key);
+
+    if (!cell) {
+      cell = [];
+      this.#cells.set(key, cell);
     }
 
-    this.#cells.get(key)?.push(particle);
+    cell.push(particle);
   }
 
   /**
    * Queries particles within a range (Circle or Rectangle)
    * @param range - the range to query particles in
-   * @param check - optional callback to check particles against, if not provided all particles will be returned
+   * @param check - optional callback run before containment and live-state checks
    * @param out - optional output array to fill with results
    * @returns the array of particles within the range
    */
   query(range: BaseRange, check?: (particle: Particle) => boolean, out: Particle[] = []): Particle[] {
-    const bounds = this.#getRangeBounds(range);
+    const queryVersion = this.#queryVersion,
+      bounds = this.#getRangeBounds(range);
 
-    if (!bounds || !this.#cells.size) {
+    if (queryVersion !== this.#queryVersion || !bounds || !this.#cells.size) {
       return out;
     }
 
@@ -104,12 +130,19 @@ export class SpatialHashGrid {
       return out;
     }
 
-    // Predicates can modify the grid as it is traversed, so keep live lookups for them.
-    if (
-      !check &&
-      (maxCellX - minCellX + 1) * (maxCellY - minCellY + 1) >
-        Math.max(sparseQueryMinArea, this.#cells.size * sparseQueryCellRatio)
-    ) {
+    const queryArea = (maxCellX - minCellX + 1) * (maxCellY - minCellY + 1),
+      cellCount = this.#cells.size;
+
+    // Rescan occupied cells after each callback-bearing cell. This observes new cells
+    // without traversing every empty coordinate, and keeps the original scan order.
+    if (check && queryArea > Math.max(sparseQueryMinArea, cellCount * cellCount * sparseQueryCellRatio)) {
+      this.#querySparseLive(range, check, out, minCellX, maxCellX, minCellY, maxCellY);
+
+      return out;
+    }
+
+    // Queries without predicates retain the cheaper sorted snapshot.
+    if (!check && queryArea > Math.max(sparseQueryMinArea, cellCount * sparseQueryCellRatio)) {
       const occupied: ICoordinates[] = [];
 
       for (const key of this.#cells.keys()) {
@@ -127,6 +160,10 @@ export class SpatialHashGrid {
 
       for (const { x, y } of occupied) {
         this.#queryCell(x, y, range, undefined, out);
+
+        if (queryVersion !== this.#queryVersion) {
+          return out;
+        }
       }
 
       return out;
@@ -135,6 +172,10 @@ export class SpatialHashGrid {
     for (let cx = minCellX; cx <= maxCellX; cx++) {
       for (let cy = minCellY; cy <= maxCellY; cy++) {
         this.#queryCell(cx, cy, range, check, out);
+
+        if (queryVersion !== this.#queryVersion) {
+          return out;
+        }
       }
     }
 
@@ -184,6 +225,30 @@ export class SpatialHashGrid {
       return this.query(rect, check, out);
     } finally {
       this.#rectanglePoolIdx--;
+    }
+  }
+
+  /**
+   * Removes a particle before its object can return to the manager's pool.
+   * Active cells can outlive a nested clear, so invalidate those references too.
+   * @param particle - the particle being removed
+   * @internal
+   */
+  remove(particle: Particle): void {
+    for (const [key, cell] of this.#cells) {
+      this.#removeFromCell(cell, particle);
+
+      if (!cell.length && !this.#activeCells.includes(cell)) {
+        this.#cells.delete(key);
+      }
+    }
+
+    for (let index = 0; index < this.#activeCellCount; index++) {
+      const cell = this.#activeCells[index];
+
+      if (cell) {
+        this.#removeFromCell(cell, particle);
+      }
     }
   }
 
@@ -274,14 +339,112 @@ export class SpatialHashGrid {
       return;
     }
 
-    for (const p of cellParticles) {
-      if (check && !check(p)) {
-        continue;
+    const queryIndex = this.#activeCellCount++;
+
+    this.#activeCells[queryIndex] = cellParticles;
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of -- Recheck the exact slot after callback-driven removals.
+      for (let index = 0; index < cellParticles.length; index++) {
+        const p = cellParticles[index];
+
+        if (!p || (check && (!check(p) || cellParticles[index] !== p))) {
+          continue;
+        }
+
+        if (range.contains(p.getPosition()) && cellParticles[index] === p && !p.destroyed) {
+          out.push(p);
+        }
+      }
+    } finally {
+      this.#activeCells[queryIndex] = undefined;
+      this.#activeCellCount--;
+    }
+  }
+
+  #querySparseLive(
+    range: BaseRange,
+    check: (particle: Particle) => boolean,
+    out: Particle[],
+    minX: number,
+    maxX: number,
+    minY: number,
+    maxY: number,
+  ): void {
+    const queryVersion = this.#queryVersion;
+
+    let lastX = minX,
+      lastY = minY,
+      first = true;
+
+    while (this.#cells.size && queryVersion === this.#queryVersion) {
+      const remainingArea = (maxX - lastX) * (maxY - minY + 1) + maxY - lastY,
+        cellCount = this.#cells.size;
+
+      // A callback can turn a sparse grid into a dense one. Resume the coordinate
+      // scan at the next cell rather than repeatedly rescanning a growing map.
+      if (!first && remainingArea <= Math.max(sparseQueryMinArea, cellCount * cellCount * sparseQueryCellRatio)) {
+        for (let x = lastX; x <= maxX; x++) {
+          for (let y = x === lastX ? lastY + 1 : minY; y <= maxY; y++) {
+            this.#queryCell(x, y, range, check, out);
+
+            if (queryVersion !== this.#queryVersion) {
+              return;
+            }
+          }
+        }
+
+        return;
       }
 
-      if (range.contains(p.getPosition())) {
-        out.push(p);
+      let nextX = Infinity,
+        nextY = Infinity;
+
+      for (const key of this.#cells.keys()) {
+        const separator = key.indexOf("_"),
+          x = Number(key.slice(0, separator)),
+          y = Number(key.slice(separator + 1));
+
+        if (
+          x >= minX &&
+          x <= maxX &&
+          y >= minY &&
+          y <= maxY &&
+          (x > lastX || (x === lastX && (first || y > lastY))) &&
+          (x < nextX || (x === nextX && y < nextY))
+        ) {
+          nextX = x;
+          nextY = y;
+        }
       }
+
+      if (nextX === Infinity) {
+        return;
+      }
+
+      this.#queryCell(nextX, nextY, range, check, out);
+
+      lastX = nextX;
+      lastY = nextY;
+      first = false;
+    }
+  }
+
+  #removeFromCell(cell: ParticleCell, particle: Particle): void {
+    for (let index = cell.indexOf(particle); index >= 0; index = cell.indexOf(particle, index + 1)) {
+      cell[index] = undefined;
+    }
+
+    if (!this.#activeCells.includes(cell)) {
+      while (cell.length && !cell[cell.length - 1]) {
+        cell.pop();
+      }
+    }
+  }
+
+  #validateCellSize(value: number): void {
+    if (!Number.isFinite(value) || value <= 0) {
+      throw new RangeError("SpatialHashGrid cell size must be finite and greater than zero");
     }
   }
 }

@@ -75,6 +75,70 @@ describe("ParticleGroups", async () => {
     };
 
   describe("group assignment and initialization", () => {
+    it("checks the final group when an initializer changes membership before insertion", async () => {
+      const fresh = await loadContainer("e6-initializer-group-limit", {
+        autoPlay: false,
+        particles: {
+          number: { value: 0 },
+          groups: { limited: { number: { limit: { value: 1, mode: LimitMode.wait } } } },
+        },
+      });
+
+      try {
+        const first = fresh.particles.addParticle(undefined, undefined, "limited");
+
+        expect(first).toBeDefined();
+        expect(
+          fresh.particles.addParticle(undefined, undefined, undefined, particle => {
+            particle.group = "limited";
+
+            return true;
+          }),
+        ).toBeUndefined();
+        expect(fresh.particles.filter(() => true)).toEqual([first]);
+      } finally {
+        fresh.destroy(false);
+      }
+    });
+
+    it("uses live group membership for wait limits after public group mutation", async () => {
+      const fresh = await loadContainer("e6-mutable-groups", {
+        autoPlay: false,
+        particles: {
+          number: { value: 0 },
+          groups: { limited: { number: { limit: { value: 1, mode: LimitMode.wait } } } },
+        },
+      });
+
+      try {
+        const first = fresh.particles.addParticle(undefined, undefined, "limited");
+
+        if (!first) {
+          throw new Error("First grouped particle missing");
+        }
+
+        expect(fresh.particles.addParticle(undefined, undefined, "limited")).toBeUndefined();
+        first.group = "other";
+
+        const second = fresh.particles.addParticle(undefined, undefined, "limited");
+
+        expect(second).toBeDefined();
+        first.group = "limited";
+        expect(fresh.particles.addParticle(undefined, undefined, "limited")).toBeUndefined();
+        fresh.particles.remove(first, "limited");
+        expect(fresh.particles.addParticle(undefined, undefined, "limited")).toBeUndefined();
+
+        if (!second) {
+          throw new Error("Second grouped particle missing");
+        }
+
+        second.group = "other";
+        expect(fresh.particles.addParticle(undefined, undefined, "limited")).toBeDefined();
+      } finally {
+        fresh.destroy(false);
+      }
+    });
+
     beforeEach(async () => {
       await container.reset();
     });

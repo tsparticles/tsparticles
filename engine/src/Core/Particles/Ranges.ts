@@ -99,13 +99,12 @@ export class Circle extends BaseRange {
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
       const rectRange = range as Rectangle,
         { width, height } = rectRange.size,
-        absX = Math.abs(dx),
-        absY = Math.abs(dy),
-        xEdge = absX - width,
-        yEdge = absY - height,
-        edges = xEdge * xEdge + yEdge * yEdge;
+        nearestX = Math.max(pos2.x, Math.min(pos1.x, pos2.x + width)),
+        nearestY = Math.max(pos2.y, Math.min(pos1.y, pos2.y + height)),
+        distanceX = pos1.x - nearestX,
+        distanceY = pos1.y - nearestY;
 
-      return edges <= r * r || (absX <= r + width && absY <= r + height) || absX <= width || absY <= height;
+      return r >= 0 && width >= 0 && height >= 0 && distanceX * distanceX + distanceY * distanceY <= r * r;
     }
 
     return false;

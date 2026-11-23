@@ -367,14 +367,19 @@ export class InteractionManager {
     let maxTotalDistance = 0;
 
     for (const interactor of this.interactors) {
-      if (interactor.maxDistance > maxTotalDistance) {
-        maxTotalDistance = interactor.maxDistance;
+      const distance = interactor.maxDistance;
+
+      if (Number.isFinite(distance) && distance > maxTotalDistance) {
+        maxTotalDistance = distance;
       }
     }
 
-    const container = this.#container;
+    const container = this.#container,
+      cellSize = maxTotalDistance * container.retina.pixelRatio;
 
-    container.particles.grid.cellSize = maxTotalDistance * container.retina.pixelRatio;
+    if (Number.isFinite(cellSize) && cellSize > 0) {
+      container.particles.grid.cellSize = cellSize;
+    }
   }
 
   #intersectionManager(entries: IntersectionObserverEntry[]): void {

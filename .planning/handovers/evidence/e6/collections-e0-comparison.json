@@ -1,0 +1,121 @@
+{
+  "baselinePath": ".planning/handovers/evidence/e6/collections-e0-baseline.json",
+  "candidatePath": ".planning/handovers/evidence/e6/collections-e0-candidate.json",
+  "browser": "Chrome/157.0.8103.79",
+  "baselineBundleSha256": "68ea12ed89e4022b7735317cd9e391ddf64a895595b3d2d1931af8ab60e5fbeb",
+  "candidateBundleSha256": "4254165a851ee7559f70e91843702a82020ebcef2dfe521490173cebf414f52c",
+  "sceneSnapshotsCompared": 54,
+  "sceneMismatches": [],
+  "comparable": true,
+  "timingPolicy": "Median across 9 repetitions; screening allowance is max(baseline * 1.10, baseline + 0.1 ms), with 1e-6 ms roundoff tolerance. This comparison does not waive E0 ceilings.",
+  "scenarios": [
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 21,
+          "candidate": 20.69999998807907,
+          "delta": -0.30000001192092896,
+          "ratio": 0.9857142851466224
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6273.46,
+          "candidate": 6280.552,
+          "delta": 7.0919999999996435,
+          "ratio": 1.0011304766428732
+        },
+        "updateMedianMs": {
+          "baseline": 1.4000000357627869,
+          "candidate": 1.399999976158142,
+          "delta": -5.960464477539063e-8,
+          "ratio": 0.9999999574252548,
+          "allowanceMs": 1.5400000393390656,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.100000023841858,
+          "candidate": 1.100000023841858,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.2100000262260437,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 3,
+          "candidate": 3.099999964237213,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0333333214124043,
+          "allowanceMs": 3.3000000000000003,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 723920.4666666667,
+          "candidate": 724347.9333333333,
+          "delta": 427.4666666666744,
+          "ratio": 1.0005904884394758
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1606482.3333333333,
+          "candidate": 1605124.1333333333,
+          "delta": -1358.1999999999534,
+          "ratio": 0.9991545503042154
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 20.30000001192093,
+          "candidate": 20.30000001192093,
+          "delta": 0,
+          "ratio": 1
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6261.608,
+          "candidate": 6263.008,
+          "delta": 1.3999999999996362,
+          "ratio": 1.000223584740533
+        },
+        "updateMedianMs": {
+          "baseline": 1.399999976158142,
+          "candidate": 1.4000000357627869,
+          "delta": 5.960464477539063e-8,
+          "ratio": 1.000000042574747,
+          "allowanceMs": 1.5399999737739565,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.100000023841858,
+          "candidate": 1.100000023841858,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.2100000262260437,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 3,
+          "candidate": 3.099999964237213,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0333333214124043,
+          "allowanceMs": 3.3000000000000003,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 724508.6,
+          "candidate": 723346.8666666667,
+          "delta": -1161.733333333279,
+          "ratio": 0.9983965223693227
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1627154.5333333334,
+          "candidate": 1626580.1333333333,
+          "delta": -574.4000000001397,
+          "ratio": 0.9996469911196305
+        }
+      }
+    }
+  ]
+}

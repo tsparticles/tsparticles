@@ -29,6 +29,17 @@ import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
 import { toEnumValue } from "../../Utils/TypeUtils.js";
 
 /**
+ * Normalizes iteration counts without changing positive fractional-count behavior.
+ * @param value - the requested particle quantity
+ * @returns a finite, safe count or zero for invalid quantities
+ */
+function getParticleCount(value: number): number {
+  const count = Number.isFinite(value) ? Math.ceil(value) : minCount;
+
+  return Number.isSafeInteger(count) && count > minCount ? count : minCount;
+}
+
+/**
  * Particles manager object
  */
 export class ParticlesManager {
@@ -43,6 +54,8 @@ export class ParticlesManager {
   /** The spatial hash grid */
   #grid;
   readonly #groupLimits: Map<string, { limit: number; mode: LimitMode }>;
+  /** Active phase cursors, adjusted when preceding entries leave the collection. */
+  readonly #iterationIndexes: number[] = [];
   #limit;
   #nextId;
   readonly #particleBuckets: Map<number, number>;
@@ -52,8 +65,12 @@ export class ParticlesManager {
   readonly #pool: Particle[];
   #postParticleUpdatePlugins: IContainerPlugin[];
   #postUpdatePlugins: IContainerPlugin[];
+  /** Keep the queued identity even when the same object is recycled by a callback. */
+  readonly #removals = new Map<number, Particle>();
+  #removalVersion = 0;
   #resizeFactor?: IDimension;
   #updatePlugins: IContainerPlugin[];
+  #updating = false;
   #zBuckets: Particle[][];
 
   /**
@@ -110,11 +127,16 @@ export class ParticlesManager {
       return;
     }
 
+    // Initialization and initializer hooks can add particles before this one commits.
+    const id = this.#nextId++;
+
+    let added = false;
+
     try {
       const particle = this.#pool.pop() ?? new Particle(this.#pluginManager, this.#container);
 
       try {
-        particle.init(this.#nextId, position, overrideOptions, group);
+        particle.init(id, position, overrideOptions, group);
       } catch (error: unknown) {
         this.#destroyAndPoolAfterError(particle, error);
       }
@@ -129,16 +151,15 @@ export class ParticlesManager {
         }
       }
 
-      if (!canAdd) {
+      if (!canAdd || this.#checkAndApplyLimits(particle.group, this.count)) {
         this.#destroyAndPool(particle);
 
         return;
       }
 
       this.#array.push(particle);
+      added = true;
       this.#insertParticleIntoBucket(particle);
-
-      this.#nextId++;
 
       try {
         this.#container.dispatchEvent(EventType.particleAdded, {
@@ -151,6 +172,10 @@ export class ParticlesManager {
       return particle;
     } catch (e: unknown) {
       this.#container.engine.getLogger().warning(`error adding particle: ${e as string}`);
+    } finally {
+      if (!added && this.#nextId === id + one) {
+        this.#nextId = id;
+      }
     }
 
     return undefined;
@@ -161,9 +186,10 @@ export class ParticlesManager {
     const particles = this.#array;
 
     this.#array = [];
+    this.#removalVersion++;
     this.#particleBuckets.clear();
     this.#resetBuckets(this.#container.zLayers);
-    this.#grid.clear();
+    this.#grid.clear(true);
 
     let cleanupError: unknown,
       hasCleanupError = false;
@@ -290,7 +316,9 @@ export class ParticlesManager {
     overrideOptions?: RecursivePartial<IParticlesOptions>,
     group?: string,
   ): void {
-    for (let i = 0; i < nb; i++) {
+    const quantity = getParticleCount(nb);
+
+    for (let i = 0; i < quantity; i++) {
       this.addParticle(position, overrideOptions, group);
     }
   }
@@ -328,17 +356,32 @@ export class ParticlesManager {
     override?: boolean,
     matchGroup = true,
   ): void {
-    if (index < minIndex || index > this.count) {
+    if (!Number.isSafeInteger(index) || index < minIndex || index > this.count) {
       return;
     }
 
+    const quantityToRemove = Math.min(Math.ceil(quantity), this.count),
+      particles = this.#array,
+      depth = this.#iterationIndexes.length;
+
     let deleted = 0;
 
-    for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this.#removeParticle(i, group, override, matchGroup)) {
-        i--;
-        deleted++;
+    this.#iterationIndexes.push(index);
+
+    try {
+      for (
+        let i = index;
+        deleted < quantityToRemove && i < particles.length && particles === this.#array;
+        i = (this.#iterationIndexes[depth] ?? i) + one
+      ) {
+        this.#iterationIndexes[depth] = i;
+
+        if (this.#removeParticle(i, group, override, matchGroup)) {
+          deleted++;
+        }
       }
+    } finally {
+      this.#iterationIndexes.pop();
     }
   }
 
@@ -392,27 +435,41 @@ export class ParticlesManager {
    * @param delta - The delta time
    */
   update(delta: IDelta): void {
-    this.#grid.clear();
+    const wasUpdating = this.#updating,
+      particlesToDelete = wasUpdating ? new Map<number, Particle>() : this.#removals;
 
-    for (const plugin of this.#updatePlugins) {
-      plugin.update?.(delta);
-    }
+    this.#updating = true;
 
-    const particlesToDelete = this.#updateParticlesPhase1(delta);
+    try {
+      this.#grid.clear();
 
-    for (const plugin of this.#postUpdatePlugins) {
-      plugin.postUpdate?.(delta);
-    }
-
-    this.#updateParticlesPhase2(delta, particlesToDelete);
-
-    if (particlesToDelete.size) {
-      for (const particle of particlesToDelete) {
-        this.remove(particle, particle.group);
+      for (const plugin of this.#updatePlugins) {
+        plugin.update?.(delta);
       }
-    }
 
-    this.#resizeFactor = undefined;
+      this.#updateParticlesPhase1(delta, particlesToDelete);
+
+      for (const plugin of this.#postUpdatePlugins) {
+        plugin.postUpdate?.(delta);
+      }
+
+      this.#updateParticlesPhase2(delta, particlesToDelete);
+
+      if (particlesToDelete.size) {
+        for (const [id, particle] of particlesToDelete) {
+          if (particle.id === id) {
+            this.remove(particle, particle.group);
+          }
+        }
+      }
+
+      this.#resizeFactor = undefined;
+    } finally {
+      if (particlesToDelete.size) {
+        particlesToDelete.clear();
+      }
+      this.#updating = wasUpdating;
+    }
   }
 
   #addToPool(...particles: Particle[]): void {
@@ -434,7 +491,8 @@ export class ParticlesManager {
     }
 
     const densityFactor = this.#initDensityFactor(numberOptions.density),
-      optParticlesNumber = numberOptions.value,
+      optParticlesNumber =
+        Number.isFinite(numberOptions.value) && numberOptions.value > minCount ? numberOptions.value : minCount,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.round(Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount),
       particlesCount = this.#countGroup(group);
@@ -504,6 +562,8 @@ export class ParticlesManager {
     const globalLimit = this.#limit,
       globalMode = this.#container.actualOptions.particles.number.limit.mode;
 
+    let removed = false;
+
     if (globalLimit > minLimit && globalMode === LimitMode.wait && currentCount >= globalLimit) {
       return true;
     }
@@ -523,6 +583,7 @@ export class ParticlesManager {
 
       if (groupCountToRemove > minCount) {
         this.removeQuantity(groupCountToRemove, group);
+        removed = true;
       }
     }
 
@@ -531,10 +592,18 @@ export class ParticlesManager {
 
       if (globalCountToRemove > minCount) {
         this.#removeAny(globalCountToRemove);
+        removed = true;
       }
     }
 
-    return false;
+    // Removal listeners can fill a released slot; do not evict indefinitely.
+    return (
+      removed &&
+      ((globalLimit > minLimit && this.count >= globalLimit) ||
+        (groupLimitEntry !== undefined &&
+          groupLimitEntry.limit > minLimit &&
+          this.#countGroup(group) >= groupLimitEntry.limit))
+    );
   }
 
   #countGroup(group: string | undefined): number {
@@ -556,7 +625,7 @@ export class ParticlesManager {
   }
 
   #destroyAndPool(particle: Particle): void {
-    particle.destroyed = false;
+    // Initialization rejection or clear can follow an already completed destroy.
     particle.unbreakable = false;
 
     try {
@@ -656,6 +725,7 @@ export class ParticlesManager {
     }
 
     const particlesOptions = container.actualOptions.particles,
+      particlesNumber = getParticleCount(particlesOptions.number.value),
       groups = particlesOptions.groups;
 
     for (const group in groups) {
@@ -665,12 +735,14 @@ export class ParticlesManager {
         continue;
       }
 
-      for (let i = this.count, j = 0; j < groupOptions.number.value && i < particlesOptions.number.value; i++, j++) {
+      const groupCount = getParticleCount(groupOptions.number.value);
+
+      for (let i = this.count, j = 0; j < groupCount && i < particlesNumber; i++, j++) {
         this.addParticle(undefined, groupOptions, group);
       }
     }
 
-    for (let i = this.count; i < particlesOptions.number.value; i++) {
+    for (let i = this.count; i < particlesNumber; i++) {
       this.addParticle();
     }
   }
@@ -709,6 +781,30 @@ export class ParticlesManager {
     }
   }
 
+  #insertById(bucket: Particle[], particle: Particle): void {
+    const last = bucket[bucket.length - one];
+
+    if (last && particle.id < last.id) {
+      let low = minIndex,
+        high = bucket.length;
+
+      while (low < high) {
+        const middle = Math.floor((low + high) / double),
+          current = bucket[middle];
+
+        if (current && current.id <= particle.id) {
+          low = middle + one;
+        } else {
+          high = middle;
+        }
+      }
+
+      bucket.splice(low, minCount, particle);
+    } else {
+      bucket.push(particle);
+    }
+  }
+
   #insertParticleIntoBucket(particle: Particle): void {
     const bucketIndex = this.#getBucketIndex(particle.position.z),
       bucket = this.#zBuckets[bucketIndex];
@@ -717,8 +813,13 @@ export class ParticlesManager {
       return;
     }
 
-    bucket.push(particle);
+    this.#insertById(bucket, particle);
+
     this.#particleBuckets.set(particle.id, bucketIndex);
+  }
+
+  #isParticleActive(particle: Particle, id: number, removalVersion: number): boolean {
+    return this.#removalVersion === removalVersion || (particle.id === id && this.#array.includes(particle));
   }
 
   /**
@@ -741,10 +842,24 @@ export class ParticlesManager {
     }
 
     this.#array.splice(index, deleteCount);
+    this.#removalVersion++;
+
+    for (let depth = minIndex; depth < this.#iterationIndexes.length; depth++) {
+      const currentIndex = this.#iterationIndexes[depth];
+
+      if (currentIndex !== undefined && index <= currentIndex) {
+        this.#iterationIndexes[depth] = currentIndex - one;
+      }
+    }
+
     this.#removeParticleFromBucket(particle);
+    this.#grid.remove(particle);
 
     let removalError: unknown,
       hasRemovalError = false;
+
+    // Explicit collection removal must dispose collision-immune particles too.
+    particle.unbreakable = false;
 
     try {
       particle.destroy(override);
@@ -838,76 +953,138 @@ export class ParticlesManager {
       return;
     }
 
-    newBucket.push(particle);
-
-    if (newBucket.length >= double) {
-      const prev = newBucket[newBucket.length - double];
-
-      if (prev && particle.id < prev.id) {
-        newBucket.sort((a, b) => a.id - b.id);
-      }
-    }
+    this.#insertById(newBucket, particle);
 
     this.#particleBuckets.set(particle.id, newBucketIndex);
   }
 
-  #updateParticlesPhase1(delta: IDelta): Set<Particle> {
-    const particlesToDelete = new Set<Particle>(),
-      resizeFactor = this.#resizeFactor;
+  #updateParticlesPhase1(delta: IDelta, particlesToDelete: Map<number, Particle>): void {
+    const resizeFactor = this.#resizeFactor,
+      particles = this.#array,
+      depth = this.#iterationIndexes.length;
 
-    for (const particle of this.#array) {
-      if (resizeFactor && !particle.ignoresResizeRatio) {
-        particle.position.x *= resizeFactor.width;
-        particle.position.y *= resizeFactor.height;
-        particle.initialPosition.x *= resizeFactor.width;
-        particle.initialPosition.y *= resizeFactor.height;
-      }
+    this.#iterationIndexes.push(minIndex);
 
-      particle.ignoresResizeRatio = false;
+    try {
+      for (
+        let index = minIndex;
+        index < particles.length && particles === this.#array;
+        index = (this.#iterationIndexes[depth] ?? index) + one
+      ) {
+        this.#iterationIndexes[depth] = index;
 
-      for (const plugin of this.#particleResetPlugins) {
-        plugin.particleReset?.(particle);
-      }
+        const particle = particles[index];
 
-      for (const plugin of this.#particleUpdatePlugins) {
-        if (particle.destroyed) {
-          break;
+        if (!particle) {
+          continue;
         }
 
-        plugin.particleUpdate?.(particle, delta);
+        const id = particle.id,
+          removalVersion = this.#removalVersion;
+
+        if (resizeFactor && !particle.ignoresResizeRatio) {
+          particle.position.x *= resizeFactor.width;
+          particle.position.y *= resizeFactor.height;
+          particle.initialPosition.x *= resizeFactor.width;
+          particle.initialPosition.y *= resizeFactor.height;
+        }
+
+        particle.ignoresResizeRatio = false;
+
+        for (const plugin of this.#particleResetPlugins) {
+          if (!this.#isParticleActive(particle, id, removalVersion)) {
+            break;
+          }
+
+          plugin.particleReset?.(particle);
+        }
+
+        if (!this.#isParticleActive(particle, id, removalVersion)) {
+          continue;
+        }
+
+        for (const plugin of this.#particleUpdatePlugins) {
+          if (particle.destroyed || !this.#isParticleActive(particle, id, removalVersion)) {
+            break;
+          }
+
+          plugin.particleUpdate?.(particle, delta);
+        }
+
+        if (!this.#isParticleActive(particle, id, removalVersion)) {
+          continue;
+        }
+
+        if (particle.destroyed) {
+          particlesToDelete.set(id, particle);
+
+          continue;
+        }
+
+        this.#grid.insert(particle);
       }
-
-      if (particle.destroyed) {
-        particlesToDelete.add(particle);
-
-        continue;
-      }
-
-      this.#grid.insert(particle);
+    } finally {
+      this.#iterationIndexes.pop();
     }
-
-    return particlesToDelete;
   }
 
-  #updateParticlesPhase2(delta: IDelta, particlesToDelete: Set<Particle>): void {
-    for (const particle of this.#array) {
-      if (particle.destroyed) {
-        particlesToDelete.add(particle);
+  #updateParticlesPhase2(delta: IDelta, particlesToDelete: Map<number, Particle>): void {
+    const particles = this.#array,
+      depth = this.#iterationIndexes.length;
 
-        continue;
-      }
+    this.#iterationIndexes.push(minIndex);
 
-      for (const updater of this.#container.particleUpdaters) {
-        updater.update(particle, delta);
-      }
+    try {
+      for (
+        let index = minIndex;
+        index < particles.length && particles === this.#array;
+        index = (this.#iterationIndexes[depth] ?? index) + one
+      ) {
+        this.#iterationIndexes[depth] = index;
 
-      if (!particle.spawning) {
-        for (const plugin of this.#postParticleUpdatePlugins) {
-          plugin.postParticleUpdate?.(particle, delta);
+        const particle = particles[index];
+
+        if (!particle) {
+          continue;
+        }
+
+        const id = particle.id,
+          removalVersion = this.#removalVersion;
+
+        if (particle.destroyed) {
+          particlesToDelete.set(id, particle);
+
+          continue;
+        }
+
+        for (const updater of this.#container.particleUpdaters) {
+          if (!this.#isParticleActive(particle, id, removalVersion)) {
+            break;
+          }
+
+          updater.update(particle, delta);
+        }
+
+        if (!this.#isParticleActive(particle, id, removalVersion)) {
+          continue;
+        }
+
+        if (!particle.spawning) {
+          for (const plugin of this.#postParticleUpdatePlugins) {
+            if (!this.#isParticleActive(particle, id, removalVersion)) {
+              break;
+            }
+
+            plugin.postParticleUpdate?.(particle, delta);
+          }
+        }
+
+        if (this.#isParticleActive(particle, id, removalVersion)) {
+          this.#updateParticleBucket(particle);
         }
       }
-
-      this.#updateParticleBucket(particle);
+    } finally {
+      this.#iterationIndexes.pop();
     }
   }
 }

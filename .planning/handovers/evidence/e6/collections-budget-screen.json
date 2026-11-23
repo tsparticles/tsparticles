@@ -1,0 +1,246 @@
+{
+  "bundleSha256": "4254165a851ee7559f70e91843702a82020ebcef2dfe521490173cebf414f52c",
+  "policy": "E0 ceilings with 1e-6 ms numerical tolerance; no runtime waiver",
+  "checks": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "passBudget": true
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.3,
+      "passBudget": true
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.6000000238418579,
+      "ceiling": 0.7,
+      "passBudget": true
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.5,
+      "ceiling": 0.7,
+      "passBudget": true
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.5,
+      "ceiling": 1.43,
+      "passBudget": false
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.1999999284744263,
+      "ceiling": 1.32,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.30000001192092896,
+      "ceiling": 0.4,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.2999999523162842,
+      "ceiling": 0.3,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 3.400000035762787,
+      "ceiling": 3.52,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 2.3999999165534973,
+      "ceiling": 2.53,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 12.699999988079071,
+      "ceiling": 13.97,
+      "passBudget": true
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 7.899999976158142,
+      "ceiling": 9.02,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.30000001192092896,
+      "ceiling": 0.3,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.2,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 4.300000011920929,
+      "ceiling": 4.62,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.5999999642372131,
+      "ceiling": 0.8,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 16.299999952316284,
+      "ceiling": 17.82,
+      "passBudget": true
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.199999988079071,
+      "ceiling": 1.65,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.3,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.699999988079071,
+      "ceiling": 0.8,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.7999999523162842,
+      "ceiling": 0.9,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.5,
+      "ceiling": 1.65,
+      "passBudget": true
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.4000000357627869,
+      "ceiling": 1.76,
+      "passBudget": true
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "value": 0.19999998807907104,
+      "ceiling": 0.2,
+      "passBudget": true
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "value": 0.10000002384185791,
+      "ceiling": 0.2,
+      "passBudget": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "value": 0.699999988079071,
+      "ceiling": 0.8,
+      "passBudget": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "value": 0.5999999642372131,
+      "ceiling": 0.8,
+      "passBudget": true
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "value": 1.5,
+      "ceiling": 1.43,
+      "passBudget": false
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "value": 1.199999988079071,
+      "ceiling": 1.43,
+      "passBudget": true
+    }
+  ]
+}

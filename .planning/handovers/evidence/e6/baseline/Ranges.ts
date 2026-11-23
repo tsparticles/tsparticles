@@ -1,0 +1,206 @@
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import { RangeType } from "../../Enums/RangeType.js";
+import { checkDistance } from "../../Utils/MathUtils.js";
+
+/** Abstract base class for spatial ranges */
+export abstract class BaseRange {
+  /**
+   * Range position
+   */
+  readonly position: ICoordinates;
+
+  /** The range type identifier */
+  readonly type: string;
+
+  /**
+   * Range constructor, initializes the position
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param type - the range type
+   * @internal
+   */
+  protected constructor(x: number, y: number, type: string) {
+    this.position = {
+      x: x,
+      y: y,
+    };
+    this.type = type;
+  }
+
+  /**
+   * Updates the internal position values.
+   * @param x - New x coordinate.
+   * @param y - New y coordinate.
+   */
+  protected _resetPosition(x: number, y: number): void {
+    this.position.x = x;
+    this.position.y = y;
+  }
+
+  /**
+   * Check if the point is inside the range
+   * @param point - the point to check in the range
+   * @returns true or false, checking if the given point is inside the current range
+   */
+  abstract contains(point: ICoordinates): boolean;
+
+  /**
+   * Check if another range intersects with the current one
+   * @param range - the range to check the intersection with
+   * @returns true or false, checking if the range is intersecting with the current range
+   */
+  abstract intersects(range: BaseRange): boolean;
+}
+
+/** Circular spatial range */
+export class Circle extends BaseRange {
+  /** Circle radius */
+  radius;
+
+  /**
+   * Circle constructor, initialized position and radius
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param radius - Circle's radius
+   */
+  constructor(x: number, y: number, radius: number) {
+    super(x, y, RangeType.circle);
+
+    this.radius = radius;
+  }
+
+  /**
+   * Checks if the given point is inside the circle
+   * @param point - the point to check
+   * @returns true or false, checking if the given point is inside the circle
+   */
+  contains(point: ICoordinates): boolean {
+    return checkDistance(point, this.position, this.radius);
+  }
+
+  /**
+   * Check if the given range intersects the circle
+   * @param range - the range to check
+   * @returns true or false, checking if the range is intersecting with the circle
+   */
+  intersects(range: BaseRange): boolean {
+    const pos1 = this.position,
+      pos2 = range.position,
+      r = this.radius,
+      dx = pos2.x - pos1.x,
+      dy = pos2.y - pos1.y;
+
+    if (range instanceof Circle || range.type === (RangeType.circle as string)) {
+      const circleRange = range as Circle,
+        rSum = r + circleRange.radius;
+
+      return rSum > 0 && dx * dx + dy * dy < rSum * rSum;
+    } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
+      const rectRange = range as Rectangle,
+        { width, height } = rectRange.size,
+        absX = Math.abs(dx),
+        absY = Math.abs(dy),
+        xEdge = absX - width,
+        yEdge = absY - height,
+        edges = xEdge * xEdge + yEdge * yEdge;
+
+      return edges <= r * r || (absX <= r + width && absY <= r + height) || absX <= width || absY <= height;
+    }
+
+    return false;
+  }
+
+  /**
+   * Resets the circle position and radius, reusing the instance
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param radius - Circle's radius
+   * @returns the circle instance for chaining
+   */
+  reset(x: number, y: number, radius: number): this {
+    this._resetPosition(x, y);
+
+    this.radius = radius;
+
+    return this;
+  }
+}
+
+/** Rectangular spatial range */
+export class Rectangle extends BaseRange {
+  /**
+   * The rectangle size
+   */
+  readonly size: IDimension;
+
+  /**
+   * The rectangle constructor, initializes position and size
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param width - Rectangle width
+   * @param height - Rectangle height
+   */
+  constructor(x: number, y: number, width: number, height: number) {
+    super(x, y, RangeType.rectangle);
+
+    this.size = {
+      height: height,
+      width: width,
+    };
+  }
+
+  /**
+   * Check if the given point is inside the rectangle
+   * @param point - the point to check
+   * @returns true or false, checking if the given point is inside the rectangle
+   */
+  contains(point: ICoordinates): boolean {
+    const w = this.size.width,
+      h = this.size.height,
+      pos = this.position;
+
+    return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
+  }
+
+  /**
+   * Check if another range intersects the rectangle
+   * @param range - the range to check
+   * @returns true or false, checking if the range is intersecting with the rectangle
+   */
+  intersects(range: BaseRange): boolean {
+    if (range instanceof Circle) {
+      return range.intersects(this);
+    }
+
+    if (!(range instanceof Rectangle)) {
+      return false;
+    }
+
+    const w = this.size.width,
+      h = this.size.height,
+      pos1 = this.position,
+      pos2 = range.position,
+      size2 = range.size,
+      w2 = size2.width,
+      h2 = size2.height;
+
+    return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
+  }
+
+  /**
+   * Resets the rectangle position and size, reusing the instance
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param width - Rectangle width
+   * @param height - Rectangle height
+   * @returns the rectangle instance for chaining
+   */
+  reset(x: number, y: number, width: number, height: number): this {
+    this._resetPosition(x, y);
+    this.size.width = width;
+    this.size.height = height;
+
+    return this;
+  }
+}

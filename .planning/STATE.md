@@ -2,7 +2,7 @@
 
 - E0–E5 are accepted. C1–C4 and the Particle/options review are complete;
   ARCH-01/03 and IMP-05 record the measured model/cache decisions.
-- Full build:ci passes 457 projects; all 85 workspace test targets pass,
+- E5 verification: full build:ci passes 457 projects; all 85 workspace test targets pass,
   including 817 primary tests. Eight formatter pixel cases and four exact
   link scenes pass on the archived compiled artifact.
 - The 45-sample matrix matches 135 E4 scenes and passes all 30 E0 update/draw
@@ -13,10 +13,16 @@
   because of that exception. The earlier bundle-growth exception also persists.
 - M6/500's inherited release issue remains: p95 2.10 vs 1.87 ceiling; fresh
   prior-E5 control 2.30. Final M6/M8 RNG and 30-cycle retention checks pass.
-- E6 started with six direct-source spatial contract regressions, a current-source
-  review map and a reproduced circle/rectangle intersection defect. Production
-  algorithms are unchanged; P1–P4/S1–S4, integration and measurement gates remain
-  open. See [E6 checkpoint](handovers/V5-E6-STATUS.md). E7–E10 follow in order.
+- E6 includes geometry/cell-size fixes, live sparse queries, callback-safe
+  traversal and pooled identity tracking, nested initialization admission,
+  ordered buckets and bounded invalid-count handling. The continuation passes
+  910 primary tests, all 85 test targets and a fresh 453-task downstream build.
+  P1–P4/S1–S4 tradeoffs and live-pool retention are measured and documented.
+  The browser matrix matches 135 snapshots; initial M7 and E0 timing flags
+  have matched nine-repeat confirmations (81 further snapshots). Extended RNG,
+  counts and 30-cycle retention pass, with 116,744-byte post-peak heap drift.
+  The earlier increment remains historical; E6 acceptance is open.
+  See [E6 checkpoint](handovers/V5-E6-STATUS.md). E7–E10 follow in order.
   No commit/publication. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
   Earlier checkpoints below retain their original historical measurements.
 
