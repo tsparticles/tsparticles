@@ -1,4 +1,9 @@
-import { type IOptionLoader, type IRgba, type RecursivePartial, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type IRgba,
+  type RecursivePartial,
+  isNull,
+} from "@tsparticles/engine";
 import type { IEmittersCanvasShapeOptions } from "../Interfaces/IEmittersCanvasShapeOptions.js";
 import { PixelsOptions } from "./PixelsOptions.js";
 import { TextOptions } from "./TextOptions.js";
@@ -9,7 +14,9 @@ const minAlpha = 0;
  * Canvas emitter shape options
  */
 export class EmittersCanvasShapeOptions
-  implements IEmittersCanvasShapeOptions, IOptionLoader<IEmittersCanvasShapeOptions>
+  implements
+    IEmittersCanvasShapeOptions,
+    IOptionLoader<IEmittersCanvasShapeOptions>
 {
   /**
    * The canvas element to use as the shape source
@@ -40,8 +47,10 @@ export class EmittersCanvasShapeOptions
    * @param pixel - The pixel
    * @returns The boolean value
    */
-  filter: string | ((pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean) = (pixel): boolean =>
-    pixel.a > minAlpha;
+  filter:
+    string | ((pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean) = (
+    pixel,
+  ): boolean => pixel.a > minAlpha;
 
   /**
    * Loads the canvas shape options from the given data

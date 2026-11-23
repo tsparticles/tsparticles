@@ -93,18 +93,28 @@ describe("OKLab conversion", () => {
     it("accepts signed and leading-decimal channels, and rejects trailing text or invalid alpha", () => {
       const manager = new OklabColorManager();
 
-      expect(manager.parseStringOklch("OKLAB(+.6 +.1 -.2 / 25%)")).toMatchObject({
+      expect(
+        manager.parseStringOklch("OKLAB(+.6 +.1 -.2 / 25%)"),
+      ).toMatchObject({
         a: 0.25,
         l: 60,
       });
-      expect(manager.parseString("oklab(0.6 0.1 -0.2) trailing")).toBeUndefined();
-      expect(manager.parseStringOklch("oklab(0.6 0.1 -0.2 / 101%)")).toBeUndefined();
+      expect(
+        manager.parseString("oklab(0.6 0.1 -0.2) trailing"),
+      ).toBeUndefined();
+      expect(
+        manager.parseStringOklch("oklab(0.6 0.1 -0.2 / 101%)"),
+      ).toBeUndefined();
       expect(manager.parseString("oklab(0.6 0.1 -0.2 / 101%)")).toBeUndefined();
     });
 
     it("parses percentage a/b axes with the CSS reference scale", () => {
-      const numeric = manager.parseStringOklch("oklab(0.65125 -0.032 0.1274 / 37%)"),
-        percentages = manager.parseStringOklch("oklab(65.125% -8% 31.85% / 37%)");
+      const numeric = manager.parseStringOklch(
+          "oklab(0.65125 -0.032 0.1274 / 37%)",
+        ),
+        percentages = manager.parseStringOklch(
+          "oklab(65.125% -8% 31.85% / 37%)",
+        );
 
       expect(percentages).toEqual(numeric);
     });

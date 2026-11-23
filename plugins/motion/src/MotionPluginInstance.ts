@@ -100,7 +100,9 @@ export class MotionPluginInstance implements IContainerPlugin {
       if (motion.disable) {
         container.retina.reduceFactor = disableReduce;
       } else {
-        container.retina.reduceFactor = motion.reduce.value ? identity / motion.reduce.factor : defaultFactor;
+        container.retina.reduceFactor = motion.reduce.value
+          ? identity / motion.reduce.factor
+          : defaultFactor;
       }
     } else {
       container.retina.reduceFactor = defaultReduce;

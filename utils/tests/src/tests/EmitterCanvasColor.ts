@@ -8,8 +8,16 @@ import { sampledPixelToOklcha } from "../../../../plugins/emitters/src/PixelColo
 describe("canvas emitter sampled color", () => {
   it("retains source primaries through filtering and canonical color adoption", () => {
     const pixel = { a: half, b: 0, g: 0, r: 255 },
-      pixelData: CanvasPixelData = { colorSpace: "display-p3", height: 1, pixels: [[pixel]], width: 1 },
-      filterCalls: { colorSpace?: "display-p3" | "srgb"; pixel: typeof pixel }[] = [],
+      pixelData: CanvasPixelData = {
+        colorSpace: "display-p3",
+        height: 1,
+        pixels: [[pixel]],
+        width: 1,
+      },
+      filterCalls: {
+        colorSpace?: "display-p3" | "srgb";
+        pixel: typeof pixel;
+      }[] = [],
       options = new EmittersCanvasShapeOptions();
 
     options.filter = (value, colorSpace) => {
@@ -18,7 +26,13 @@ describe("canvas emitter sampled color", () => {
       return true;
     };
 
-    const shape = new EmittersCanvasShape({} as Container, { x: 50, y: 50 }, { height: 1, width: 1 }, true, options);
+    const shape = new EmittersCanvasShape(
+      {} as Container,
+      { x: 50, y: 50 },
+      { height: 1, width: 1 },
+      true,
+      options,
+    );
 
     shape.pixelData = pixelData;
 
@@ -31,7 +45,9 @@ describe("canvas emitter sampled color", () => {
       opacity: half,
       position: { x: 49.5, y: 49.5 },
     });
-    expect(sampledPixelToOklcha(spawnData?.color, spawnData?.colorSpace)).toEqual({
+    expect(
+      sampledPixelToOklcha(spawnData?.color, spawnData?.colorSpace),
+    ).toEqual({
       ...displayP3ToOklch(pixel),
       a: 1,
     });

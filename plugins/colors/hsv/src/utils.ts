@@ -86,7 +86,13 @@ export function getStyleFromHsv(
   peakNits?: number,
   mode?: HdrMode,
 ): string {
-  return getStyleFromOklch(rgbToOklch(hsvToRgbFloat(color)), hdr, opacity, peakNits, mode);
+  return getStyleFromOklch(
+    rgbToOklch(hsvToRgbFloat(color)),
+    hdr,
+    opacity,
+    peakNits,
+    mode,
+  );
 }
 
 /**

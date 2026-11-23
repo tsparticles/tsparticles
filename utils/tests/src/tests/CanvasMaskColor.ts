@@ -5,7 +5,12 @@ import { addParticlesFromCanvasPixels } from "../../../../plugins/canvasMask/src
 
 describe("CanvasMask pixel color adoption", () => {
   const pixel = { a: 0.4, b: 12, g: 90, r: 230 },
-    data: CanvasPixelData = { colorSpace: "display-p3", height: 1, pixels: [[pixel]], width: 1 };
+    data: CanvasPixelData = {
+      colorSpace: "display-p3",
+      height: 1,
+      pixels: [[pixel]],
+      width: 1,
+    };
 
   interface CapturedOptions {
     opacity?: { value?: unknown };
@@ -13,7 +18,10 @@ describe("CanvasMask pixel color adoption", () => {
   }
 
   it("passes source primaries to filters and avoids applying enabled pixel alpha twice", () => {
-    const filterCalls: { colorSpace?: "display-p3" | "srgb"; pixel: typeof pixel }[] = [];
+    const filterCalls: {
+      colorSpace?: "display-p3" | "srgb";
+      pixel: typeof pixel;
+    }[] = [];
     let addedOptions: unknown;
 
     const container = {
@@ -43,7 +51,11 @@ describe("CanvasMask pixel color adoption", () => {
     expect(filterCalls).toEqual([{ colorSpace: "display-p3", pixel }]);
     const captured = addedOptions as CapturedOptions;
 
-    expect(captured.paint?.fill?.color?.value).toEqual({ ...pixel, a: 1, colorSpace: "display-p3" });
+    expect(captured.paint?.fill?.color?.value).toEqual({
+      ...pixel,
+      a: 1,
+      colorSpace: "display-p3",
+    });
     expect(captured.opacity?.value).toBe(pixel.a);
   });
 
@@ -61,11 +73,21 @@ describe("CanvasMask pixel color adoption", () => {
       },
     } as unknown as Container;
 
-    addParticlesFromCanvasPixels(container, data, { x: 50, y: 50 }, 1, { color: true, opacity: false }, () => true);
+    addParticlesFromCanvasPixels(
+      container,
+      data,
+      { x: 50, y: 50 },
+      1,
+      { color: true, opacity: false },
+      () => true,
+    );
 
     const captured = addedOptions as CapturedOptions;
 
-    expect(captured.paint?.fill?.color?.value).toEqual({ ...pixel, colorSpace: "display-p3" });
+    expect(captured.paint?.fill?.color?.value).toEqual({
+      ...pixel,
+      colorSpace: "display-p3",
+    });
     expect(captured.opacity).toBeUndefined();
   });
 });

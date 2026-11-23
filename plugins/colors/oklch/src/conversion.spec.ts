@@ -12,7 +12,10 @@ describe("OKLCH conversion", () => {
     /* eslint-disable @typescript-eslint/no-deprecated -- Verify the supported legacy formatter output. */
     expect(getStyleFromOklch(color)).toBe("oklch(50% 0.2 270)");
     expect(getStyleFromOklch(color, 0.4)).toBe("oklch(50% 0.2 270 / 0.4)");
-    expect(manager.parseStringOklch(getStyleFromOklch(color, 0.4))).toEqual({ ...color, a: 0.4 });
+    expect(manager.parseStringOklch(getStyleFromOklch(color, 0.4))).toEqual({
+      ...color,
+      a: 0.4,
+    });
     /* eslint-enable @typescript-eslint/no-deprecated */
   });
 
@@ -140,7 +143,9 @@ describe("OKLCH conversion", () => {
 
   describe("canonical OKLCH manager output", () => {
     it("keeps decimal precision and alpha in direct string parsing", () => {
-      const result = manager.parseStringOklch("oklch(0.712345 0.123456 -12.345678 / 37%)");
+      const result = manager.parseStringOklch(
+        "oklch(0.712345 0.123456 -12.345678 / 37%)",
+      );
 
       expect(result).toEqual({
         a: 0.37,
@@ -151,8 +156,12 @@ describe("OKLCH conversion", () => {
     });
 
     it("rejects trailing input and alpha outside the supported unit interval", () => {
-      expect(manager.parseStringOklch("oklch(70% 0.2 30) trailing")).toBeUndefined();
-      expect(manager.parseStringOklch("oklch(70% 0.2 30 / 101%)")).toBeUndefined();
+      expect(
+        manager.parseStringOklch("oklch(70% 0.2 30) trailing"),
+      ).toBeUndefined();
+      expect(
+        manager.parseStringOklch("oklch(70% 0.2 30 / 101%)"),
+      ).toBeUndefined();
     });
 
     it("parses CSS hue units and rejects an unsupported missing hue", () => {
@@ -162,15 +171,21 @@ describe("OKLCH conversion", () => {
         "3.141592653589793rad",
         ".5turn",
       ]) {
-        expect(manager.parseStringOklch(`oklch(70% 0.2 ${hue})`)?.h).toBeCloseTo(180, 10);
+        expect(
+          manager.parseStringOklch(`oklch(70% 0.2 ${hue})`)?.h,
+        ).toBeCloseTo(180, 10);
       }
 
       expect(manager.parseStringOklch("oklch(70% 0.2 none)")).toBeUndefined();
     });
 
     it("parses percentage chroma with the CSS reference scale", () => {
-      const numeric = manager.parseStringOklch("oklch(0.65125 0.13138 104.097 / 37%)"),
-        percentage = manager.parseStringOklch("oklch(65.125% 32.845% 104.097 / 37%)");
+      const numeric = manager.parseStringOklch(
+          "oklch(0.65125 0.13138 104.097 / 37%)",
+        ),
+        percentage = manager.parseStringOklch(
+          "oklch(65.125% 32.845% 104.097 / 37%)",
+        );
 
       expect(percentage).toEqual(numeric);
     });

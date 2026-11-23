@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { getStyleFromOklch, mapOklchToDisplayP3, mapOklchToSrgb } from "@tsparticles/engine";
+import {
+  getStyleFromOklch,
+  mapOklchToDisplayP3,
+  mapOklchToSrgb,
+} from "@tsparticles/engine";
 import { createCanvas } from "@napi-rs/canvas";
 
 const max8BitChannel = 255,
@@ -12,7 +16,11 @@ describe("OKLCH canvas pixel readback", () => {
 
   for (const { colorSpace, map, name } of [
     { colorSpace: "srgb" as const, map: mapOklchToSrgb, name: "sRGB" },
-    { colorSpace: "display-p3" as const, map: mapOklchToDisplayP3, name: "Display-P3" },
+    {
+      colorSpace: "display-p3" as const,
+      map: mapOklchToDisplayP3,
+      name: "Display-P3",
+    },
   ]) {
     it(`renders mapped ${name} output with alpha`, () => {
       const canvas = createCanvas(2, 2),
@@ -20,7 +28,14 @@ describe("OKLCH canvas pixel readback", () => {
 
       expect(context.getContextAttributes().colorSpace).toBe(colorSpace);
 
-      const style = getStyleFromOklch(source, false, opacity, undefined, undefined, colorSpace);
+      const style = getStyleFromOklch(
+        source,
+        false,
+        opacity,
+        undefined,
+        undefined,
+        colorSpace,
+      );
 
       expect(style.startsWith("oklch(")).toBe(true);
       context.fillStyle = style;
@@ -34,7 +49,9 @@ describe("OKLCH canvas pixel readback", () => {
           .concat(Math.round(max8BitChannel * source.a * opacity));
 
       for (let channel = 0; channel < rgbaChannelCount; channel++) {
-        expect(Math.abs(actual[channel] - expected[channel])).toBeLessThanOrEqual(maxRoundingDifference);
+        expect(
+          Math.abs(actual[channel] - expected[channel]),
+        ).toBeLessThanOrEqual(maxRoundingDifference);
       }
 
       expect(source).toEqual({ a: 0.5, c: 0.27, h: 60, l: 76 });

@@ -63,7 +63,9 @@ describe("lab conversion", () => {
 
 describe("CSS Lab to OKLCH conversion", () => {
   it("converts the D50 CSS Lab red reference directly to D65 OKLCH", () => {
-    const result = new LabColorManager().parseStringOklch("lab(54.2943% 80.8192 69.8969 / 25%)");
+    const result = new LabColorManager().parseStringOklch(
+      "lab(54.2943% 80.8192 69.8969 / 25%)",
+    );
 
     expect(result?.l).toBeCloseTo(62.8, 1);
     expect(result?.c).toBeCloseTo(0.2577, 3);
@@ -76,9 +78,15 @@ describe("CSS Lab to OKLCH conversion", () => {
       resolved = manager.parseStringOklch("LAB(50% -12.5 +8 / 25%)");
 
     expect(resolved?.a).toBe(0.25);
-    expect([resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite)).toBe(true);
-    expect(manager.parseStringOklch("lab(50% -12.5 +8) trailing")).toBeUndefined();
-    expect(manager.parseStringOklch("lab(50% -12.5 +8 / 101%)")).toBeUndefined();
+    expect([resolved?.l, resolved?.c, resolved?.h].every(Number.isFinite)).toBe(
+      true,
+    );
+    expect(
+      manager.parseStringOklch("lab(50% -12.5 +8) trailing"),
+    ).toBeUndefined();
+    expect(
+      manager.parseStringOklch("lab(50% -12.5 +8 / 101%)"),
+    ).toBeUndefined();
     expect(manager.parseString("lab(101% -12.5 +8)")).toBeUndefined();
   });
 
@@ -88,10 +96,18 @@ describe("CSS Lab to OKLCH conversion", () => {
       percentAxes = "lab(52.2345% 32.1316% 47.99768% / 25%)",
       percentage = "lab(52.2345% 40.1645 59.9971 / 25%)";
 
-    expect(manager.parseString(numeric)).toEqual(manager.parseString(percentage));
-    expect(manager.parseString(percentAxes)).toEqual(manager.parseString(percentage));
-    expect(manager.parseStringOklch(numeric)).toEqual(manager.parseStringOklch(percentage));
-    expect(manager.parseStringOklch(percentAxes)).toEqual(manager.parseStringOklch(percentage));
+    expect(manager.parseString(numeric)).toEqual(
+      manager.parseString(percentage),
+    );
+    expect(manager.parseString(percentAxes)).toEqual(
+      manager.parseString(percentage),
+    );
+    expect(manager.parseStringOklch(numeric)).toEqual(
+      manager.parseStringOklch(percentage),
+    );
+    expect(manager.parseStringOklch(percentAxes)).toEqual(
+      manager.parseStringOklch(percentage),
+    );
   });
 
   it("rejects calc() and exponent notation", () => {

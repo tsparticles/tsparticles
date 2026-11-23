@@ -19,7 +19,10 @@ import { deepExtend } from "../../Utils/Utils.js";
 /**
  * [[include:Color.md]]
  */
-export class OptionsColor extends OptionLoader<IOptionsColor> implements IOptionsColor {
+export class OptionsColor
+  extends OptionLoader<IOptionsColor>
+  implements IOptionsColor
+{
   value: SingleOrMultiple<
     | SingleOrMultiple<string>
     | IRangeValueColor

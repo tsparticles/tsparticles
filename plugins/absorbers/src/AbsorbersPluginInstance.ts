@@ -42,7 +42,10 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
   readonly #container;
   readonly #instancesManager;
 
-  constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
+  constructor(
+    container: AbsorberContainer,
+    instancesManager: AbsorbersInstancesManager,
+  ) {
     this.#container = container;
     this.#instancesManager = instancesManager;
 
@@ -61,9 +64,12 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
   async init(): Promise<void> {
     const absorbers = this.#container.actualOptions.absorbers,
-      promises = executeOnSingleOrMultiple(absorbers, async (absorber): Promise<void> => {
-        await this.#instancesManager.addAbsorber(this.#container, absorber);
-      });
+      promises = executeOnSingleOrMultiple(
+        absorbers,
+        async (absorber): Promise<void> => {
+          await this.#instancesManager.addAbsorber(this.#container, absorber);
+        },
+      );
 
     if (isArray(promises)) {
       await Promise.all(promises);
@@ -84,14 +90,16 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
       // the forces are composed once, as vectors, before the loop below so that a growing absorber
       // can't skew what its neighbours contribute during the very same frame
       force = Vector.origin,
-      orbitDriven = absorbers.some(absorber => absorber.orbits);
+      orbitDriven = absorbers.some((absorber) => absorber.orbits);
 
     for (const absorber of absorbers) {
       force.addTo(absorber.getForce(position));
     }
 
     // the field is built out of the same forces, from the same frame snapshot
-    const field = orbitDriven ? this.#getOrbitField(absorbers, position) : undefined;
+    const field = orbitDriven
+      ? this.#getOrbitField(absorbers, position)
+      : undefined;
 
     for (const absorber of absorbers) {
       absorber.attract(orbiting, delta);
@@ -158,7 +166,10 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
    * @param position - the particle position the field is built for
    * @returns the orbit field of the particle
    */
-  #getOrbitField(absorbers: AbsorberInstance[], position: ICoordinates): IOrbitField {
+  #getOrbitField(
+    absorbers: AbsorberInstance[],
+    position: ICoordinates,
+  ): IOrbitField {
     const center = Vector.origin;
 
     let orbitAttraction = 0,
@@ -198,7 +209,10 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
    */
   #recycleParticle(particle: OrbitingParticle): void {
     particle.position.setTo(
-      calcPositionOrRandomFromSize({ size: this.#container.canvas.size }, this.#container.engine.getRandomFn()),
+      calcPositionOrRandomFromSize(
+        { size: this.#container.canvas.size },
+        this.#container.engine.getRandomFn(),
+      ),
     );
     particle.velocity.setTo(particle.initialVelocity);
     particle.absorberOrbit = undefined;
@@ -217,14 +231,22 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
    * @param field - the orbit field of the particle
    * @param force - the composed force of all the absorbers on this particle
    */
-  #updateOrbit(particle: OrbitingParticle, delta: IDelta, field: IOrbitField, force: Vector): void {
+  #updateOrbit(
+    particle: OrbitingParticle,
+    delta: IDelta,
+    field: IOrbitField,
+    force: Vector,
+  ): void {
     const container = this.#container,
       { width, height } = container.canvas.size;
 
     particle.absorberOrbitDirection ??=
-      particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;
+      particle.velocity.x >= minVelocity
+        ? RotateDirection.clockwise
+        : RotateDirection.counterClockwise;
 
-    const clockwise = particle.absorberOrbitDirection === RotateDirection.clockwise,
+    const clockwise =
+        particle.absorberOrbitDirection === RotateDirection.clockwise,
       mirror = clockwise ? identity : -identity;
 
     if (particle.absorberOrbit === undefined) {
@@ -250,8 +272,14 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
     particle.velocity.setTo(Vector.origin);
 
-    const sizeFactor = particle.options.move.size ? particle.getRadius() / particle.size.max : identity,
-      moveSpeed = particle.retina.moveSpeed * sizeFactor * (delta.factor || identity) * half,
+    const sizeFactor = particle.options.move.size
+        ? particle.getRadius() / particle.size.max
+        : identity,
+      moveSpeed =
+        particle.retina.moveSpeed *
+        sizeFactor *
+        (delta.factor || identity) *
+        half,
       orbitX = field.center.x + orbitRadius * cos,
       orbitY = field.center.y + orbitRadius * sin;
 
@@ -269,6 +297,8 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
     particle.absorberOrbit.length = Math.max(minRadius, orbitRadius + radial);
     particle.absorberOrbit.angle +=
-      (moveSpeed + tangential * mirror) * container.retina.reduceFactor * (identity / maxDegreeAngle);
+      (moveSpeed + tangential * mirror) *
+      container.retina.reduceFactor *
+      (identity / maxDegreeAngle);
   }
 }

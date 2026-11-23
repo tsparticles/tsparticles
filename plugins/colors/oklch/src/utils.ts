@@ -53,15 +53,26 @@ export function oklchToRgb(oklch: IOklch): IRgb {
     m = m_ ** cubic,
     s = s_ ** cubic,
     // 5. LMS → linear sRGB
-    rLinear = LMS_TO_LINEAR_RGB.r.l * l + LMS_TO_LINEAR_RGB.r.m * m + LMS_TO_LINEAR_RGB.r.s * s,
-    gLinear = LMS_TO_LINEAR_RGB.g.l * l + LMS_TO_LINEAR_RGB.g.m * m + LMS_TO_LINEAR_RGB.g.s * s,
-    bLinear = LMS_TO_LINEAR_RGB.b.l * l + LMS_TO_LINEAR_RGB.b.m * m + LMS_TO_LINEAR_RGB.b.s * s,
+    rLinear =
+      LMS_TO_LINEAR_RGB.r.l * l +
+      LMS_TO_LINEAR_RGB.r.m * m +
+      LMS_TO_LINEAR_RGB.r.s * s,
+    gLinear =
+      LMS_TO_LINEAR_RGB.g.l * l +
+      LMS_TO_LINEAR_RGB.g.m * m +
+      LMS_TO_LINEAR_RGB.g.s * s,
+    bLinear =
+      LMS_TO_LINEAR_RGB.b.l * l +
+      LMS_TO_LINEAR_RGB.b.m * m +
+      LMS_TO_LINEAR_RGB.b.s * s,
     // 6. Linear → gamma-corrected sRGB
     toSrgb = (x: number): number =>
       x <= SRGB.LINEAR_THRESHOLD
         ? SRGB.LINEAR_SCALE * x
-        : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) - SRGB.OFFSET,
-    toSrgbFixed: (num: number) => number = num => Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * rgbMax);
+        : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) -
+          SRGB.OFFSET,
+    toSrgbFixed: (num: number) => number = (num) =>
+      Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * rgbMax);
 
   return {
     r: toSrgbFixed(rLinear),

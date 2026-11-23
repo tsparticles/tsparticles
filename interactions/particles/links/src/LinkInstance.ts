@@ -11,7 +11,11 @@ import {
   rangeColorToOklch,
 } from "@tsparticles/engine";
 import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
-import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
+import type {
+  LinkContainer,
+  LinkParticle,
+  ParticlesLinkOptions,
+} from "./Types.js";
 import { setLinkFrequency } from "./Utils.js";
 
 const minOpacity = 0,
@@ -42,7 +46,10 @@ export class LinkInstance implements IContainerPlugin {
     this.#freqs = { links: new Map(), triangles: new Map() };
   }
 
-  drawParticle(context: OffscreenCanvasRenderingContext2D, particle: LinkParticle): void {
+  drawParticle(
+    context: OffscreenCanvasRenderingContext2D,
+    particle: LinkParticle,
+  ): void {
     const { links, options } = particle;
 
     if (!links?.length || !options.links) {
@@ -54,7 +61,9 @@ export class LinkInstance implements IContainerPlugin {
       pos1 = particle.getPosition(),
       twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.links,
       trianglesEnabled = linkOpts.triangles.enable,
-      p1Destinations = trianglesEnabled ? new Set(links.map(l => l.destination.id)) : null,
+      p1Destinations = trianglesEnabled
+        ? new Set(links.map((l) => l.destination.id))
+        : null,
       originalAlpha = context.globalAlpha;
 
     let currentColorStyle = "",
@@ -73,7 +82,7 @@ export class LinkInstance implements IContainerPlugin {
         !twinkle?.enable &&
         typeof context.save === "function" &&
         typeof context.restore === "function" &&
-        links.every(link => !!link.color);
+        links.every((link) => !!link.color);
 
     // A stroke-only pass never uses fill paint; restore it natively without rounding its color.
     if (neutralFill) {
@@ -85,7 +94,8 @@ export class LinkInstance implements IContainerPlugin {
       for (const link of links) {
         if (
           linkOpts.frequency < maxFrequency &&
-          this.#getLinkFrequency(particle, link.destination) > linkOpts.frequency
+          this.#getLinkFrequency(particle, link.destination) >
+            linkOpts.frequency
         ) {
           continue;
         }
@@ -94,7 +104,15 @@ export class LinkInstance implements IContainerPlugin {
 
         if (trianglesEnabled && !link.isWarped && p1Destinations) {
           flushLines();
-          this.#drawTriangles(options, particle, link, p1Destinations, pos1, pos2, context);
+          this.#drawTriangles(
+            options,
+            particle,
+            link,
+            p1Destinations,
+            pos1,
+            pos2,
+            context,
+          );
         }
 
         if (link.opacity <= minOpacity || width <= minWidth) {
@@ -109,13 +127,17 @@ export class LinkInstance implements IContainerPlugin {
           colorLine = link.color;
 
         const twinkleRgb =
-          twinkle?.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency
+          twinkle?.enable &&
+          getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency
             ? rangeColorToOklch(this.#pluginManager, twinkle.color)
             : undefined;
 
         if (twinkle && twinkleRgb) {
           colorLine = twinkleRgb;
-          opacity = getRangeValue(twinkle.opacity, this.#container.engine.getRandomFn());
+          opacity = getRangeValue(
+            twinkle.opacity,
+            this.#container.engine.getRandomFn(),
+          );
         }
 
         if (!colorLine) {
@@ -133,7 +155,11 @@ export class LinkInstance implements IContainerPlugin {
 
         const colorStyle = this.#getCachedStyle(colorLine);
 
-        if (colorStyle !== currentColorStyle || width !== currentWidth || opacity !== currentAlpha) {
+        if (
+          colorStyle !== currentColorStyle ||
+          width !== currentWidth ||
+          opacity !== currentAlpha
+        ) {
           flushLines();
 
           if (colorStyle !== currentColorStyle) {
@@ -253,7 +279,8 @@ export class LinkInstance implements IContainerPlugin {
     for (const vertex of p2Links) {
       if (
         vertex.isWarped ||
-        this.#getLinkFrequency(p2, vertex.destination) > p2.options.links.frequency ||
+        this.#getLinkFrequency(p2, vertex.destination) >
+          p2.options.links.frequency ||
         !p1Destinations.has(vertex.destination.id)
       ) {
         continue;
@@ -261,12 +288,18 @@ export class LinkInstance implements IContainerPlugin {
 
       const p3 = vertex.destination;
 
-      if (this.#getTriangleFrequency(p1, p2, p3) > (options.links?.triangles.frequency ?? defaultFrequency)) {
+      if (
+        this.#getTriangleFrequency(p1, p2, p3) >
+        (options.links?.triangles.frequency ?? defaultFrequency)
+      ) {
         continue;
       }
 
-      const opacityTriangle = triangleOptions.opacity ?? (link.opacity + vertex.opacity) * half,
-        colorTriangle = rangeColorToOklch(this.#pluginManager, triangleOptions.color) ?? link.color;
+      const opacityTriangle =
+          triangleOptions.opacity ?? (link.opacity + vertex.opacity) * half,
+        colorTriangle =
+          rangeColorToOklch(this.#pluginManager, triangleOptions.color) ??
+          link.color;
 
       if (!colorTriangle || opacityTriangle <= minOpacity) {
         continue;
@@ -310,7 +343,14 @@ export class LinkInstance implements IContainerPlugin {
     let style = this.#colorCache.get(key);
 
     if (!style) {
-      style = getStyleFromOklch(color, hdr, undefined, peakNits, hdrMode, outputColorSpace);
+      style = getStyleFromOklch(
+        color,
+        hdr,
+        undefined,
+        peakNits,
+        hdrMode,
+        outputColorSpace,
+      );
       if (this.#colorCache.size >= maxColorCacheSize) {
         this.#colorCache.clear();
       }
@@ -329,17 +369,36 @@ export class LinkInstance implements IContainerPlugin {
       last.peakNits = peakNits;
       last.style = style;
     } else {
-      this.#lastStyle = { color: { ...color }, hdr, hdrMode, outputColorSpace, peakNits, style };
+      this.#lastStyle = {
+        color: { ...color },
+        hdr,
+        hdrMode,
+        outputColorSpace,
+        peakNits,
+        style,
+      };
     }
 
     return style;
   }
 
   #getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
-    return setLinkFrequency([p1, p2], this.#freqs.links, this.#container.engine.getRandomFn());
+    return setLinkFrequency(
+      [p1, p2],
+      this.#freqs.links,
+      this.#container.engine.getRandomFn(),
+    );
   }
 
-  #getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
-    return setLinkFrequency([p1, p2, p3], this.#freqs.triangles, this.#container.engine.getRandomFn());
+  #getTriangleFrequency(
+    p1: LinkParticle,
+    p2: LinkParticle,
+    p3: LinkParticle,
+  ): number {
+    return setLinkFrequency(
+      [p1, p2, p3],
+      this.#freqs.triangles,
+      this.#container.engine.getRandomFn(),
+    );
   }
 }

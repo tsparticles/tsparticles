@@ -7,7 +7,13 @@ import {
   double,
   getErrorMessage,
 } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
+import {
+  type IImage,
+  type IParticleImage,
+  type ImageParticle,
+  replaceImageColor,
+  shapeTypes,
+} from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import { ErrorCodes } from "./ErrorCodes.js";
 import type { IImageShape } from "./IImageShape.js";
@@ -99,7 +105,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const images = this.#engine.getImages?.(container),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find(
+        (t: IImage) => t.name === imageData.name || t.source === imageData.src,
+      );
 
     if (image) {
       return;
@@ -130,7 +138,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           return;
         }
 
-        container.engine.getLogger().error(`Error loading image shape "${imageData.src}"`, error);
+        container.engine
+          .getLogger()
+          .error(`Error loading image shape "${imageData.src}"`, error);
       });
   }
 
@@ -160,7 +170,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src),
+      image = images?.find(
+        (t: IImage) => t.name === imageData.name || t.source === imageData.src,
+      ),
       particleId = particle.id;
 
     if (!image) {
@@ -198,7 +210,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           element: image.element,
           loaded: true,
           ratio:
-            imageData.width && imageData.height ? imageData.width / imageData.height : (image.ratio ?? defaultRatio),
+            imageData.width && imageData.height
+              ? imageData.width / imageData.height
+              : (image.ratio ?? defaultRatio),
           replaceColor: replaceColor,
           source: imageData.src,
         };
@@ -208,7 +222,11 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         imageRes.ratio = 1;
       }
 
-      if (particle.destroyed || particle.id !== particleId || particle.shapeData !== imageData) {
+      if (
+        particle.destroyed ||
+        particle.id !== particleId ||
+        particle.shapeData !== imageData
+      ) {
         return;
       }
 
@@ -229,7 +247,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param imageShape - the image shape to load
    * @internal
    */
-  readonly #loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
+  readonly #loadImageShape = async (
+    container: ImageContainer,
+    imageShape: IImageShape,
+  ): Promise<void> => {
     if (!this.#engine.loadImage) {
       throw new Error(getErrorMessage(ErrorCodes.imageShapeNotInitialized));
     }

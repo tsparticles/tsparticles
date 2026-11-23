@@ -118,7 +118,10 @@ export class RgbColorManager implements IColorManager {
         b: getRangeValue(rgbColor.b, this.#random),
       },
       alphaRange = rgbColor.a,
-      alpha = alphaRange === undefined ? defaultAlpha : getRangeValue(alphaRange, this.#random);
+      alpha =
+        alphaRange === undefined
+          ? defaultAlpha
+          : getRangeValue(alphaRange, this.#random);
 
     return { ...rgbToOklch(rgb), a: alpha };
   }
@@ -142,13 +145,16 @@ export class RgbColorManager implements IColorManager {
     const rgba = {
       a: result[RgbIndexes.a] ? parseAlpha(result[RgbIndexes.a]) : defaultAlpha,
       b: result[RgbIndexes.bPercent]
-        ? (Number.parseFloat(result[RgbIndexes.b] ?? "0") * rgbMax) / percentDenominator
+        ? (Number.parseFloat(result[RgbIndexes.b] ?? "0") * rgbMax) /
+          percentDenominator
         : Number.parseFloat(result[RgbIndexes.b] ?? "0"),
       g: result[RgbIndexes.gPercent]
-        ? (Number.parseFloat(result[RgbIndexes.g] ?? "0") * rgbMax) / percentDenominator
+        ? (Number.parseFloat(result[RgbIndexes.g] ?? "0") * rgbMax) /
+          percentDenominator
         : Number.parseFloat(result[RgbIndexes.g] ?? "0"),
       r: result[RgbIndexes.rPercent]
-        ? (Number.parseFloat(result[RgbIndexes.r] ?? "0") * rgbMax) / percentDenominator
+        ? (Number.parseFloat(result[RgbIndexes.r] ?? "0") * rgbMax) /
+          percentDenominator
         : Number.parseFloat(result[RgbIndexes.r] ?? "0"),
     };
 

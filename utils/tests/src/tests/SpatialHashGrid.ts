@@ -44,17 +44,24 @@ describe("SpatialHashGrid", () => {
 
       // Expected membership does not call the engine's range or distance helpers.
       expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual(
-        ordered.filter(particle => {
+        ordered.filter((particle) => {
           const { x, y } = particle.getPosition();
 
           return x * x + y * y <= cellSize * cellSize;
         }),
       );
-      expect(grid.queryRectangle({ x: -cellSize, y: -cellSize }, { width: 128, height: 128 })).toEqual(
-        ordered.filter(particle => {
+      expect(
+        grid.queryRectangle(
+          { x: -cellSize, y: -cellSize },
+          { width: 128, height: 128 },
+        ),
+      ).toEqual(
+        ordered.filter((particle) => {
           const { x, y } = particle.getPosition();
 
-          return x >= -cellSize && x <= cellSize && y >= -cellSize && y <= cellSize;
+          return (
+            x >= -cellSize && x <= cellSize && y >= -cellSize && y <= cellSize
+          );
         }),
       );
     }
@@ -112,7 +119,7 @@ describe("SpatialHashGrid", () => {
     grid.insert(laterCell);
 
     expect(
-      grid.queryCircle({ x: 0, y: 0 }, outerRadius, particle => {
+      grid.queryCircle({ x: 0, y: 0 }, outerRadius, (particle) => {
         visited.push(particle);
 
         if (particle === first) {
@@ -185,19 +192,28 @@ describe("SpatialHashGrid", () => {
       outside = particleAt({ x: 12_000, y: 12_000 }),
       out = [prefix];
 
-    for (const particle of [fifth, fourth, second, outsideCircle, outside, third, first]) {
+    for (const particle of [
+      fifth,
+      fourth,
+      second,
+      outsideCircle,
+      outside,
+      third,
+      first,
+    ]) {
       grid.insert(particle);
     }
 
-    expect(grid.queryCircle({ x: 0, y: 0 }, sparseRadius, undefined, out)).toBe(out);
+    expect(grid.queryCircle({ x: 0, y: 0 }, sparseRadius, undefined, out)).toBe(
+      out,
+    );
     expect(out).toEqual([prefix, first, second, third, fourth, fifth]);
-    expect(grid.queryRectangle({ x: -5_000, y: -5_000 }, { width: 10_000, height: 10_000 })).toEqual([
-      first,
-      second,
-      third,
-      fourth,
-      fifth,
-    ]);
+    expect(
+      grid.queryRectangle(
+        { x: -5_000, y: -5_000 },
+        { width: 10_000, height: 10_000 },
+      ),
+    ).toEqual([first, second, third, fourth, fifth]);
   });
 
   it("keeps predicate traversal live and supports nested queries", () => {
@@ -208,16 +224,20 @@ describe("SpatialHashGrid", () => {
 
     grid.insert(first);
 
-    const results = grid.queryCircle({ x: 0, y: 0 }, outerRadius, particle => {
-      visited.push(particle);
+    const results = grid.queryCircle(
+      { x: 0, y: 0 },
+      outerRadius,
+      (particle) => {
+        visited.push(particle);
 
-      if (particle === first) {
-        grid.insert(added);
-        expect(grid.queryCircle({ x: 640, y: 0 }, 1)).toEqual([added]);
-      }
+        if (particle === first) {
+          grid.insert(added);
+          expect(grid.queryCircle({ x: 640, y: 0 }, 1)).toEqual([added]);
+        }
 
-      return particle === added;
-    });
+        return particle === added;
+      },
+    );
 
     expect(visited).toEqual([first, added]);
     expect(results).toEqual([added]);
@@ -230,9 +250,18 @@ describe("SpatialHashGrid", () => {
 
     grid.insert(particle);
 
-    expect(grid.queryCircle({ x: 0, y: 0 }, Infinity, undefined, out)).toBe(out);
+    expect(grid.queryCircle({ x: 0, y: 0 }, Infinity, undefined, out)).toBe(
+      out,
+    );
     expect(grid.queryCircle({ x: 0, y: NaN }, 1, undefined, out)).toBe(out);
-    expect(grid.queryCircle({ x: Number.MAX_SAFE_INTEGER + 1, y: 0 }, 0, undefined, out)).toBe(out);
+    expect(
+      grid.queryCircle(
+        { x: Number.MAX_SAFE_INTEGER + 1, y: 0 },
+        0,
+        undefined,
+        out,
+      ),
+    ).toBe(out);
     expect(out).toEqual([particle]);
   });
 });

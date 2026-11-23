@@ -1,13 +1,23 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import { type ILogger, createLogger } from "../../Utils/LogUtils.js";
-import { canvasOwner, transferredCanvasKey } from "../Canvas/CanvasOwnership.js";
+import {
+  canvasOwner,
+  transferredCanvasKey,
+} from "../Canvas/CanvasOwnership.js";
 import {
   getCanvasFromContainer,
   getDataFromUrl,
   getDomContainer,
   itemFromSingleOrMultiple,
 } from "../../Utils/Utils.js";
-import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "../Utils/Constants.js";
+import {
+  loadMinIndex,
+  loadRandomFactor,
+  none,
+  one,
+  removeDeleteCount,
+  removeMinIndex,
+} from "../Utils/Constants.js";
 import type { Container } from "../Container/Container.js";
 import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../../Types/CustomEventListener.js";
@@ -66,8 +76,9 @@ export class Engine {
     cancelAnimationFrame(handle);
   };
 
-  #nextFrame: (callback: FrameRequestCallback) => number = (callback: FrameRequestCallback): number =>
-    requestAnimationFrame(callback);
+  #nextFrame: (callback: FrameRequestCallback) => number = (
+    callback: FrameRequestCallback,
+  ): number => requestAnimationFrame(callback);
 
   readonly #randomProvider = (): number => this.getRandom();
 
@@ -99,7 +110,9 @@ export class Engine {
   }
 
   #getElementId(element: HTMLElement): string {
-    return element.id.length ? element.id : this.#getAnonymousElementId(element);
+    return element.id.length
+      ? element.id
+      : this.#getAnonymousElementId(element);
   }
 
   /**
@@ -116,7 +129,7 @@ export class Engine {
     let handle = -1;
     const cancel = this.#cancelFrame;
 
-    handle = this.#nextFrame(timestamp => {
+    handle = this.#nextFrame((timestamp) => {
       this.#scheduledFrames.delete(handle);
       callback(timestamp);
     });
@@ -149,7 +162,13 @@ export class Engine {
       return;
     }
 
-    throw new Error(getErrorMessage(ErrorCodes.engineVersionMismatch, this.version, pluginVersion));
+    throw new Error(
+      getErrorMessage(
+        ErrorCodes.engineVersionMismatch,
+        this.version,
+        pluginVersion,
+      ),
+    );
   }
 
   /**
@@ -215,7 +234,10 @@ export class Engine {
   async load(params: ILoadParams): Promise<Container | undefined> {
     let domSourceElement: HTMLElement | undefined;
 
-    if (typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement) {
+    if (
+      typeof HTMLElement !== "undefined" &&
+      params.element instanceof HTMLElement
+    ) {
       domSourceElement = params.element;
     }
 
@@ -228,7 +250,10 @@ export class Engine {
 
     this.#loadAbortControllers.get(id)?.abort();
 
-    const loadController = typeof AbortController === "undefined" ? undefined : new AbortController();
+    const loadController =
+      typeof AbortController === "undefined"
+        ? undefined
+        : new AbortController();
 
     this.#loadSequences.set(id, loadSequence);
 
@@ -239,7 +264,10 @@ export class Engine {
     try {
       await this.init();
 
-      if (loadController?.signal.aborted || this.#loadSequences.get(id) !== loadSequence) {
+      if (
+        loadController?.signal.aborted ||
+        this.#loadSequences.get(id) !== loadSequence
+      ) {
         return undefined;
       }
 
@@ -256,29 +284,45 @@ export class Engine {
             })
           : params.options;
 
-      if (loadController?.signal.aborted || this.#loadSequences.get(id) !== loadSequence) {
+      if (
+        loadController?.signal.aborted ||
+        this.#loadSequences.get(id) !== loadSequence
+      ) {
         /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
         return undefined;
       }
 
       const sourceCanvas: OwnedCanvas =
-          typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
+          typeof OffscreenCanvas !== "undefined" &&
+          params.element instanceof OffscreenCanvas
             ? params.element
             : getCanvasFromContainer(getDomContainer(id, domSourceElement)),
-        owner = sourceCanvas[canvasOwner] ?? sourceCanvas[transferredCanvasKey]?.[canvasOwner];
+        owner =
+          sourceCanvas[canvasOwner] ??
+          sourceCanvas[transferredCanvasKey]?.[canvasOwner];
 
-      if (owner && !owner.destroyed && (!this.items.includes(owner) || owner.id.description !== id)) {
+      if (
+        owner &&
+        !owner.destroyed &&
+        (!this.items.includes(owner) || owner.id.description !== id)
+      ) {
         throw new Error("This canvas is already owned by another engine.");
       }
 
       let ownedRenderCanvas: OwnedCanvas | undefined;
 
       /* elements */
-      const currentOptions = itemFromSingleOrMultiple(options, index, undefined, this.getRandomFn()),
+      const currentOptions = itemFromSingleOrMultiple(
+          options,
+          index,
+          undefined,
+          this.getRandomFn(),
+        ),
         { items } = this,
-        oldIndex = items.findIndex(v => v.id.description === id),
+        oldIndex = items.findIndex((v) => v.id.description === id),
         oldItem = oldIndex >= loadMinIndex ? this.item(oldIndex) : undefined,
-        oldWasPlaying = (oldItem?.animationStatus && oldItem.options.autoPlay) ?? false,
+        oldWasPlaying =
+          (oldItem?.animationStatus && oldItem.options.autoPlay) ?? false,
         newItem = new Container({
           engine: this,
           dispatchCallback: (eventType, args): void => {
@@ -334,7 +378,10 @@ export class Engine {
         try {
           newItem.destroy(false);
         } catch (cleanupError: unknown) {
-          this.getLogger().warning("Error cleaning up a failed container load", cleanupError);
+          this.getLogger().warning(
+            "Error cleaning up a failed container load",
+            cleanupError,
+          );
         } finally {
           const failedIndex = items.indexOf(newItem);
 
@@ -345,15 +392,20 @@ export class Engine {
           if (oldItem && !oldItem.destroyed) {
             items.splice(Math.min(oldIndex, items.length), none, oldItem);
 
-            if (sourceCanvas[canvasOwner] === undefined || sourceCanvas[canvasOwner] === newItem) {
+            if (
+              sourceCanvas[canvasOwner] === undefined ||
+              sourceCanvas[canvasOwner] === newItem
+            ) {
               sourceCanvas[canvasOwner] = oldItem;
             }
 
-            const oldRenderCanvas = oldItem.canvas.renderCanvas as OwnedCanvas | undefined;
+            const oldRenderCanvas = oldItem.canvas.renderCanvas as
+              OwnedCanvas | undefined;
 
             if (
               oldRenderCanvas &&
-              (oldRenderCanvas[canvasOwner] === undefined || oldRenderCanvas[canvasOwner] === newItem)
+              (oldRenderCanvas[canvasOwner] === undefined ||
+                oldRenderCanvas[canvasOwner] === newItem)
             ) {
               oldRenderCanvas[canvasOwner] = oldItem;
             }
@@ -361,7 +413,10 @@ export class Engine {
             try {
               oldItem.canvas.init();
             } catch (cleanupError: unknown) {
-              this.getLogger().warning("Error restoring the previous container canvas", cleanupError);
+              this.getLogger().warning(
+                "Error restoring the previous container canvas",
+                cleanupError,
+              );
             }
 
             if (oldWasPlaying) {
@@ -382,7 +437,10 @@ export class Engine {
         try {
           oldItem.destroy(false);
         } catch (error: unknown) {
-          this.getLogger().warning("Error cleaning up the replaced container", error);
+          this.getLogger().warning(
+            "Error cleaning up the replaced container",
+            error,
+          );
         }
       }
 
@@ -393,7 +451,10 @@ export class Engine {
         this.#loadSequences.delete(id);
       }
 
-      if (loadController && this.#loadAbortControllers.get(id) === loadController) {
+      if (
+        loadController &&
+        this.#loadAbortControllers.get(id) === loadController
+      ) {
         this.#loadAbortControllers.delete(id);
       }
     }
@@ -408,7 +469,7 @@ export class Engine {
       return;
     }
 
-    await Promise.all(this.items.map(t => t.refresh()));
+    await Promise.all(this.items.map((t) => t.refresh()));
   }
 
   /**
@@ -423,7 +484,10 @@ export class Engine {
   /**
    * Replaces the frame scheduler for this engine only. Callback timestamps must use the same high-resolution time domain as requestAnimationFrame.
    */
-  setAnimationFunctions(nextFrame: (callback: FrameRequestCallback) => number, cancel: (handle: number) => void): void {
+  setAnimationFunctions(
+    nextFrame: (callback: FrameRequestCallback) => number,
+    cancel: (handle: number) => void,
+  ): void {
     this.#nextFrame = nextFrame;
     this.#cancelFrame = cancel;
   }

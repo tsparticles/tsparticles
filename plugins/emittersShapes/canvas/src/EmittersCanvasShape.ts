@@ -10,8 +10,15 @@ import {
   isString,
   safeDocument,
 } from "@tsparticles/engine";
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { getCanvasImageData, getImageData, getTextData } from "@tsparticles/canvas-utils";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  getCanvasImageData,
+  getImageData,
+  getTextData,
+} from "@tsparticles/canvas-utils";
 import type { CanvasPixelData } from "./types.js";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
@@ -38,13 +45,18 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     const filter = options.filter,
       minAlpha = 0;
 
-    let filterFunc: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean = (pixel): boolean =>
-      pixel.a > minAlpha;
+    let filterFunc: (
+      pixel: IRgba,
+      colorSpace?: "display-p3" | "srgb",
+    ) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
     if (isString(filter)) {
       if (filter in globalThis) {
         const wndFilter = (
-          globalThis as unknown as Record<string, (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean>
+          globalThis as unknown as Record<
+            string,
+            (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean
+          >
         )[filter];
 
         if (isFunction(wndFilter)) {
@@ -84,15 +96,24 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return;
       }
 
-      pixelData = await getImageData(url, offset, this.#container.canvas.render.settings);
+      pixelData = await getImageData(
+        url,
+        offset,
+        this.#container.canvas.render.settings,
+      );
     } else if (element ?? selector) {
-      const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
+      const canvas =
+        element ??
+        (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
       if (!canvas) {
         return;
       }
 
-      const context = canvas.getContext("2d", this.#container.canvas.render.settings);
+      const context = canvas.getContext(
+        "2d",
+        this.#container.canvas.render.settings,
+      );
 
       if (!context) {
         return;
@@ -100,7 +121,12 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
       pixelData = getCanvasImageData(context, canvas, offset);
     } else {
-      const data = getTextData(text, offset, this.fill, this.#container.canvas.render.settings);
+      const data = getTextData(
+        text,
+        offset,
+        this.fill,
+        this.#container.canvas.render.settings,
+      );
 
       if (isNull(data)) {
         return;
@@ -112,7 +138,9 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     this.pixelData = pixelData;
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData | null {
+  randomPosition(
+    random: () => number = Math.random,
+  ): IRandomPositionData | null {
     const { height, width } = this.pixelData,
       data = this.pixelData,
       position = this.position,
@@ -140,7 +168,10 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         continue;
       }
 
-      const shouldCreateParticle = this.filter(pixel, data.colorSpace ?? "srgb");
+      const shouldCreateParticle = this.filter(
+        pixel,
+        data.colorSpace ?? "srgb",
+      );
 
       if (!shouldCreateParticle) {
         continue;

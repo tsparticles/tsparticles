@@ -1,4 +1,8 @@
-import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
+import type {
+  CanvasPixelData,
+  ITextDataOptions,
+  TextLineData,
+} from "./types.js";
 import {
   type ICoordinates,
   type IDimension,
@@ -26,7 +30,8 @@ function getImageDataColorSpace(
   imageData: ImageData,
 ): "display-p3" | "srgb" {
   // Prefer ImageData's own metadata; older implementations can fall back to the effective context setting.
-  const imageColorSpace = (imageData as unknown as { colorSpace?: string }).colorSpace;
+  const imageColorSpace = (imageData as unknown as { colorSpace?: string })
+    .colorSpace;
 
   if (imageColorSpace === "display-p3" || imageColorSpace === "srgb") {
     return imageColorSpace;
@@ -34,7 +39,9 @@ function getImageDataColorSpace(
 
   try {
     const contextColorSpace = (
-      context as unknown as { getContextAttributes?: () => { colorSpace?: string } }
+      context as unknown as {
+        getContextAttributes?: () => { colorSpace?: string };
+      }
     ).getContextAttributes?.().colorSpace;
 
     return contextColorSpace === "display-p3" ? "display-p3" : "srgb";
@@ -49,7 +56,11 @@ function getImageDataColorSpace(
  * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
-export function drawLine(context: OffscreenCanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+export function drawLine(
+  context: OffscreenCanvasRenderingContext2D,
+  begin: ICoordinates,
+  end: ICoordinates,
+): void {
   context.beginPath();
   context.moveTo(begin.x, begin.y);
   context.lineTo(end.x, end.y);
@@ -74,17 +85,28 @@ export function getCanvasImageData(
   let imageData: ImageData;
 
   try {
-    imageData = pixelReadContext.getImageData(originPoint.x, originPoint.y, size.width, size.height, {
-      pixelFormat: "rgba-unorm8",
-    });
+    imageData = pixelReadContext.getImageData(
+      originPoint.x,
+      originPoint.y,
+      size.width,
+      size.height,
+      {
+        pixelFormat: "rgba-unorm8",
+      },
+    );
   } catch {
     // Older browsers may not support pixelFormat readback settings.
-    imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height);
+    imageData = ctx.getImageData(
+      originPoint.x,
+      originPoint.y,
+      size.width,
+      size.height,
+    );
   }
 
   const isFloat16 =
-      (imageData as ImageData & { pixelFormat?: string }).pixelFormat === "rgba-float16" ||
-      imageData.data.BYTES_PER_ELEMENT === 2,
+      (imageData as ImageData & { pixelFormat?: string }).pixelFormat ===
+        "rgba-float16" || imageData.data.BYTES_PER_ELEMENT === 2,
     colorSpace = getImageDataColorSpace(ctx, imageData),
     pixelsData = imageData.data;
 
@@ -110,17 +132,29 @@ export function getCanvasImageData(
     }
 
     row[pos.x] = {
-      r: normalizePixelChannel(pixelsData[i + indexesOffset.r] ?? defaultRgbMin, isFloat16),
-      g: normalizePixelChannel(pixelsData[i + indexesOffset.g] ?? defaultRgbMin, isFloat16),
-      b: normalizePixelChannel(pixelsData[i + indexesOffset.b] ?? defaultRgbMin, isFloat16),
-      a: normalizePixelAlpha(pixelsData[i + indexesOffset.a] ?? defaultAlpha, isFloat16),
+      r: normalizePixelChannel(
+        pixelsData[i + indexesOffset.r] ?? defaultRgbMin,
+        isFloat16,
+      ),
+      g: normalizePixelChannel(
+        pixelsData[i + indexesOffset.g] ?? defaultRgbMin,
+        isFloat16,
+      ),
+      b: normalizePixelChannel(
+        pixelsData[i + indexesOffset.b] ?? defaultRgbMin,
+        isFloat16,
+      ),
+      a: normalizePixelAlpha(
+        pixelsData[i + indexesOffset.a] ?? defaultAlpha,
+        isFloat16,
+      ),
     };
   }
 
   return {
     colorSpace,
     pixels,
-    width: Math.min(...pixels.map(row => row.length)),
+    width: Math.min(...pixels.map((row) => row.length)),
     height: pixels.length,
   };
 }
@@ -130,12 +164,16 @@ function normalizePixelChannel(value: number, isFloat16: boolean): number {
     return value;
   }
 
-  return Math.round(Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax);
+  return Math.round(
+    Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax,
+  );
 }
 
 function normalizePixelAlpha(value: number, isFloat16: boolean): number {
   return isFloat16
-    ? Math.round(Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax) * alphaFactor
+    ? Math.round(
+        Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax,
+      ) * alphaFactor
     : value * alphaFactor;
 }
 
@@ -226,7 +264,8 @@ export function getTextData(
       lineData = {
         measure,
         text: line,
-        height: measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent,
+        height:
+          measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent,
         width: measure.width,
       };
 
@@ -246,10 +285,18 @@ export function getTextData(
 
     if (fill) {
       context.fillStyle = color;
-      context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.fillText(
+        line.text,
+        originPoint.x,
+        currentHeight + line.measure.actualBoundingBoxAscent,
+      );
     } else {
       context.strokeStyle = color;
-      context.strokeText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.strokeText(
+        line.text,
+        originPoint.x,
+        currentHeight + line.measure.actualBoundingBoxAscent,
+      );
     }
 
     currentHeight += line.height + linesOptions.spacing;
@@ -265,7 +312,9 @@ export function getTextData(
  */
 export async function loadFont(font?: string, weight?: string): Promise<void> {
   try {
-    await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
+    await safeDocument().fonts.load(
+      `${weight ?? "400"} 36px '${font ?? "Verdana"}'`,
+    );
   } catch {
     // ignores any error
   }

@@ -49,7 +49,11 @@ function createParentColor(parentColor: IOklcha): AnimatableColor {
  * @param offset - The offset
  * @returns the offset color as AnimatableColor
  */
-function createOffsetColor(parentColor: IOklcha, offset: Partial<IRangeOklch>, random: () => number): AnimatableColor {
+function createOffsetColor(
+  parentColor: IOklcha,
+  offset: Partial<IRangeOklch>,
+  random: () => number,
+): AnimatableColor {
   const offsetH = getRangeValue(offset.h ?? defaultOffset, random),
     offsetC = getRangeValue(offset.c ?? defaultOffset, random),
     offsetL = getRangeValue(offset.l ?? defaultOffset, random),
@@ -118,9 +122,23 @@ function addSplitParticle(
 
   const random = parent.container.engine.getRandomFn(),
     splitOptions = destroyOptions.split,
-    splitParticleOptions = loadParticlesOptions(pluginManager, container, parent.options),
-    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor, undefined, undefined, random),
-    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor, undefined, undefined, random),
+    splitParticleOptions = loadParticlesOptions(
+      pluginManager,
+      container,
+      parent.options,
+    ),
+    splitFillColor = itemFromSingleOrMultiple(
+      splitOptions.fillColor,
+      undefined,
+      undefined,
+      random,
+    ),
+    splitStrokeColor = itemFromSingleOrMultiple(
+      splitOptions.strokeColor,
+      undefined,
+      undefined,
+      random,
+    ),
     parentFillColor = parent.getFillColor(),
     parentStrokeColor = parent.getStrokeColor();
 
@@ -150,7 +168,12 @@ function addSplitParticle(
 
   splitParticleOptions.load(splitParticlesOptions);
 
-  const splitParticlePaintOptions = itemFromSingleOrMultiple(splitParticleOptions.paint, undefined, undefined, random),
+  const splitParticlePaintOptions = itemFromSingleOrMultiple(
+      splitParticleOptions.paint,
+      undefined,
+      undefined,
+      random,
+    ),
     splitParticleFillOptions = splitParticlePaintOptions?.fill,
     splitParticleStrokeOptions = splitParticlePaintOptions?.stroke,
     fillColor = resolveSplitColor(
@@ -176,27 +199,35 @@ function addSplitParticle(
     splitParticleStrokeOptions.color = strokeColor;
   }
 
-  const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : defaultOffset,
+  const offset = splitOptions.sizeOffset
+      ? setRangeValue(-parent.size.value, parent.size.value)
+      : defaultOffset,
     position = {
       x: parent.position.x + randomInRangeValue(offset, random),
       y: parent.position.y + randomInRangeValue(offset, random),
     };
 
-  return container.particles.addParticle(position, splitParticleOptions, parent.group, (particle: DestroyParticle) => {
-    if (particle.size.value < minDestroySize) {
-      return false;
-    }
+  return container.particles.addParticle(
+    position,
+    splitParticleOptions,
+    parent.group,
+    (particle: DestroyParticle) => {
+      if (particle.size.value < minDestroySize) {
+        return false;
+      }
 
-    particle.velocity.length = randomInRangeValue(
-      setRangeValue(parent.velocity.length, particle.velocity.length),
-      random,
-    );
-    particle.splitCount = (parent.splitCount ?? defaultSplitCount) + increment;
-    particle.unbreakable = true;
-    particle.unbreakableUntil = performance.now() + unbreakableTime;
+      particle.velocity.length = randomInRangeValue(
+        setRangeValue(parent.velocity.length, particle.velocity.length),
+        random,
+      );
+      particle.splitCount =
+        (parent.splitCount ?? defaultSplitCount) + increment;
+      particle.unbreakable = true;
+      particle.unbreakableUntil = performance.now() + unbreakableTime;
 
-    return true;
-  });
+      return true;
+    },
+  );
 }
 
 /**
@@ -205,7 +236,11 @@ function addSplitParticle(
  * @param container - The container to handle
  * @param particle - The particle to process
  */
-export function split(pluginManager: PluginManager, container: Container, particle: DestroyParticle): void {
+export function split(
+  pluginManager: PluginManager,
+  container: Container,
+  particle: DestroyParticle,
+): void {
   const destroyOptions = particle.options.destroy;
 
   if (!destroyOptions) {
@@ -215,7 +250,10 @@ export function split(pluginManager: PluginManager, container: Container, partic
   const splitOptions = destroyOptions.split;
 
   if (splitOptions.count >= minSplitCount) {
-    if (particle.splitCount === undefined || particle.splitCount > splitOptions.count) {
+    if (
+      particle.splitCount === undefined ||
+      particle.splitCount > splitOptions.count
+    ) {
       return;
     }
 
@@ -224,7 +262,12 @@ export function split(pluginManager: PluginManager, container: Container, partic
 
   const random = container.engine.getRandomFn(),
     rate = getRangeValue(splitOptions.rate.value, random),
-    particlesSplitOptions = itemFromSingleOrMultiple(splitOptions.particles, undefined, undefined, random);
+    particlesSplitOptions = itemFromSingleOrMultiple(
+      splitOptions.particles,
+      undefined,
+      undefined,
+      random,
+    );
 
   for (let i = 0; i < rate; i++) {
     addSplitParticle(pluginManager, container, particle, particlesSplitOptions);

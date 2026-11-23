@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type Container, type IPlugin, type ISourceOptions, createEngine } from "@tsparticles/engine";
+import {
+  type Container,
+  type IPlugin,
+  type ISourceOptions,
+  createEngine,
+} from "@tsparticles/engine";
 import { describe, expect, it, vi } from "vitest";
 import { TestOffscreenCanvas } from "../Fixture/OffscreenCanvas.js";
 import { TestWindow } from "../Fixture/Window.js";
@@ -20,13 +25,21 @@ describe("Container lifecycle", () => {
    * @param options - The source options to load.
    * @returns The loaded container.
    */
-  async function loadContainer(options: ISourceOptions, element?: HTMLCanvasElement): Promise<Container> {
+  async function loadContainer(
+    options: ISourceOptions,
+    element?: HTMLCanvasElement,
+  ): Promise<Container> {
     const id = `container-lifecycle-${(containerId += 1).toString()}`,
       container = await tsParticles.load({
         id,
         options: { autoPlay: false, ...options },
         autoPlay: false,
-        element: element ?? (createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement),
+        element:
+          element ??
+          (createCustomCanvas(
+            canvasWidth,
+            canvasHeight,
+          ) as unknown as HTMLCanvasElement),
       });
 
     if (!container) {
@@ -68,41 +81,54 @@ describe("Container lifecycle", () => {
   });
 
   it("retries Display-P3 SDR when the requested float16 HDR context is unavailable", async () => {
-    const matchMediaDescriptor = Object.getOwnPropertyDescriptor(globalThis, "matchMedia"),
-      originalGetContext = Object.getOwnPropertyDescriptor(TestOffscreenCanvas.prototype, "getContext")?.value as (
+    const matchMediaDescriptor = Object.getOwnPropertyDescriptor(
+        globalThis,
+        "matchMedia",
+      ),
+      originalGetContext = Object.getOwnPropertyDescriptor(
+        TestOffscreenCanvas.prototype,
+        "getContext",
+      )?.value as (
         this: TestOffscreenCanvas,
         type: "2d",
         settings?: CanvasRenderingContext2DSettings,
       ) => CanvasRenderingContext2D | null,
-      getContext = vi.spyOn(TestOffscreenCanvas.prototype, "getContext").mockImplementation(function (
-        this: TestOffscreenCanvas,
-        type,
-        settings,
-      ) {
-        const contextSettings = settings as unknown as { colorType?: string } | undefined,
-          colorType = contextSettings?.colorType;
+      getContext = vi
+        .spyOn(TestOffscreenCanvas.prototype, "getContext")
+        .mockImplementation(function (
+          this: TestOffscreenCanvas,
+          type,
+          settings,
+        ) {
+          const contextSettings = settings as unknown as
+              { colorType?: string } | undefined,
+            colorType = contextSettings?.colorType;
 
-        if (settings?.colorSpace === "display-p3" && colorType === "float16") {
-          throw new Error("float16 Display-P3 context unavailable");
-        }
+          if (
+            settings?.colorSpace === "display-p3" &&
+            colorType === "float16"
+          ) {
+            throw new Error("float16 Display-P3 context unavailable");
+          }
 
-        const context = originalGetContext.call(this, type, settings);
+          const context = originalGetContext.call(this, type, settings);
 
-        if (context && settings?.colorSpace === "display-p3") {
-          Object.defineProperty(context, "getContextAttributes", {
-            configurable: true,
-            value: () => ({ colorSpace: "display-p3", colorType: "unorm8" }),
-          });
-        }
+          if (context && settings?.colorSpace === "display-p3") {
+            Object.defineProperty(context, "getContextAttributes", {
+              configurable: true,
+              value: () => ({ colorSpace: "display-p3", colorType: "unorm8" }),
+            });
+          }
 
-        return context;
-      });
+          return context;
+        });
     let container: Container | undefined;
 
     Object.defineProperty(globalThis, "matchMedia", {
       configurable: true,
       value: (query: string) => ({
-        matches: query === "(color-gamut: p3)" || query === "(dynamic-range: high)",
+        matches:
+          query === "(color-gamut: p3)" || query === "(dynamic-range: high)",
         addEventListener: () => undefined,
         removeEventListener: () => undefined,
       }),
@@ -117,7 +143,8 @@ describe("Container lifecycle", () => {
       expect(
         getContext.mock.calls.map(([, settings]) => ({
           colorSpace: settings?.colorSpace,
-          colorType: (settings as unknown as { colorType?: string } | undefined)?.colorType,
+          colorType: (settings as unknown as { colorType?: string } | undefined)
+            ?.colorType,
         })),
       ).toEqual([
         { colorSpace: "display-p3", colorType: "float16" },
@@ -138,28 +165,36 @@ describe("Container lifecycle", () => {
   });
 
   it("keeps the effective sRGB space when a reused context ignores a later P3 HDR request", async () => {
-    const matchMediaDescriptor = Object.getOwnPropertyDescriptor(globalThis, "matchMedia"),
-      originalGetContext = Object.getOwnPropertyDescriptor(TestOffscreenCanvas.prototype, "getContext")?.value as (
+    const matchMediaDescriptor = Object.getOwnPropertyDescriptor(
+        globalThis,
+        "matchMedia",
+      ),
+      originalGetContext = Object.getOwnPropertyDescriptor(
+        TestOffscreenCanvas.prototype,
+        "getContext",
+      )?.value as (
         this: TestOffscreenCanvas,
         type: "2d",
         settings?: CanvasRenderingContext2DSettings,
       ) => CanvasRenderingContext2D | null,
-      getContext = vi.spyOn(TestOffscreenCanvas.prototype, "getContext").mockImplementation(function (
-        this: TestOffscreenCanvas,
-        type,
-        settings,
-      ) {
-        const context = originalGetContext.call(this, type, settings);
+      getContext = vi
+        .spyOn(TestOffscreenCanvas.prototype, "getContext")
+        .mockImplementation(function (
+          this: TestOffscreenCanvas,
+          type,
+          settings,
+        ) {
+          const context = originalGetContext.call(this, type, settings);
 
-        if (context) {
-          Object.defineProperty(context, "getContextAttributes", {
-            configurable: true,
-            value: () => ({ colorSpace: "srgb", colorType: "unorm8" }),
-          });
-        }
+          if (context) {
+            Object.defineProperty(context, "getContextAttributes", {
+              configurable: true,
+              value: () => ({ colorSpace: "srgb", colorType: "unorm8" }),
+            });
+          }
 
-        return context;
-      }),
+          return context;
+        }),
       queryMatches = new Map([
         ["(color-gamut: p3)", false],
         ["(dynamic-range: high)", false],
@@ -173,7 +208,10 @@ describe("Container lifecycle", () => {
         get matches() {
           return queryMatches.get(query) ?? false;
         },
-        addEventListener: (_type: string, listener: EventListenerOrEventListenerObject | null) => {
+        addEventListener: (
+          _type: string,
+          listener: EventListenerOrEventListenerObject | null,
+        ) => {
           if (typeof listener === "function") {
             changeListeners.push(() => {
               listener(new Event("change"));
@@ -199,7 +237,8 @@ describe("Container lifecycle", () => {
       expect(
         getContext.mock.calls.map(([, settings]) => ({
           colorSpace: settings?.colorSpace,
-          colorType: (settings as unknown as { colorType?: string } | undefined)?.colorType,
+          colorType: (settings as unknown as { colorType?: string } | undefined)
+            ?.colorType,
         })),
       ).toEqual([
         { colorSpace: "srgb", colorType: undefined },
@@ -220,7 +259,10 @@ describe("Container lifecycle", () => {
   });
 
   it("recomputes Retina-scaled particle motion after a device pixel ratio change", async () => {
-    const descriptor = Object.getOwnPropertyDescriptor(globalThis, "devicePixelRatio");
+    const descriptor = Object.getOwnPropertyDescriptor(
+      globalThis,
+      "devicePixelRatio",
+    );
     let container: Container | undefined;
 
     try {
@@ -367,13 +409,16 @@ describe("Container lifecycle", () => {
       needsPlugin: () => true,
     };
 
-    await engine.pluginManager.register(current => {
+    await engine.pluginManager.register((current) => {
       current.pluginManager.addPlugin(plugin);
     });
 
     const container = await engine.load({
       id: "container-lifecycle-disposal",
-      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      element: createCustomCanvas(
+        canvasWidth,
+        canvasHeight,
+      ) as unknown as HTMLCanvasElement,
       options: { autoPlay: false, particles: { number: { value: 0 } } },
     });
 
@@ -422,7 +467,7 @@ describe("Container lifecycle", () => {
         },
       ];
 
-    await engine.pluginManager.register(current => {
+    await engine.pluginManager.register((current) => {
       for (const plugin of plugins) {
         current.pluginManager.addPlugin(plugin);
       }
@@ -430,7 +475,10 @@ describe("Container lifecycle", () => {
 
     const container = await engine.load({
       id: "container-lifecycle-throwing-cleanup",
-      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      element: createCustomCanvas(
+        canvasWidth,
+        canvasHeight,
+      ) as unknown as HTMLCanvasElement,
       options: { autoPlay: false, particles: { number: { value: 0 } } },
     });
 
@@ -471,14 +519,17 @@ describe("Container lifecycle", () => {
         needsPlugin: () => true,
       };
 
-    await engine.pluginManager.register(current => {
+    await engine.pluginManager.register((current) => {
       current.pluginManager.addPlugin(plugin);
     });
 
     await expect(
       engine.load({
         id: "container-lifecycle-start-failure-cleanup",
-        element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+        element: createCustomCanvas(
+          canvasWidth,
+          canvasHeight,
+        ) as unknown as HTMLCanvasElement,
         options: { autoPlay: false, particles: { number: { value: 0 } } },
       }),
     ).rejects.toBe(startFailure);
@@ -512,7 +563,7 @@ describe("Container lifecycle", () => {
       needsPlugin: () => true,
     };
 
-    await engine.pluginManager.register(current => {
+    await engine.pluginManager.register((current) => {
       current.pluginManager.addPlugin(plugin);
     });
 
@@ -546,13 +597,16 @@ describe("Container lifecycle", () => {
   it("aborts a superseded configuration fetch for the same container id", async () => {
     const engine = createEngine(),
       id = "container-lifecycle-superseded-config-fetch",
-      element = createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      element = createCustomCanvas(
+        canvasWidth,
+        canvasHeight,
+      ) as unknown as HTMLCanvasElement,
       originalFetch = globalThis.fetch;
     let signalFromFetch: AbortSignal | undefined,
       signalRequestStarted!: (signal: AbortSignal) => void,
       container: Container | undefined;
 
-    const requestStarted = new Promise<AbortSignal>(resolve => {
+    const requestStarted = new Promise<AbortSignal>((resolve) => {
         signalRequestStarted = resolve;
       }),
       fetch = vi.fn(
@@ -561,7 +615,11 @@ describe("Container lifecycle", () => {
             const signal = init?.signal;
 
             if (!signal) {
-              reject(new Error("Expected the configuration fetch to receive an AbortSignal"));
+              reject(
+                new Error(
+                  "Expected the configuration fetch to receive an AbortSignal",
+                ),
+              );
 
               return;
             }
@@ -608,16 +666,20 @@ describe("Container lifecycle", () => {
 
   it("contains cleanup errors from a plugin that resolves after container destruction", async () => {
     const engine = createEngine();
-    let resolvePlugin!: (plugin: Awaited<ReturnType<IPlugin["getPlugin"]>>) => void,
+    let resolvePlugin!: (
+        plugin: Awaited<ReturnType<IPlugin["getPlugin"]>>,
+      ) => void,
       signalPluginRequested!: () => void,
       signalPluginDestroyed!: () => void;
-    const pendingPlugin = new Promise<Awaited<ReturnType<IPlugin["getPlugin"]>>>(resolve => {
+    const pendingPlugin = new Promise<
+        Awaited<ReturnType<IPlugin["getPlugin"]>>
+      >((resolve) => {
         resolvePlugin = resolve;
       }),
-      pluginRequested = new Promise<void>(resolve => {
+      pluginRequested = new Promise<void>((resolve) => {
         signalPluginRequested = resolve;
       }),
-      pluginDestroyed = new Promise<void>(resolve => {
+      pluginDestroyed = new Promise<void>((resolve) => {
         signalPluginDestroyed = resolve;
       }),
       plugin: IPlugin = {
@@ -631,13 +693,16 @@ describe("Container lifecycle", () => {
         needsPlugin: () => true,
       };
 
-    await engine.pluginManager.register(current => {
+    await engine.pluginManager.register((current) => {
       current.pluginManager.addPlugin(plugin);
     });
 
     const loading = engine.load({
       id: "container-lifecycle-late-plugin-cleanup",
-      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      element: createCustomCanvas(
+        canvasWidth,
+        canvasHeight,
+      ) as unknown as HTMLCanvasElement,
       options: { autoPlay: false, particles: { number: { value: 0 } } },
     });
 
@@ -670,14 +735,14 @@ describe("Container lifecycle", () => {
     let nextHandle = 0;
 
     container.engine.setAnimationFunctions(
-      callback => {
+      (callback) => {
         const handle = ++nextHandle;
 
         scheduled.set(handle, callback);
 
         return handle;
       },
-      handle => {
+      (handle) => {
         scheduled.delete(handle);
       },
     );
@@ -702,8 +767,8 @@ describe("Container lifecycle", () => {
     } finally {
       container.destroy();
       container.engine.setAnimationFunctions(
-        callback => requestAnimationFrame(callback),
-        handle => {
+        (callback) => requestAnimationFrame(callback),
+        (handle) => {
           cancelAnimationFrame(handle);
         },
       );

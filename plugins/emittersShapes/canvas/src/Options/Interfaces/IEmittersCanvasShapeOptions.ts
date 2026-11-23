@@ -7,7 +7,8 @@ export interface IEmittersCanvasShapeOptions {
   /** The canvas element to use as the shape source */
   element?: HTMLCanvasElement;
   /** A filter function or string to apply to pixels; callbacks also receive the source color space. */
-  filter: string | ((pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean);
+  filter:
+    string | ((pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean);
   /** The image element to use as the shape source */
   image?: HTMLImageElement;
   /** The pixels options */
