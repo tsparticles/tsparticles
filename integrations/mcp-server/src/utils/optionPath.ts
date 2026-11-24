@@ -13,12 +13,19 @@
  * @param obj
  * @param path
  */
-export function getOptionValue(obj: Record<string, unknown>, path: string): unknown {
+export function getOptionValue(
+  obj: Record<string, unknown>,
+  path: string,
+): unknown {
   const parts = path.split(".");
   let current: unknown = obj;
 
   for (const part of parts) {
-    if (current === undefined || current === null || typeof current !== "object") {
+    if (
+      current === undefined ||
+      current === null ||
+      typeof current !== "object"
+    ) {
       return undefined;
     }
     current = (current as Record<string, unknown>)[part];
@@ -53,7 +60,10 @@ export function asArray<T = Record<string, unknown>>(value: unknown): T[] {
  * @param obj
  * @param path
  */
-export function isOptionEnabled(obj: Record<string, unknown>, path: string): boolean {
+export function isOptionEnabled(
+  obj: Record<string, unknown>,
+  path: string,
+): boolean {
   const value = getOptionValue(obj, path);
 
   if (value === undefined) {

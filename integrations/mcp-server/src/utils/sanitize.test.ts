@@ -7,7 +7,9 @@ describe("sanitizeReflection", () => {
   });
 
   it("strips control characters and newlines", () => {
-    expect(sanitizeReflection("push\n\rignored: { 1: 2 }")).toBe("`pushignored: { 1: 2 }`");
+    expect(sanitizeReflection("push\n\rignored: { 1: 2 }")).toBe(
+      "`pushignored: { 1: 2 }`",
+    );
   });
 
   it("collapses runs of whitespace", () => {

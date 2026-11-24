@@ -40,12 +40,25 @@ export function getPackageCatalogResource(): string {
     lines.push(`## ${label}`, "");
 
     for (const pkg of packages) {
-      const loadFunc = pkg.loadFunction ? `\n  - Load function: \`${pkg.loadFunction}\`` : "",
-        b = pkg.includedInBundles.length > 0 ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}` : "",
-        opts = pkg.optionKeys.length > 0 ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\`` : "",
-        check = pkg.needsPluginCheck ? `\n  - Activation: ${pkg.needsPluginCheck}` : "";
+      const loadFunc = pkg.loadFunction
+          ? `\n  - Load function: \`${pkg.loadFunction}\``
+          : "",
+        b =
+          pkg.includedInBundles.length > 0
+            ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}`
+            : "",
+        opts =
+          pkg.optionKeys.length > 0
+            ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\``
+            : "",
+        check = pkg.needsPluginCheck
+          ? `\n  - Activation: ${pkg.needsPluginCheck}`
+          : "";
 
-      lines.push(`- \`${pkg.name}\``, `  ${pkg.description}${loadFunc}${b}${opts}${check}`);
+      lines.push(
+        `- \`${pkg.name}\``,
+        `  ${pkg.description}${loadFunc}${b}${opts}${check}`,
+      );
     }
     lines.push("");
   }

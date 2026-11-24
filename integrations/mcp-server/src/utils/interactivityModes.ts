@@ -9,7 +9,9 @@ export function parseModeNames(value: unknown): string[] {
     return value.split(/[,\s]+/).filter(Boolean);
   }
   if (Array.isArray(value)) {
-    return value.filter((v): v is string => typeof v === "string" && v.length > 0);
+    return value.filter(
+      (v): v is string => typeof v === "string" && v.length > 0,
+    );
   }
 
   return [];
@@ -24,7 +26,9 @@ export function parseModeNames(value: unknown): string[] {
  * so the two tools never drift on what counts as "this mode is configured".
  * @param interactivity
  */
-export function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
+export function collectInteractivityModes(
+  interactivity: Record<string, unknown> | undefined,
+): string[] {
   if (!interactivity) {
     return [];
   }
@@ -39,7 +43,9 @@ export function collectInteractivityModes(interactivity: Record<string, unknown>
   }
 
   const events = interactivity.events as Record<string, unknown> | undefined,
-    onDivEntries: unknown[] = Array.isArray(events?.onDiv) ? events.onDiv : [events?.onDiv],
+    onDivEntries: unknown[] = Array.isArray(events?.onDiv)
+      ? events.onDiv
+      : [events?.onDiv],
     eventEntries = [events?.onClick, events?.onHover, ...onDivEntries];
 
   for (const entry of eventEntries) {

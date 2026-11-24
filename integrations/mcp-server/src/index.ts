@@ -8,7 +8,10 @@ import {
   suggestPluginsArgsSchema,
 } from "./validation.js";
 import { dirname, join } from "node:path";
-import { generateOptionsArgsShape, generateOptionsSystemText } from "./prompts/generateOptions.js";
+import {
+  generateOptionsArgsShape,
+  generateOptionsSystemText,
+} from "./prompts/generateOptions.js";
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -96,7 +99,9 @@ function parseArgs(): ParsedArgs {
       result.mode = "http";
 
       if (i + 1 >= args.length || args[i + 1].startsWith("--")) {
-        console.error("Missing value for --host. Expected a hostname or IP address.");
+        console.error(
+          "Missing value for --host. Expected a hostname or IP address.",
+        );
         process.exit(ExitCode.Failure);
       }
 
@@ -108,7 +113,9 @@ function parseArgs(): ParsedArgs {
       result.mode = "http";
 
       if (i + 1 >= args.length || args[i + 1].startsWith("--")) {
-        console.error("Missing value for --trusted-proxy. Expected an IP address.");
+        console.error(
+          "Missing value for --trusted-proxy. Expected an IP address.",
+        );
         process.exit(ExitCode.Failure);
       }
 
@@ -136,16 +143,22 @@ function parseArgs(): ParsedArgs {
     environmentTrustedProxies = rawEnvironmentTrustedProxies
       ? rawEnvironmentTrustedProxies
           .split(",")
-          .map(proxy => proxy.trim())
+          .map((proxy) => proxy.trim())
           .filter(Boolean)
       : [],
-    configuredTrustedProxies = rawTrustedProxies.length ? rawTrustedProxies : environmentTrustedProxies;
+    configuredTrustedProxies = rawTrustedProxies.length
+      ? rawTrustedProxies
+      : environmentTrustedProxies;
 
   if (configuredTrustedProxies.length) {
-    const normalizedTrustedProxies = configuredTrustedProxies.map(proxy => proxy.trim());
+    const normalizedTrustedProxies = configuredTrustedProxies.map((proxy) =>
+      proxy.trim(),
+    );
 
-    if (normalizedTrustedProxies.some(proxy => !proxy || !isIP(proxy))) {
-      console.error("Invalid trusted proxy. Use an IP address for each trusted proxy.");
+    if (normalizedTrustedProxies.some((proxy) => !proxy || !isIP(proxy))) {
+      console.error(
+        "Invalid trusted proxy. Use an IP address for each trusted proxy.",
+      );
       process.exit(ExitCode.Failure);
     }
 
@@ -165,7 +178,9 @@ function parseArgs(): ParsedArgs {
 
     if (rawHost !== undefined) {
       if (!rawHost.trim()) {
-        console.error("Invalid --host value. Expected a hostname or IP address.");
+        console.error(
+          "Invalid --host value. Expected a hostname or IP address.",
+        );
         process.exit(ExitCode.Failure);
       }
 
@@ -173,10 +188,14 @@ function parseArgs(): ParsedArgs {
     }
 
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
-      const normalized = result.allowedOrigins.map(origin => normalizeOrigin(origin));
+      const normalized = result.allowedOrigins.map((origin) =>
+        normalizeOrigin(origin),
+      );
 
-      if (normalized.some(origin => !origin)) {
-        console.error("Invalid --allowed-origin value. Use full origin like http://localhost:3000");
+      if (normalized.some((origin) => !origin)) {
+        console.error(
+          "Invalid --allowed-origin value. Use full origin like http://localhost:3000",
+        );
         process.exit(ExitCode.Failure);
       }
 
@@ -184,11 +203,15 @@ function parseArgs(): ParsedArgs {
     }
   } else {
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
-      console.error("--allowed-origin can only be used with HTTP mode (--port <number>)");
+      console.error(
+        "--allowed-origin can only be used with HTTP mode (--port <number>)",
+      );
       process.exit(ExitCode.Failure);
     }
     if (result.authToken) {
-      console.error("--auth-token can only be used with HTTP mode (--port <number>)");
+      console.error(
+        "--auth-token can only be used with HTTP mode (--port <number>)",
+      );
       process.exit(ExitCode.Failure);
     }
     if (rawHost) {
@@ -196,7 +219,9 @@ function parseArgs(): ParsedArgs {
       process.exit(ExitCode.Failure);
     }
     if (configuredTrustedProxies.length) {
-      console.error("--trusted-proxy can only be used with HTTP mode (--port <number>)");
+      console.error(
+        "--trusted-proxy can only be used with HTTP mode (--port <number>)",
+      );
       process.exit(ExitCode.Failure);
     }
   }
@@ -211,7 +236,10 @@ function parseArgs(): ParsedArgs {
 // assignable to its union result type for `tools/call`, which an interface
 // (possibly augmented via declaration merging) is not.
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-type ToolResult = { content: { text: string; type: "text" }[]; isError?: boolean };
+type ToolResult = {
+  content: { text: string; type: "text" }[];
+  isError?: boolean;
+};
 
 /**
  *
@@ -270,7 +298,8 @@ function createMcpServer(): McpServer {
         "Given a tsParticles options object, suggests the npm packages and imports required to use those options. Detects which plugins, interactions, updaters, and shapes are needed.",
       inputSchema: suggestPluginsArgsSchema,
     },
-    ({ options }) => toolResult(JSON.stringify(suggestPlugins(options), null, JSON_INDENT)),
+    ({ options }) =>
+      toolResult(JSON.stringify(suggestPlugins(options), null, JSON_INDENT)),
   );
 
   server.registerTool(
@@ -281,7 +310,7 @@ function createMcpServer(): McpServer {
         "List all available tsParticles packages, optionally filtered by category or search query. Categories: bundle, plugin, interaction-external, interaction-particles, interaction-light, updater, shape, effect, path, emitter-shape, color, easing, preset.",
       inputSchema: listPackagesArgsSchema,
     },
-    data => toolResult(JSON.stringify(listPackages(data), null, JSON_INDENT)),
+    (data) => toolResult(JSON.stringify(listPackages(data), null, JSON_INDENT)),
   );
 
   server.registerTool(
@@ -317,7 +346,9 @@ function createMcpServer(): McpServer {
     ({ options }) => {
       const issues = diagnoseIssues(options);
 
-      return toolResult(JSON.stringify({ issues, total: issues.length }, null, JSON_INDENT));
+      return toolResult(
+        JSON.stringify({ issues, total: issues.length }, null, JSON_INDENT),
+      );
     },
   );
 
@@ -329,7 +360,7 @@ function createMcpServer(): McpServer {
         "Generate complete, ready-to-use tsParticles code from a natural language description. Automatically selects the best bundle (preferring specialized bundles like @tsparticles/confetti over generic ones) and generates framework-specific code with install commands.",
       inputSchema: generateCodeArgsSchema,
     },
-    data => toolResult(JSON.stringify(generateCode(data), null, JSON_INDENT)),
+    (data) => toolResult(JSON.stringify(generateCode(data), null, JSON_INDENT)),
   );
 
   // ── Resources ──────────────────────────────────────────────────
@@ -346,8 +377,14 @@ function createMcpServer(): McpServer {
         "Every tsParticles package organized by category with descriptions, load functions, and bundle inclusion info",
       mimeType: "text/markdown",
     },
-    uri => ({
-      contents: [{ uri: uri.toString(), mimeType: "text/markdown", text: getPackageCatalogResource() }],
+    (uri) => ({
+      contents: [
+        {
+          uri: uri.toString(),
+          mimeType: "text/markdown",
+          text: getPackageCatalogResource(),
+        },
+      ],
     }),
   );
 
@@ -355,11 +392,18 @@ function createMcpServer(): McpServer {
     "tsParticles Options Guide",
     "tsparticles://options/guide",
     {
-      description: "Complete structural guide to tsParticles options with tables, defaults, and examples",
+      description:
+        "Complete structural guide to tsParticles options with tables, defaults, and examples",
       mimeType: "text/markdown",
     },
-    uri => ({
-      contents: [{ uri: uri.toString(), mimeType: "text/markdown", text: getOptionsGuideResource() }],
+    (uri) => ({
+      contents: [
+        {
+          uri: uri.toString(),
+          mimeType: "text/markdown",
+          text: getOptionsGuideResource(),
+        },
+      ],
     }),
   );
 
@@ -367,11 +411,18 @@ function createMcpServer(): McpServer {
     "tsParticles Bundle Guide",
     "tsparticles://bundles",
     {
-      description: "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
+      description:
+        "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
       mimeType: "text/markdown",
     },
-    uri => ({
-      contents: [{ uri: uri.toString(), mimeType: "text/markdown", text: getBundlesGuideResource() }],
+    (uri) => ({
+      contents: [
+        {
+          uri: uri.toString(),
+          mimeType: "text/markdown",
+          text: getBundlesGuideResource(),
+        },
+      ],
     }),
   );
 
@@ -380,7 +431,8 @@ function createMcpServer(): McpServer {
   server.registerPrompt(
     "generate-options",
     {
-      description: "Generate tsParticles configuration from a natural language description",
+      description:
+        "Generate tsParticles configuration from a natural language description",
       argsSchema: generateOptionsArgsShape,
     },
     ({ description }) => {

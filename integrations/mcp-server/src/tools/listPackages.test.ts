@@ -25,7 +25,9 @@ describe("listPackages", () => {
     const result = listPackages({ query: "absorbers" });
 
     expect(result.packages.length).toBeGreaterThanOrEqual(MIN_QUERY_RESULTS);
-    expect(result.packages.some(p => p.name.includes("absorbers"))).toBe(true);
+    expect(result.packages.some((p) => p.name.includes("absorbers"))).toBe(
+      true,
+    );
   });
 
   it("should return all packages for unknown category", () => {

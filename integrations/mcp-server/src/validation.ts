@@ -9,7 +9,9 @@ import { z } from "zod";
 // `args?.options as Record<string, unknown>` cast happily "accepted"
 // any of those and let malformed input reach the tool implementations.
 
-const optionsObjectSchema = z.record(z.string(), z.unknown()).describe("A tsParticles options object (ISourceOptions)");
+const optionsObjectSchema = z
+  .record(z.string(), z.unknown())
+  .describe("A tsParticles options object (ISourceOptions)");
 
 export const suggestPluginsArgsSchema = z.object({
   options: optionsObjectSchema,
@@ -48,8 +50,13 @@ export const listPackagesArgsSchema = z.object({
 });
 
 export const generateCodeArgsSchema = z.object({
-  description: z.string().trim().min(1, "description must be a non-empty string"),
-  framework: z.enum(["vanilla", "react", "vue3", "svelte", "angular"]).optional(),
+  description: z
+    .string()
+    .trim()
+    .min(1, "description must be a non-empty string"),
+  framework: z
+    .enum(["vanilla", "react", "vue3", "svelte", "angular"])
+    .optional(),
   typescript: z.boolean().optional(),
 });
 
@@ -67,7 +74,7 @@ export type GenerateCodeArgs = z.infer<typeof generateCodeArgsSchema>;
  */
 export function formatZodError(error: z.ZodError): string {
   return error.issues
-    .map(issue => {
+    .map((issue) => {
       const path = issue.path.length > 0 ? issue.path.join(".") : "(root)";
 
       return `${path}: ${issue.message}`;

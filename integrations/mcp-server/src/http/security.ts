@@ -35,7 +35,10 @@ export function normalizeOrigin(origin: string): string | undefined {
  *
  * @param header
  */
-export function parseSessionIdHeader(header: string | string[] | undefined): { error?: string; value?: string } {
+export function parseSessionIdHeader(header: string | string[] | undefined): {
+  error?: string;
+  value?: string;
+} {
   if (Array.isArray(header)) {
     if (header.length !== SINGLE_HEADER_VALUE_COUNT) {
       return { error: "Invalid mcp-session-id header" };
@@ -56,7 +59,10 @@ export function parseSessionIdHeader(header: string | string[] | undefined): { e
     return { error: "Invalid mcp-session-id header" };
   }
 
-  if (sessionId.length > MAX_SESSION_ID_LENGTH || !SESSION_ID_PATTERN.test(sessionId)) {
+  if (
+    sessionId.length > MAX_SESSION_ID_LENGTH ||
+    !SESSION_ID_PATTERN.test(sessionId)
+  ) {
     return { error: "Invalid mcp-session-id header" };
   }
 
@@ -82,7 +88,10 @@ export function isInitializeRequest(payload: unknown): boolean {
  * @param origin
  * @param allowedOrigins
  */
-export function isOriginAllowed(origin: string | undefined, allowedOrigins?: string[]): boolean {
+export function isOriginAllowed(
+  origin: string | undefined,
+  allowedOrigins?: string[],
+): boolean {
   // No Origin header at all (e.g. non-browser clients, curl) is allowed —
   // the Origin check exists to defend against DNS-rebinding attacks from
   // browser contexts, which always send this header.
@@ -105,7 +114,12 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
   try {
     const { hostname } = new URL(normalizedOrigin);
 
-    return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1" || hostname === "[::1]";
+    return (
+      hostname === "localhost" ||
+      hostname === "127.0.0.1" ||
+      hostname === "::1" ||
+      hostname === "[::1]"
+    );
   } catch {
     return false;
   }
@@ -138,7 +152,9 @@ export function isValidAuthToken(provided: string, expected: string): boolean {
  * `undefined` if the header is missing/malformed.
  * @param header
  */
-export function extractBearerToken(header: string | string[] | undefined): string | undefined {
+export function extractBearerToken(
+  header: string | string[] | undefined,
+): string | undefined {
   const value = Array.isArray(header) ? header[0] : header;
 
   if (!value) {
@@ -162,7 +178,10 @@ export function extractBearerToken(header: string | string[] | undefined): strin
 export class RateLimiter {
   private globalCount = 0;
   private globalWindowStart = Date.now();
-  private readonly hits = new Map<string, { count: number; windowStart: number }>();
+  private readonly hits = new Map<
+    string,
+    { count: number; windowStart: number }
+  >();
 
   constructor(
     private readonly windowMs: number = RATE_LIMIT_WINDOW_MS,

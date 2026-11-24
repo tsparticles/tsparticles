@@ -10,6 +10,8 @@ describe("getOptionsGuideResource", () => {
     expect(guide).toContain("`color.animation.l`");
     expect(guide).toContain("`color.animation.s`");
     expect(guide).toContain("default maximum 0.4");
-    expect(guide).toContain("HSL saturation and OKLCH chroma use different units");
+    expect(guide).toContain(
+      "HSL saturation and OKLCH chroma use different units",
+    );
   });
 });

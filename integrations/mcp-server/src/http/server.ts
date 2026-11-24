@@ -8,7 +8,12 @@ import {
   SESSION_IDLE_TIMEOUT_MS,
   SESSION_SWEEP_INTERVAL_MS,
 } from "./constants.js";
-import { type Server as HttpServer, type IncomingMessage, type ServerResponse, createServer } from "node:http";
+import {
+  type Server as HttpServer,
+  type IncomingMessage,
+  type ServerResponse,
+  createServer,
+} from "node:http";
 import {
   RateLimiter,
   extractBearerToken,
@@ -79,11 +84,14 @@ export async function startHttpServer({
     normalizedHost = host.toLowerCase(),
     isLoopbackHost =
       normalizedHost === "localhost" ||
-      (isIP(normalizedHost) === IPV4_VERSION && normalizedHost.split(".")[FIRST_HEADER_VALUE_INDEX] === "127") ||
+      (isIP(normalizedHost) === IPV4_VERSION &&
+        normalizedHost.split(".")[FIRST_HEADER_VALUE_INDEX] === "127") ||
       (isIP(normalizedHost) === IPV6_VERSION && normalizedHost === "::1");
 
   if (!authToken && !isLoopbackHost) {
-    throw new Error(`An auth token is required when binding the MCP HTTP server to non-loopback host "${host}".`);
+    throw new Error(
+      `An auth token is required when binding the MCP HTTP server to non-loopback host "${host}".`,
+    );
   }
 
   if (!authToken) {
@@ -148,18 +156,28 @@ export async function startHttpServer({
   function resolveClientIp(req: IncomingMessage): string {
     const remoteAddress = req.socket.remoteAddress;
 
-    if (trustedProxies?.length && remoteAddress && trustedProxies.includes(remoteAddress)) {
+    if (
+      trustedProxies?.length &&
+      remoteAddress &&
+      trustedProxies.includes(remoteAddress)
+    ) {
       const forwardedFor = req.headers["x-forwarded-for"],
-        forwardedAddresses = (Array.isArray(forwardedFor) ? forwardedFor.join(",") : forwardedFor)
+        forwardedAddresses = (
+          Array.isArray(forwardedFor) ? forwardedFor.join(",") : forwardedFor
+        )
           ?.split(",")
-          .map(address => address.trim())
+          .map((address) => address.trim())
           .filter(Boolean)
           .reverse();
 
       // Walk from the directly connected peer toward the original client.
       // This skips trusted proxies appended to X-Forwarded-For and avoids
       // trusting a client-supplied leftmost value when the proxy appends.
-      return forwardedAddresses?.find(address => !trustedProxies.includes(address)) ?? remoteAddress;
+      return (
+        forwardedAddresses?.find(
+          (address) => !trustedProxies.includes(address),
+        ) ?? remoteAddress
+      );
     }
 
     return remoteAddress ?? "unknown";
@@ -247,16 +265,22 @@ export async function startHttpServer({
     // Defend against DNS rebinding: reject browser-originated requests
     // from origins we don't recognize.
     if (!isOriginAllowed(req.headers.origin, allowedOrigins)) {
-      res.writeHead(HttpStatusCode.Forbidden, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.Forbidden, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Origin not allowed" }));
 
       return false;
     }
 
-    const { error: sessionIdError } = parseSessionIdHeader(req.headers["mcp-session-id"]);
+    const { error: sessionIdError } = parseSessionIdHeader(
+      req.headers["mcp-session-id"],
+    );
 
     if (sessionIdError) {
-      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.BadRequest, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: sessionIdError }));
 
       return false;
@@ -276,11 +300,20 @@ export async function startHttpServer({
     res: ServerResponse,
   ): Promise<{ parsedBody?: unknown; rejected: boolean }> {
     const contentTypeHeader = req.headers["content-type"],
-      contentType = contentTypeHeader?.split(";")[FIRST_HEADER_VALUE_INDEX]?.trim().toLowerCase();
+      contentType = contentTypeHeader
+        ?.split(";")
+        [FIRST_HEADER_VALUE_INDEX]?.trim()
+        .toLowerCase();
 
     if (contentType !== "application/json") {
-      res.writeHead(HttpStatusCode.UnsupportedMediaType, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Unsupported media type, expected application/json" }));
+      res.writeHead(HttpStatusCode.UnsupportedMediaType, {
+        "Content-Type": "application/json",
+      });
+      res.end(
+        JSON.stringify({
+          error: "Unsupported media type, expected application/json",
+        }),
+      );
 
       return { rejected: true };
     }
@@ -323,7 +356,9 @@ export async function startHttpServer({
       });
     } catch (error) {
       if (error instanceof RequestBodyTooLargeError) {
-        res.writeHead(HttpStatusCode.PayloadTooLarge, { "Content-Type": "application/json" });
+        res.writeHead(HttpStatusCode.PayloadTooLarge, {
+          "Content-Type": "application/json",
+        });
         res.end(JSON.stringify({ error: "Request body too large" }));
       }
       // Any other error means the client/connection is gone — there is
@@ -333,9 +368,14 @@ export async function startHttpServer({
     }
 
     try {
-      return { rejected: false, parsedBody: body ? JSON.parse(body) : undefined };
+      return {
+        rejected: false,
+        parsedBody: body ? JSON.parse(body) : undefined,
+      };
     } catch {
-      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.BadRequest, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Invalid JSON" }));
 
       return { rejected: true };
@@ -354,7 +394,9 @@ export async function startHttpServer({
     sessionId: string | undefined,
   ): Promise<void> {
     if (!sessionId || !sessions.has(sessionId)) {
-      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.NotFound, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Session not found" }));
 
       return;
@@ -383,7 +425,9 @@ export async function startHttpServer({
     sessionId: string | undefined,
   ): Promise<void> {
     if (!sessionId || !sessions.has(sessionId)) {
-      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.NotFound, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Session not found" }));
 
       return;
@@ -410,7 +454,9 @@ export async function startHttpServer({
     const entry = sessions.get(sessionId);
 
     if (!entry) {
-      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.NotFound, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Session not found" }));
 
       return;
@@ -435,26 +481,46 @@ export async function startHttpServer({
     clientIp: string,
   ): Promise<void> {
     if (!isInitializeRequest(parsedBody)) {
-      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Missing session, expected initialize request" }));
+      res.writeHead(HttpStatusCode.BadRequest, {
+        "Content-Type": "application/json",
+      });
+      res.end(
+        JSON.stringify({
+          error: "Missing session, expected initialize request",
+        }),
+      );
 
       return;
     }
 
-    const clientSessionCount = [...sessions.values()].filter(entry => entry.clientIp === clientIp).length,
+    const clientSessionCount = [...sessions.values()].filter(
+        (entry) => entry.clientIp === clientIp,
+      ).length,
       clientPendingCount = pendingInitializations.get(clientIp) ?? 0;
 
-    if (clientSessionCount + clientPendingCount >= MAX_HTTP_SESSIONS_PER_CLIENT) {
-      res.writeHead(HttpStatusCode.TooManyRequests, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Too many active sessions for this client" }));
+    if (
+      clientSessionCount + clientPendingCount >=
+      MAX_HTTP_SESSIONS_PER_CLIENT
+    ) {
+      res.writeHead(HttpStatusCode.TooManyRequests, {
+        "Content-Type": "application/json",
+      });
+      res.end(
+        JSON.stringify({ error: "Too many active sessions for this client" }),
+      );
 
       return;
     }
 
-    const totalPendingCount = [...pendingInitializations.values()].reduce((total, count) => total + count, 0);
+    const totalPendingCount = [...pendingInitializations.values()].reduce(
+      (total, count) => total + count,
+      0,
+    );
 
     if (sessions.size + totalPendingCount >= MAX_CONCURRENT_HTTP_SESSIONS) {
-      res.writeHead(HttpStatusCode.ServiceUnavailable, { "Content-Type": "application/json" });
+      res.writeHead(HttpStatusCode.ServiceUnavailable, {
+        "Content-Type": "application/json",
+      });
       res.end(JSON.stringify({ error: "Server busy, try again later" }));
 
       return;
@@ -515,8 +581,13 @@ export async function startHttpServer({
    * @param req - the incoming request
    * @param res - the server response
    */
-  async function dispatchRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    const { value: sessionId } = parseSessionIdHeader(req.headers["mcp-session-id"]);
+  async function dispatchRequest(
+    req: IncomingMessage,
+    res: ServerResponse,
+  ): Promise<void> {
+    const { value: sessionId } = parseSessionIdHeader(
+      req.headers["mcp-session-id"],
+    );
 
     // GET is used by clients to open the server->client SSE stream on an
     // existing session.
@@ -563,7 +634,10 @@ export async function startHttpServer({
    * @param req - the incoming request
    * @param res - the server response
    */
-  async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  async function handleRequest(
+    req: IncomingMessage,
+    res: ServerResponse,
+  ): Promise<void> {
     try {
       if (!admitRequest(req, res)) {
         return;
@@ -574,7 +648,9 @@ export async function startHttpServer({
       console.error("Unhandled HTTP request error:", error);
 
       if (!res.headersSent) {
-        res.writeHead(HttpStatusCode.InternalServerError, { "Content-Type": "application/json" });
+        res.writeHead(HttpStatusCode.InternalServerError, {
+          "Content-Type": "application/json",
+        });
       }
 
       if (!res.writableEnded) {
@@ -583,9 +659,11 @@ export async function startHttpServer({
     }
   }
 
-  const httpServer = createServer((req: IncomingMessage, res: ServerResponse) => {
-    void handleRequest(req, res);
-  });
+  const httpServer = createServer(
+    (req: IncomingMessage, res: ServerResponse) => {
+      void handleRequest(req, res);
+    },
+  );
 
   httpServer.on("close", () => {
     clearInterval(sweepInterval);
@@ -606,7 +684,9 @@ export async function startHttpServer({
     httpServer.once("error", reject);
     httpServer.listen(port, host, () => {
       httpServer.off("error", reject);
-      console.error(`tsParticles MCP server running on http://${urlHost}:${port}/mcp`);
+      console.error(
+        `tsParticles MCP server running on http://${urlHost}:${port}/mcp`,
+      );
       console.error(`Health check: http://${urlHost}:${port}/health`);
       resolve();
     });
@@ -626,7 +706,9 @@ export async function startHttpServer({
 
       clearInterval(sweepInterval);
 
-      const closeSessions = Promise.all([...sessions.keys()].map(id => closeSession(id))),
+      const closeSessions = Promise.all(
+          [...sessions.keys()].map((id) => closeSession(id)),
+        ),
         forceExitTimer = setTimeout(() => {
           console.error("Graceful shutdown timed out, forcing exit.");
           process.exit(EXIT_CODE_FAILURE);
@@ -635,7 +717,7 @@ export async function startHttpServer({
       forceExitTimer.unref();
 
       void closeSessions.finally(() => {
-        httpServer.close(err => {
+        httpServer.close((err) => {
           clearTimeout(forceExitTimer);
           if (err) {
             console.error("Error closing HTTP server:", err);

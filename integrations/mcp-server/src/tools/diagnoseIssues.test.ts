@@ -17,8 +17,10 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("opacity = 0"))).toBe(true);
-    expect(issues.find(i => i.title.includes("opacity = 0"))?.severity).toBe("error");
+    expect(issues.some((i) => i.title.includes("opacity = 0"))).toBe(true);
+    expect(issues.find((i) => i.title.includes("opacity = 0"))?.severity).toBe(
+      "error",
+    );
   });
 
   it("should detect invisible particles (size = 0)", () => {
@@ -28,7 +30,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("size = 0"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("size = 0"))).toBe(true);
   });
 
   it("should not flag opacity=0 if animation is enabled", () => {
@@ -38,7 +40,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("opacity = 0"))).toBe(false);
+    expect(issues.some((i) => i.title.includes("opacity = 0"))).toBe(false);
   });
 
   it("should detect links interaction needed", () => {
@@ -48,7 +50,9 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Links interaction"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Links interaction"))).toBe(
+      true,
+    );
   });
 
   it("should detect missing interactivity plugin", () => {
@@ -58,7 +62,9 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Interactivity plugin"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Interactivity plugin"))).toBe(
+      true,
+    );
   });
 
   it("should detect interaction mode from events.onClick.mode", () => {
@@ -68,7 +74,11 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Interaction mode") && i.title.includes("push"))).toBe(true);
+    expect(
+      issues.some(
+        (i) => i.title.includes("Interaction mode") && i.title.includes("push"),
+      ),
+    ).toBe(true);
   });
 
   it("should detect shape plugin needed", () => {
@@ -78,7 +88,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Shape"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Shape"))).toBe(true);
   });
 
   it("should detect emitters plugin needed", () => {
@@ -86,7 +96,7 @@ describe("diagnoseIssues", () => {
       emitters: [{ position: { x: 50, y: 50 } }],
     });
 
-    expect(issues.some(i => i.title.includes("Emitters plugin"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Emitters plugin"))).toBe(true);
   });
 
   it("should detect absorbers plugin needed", () => {
@@ -94,7 +104,7 @@ describe("diagnoseIssues", () => {
       absorbers: [{ position: { x: 50, y: 50 } }],
     });
 
-    expect(issues.some(i => i.title.includes("Absorbers plugin"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Absorbers plugin"))).toBe(true);
   });
 
   it("should detect interaction mode", () => {
@@ -106,7 +116,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("grab"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("grab"))).toBe(true);
   });
 
   it("should detect hex color warning", () => {
@@ -116,7 +126,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Hex color"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Hex color"))).toBe(true);
   });
 
   it("should detect low particle count", () => {
@@ -126,13 +136,17 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Low particle count"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Low particle count"))).toBe(
+      true,
+    );
   });
 
   it("should warn about fullScreen not set", () => {
     const issues = diagnoseIssues({});
 
-    expect(issues.some(i => i.title.includes("Full-screen not enabled"))).toBe(true);
+    expect(
+      issues.some((i) => i.title.includes("Full-screen not enabled")),
+    ).toBe(true);
   });
 
   it("should detect high particle count performance issue", () => {
@@ -142,7 +156,9 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("High particle count"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("High particle count"))).toBe(
+      true,
+    );
   });
 
   it("should detect move plugin needed", () => {
@@ -152,7 +168,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Move plugin"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Move plugin"))).toBe(true);
   });
 
   it("should detect emitter shape", () => {
@@ -162,7 +178,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Emitter shape"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("Emitter shape"))).toBe(true);
   });
 
   it("should detect interaction mode packages beyond the defaults", () => {
@@ -175,8 +191,8 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("repulse"))).toBe(true);
-    expect(issues.some(i => i.title.includes("attract"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("repulse"))).toBe(true);
+    expect(issues.some((i) => i.title.includes("attract"))).toBe(true);
   });
 
   it("should generate multiple issues for a complex broken config", () => {

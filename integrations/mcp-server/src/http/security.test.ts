@@ -16,7 +16,9 @@ const WINDOW_MS = 60_000,
 
 describe("normalizeOrigin", () => {
   it("lowercases and strips path/query from a valid origin", () => {
-    expect(normalizeOrigin("http://Localhost:3000/foo?bar=1")).toBe("http://localhost:3000");
+    expect(normalizeOrigin("http://Localhost:3000/foo?bar=1")).toBe(
+      "http://localhost:3000",
+    );
   });
 
   it("rejects non-http(s) protocols", () => {
@@ -38,7 +40,9 @@ describe("parseSessionIdHeader", () => {
   });
 
   it("accepts a well-formed session id", () => {
-    expect(parseSessionIdHeader("abc-123_ABC.def:456")).toEqual({ value: "abc-123_ABC.def:456" });
+    expect(parseSessionIdHeader("abc-123_ABC.def:456")).toEqual({
+      value: "abc-123_ABC.def:456",
+    });
   });
 
   it("rejects an empty string", () => {
@@ -50,7 +54,9 @@ describe("parseSessionIdHeader", () => {
   });
 
   it("rejects a session id over the max length", () => {
-    expect(parseSessionIdHeader("a".repeat(OVER_MAX_SESSION_ID_LENGTH)).error).toBeDefined();
+    expect(
+      parseSessionIdHeader("a".repeat(OVER_MAX_SESSION_ID_LENGTH)).error,
+    ).toBeDefined();
   });
 
   it("rejects multiple header values", () => {
@@ -97,11 +103,15 @@ describe("isOriginAllowed", () => {
   });
 
   it("allows an origin present in the explicit allow-list", () => {
-    expect(isOriginAllowed("https://app.example.com", ["https://app.example.com"])).toBe(true);
+    expect(
+      isOriginAllowed("https://app.example.com", ["https://app.example.com"]),
+    ).toBe(true);
   });
 
   it("rejects an origin not present in the explicit allow-list", () => {
-    expect(isOriginAllowed("https://other.example.com", ["https://app.example.com"])).toBe(false);
+    expect(
+      isOriginAllowed("https://other.example.com", ["https://app.example.com"]),
+    ).toBe(false);
   });
 });
 
@@ -123,7 +133,9 @@ describe("extractBearerToken", () => {
   });
 
   it("handles array header values by taking the first entry", () => {
-    expect(extractBearerToken(["Bearer abc123", "Bearer other"])).toBe("abc123");
+    expect(extractBearerToken(["Bearer abc123", "Bearer other"])).toBe(
+      "abc123",
+    );
   });
 });
 
