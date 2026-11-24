@@ -35,6 +35,8 @@ export interface IParticleLifetimeColorTransitions {
   offset: number;
   /** Stroke channel state */
   stroke?: IColorTransitionChannelState;
+  /** Elapsed standalone transition time in milliseconds */
+  time: number;
 }
 
 /** Particle color transitions state */
