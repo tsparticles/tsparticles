@@ -6,7 +6,7 @@
 ## v5 major requirements — planned 2026-11-03
 
 These requirements supersede the auto-initialized backlog for current execution.
-See the [E0–E10 execution sequence](handovers/V5-EXECUTION.md) for order and
+See the [E0–E12 execution sequence and optional E13 backlog](handovers/V5-EXECUTION.md) for order and
 dependencies and the [handover index](handovers/README.md) for acceptance checks.
 The table below uses stable technical handover IDs, not execution stages.
 The post-merge checkout carries package version `4.6.0`. Major implementation
@@ -70,7 +70,7 @@ See [the E10 acceptance criteria](handovers/V5-10-SIZE-MIGRATION-RELEASE.md#e10-
 asserting that implementations or tests are complete: G1 supports ENG/SVC/PLG;
 G2/G3/G7 support ENG/CTR/ARCH/PLG/MIG; G4/G6 support SVC/PAR/PLG; G5 supports
 PMG/PLG. Record outcomes under their owning stages and close them in E10.
-[Optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) is not a new mandatory release
+[Optional E13](handovers/V5-13-OPTIONAL-PLUGINS.md) is not a new mandatory release
 requirement. New plugins are conditional proposals, not assumed missing features.
 
 ## Historical v1 Requirements (auto-initialized, not revalidated)

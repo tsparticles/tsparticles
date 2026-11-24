@@ -37,7 +37,7 @@
   and rerun sequentially after all build work completes.
 - **D0.6 — Conditional optimization.** No candidate is accepted or rejected
   without measurements. Missing runtime/browser measurements keep E0 open and
-  prevent E1. E11 is excluded from this execution.
+  prevent E1. Optional plugin improvements (now E13) are excluded from this execution.
 
 ## Experiment register
 

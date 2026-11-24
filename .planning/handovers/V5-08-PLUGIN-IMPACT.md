@@ -81,5 +81,5 @@ Close G1–G7 consumer rows from the [source review](V5-CODE-REVIEW.md), includi
 emitter shapes, noise/path generators, motion, Poisson, image/GIF, media exports
 and sampling consumers. Mandatory fixes accompany their core stages. Record
 per-capability worker support and lifecycle results. The separate
-[E11 backlog](V5-11-OPTIONAL-PLUGINS.md) covers optional performance experiments,
+[E13 backlog](V5-13-OPTIONAL-PLUGINS.md) covers optional performance experiments,
 not compatibility work deferred from this handover.

@@ -78,7 +78,7 @@ correctness tests separate from performance measurements:
 | Spatial mutation            | Position changes across cell boundaries, predicate-driven sparse queries       | Visited cells, tested/accepted neighbors, result order       |
 | Numeric/sampling boundaries | Small/invalid grid sizes, empty masks, finite work, deterministic permutations | Termination and distribution contracts, RNG draw count       |
 
-For optional E11 only, extend the verified E10 benchmark set with edge/triangle
+For optional E13 only, extend the verified E10 benchmark set with edge/triangle
 counts and churn, pointer-selected candidates, absorber counts, noise field
 cells/layers, mask dimensions/occupancy and decode/surface memory. These optional
 profiles are not new prerequisites for closing E10.

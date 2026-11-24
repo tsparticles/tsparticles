@@ -4,7 +4,7 @@ Reviewed on 2026-11-13 at `6ef62b21869b2e08de8f80911e1f9192c18d451c`.
 This is a planning review, not a completed file-by-file engine audit, runtime
 verification or benchmark. All implementation remains pending. Recheck evidence
 on the implementation revision. The [execution sequence](V5-EXECUTION.md) remains
-E0–E10, followed by an optional E11 backlog.
+E0–E12, followed by the optional E13 backlog.
 
 ## Coverage assessment
 
@@ -56,7 +56,7 @@ Existing optimizations and tests must be retained, not reimplemented:
 Evidence: [emitters ShapeManager](../../plugins/emitters/src/ShapeManager.ts)
 stores `shapeGenerators` in a module-level Map despite exposing instance methods.
 Different managers therefore share registrations. This is a concrete isolation
-migration target, already within V5-ENG/SVC/PLG, not optional E11 work.
+migration target, already within V5-ENG/SVC/PLG, not optional E13 work.
 
 **E8 source check — 2026-11-24:** the current `ShapeManager` instead owns a
 private Map per instance. `addEmittersShapesManager` attaches that manager to
@@ -124,7 +124,7 @@ Test rejected loaders with partial side effects, simultaneous loads, failure
 before start, late image completion after reuse, unavailable MediaRecorder,
 recorder errors and concurrent exports. Reuse the existing load/cancellation tests.
 Fix mandatory failure/isolation behavior in the owning stage; optional decode or
-cache optimizations may wait for E11.
+cache optimizations may wait for optional E13.
 
 **E5 follow-up:** video export now validates its seconds-based duration and MIME
 type before recording, resolves without a Blob when MediaRecorder is unavailable,
@@ -209,7 +209,7 @@ legacy visual behavior. Choose a deterministic algorithm when needed, document
 seed/output changes, and test small enumerated cases without flaky statistics.
 Track random draw count/order for ranges, masks, emitters, fluid radius and paths.
 Caching a sampled value changes semantics if it was intentionally sampled each
-frame; decide before optimizing. E11 may optimize sampling storage only after
+frame; decide before optimizing. E13 may optimize sampling storage only after
 these correctness/migration decisions are closed.
 
 ### G7 — Engine lifetime and public mutability
@@ -236,7 +236,7 @@ files, existing tests reused, missing scenarios, decisions and verified results.
 E8 verifies extension coverage; E10 collects dispositions and keeps unresolved
 mandatory correctness/isolation gates open. This review does not mark any item
 fixed. Detailed performance experiments on existing extension packages are in
-[E11 — optional plugin improvements](V5-11-OPTIONAL-PLUGINS.md).
+[E13 — optional plugin improvements](V5-13-OPTIONAL-PLUGINS.md).
 
 ## E8 disposition — 2026-11-24
 

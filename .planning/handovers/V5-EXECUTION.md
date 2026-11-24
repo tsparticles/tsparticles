@@ -33,17 +33,18 @@ and numeric domains, spatial snapshots, sampling and public lifetime/mutability.
 Capture these rows in E0 and close them with their owning stage. Existing tests
 and optimizations cited in the review remain regression requirements.
 
-E0–E10 are the currently numbered gates, not a complete v5 release plan. E10
-closes only the requirements and checks already specified here. After E10,
-additional verification scope and a follow-up plan must be agreed before any
-release is considered. That work is not yet specified or numbered. [E11](V5-11-OPTIONAL-PLUGINS.md)
-is an optional follow-up for measured plugin improvements; it does not defer
-mandatory fixes or imply release authorization.
+E0–E12 are the numbered execution gates; E13 is the final optional,
+measurement-led plugin improvement backlog. E0–E10 are the currently accepted
+sequence through the active E10 final gate. E11 (planned; target contract agreed)
+and E12 (planned) are the next follow-up gates and must remain visible in the
+roadmap. Additional pre-release verification still needs its own agreed scope
+after E10. No gate or backlog item implies release authorization.
 
 ## Stages and exit gates
 
-Follow E0–E10 in order. Within each stage, use the subdivisions below. A gate is
-complete only with its evidence and the shared checks in the [index](README.md).
+Follow E0–E12 in order; E13 is optional. Within each stage, use the subdivisions
+below. A gate is complete only with its evidence and the shared checks in the
+[index](README.md).
 
 | Stage | Deliverable                                                 | Difficulty  | Impact                                     | Technical handovers                         | Exit gate                                                                                                                                        |
 | ----- | ----------------------------------------------------------- | ----------- | ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -57,7 +58,10 @@ complete only with its evidence and the shared checks in the [index](README.md).
 | E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects                                               |
 | E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                                                            |
 | E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified                                                        |
-| E10   | Final currently scoped verification and migration gate      | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All currently specified requirements, budgets, docs and CI gates closed; further pre-release checks planned separately; no release authorization |
+| E10   | Final currently scoped verification and migration gate      | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All E0–E10 checks closed; E11/E12 follow-ups and additional pre-release scope remain; no release authorization                                     |
+| E11   | Engine-owned utilities and configuration                   | High        | Runtime services, color managers, plugins  | Follow-up to 02; service ownership          | Engine owns random/logger/color-manager configuration and lookup; no ambient service fallbacks or legacy color-manager adapter                    |
+| E12   | Engine-independent extension boundary                      | Very high   | All extension packages and Nx graph       | Follow-up to 03/08; shared contracts        | `@tsparticles/core` owns extension contracts/utilities; extension packages have no direct engine dependency; affected builds are measured            |
+| E13   | Optional plugin improvements                                | Optional    | Existing plugin performance candidates    | Optional follow-up after E10 baseline       | Implement only measured wins; retain the backlog as unselected until separately scheduled                                                        |
 
 ### E0 — Prepare evidence without changing the runtime
 
@@ -189,19 +193,32 @@ guide. E0 size ceilings remain diagnostic references. E10 requires explaining
 payload growth and resolving demonstrated waste, while the existing performance
 criteria and other mandatory checks keep their acceptance requirements. See
 [E10 acceptance criteria](V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
-E10 is not release readiness or authorization. After E10,
-define and agree the additional verification and planning required before any
-release is considered; those checks are outside this sequence.
+E10 is not release readiness or authorization. E11 and E12 are planned gates
+after E10; additional pre-release verification still needs its own agreed scope
+before any release is considered.
 
-### E11 — Optional plugin improvement backlog
+### E11 — Engine-owned utilities and configuration
 
-Select candidates from [the optional backlog](V5-11-OPTIONAL-PLUGINS.md) using the
-verified E10 baseline. Schedule any work alongside the separately planned
-additional v5 verification. Initial priorities are links/triangles, external
-interaction allocations and movement/absorber/emitter calculations, followed by
-profiling of noise, masks, fluid, assets and remaining extensions. Each item has
-difficulty, impact, source evidence and acceptance constraints. Implement only
-measured wins; new capability packages need a separate demonstrated consumer benefit.
+Status: **planned; target contract agreed**. Close the residual E2 ownership
+work: random, logger, and color-manager configuration and lookup belong to each
+engine; remove ambient fallbacks and the legacy color-manager adapter; classify
+remaining shared mutable state. See the [E11 plan](V5-11-ENGINE-OWNED-UTILITIES.md).
+
+### E12 — Engine-independent extensions
+
+Status: **planned**. Establish `@tsparticles/core` as the shared home for
+extension-facing contracts and utilities. Migrate extensions to depend on core;
+keep direct engine dependencies for bundles, wrappers, and their demos. See the
+[E12 plan](V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md).
+
+### E13 — Optional plugin improvement backlog
+
+Status: **optional**. Select candidates from the [E13 backlog](V5-13-OPTIONAL-PLUGINS.md)
+using the verified E10 baseline. Initial priorities are links/triangles,
+external interaction allocations, and movement/absorber/emitter calculations,
+followed by profiling noise, masks, fluid, assets, and remaining extensions.
+Implement only measured wins; new capability packages need a demonstrated
+consumer benefit. Coordinate timing with separately planned pre-release checks.
 
 ## Rules shared by every stage
 
@@ -231,8 +248,16 @@ measured wins; new capability packages need a separate demonstrated consumer ben
 - [x] E8 — Ecosystem audit closure — 349 package manifests reconciled; owner-isolation regressions and 959-test primary suite pass; see [E8 closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)
 - [x] E9 — Distribution and support closure — built/installed consumers, local HTTP browser candidates, bundler matrix and retirement evidence; the pre-existing public 4.6.0 CDN artifact is recorded as context ([E9 evidence](evidence/e9/README.md))
 - [ ] E10 — Final currently scoped verification and migration gate
+- [ ] E11 — Engine-owned utilities and configuration
+- [ ] E12 — Engine-independent extensions through `@tsparticles/core`
+- [ ] E13 — Optional plugin improvements, only if selected
 
-Next action: **E10 final currently scoped verification**. After E10, agree a separate plan for any further pre-release checks before considering release. E8 closed its package/family audit with the G1–G7 findings, build outcomes, test-defined custom extension scenario and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md). E6 is complete:
+Next action: **E10 final currently scoped verification**. After E10, separately
+scope additional pre-release checks, then schedule the E11 and E12 follow-ups;
+E13 remains optional. E8 closed its package/family audit
+with the G1–G7 findings, build outcomes, test-defined custom extension scenario
+and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md).
+E6 is complete:
 926 primary tests, 85 test targets, 453 build tasks, 135 matrix and 108 confirmation
 snapshots, plus extended RNG/count/retention verification. The method inventory,
 P1–P4/S1–S4 tradeoffs and final artifact are linked in the completion evidence.
@@ -266,7 +291,3 @@ See [the current implementation checkpoint](V5-E1-ENGINE.md).
 See [the retirement checkpoint](V5-E1-RETIREMENT.md),
 [decisions](V5-DECISIONS.md), [engine audit](V5-ENGINE-AUDIT.md),
 [plugin audit](V5-PLUGIN-AUDIT.md) and [consumer matrix](V5-MIGRATION-MATRIX.md).
-
-Optional follow-up (not part of E10 completion):
-
-- [ ] E11 — Select, profile and evaluate plugin improvements if pursued.

@@ -212,7 +212,7 @@
   vs 1.87 ms) and M8/500 (1.7 vs 1.65 ms); both are carried to E10's release
   performance gate. After the final WeakMap cleanup adjustment, the primary
   suite, test-package lint, CI formatting, and changed-file Prettier checks all
-  pass. E5–E10 remain open and E11 is excluded.
+  pass. E5–E10 remain open and the optional plugin backlog (now E13) is excluded.
 - Corrected the root and basic/slim/full/all bundle READMEs to describe explicit
   engine creation and avoid claiming that classic bundles expose the old default
   singleton. The root CDN example now creates an engine and loads Basic before
@@ -235,7 +235,8 @@
 > corrected; consumer/distribution closure and one repeated timing exceedance
 > remain open before accepting E1.
 > At that 2026-11-14 checkpoint, E2 was complete and E1 acceptance and E3–E10
-> were still open; E11 excluded. No commits or publications.
+> were still open; the optional plugin backlog (then E11, now E13) was excluded.
+> No commits or publications.
 > See [current engine work](handovers/V5-E1-ENGINE.md). Earlier retirement-only
 > results below describe the preceding verified checkpoint.
 
@@ -273,7 +274,8 @@ See: .planning/PROJECT.md (initialized)
   primary test-package lint passed. New installer tests cover semver prefixes,
   retired frameworks, existing wrappers and continued detection.
 - Next: factory/entrypoint and supported-consumer migration in E1. The singleton
-  is still present. E1 is not complete; E2–E10 pending; E11 excluded.
+  is still present. E1 is not complete; E2–E10 pending; optional plugin work
+  (now E13) excluded.
 
 ## Session status — 2026-11-13 — E0 execution checkpoint
 
@@ -293,7 +295,8 @@ See: .planning/PROJECT.md (initialized)
 - E0 remains open: finish CJS/installed-consumer accounting and lazy-CDN
   disposition, emitter/absorber/retention, HDR/layers/resize and broader visual
   baseline evidence. E1–E10 have not started; do not skip the evidence gate.
-- No commits, version bumps, publications or E11 work.
+- No commits, version bumps, publications or optional plugin backlog work
+  (now E13).
 
 ## Session status — 2026-11-13 — source-based coverage check
 
@@ -303,7 +306,7 @@ See: .planning/PROJECT.md (initialized)
 - Concrete ownership targets include the shared emitter-shape registry and
   noise/motion listeners. Added explicit async failure, time/numeric, sampling,
   spatial-snapshot and public-lifetime decisions, preserving existing tests.
-- Appended [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) after E10 for
+- Appended [optional E13](handovers/V5-13-OPTIONAL-PLUGINS.md) after E10 for
   measured plugin improvements. Mandatory fixes remain in E1–E8/E10.
 - Source review and planning only; no implementation, runtime verification or
   performance result claimed. Full per-file audit and E0 baseline remain pending.

@@ -27,11 +27,12 @@ E10 remains open. The size review is complete under the user's updated
 criterion. Runtime verification retains priority. See the
 [E10 acceptance update](handovers/V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
 
-Use the [dependency-driven E0–E10 sequence](handovers/V5-EXECUTION.md).
+Use the [dependency-driven E0–E12 sequence and optional E13 backlog](handovers/V5-EXECUTION.md).
 These are the currently scoped gates, not full v5 release readiness. E10 does
-not authorize a release. After E10, agree and document additional pre-release
-verification before considering any release; that work is not yet scoped.
-Handover filenames retain their original topic IDs; they are not chronological.
+not authorize a release. Additional pre-release verification still needs its own
+scope and plan. The planned E11/E12 follow-ups and optional E13 backlog below
+extend the roadmap after E10. Handover filenames retain their topic IDs; they are
+not chronological.
 
 1. **E0:** capture baseline/budgets, inventory consumers, define retirement and browser scope.
 2. **E1:** remove singleton, migrate supported consumers and working browser bootstrap.
@@ -59,12 +60,33 @@ package, installer, template, documentation and translation cleanup.
 The [source-based coverage review](handovers/V5-CODE-REVIEW.md) adds explicit
 G1–G7 checks to the relevant E1–E8 stages, closed in E8. It covers resource
 ownership, async failures, timing/numeric domains, spatial snapshots and sampling.
-After E10, additional pre-release verification must first be scoped and planned.
-The [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) profiles and evaluates
-plugin optimizations; its timing will be coordinated with that plan. It does not
-replace mandatory checks, block current gates, or authorize a release.
 
-No release or publication is part of the current E0–E10 sequence. Historical
+After E10, additional pre-release verification must first be scoped and planned.
+### Planned follow-ups after E10
+
+These are named work plans, not completed gates or permission to release. Keep
+them on the v5 roadmap after E10 and define acceptance/status evidence as work is
+scheduled. E11 and E12 are planned follow-up gates; E13 remains optional.
+
+1. **E11 — Engine-owned utilities and configuration** — planned; target
+   contract agreed. Close the remaining E2 ownership work: random, logger and
+   color-manager configuration/lookup belong to each engine; remove ambient
+   fallbacks and the legacy color-manager adapter. See
+   [E11 plan](handovers/V5-11-ENGINE-OWNED-UTILITIES.md).
+2. **E12 — Engine-independent extensions** — planned. Introduce
+   `@tsparticles/core` for extension-facing contracts and shared utilities;
+   migrate extension packages to depend on `core`, leaving direct engine
+   dependencies for bundles, wrappers and their demos. See
+   [E12 plan](handovers/V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md).
+3. **E13 — Optional plugin improvements** — optional, measurement-led backlog;
+   it does not replace mandatory fixes or block E10. Coordinate its timing with
+   the separately scoped pre-release verification. See
+   [E13 plan](handovers/V5-13-OPTIONAL-PLUGINS.md).
+
+Separately, additional pre-release verification must be scoped and agreed after
+E10. Completing E10, E11, E12, or optional E13 alone does not authorize a release.
+
+No release or publication is part of the current E0–E13 roadmap. Historical
 fluid references to “v5” below identify a solver-plan revision, not this product
 major release.
 

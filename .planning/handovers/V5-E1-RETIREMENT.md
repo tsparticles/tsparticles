@@ -3,7 +3,7 @@
 Status: retirement increment implemented and verified on 2026-11-14. **E1 is
 not complete:** engine factory, singleton removal, explicit wrapper/convenience
 ownership, browser bootstrap and isolation checks remain pending. E2–E10 remain
-pending; E11 is excluded. No commits, version bumps or publication performed.
+pending; optional plugin work (now E13) is excluded. No commits, version bumps or publication performed.
 
 ## Scope
 

@@ -49,7 +49,7 @@ the acceptance thresholds.
 
 ## E0 checkpoint — 2026-11-13
 
-**Status: E0 complete; E1 retirement verified, factory migration pending.** Baseline measurements precede retirement. No singleton removal, performance gain or complete v5 compatibility is claimed. E11 is excluded.
+**Status: E0 complete; E1 retirement verified, factory migration pending.** Baseline measurements precede retirement. No singleton removal, performance gain or complete v5 compatibility is claimed. Optional plugin work (now E13) is excluded.
 
 Baseline: `1944fa0f5c202b8af82841b5de9b2315f758a258`, branch `v5`, initially clean. Package version 4.6.0. The preparation patch only corrects import ordering and a no-op logger mock in an existing BackgroundMask test; see `evidence/e0/baseline.patch`. No commit or publication.
 
@@ -179,7 +179,7 @@ The continuation commit contains the prior evidence checkpoint and test-only lin
 
 **Runtime budgets:** compare three repetitions on the same machine/browser, including p95 and dispersion. Median update/render and frame p95 ceilings are baseline ×1.10 or baseline +0.1 ms, whichever is larger, to accommodate timer resolution. Values are saved in `runtime-budgets.json` for original and extended scenarios. After E4, the 30-cycle retention check must add zero live media listeners and zero detached scene nodes; allow at most 1 MiB post-warm-up heap drift, with investigation required above that threshold. Forced-GC values are retention signals, not allocation volume or conclusive leak proofs.
 
-**E0 exit: complete.** Reproducible size/runtime/visual evidence, numeric budgets, owner matrices, retirement/support scope and unavailable-product dispositions are recorded. Known runtime defects remain assigned to E1–E8/G1–G7; no mandatory fix is deferred to E11. E1 consumer retirement is now verified; next is explicit engine creation and cohesive consumer migration.
+**E0 exit: complete.** Reproducible size/runtime/visual evidence, numeric budgets, owner matrices, retirement/support scope and unavailable-product dispositions are recorded. Known runtime defects remain assigned to E1–E8/G1–G7; no mandatory fix is deferred to optional plugin work (now E13). E1 consumer retirement is now verified; next is explicit engine creation and cohesive consumer migration.
 
 ### Supplemental E0 forced-HDR timing
 

@@ -82,4 +82,4 @@ and numerical and browser tests. The full Particle review belongs to 07 in the s
 Apply G3/G4 from the [source review](V5-CODE-REVIEW.md) to resource/setup failures,
 zero-size canvases, effective capabilities, media export and late asset completion.
 Verify resource ownership during E5 output migration and E7 canvas review. Optional
-asset/drawing tuning in E11 does not defer these lifecycle checks.
+asset/drawing tuning in optional E13 does not defer these lifecycle checks.

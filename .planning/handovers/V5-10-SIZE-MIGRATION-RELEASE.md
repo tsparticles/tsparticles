@@ -129,7 +129,7 @@ and browser coverage. Confirm remaining supported fallback paths in built artifa
 
 Collect G1–G7 dispositions from the [source review](V5-CODE-REVIEW.md), including
 failure/lifecycle, timing/numeric, sampling and spatial regression evidence.
-Unresolved mandatory checks keep E10 open. The [optional E11 backlog](V5-11-OPTIONAL-PLUGINS.md)
+Unresolved mandatory checks keep E10 open. The [optional E13 backlog](V5-13-OPTIONAL-PLUGINS.md)
 is explicitly excluded from E10 completion; if later investigation
 finds a correctness defect, return it to the responsible mandatory gate.
 

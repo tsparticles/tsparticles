@@ -18,7 +18,7 @@ Provide a small, high-performance, and extensible particle engine that developer
 
 ### Active — v5 major (planned 2026-11-03)
 
-Execution order: [E0–E10](handovers/V5-EXECUTION.md), with detailed scope in the
+Execution order: [E0–E12, then optional E13](handovers/V5-EXECUTION.md), with detailed scope in the
 [v5 handovers](handovers/README.md). Topic IDs are not chronological. Dedicated branch: `v5`.
 The branch carries package version `4.6.0` after merging `main`. Major runtime
 implementation and the clean bundle baseline are pending.
@@ -38,8 +38,9 @@ implementation and the clean bundle baseline are pending.
       record decisions and evidence in the [architecture plan](handovers/V5-ARCHITECTURE.md).
 
 The [source review](handovers/V5-CODE-REVIEW.md) refines mandatory acceptance
-checks for these requirements. [E11](handovers/V5-11-OPTIONAL-PLUGINS.md) is an
-optional post-E10 plugin performance backlog, with no required new packages.
+checks for these requirements. E11 (engine-owned services) and E12
+(engine-independent extensions) are planned follow-up gates after E10. [E13](handovers/V5-13-OPTIONAL-PLUGINS.md)
+is an optional plugin performance backlog, with no required new packages.
 
 ### Historical initialization backlog (not the v5 execution plan)
 

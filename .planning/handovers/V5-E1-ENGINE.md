@@ -1,7 +1,7 @@
 # E1 — Explicit engines and supported-consumer migration
 
 Status: **accepted** (2026-11-17). E0, E1 and E2 are verified; E3–E10 remain
-pending and E11 is excluded. No commit or publication performed.
+pending and optional plugin work (now E13) is excluded. No commit or publication performed.
 
 ## Implemented, verification still in progress
 

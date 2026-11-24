@@ -1,4 +1,4 @@
-# V5 — E11 optional plugin performance and coverage backlog
+# E13 — Optional plugin performance and coverage backlog
 
 Status: optional, pending profiling and scheduling. Timing is not set; the
 additional v5 verification plan required after E10 must be agreed first. This
@@ -174,7 +174,7 @@ as hidden prerequisites for v5.
 
 ## Deliverables
 
-Create an E11 experiment report only when this optional phase is selected. Record
+Create an E13 experiment report only when this optional phase is selected. Record
 candidate decisions, baseline revision, workloads, measured benefits/regressions,
 consumer verification and migration impact. A smaller selected subset is valid;
 there is no obligation to implement all eight candidates or create new plugins.

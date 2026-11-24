@@ -18,7 +18,7 @@ Every area requires review. Measurements and contracts should justify any rewrit
 Explicitly audit all plugins and browser/CDN distribution without the singleton.
 Document intentional breaking changes and provide migration paths for this major release.
 
-The authoritative order is [E0–E10 in the execution plan](V5-EXECUTION.md),
+The authoritative order is [E0–E12 and optional E13 in the execution plan](V5-EXECUTION.md),
 which records dependencies, difficulty, impact, subdivisions and exit gates.
 Handover IDs are stable topic identifiers, not execution order.
 
@@ -36,6 +36,23 @@ Handover IDs are stable topic identifiers, not execution order.
 | E9    | Final distribution and support cleanup             | [09](V5-09-BROWSER-BUNDLES.md)                                        |
 | E10   | Budgets, integration and migration gates           | [10](V5-10-SIZE-MIGRATION-RELEASE.md)                                 |
 
+### Work after E10 — planned follow-ups
+
+E10 is the next active gate. These plans extend the sequence and are **not
+complete**. E11 and E12 are planned gates with their own evidence and acceptance
+status; E13 is an optional backlog.
+
+| Order | Plan | Status | Scope |
+| ----- | ---- | ------ | ----- |
+| E11 | [Engine-owned utilities and configuration](V5-11-ENGINE-OWNED-UTILITIES.md) | Planned; target contract agreed | Put random, logger and color-manager configuration/lookup on the owning engine; remove ambient fallbacks and the legacy color-manager adapter; classify shared mutable state. |
+| E12 | [Engine-independent extensions](V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md) | Planned | Create `@tsparticles/core` for extension-facing contracts and utilities; migrate extension packages off direct engine dependencies while bundles, wrappers and demos retain them. |
+| E13 | [Optional plugin improvements](V5-13-OPTIONAL-PLUGINS.md) | Optional backlog | Profile and implement only measured plugin improvements; coordinate with separately planned pre-release verification. |
+
+E11 follows up residual ownership findings from E2. E12 is the broader
+engine-to-extension dependency decoupling. E13 remains optional and
+measurement-led. Additional pre-release verification still needs to be scoped
+and agreed after E10; no single gate authorizes a release.
+
 The first runtime change remains singleton removal, followed immediately by
 service isolation. Particle and color contracts now precede collection and
 rendering optimizations. Plugin/browser migration accompanies each breaking
@@ -44,7 +61,7 @@ migrating integrations that v5 will remove.
 
 Agents must read `AGENTS.md`, this index, the execution plan and relevant technical
 handovers before editing source. Preserve other contributors' changes and record
-files, decisions, commands and results. E0–E10 contain no release or publication
+files, decisions, commands and results. E0–E13 contain no release or publication
 step. E10 is not overall v5 validation: after E10, agree a separate plan for the
 additional pre-release checks required before considering any release. Commits,
 publishing and releases require separate authorization.
@@ -221,7 +238,7 @@ and maps them into E1–E8, with final verification in E10. Read it with the own
 handover before implementation. It preserves existing regression coverage and
 adds explicit resource, numeric, clock, spatial and sampling contracts.
 
-The [optional E11](V5-11-OPTIONAL-PLUGINS.md) backlog evaluates existing plugin
+The [optional E13](V5-13-OPTIONAL-PLUGINS.md) backlog evaluates existing plugin
 performance beyond the mandatory migration. Its timing will be coordinated with
 the additional verification plan after E10. Candidates need profiling; there are
 no claimed savings or mandatory new visual plugins.
@@ -231,7 +248,7 @@ no claimed savings or mandatory new visual plugins.
 - [x] Review the critical areas and update planning documentation.
 - [x] Prepare handovers 01–10.
 - [x] Complete the baseline and numeric budgets — Rollup, installed consumers, CDN, runtime, retention and color evidence recorded in [V5-BUNDLE-REPORT.md](V5-BUNDLE-REPORT.md).
-- [ ] Implement and verify E0–E10, covering the full engine and the plugin and browser audits.
+- [ ] Implement and verify E0–E12, covering the full engine and the plugin and browser audits; consider optional E13 separately.
 
 Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in
 `codebase/` and `research/` that have yet to be fully rechecked as historical
