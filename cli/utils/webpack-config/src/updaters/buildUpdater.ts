@@ -15,14 +15,7 @@ interface UpdaterParams {
  * @returns the webpack config
  */
 function loadParticlesUpdater(params: UpdaterParams): unknown {
-  const {
-      moduleName,
-      updaterName,
-      version,
-      dir,
-      additionalExternals,
-      progress,
-    } = params,
+  const { moduleName, updaterName, version, dir, additionalExternals, progress } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
