@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { Circle, Rectangle } from "../../../../engine/src/Core/Particles/Ranges.js";
+import {
+  Circle,
+  Rectangle,
+} from "../../../../engine/src/Core/Particles/Ranges.js";
 import { describe, expect, it } from "vitest";
 
 describe("circle and rectangle intersections", () => {
