@@ -24,9 +24,7 @@ function isConfigModule(value: unknown): value is { default?: IConfiguration } {
  * @param cwd - The current working directory.
  * @returns The loaded Dependency Cruiser configuration or the default one.
  */
-export async function loadDependencyCruiserConfig(
-  cwd = process.cwd(),
-): Promise<IConfiguration> {
+export async function loadDependencyCruiserConfig(cwd = process.cwd()): Promise<IConfiguration> {
   for (const file of CONFIG_FILES) {
     const fullPath = path.join(cwd, file);
 
