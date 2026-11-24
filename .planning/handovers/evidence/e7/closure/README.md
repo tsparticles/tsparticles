@@ -1,8 +1,9 @@
-# E7 technical completion — 2026-11-24
+# E7 completion — 2026-11-24
 
 Implementation, full method/ownership review and matched incremental checks are
-complete. **Formal E7 acceptance is pending the user's decision about the unmet
-original absolute budgets.** No new waiver or release readiness is inferred.
+complete. **E7 is accepted by the user on 2026-11-24**, with final absolute-budget
+checks retained in E10. Original ceilings remain unchanged; this stage acceptance
+does not establish release readiness or report absolute exceedances as passing.
 
 - **61 files / 953 primary tests**, **85 workspace targets**, **453 build tasks**
   pass. The subsequent type-comment-only engine rebuild also passes.
@@ -26,9 +27,8 @@ original absolute budgets.** No new waiver or release readiness is inferred.
 Source ownership, retained contracts and R1–R4 decisions are in the
 [method review](../../../V5-E7-REVIEW.md). Exact hashes, logs and validation are
 in [verification.json](verification.json). [Status](../../../V5-E7-STATUS.md)
-records the acceptance proposal. E8/E9/E10 and release readiness remain open.
+records the explicit acceptance. E8/E9/E10 and release readiness remain open.
 
-The proposal is to accept E7's technical rendering/lifecycle work and matched
-incremental gate, carrying every original absolute release check to E10 without
-changing its ceiling. Until the user decides, E7 remains formally open.
+The user accepts technical E7 closure and final verification in E10: “sì va bene che E10 faccia i check finali”. Every original absolute ceiling and all
+recorded exceedances remain E10 obligations. No release-budget waiver is inferred.
 No commit, merge or publication by this continuation.

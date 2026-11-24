@@ -214,3 +214,20 @@ budgets remain unchanged and these results remain exceedances. The earlier
 bundle-growth exception also applies only to E5. See the
 [E5 acceptance](evidence/e5/closure/README.md) and the E10 checklist; neither
 exception establishes final release readiness.
+
+### E7 accepted; final absolute checks retained in E10 — 2026-11-24
+
+The user accepts E7 closure with final checks in E10: “sì va bene che E10 faccia
+i check finali”. Rendering/lifecycle implementation, method review and matched
+incremental gates are complete: 953 primary tests, 85 workspace test targets and
+453 downstream build tasks pass. Twelve full-surface pixel matches and matched
+state/RNG, HDR/fallback, worker and retention evidence are archived.
+
+Against accepted E6, All adds 382 minified / 164 gzip / 265 Brotli bytes; the
+minimal consumer adds 293 / 130 / 140. Helper bytes and chunk counts are
+unchanged. Relative runtime flags pass repeated confirmation. Original E0
+absolute exceedances remain recorded, including fresh E6 control exceedances;
+original ceilings are not changed or reported as passing. E10 must complete
+final runtime, size and supported-environment verification. This accepts E7,
+not release readiness or a release-budget waiver. See [E7 acceptance](evidence/e7/closure/README.md)
+and the [E10 checklist](V5-10-SIZE-MIGRATION-RELEASE.md).

@@ -41,14 +41,14 @@
 
 ## Experiment register
 
-| Plan   | Current status                                      | Evidence / next gate                                        |
-| ------ | --------------------------------------------------- | ----------------------------------------------------------- |
-| IMP-01 | Under analysis                                      | E0 baseline and budgets complete; final comparisons pending |
-| IMP-02 | Pending measurement                                 | Consumer graph and CDN totals before E9 changes             |
-| IMP-03 | Pending measurement                                 | Collections after E5 model contracts                        |
-| IMP-04 | Pending measurement                                 | Spatial fixtures and predicate/snapshot measurements in E6  |
-| IMP-05 | Pending measurement                                 | Particle state after canonical OKLCH in E5                  |
-| IMP-06 | Technical verification complete; acceptance pending | R1–R4 in E7; see V5-E7-STATUS.md                            |
+| Plan   | Current status                        | Evidence / next gate                                        |
+| ------ | ------------------------------------- | ----------------------------------------------------------- |
+| IMP-01 | Under analysis                        | E0 baseline and budgets complete; final comparisons pending |
+| IMP-02 | Pending measurement                   | Consumer graph and CDN totals before E9 changes             |
+| IMP-03 | Pending measurement                   | Collections after E5 model contracts                        |
+| IMP-04 | Pending measurement                   | Spatial fixtures and predicate/snapshot measurements in E6  |
+| IMP-05 | Pending measurement                   | Particle state after canonical OKLCH in E5                  |
+| IMP-06 | Implemented and verified; E7 accepted | R1–R4 in E7; see V5-E7-STATUS.md                            |
 
 G1–G7 remain open in `V5-ENGINE-AUDIT.md` and apply to the package matrix.
 ARCH-01–04 and C0 decisions are recorded in the E3 decision files; their verification is still in progress. C1–C5 remain open.
@@ -129,5 +129,7 @@ public exports, caller surfaces and specialized phase order.
 HDR/fallback, updater identity, worker and retention evidence is archived in
 [e7/closure](evidence/e7/closure/README.md). Matched relative screens pass after
 recorded confirmations. Original E0 absolute ceilings still have exceedances,
-also in fresh E6 controls; a user's formal acceptance decision is pending. Do
-not silently extend the E5 exception or mark original budgets as passing.
+also in fresh E6 controls. On 2026-11-24 the user accepts E7 and assigns final
+checks to E10: “sì va bene che E10 faccia i check finali”. E7 is complete.
+Original ceilings and exceedances remain recorded; this is not a release-budget
+waiver or a claim that original budgets pass.

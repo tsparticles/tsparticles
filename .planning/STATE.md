@@ -1,3 +1,15 @@
+## Session status — 2026-11-24 — E7 accepted; E8 next
+
+- The user accepts E7 closure: “sì va bene che E10 faccia i check finali”.
+  Rendering/lifecycle implementation, full review and matched incremental checks
+  are complete. **953 primary tests / 85 test targets / 453 build tasks** pass.
+- Final absolute-budget checks are explicitly retained in E10. Original E0
+  ceilings, recorded exceedances and earlier E5/E10 obligations remain unchanged;
+  no release-budget waiver, release or publication is authorized.
+- See [E7 acceptance](handovers/evidence/e7/closure/README.md) and
+  [checkpoint](handovers/V5-E7-STATUS.md). E0–E7 are complete; E8 is next.
+  E8–E10 remain pending. This update changes acceptance records only.
+
 ## Session status — 2026-11-24 — E7 technical work complete; acceptance pending
 
 - Full CanvasManager/RenderManager method and ownership review is complete.

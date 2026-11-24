@@ -1,9 +1,9 @@
-# E7 checkpoint — 2026-11-23
+# E7 accepted — 2026-11-24
 
 E7 implementation, full source review and matched incremental verification are
-complete. Formal acceptance is pending the user's decision on carrying the
-unmet original absolute budgets to E10. E6's accepted working-tree baseline is
-preserved. No new budget waiver or stage acceptance is inferred.
+complete. The user accepts E7 on 2026-11-24 with final absolute-budget checks
+retained in E10. E6’s accepted baseline is preserved. Original ceilings and
+recorded exceedances remain unchanged; release readiness is not established.
 
 ## Initial review and repair
 
@@ -94,7 +94,7 @@ isolated submission costs, not FPS measurements.
   control also exceeds several original E0 absolute ceilings. Do not treat it
   as a passing absolute-budget run or attribute the difference to E7 alone.
 
-## Formal acceptance pending
+## Explicit acceptance — 2026-11-24
 
 [Execution policy](V5-EXECUTION.md) keeps gates open for unmet mandatory budgets.
 The original E0 absolute checks do not all pass in the current environment,
@@ -102,10 +102,11 @@ including on fresh archived E6 controls. The matched E7 comparisons pass; this
 is evidence of no measured incremental regression, not a waiver of absolute
 limits. Existing E5 M4/500 and bundle exceptions and the inherited M6 obligation
 remain unchanged. New environment-sensitive absolute flags are explicitly
-recorded for the user's acceptance decision and E10; they are not automatically
-covered by the E5 exception.
+recorded for final E10 verification; they are not reported as passing or
+automatically covered by the E5 exception.
 
-The reviewable proposal is to accept E7's technical rendering/lifecycle work and
-its matched incremental gate, while retaining every original absolute ceiling
-and release-time check in E10. Until the user decides, E7 remains formally open.
+The user explicitly accepts technical E7 closure with final checks in E10:
+“sì va bene che E10 faccia i check finali”. E7 is complete; E8 is next. Every
+original absolute ceiling and release-time check remains an E10 obligation.
+This authorizes stage closure, not release, publication or a release-budget waiver.
 No commit, merge or publication is performed.

@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E6 are complete; see [E6 evidence](evidence/e6/closure/README.md). E7 technical work is complete; formal acceptance awaits the absolute-budget decision. E8–E10 remain pending. This is the
+Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 is next; E8–E10 remain pending. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -218,16 +218,16 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E4 — Lifecycle — lifecycle regressions, compressed sizes, matched headless timing and forced-GC retention pass; M6/500 and M8/500 p95 exceedances carried to E10 ([status](evidence/e4/measurement-status.md))
 - [x] E5 — Particle/options and OKLCH — accepted 2026-11-23, with explicit M4/500 runtime and bundle-growth exceptions for E5; final verification in E10 ([evidence](evidence/e5/closure/README.md))
 - [x] E6 — Collections and spatial index — method review, P1–P4/S1–S4 decisions, callback-safe draw and complete validation ([evidence](evidence/e6/closure/README.md))
-- [ ] E7 — Rendering optimization and review closure
+- [x] E7 — Rendering optimization and review closure — accepted 2026-11-24; final absolute-budget checks retained in E10 ([evidence](evidence/e7/closure/README.md))
 - [ ] E8 — Ecosystem audit closure
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: **E7 rendering optimization and review closure**. E6 is complete:
+Next action: **E8 ecosystem audit closure**. E6 is complete:
 926 primary tests, 85 test targets, 453 build tasks, 135 matrix and 108 confirmation
 snapshots, plus extended RNG/count/retention verification. The method inventory,
 P1–P4/S1–S4 tradeoffs and final artifact are linked in the completion evidence.
-E7 implementation, full review and matched incremental gates are complete; see [checkpoint](V5-E7-STATUS.md) and [evidence](evidence/e7/closure/README.md). Formal acceptance remains open pending the explicit original absolute-budget decision. No new waiver is inferred.
+E7 implementation, full review and matched incremental gates are complete; see [checkpoint](V5-E7-STATUS.md) and [evidence](evidence/e7/closure/README.md). The user accepts E7 on 2026-11-24 with final checks in E10. Original absolute ceilings remain unchanged; no release-budget waiver is inferred.
 
 Historical E5 verification: E5 C1–C4 and the
 Particle/options review are accepted: full build:ci passes 457 projects, all

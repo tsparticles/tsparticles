@@ -2,7 +2,7 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**E0–E6 complete; E7 technical work complete, acceptance pending**. See [E7 checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
+**E0–E7 complete; E8 next**. E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
 [the evidence report](V5-BUNDLE-REPORT.md) and [E1 retirement checkpoint](V5-E1-RETIREMENT.md)
 for measurements and limitations. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.

@@ -2,7 +2,7 @@
   "date": "2026-11-24",
   "stage": "E7",
   "technicalWorkComplete": true,
-  "formalAcceptance": "pending explicit user decision on original absolute budgets",
+  "formalAcceptance": "accepted by user on 2026-11-24; final absolute-budget checks retained in E10",
   "releaseReady": false,
   "newBudgetWaiver": false,
   "revision": "204172a4587e15aad3e5591f2fcb2826187dc14d",
@@ -107,13 +107,13 @@
   },
   "budgets": {
     "matchedIncrementalGate": "pass after recorded confirmations",
-    "originalAbsoluteReleaseGate": "open; no waiver inferred",
+    "originalAbsoluteReleaseGate": "open for final E10 verification; original ceilings unchanged",
     "reports": [
       "../budget-screen.json",
       "../confirmation-budget-screen.json",
       "../runtime-confirmation-chrome157.json"
     ],
-    "proposal": "User may accept technical E7 and retain all original absolute-budget checks for E10."
+    "stageAcceptance": "User accepts E7; final original absolute-budget checks remain mandatory in E10."
   },
   "preservedE6Sources": {
     "engine/src/Core/Particles/ParticlesManager.ts": "4def12b433c0ae7111e726385443dd7168742d735933b661a9fb61f8e13bfe1c",
@@ -124,5 +124,14 @@
     "wholeRepositoryServer": "automatic approval review rejected; never started",
     "completedAlternative": "14-file/68383-byte dedicated web root on loopback; server stopped"
   },
-  "commitMergePublication": false
+  "commitMergePublication": false,
+  "stageComplete": true,
+  "technicalGateComplete": true,
+  "acceptance": {
+    "date": "2026-11-24",
+    "userStatement": "s\u00ec va bene che E10 faccia i check finali",
+    "scope": "Technical E7 closure and deferral of final absolute-budget verification to E10; original ceilings and exceedances unchanged.",
+    "releaseBudgetWaiver": false,
+    "recordedAtRevision": "10ef71b49114efd2badcc57d8cbfd4bf8774ef80"
+  }
 }

@@ -1,8 +1,8 @@
 # V5-IMP-06 — Rendering, hooks, and lifecycle costs
 
 Status: R1–R4 technical review and verification complete in E7 (2026-11-24).
-Formal stage acceptance remains pending the explicit absolute-budget decision
-recorded in [E7 status](../V5-E7-STATUS.md). E8 retains independent extension
+E7 is user-accepted on 2026-11-24 with final absolute-budget checks retained in
+E10; see [E7 status](../V5-E7-STATUS.md). E8 retains independent extension
 coverage and E10 retains original release ceilings. Requires [IMP-01](V5-IMP-01-MEASUREMENT.md).
 
 ## Starting evidence
