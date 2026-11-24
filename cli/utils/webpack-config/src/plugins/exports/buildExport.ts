@@ -16,15 +16,7 @@ interface ExportParams {
  * @returns the webpack config
  */
 function loadParticlesPluginExport(params: ExportParams): unknown {
-  const {
-      moduleName,
-      pluginName,
-      version,
-      dir,
-      bundle,
-      additionalExternals,
-      progress,
-    } = params,
+  const { moduleName, pluginName, version, dir, bundle, additionalExternals, progress } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
@@ -46,11 +38,7 @@ v${version}`,
           progress,
         }),
         ...getConfig({
-          entry: {
-            format: "plugin.export",
-            name: `${moduleName}.bundle`,
-            bundle: true,
-          },
+          entry: { format: "plugin.export", name: `${moduleName}.bundle`, bundle: true },
           version,
           banner,
           minBanner: minBanner,
