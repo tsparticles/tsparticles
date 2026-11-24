@@ -1,4 +1,18 @@
-## Session status — 2026-11-24 — E7 accepted; E8 next
+## Session status — 2026-11-24 — E8 accepted
+
+- E8 ecosystem audit closed. The 349-manifest inventory was reconciled to Nx
+  build targets; family source scans, G1–G7 findings, and ARCH-04 decision are
+  recorded in [V5-PLUGIN-AUDIT.md](handovers/V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24).
+- Custom extension registrations, concurrent/reversed two-engine loading,
+  optional path isolation, background-context state, and seeded Fisher–Yates
+  order have regressions. `@tsparticles/tests:build` passes with **959 tests / 61 files**.
+- The workspace compatibility run covered 457 build tasks; Electron and Angular
+  demo sandbox/network failures passed on authorized retries. E8 deltas were
+  rebuilt in the tests package. A redundant, silent workspace rerun was stopped.
+- E9 browser/CDN and package-consumer composition, and E10 final budget/release
+  checks remain open. No commit, merge, or publication was performed.
+
+## Session status — 2026-11-24 — E7 accepted (before E8 start)
 
 - The user accepts E7 closure: “sì va bene che E10 faccia i check finali”.
   Rendering/lifecycle implementation, full review and matched incremental checks
@@ -7,8 +21,8 @@
   ceilings, recorded exceedances and earlier E5/E10 obligations remain unchanged;
   no release-budget waiver, release or publication is authorized.
 - See [E7 acceptance](handovers/evidence/e7/closure/README.md) and
-  [checkpoint](handovers/V5-E7-STATUS.md). E0–E7 are complete; E8 is next.
-  E8–E10 remain pending. This update changes acceptance records only.
+  [checkpoint](handovers/V5-E7-STATUS.md). E0–E8 are complete; E9 is next.
+  E9–E10 remain pending. This update changes acceptance records only.
 
 ## Session status — 2026-11-24 — E7 technical work complete; acceptance pending
 

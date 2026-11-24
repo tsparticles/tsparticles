@@ -1,4 +1,4 @@
-import { type Container, Vector, deepExtend, doublePI, getRandom, isFunction, isString } from "@tsparticles/engine";
+import { type Container, Vector, deepExtend, doublePI, getRandom, isFunction } from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
@@ -51,7 +51,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
       const options = this.options;
 
       particle.pathGen = CurvesPathGen(
-        options.rndFunc,
+        options.rndFunc ?? this.#container.engine.getRandomFn(),
         options.period,
         options.nbHarmonics,
         options.attenHarmonics,
@@ -78,15 +78,10 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
+    const sourceOptions = this.#container.actualOptions.particles.move.path.options,
+      randomFunction = sourceOptions["rndFunc"];
 
-    if (isFunction(sourceOptions["rndFunc"])) {
-      this.options.rndFunc = sourceOptions["rndFunc"] as () => number;
-    } else if (isString(sourceOptions["rndFunc"])) {
-      this.options.rndFunc =
-        ((globalThis as Record<string, unknown>)[sourceOptions["rndFunc"]] as (() => number) | null | undefined) ??
-        this.options.rndFunc;
-    }
+    this.options.rndFunc = isFunction(randomFunction) ? (randomFunction as () => number) : null;
 
     this.options.period = (sourceOptions["period"] as number | undefined) ?? this.options.period;
     this.options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? this.options.nbHarmonics;

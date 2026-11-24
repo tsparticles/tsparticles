@@ -1,8 +1,6 @@
 # V5-08 — Audit plugins after singleton removal
 
-Status pending. Start the inventory in E0 and migrate affected consumers with
-every breaking change in E1–E7, including color closure in E5. Complete the
-independent coverage audit in E8. See the [execution sequence](V5-EXECUTION.md).
+Status: E8 closed on 2026-11-24. The inventory and per-package build outcomes are recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md); source and regression findings are linked there. CDN/browser and package-consumer composition continues in E9. See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 

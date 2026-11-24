@@ -1,8 +1,6 @@
 # V5-ARCH-04 — Common extension architecture
 
-Status pending evaluation. Owner 03 for contracts and 08 for audit/migration,
-with integration in 04–07 and browser/bundle verification in 09.
-Define the contract before lifecycle refactors and complete verification in 08.
+Status: decision accepted and E8 verification closed on 2026-11-24. Owner 03 defines the contract; 04–07 provide lifecycle integration; 08 verifies owner isolation and compatibility; 09 retains browser/bundle verification. See [V5-ARCHITECTURE-DECISIONS.md](../V5-ARCHITECTURE-DECISIONS.md#arch-04--specialized-capability-registries-shared-policy-only) and the [E8 audit](../V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24).
 
 ## Evidence and problem
 

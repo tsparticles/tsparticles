@@ -83,4 +83,46 @@ describe("CanvasMask pixel color adoption", () => {
     });
     expect(captured.opacity).toBeUndefined();
   });
+
+  it("uses engine-seeded Fisher-Yates order and consumes n minus one random values", () => {
+    const pixelData: CanvasPixelData = {
+        height: 1,
+        pixels: [[pixel, pixel, pixel, pixel]],
+        width: 4,
+      },
+      positions: number[] = [],
+      maximumRandomValue = 0.75,
+      expectedPositions = Array.from({ length: pixelData.width }, (_, index) => pixelData.width - index - 1),
+      expectedRandomCalls = pixelData.width - 1;
+    let randomCalls = 0;
+
+    const container = {
+      actualOptions: { particles: { number: { value: 4 } } },
+      canvas: { size: { height: 1, width: 4 } },
+      engine: {
+        getRandomFn: () => () => {
+          randomCalls++;
+
+          return maximumRandomValue;
+        },
+      },
+      particles: {
+        addParticle: (position: { x: number }): void => {
+          positions.push(position.x);
+        },
+      },
+    } as unknown as Container;
+
+    addParticlesFromCanvasPixels(
+      container,
+      pixelData,
+      { x: 50, y: 50 },
+      1,
+      { color: false, opacity: false },
+      () => true,
+    );
+
+    expect(positions).toEqual(expectedPositions);
+    expect(randomCalls).toBe(expectedRandomCalls);
+  });
 });

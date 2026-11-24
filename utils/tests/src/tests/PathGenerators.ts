@@ -53,8 +53,9 @@ async function loadPathContainer(
   options: unknown,
   size = 200,
   particlesNumber = 1,
+  engine = tsParticles,
 ): Promise<Container> {
-  const container = await tsParticles.load({
+  const container = await engine.load({
     id: `path-${(containerId++).toString()}`,
     options: {
       particles: {
@@ -236,6 +237,36 @@ describe("PathGenerators", async () => {
     container.destroy(false);
   });
 
+  it("generates auto mazes with seeded Fisher-Yates neighbor order", async () => {
+    const engine = createEngine();
+    let randomCalls = 0;
+    engine.setRandom(() => {
+      randomCalls++;
+
+      return 0.5;
+    });
+    await loadMovePlugin(engine);
+    await loadGridPath(engine);
+
+    const container = await loadPathContainer(gridPathName, { cellSize: 40, autoMaze: true }, 80, 0, engine),
+      gen = generator(container, gridPathName) as PathGen & { options: { graph?: Record<string, number[]> } };
+
+    try {
+      randomCalls = 0;
+      gen.init();
+
+      expect(gen.options.graph).toEqual({
+        "0,0": [0],
+        "0,1": [0],
+        "1,0": [2, 1],
+        "1,1": [3, 2],
+      });
+      expect(randomCalls).toBe(21);
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("zigzag applies the wave offset orthogonally to the velocity", async () => {
     const container = await loadPathContainer(zigZagPathName, { waveHeight: 2, waveLength: 4 }),
       gen = generator(container, zigZagPathName);
@@ -403,6 +434,54 @@ describe("PathGenerators", async () => {
     expect(Number.isFinite(res.y)).to.be.true;
 
     container.destroy(false);
+  });
+
+  it("uses the owning engine RNG instead of ambient random globals", async () => {
+    const engine = createEngine();
+    let engineRandomCalls = 0;
+    engine.setRandom(() => {
+      engineRandomCalls++;
+
+      return 0.5;
+    });
+    await loadMovePlugin(engine);
+    await loadCurvesPath(engine);
+
+    const container = await loadPathContainer(
+        curvesPathName,
+        { period: 100, nbHarmonics: 2, attenHarmonics: 0.8, rndFunc: "ambientCurvesRandom" },
+        200,
+        1,
+        engine,
+      ),
+      gen = generator(container, curvesPathName),
+      ambientRandom = vi.fn(() => 0.25),
+      ambientDescriptor = Object.getOwnPropertyDescriptor(globalThis, "ambientCurvesRandom"),
+      mathRandom = vi.spyOn(Math, "random").mockReturnValue(0.75);
+
+    Object.defineProperty(globalThis, "ambientCurvesRandom", { configurable: true, value: ambientRandom });
+
+    try {
+      gen.init();
+      engineRandomCalls = 0;
+
+      const particle = { velocity: Vector.create(0, 0) } as {
+        curveVelocity?: Vector;
+        pathGen?: () => number;
+        velocity: Vector;
+      };
+
+      gen.generate(particle);
+
+      expect(engineRandomCalls).toBe(8);
+      expect(ambientRandom).not.toHaveBeenCalled();
+      expect(mathRandom).not.toHaveBeenCalled();
+    } finally {
+      mathRandom.mockRestore();
+      if (ambientDescriptor) Object.defineProperty(globalThis, "ambientCurvesRandom", ambientDescriptor);
+      else Reflect.deleteProperty(globalThis, "ambientCurvesRandom");
+      container.destroy(false);
+    }
   });
 
   it("curlNoise is deterministic for the same seeded position", async () => {

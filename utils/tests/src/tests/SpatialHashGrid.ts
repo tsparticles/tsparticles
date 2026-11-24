@@ -24,7 +24,7 @@ describe("SpatialHashGrid", () => {
     grid.insert(first);
     grid.insert(second);
     expect(
-      grid.queryCircle({ x: 0, y: 0 }, cellSize, (p) => {
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
         visited.push(p);
         if (!changed && p === first) {
           changed = true;
@@ -46,7 +46,7 @@ describe("SpatialHashGrid", () => {
     grid.insert(first);
     grid.insert(second);
     expect(
-      grid.queryCircle({ x: 0, y: 0 }, cellSize, (p) => {
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
         if (p === first) {
           grid.clear();
           grid.remove(second);
@@ -91,7 +91,7 @@ describe("SpatialHashGrid", () => {
     particle.destroyed = true;
     expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual([]);
     expect(
-      grid.queryCircle({ x: 0, y: 0 }, cellSize, (p) => {
+      grid.queryCircle({ x: 0, y: 0 }, cellSize, p => {
         p.destroyed = false;
 
         return true;
@@ -130,7 +130,7 @@ describe("SpatialHashGrid", () => {
     grid.insert(distant);
     grid.insert(first);
 
-    const result = grid.queryCircle({ x: 0, y: 0 }, hugeRadius, (particle) => {
+    const result = grid.queryCircle({ x: 0, y: 0 }, hugeRadius, particle => {
       visited.push(particle);
 
       if (particle === first) {
@@ -162,7 +162,7 @@ describe("SpatialHashGrid", () => {
       grid.queryCircle(
         { x: 0, y: 0 },
         sparseRadius,
-        (particle) => {
+        particle => {
           if (particle === first) {
             grid.cellSize = resizedCellSize;
             grid.clear();
@@ -197,42 +197,35 @@ describe("SpatialHashGrid", () => {
     grid.insert(first);
 
     expect(
-      grid.queryRectangle(
-        { x: 0, y: 0 },
-        { width: 100, height: 100 },
-        (particle) => {
-          if (particle === first) {
-            for (const item of added.toReversed()) {
-              grid.insert(item);
-            }
+      grid.queryRectangle({ x: 0, y: 0 }, { width: 100, height: 100 }, particle => {
+        if (particle === first) {
+          for (const item of added.toReversed()) {
+            grid.insert(item);
           }
+        }
 
-          return true;
-        },
-      ),
+        return true;
+      }),
     ).toEqual(expected);
   });
 
-  it.each([0, -1, NaN, Infinity, -Infinity])(
-    "rejects invalid cell size %s without corrupting pending state",
-    (value) => {
-      expect(() => new SpatialHashGrid(value)).toThrow(RangeError);
+  it.each([0, -1, NaN, Infinity, -Infinity])("rejects invalid cell size %s without corrupting pending state", value => {
+    expect(() => new SpatialHashGrid(value)).toThrow(RangeError);
 
-      const grid = new SpatialHashGrid(cellSize),
-        particle = particleAt({ x: 1, y: 1 });
+    const grid = new SpatialHashGrid(cellSize),
+      particle = particleAt({ x: 1, y: 1 });
 
-      grid.insert(particle);
-      grid.cellSize = resizedCellSize;
+    grid.insert(particle);
+    grid.cellSize = resizedCellSize;
 
-      expect(() => {
-        grid.cellSize = value;
-      }).toThrow(RangeError);
-      expect(grid.cellSize).toBe(cellSize);
-      expect(grid.queryCircle({ x: 1, y: 1 }, 0)).toEqual([particle]);
-      grid.clear();
-      expect(grid.cellSize).toBe(resizedCellSize);
-    },
-  );
+    expect(() => {
+      grid.cellSize = value;
+    }).toThrow(RangeError);
+    expect(grid.cellSize).toBe(cellSize);
+    expect(grid.queryCircle({ x: 1, y: 1 }, 0)).toEqual([particle]);
+    grid.clear();
+    expect(grid.cellSize).toBe(resizedCellSize);
+  });
 
   it("matches independent geometric fixtures in dense and sparse scans", () => {
     const positions = [
@@ -265,24 +258,17 @@ describe("SpatialHashGrid", () => {
 
       // Expected membership does not call the engine's range or distance helpers.
       expect(grid.queryCircle({ x: 0, y: 0 }, cellSize)).toEqual(
-        ordered.filter((particle) => {
+        ordered.filter(particle => {
           const { x, y } = particle.getPosition();
 
           return x * x + y * y <= cellSize * cellSize;
         }),
       );
-      expect(
-        grid.queryRectangle(
-          { x: -cellSize, y: -cellSize },
-          { width: 128, height: 128 },
-        ),
-      ).toEqual(
-        ordered.filter((particle) => {
+      expect(grid.queryRectangle({ x: -cellSize, y: -cellSize }, { width: 128, height: 128 })).toEqual(
+        ordered.filter(particle => {
           const { x, y } = particle.getPosition();
 
-          return (
-            x >= -cellSize && x <= cellSize && y >= -cellSize && y <= cellSize
-          );
+          return x >= -cellSize && x <= cellSize && y >= -cellSize && y <= cellSize;
         }),
       );
     }
@@ -340,7 +326,7 @@ describe("SpatialHashGrid", () => {
     grid.insert(laterCell);
 
     expect(
-      grid.queryCircle({ x: 0, y: 0 }, outerRadius, (particle) => {
+      grid.queryCircle({ x: 0, y: 0 }, outerRadius, particle => {
         visited.push(particle);
 
         if (particle === first) {
@@ -425,16 +411,15 @@ describe("SpatialHashGrid", () => {
       grid.insert(particle);
     }
 
-    expect(grid.queryCircle({ x: 0, y: 0 }, sparseRadius, undefined, out)).toBe(
-      out,
-    );
+    expect(grid.queryCircle({ x: 0, y: 0 }, sparseRadius, undefined, out)).toBe(out);
     expect(out).toEqual([prefix, first, second, third, fourth, fifth]);
-    expect(
-      grid.queryRectangle(
-        { x: -5_000, y: -5_000 },
-        { width: 10_000, height: 10_000 },
-      ),
-    ).toEqual([first, second, third, fourth, fifth]);
+    expect(grid.queryRectangle({ x: -5_000, y: -5_000 }, { width: 10_000, height: 10_000 })).toEqual([
+      first,
+      second,
+      third,
+      fourth,
+      fifth,
+    ]);
   });
 
   it("keeps predicate traversal live and supports nested queries", () => {
@@ -445,20 +430,16 @@ describe("SpatialHashGrid", () => {
 
     grid.insert(first);
 
-    const results = grid.queryCircle(
-      { x: 0, y: 0 },
-      outerRadius,
-      (particle) => {
-        visited.push(particle);
+    const results = grid.queryCircle({ x: 0, y: 0 }, outerRadius, particle => {
+      visited.push(particle);
 
-        if (particle === first) {
-          grid.insert(added);
-          expect(grid.queryCircle({ x: 640, y: 0 }, 1)).toEqual([added]);
-        }
+      if (particle === first) {
+        grid.insert(added);
+        expect(grid.queryCircle({ x: 640, y: 0 }, 1)).toEqual([added]);
+      }
 
-        return particle === added;
-      },
-    );
+      return particle === added;
+    });
 
     expect(visited).toEqual([first, added]);
     expect(results).toEqual([added]);
@@ -471,18 +452,9 @@ describe("SpatialHashGrid", () => {
 
     grid.insert(particle);
 
-    expect(grid.queryCircle({ x: 0, y: 0 }, Infinity, undefined, out)).toBe(
-      out,
-    );
+    expect(grid.queryCircle({ x: 0, y: 0 }, Infinity, undefined, out)).toBe(out);
     expect(grid.queryCircle({ x: 0, y: NaN }, 1, undefined, out)).toBe(out);
-    expect(
-      grid.queryCircle(
-        { x: Number.MAX_SAFE_INTEGER + 1, y: 0 },
-        0,
-        undefined,
-        out,
-      ),
-    ).toBe(out);
+    expect(grid.queryCircle({ x: Number.MAX_SAFE_INTEGER + 1, y: 0 }, 0, undefined, out)).toBe(out);
     expect(out).toEqual([particle]);
   });
 });

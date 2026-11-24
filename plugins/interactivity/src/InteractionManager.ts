@@ -99,7 +99,7 @@ export class InteractionManager {
         inside: false,
       },
     };
-    this.#intersectionObserver = safeIntersectionObserver((entries) => {
+    this.#intersectionObserver = safeIntersectionObserver(entries => {
       this.#intersectionManager(entries);
     });
   }
@@ -108,9 +108,7 @@ export class InteractionManager {
    * Adds a click/touch handler to the container element
    * @param callback - the callback to invoke on click/touch
    */
-  addClickHandler(
-    callback: (evt: Event, particles?: Particle[]) => void,
-  ): void {
+  addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
     const container = this.#container,
       interactivityData = this.interactivityData;
 
@@ -124,11 +122,7 @@ export class InteractionManager {
       return;
     }
 
-    const clickOrTouchHandler = (
-        e: Event,
-        pos: ICoordinates,
-        radius: number,
-      ): void => {
+    const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
         if (container.destroyed) {
           return;
         }
@@ -138,10 +132,7 @@ export class InteractionManager {
             x: pos.x * pxRatio,
             y: pos.y * pxRatio,
           },
-          particles = container.particles.grid.queryCircle(
-            posRetina,
-            radius * pxRatio,
-          );
+          particles = container.particles.grid.queryCircle(posRetina, radius * pxRatio);
 
         callback(e, particles);
       },
@@ -180,10 +171,7 @@ export class InteractionManager {
 
         if (touched && !touchMoved) {
           const touchEvent = e as TouchEvent,
-            lastTouch =
-              touchEvent.touches[
-                touchEvent.touches.length - touchEndLengthOffset
-              ];
+            lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
 
           if (!lastTouch) {
             return;
@@ -192,19 +180,11 @@ export class InteractionManager {
           const element = container.canvas.domElement,
             canvasRect = element ? element.getBoundingClientRect() : undefined,
             pos = {
-              x:
-                lastTouch.clientX -
-                (canvasRect ? canvasRect.left : minCoordinate),
-              y:
-                lastTouch.clientY -
-                (canvasRect ? canvasRect.top : minCoordinate),
+              x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
+              y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
             };
 
-          clickOrTouchHandler(
-            e,
-            pos,
-            Math.max(lastTouch.radiusX, lastTouch.radiusY),
-          );
+          clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
         }
 
         touched = false;
@@ -314,10 +294,7 @@ export class InteractionManager {
       return;
     }
 
-    this.interactors = await getItemsFromInitializer(
-      this.#container,
-      pluginManager.initializers.interactors,
-    );
+    this.interactors = await getItemsFromInitializer(this.#container, pluginManager.initializers.interactors);
     this.#externalInteractors = [];
     this.#particleInteractors = [];
   }
@@ -416,10 +393,7 @@ export class InteractionManager {
   #intersectionManager(entries: IntersectionObserverEntry[]): void {
     const container = this.#container;
 
-    if (
-      container.destroyed ||
-      !container.actualOptions.pauseOnOutsideViewport
-    ) {
+    if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
       return;
     }
 

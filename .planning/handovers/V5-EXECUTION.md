@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 is next; E8–E10 remain pending. This is the
+Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 closed on 2026-11-24; see the [ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E9–E10 remain open. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -219,11 +219,11 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E5 — Particle/options and OKLCH — accepted 2026-11-23, with explicit M4/500 runtime and bundle-growth exceptions for E5; final verification in E10 ([evidence](evidence/e5/closure/README.md))
 - [x] E6 — Collections and spatial index — method review, P1–P4/S1–S4 decisions, callback-safe draw and complete validation ([evidence](evidence/e6/closure/README.md))
 - [x] E7 — Rendering optimization and review closure — accepted 2026-11-24; final absolute-budget checks retained in E10 ([evidence](evidence/e7/closure/README.md))
-- [ ] E8 — Ecosystem audit closure
+- [x] E8 — Ecosystem audit closure — 349 package manifests reconciled; owner-isolation regressions and 959-test primary suite pass; see [E8 closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)
 - [ ] E9 — Distribution and support closure
 - [ ] E10 — Release readiness
 
-Next action: **E8 ecosystem audit closure**. E6 is complete:
+Next action: **E9 distribution and support closure**. E8 closed its package/family audit with the G1–G7 findings, build outcomes, test-defined custom extension scenario and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md). E6 is complete:
 926 primary tests, 85 test targets, 453 build tasks, 135 matrix and 108 confirmation
 snapshots, plus extended RNG/count/retention verification. The method inventory,
 P1–P4/S1–S4 tradeoffs and final artifact are linked in the completion evidence.

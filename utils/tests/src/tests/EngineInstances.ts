@@ -1,5 +1,8 @@
 /* eslint-disable */
 import { type Engine, createEngine } from "@tsparticles/engine";
+import { curvesPathName, loadCurvesPath } from "@tsparticles/path-curves";
+import type { MoveEngine } from "@tsparticles/plugin-move";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
 import { TestOffscreenCanvas, installTransferControlToOffscreen } from "../Fixture/OffscreenCanvas.js";
 import { describe, expect, it, vi } from "vitest";
 import { ShapeManager } from "../../../../plugins/emitters/src/ShapeManager.js";
@@ -59,6 +62,7 @@ describe("explicit engine ownership", () => {
       await (engine.pluginManager === a.pluginManager ? aGate : bGate).promise;
     };
     await a.pluginManager.register(loader);
+    await a.pluginManager.register(loader);
     await b.pluginManager.register(loader);
     const first = a.init(),
       duplicate = a.init(),
@@ -73,6 +77,41 @@ describe("explicit engine ownership", () => {
     aGate.resolve();
     await Promise.all([first, duplicate]);
     expect(calls.get(a.pluginManager)).toBe(1);
+  });
+
+  it("keeps custom extension registrations and engine services local", async () => {
+    const a = createEngine(),
+      b = createEngine(),
+      aRandom = vi.fn(() => 0.25),
+      bRandom = vi.fn(() => 0.75);
+
+    a.setRandom(aRandom);
+    b.setRandom(bRandom);
+
+    const registerExtension = (engine: Engine, name: string): void => {
+      engine.pluginManager.addPreset(name, options);
+      engine.pluginManager.addEasing(name, value => value * 2);
+      engine.pluginManager.addShape([name], () => Promise.resolve({} as never));
+    };
+
+    await b.pluginManager.register(engine => registerExtension(engine, "external-b"));
+    await a.pluginManager.register(engine => registerExtension(engine, "external-a"));
+    await Promise.all([b.init(), a.init()]);
+
+    expect(a.pluginManager.presets.has("external-a")).toBe(true);
+    expect(a.pluginManager.presets.has("external-b")).toBe(false);
+    expect(b.pluginManager.presets.has("external-b")).toBe(true);
+    expect(b.pluginManager.presets.has("external-a")).toBe(false);
+    expect(a.pluginManager.easingFunctions.has("external-a")).toBe(true);
+    expect(a.pluginManager.easingFunctions.has("external-b")).toBe(false);
+    expect(b.pluginManager.easingFunctions.has("external-b")).toBe(true);
+    expect(b.pluginManager.easingFunctions.has("external-a")).toBe(false);
+    expect(a.pluginManager.initializers.shapes.has("external-a")).toBe(true);
+    expect(a.pluginManager.initializers.shapes.has("external-b")).toBe(false);
+    expect(b.pluginManager.initializers.shapes.has("external-b")).toBe(true);
+    expect(b.pluginManager.initializers.shapes.has("external-a")).toBe(false);
+    expect(a.getRandom()).toBe(0.25);
+    expect(b.getRandom()).toBe(0.75);
   });
 
   it("retries a failed loader without replaying another engine's initialization", async () => {
@@ -153,5 +192,25 @@ describe("explicit engine ownership", () => {
     expect(a.getShapeGenerator("custom")).toBe(first);
     expect(b.getShapeGenerator("custom")).toBe(second);
     expect(new ShapeManager().getShapeGenerator("custom")).toBeUndefined();
+  });
+
+  it("keeps optional path extensions local across different, repeated, concurrent engine loads", async () => {
+    const a = createEngine(),
+      b = createEngine();
+
+    await loadMovePlugin(b);
+    await loadMovePlugin(a);
+    await loadCurvesPath(a);
+    await loadCurvesPath(a);
+
+    await Promise.all([b.init(), a.init()]);
+
+    const aPaths = (a as MoveEngine).pluginManager.initializers.pathGenerators,
+      bPaths = (b as MoveEngine).pluginManager.initializers.pathGenerators;
+
+    expect(aPaths?.has(curvesPathName)).toBe(true);
+    expect(aPaths?.size).toBe(1);
+    expect(bPaths?.has(curvesPathName)).toBe(false);
+    expect(bPaths?.size ?? 0).toBe(0);
   });
 });

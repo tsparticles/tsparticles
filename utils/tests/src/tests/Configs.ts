@@ -36,6 +36,39 @@ describe("Configs sweep", async () => {
     }
   });
 
+  it("keeps animated background state local to each drawing context", () => {
+    const config = (configs as Record<string, ISourceOptions>).backgroundCanvas,
+      draw = config?.background?.draw;
+
+    expect(draw).to.be.a("function");
+
+    const context = () => {
+      const colors: string[] = [];
+
+      return {
+        colors,
+        context: {
+          canvas: { width: 100, height: 100 },
+          createLinearGradient: () => ({
+            addColorStop: (_offset: number, color: string) => colors.push(color),
+          }),
+          fillRect: () => undefined,
+        },
+      };
+    };
+
+    const a = context(),
+      b = context(),
+      delta = { value: 16.67, factor: 1 };
+
+    draw?.(a.context as never, delta);
+    draw?.(b.context as never, delta);
+    draw?.(a.context as never, delta);
+
+    expect(a.colors[0]).to.equal(b.colors[0]);
+    expect(a.colors[1]).not.to.equal(a.colors[0]);
+  });
+
   it("every preset loads through the engine without throwing", async () => {
     let positives = 0,
       zeroes = 0,

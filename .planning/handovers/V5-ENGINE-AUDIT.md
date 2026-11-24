@@ -171,15 +171,15 @@ Owner means the technical handover and execution stage; implementation owner is 
 
 ## Required cross-cutting coverage
 
-| Review | Owners / stages       | Files and existing coverage                                                              | Missing verification                                                         |
-| ------ | --------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| G1     | 01/02/08; E1–E2,E8    | Emitters ShapeManager; PluginManager; LoadOrdering.ts                                    | Same-name registration, reverse load, disposal, mutable-state classification |
-| G2     | 03/04/08; E3–E4,E8    | NoiseFieldGenerator, move generator, motion, Poisson                                     | Listener/timeout ownership, refresh, worker cleanup                          |
-| G3     | 01/04/07/08; E1,E4,E5 | Engine.load, ImageDrawer, video export; LoadOrdering/StartCancellation/ReviewRegressions | Pre-start rollback, late assets after reuse, promise settlement              |
-| G4     | 02/03/04/07/08; E2–E5 | Container, Retina, move, Poisson; MoveTiming/ResizeLifecycle                             | Explicit clock and finite numeric domains                                    |
-| G5     | 06/08; E6             | SpatialHashGrid, Ranges, fluid; SpatialHashGrid.ts                                       | Geometry fixtures and spatial mutation semantics                             |
-| G6     | 02/07/08; E2,E5       | GridPathGenerator, canvasMask shuffle                                                    | Deterministic permutations, draw budgets                                     |
-| G7     | 01/03/04; E1,E3,E4    | Engine/items, EventDispatcher, deepExtend; lifecycle/options tests                       | Lifetime, public mutation, external-resource preservation                    |
+| Review | Owners / stages       | Files and existing coverage                                                        | E8 disposition                                                                 |
+| ------ | --------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| G1     | 01/02/08; E1–E2,E8    | Emitters ShapeManager; PluginManager; EngineInstances/LoadOrdering                 | Owner-scoped registries, reverse/repeated/concurrent custom loaders pass       |
+| G2     | 03/04/08; E3–E4,E8    | NoiseFieldGenerator, move generator, motion, Poisson; Configs                      | E4 cleanup regressions pass; background draw state is context-local            |
+| G3     | 01/04/07/08; E1,E4,E5 | Engine.load, ImageDrawer, video export; lifecycle/load-order tests                 | Rollback, late assets and export settlement regressions pass                   |
+| G4     | 02/03/04/07/08; E2–E5 | Container, Retina, move, Poisson; MoveTiming/ResizeLifecycle                       | Numeric-domain and timing coverage from E2–E5 passes                           |
+| G5     | 06/08; E6             | SpatialHashGrid, Ranges, fluid; spatial tests                                      | Geometry, mutation, query and callback safety coverage passes                  |
+| G6     | 02/07/08; E2,E5,E8    | GridPathGenerator, canvasMask shuffle; PathGenerators/CanvasMaskColor              | Seeded Fisher–Yates order and draw-count regressions pass                      |
+| G7     | 01/03/04; E1,E3,E4,E8 | Engine/items, EventDispatcher, deepExtend; lifecycle/options/EngineInstances tests | Per-engine ownership and public mutation contracts pass; no global dispose API |
 
 ## E1 reviewed implementation surfaces
 

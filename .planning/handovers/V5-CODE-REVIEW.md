@@ -58,6 +58,13 @@ stores `shapeGenerators` in a module-level Map despite exposing instance methods
 Different managers therefore share registrations. This is a concrete isolation
 migration target, already within V5-ENG/SVC/PLG, not optional E11 work.
 
+**E8 source check — 2026-11-24:** the current `ShapeManager` instead owns a
+private Map per instance. `addEmittersShapesManager` attaches that manager to
+the owning `PluginManager`, and `getEmittersInstancesManager` keys its cache by
+that same owner. The original shared-generator defect is already remediated in
+the current tree; `EngineInstances.ts` contains an order/locality regression.
+E8 now covers two-engine extension loading, reversed/repeated registration, and concurrent initialization in `utils/tests/src/tests/EngineInstances.ts`. Engine disposal remains application-owned; plugin/container disposal is covered in the E4 lifecycle regressions. The mutable development error-message catalog remains module-wide by design: entries are templates keyed by stable error code, not per-engine runtime state.
+
 Inventory mutable state in runtime utilities as well as plugin directories.
 Classify immutable definitions separately from customized registrations and DOM
 resources. Test two engines registering different generators under the same name,
@@ -94,7 +101,7 @@ generator; NoiseField removes and replaces its global resize listener on re-init
 and removes it on destroy. Motion invalidates already-captured media-query
 callbacks on stop/destroy, and Poisson invalidates pending redraw timers and
 in-flight initialization. `ReviewRegressions.ts` covers these cleanup and stale
-callback paths. Broader container/resource-count scenarios remain part of E8.
+callback paths. E8 re-ran the primary suite after the E4 lifecycle changes; broader browser resource accounting remains in E9 where browser behavior is exercised.
 
 ### G3 — Failure paths are part of the loading contract
 
@@ -230,3 +237,8 @@ E8 verifies extension coverage; E10 collects dispositions and keeps unresolved
 mandatory correctness/isolation gates open. This review does not mark any item
 fixed. Detailed performance experiments on existing extension packages are in
 [E11 — optional plugin improvements](V5-11-OPTIONAL-PLUGINS.md).
+
+## E8 disposition — 2026-11-24
+
+G1–G7 are closed for E8 based on the E1–E7 evidence plus the extension-family
+scan and new regressions recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). Concrete E8 fixes covered the Curves path RNG fallback, background canvas state ownership, and uniform seeded shuffles for grid mazes and canvas masks. The 349 package manifests have recorded build outcomes; the primary suite passes **959 tests across 61 files**. CDN/browser composition remains E9, and final absolute budgets remain E10.

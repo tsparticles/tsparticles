@@ -11,10 +11,7 @@ it("starts and stops interactivity for an OffscreenCanvas without DOM globals", 
       actualOptions: { interactivity: { detectsOn: "window" } },
       canvas: { setPointerEvents: vi.fn() },
     } as unknown as InteractivityContainer,
-    manager = new InteractionManager(
-      {} as ConstructorParameters<typeof InteractionManager>[0],
-      container,
-    );
+    manager = new InteractionManager({} as ConstructorParameters<typeof InteractionManager>[0], container);
 
   vi.stubGlobal("document", undefined);
   vi.stubGlobal("HTMLElement", undefined);

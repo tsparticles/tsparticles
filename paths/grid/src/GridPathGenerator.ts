@@ -153,7 +153,16 @@ export class GridPathGenerator implements IMovePathGenerator {
         visited[y]![x] = true;
       }
 
-      const dirsOrder = [0, 1, 2, 3].sort(() => getRandom(this.#container.engine.getRandomFn()) - 0.5);
+      const dirsOrder = [0, 1, 2, 3];
+
+      for (let index = dirsOrder.length - 1; index > minLength; index--) {
+        const randomIndex = Math.trunc(getRandom(this.#container.engine.getRandomFn()) * (index + 1)),
+          current = dirsOrder[index]!;
+
+        dirsOrder[index] = dirsOrder[randomIndex]!;
+        dirsOrder[randomIndex] = current;
+      }
+
       let moved = false;
 
       for (const d of dirsOrder) {
