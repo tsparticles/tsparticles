@@ -16,15 +16,7 @@ interface EasingParams {
  * @returns the webpack config
  */
 function loadParticlesPluginEasing(params: EasingParams): unknown {
-  const {
-      moduleName,
-      pluginName,
-      version,
-      dir,
-      bundle,
-      additionalExternals,
-      progress,
-    } = params,
+  const { moduleName, pluginName, version, dir, bundle, additionalExternals, progress } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
@@ -46,11 +38,7 @@ v${version}`,
           additionalExternals,
         }),
         ...getConfig({
-          entry: {
-            format: "plugin.easing",
-            name: `${moduleName}.bundle`,
-            bundle: true,
-          },
+          entry: { format: "plugin.easing", name: `${moduleName}.bundle`, bundle: true },
           version,
           banner,
           minBanner: minBanner,
