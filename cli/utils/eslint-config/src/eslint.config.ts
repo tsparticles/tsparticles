@@ -20,10 +20,7 @@ export default defineConfig([
   // --- TypeScript: presets + type-aware parsing ---
   {
     files: tsFiles,
-    extends: [
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
-    ],
+    extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
     languageOptions: {
       parserOptions: hasTsconfig
         ? {
@@ -58,34 +55,20 @@ export default defineConfig([
     },
     rules: {
       // --- stylistic (only rules Prettier does not cover) ---
-      "@stylistic/lines-between-class-members": [
-        "error",
-        "always",
-        { exceptAfterSingleLine: true },
-      ],
+      "@stylistic/lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
       "@stylistic/padding-line-between-statements": [
         "error",
         { blankLine: "always", prev: "*", next: "return" },
         { blankLine: "always", prev: ["const", "let"], next: "*" },
         { blankLine: "any", prev: ["const", "let"], next: ["const", "let"] },
       ],
-      "@stylistic/spaced-comment": [
-        "error",
-        "always",
-        { block: { balanced: true } },
-      ],
+      "@stylistic/spaced-comment": ["error", "always", { block: { balanced: true } }],
 
       // --- typescript-eslint ---
       "@typescript-eslint/consistent-type-exports": "error",
       "@typescript-eslint/consistent-type-imports": "error",
-      "@typescript-eslint/explicit-function-return-type": [
-        "error",
-        { allowExpressions: true },
-      ],
-      "@typescript-eslint/explicit-member-accessibility": [
-        "error",
-        { accessibility: "no-public" },
-      ],
+      "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
+      "@typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "no-public" }],
       "@typescript-eslint/member-ordering": [
         "error",
         {
@@ -236,17 +219,11 @@ export default defineConfig([
   },
 
   // --- No tsconfig.json found: type-aware rules cannot run, so turn them off for TS files too ---
-  ...(hasTsconfig
-    ? []
-    : [{ files: tsFiles, extends: [tseslint.configs.disableTypeChecked] }]),
+  ...(hasTsconfig ? [] : [{ files: tsFiles, extends: [tseslint.configs.disableTypeChecked] }]),
 
   // --- Tests, scripts and config files ---
   {
-    files: [
-      "**/*.{test,spec}.{ts,tsx}",
-      "scripts/**",
-      "**/*.config.{ts,js,mjs,cjs}",
-    ],
+    files: ["**/*.{test,spec}.{ts,tsx}", "scripts/**", "**/*.config.{ts,js,mjs,cjs}"],
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-magic-numbers": "off",
