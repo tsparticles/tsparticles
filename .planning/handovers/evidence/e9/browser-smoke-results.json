@@ -1,0 +1,646 @@
+{
+  "date": "2026-11-24",
+  "browser": "Chrome/158.0.8127.38",
+  "localFileSmoke": {
+    "rollup": {
+      "result": {
+        "repeatedBundleScript": true,
+        "distinctFactories": true,
+        "distinctEngines": true,
+        "rejected": true,
+        "reusedTransfer": true,
+        "bAliveAfterDestroyA": true,
+        "bAliveAfterRefresh": true,
+        "counts": [
+          5,
+          5
+        ],
+        "remaining": [
+          0,
+          0
+        ]
+      },
+      "convenience": [
+        {
+          "name": "confetti",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "fireworks",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "particles",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "ribbons",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        }
+      ],
+      "errors": []
+    },
+    "rolldown": {
+      "result": {
+        "repeatedBundleScript": true,
+        "distinctFactories": true,
+        "distinctEngines": true,
+        "rejected": true,
+        "reusedTransfer": true,
+        "bAliveAfterDestroyA": true,
+        "bAliveAfterRefresh": true,
+        "counts": [
+          5,
+          5
+        ],
+        "remaining": [
+          0,
+          0
+        ]
+      },
+      "convenience": [
+        {
+          "name": "confetti",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "fireworks",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "particles",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "ribbons",
+          "independent": true,
+          "sameFeatureInstalledOnBothEngines": true,
+          "containers": [
+            0,
+            0
+          ]
+        }
+      ],
+      "errors": []
+    }
+  },
+  "localHttp": {
+    "selectiveFeatureCandidate": [
+      {
+        "cache": "cold",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.09999996423721313,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 13.699999988079071,
+          "totalThroughCleanup": 17.30000001192093
+        }
+      },
+      {
+        "cache": "warm",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.10000002384185791,
+          "featureRegistration": 0,
+          "sceneLoad": 4.899999976158142,
+          "totalThroughCleanup": 6.199999988079071
+        }
+      }
+    ],
+    "basicRollup": [
+      {
+        "cache": "cold",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.20000004768371582,
+          "featureRegistration": 0,
+          "sceneLoad": 9.099999964237213,
+          "totalThroughCleanup": 12.400000035762787
+        }
+      },
+      {
+        "cache": "warm",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 4.199999988079071,
+          "totalThroughCleanup": 5.199999988079071
+        }
+      }
+    ],
+    "basicModuleScript": {
+      "hasFactory": true,
+      "count": 100,
+      "remainingContainers": 0
+    },
+    "webpackMinified": {
+      "result": {
+        "hasFactory": true,
+        "hasBasicLoader": true,
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.10000002384185791,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 14.399999976158142,
+          "totalThroughCleanup": 15.100000023841858
+        }
+      },
+      "requests": [
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/117.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/79.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/717.min.js",
+          "status": 200,
+          "fromCache": false
+        }
+      ],
+      "emittedChunks": [
+        "/bundles/basic/dist/117.min.js",
+        "/bundles/basic/dist/717.min.js",
+        "/bundles/basic/dist/79.min.js"
+      ]
+    },
+    "webpackUnminified": {
+      "result": {
+        "hasFactory": true,
+        "hasBasicLoader": true,
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.19999998807907104,
+          "featureRegistration": 0,
+          "sceneLoad": 16.700000047683716,
+          "totalThroughCleanup": 17.400000035762787
+        }
+      },
+      "requests": [
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js",
+          "status": 200,
+          "fromCache": false
+        }
+      ],
+      "emittedChunks": [
+        "/bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+        "/bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+        "/bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js"
+      ]
+    },
+    "webpackExternal": {
+      "result": {
+        "hasFactory": true,
+        "hasBasicLoader": true,
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.09999996423721313,
+          "featureRegistration": 0,
+          "sceneLoad": 4,
+          "totalThroughCleanup": 4.199999988079071
+        }
+      },
+      "requests": [
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/engine/dist/tsparticles.engine.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+          "status": 200,
+          "fromCache": true
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/plugins/blend/dist/tsparticles.plugin.blend.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/plugins/colors/hsl/dist/tsparticles.plugin.hslColor.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/plugins/colors/rgb/dist/tsparticles.plugin.rgbColor.min.js",
+          "status": 200,
+          "fromCache": false
+        },
+        {
+          "origin": "http://127.0.0.1:49466",
+          "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.min.js",
+          "status": 200,
+          "fromCache": false
+        }
+      ]
+    }
+  },
+  "remoteCdn": {
+    "scripts": [
+      "https://cdn.jsdelivr.net/npm/@tsparticles/engine@4.6.0/tsparticles.engine.min.js",
+      "https://cdn.jsdelivr.net/npm/@tsparticles/basic@4.6.0/tsparticles.basic.bundle.min.js"
+    ],
+    "responses": [
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/engine@4.6.0/tsparticles.engine.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/basic@4.6.0/tsparticles.basic.bundle.min.js",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "compatible": false,
+    "result": {
+      "exposedExports": [
+        "pluginManager"
+      ],
+      "finding": "The published engine URL does not expose the explicit createEngine bootstrap used by the checked-in v5 browser contract."
+    }
+  },
+  "errors": [],
+  "remoteEsm": {
+    "modules": [
+      "https://cdn.jsdelivr.net/npm/@tsparticles/engine@4.6.0/+esm",
+      "https://cdn.jsdelivr.net/npm/@tsparticles/basic@4.6.0/+esm"
+    ],
+    "responses": [
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/basic@4.6.0/+esm",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/engine@4.6.0/+esm",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "result": {
+      "compatible": false,
+      "engineExports": [
+        "AlterType",
+        "AnimatableColor",
+        "AnimationMode",
+        "AnimationOptions",
+        "AnimationStatus",
+        "AnimationValueWithRandom",
+        "Background",
+        "BaseRange",
+        "Circle",
+        "ColorAnimation",
+        "DestroyType",
+        "DrawLayer",
+        "ErrorCodes",
+        "EventType",
+        "Fill",
+        "FullScreen",
+        "GradientType",
+        "HDROptions",
+        "HdrMode",
+        "HslAnimation",
+        "LimitMode",
+        "Move",
+        "MoveAngle",
+        "MoveCenter",
+        "MoveDirection",
+        "MoveGravity",
+        "MovePath",
+        "OptionLoader",
+        "Options",
+        "OptionsColor",
+        "OutMode",
+        "OutModeDirection",
+        "OutModes",
+        "Paint",
+        "ParticleOutType",
+        "ParticlesBounce",
+        "ParticlesBounceFactor",
+        "ParticlesDensity",
+        "ParticlesNumber",
+        "ParticlesNumberLimit",
+        "ParticlesOptions",
+        "PixelMode",
+        "RangedAnimationOptions",
+        "RangedAnimationValueWithRandom",
+        "Rectangle",
+        "ResizeEvent",
+        "RotateDirection",
+        "Shape",
+        "Spin",
+        "StartValueType",
+        "Stroke",
+        "ValueWithRandom",
+        "Vector",
+        "Vector3d",
+        "ZIndex",
+        "addErrorMessages",
+        "alterHsl",
+        "animate",
+        "areBoundsInside",
+        "calcExactPositionOrRandomFromSize",
+        "calcPositionFromSize",
+        "calcPositionOrRandomFromSize",
+        "calcPositionOrRandomFromSizeRanged",
+        "calculateBounds",
+        "cancelAnimation",
+        "canvasFirstIndex",
+        "canvasTag",
+        "checkDistance",
+        "circleBounce",
+        "circleBounceDataFromParticle",
+        "clamp",
+        "cloneStyle",
+        "collisionVelocity",
+        "colorMix",
+        "colorToRgb",
+        "countOffset",
+        "decayOffset",
+        "deepExtend",
+        "defaultAlpha",
+        "defaultAngle",
+        "defaultCompositeValue",
+        "defaultDensityFactor",
+        "defaultFps",
+        "defaultFpsLimit",
+        "defaultLoops",
+        "defaultOpacity",
+        "defaultRatio",
+        "defaultReduceFactor",
+        "defaultRemoveQuantity",
+        "defaultRetryCount",
+        "defaultRgbMin",
+        "defaultTime",
+        "defaultTransform",
+        "defaultTransformValue",
+        "defaultVelocity",
+        "defaultZoom",
+        "degToRad",
+        "deleteCount",
+        "double",
+        "doublePI",
+        "empty",
+        "executeOnSingleOrMultiple",
+        "fullPercent",
+        "generatedAttribute",
+        "generatedFalse",
+        "generatedTrue",
+        "getCanvasFromContainer",
+        "getDataFromUrl",
+        "getDistance",
+        "getDistanceSq",
+        "getDistances",
+        "getDomContainer",
+        "getErrorMessage",
+        "getFullScreenStyle",
+        "getHslAnimationFromHsl",
+        "getHslFromAnimation",
+        "getItemMapFromInitializer",
+        "getItemsFromInitializer",
+        "getLinkColor",
+        "getLinkRandomColor",
+        "getLogger",
+        "getParticleBaseVelocity",
+        "getParticleDirectionAngle",
+        "getPosition",
+        "getRandom",
+        "getRandomFn",
+        "getRandomInRange",
+        "getRandomRgbColor",
+        "getRangeMax",
+        "getRangeMin",
+        "getRangeValue",
+        "getStyleFromHsl",
+        "getStyleFromRgb",
+        "hMax",
+        "hMin",
+        "hPhase",
+        "half",
+        "hslToRgb",
+        "hslToRgbFloat",
+        "hslaToRgba",
+        "hypot",
+        "identity",
+        "inverseFactorNumerator",
+        "isArray",
+        "isBoolean",
+        "isEnumValue",
+        "isFunction",
+        "isInArray",
+        "isNull",
+        "isNumber",
+        "isObject",
+        "isPointInside",
+        "isString",
+        "itemFromArray",
+        "itemFromSingleOrMultiple",
+        "lFactor",
+        "lMax",
+        "lMin",
+        "lengthOffset",
+        "loadExtendProperty",
+        "loadLazyProperty",
+        "loadMinIndex",
+        "loadNestedProperty",
+        "loadOptionProperty",
+        "loadOptions",
+        "loadParticlesOptions",
+        "loadProperty",
+        "loadRandomFactor",
+        "loadRangeProperty",
+        "manageListener",
+        "maxNits",
+        "midColorValue",
+        "millisecondsToSeconds",
+        "minCount",
+        "minDistance",
+        "minFpsLimit",
+        "minIndex",
+        "minLimit",
+        "minRadius",
+        "minStrokeWidth",
+        "minVelocity",
+        "minZ",
+        "minimumSize",
+        "mix",
+        "none",
+        "one",
+        "originPoint",
+        "parseAlpha",
+        "percentDenominator",
+        "phaseNumerator",
+        "quarter",
+        "randomColorValue",
+        "randomInRangeValue",
+        "rangeColorToHsl",
+        "rangeColorToRgb",
+        "removeDeleteCount",
+        "removeMinIndex",
+        "resizeEvent",
+        "rgbMax",
+        "rgbToHsl",
+        "sMax",
+        "sMin",
+        "sNormalizedOffset",
+        "safeDocument",
+        "safeMatchMedia",
+        "safeMutationObserver",
+        "setAnimationFunctions",
+        "setLogger",
+        "setRandom",
+        "setRangeValue",
+        "sextuple",
+        "spatialHashGridCellSize",
+        "squareExp",
+        "stringToAlpha",
+        "stringToRgb",
+        "threeQuarter",
+        "toEnumValue",
+        "triple",
+        "tryCountIncrement",
+        "tsParticles",
+        "updateColor",
+        "updateColorValue",
+        "visibilityChangeEvent",
+        "zIndexFactorOffset"
+      ],
+      "basicExports": [
+        "loadBasic"
+      ],
+      "globalsBefore": [],
+      "globalsAfter": [
+        "pluginManager"
+      ],
+      "globalsChanged": true
+    }
+  }
+}

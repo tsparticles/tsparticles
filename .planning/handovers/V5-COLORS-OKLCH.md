@@ -3,7 +3,7 @@
 Initial plan dated 2026-11-06 on branch `v5`, based on `4.5.2` source.
 C1–C4 implementation and E5 acceptance are complete as of 2026-11-23; see
 [the acceptance and explicit runtime exception](evidence/e5/closure/README.md).
-C5 distribution/release verification remains assigned to E9/E10. Use the current checkout and the clean
+C5 candidate-distribution verification remains assigned to E9/E10. Use the current checkout and the clean
 measurement procedure in the [handover index](README.md) for execution.
 
 ## Required outcome
@@ -227,7 +227,7 @@ must document existing precision and gamut limitations.
    define a discriminator for new spaces.
 7. Keep parsing deterministic and DOM-independent. Test channel percentages,
    alpha, signs, decimals, angle units, whitespace, and complete consumption.
-   Publish the supported CSS subset and decide explicitly on `none`, relative
+   Implement the supported CSS subset and decide explicitly on `none`, relative
    colors, `var()`, and custom profiles.
 8. Resolve ranges and random values once with the owning engine's RNG.
    Preserve `reduceDuplicates`, indices, supported nested arrays, and isolation.
@@ -348,7 +348,7 @@ before collection and rendering optimizations in E6/E7.
 5. **C4 — Ecosystem (08).** Complete the consumer matrix, including hidden
    surfaces, links/gradient/cache, and representative external plugins.
    Update helpers, schema, generators, and tests. Verify perceptual behavior.
-6. **C5 — Performance, distribution, and release (09/10).** Compare measurements,
+6. **C5 — Performance and candidate-distribution verification (09/10).** Compare measurements,
    built bundles, and real browsers. Complete the guide, changelog, and migration
    fixtures. Close `V5-COLOR-REPORT.md` with commands, outcomes, limitations,
    and final decisions.
@@ -419,7 +419,7 @@ before collection and rendering optimizations in E6/E7.
 - [x] Preserve wide gamut through parsing, state, modifiers and mapped output.
       Eight current Chrome formatter cases and four exact link scenes pass,
       including P3/HDR float16, alpha, immutability and stroke-only HDR.
-      Physical display certification remains part of release verification.
+      Physical display certification remains part of the final currently scoped verification.
 - [x] Direct `oklch(...)` is the default supported CSS/Canvas output; every
       retained manual RGB output path has a documented need and regression test.
 - [x] Implement and verify HDR and gamut mapping decisions, including actual

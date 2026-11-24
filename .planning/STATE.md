@@ -1,3 +1,31 @@
+## Session status — 2026-11-24 — E9 accepted; E10 open
+
+- Installed engine/Basic package checks pass for ESM, CJS, browser, and lazy
+  conditions, including types, augmentation, custom plugin registration, and
+  independent engines. Basic bundle builds pass for Rollup, Rolldown, and
+  Webpack. See [E9 evidence](handovers/evidence/e9/README.md).
+- Rolldown's Terser compatibility plugin did not minify its generated `.min.js`
+  artifact. Native Rolldown output minification fixed the output from 170,185
+  to 122,777 raw bytes; final Rollup is 121,216 bytes. Chrome passed the same
+  100-particle scene through Rollup, Rolldown, minified/unminified Webpack, and
+  external Webpack compositions. Selective, standalone, and external totals are
+  in [composition evidence](handovers/evidence/e9/composition-comparison.json).
+- Retired Vue 2, Nuxt 2, and Nuxt 3 names were removed from active Japanese and
+  Chinese demo indexes. Deprecated API migration paths are inventoried;
+  Stencil v5's official guide resolves `applyPolyfills()` by removing the call
+  and awaiting `defineCustomElements()` when registration must precede hydration.
+- Desktop Chrome passed repeated-load/two-engine, local HTTP classic, and local
+  module-script checks. Browser findings fixed duplicate IIFE execution,
+  Webpack namespace replacement, and missing `animation.utils` bootstrap
+  scopes. The documented jsDelivr URLs return 200, but published 4.6.0 exposes
+  only the legacy singleton ABI without `createEngine`. Chrome also imported
+  both existing jsDelivr `+esm` URLs (HTTP 200); that earlier engine build has
+  no `createEngine` and writes the legacy `tsParticles.pluginManager` global.
+  These URLs are not the candidate tested from the current checkout. E9 closes
+  on local HTTP candidate, installed-package and browser evidence. E10 remains
+  open; after E10, additional pre-release checks and a follow-up plan must be
+  agreed. No release or publication is included in E0–E10.
+
 ## Session status — 2026-11-24 — E8 accepted
 
 - E8 ecosystem audit closed. The 349-manifest inventory was reconciled to Nx
@@ -9,7 +37,7 @@
 - The workspace compatibility run covered 457 build tasks; Electron and Angular
   demo sandbox/network failures passed on authorized retries. E8 deltas were
   rebuilt in the tests package. A redundant, silent workspace rerun was stopped.
-- E9 browser/CDN and package-consumer composition, and E10 final budget/release
+- E9 browser/CDN and matched payload composition, and E10 final budget/release
   checks remain open. No commit, merge, or publication was performed.
 
 ## Session status — 2026-11-24 — E7 accepted (before E8 start)

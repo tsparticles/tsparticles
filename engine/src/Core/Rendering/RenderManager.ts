@@ -7,10 +7,7 @@ import {
   originPoint,
   zIndexFactorOffset,
 } from "../Utils/Constants.js";
-import {
-  getStyleFromOklch,
-  rangeColorToOklch,
-} from "../../Utils/ColorUtils.js";
+import { getStyleFromOklch, rangeColorToOklch } from "../../Utils/ColorUtils.js";
 import type { CanvasManager } from "../Canvas/CanvasManager.js";
 import type { Container } from "../Container/Container.js";
 import { DrawLayer } from "../../Enums/DrawLayer.js";
@@ -27,9 +24,7 @@ import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
 import type { Particle } from "../Particles/Particle.js";
 import type { PluginManager } from "../Engine/PluginManager.js";
 
-const drawLayers = Object.values(DrawLayer).filter(
-    (layer): layer is DrawLayer => typeof layer === "number",
-  ),
+const drawLayers = Object.values(DrawLayer).filter((layer): layer is DrawLayer => typeof layer === "number"),
   fColorIndex = 0,
   sColorIndex = 1;
 
@@ -96,11 +91,7 @@ export class RenderManager {
    * @param container - the parent container
    * @param canvasManager - The canvasManager
    */
-  constructor(
-    pluginManager: PluginManager,
-    container: Container,
-    canvasManager: CanvasManager,
-  ) {
+  constructor(pluginManager: PluginManager, container: Container, canvasManager: CanvasManager) {
     this.#pluginManager = pluginManager;
     this.#container = container;
     this.#canvasManager = canvasManager;
@@ -140,13 +131,8 @@ export class RenderManager {
       return;
     }
 
-    this.draw((ctx) => {
-      ctx.clearRect(
-        originPoint.x,
-        originPoint.y,
-        this.#canvasManager.size.width,
-        this.#canvasManager.size.height,
-      );
+    this.draw(ctx => {
+      ctx.clearRect(originPoint.x, originPoint.y, this.#canvasManager.size.width, this.#canvasManager.size.height);
     });
   }
 
@@ -217,9 +203,7 @@ export class RenderManager {
    * @param cb - The cb
    * @returns the result of the callback
    */
-  draw<T>(
-    cb: (context: OffscreenCanvasRenderingContext2D) => T,
-  ): T | undefined {
+  draw<T>(cb: (context: OffscreenCanvasRenderingContext2D) => T): T | undefined {
     const ctx = this.#context;
 
     if (!ctx) {
@@ -262,12 +246,8 @@ export class RenderManager {
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
       nested = this.#drawingParticle,
-      transform: Partial<IParticleTransformValues> = nested
-        ? {}
-        : this.#reusableTransform,
-      colorStyles: IParticleColorStyle = nested
-        ? {}
-        : this.#reusableColorStyles,
+      transform: Partial<IParticleTransformValues> = nested ? {} : this.#reusableTransform,
+      colorStyles: IParticleColorStyle = nested ? {} : this.#reusableColorStyles,
       fill = fColor
         ? getStyleFromOklch(
             fColor,
@@ -304,14 +284,7 @@ export class RenderManager {
           plugin.drawParticleSetup?.(context, particle, delta);
         }
 
-        this.#applyPreDrawUpdaters(
-          context,
-          particle,
-          radius,
-          opacity,
-          colorStyles,
-          transform,
-        );
+        this.#applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
 
         this.#drawParticle({
           container,
@@ -344,7 +317,7 @@ export class RenderManager {
    * @param delta - the frame delta time values
    */
   drawParticlePlugins(particle: Particle, delta: IDelta): void {
-    this.draw((ctx) => {
+    this.draw(ctx => {
       for (const plugin of this.#drawParticlePlugins) {
         this.#drawParticlePlugin(ctx, plugin, particle, delta);
       }
@@ -375,25 +348,16 @@ export class RenderManager {
     /* update each particle before drawing */
     particles.update(delta);
 
-    this.draw((ctx) => {
+    this.draw(ctx => {
       const width = this.#canvasManager.size.width,
         height = this.#canvasManager.size.height;
 
       /* Layer 0 — BackgroundElement: background.element auto-draw */
       if (this.#backgroundElement) {
         try {
-          ctx.drawImage(
-            this.#backgroundElement,
-            originPoint.x,
-            originPoint.y,
-            width,
-            height,
-          );
+          ctx.drawImage(this.#backgroundElement, originPoint.x, originPoint.y, width, height);
         } catch {
-          this.#warnOnce(
-            "background-element-draw-error",
-            "Error drawing background element onto canvas",
-          );
+          this.#warnOnce("background-element-draw-error", "Error drawing background element onto canvas");
         }
       }
 
@@ -404,10 +368,7 @@ export class RenderManager {
         try {
           background.draw(ctx, delta);
         } catch {
-          this.#warnOnce(
-            "background-draw-error",
-            "Error in background.draw callback",
-          );
+          this.#warnOnce("background-draw-error", "Error in background.draw callback");
         }
       }
 
@@ -490,11 +451,7 @@ export class RenderManager {
         this.#postDrawUpdaters.push(updater);
       }
 
-      if (
-        updater.getColorStyles ??
-        updater.getTransformValues ??
-        updater.beforeDraw
-      ) {
+      if (updater.getColorStyles ?? updater.getTransformValues ?? updater.beforeDraw) {
         this.#preDrawUpdaters.push(updater);
       }
     }
@@ -526,14 +483,9 @@ export class RenderManager {
    * @param baseColor - The baseColor
    */
   paintBase(baseColor?: string): void {
-    this.draw((ctx) => {
+    this.draw(ctx => {
       ctx.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-      ctx.fillRect(
-        originPoint.x,
-        originPoint.y,
-        this.#canvasManager.size.width,
-        this.#canvasManager.size.height,
-      );
+      ctx.fillRect(originPoint.x, originPoint.y, this.#canvasManager.size.width, this.#canvasManager.size.height);
     });
   }
 
@@ -542,11 +494,8 @@ export class RenderManager {
    * @param image - The image
    * @param opacity - The opacity value
    */
-  paintImage(
-    image: HTMLImageElement | undefined | null,
-    opacity: number,
-  ): void {
-    this.draw((ctx) => {
+  paintImage(image: HTMLImageElement | undefined | null, opacity: number): void {
+    this.draw(ctx => {
       if (!image) {
         return;
       }
@@ -591,13 +540,8 @@ export class RenderManager {
 
   /** Stops the renderer and clears the canvas */
   stop(): void {
-    this.draw((ctx) => {
-      ctx.clearRect(
-        originPoint.x,
-        originPoint.y,
-        this.#canvasManager.size.width,
-        this.#canvasManager.size.height,
-      );
+    this.draw(ctx => {
+      ctx.clearRect(originPoint.x, originPoint.y, this.#canvasManager.size.width, this.#canvasManager.size.height);
     });
   }
 
@@ -622,12 +566,7 @@ export class RenderManager {
   ): void {
     for (const updater of this.#preDrawUpdaters) {
       if (updater.getColorStyles) {
-        const { fill, stroke } = updater.getColorStyles(
-          particle,
-          ctx,
-          radius,
-          zOpacity,
-        );
+        const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
 
         if (fill) {
           colorStyles.fill = fill;
@@ -642,11 +581,7 @@ export class RenderManager {
         const updaterTransform = updater.getTransformValues(particle);
 
         for (const key in updaterTransform) {
-          setTransformValue(
-            transform,
-            updaterTransform,
-            key as keyof IParticleTransformValues,
-          );
+          setTransformValue(transform, updaterTransform, key as keyof IParticleTransformValues);
         }
       }
 
@@ -654,10 +589,7 @@ export class RenderManager {
     }
   }
 
-  #drawAfterEffect(
-    drawer: IEffectDrawer | undefined,
-    data: IShapeDrawData,
-  ): void {
+  #drawAfterEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
     if (!drawer?.drawAfter) {
       return;
     }
@@ -671,10 +603,7 @@ export class RenderManager {
     drawer.drawAfter(data);
   }
 
-  #drawBeforeEffect(
-    drawer: IEffectDrawer | undefined,
-    data: IShapeDrawData,
-  ): void {
+  #drawBeforeEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
     if (!drawer?.drawBefore) {
       return;
     }
@@ -689,16 +618,7 @@ export class RenderManager {
   }
 
   #drawParticle(data: IDrawParticleParams): void {
-    const {
-        container,
-        context,
-        particle,
-        delta,
-        colorStyles,
-        radius,
-        opacity,
-        transform,
-      } = data,
+    const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
       { effectDrawers, shapeDrawers } = container,
       pos = particle.getPosition(),
       transformData = particle.getTransformData(transform),
@@ -708,14 +628,7 @@ export class RenderManager {
         y: pos.y,
       };
 
-    context.setTransform(
-      transformData.a,
-      transformData.b,
-      transformData.c,
-      transformData.d,
-      pos.x,
-      pos.y,
-    );
+    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
     if (colorStyles.fill) {
       context.fillStyle = colorStyles.fill;
@@ -751,9 +664,7 @@ export class RenderManager {
         plugin.drawParticleTransform?.(drawData);
       }
 
-      const effect = particle.effect
-          ? effectDrawers.get(particle.effect)
-          : undefined,
+      const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined,
         shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;
 
       this.#drawBeforeEffect(effect, drawData);
@@ -807,10 +718,7 @@ export class RenderManager {
     }
   }
 
-  #drawShapeAfterDraw(
-    drawer: IShapeDrawer | undefined,
-    data: IShapeDrawData,
-  ): void {
+  #drawShapeAfterDraw(drawer: IShapeDrawer | undefined, data: IShapeDrawData): void {
     if (!drawer?.afterDraw) {
       return;
     }
@@ -824,10 +732,7 @@ export class RenderManager {
     drawer.afterDraw(data);
   }
 
-  #drawShapeBeforeDraw(
-    drawer: IShapeDrawer | undefined,
-    data: IShapeDrawData,
-  ): void {
+  #drawShapeBeforeDraw(drawer: IShapeDrawer | undefined, data: IShapeDrawData): void {
     if (!drawer?.beforeDraw) {
       return;
     }
@@ -850,17 +755,11 @@ export class RenderManager {
 
     for (const plugin of this.#colorPlugins) {
       if (!fColor && plugin.particleFillColor) {
-        fColor = rangeColorToOklch(
-          this.#pluginManager,
-          plugin.particleFillColor(particle),
-        );
+        fColor = rangeColorToOklch(this.#pluginManager, plugin.particleFillColor(particle));
       }
 
       if (!sColor && plugin.particleStrokeColor) {
-        sColor = rangeColorToOklch(
-          this.#pluginManager,
-          plugin.particleStrokeColor(particle),
-        );
+        sColor = rangeColorToOklch(this.#pluginManager, plugin.particleStrokeColor(particle));
       }
 
       if (fColor && sColor) {
@@ -921,14 +820,10 @@ export class RenderManager {
 
   #isSupportedElement(element: unknown): boolean {
     return (
-      (typeof HTMLCanvasElement !== "undefined" &&
-        element instanceof HTMLCanvasElement) ||
-      (typeof OffscreenCanvas !== "undefined" &&
-        element instanceof OffscreenCanvas) ||
-      (typeof HTMLVideoElement !== "undefined" &&
-        element instanceof HTMLVideoElement) ||
-      (typeof HTMLImageElement !== "undefined" &&
-        element instanceof HTMLImageElement)
+      (typeof HTMLCanvasElement !== "undefined" && element instanceof HTMLCanvasElement) ||
+      (typeof OffscreenCanvas !== "undefined" && element instanceof OffscreenCanvas) ||
+      (typeof HTMLVideoElement !== "undefined" && element instanceof HTMLVideoElement) ||
+      (typeof HTMLImageElement !== "undefined" && element instanceof HTMLImageElement)
     );
   }
 

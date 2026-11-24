@@ -156,4 +156,4 @@ division. Positive fractional ranges and existing descending layer/ID order are
 preserved; no new practical cap or bucket representation is introduced. Public
 exports and option-loader interfaces are unchanged. See the
 [E7 method/ownership review](V5-E7-REVIEW.md) and its verification checkpoint;
-E9/E10 retain final package, browser-policy and release-budget ownership.
+E9/E10 retain final package, browser-policy and budget-verification ownership.

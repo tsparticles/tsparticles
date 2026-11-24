@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 closed on 2026-11-24; see the [ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E9–E10 remain open. This is the
+Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 closed on 2026-11-24; see the [ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E9 closed on 2026-11-24; E10 remains open. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -33,9 +33,12 @@ and numeric domains, spatial snapshots, sampling and public lifetime/mutability.
 Capture these rows in E0 and close them with their owning stage. Existing tests
 and optimizations cited in the review remain regression requirements.
 
-The mandatory sequence still ends at E10. [E11](V5-11-OPTIONAL-PLUGINS.md) is an
-optional follow-up for measured plugin improvements after E10; it does not defer
-mandatory fixes or make new plugins a release prerequisite.
+E0–E10 are the currently numbered gates, not a complete v5 release plan. E10
+closes only the requirements and checks already specified here. After E10,
+additional verification scope and a follow-up plan must be agreed before any
+release is considered. That work is not yet specified or numbered. [E11](V5-11-OPTIONAL-PLUGINS.md)
+is an optional follow-up for measured plugin improvements; it does not defer
+mandatory fixes or imply release authorization.
 
 ## Stages and exit gates
 
@@ -54,7 +57,7 @@ complete only with its evidence and the shared checks in the [index](README.md).
 | E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects    |
 | E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                 |
 | E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified             |
-| E10   | Release readiness and migration gate                        | Medium–high | Entire release                             | 10; IMP-01; C5 closure                      | All requirements, budgets, docs and CI gates closed; no implicit release authorization                |
+| E10   | Final currently scoped verification and migration gate     | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All currently specified requirements, budgets, docs and CI gates closed; further pre-release checks planned separately; no release authorization |
 
 ### E0 — Prepare evidence without changing the runtime
 
@@ -171,7 +174,7 @@ optional capabilities against final color/state and update-order semantics.
 Recheck resize/Retina, cleanup, custom updater identity, export and worker paths.
 Performance candidates require evidence; retaining current code is valid.
 
-### E8–E10 — Verify coverage, delivery and release readiness
+### E8–E10 — Verify coverage, candidate delivery and current gates
 
 E8 closes the matrix maintained since E0, including unchanged packages and
 representative external option loaders, derived classes and custom extensions.
@@ -180,19 +183,22 @@ composition and all supported bundlers. Recheck legacy retirement across workspa
 installers, docs/translations and shipped artifacts; do not wait until E9 to define
 which consumers or browsers earlier stages must support.
 
-E10 compares final artifacts with E0 using the same scenarios, closes audit and
-decision logs, runs the prescribed CI checks and validates the migration guide.
-Missed mandatory budgets, unsupported evidence or unresolved requirements keep the
-gate open. Versioning, commits and publication follow their separate authorization.
+E10 compares candidate artifacts with E0 using the same scenarios, closes audit
+and decision logs, runs the prescribed CI checks and validates the migration
+guide. Missed mandatory budgets, unsupported evidence or unresolved requirements
+keep the gate open. E10 is not release readiness or authorization. After E10,
+define and agree the additional verification and planning required before any
+release is considered; those checks are outside this sequence.
 
-### E11 — Optional plugin improvements after E10
+### E11 — Optional plugin improvement backlog
 
 Select candidates from [the optional backlog](V5-11-OPTIONAL-PLUGINS.md) using the
-verified E10 baseline. Initial priorities are links/triangles, external interaction
-allocations and movement/absorber/emitter calculations, followed by profiling of
-noise, masks, fluid, assets and remaining extensions. Each item has difficulty,
-impact, source evidence and acceptance constraints. Implement only measured wins;
-new capability packages need a separate demonstrated consumer benefit.
+verified E10 baseline. Schedule any work alongside the separately planned
+additional v5 verification. Initial priorities are links/triangles, external
+interaction allocations and movement/absorber/emitter calculations, followed by
+profiling of noise, masks, fluid, assets and remaining extensions. Each item has
+difficulty, impact, source evidence and acceptance constraints. Implement only
+measured wins; new capability packages need a separate demonstrated consumer benefit.
 
 ## Rules shared by every stage
 
@@ -220,10 +226,10 @@ new capability packages need a separate demonstrated consumer benefit.
 - [x] E6 — Collections and spatial index — method review, P1–P4/S1–S4 decisions, callback-safe draw and complete validation ([evidence](evidence/e6/closure/README.md))
 - [x] E7 — Rendering optimization and review closure — accepted 2026-11-24; final absolute-budget checks retained in E10 ([evidence](evidence/e7/closure/README.md))
 - [x] E8 — Ecosystem audit closure — 349 package manifests reconciled; owner-isolation regressions and 959-test primary suite pass; see [E8 closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)
-- [ ] E9 — Distribution and support closure
-- [ ] E10 — Release readiness
+- [x] E9 — Distribution and support closure — built/installed consumers, local HTTP browser candidates, bundler matrix and retirement evidence; the pre-existing public 4.6.0 CDN artifact is recorded as context ([E9 evidence](evidence/e9/README.md))
+- [ ] E10 — Final currently scoped verification and migration gate
 
-Next action: **E9 distribution and support closure**. E8 closed its package/family audit with the G1–G7 findings, build outcomes, test-defined custom extension scenario and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md). E6 is complete:
+Next action: **E10 final currently scoped verification**. After E10, agree a separate plan for any further pre-release checks before considering release. E8 closed its package/family audit with the G1–G7 findings, build outcomes, test-defined custom extension scenario and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md). E6 is complete:
 926 primary tests, 85 test targets, 453 build tasks, 135 matrix and 108 confirmation
 snapshots, plus extended RNG/count/retention verification. The method inventory,
 P1–P4/S1–S4 tradeoffs and final artifact are linked in the completion evidence.
@@ -238,7 +244,7 @@ are recorded in the [acceptance](evidence/e5/closure/README.md).
 The user explicitly accepted the remaining M4/500 deviation for E5: quiet
 update 3.70 ms vs E0 ceiling 3.52; frame p95 7.50 vs matched E4 6.50
 (screen 7.15). Keep these values and the inherited M6/500 release item in
-E10; the exception does not change budgets or close release readiness.
+E10; the exception does not change budgets or close overall v5 validation.
 Current M4 draw medians are 2.40/8.30 ms at 500/1000, within E0 ceilings.
 All 135 scene snapshots match E4. Bundle growth is waived for E5 and current
 complete payload deltas remain recorded. No source color work is deferred.

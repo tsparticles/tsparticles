@@ -1,0 +1,871 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "runs": [
+    {
+      "cache": "cold",
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0,
+        "featureRegistration": 0.19999998807907104,
+        "sceneLoad": 12.5,
+        "totalThroughCleanup": 16.099999964237213
+      }
+    },
+    {
+      "cache": "warm",
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0.09999996423721313,
+        "featureRegistration": 0,
+        "sceneLoad": 4.200000047683716,
+        "totalThroughCleanup": 5.399999976158142
+      }
+    }
+  ],
+  "basicRuns": [
+    {
+      "cache": "cold",
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0.19999998807907104,
+        "featureRegistration": 0.10000002384185791,
+        "sceneLoad": 7.699999988079071,
+        "totalThroughCleanup": 10.399999976158142
+      }
+    },
+    {
+      "cache": "warm",
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0,
+        "featureRegistration": 0,
+        "sceneLoad": 4,
+        "totalThroughCleanup": 5
+      }
+    }
+  ],
+  "remoteCdn": {
+    "scripts": [
+      "https://cdn.jsdelivr.net/npm/@tsparticles/engine@4.6.0/tsparticles.engine.min.js",
+      "https://cdn.jsdelivr.net/npm/@tsparticles/basic@4.6.0/tsparticles.basic.bundle.min.js"
+    ],
+    "responses": [
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/engine@4.6.0/tsparticles.engine.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/basic@4.6.0/tsparticles.basic.bundle.min.js",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "compatible": false,
+    "result": {
+      "exposedExports": [
+        "pluginManager"
+      ],
+      "finding": "The published engine URL does not expose the explicit createEngine bootstrap used by the checked-in v5 browser contract."
+    }
+  },
+  "remoteEsm": {
+    "modules": [
+      "https://cdn.jsdelivr.net/npm/@tsparticles/engine@4.6.0/+esm",
+      "https://cdn.jsdelivr.net/npm/@tsparticles/basic@4.6.0/+esm"
+    ],
+    "responses": [
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/basic@4.6.0/+esm",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "https://cdn.jsdelivr.net",
+        "url": "/npm/@tsparticles/engine@4.6.0/+esm",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "result": {
+      "compatible": false,
+      "engineExports": [
+        "AlterType",
+        "AnimatableColor",
+        "AnimationMode",
+        "AnimationOptions",
+        "AnimationStatus",
+        "AnimationValueWithRandom",
+        "Background",
+        "BaseRange",
+        "Circle",
+        "ColorAnimation",
+        "DestroyType",
+        "DrawLayer",
+        "ErrorCodes",
+        "EventType",
+        "Fill",
+        "FullScreen",
+        "GradientType",
+        "HDROptions",
+        "HdrMode",
+        "HslAnimation",
+        "LimitMode",
+        "Move",
+        "MoveAngle",
+        "MoveCenter",
+        "MoveDirection",
+        "MoveGravity",
+        "MovePath",
+        "OptionLoader",
+        "Options",
+        "OptionsColor",
+        "OutMode",
+        "OutModeDirection",
+        "OutModes",
+        "Paint",
+        "ParticleOutType",
+        "ParticlesBounce",
+        "ParticlesBounceFactor",
+        "ParticlesDensity",
+        "ParticlesNumber",
+        "ParticlesNumberLimit",
+        "ParticlesOptions",
+        "PixelMode",
+        "RangedAnimationOptions",
+        "RangedAnimationValueWithRandom",
+        "Rectangle",
+        "ResizeEvent",
+        "RotateDirection",
+        "Shape",
+        "Spin",
+        "StartValueType",
+        "Stroke",
+        "ValueWithRandom",
+        "Vector",
+        "Vector3d",
+        "ZIndex",
+        "addErrorMessages",
+        "alterHsl",
+        "animate",
+        "areBoundsInside",
+        "calcExactPositionOrRandomFromSize",
+        "calcPositionFromSize",
+        "calcPositionOrRandomFromSize",
+        "calcPositionOrRandomFromSizeRanged",
+        "calculateBounds",
+        "cancelAnimation",
+        "canvasFirstIndex",
+        "canvasTag",
+        "checkDistance",
+        "circleBounce",
+        "circleBounceDataFromParticle",
+        "clamp",
+        "cloneStyle",
+        "collisionVelocity",
+        "colorMix",
+        "colorToRgb",
+        "countOffset",
+        "decayOffset",
+        "deepExtend",
+        "defaultAlpha",
+        "defaultAngle",
+        "defaultCompositeValue",
+        "defaultDensityFactor",
+        "defaultFps",
+        "defaultFpsLimit",
+        "defaultLoops",
+        "defaultOpacity",
+        "defaultRatio",
+        "defaultReduceFactor",
+        "defaultRemoveQuantity",
+        "defaultRetryCount",
+        "defaultRgbMin",
+        "defaultTime",
+        "defaultTransform",
+        "defaultTransformValue",
+        "defaultVelocity",
+        "defaultZoom",
+        "degToRad",
+        "deleteCount",
+        "double",
+        "doublePI",
+        "empty",
+        "executeOnSingleOrMultiple",
+        "fullPercent",
+        "generatedAttribute",
+        "generatedFalse",
+        "generatedTrue",
+        "getCanvasFromContainer",
+        "getDataFromUrl",
+        "getDistance",
+        "getDistanceSq",
+        "getDistances",
+        "getDomContainer",
+        "getErrorMessage",
+        "getFullScreenStyle",
+        "getHslAnimationFromHsl",
+        "getHslFromAnimation",
+        "getItemMapFromInitializer",
+        "getItemsFromInitializer",
+        "getLinkColor",
+        "getLinkRandomColor",
+        "getLogger",
+        "getParticleBaseVelocity",
+        "getParticleDirectionAngle",
+        "getPosition",
+        "getRandom",
+        "getRandomFn",
+        "getRandomInRange",
+        "getRandomRgbColor",
+        "getRangeMax",
+        "getRangeMin",
+        "getRangeValue",
+        "getStyleFromHsl",
+        "getStyleFromRgb",
+        "hMax",
+        "hMin",
+        "hPhase",
+        "half",
+        "hslToRgb",
+        "hslToRgbFloat",
+        "hslaToRgba",
+        "hypot",
+        "identity",
+        "inverseFactorNumerator",
+        "isArray",
+        "isBoolean",
+        "isEnumValue",
+        "isFunction",
+        "isInArray",
+        "isNull",
+        "isNumber",
+        "isObject",
+        "isPointInside",
+        "isString",
+        "itemFromArray",
+        "itemFromSingleOrMultiple",
+        "lFactor",
+        "lMax",
+        "lMin",
+        "lengthOffset",
+        "loadExtendProperty",
+        "loadLazyProperty",
+        "loadMinIndex",
+        "loadNestedProperty",
+        "loadOptionProperty",
+        "loadOptions",
+        "loadParticlesOptions",
+        "loadProperty",
+        "loadRandomFactor",
+        "loadRangeProperty",
+        "manageListener",
+        "maxNits",
+        "midColorValue",
+        "millisecondsToSeconds",
+        "minCount",
+        "minDistance",
+        "minFpsLimit",
+        "minIndex",
+        "minLimit",
+        "minRadius",
+        "minStrokeWidth",
+        "minVelocity",
+        "minZ",
+        "minimumSize",
+        "mix",
+        "none",
+        "one",
+        "originPoint",
+        "parseAlpha",
+        "percentDenominator",
+        "phaseNumerator",
+        "quarter",
+        "randomColorValue",
+        "randomInRangeValue",
+        "rangeColorToHsl",
+        "rangeColorToRgb",
+        "removeDeleteCount",
+        "removeMinIndex",
+        "resizeEvent",
+        "rgbMax",
+        "rgbToHsl",
+        "sMax",
+        "sMin",
+        "sNormalizedOffset",
+        "safeDocument",
+        "safeMatchMedia",
+        "safeMutationObserver",
+        "setAnimationFunctions",
+        "setLogger",
+        "setRandom",
+        "setRangeValue",
+        "sextuple",
+        "spatialHashGridCellSize",
+        "squareExp",
+        "stringToAlpha",
+        "stringToRgb",
+        "threeQuarter",
+        "toEnumValue",
+        "triple",
+        "tryCountIncrement",
+        "tsParticles",
+        "updateColor",
+        "updateColorValue",
+        "visibilityChangeEvent",
+        "zIndexFactorOffset"
+      ],
+      "basicExports": [
+        "loadBasic"
+      ],
+      "globalsBefore": [],
+      "globalsAfter": [
+        "pluginManager"
+      ],
+      "globalsChanged": true
+    }
+  },
+  "moduleScript": {
+    "hasFactory": true,
+    "count": 100,
+    "remainingContainers": 0
+  },
+  "webpackMinified": {
+    "result": {
+      "hasFactory": true,
+      "hasBasicLoader": true,
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0.19999998807907104,
+        "featureRegistration": 0.10000002384185791,
+        "sceneLoad": 17.19999998807907,
+        "totalThroughCleanup": 18
+      }
+    },
+    "requests": [
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/117.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/79.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/717.min.js",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "emittedChunks": [
+      "/bundles/basic/dist/117.min.js",
+      "/bundles/basic/dist/717.min.js",
+      "/bundles/basic/dist/79.min.js"
+    ]
+  },
+  "webpackUnminified": {
+    "result": {
+      "hasFactory": true,
+      "hasBasicLoader": true,
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0.19999998807907104,
+        "featureRegistration": 0,
+        "sceneLoad": 17,
+        "totalThroughCleanup": 17.69999998807907
+      }
+    },
+    "requests": [
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js",
+        "status": 200,
+        "fromCache": false
+      }
+    ],
+    "emittedChunks": [
+      "/bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+      "/bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+      "/bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js"
+    ]
+  },
+  "webpackExternal": {
+    "result": {
+      "hasFactory": true,
+      "hasBasicLoader": true,
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0,
+        "featureRegistration": 0,
+        "sceneLoad": 4.100000023841858,
+        "totalThroughCleanup": 4.300000011920929
+      }
+    },
+    "requests": [
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/engine/dist/tsparticles.engine.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+        "status": 200,
+        "fromCache": true
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/plugins/blend/dist/tsparticles.plugin.blend.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/plugins/colors/hsl/dist/tsparticles.plugin.hslColor.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/plugins/colors/rgb/dist/tsparticles.plugin.rgbColor.min.js",
+        "status": 200,
+        "fromCache": false
+      },
+      {
+        "origin": "http://127.0.0.1:53678",
+        "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.min.js",
+        "status": 200,
+        "fromCache": false
+      }
+    ]
+  },
+  "requests": [
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/engine/dist/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/engine/dist/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/engine@4.6.0/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/basic@4.6.0/tsparticles.basic.bundle.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/basic@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/engine@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/shape-circle@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/plugin-blend@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/plugin-hex-color@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/plugin-hsl-color@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/updater-size@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/updater-opacity@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/plugin-rgb-color@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/plugin-move@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/updater-out-modes@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/updater-paint@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "https://cdn.jsdelivr.net",
+      "url": "/npm/@tsparticles/animation-utils@4.6.0/+esm",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/117.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/79.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/717.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/engine/dist/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/blend/dist/tsparticles.plugin.blend.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/colors/hsl/dist/tsparticles.plugin.hslColor.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/plugins/colors/rgb/dist/tsparticles.plugin.rgbColor.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "origin": "http://127.0.0.1:53678",
+      "url": "/bundles/basic/dist/tsparticles.tsparticles.basic.min.js",
+      "status": 200,
+      "fromCache": false
+    }
+  ],
+  "errors": [],
+  "compression": "See cdn-candidate.json; HTTP test serves uncompressed bytes",
+  "limits": "Remote CDN checks cover engine + Basic classic scripts and jsDelivr +esm module entrypoints; CDN cache/version behavior and other lazy chunks are not tested. Local Webpack checks cover minified/unminified standalone and external compositions."
+}

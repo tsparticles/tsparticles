@@ -47,5 +47,6 @@ The [coverage review](V5-CODE-REVIEW.md) adds mandatory correctness/contract che
 to existing owners. Performance candidates discovered outside the original six
 IMP plans are tracked in [optional E11](V5-11-OPTIONAL-PLUGINS.md): links, external
 interactions, movement/absorbers/emitters, noise/paths, masks/sampling, collision
-consumers, assets and the remaining extension families. E11 starts after E10 and
-is excluded from the requirement to close every mandatory IMP at gate 10.
+consumers, assets and the remaining extension families. E11 is optional and is
+excluded from the requirement to close every mandatory IMP at E10. Its timing
+must be coordinated with the additional verification plan after E10.

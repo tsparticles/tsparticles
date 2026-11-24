@@ -3,7 +3,7 @@
 E7 implementation, full source review and matched incremental verification are
 complete. The user accepts E7 on 2026-11-24 with final absolute-budget checks
 retained in E10. E6’s accepted baseline is preserved. Original ceilings and
-recorded exceedances remain unchanged; release readiness is not established.
+recorded exceedances remain unchanged; overall v5 validation is not established.
 
 ## Initial review and repair
 
@@ -107,6 +107,6 @@ automatically covered by the E5 exception.
 
 The user explicitly accepts technical E7 closure with final checks in E10:
 “sì va bene che E10 faccia i check finali”. E7 is complete; E8 is next. Every
-original absolute ceiling and release-time check remains an E10 obligation.
+original absolute ceiling and final currently scoped check remain an E10 obligation.
 This authorizes stage closure, not release, publication or a release-budget waiver.
 No commit, merge or publication is performed.

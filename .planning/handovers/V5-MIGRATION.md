@@ -2,7 +2,7 @@
 
 Status: E0 complete; E1 retirement verified and engine/consumer migration in progress; E2 service APIs and acceptance checks are complete. The engine/convenience APIs below are implemented in the working tree;
 consumer verification is ongoing. Do not publish these instructions as a
-completed v5 release guide until installed-consumer checks pass in E1/E9/E10.
+completed v5 migration guide until installed-consumer checks pass in E1/E9/E10.
 
 ## Engine ownership
 

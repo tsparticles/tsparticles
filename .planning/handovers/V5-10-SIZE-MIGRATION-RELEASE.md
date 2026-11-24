@@ -1,4 +1,4 @@
-# V5-10 — Size, migration, and release readiness gates
+# V5-10 — Size, migration, and final currently scoped verification
 
 Status pending. Execute in E10 after verified E0–E9 gates and completion of
 all technical handovers 01–09. See the [execution sequence](V5-EXECUTION.md).
@@ -8,8 +8,10 @@ all technical handovers 01–09. See the [execution sequence](V5-EXECUTION.md).
 Bundle reports, budgets, and CI checks, integration and package consumer tests,
 distributed manifests, changelogs, READMEs, guides, translations, demos,
 templates, code generation, and final planning. Coordinate regression fixes
-with earlier owners and preserve other contributors' changes. Publishing,
-deployment, and version bumps belong to the separate release workflow.
+with earlier owners and preserve other contributors' changes. This handover
+does not include or authorize a release, version bump, deployment, or package
+publication. E10 closes only currently specified checks; after E10, agree a
+separate plan for additional verification before considering any release.
 
 ## Work
 
@@ -63,10 +65,12 @@ for compatibility claims. Files or packages without an outcome keep the gate ope
 
 ## Deliverables
 
-Provide final status for every V5 requirement, a reproducible report, and
-reproduction steps for remaining issues. Keep v5 open while any required gate
-is unmet. Record environment limitations as such. Leave commits, tags,
-versioning, publishing, and deployment to the separate release workflow.
+Provide final status for every currently specified V5 requirement, a
+reproducible report, and reproduction steps for remaining issues. Keep v5 open
+while any required gate is unmet. Record environment limitations as such.
+Completing E10 does not establish overall v5 validation or authorize release.
+After E10, agree the additional pre-release verification and planning needed;
+that scope is not yet specified. Release and publication tasks are excluded.
 
 ## Performance and size plans
 
@@ -110,7 +114,7 @@ and browser coverage. Confirm remaining supported fallback paths in built artifa
 Collect G1–G7 dispositions from the [source review](V5-CODE-REVIEW.md), including
 failure/lifecycle, timing/numeric, sampling and spatial regression evidence.
 Unresolved mandatory checks keep E10 open. The [optional E11 backlog](V5-11-OPTIONAL-PLUGINS.md)
-is explicitly excluded from release-readiness completion; if later investigation
+is explicitly excluded from E10 completion; if later investigation
 finds a correctness defect, return it to the responsible mandatory gate.
 
 ## E5 acceptance exceptions requiring final E10 verification — 2026-11-23
@@ -131,7 +135,7 @@ the original budgets or report the measured exceedances as passing.
       extended p95 1.40 passes the 1.65 ceiling, but does not close E10 early.
 - [ ] Review final consumer, distribution and all-chunk size deltas. The user
       waived bundle growth for E5; this is not a claim that the 2% targets pass.
-- [ ] Complete final supported-browser, physical HDR and release checks with
+- [ ] Complete the currently scoped supported-browser and physical HDR checks with
       their recorded support-policy limitations. E5 headless readback does not
       certify display output or GPU completion.
 
@@ -157,7 +161,7 @@ not a release-budget waiver or an extension of the earlier E5 exception.
       and the original Google Chrome measurements. Fresh E6 controls also exceed
       several ceilings; this does not waive those ceilings.
 - [ ] Recheck SDR/HDR M6/M8 update/render/p95 and retention on final artifacts.
-      E7's relative flags pass repeated confirmation; original release checks
+      E7's relative flags pass repeated confirmation; the original final checks
       and inherited M6 obligations still require final verification.
 - [ ] Recheck final minimal/all-chunk and standalone payloads against original
       size targets. E7 increments are +130 gzip/+140 Brotli bytes for minimal

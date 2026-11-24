@@ -248,6 +248,8 @@ export const getIifeGlobalsBootstrap = (): string => {
       "shapes",
       "updaters",
       "utils",
+      "animation",
+      "animation.utils",
       "canvas",
       "canvas.utils",
       "path",
@@ -282,6 +284,8 @@ export const getIifeGlobalsBootstrap = (): string => {
     `g.__tsParticlesInternals.shapes=__tsProxyFactory(g.__tsParticlesInternals.shapes);` +
     `g.__tsParticlesInternals.updaters=__tsProxyFactory(g.__tsParticlesInternals.updaters);` +
     `g.__tsParticlesInternals.utils=__tsProxyFactory(g.__tsParticlesInternals.utils);` +
+    `g.__tsParticlesInternals.animation=__tsProxyFactory(g.__tsParticlesInternals.animation);` +
+    `g.__tsParticlesInternals.animation.utils=__tsProxyFactory(g.__tsParticlesInternals.animation.utils);` +
     `g.__tsParticlesInternals.canvas=__tsProxyFactory(g.__tsParticlesInternals.canvas);` +
     `g.__tsParticlesInternals.path=__tsProxyFactory(g.__tsParticlesInternals.path);` +
     `})(typeof globalThis!=="undefined"?globalThis:typeof window!=="undefined"?window:this);\n`

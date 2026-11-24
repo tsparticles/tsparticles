@@ -204,7 +204,7 @@ No production changes, commit or publication.
   Matched nine-repetition confirmation gives baseline/candidate update 1.40/1.40,
   draw 1.10/1.10 and p95 3.00/3.00 ms; all 27 confirmation snapshots match.
   Keep the original flags and the confirmation, rather than overwriting results.
-  E5's accepted M4/500 and inherited M6 release exceptions still belong to E10.
+  E5's accepted M4/500 and inherited M6 final budget checks still belong to E10.
 - Current extension/lifecycle harness: **18 samples**, stable RNG in all six
   scenario/count groups; all containers removed; DOM stable at nine nodes;
   no live media listeners. After the measured peak, 30 retention cycles add

@@ -1,7 +1,7 @@
 # V5-ARCH-02 — Engine boundaries and possible package split
 
 Status pending evaluation. Owner 03, consumers in 08, distribution in 09, and
-release gate in 10. Requires draft ARCH-01/03/04 contracts and the full engine audit.
+final currently scoped verification in E10. Requires draft ARCH-01/03/04 contracts and the full engine audit.
 
 ## Evidence and starting recommendation
 

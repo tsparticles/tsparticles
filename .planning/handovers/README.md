@@ -2,7 +2,7 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**E0–E8 complete; E9 next**. See the [E8 ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
+**E0–E9 complete; E10 open**. See [E8 ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24) and the [E9 distribution evidence](evidence/e9/README.md). E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
 [the evidence report](V5-BUNDLE-REPORT.md) and [E1 retirement checkpoint](V5-E1-RETIREMENT.md)
 for measurements and limitations. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.
@@ -44,8 +44,10 @@ migrating integrations that v5 will remove.
 
 Agents must read `AGENTS.md`, this index, the execution plan and relevant technical
 handovers before editing source. Preserve other contributors' changes and record
-files, decisions, commands and results. Commits, publishing and releases require
-separate authorization.
+files, decisions, commands and results. E0–E10 contain no release or publication
+step. E10 is not overall v5 validation: after E10, agree a separate plan for the
+additional pre-release checks required before considering any release. Commits,
+publishing and releases require separate authorization.
 
 ## Original checkout evidence (E0, before implementation)
 
@@ -219,9 +221,10 @@ and maps them into E1–E8, with final verification in E10. Read it with the own
 handover before implementation. It preserves existing regression coverage and
 adds explicit resource, numeric, clock, spatial and sampling contracts.
 
-After E10, [optional E11](V5-11-OPTIONAL-PLUGINS.md) evaluates existing plugin
-performance beyond the mandatory migration. Its candidates need profiling;
-there are no claimed savings or mandatory new visual plugins.
+The [optional E11](V5-11-OPTIONAL-PLUGINS.md) backlog evaluates existing plugin
+performance beyond the mandatory migration. Its timing will be coordinated with
+the additional verification plan after E10. Candidates need profiling; there are
+no claimed savings or mandatory new visual plugins.
 
 ## Plan status
 

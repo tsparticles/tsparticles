@@ -423,4 +423,4 @@ ARCH-04 is closed by the accepted decision in
 `V5-ARCHITECTURE-DECISIONS.md`: keep specialized capability registries and share
 policy only; no universal hook descriptor/runtime dispatch. CDN, browser matrix,
 and ESM/CJS package-consumer composition are E9 gates. Final absolute budgets
-and release-readiness checks remain E10 gates.
+and final currently scoped validation checks remain E10 gates.

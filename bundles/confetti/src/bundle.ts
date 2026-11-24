@@ -4,11 +4,11 @@ import { createEngine } from "@tsparticles/engine";
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   createConfetti?: typeof createConfetti;
-  tsParticles?: { createEngine: typeof createEngine };
+  tsParticles?: { createEngine?: typeof createEngine };
 };
 
 globalObject.createConfetti = createConfetti;
-globalObject.tsParticles = { ...globalObject.tsParticles, createEngine };
+Object.assign((globalObject.tsParticles ??= {}), { createEngine });
 
 export * from "./index.js";
 export * from "@tsparticles/engine";

@@ -15,7 +15,7 @@ export interface IRibbonsOptions {
   emitterSize: IDimension;
 
   /**
-   * @deprecated use position instead
+   * @deprecated use positionX instead
    */
   origin: ICoordinates;
 

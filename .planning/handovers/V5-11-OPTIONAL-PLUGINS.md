@@ -1,8 +1,8 @@
 # V5 — E11 optional plugin performance and coverage backlog
 
-Status: optional, pending profiling. Scheduled **after E10**, outside the mandatory
-v5 release-readiness gate. This is an extension to the [execution sequence](V5-EXECUTION.md),
-not permission to implement it now. It covers existing plugins omitted from the
+Status: optional, pending profiling and scheduling. Timing is not set; the
+additional v5 verification plan required after E10 must be agreed first. This
+is an extension to the [execution sequence](V5-EXECUTION.md), not permission to implement it now. It covers existing plugins omitted from the
 previous detailed performance plans; new packages are only conditional extraction
 candidates. Do not move mandatory fixes, migration, isolation, color fidelity or
 [G1–G7](V5-CODE-REVIEW.md) into this optional backlog.
@@ -10,7 +10,7 @@ candidates. Do not move mandatory fixes, migration, isolation, color fidelity or
 ## Entry and decision protocol
 
 - Use the verified E10 artifacts and contracts as the new experiment baseline;
-  keep E0 comparisons for release-level costs. Apply IMP-01 measurement methods.
+  keep E0 comparisons for full-v5 cost measurements. Apply IMP-01 methods.
 - Record profiles first: self/total CPU, allocation/heap, p95 frame/startup cost,
   workload dimensions and bundle bytes. These are source-supported hypotheses,
   not demonstrated bottlenecks or promised savings.

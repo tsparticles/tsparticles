@@ -3,7 +3,7 @@
 Status complete. E3 shared-contract gate is verified; lifecycle changes,
 regressions, compressed-size results and matched headless runtime/retention
 evidence pass. The small M6/500 and M8/500 p95 ceiling exceedances are carried
-to the E10 release performance gate. See [E4 evidence](evidence/e4/measurement-status.md).
+to the E10 performance verification gate. See [E4 evidence](evidence/e4/measurement-status.md).
 See the [execution sequence](V5-EXECUTION.md).
 
 ## Lifecycle transition table

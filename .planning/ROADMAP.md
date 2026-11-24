@@ -18,14 +18,17 @@ V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
 ## Current execution — v5 major
 
-Status on 2026-11-24: E0–E8 complete; [E7 acceptance](handovers/evidence/e7/closure/README.md), with user-approved final absolute-budget checks in E10. E5 includes the user-approved
+Status on 2026-11-24: E0–E9 complete; E10 remains open. See [E7 acceptance](handovers/evidence/e7/closure/README.md), with user-approved final absolute-budget checks in E10. E5 includes the user-approved
 M4/500 runtime exception with final E10 verification, alongside the earlier
 bundle-growth exception. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
 
-**Status.** E0–E8 complete on branch `v5`, with package version `4.6.0`.
-E9–E10 remain open. Follow the [handover index](handovers/README.md).
+**Status.** E0–E9 complete on branch `v5`, with package version `4.6.0`.
+E10 remains open. Follow the [handover index](handovers/README.md).
 
 Use the [dependency-driven E0–E10 sequence](handovers/V5-EXECUTION.md).
+These are the currently scoped gates, not full v5 release readiness. E10 does
+not authorize a release. After E10, agree and document additional pre-release
+verification before considering any release; that work is not yet scoped.
 Handover filenames retain their original topic IDs; they are not chronological.
 
 1. **E0:** capture baseline/budgets, inventory consumers, define retirement and browser scope.
@@ -38,7 +41,7 @@ Handover filenames retain their original topic IDs; they are not chronological.
 8. **E7:** complete canvas review and optimize rendering against the final model.
 9. **E8:** close ecosystem compatibility coverage accumulated throughout implementation.
 10. **E9:** finalize packaging/CDN/lazy composition and verify legacy cleanup.
-11. **E10:** close budgets, full verification, migration documentation and release readiness.
+11. **E10:** close currently specified budgets, verification, and migration documentation.
 
 The sequence includes difficulty, impact and exit gates. [Architecture evaluations](handovers/V5-ARCHITECTURE.md)
 feed E3 contracts; [OKLCH C1–C4](handovers/V5-COLORS-OKLCH.md) form the coordinated E5
@@ -54,11 +57,14 @@ package, installer, template, documentation and translation cleanup.
 The [source-based coverage review](handovers/V5-CODE-REVIEW.md) adds explicit
 G1–G7 checks to the relevant E1–E8 stages, closed in E8. It covers resource
 ownership, async failures, timing/numeric domains, spatial snapshots and sampling.
-After E10, [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) profiles and evaluates
-additional plugin optimizations. It does not block v5 or defer mandatory fixes.
+After E10, additional pre-release verification must first be scoped and planned.
+The [optional E11](handovers/V5-11-OPTIONAL-PLUGINS.md) profiles and evaluates
+plugin optimizations; its timing will be coordinated with that plan. It does not
+replace mandatory checks, block current gates, or authorize a release.
 
-No implementation step is complete yet. Historical fluid references to “v5” below
-identify a solver-plan revision, not this product major release.
+No release or publication is part of the current E0–E10 sequence. Historical
+fluid references to “v5” below identify a solver-plan revision, not this product
+major release.
 
 ## Phase Details — released 4.x history
 

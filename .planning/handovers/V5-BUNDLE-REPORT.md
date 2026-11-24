@@ -213,7 +213,7 @@ ceiling 3.52; frame p95 is 7.50 vs matched E4 6.50 (screen 7.15). Original
 budgets remain unchanged and these results remain exceedances. The earlier
 bundle-growth exception also applies only to E5. See the
 [E5 acceptance](evidence/e5/closure/README.md) and the E10 checklist; neither
-exception establishes final release readiness.
+exception establishes completion of the remaining v5 validation gates.
 
 ### E7 accepted; final absolute checks retained in E10 — 2026-11-24
 
@@ -229,5 +229,5 @@ unchanged. Relative runtime flags pass repeated confirmation. Original E0
 absolute exceedances remain recorded, including fresh E6 control exceedances;
 original ceilings are not changed or reported as passing. E10 must complete
 final runtime, size and supported-environment verification. This accepts E7,
-not release readiness or a release-budget waiver. See [E7 acceptance](evidence/e7/closure/README.md)
+not overall v5 validation or a budget waiver. See [E7 acceptance](evidence/e7/closure/README.md)
 and the [E10 checklist](V5-10-SIZE-MIGRATION-RELEASE.md).

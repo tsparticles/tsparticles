@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tsParticles E9 browser smoke</title>
+  </head>
+  <body>
+    <canvas id="scene-a" width="320" height="180"></canvas>
+    <canvas id="scene-b" width="320" height="180"></canvas>
+    <pre id="result">RUNNING</pre>
+    <script type="module">
+      const params = new URLSearchParams(location.search),
+        bundler = params.get("bundler") ?? "rollup",
+        base = params.get("base"),
+        results = { bundler, errors: [] },
+        before = new Set(Object.keys(globalThis));
+
+      addEventListener("error", event => results.errors.push(event.message));
+      addEventListener("unhandledrejection", event => results.errors.push(String(event.reason)));
+
+      const assetUrl = src => (base ? new URL(src.replace(/^\/+/, ""), base).href : new URL(src, location.origin).href);
+
+      const include = src =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+
+          script.src = assetUrl(src);
+          script.onload = resolve;
+          script.onerror = () => reject(new Error(`Failed script: ${src}`));
+          document.head.append(script);
+        });
+
+      try {
+        const basicPath =
+          bundler === "webpack"
+            ? "/bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js"
+            : "/bundles/basic/dist/tsparticles.basic.bundle.min.js";
+
+        await include(basicPath);
+        const namespace = globalThis.tsParticles,
+          factoryA = namespace.createEngine,
+          engineA = factoryA();
+
+        await globalThis.loadBasic(engineA);
+        await include(basicPath);
+        const namespacePreserved = globalThis.tsParticles === namespace,
+          engineB = globalThis.tsParticles.createEngine();
+
+        await include("/bundles/slim/dist/tsparticles.slim.bundle.min.js");
+        await globalThis.loadSlim(engineB);
+        const options = {
+          autoPlay: false,
+          fullScreen: false,
+          particles: { number: { value: 5 }, move: { enable: false }, size: { value: 3 } },
+        };
+        const sceneA = await engineA.load({ id: "scene-a", element: document.querySelector("#scene-a"), options }),
+          sceneB = await engineB.load({ id: "scene-b", element: document.querySelector("#scene-b"), options });
+
+        let mismatchRejected = false,
+          versionMismatchMessage;
+
+        try {
+          engineA.checkVersion("0.0.0-e9-probe");
+        } catch (error) {
+          versionMismatchMessage = error.message;
+          mismatchRejected = /version|TSP-1001/i.test(versionMismatchMessage);
+        }
+
+        const counts = [sceneA.particles.count, sceneB.particles.count],
+          globalWrites = Object.keys(globalThis).filter(key => !before.has(key));
+
+        sceneA.destroy();
+        sceneB.destroy();
+        results.checks = {
+          factoryAvailable: typeof factoryA === "function",
+          repeatedScriptPreservedNamespace: namespacePreserved,
+          twoDistinctEngines: engineA !== engineB && engineA.pluginManager !== engineB.pluginManager,
+          basicAndSlimLoaded: true,
+          sceneParticleCounts: counts,
+          containersAfterDestroy: [engineA.items.length, engineB.items.length],
+          versionMismatchRejected: mismatchRejected,
+          versionMismatchMessage,
+          globalWrites,
+        };
+
+        if (
+          !results.checks.factoryAvailable ||
+          !namespacePreserved ||
+          engineA === engineB ||
+          counts.some(count => count !== 5) ||
+          engineA.items.length !== 0 ||
+          engineB.items.length !== 0 ||
+          !mismatchRejected ||
+          results.errors.length
+        ) {
+          throw new Error("One or more browser smoke checks failed");
+        }
+
+        results.status = "passed";
+      } catch (error) {
+        results.status = "failed";
+        results.errors.push(error.stack ?? String(error));
+      }
+
+      document.querySelector("#result").textContent = JSON.stringify(results, null, 2);
+      document.body.dataset.status = results.status;
+    </script>
+  </body>
+</html>

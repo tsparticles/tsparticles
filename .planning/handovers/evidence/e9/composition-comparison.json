@@ -1,0 +1,360 @@
+{
+  "measuredAt": "2026-11-24",
+  "browser": "Chrome/158.0.8127.38",
+  "scene": "Same checked-in E1 100-particle options across the nine-file selective feature set, Rollup Basic aggregate, Webpack Basic standalone, and Webpack external Basic composition. Browser runs returned 100 particles and destroyed all containers.",
+  "compression": {
+    "gzipLevel": 9,
+    "brotliQuality": 11
+  },
+  "selective": {
+    "files": [
+      {
+        "file": "engine/dist/tsparticles.engine.min.js",
+        "raw": 100276,
+        "gzip": 32578,
+        "brotli": 27776
+      },
+      {
+        "file": "utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+        "raw": 5644,
+        "gzip": 1246,
+        "brotli": 1117
+      },
+      {
+        "file": "shapes/circle/dist/tsparticles.shape.circle.min.js",
+        "raw": 4423,
+        "gzip": 970,
+        "brotli": 844
+      },
+      {
+        "file": "plugins/move/dist/tsparticles.plugin.move.min.js",
+        "raw": 9607,
+        "gzip": 2728,
+        "brotli": 2502
+      },
+      {
+        "file": "plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+        "raw": 4979,
+        "gzip": 1095,
+        "brotli": 943
+      },
+      {
+        "file": "updaters/paint/dist/tsparticles.updater.paint.min.js",
+        "raw": 5871,
+        "gzip": 1328,
+        "brotli": 1173
+      },
+      {
+        "file": "updaters/size/dist/tsparticles.updater.size.min.js",
+        "raw": 5291,
+        "gzip": 1253,
+        "brotli": 1107
+      },
+      {
+        "file": "updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+        "raw": 5267,
+        "gzip": 1232,
+        "brotli": 1087
+      },
+      {
+        "file": "updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+        "raw": 10522,
+        "gzip": 2491,
+        "brotli": 2259
+      }
+    ],
+    "total": {
+      "raw": 151880,
+      "gzip": 44921,
+      "brotli": 38808
+    },
+    "browserRuns": [
+      {
+        "cache": "cold",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.09999996423721313,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 13.699999988079071,
+          "totalThroughCleanup": 17.30000001192093
+        }
+      },
+      {
+        "cache": "warm",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.10000002384185791,
+          "featureRegistration": 0,
+          "sceneLoad": 4.899999976158142,
+          "totalThroughCleanup": 6.199999988079071
+        }
+      }
+    ]
+  },
+  "basicRollup": {
+    "files": [
+      {
+        "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+        "raw": 121216,
+        "gzip": 37277,
+        "brotli": 32496
+      }
+    ],
+    "total": {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "raw": 121216,
+      "gzip": 37277,
+      "brotli": 32496
+    },
+    "browserRuns": [
+      {
+        "cache": "cold",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.20000004768371582,
+          "featureRegistration": 0,
+          "sceneLoad": 9.099999964237213,
+          "totalThroughCleanup": 12.400000035762787
+        }
+      },
+      {
+        "cache": "warm",
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 4.199999988079071,
+          "totalThroughCleanup": 5.199999988079071
+        }
+      }
+    ]
+  },
+  "webpackStandalone": {
+    "minified": {
+      "files": [
+        {
+          "file": "bundles/basic/dist/tsparticles.tsparticles.basic.bundle.min.js",
+          "raw": 86145,
+          "gzip": 29501,
+          "brotli": 24726
+        },
+        {
+          "file": "bundles/basic/dist/117.min.js",
+          "raw": 43734,
+          "gzip": 14096,
+          "brotli": 12666
+        },
+        {
+          "file": "bundles/basic/dist/717.min.js",
+          "raw": 5048,
+          "gzip": 1983,
+          "brotli": 1831
+        },
+        {
+          "file": "bundles/basic/dist/79.min.js",
+          "raw": 784,
+          "gzip": 394,
+          "brotli": 342
+        }
+      ],
+      "total": {
+        "raw": 135711,
+        "gzip": 45974,
+        "brotli": 39565
+      },
+      "browserRun": {
+        "hasFactory": true,
+        "hasBasicLoader": true,
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.10000002384185791,
+          "featureRegistration": 0.10000002384185791,
+          "sceneLoad": 14.399999976158142,
+          "totalThroughCleanup": 15.100000023841858
+        }
+      }
+    },
+    "unminified": {
+      "files": [
+        {
+          "file": "bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js",
+          "raw": 448112,
+          "gzip": 55652,
+          "brotli": 42662
+        },
+        {
+          "file": "bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+          "raw": 148587,
+          "gzip": 22937,
+          "brotli": 19707
+        },
+        {
+          "file": "bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+          "raw": 3158,
+          "gzip": 1104,
+          "brotli": 898
+        },
+        {
+          "file": "bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js",
+          "raw": 17642,
+          "gzip": 3658,
+          "brotli": 3236
+        }
+      ],
+      "total": {
+        "raw": 617499,
+        "gzip": 83351,
+        "brotli": 66503
+      },
+      "browserRun": {
+        "hasFactory": true,
+        "hasBasicLoader": true,
+        "count": 100,
+        "remainingContainers": 0,
+        "timingsMs": {
+          "engineCreate": 0.19999998807907104,
+          "featureRegistration": 0,
+          "sceneLoad": 16.700000047683716,
+          "totalThroughCleanup": 17.400000035762787
+        }
+      }
+    }
+  },
+  "webpackExternal": {
+    "files": [
+      {
+        "file": "engine/dist/tsparticles.engine.min.js",
+        "raw": 100276,
+        "gzip": 32578,
+        "brotli": 27776
+      },
+      {
+        "file": "utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+        "raw": 5644,
+        "gzip": 1246,
+        "brotli": 1117
+      },
+      {
+        "file": "shapes/circle/dist/tsparticles.shape.circle.min.js",
+        "raw": 4423,
+        "gzip": 970,
+        "brotli": 844
+      },
+      {
+        "file": "plugins/move/dist/tsparticles.plugin.move.min.js",
+        "raw": 9607,
+        "gzip": 2728,
+        "brotli": 2502
+      },
+      {
+        "file": "plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+        "raw": 4979,
+        "gzip": 1095,
+        "brotli": 943
+      },
+      {
+        "file": "updaters/paint/dist/tsparticles.updater.paint.min.js",
+        "raw": 5871,
+        "gzip": 1328,
+        "brotli": 1173
+      },
+      {
+        "file": "updaters/size/dist/tsparticles.updater.size.min.js",
+        "raw": 5291,
+        "gzip": 1253,
+        "brotli": 1107
+      },
+      {
+        "file": "updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+        "raw": 5267,
+        "gzip": 1232,
+        "brotli": 1087
+      },
+      {
+        "file": "updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+        "raw": 10522,
+        "gzip": 2491,
+        "brotli": 2259
+      },
+      {
+        "file": "plugins/blend/dist/tsparticles.plugin.blend.min.js",
+        "raw": 5571,
+        "gzip": 1329,
+        "brotli": 1180
+      },
+      {
+        "file": "plugins/colors/hsl/dist/tsparticles.plugin.hslColor.min.js",
+        "raw": 6183,
+        "gzip": 1499,
+        "brotli": 1340
+      },
+      {
+        "file": "plugins/colors/rgb/dist/tsparticles.plugin.rgbColor.min.js",
+        "raw": 5938,
+        "gzip": 1387,
+        "brotli": 1215
+      },
+      {
+        "file": "bundles/basic/dist/tsparticles.tsparticles.basic.min.js",
+        "raw": 2686,
+        "gzip": 923,
+        "brotli": 800
+      }
+    ],
+    "total": {
+      "raw": 172258,
+      "gzip": 50059,
+      "brotli": 43343
+    },
+    "browserRun": {
+      "hasFactory": true,
+      "hasBasicLoader": true,
+      "count": 100,
+      "remainingContainers": 0,
+      "timingsMs": {
+        "engineCreate": 0.09999996423721313,
+        "featureRegistration": 0,
+        "sceneLoad": 4,
+        "totalThroughCleanup": 4.199999988079071
+      }
+    },
+    "requests": 13
+  },
+  "deltaSelectiveMinusBasic": {
+    "raw": 30664,
+    "gzip": 7644,
+    "brotli": 6312,
+    "percentVsBasic": {
+      "raw": 25.3,
+      "gzip": 20.51,
+      "brotli": 19.42
+    }
+  },
+  "deltaWebpackMinifiedMinusBasic": {
+    "raw": 14495,
+    "gzip": 8697,
+    "brotli": 7069,
+    "percentVsBasic": {
+      "raw": 11.96,
+      "gzip": 23.33,
+      "brotli": 21.75
+    }
+  },
+  "deltaWebpackExternalMinusBasic": {
+    "raw": 51042,
+    "gzip": 12782,
+    "brotli": 10847,
+    "percentVsBasic": {
+      "raw": 42.11,
+      "gzip": 34.29,
+      "brotli": 33.38
+    }
+  },
+  "timingLimits": "Two cold/warm observations per local composition only; runtime timings start after classic scripts have loaded and executed, exclude network transfer and script parse/evaluation, and are diagnostic rather than a performance budget.",
+  "coverageLimits": "The selective composition is the nine-file E1 CDN candidate. Webpack external composition adds the Basic external wrapper plus all package features its loadBasic requires. Remote jsDelivr returns 200 but publishes the legacy singleton ABI; see cdn-browser.json."
+}

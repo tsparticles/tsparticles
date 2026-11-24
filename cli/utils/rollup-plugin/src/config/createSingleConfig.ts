@@ -124,6 +124,24 @@ const EMPTY_SIZE = 0,
       `}\n`
     );
   },
+  buildVersionGuardedIifeCode = (code: string, scope: string, version: string): string => {
+    const marker = JSON.stringify(`@tsparticles/iife:${scope}`),
+      fixedVersion = JSON.stringify(version),
+      message = JSON.stringify(`A different version of ${scope} is already loaded`);
+
+    return (
+      `(() => {\n` +
+      `  const namespace = globalThis.${scope};\n` +
+      `  const marker = Symbol.for(${marker});\n` +
+      `  if (marker in namespace) {\n` +
+      `    if (namespace[marker] !== ${fixedVersion}) throw new Error(${message});\n` +
+      `    return;\n` +
+      `  }\n` +
+      `${redirectIifeToGlobalScope(code)}\n` +
+      `  Object.defineProperty(namespace, marker, { value: ${fixedVersion} });\n` +
+      `})();\n`
+    );
+  },
   buildLazyRuntimePath = (name: string): string => {
     return `chunks/${name}.js`;
   },
@@ -238,7 +256,7 @@ export { ${namedExports} };
       },
     };
   },
-  exposeEntryExports = (enabled: boolean, iifePolicy?: IifePolicyData): Plugin => {
+  exposeEntryExports = (enabled: boolean, iifePolicy?: IifePolicyData, version = "0.0.0"): Plugin => {
     return {
       name: "expose-entry-exports",
       renderChunk(code: string, chunk: RenderedChunk): { code: string; map: null } | null {
@@ -255,7 +273,7 @@ export { ${namedExports} };
           }
 
           return {
-            code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}`,
+            code: `${getIifeGlobalsBootstrap()}${buildVersionGuardedIifeCode(code, iifePolicy.scope, version)}`,
             map: null,
           };
         }
@@ -284,7 +302,7 @@ export { ${namedExports} };
           engineAliasCode = buildBundleEngineAliasCode(iifePolicy);
 
         return {
-          code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}\n${windowCode}${engineAliasCode}`,
+          code: `${getIifeGlobalsBootstrap()}${buildVersionGuardedIifeCode(code, iifePolicy.scope, version)}\n${windowCode}${engineAliasCode}`,
           map: null,
         };
       },
@@ -344,7 +362,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
           browser: true,
         }),
         replace(getReplacements(min, version)),
-        exposeEntryExports(true, params.iifePolicy),
+        exposeEntryExports(true, params.iifePolicy, params.version),
         min && terser(),
       ].filter(Boolean),
       output: {
@@ -370,7 +388,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         browser: true,
       }),
       replace(getReplacements(min, version)),
-      exposeEntryExports(true, params.iifePolicy),
+      exposeEntryExports(true, params.iifePolicy, params.version),
       !min && createLazyVisualizer(path.resolve(dir, "dist/report.html")),
       min && terser(),
     ].filter(Boolean),
