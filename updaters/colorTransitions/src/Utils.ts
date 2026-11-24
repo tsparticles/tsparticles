@@ -102,7 +102,7 @@ export function getLifeProgress(life?: { duration: number; time: number }, durat
     return undefined;
   }
 
-  return Math.min(maxProgress, Math.max(minProgress, life.time / effectiveDuration));
+  return getElapsedProgress(life.time, effectiveDuration);
 }
 
 /**
@@ -113,4 +113,18 @@ export function getLifeProgress(life?: { duration: number; time: number }, durat
  */
 export function applyProgressOffset(progress: number, offset: number): number {
   return offset === minProgress ? progress : (progress + offset) % maxProgress;
+}
+
+/**
+ * Reads clamped transition progress from elapsed milliseconds
+ * @param time - Elapsed time in milliseconds
+ * @param duration - Transition duration in milliseconds
+ * @returns Clamped progress, or undefined for an invalid duration
+ */
+export function getElapsedProgress(time: number, duration: number): number | undefined {
+  if (duration <= 0 || !isFinite(duration)) {
+    return undefined;
+  }
+
+  return Math.min(maxProgress, Math.max(minProgress, time / duration));
 }
