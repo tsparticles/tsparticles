@@ -47,23 +47,24 @@ describe("OutMode.none with move distance", async () => {
   }, 30000);
 
   const runOutside = async (distance: unknown, x: number, y: number, vx: number, vy: number): Promise<boolean> => {
-    const container = await loadContainer({ autoPlay: false }),
-      particle = await singleParticle(container, {
+    const container = await loadContainer({ autoPlay: false });
+
+    try {
+      const particle = await singleParticle(container, {
         move: { distance, outModes: { default: OutMode.none } },
       });
 
-    particle.position.x = x;
-    particle.position.y = y;
-    particle.velocity.x = vx;
-    particle.velocity.y = vy;
+      particle.position.x = x;
+      particle.position.y = y;
+      particle.velocity.x = vx;
+      particle.velocity.y = vy;
 
-    container.particles.update({ value: 16, factor: 0.5 });
+      container.particles.update({ value: 16, factor: 0.5 });
 
-    const destroyed = particle.destroyed as boolean;
-
-    container.destroy(false);
-
-    return destroyed;
+      return particle.destroyed as boolean;
+    } finally {
+      container.destroy(false);
+    }
   };
 
   it("destroys a particle that leaves the canvas when no distance is set", async () => {
