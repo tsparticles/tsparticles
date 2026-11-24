@@ -4,8 +4,7 @@ export interface ExternalData {
   name: string;
 }
 
-export type IifeBuildKind =
-  "bundle" | "confetti" | "engine" | "fireworks" | "package" | "pjs";
+export type IifeBuildKind = "bundle" | "confetti" | "engine" | "fireworks" | "package" | "pjs";
 
 export interface IifePolicyData {
   kind: IifeBuildKind;

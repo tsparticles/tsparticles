@@ -4,10 +4,7 @@ import type { RollupOptions } from "rollup";
 import { createConfig } from "./config/createConfig";
 import { getIifePolicyData } from "./config/iifePolicy";
 
-export const createParticlesBuild = (
-  type: ParticlesBuildType,
-  params: ParticlesBuildParams,
-): RollupOptions[] => {
+export const createParticlesBuild = (type: ParticlesBuildType, params: ParticlesBuildParams): RollupOptions[] => {
   const def = buildMap[type],
     dir = params.dir,
     version = params.version,

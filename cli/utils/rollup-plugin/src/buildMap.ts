@@ -31,14 +31,12 @@ export const buildMap: Record<ParticlesBuildType, BuildDefinition> = {
     format: "",
     hasBundle: true,
     banner: ({ version }) => `tsParticles v${version}`,
-    minBanner: ({ version, bundleName }) =>
-      `tsParticles ${bundleName ?? ""} v${version}`,
+    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? ""} v${version}`,
   },
   effect: {
     format: "effect",
     banner: ({ version }) => `Effect v${version}`,
-    minBanner: ({ version, effectName }) =>
-      `tsParticles ${effectName} Effect v${version}`,
+    minBanner: ({ version, effectName }) => `tsParticles ${effectName} Effect v${version}`,
   },
   engine: {
     format: "engine",
@@ -73,8 +71,7 @@ export const buildMap: Record<ParticlesBuildType, BuildDefinition> = {
   plugin: {
     format: "plugin",
     banner: ({ version }) => `Plugin v${version}`,
-    minBanner: ({ version, pluginName }) =>
-      `tsParticles ${pluginName} Plugin v${version}`,
+    minBanner: ({ version, pluginName }) => `tsParticles ${pluginName} Plugin v${version}`,
   },
   pluginEasing: {
     format: "plugin.easing",
@@ -116,7 +113,6 @@ export const buildMap: Record<ParticlesBuildType, BuildDefinition> = {
     format: "",
     hasBundle: false,
     banner: ({ version }) => `Utility v${version}`,
-    minBanner: ({ version, bundleName }) =>
-      `tsParticles ${bundleName ?? "Utility"} v${version}`,
+    minBanner: ({ version, bundleName }) => `tsParticles ${bundleName ?? "Utility"} v${version}`,
   },
 };
