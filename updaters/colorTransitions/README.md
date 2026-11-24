@@ -30,16 +30,16 @@ The updater can be added to any bundle package using its exported `loadColorTran
 ## Options
 
 The updater adds a `colorTransitions` property to the particles options, with a `lifetime` section driving the color
-through the particle life progress. It requires the life updater (`@tsparticles/updater-life`, already included in
-the `slim`/`full` bundles) with a finite `life.duration` to work: the transition progress is read from the particle
-life clock, which never advances for particles with an infinite life duration, so those keep their base colors.
+through finite particle life progress when available. The life updater is optional. Without a finite life clock,
+the updater advances its own elapsed frame time, using `lifetime.duration` or a default duration of one second.
+The transition clamps to its final stop when complete. Spawning and destroyed particles do not advance it.
 
 The `lifetime.stops` list applies to both the fill and the stroke colors, matching how a single `paint` color applies
 to both channels; random stop colors resolve once, so fill and stroke transition through the same colors. A channel
 can override the shared stops with its own `lifetime.fill.stops` or `lifetime.stroke.stops` list; a channel without
 stops of its own (or with an empty list) falls back to the shared stops. An optional `lifetime.duration` (in seconds,
-like the life options) rescales the transition progress against the finite life clock above: a shorter value completes
-the transition earlier in each life cycle, and the transition restarts with each cycle.
+like the life options) rescales the transition progress: a shorter value completes
+the transition earlier in each life cycle, and the transition restarts with each finite life cycle or when the particle is initialized again.
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -52,7 +52,7 @@ await loadColorTransitionsUpdater(tsParticles);
 const options = {
   particles: {
     life: {
-      duration: { sync: true, value: 5 }, // seconds; the transition needs a finite duration
+      duration: { sync: true, value: 5 }, // seconds; optional, the transition can also run without the life updater
       count: -1, // -1: particles respawn and the transition restarts
     },
     colorTransitions: {
@@ -83,3 +83,5 @@ This is useful for effects like burning fire (yellow to red to black) or fading 
 ## Reporting Issues and Contributing
 
 Refer to the [contributing guidelines](https://github.com/tsparticles/tsparticles/blob/main/CONTRIBUTING.md).
+
+Transition colors are exposed through the particle color getters, including connect gradients and links using `"mid"`. Bubble color modifiers and roll back-face colors still apply. Fill and stroke opacity factors multiply the overall particle opacity.
