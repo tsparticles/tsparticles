@@ -1,4 +1,9 @@
-import type { ICoordinates, IDimension, IShapeValues, SingleOrMultiple } from "@tsparticles/engine";
+import type {
+  ICoordinates,
+  IDimension,
+  IShapeValues,
+  SingleOrMultiple,
+} from "@tsparticles/engine";
 
 /** Ribbons options interface */
 export interface IRibbonsOptions {
