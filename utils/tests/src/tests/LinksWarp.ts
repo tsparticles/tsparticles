@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import {
-  type ICoordinates,
-  Rectangle,
-  createEngine,
-} from "@tsparticles/engine";
-import type {
-  LinkContainer,
-  LinkParticle,
-} from "../../../../interactions/particles/links/src/Types.js";
+import { type ICoordinates, Rectangle, createEngine } from "@tsparticles/engine";
+import type { LinkContainer, LinkParticle } from "../../../../interactions/particles/links/src/Types.js";
 import { describe, expect, it } from "vitest";
 import { CircleWarp } from "../../../../interactions/particles/links/src/CircleWarp.js";
 import { Linker } from "../../../../interactions/particles/links/src/Linker.js";
@@ -106,12 +99,8 @@ describe("Warped links", () => {
     const circle = new CircleWarp(0, 0, 5, { width, height });
 
     expect(circle.intersects(new Rectangle(400, 0, 1, 1))).toBe(false);
-    expect(circle.intersects(new Rectangle(width - 4, height - 5, 1, 1))).toBe(
-      true,
-    );
-    expect(circle.intersects(new Rectangle(width - 5, height - 5, 1, 1))).toBe(
-      false,
-    );
+    expect(circle.intersects(new Rectangle(width - 4, height - 5, 1, 1))).toBe(true);
+    expect(circle.intersects(new Rectangle(width - 5, height - 5, 1, 1))).toBe(false);
   });
 
   it("includes the wrapped corner at the exact radius", () => {
@@ -142,14 +131,7 @@ describe("Warped links", () => {
     await checkLinks({ x: 5, y: 300 }, { x: 775, y: 300 }, 20, true, false);
   });
   it("preserves ordinary links", async () => {
-    await checkLinks(
-      { x: 400, y: 300 },
-      { x: 410, y: 300 },
-      20,
-      true,
-      true,
-      false,
-    );
+    await checkLinks({ x: 400, y: 300 }, { x: 410, y: 300 }, 20, true, true, false);
   });
   it("does not duplicate particles when translated circles overlap", async () => {
     await checkLinks({ x: 5, y: 5 }, { x: 795, y: 595 }, 1000, true, true);
