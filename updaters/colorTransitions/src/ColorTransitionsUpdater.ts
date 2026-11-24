@@ -17,11 +17,12 @@ import {
   millisecondsToSeconds,
   rangeColorToHsl,
 } from "@tsparticles/engine";
-import { applyProgressOffset, getLifeProgress, interpolateStops } from "./Utils.js";
+import { applyProgressOffset, getElapsedProgress, getLifeProgress, interpolateStops } from "./Utils.js";
 import type { ColorTransitionStop } from "./Options/Classes/ColorTransitionStop.js";
 import { ColorTransitions } from "./Options/Classes/ColorTransitions.js";
 
-const syncOffset = 0;
+const syncOffset = 0,
+  standaloneDuration = millisecondsToSeconds;
 
 /** Color transitions updater plugin */
 export class ColorTransitionsUpdater implements IParticleUpdater {
@@ -61,17 +62,24 @@ export class ColorTransitionsUpdater implements IParticleUpdater {
     }
 
     const container = this.#container,
+      { fillOpacity, strokeOpacity } = particle.getOpacity(),
       styles: IParticleColorStyle = {};
 
     if (state.fill?.current) {
-      styles.fill = getStyleFromHsl(state.fill.current, container.hdr, opacity, container.peakNits, container.hdrMode);
+      styles.fill = getStyleFromHsl(
+        particle.getFillColor() ?? state.fill.current,
+        container.hdr,
+        opacity * fillOpacity,
+        container.peakNits,
+        container.hdrMode,
+      );
     }
 
     if (state.stroke?.current) {
       styles.stroke = getStyleFromHsl(
-        state.stroke.current,
+        particle.getStrokeColor() ?? state.stroke.current,
         container.hdr,
-        opacity,
+        opacity * strokeOpacity,
         container.peakNits,
         container.hdrMode,
       );
@@ -88,6 +96,7 @@ export class ColorTransitionsUpdater implements IParticleUpdater {
     // Particles are pooled and reused: always clear state from a previous life,
     // even when the new options disable or omit the feature.
     particle.colorTransitions = undefined;
+    particle.removeModifier("colorTransitions");
 
     const transitions = particle.options.colorTransitions;
 
@@ -148,8 +157,26 @@ export class ColorTransitionsUpdater implements IParticleUpdater {
         fill,
         offset: lifetime.sync ? syncOffset : getRandom(),
         stroke,
+        time: 0,
       },
     };
+    const state = particle.colorTransitions.lifetime;
+
+    // Transition colors are the base override. Interaction modifiers (for example
+    // bubble at priority100) and the particle's roll adjustments still apply.
+    particle.addModifier({
+      get enabled() {
+        return state.enable;
+      },
+      get fillColor() {
+        return state.fill?.current;
+      },
+      id: "colorTransitions",
+      priority: -1,
+      get strokeColor() {
+        return state.stroke?.current;
+      },
+    });
   }
 
   /**
@@ -184,16 +211,26 @@ export class ColorTransitionsUpdater implements IParticleUpdater {
   /**
    * Updates the particle transition colors
    * @param particle - The particle to process
-   * @param _delta - The delta time
+   * @param delta - The delta time
    */
-  update(particle: ColorTransitionsParticle, _delta: IDelta): void {
+  update(particle: ColorTransitionsParticle, delta: IDelta): void {
     const state = particle.colorTransitions?.lifetime;
 
-    if (!state?.enable) {
+    if (!state?.enable || !this.isEnabled(particle)) {
       return;
     }
 
-    const progress = getLifeProgress(particle.life, state.duration);
+    const life = particle.life,
+      hasLifeClock =
+        this.#pluginManager.initializers.updaters.has("life") && !!life && life.duration > 0 && isFinite(life.duration);
+
+    if (!hasLifeClock && delta.value > 0 && isFinite(delta.value)) {
+      state.time += delta.value;
+    }
+
+    const progress = hasLifeClock
+      ? getLifeProgress(life, state.duration)
+      : getElapsedProgress(state.time, state.duration ?? standaloneDuration);
 
     if (state.fill) {
       this.#updateChannel(state.fill, progress, state.offset);
@@ -207,7 +244,7 @@ export class ColorTransitionsUpdater implements IParticleUpdater {
   /**
    * Updates a single paint channel, writing the interior interpolation into its reused result object
    * @param channel - The channel state to update
-   * @param progress - The transition progress, or undefined when the particle has no finite advancing life clock
+   * @param progress - The transition progress, or undefined when the selected duration is invalid
    * @param offset - The per-particle progress offset
    */
   #updateChannel(channel: IColorTransitionChannelState, progress: number | undefined, offset: number): void {
