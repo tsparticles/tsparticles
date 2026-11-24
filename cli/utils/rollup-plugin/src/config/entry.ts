@@ -10,25 +10,14 @@ export interface EntryParams {
   name?: string;
 }
 
-export const getEntry = (
-  data: EntryParams,
-): { input: string; name: string } => {
+export const getEntry = (data: EntryParams): { input: string; name: string } => {
   const { bundle, dir, format, lazy, min, name } = data,
     fileName = bundle ? "bundle" : "index",
     browserFileName = "browser",
     completeFileName = lazy ? `${fileName}.lazy` : fileName,
-    completeBrowserFileName = lazy
-      ? `${browserFileName}.lazy`
-      : browserFileName,
-    browserCandidate = path.resolve(
-      dir,
-      "dist/browser",
-      `${completeBrowserFileName}.js`,
-    ),
-    inputFileName =
-      !bundle && fs.existsSync(browserCandidate)
-        ? completeBrowserFileName
-        : completeFileName,
+    completeBrowserFileName = lazy ? `${browserFileName}.lazy` : browserFileName,
+    browserCandidate = path.resolve(dir, "dist/browser", `${completeBrowserFileName}.js`),
+    inputFileName = !bundle && fs.existsSync(browserCandidate) ? completeBrowserFileName : completeFileName,
     fixFormat = format ? `.${format}` : "",
     fixName = name ? `.${name}` : "",
     fixMin = min ? ".min" : "",

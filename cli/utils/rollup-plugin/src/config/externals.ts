@@ -12,25 +12,19 @@ const defaultGlobal = "window",
     const root = external.data.root;
 
     if (Array.isArray(root)) {
-      return (
-        root.filter((t): t is string => typeof t === "string").join(".") ||
-        defaultGlobal
-      );
+      return root.filter((t): t is string => typeof t === "string").join(".") || defaultGlobal;
     }
 
     return typeof root === "string" ? root : defaultGlobal;
   };
 
-export const getExternal = ({
-  bundle,
-  additionalExternals = [],
-}: Params): ExternalOption => {
+export const getExternal = ({ bundle, additionalExternals = [] }: Params): ExternalOption => {
   if (bundle) {
-    return additionalExternals.filter((e) => !e.bundle).map((e) => e.name);
+    return additionalExternals.filter(e => !e.bundle).map(e => e.name);
   }
 
   return [
-    ...additionalExternals.map((e) => e.name),
+    ...additionalExternals.map(e => e.name),
     /^tsparticles$/,
     /^tsparticles-/,
     /^@tsparticles\//,
@@ -41,12 +35,8 @@ export const getGlobals = (
   additionalExternals: ExternalData[] = [],
   bundle?: boolean,
 ): ((id: string) => string | undefined) => {
-  const globalsAdditional = bundle
-      ? additionalExternals.filter((e) => !e.bundle)
-      : additionalExternals,
-    additionalMap = new Map(
-      globalsAdditional.map((e) => [e.name, getRootGlobal(e)]),
-    );
+  const globalsAdditional = bundle ? additionalExternals.filter(e => !e.bundle) : additionalExternals,
+    additionalMap = new Map(globalsAdditional.map(e => [e.name, getRootGlobal(e)]));
 
   return (id: string) => {
     if (additionalMap.has(id)) {
@@ -65,11 +55,7 @@ export const getGlobals = (
     // function with the first segment of `output.name` (e.g. "__tsParticlesInternals") to build the
     // IIFE namespace setup; returning undefined there keeps the namespace root untouched instead of
     // rewriting it to `window` (which would break under `<script type="module">` where `this` is undefined).
-    const looksLikeModuleId =
-      id.includes("/") ||
-      id.includes("@") ||
-      id.includes(":") ||
-      id.startsWith("tsparticles");
+    const looksLikeModuleId = id.includes("/") || id.includes("@") || id.includes(":") || id.startsWith("tsparticles");
 
     return looksLikeModuleId ? defaultGlobal : undefined;
   };

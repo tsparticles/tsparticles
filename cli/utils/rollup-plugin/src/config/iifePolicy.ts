@@ -14,9 +14,7 @@ const FIRST_INDEX = 0,
       .split("-")
       .filter(Boolean)
       .map((segment, index) =>
-        index === FIRST_INDEX
-          ? segment
-          : `${segment[FIRST_INDEX].toUpperCase()}${segment.slice(INDEX_AFTER_FIRST)}`,
+        index === FIRST_INDEX ? segment : `${segment[FIRST_INDEX].toUpperCase()}${segment.slice(INDEX_AFTER_FIRST)}`,
       )
       .join("");
   },
@@ -42,10 +40,7 @@ const FIRST_INDEX = 0,
 
     return "bundle";
   },
-  buildTypePrefix: Record<
-    Exclude<ParticlesBuildType, "bundle" | "engine" | "util">,
-    string
-  > = {
+  buildTypePrefix: Record<Exclude<ParticlesBuildType, "bundle" | "engine" | "util">, string> = {
     effect: "effects",
     interaction: "interactions",
     interactionExternal: "interactions",
@@ -79,10 +74,7 @@ const FIRST_INDEX = 0,
     return prefix ? `${prefix}${rawLeaf}` : rawLeaf;
   };
 
-export const getIifePolicyData = (
-  type: ParticlesBuildType,
-  moduleName?: string,
-): IifePolicyData => {
+export const getIifePolicyData = (type: ParticlesBuildType, moduleName?: string): IifePolicyData => {
   if (type === "engine") {
     return {
       kind: "engine",
@@ -124,10 +116,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
     return `${internalRoot}.${prefix}.${leaf}`;
   },
   bundleLeafGlobals = new Map(
-    ["all", "basic", "confetti", "fireworks", "pjs", "slim"].map((leaf) => [
-      leaf,
-      `${internalRoot}.bundles.${leaf}`,
-    ]),
+    ["all", "basic", "confetti", "fireworks", "pjs", "slim"].map(leaf => [leaf, `${internalRoot}.bundles.${leaf}`]),
   ),
   scopedPrefixRules: {
     prefix: string;
@@ -150,12 +139,12 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
     {
       prefix: "interaction-external-",
       scope: "interactions",
-      transform: (segment) => `external-${segment}`,
+      transform: segment => `external-${segment}`,
     },
     {
       prefix: "interaction-particles-",
       scope: "interactions",
-      transform: (segment) => `particles-${segment}`,
+      transform: segment => `particles-${segment}`,
     },
     {
       prefix: "interaction-",
@@ -194,10 +183,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
 
       const segment = leaf.slice(rule.prefix.length);
 
-      return buildScopedPath(
-        rule.scope,
-        rule.transform ? rule.transform(segment) : segment,
-      );
+      return buildScopedPath(rule.scope, rule.transform ? rule.transform(segment) : segment);
     }
 
     return undefined;
@@ -268,12 +254,12 @@ export const getIifeGlobalsBootstrap = (): string => {
       "path.utils",
     ],
     namespacesBootstrap = namespaces
-      .map((namespace) => {
+      .map(namespace => {
         const segments = namespace.split(".");
         let currentPath = "g.__tsParticlesInternals";
 
         return segments
-          .map((segment) => {
+          .map(segment => {
             currentPath += `.${segment}`;
 
             return `${currentPath}=${currentPath}||{};`;
