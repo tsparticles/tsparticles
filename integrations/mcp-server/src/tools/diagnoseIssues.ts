@@ -104,8 +104,10 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Particle Visibility ─────────────────────────────────────────
   const opacityVal = getOptionValue(options, "particles.opacity.value");
+
   if (opacityVal !== undefined && Number(opacityVal) === INVISIBLE_VALUE) {
     const opacityAnim = getOptionValue(options, "particles.opacity.animation.enable");
+
     if (!opacityAnim) {
       issues.push({
         severity: "error",
@@ -118,8 +120,10 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   }
 
   const sizeVal = getOptionValue(options, "particles.size.value");
+
   if (sizeVal !== undefined && Number(sizeVal) === INVISIBLE_VALUE) {
     const sizeAnim = getOptionValue(options, "particles.size.animation.enable");
+
     if (!sizeAnim) {
       issues.push({
         severity: "error",
@@ -132,6 +136,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Missing Move Plugin ─────────────────────────────────────────
   const moveVal = getOptionValue(options, "particles.move");
+
   if (moveVal !== undefined) {
     issues.push({
       severity: "warning",
@@ -145,8 +150,10 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Missing Color Plugin ────────────────────────────────────────
   const colorValue = getOptionValue(options, "particles.color.value");
+
   if (colorValue !== undefined && colorValue !== null) {
     const colorStr = toText(colorValue);
+
     if (colorStr.startsWith("#")) {
       issues.push({
         severity: "warning",
@@ -179,12 +186,13 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Missing Shape Plugin ────────────────────────────────────────
   const shapeType = getOptionValue(options, "particles.shape.type");
+
   if (shapeType) {
     let names: string[];
+
     if (typeof shapeType === "string") {
       names = shapeType.split(/[,\s]+/).filter(Boolean);
     } else if (Array.isArray(shapeType)) {
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       names = shapeType.filter((v): v is string => typeof v === "string" && v.length > 0);
     } else {
       names = [];
@@ -217,6 +225,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Missing Interactivity Plugin ────────────────────────────────
   const interactivity = getOptionValue(options, "interactivity");
+
   if (interactivity !== undefined) {
     issues.push({
       severity: "warning",
@@ -230,8 +239,10 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Missing Interaction Packages ────────────────────────────────
   const interactionModes = collectInteractivityModes(interactivity as Record<string, unknown> | undefined);
+
   for (const mode of interactionModes) {
     const pkg = INTERACTION_MODE_PACKAGES[mode];
+
     if (pkg) {
       issues.push({
         severity: "info",
@@ -290,12 +301,12 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Options Structure Issues ────────────────────────────────────
   const particlesVal = getOptionValue(options, "particles") as Record<string, unknown> | undefined;
+
   if (particlesVal && typeof particlesVal === "object") {
     const keys = Object.keys(particlesVal),
       hasAnyKnownKey = keys.some(k => KNOWN_PARTICLES_KEYS.has(k)),
       childObjectKeys = keys.filter(k => typeof particlesVal[k] === "object");
 
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (!hasAnyKnownKey && childObjectKeys.length > 0) {
       issues.push({
         severity: "info",
@@ -309,6 +320,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // ── Low particle count ──────────────────────────────────────────
   const numParticles = getOptionValue(options, "particles.number.value"),
     densityArea = getOptionValue(options, "particles.number.density.area");
+
   if (numParticles !== undefined && Number(numParticles) < LOW_PARTICLE_COUNT && !densityArea) {
     issues.push({
       severity: "info",
@@ -320,6 +332,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Full-screen not set ─────────────────────────────────────────
   const fullScreen = getOptionValue(options, "fullScreen");
+
   if (fullScreen === undefined) {
     issues.push({
       severity: "info",
@@ -332,6 +345,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Preset usage ────────────────────────────────────────────────
   const preset = getOptionValue(options, "preset");
+
   if (preset && typeof preset === "string") {
     issues.push({
       severity: "info",
@@ -346,15 +360,22 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // silently skipped.
   const emitterEntries = asArray<Record<string, unknown>>(options.emitters),
     reportedEmitterShapes = new Set<string>();
+
   for (const emitter of emitterEntries) {
     const shapeType = getOptionValue(emitter, "shape.type");
-    if (!shapeType) continue;
+
+    if (!shapeType) {
+      continue;
+    }
 
     for (const name of parseModeNames(shapeType)) {
-      if (reportedEmitterShapes.has(name)) continue;
+      if (reportedEmitterShapes.has(name)) {
+        continue;
+      }
       reportedEmitterShapes.add(name);
 
       const pkg = EMITTER_SHAPE_PACKAGES[name];
+
       if (pkg) {
         issues.push({
           severity: "info",

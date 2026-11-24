@@ -440,7 +440,9 @@ before collection and rendering optimizations in E6/E7.
 - [x] Update `markdown/Color.md`, paint/color options, color plugin docs, API docs,
       schema, affected demos, presets, wrappers, generators, breaking changelog,
       and the v4 → v5 guide with before/after examples for managers, animation, and offsets.
-- [ ] Gate 10 collects `V5-COLOR-DECISIONS.md` and `V5-COLOR-REPORT.md`.
+- [x] Gate 10 collects `V5-COLOR-DECISIONS.md` and
+      `V5-COLOR-REPORT.md`; the E10 report records the 8/8 Chrome 158 pixel
+      result and keeps C5 open for budget and broader browser/hardware gates.
 
 The canonical manager contract, color parsing/conversion APIs, OKLCH runtime
 state, gamut mapper, output formatter, consumer migration and Particle review
@@ -448,8 +450,8 @@ are accepted for E5. Numerical, tick, current browser and complete downstream
 verification pass; T1–T4 decisions are measured. The user explicitly accepts
 the remaining M4/500 runtime deviation for E5 with final verification in E10.
 The inherited M6/500 release-budget item and the bundle-growth measurements
-remain visible. No C1–C4 source migration is deferred. C5 and physical HDR/
-final distribution checks remain E9/E10 work. See the
+remain visible. No C1–C4 source migration is deferred. C5 budget and physical
+HDR/final distribution checks remain open in E10. See the
 [final acceptance](evidence/e5/closure/README.md), including limitations and
 rejected prototypes; the historical checkpoints retain their original results.
 

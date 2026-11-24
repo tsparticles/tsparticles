@@ -436,12 +436,14 @@ function escapeRegExp(value: string): string {
  */
 function matchesKeyword(text: string, keyword: string): boolean {
   const k = keyword.trim().toLowerCase();
+
   if (!k) {
     return false;
   }
   if (!k.includes(" ") && /^[a-z0-9]+$/i.test(k)) {
     return new RegExp(`\\b${escapeRegExp(k)}\\b`).test(text);
   }
+
   return text.includes(k);
 }
 
@@ -469,7 +471,6 @@ function mentions(keywords: string[], text: string, terms: string[]): boolean {
  * @param value
  */
 function capitalize(value: string): string {
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
@@ -484,6 +485,7 @@ export function extractKeywords(description: string): string[] {
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter(Boolean);
+
   return [...new Set(tokens)].filter(token => !STOPWORDS.has(token));
 }
 
@@ -497,6 +499,7 @@ export function extractKeywords(description: string): string[] {
  */
 function makeBundleMatch(bundleName: string, loadFunction: string, opts?: Partial<BundleMatch>): BundleMatch {
   const bundle = bundles.find(b => b.name === bundleName);
+
   return {
     bundleName,
     loadFunction,
@@ -531,6 +534,7 @@ function isSimpleRequest(keywords: string[], text: string): boolean {
   if (hasAdvancedFeatures(keywords, text)) {
     return false;
   }
+
   return MOVEMENT_WORDS.some(word => matchesKeyword(text, word));
 }
 
@@ -549,6 +553,7 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
     if (rule.isPreset && hasAdvancedFeatures(keywords, text)) {
       continue;
     }
+
     return makeBundleMatch(rule.bundleName, rule.loadFunction, {
       presetName: rule.presetName,
       presetPackage: rule.presetPackage,
@@ -571,6 +576,7 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
   if (isSimpleRequest(keywords, text)) {
     return makeBundleMatch("@tsparticles/basic", "loadBasic");
   }
+
   return makeBundleMatch("@tsparticles/slim", "loadSlim");
 }
 
@@ -690,7 +696,7 @@ function getYearContextCountIndexes(text: string): Set<number> {
       isPlausibleImplicitYear = value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR;
 
     if (hasExplicitYearLabel || isPlausibleImplicitYear) {
-      indexes.add((match.index ?? 0) + match[0].length - count.length);
+      indexes.add(match.index + match[0].length - count.length);
     }
   }
 
@@ -710,7 +716,7 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
   for (const match of text.matchAll(eventYearPattern)) {
     const count = match[1];
 
-    indexes.add((match.index ?? 0) + match[0].length - count.length);
+    indexes.add(match.index + match[0].length - count.length);
   }
 
   const eventContextWords = ["for", "in", "during", "at", "on"],
@@ -877,13 +883,13 @@ function getExplicitSparkCountIndexes(text: string): Set<number> {
       "gi",
     ),
   )) {
-    indexes.add(match.index ?? 0);
+    indexes.add(match.index);
   }
 
   for (const match of text.matchAll(
     new RegExp(String.raw`\b(?:exactly|precisely)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi"),
   )) {
-    indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
+    indexes.add(match.index + match[0].indexOf(match[1]));
   }
 
   return indexes;
@@ -985,8 +991,8 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   const explicitSparkCountIndexes = getExplicitSparkCountIndexes(text),
     yearContextCountIndexes = getYearContextCountIndexes(text),
-    eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
-  const withCounts = [
+    eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes),
+    withCounts = [
       ...text.matchAll(
         new RegExp(
           String.raw`\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\b`,
@@ -1003,17 +1009,13 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
     standaloneWithCount = withCounts.find(
       match =>
-        !isAmbiguousFireworksYear(match[1]) &&
-        /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
+        !isAmbiguousFireworksYear(match[1]) && /^\s*(?:[,.;!?]|$)/.test(text.slice(match.index + match[0].length)),
     ),
-    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
-      yearContextCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
-  const isEventYearSparkCount = (match: RegExpMatchArray): boolean =>
-    eventYearCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
-
-  const bareSparkCount = bareSparkCounts.find(
-    match => !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match),
-  );
+    isYearLabeledSparkCount = (match: RegExpExecArray): boolean =>
+      yearContextCountIndexes.has(match.index) && !explicitSparkCountIndexes.has(match.index),
+    isEventYearSparkCount = (match: RegExpExecArray): boolean =>
+      eventYearCountIndexes.has(match.index) && !explicitSparkCountIndexes.has(match.index),
+    bareSparkCount = bareSparkCounts.find(match => !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match));
 
   if (bareSparkCount) {
     const raw = normalizeCountString(bareSparkCount[1]);
@@ -1041,7 +1043,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: true, raw, value: Number(raw) };
   }
 
-  const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];
+  const ambiguousFireworksCount = bareFireworksCounts.at(0)?.[1];
 
   if (ambiguousFireworksCount !== undefined) {
     const raw = normalizeCountString(ambiguousFireworksCount);
@@ -1070,6 +1072,7 @@ function findNamedColor(text: string): string | undefined {
       return hex;
     }
   }
+
   return undefined;
 }
 
@@ -1083,6 +1086,7 @@ function findShape(text: string): string | undefined {
       return type;
     }
   }
+
   return undefined;
 }
 
@@ -1103,6 +1107,7 @@ function findDirection(text: string): string | undefined {
   if (matchesKeyword(text, "right") || matchesKeyword(text, "destra")) {
     return "right";
   }
+
   return undefined;
 }
 
@@ -1136,6 +1141,7 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
     particles = options.particles as Record<string, unknown>,
     move = particles.move as Record<string, unknown>,
     count = extractCount(lower);
+
   if (count !== undefined) {
     (particles.number as Record<string, unknown>).value = count;
   }
@@ -1148,16 +1154,19 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
   }
 
   const color = findNamedColor(lower);
+
   if (color !== undefined) {
     (particles.paint as Record<string, unknown>).color = { value: color };
   }
 
   const shape = findShape(lower);
+
   if (shape !== undefined) {
     (particles.shape as Record<string, unknown>).type = shape;
   }
 
   const direction = findDirection(lower);
+
   if (direction !== undefined) {
     move.direction = direction;
   }
@@ -1167,11 +1176,13 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
   }
 
   const hasLinks = mentions(keywords, lower, LINK_WORDS);
+
   if (hasLinks) {
     particles.links = { enable: true, distance: 150, opacity: 0.5 };
   }
 
   const hasInteractivity = mentions(keywords, lower, INTERACTIVITY_WORDS);
+
   if (hasInteractivity) {
     options.interactivity = {
       events: {
@@ -1260,11 +1271,14 @@ function serializeOptions(options: Record<string, unknown>): string {
  */
 function buildLoadImports(bundle: BundleMatch): string[] {
   const mainLoad = `import { ${bundle.loadFunction} } from "${bundle.bundleName}";`;
+
   if (bundle.isPreset && bundle.presetPackage) {
     const presetInfo = packageCatalog.byName[bundle.presetPackage],
       presetLoad = presetInfo.loadFunction ?? `load${capitalize(bundle.presetName ?? "")}Preset`;
+
     return [mainLoad, `import { ${presetLoad} } from "${bundle.presetPackage}";`];
   }
+
   return [mainLoad];
 }
 
@@ -1276,11 +1290,14 @@ function buildLoadImports(bundle: BundleMatch): string[] {
  */
 function buildLoadCalls(bundle: BundleMatch, indent: string, engineVar: string): string {
   const calls = [`${indent}await ${bundle.loadFunction}(${engineVar});`];
+
   if (bundle.isPreset && bundle.presetPackage) {
     const presetInfo = packageCatalog.byName[bundle.presetPackage],
       presetLoad = presetInfo.loadFunction ?? `load${capitalize(bundle.presetName ?? "")}Preset`;
+
     calls.push(`${indent}await ${presetLoad}(${engineVar});`);
   }
+
   return calls.join("\n");
 }
 
@@ -1309,6 +1326,7 @@ function buildLoaderCalls(loaders: PackageImport[], indent: string, engineVar: s
  */
 function autoInitCode(bundle: BundleMatch, options: Record<string, unknown>): string {
   const factory = `create${bundle.loadFunction.charAt(0).toUpperCase()}${bundle.loadFunction.slice(1)}`;
+
   return `import { createEngine } from "@tsparticles/engine";
 import { ${factory} } from "${bundle.bundleName}";
 
@@ -1333,7 +1351,7 @@ function vanillaCode(
 ): string {
   const imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
     calls = [buildLoadCalls(bundle, "  ", "tsParticles"), buildLoaderCalls(extraLoaders, "  ", "tsParticles")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       .filter(call => call.length > 0)
       .join("\n");
 
@@ -1394,7 +1412,7 @@ function reactCode(
     initParam = typescript ? "(engine: Engine)" : "(engine)",
     imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
     calls = [buildLoadCalls(bundle, "    ", "engine"), buildLoaderCalls(extraLoaders, "    ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       .filter(call => call.length > 0)
       .join("\n");
 
@@ -1442,7 +1460,7 @@ function vueCode(
     optionsType = typescript ? ": ISourceOptions" : "",
     imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
     calls = [buildLoadCalls(bundle, "  ", "engine"), buildLoaderCalls(extraLoaders, "  ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       .filter(call => call.length > 0)
       .join("\n");
 
@@ -1501,7 +1519,7 @@ function svelteCode(
 ): string {
   const svelteImports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
     calls = [buildLoadCalls(bundle, "    ", "engine"), buildLoaderCalls(extraLoaders, "    ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       .filter(call => call.length > 0)
       .join("\n");
 
@@ -1572,7 +1590,7 @@ function angularCode(
 ): string {
   const imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
     calls = [buildLoadCalls(bundle, "      ", "engine"), buildLoaderCalls(extraLoaders, "      ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       .filter(call => call.length > 0)
       .join("\n");
 
@@ -1681,6 +1699,7 @@ export function generateHtml(framework: Framework, _bundle: BundleMatch): string
   if (framework === "vanilla") {
     return '<div id="tsparticles"></div>';
   }
+
   return "";
 }
 
@@ -1727,6 +1746,7 @@ function buildNotes(
 
   if (framework !== "vanilla" && !bundle.isAutoInitialized) {
     const label = FRAMEWORK_LABELS[framework];
+
     notes.push(
       `Generated for ${label} — ensure ${FRAMEWORK_PACKAGES[framework]} is compatible with your ${label} version.`,
     );
@@ -1739,6 +1759,7 @@ function buildNotes(
   const hasInteractivity = mentions(keywords, lower, INTERACTIVITY_WORDS),
     hasLinks = mentions(keywords, lower, LINK_WORDS),
     isAmbiguousFallback = bundle.bundleName === "@tsparticles/slim" && !(hasInteractivity && hasLinks);
+
   if (isAmbiguousFallback) {
     notes.push(
       "Generated generic particles — try being more specific (e.g. 'confetti', 'snow', 'stars') for specialized bundles.",
@@ -1751,7 +1772,6 @@ function buildNotes(
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   if (extraPackages.length > 0) {
     notes.push(`Additional packages beyond the selected bundle: ${extraPackages.join(", ")}.`);
   }
@@ -1774,6 +1794,7 @@ function collectBundlePackages(bundleName: string): Set<string> {
       }
       seen.add(name);
       const bundle = bundles.find(b => b.name === name);
+
       if (!bundle) {
         return;
       }
@@ -1784,7 +1805,9 @@ function collectBundlePackages(bundleName: string): Set<string> {
         walk(bundle.extends);
       }
     };
+
   walk(bundleName);
+
   return packages;
 }
 
@@ -1805,6 +1828,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     extraPackages = suggestion.npmPackages.filter(p => !covered.has(p)),
     extraLoaders = suggestion.imports.filter(({ from }) => !covered.has(from)),
     installPackages: string[] = [];
+
   if (bundleMatch.isAutoInitialized) {
     installPackages.push(bundleMatch.bundleName, "@tsparticles/engine");
   } else {
@@ -1814,6 +1838,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
       installPackages.push(bundleMatch.presetPackage);
     }
     const frameworkPackage = FRAMEWORK_PACKAGES[framework];
+
     if (frameworkPackage) {
       installPackages.push(frameworkPackage);
     }

@@ -7,7 +7,13 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 const forceHdr = process.argv.includes("--force-hdr");
 const outputDir = process.argv.find((arg) => arg.startsWith("--output-dir="))?.slice("--output-dir=".length);
-const output = path.resolve(outputDir ?? ".planning/handovers/evidence/e4/headless-2026-11-17");
+const output = path.resolve(outputDir ?? ".planning/handovers/evidence/e4/headless-2026-11-17"),
+  outputFile = process.argv.find((arg) => arg.startsWith("--file="))?.slice("--file=".length),
+  repetitions = Number(
+    process.argv.find((arg) => arg.startsWith("--repetitions="))?.slice("--repetitions=".length) ?? 3,
+  );
+
+if (!Number.isInteger(repetitions) || repetitions < 1) throw new Error("--repetitions must be a positive integer");
 const browser = await puppeteer.launch({
   executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   headless: true,
@@ -208,7 +214,7 @@ try {
     samples = [];
   for (const scenario of ["M6-extensions", "M8-hdr-layers-resize"])
     for (const count of [100, 500, 1000])
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < repetitions; i++) {
         const sample = await page.evaluate(({ scenario, count, i }) => runExtended(scenario, count, i), {
           scenario,
           count,
@@ -246,7 +252,7 @@ try {
     );
 
   await writeFile(
-    path.join(output, forceHdr ? "runtime-extended-hdr.json" : "runtime-extended.json"),
+    path.join(output, outputFile ?? (forceHdr ? "runtime-extended-hdr.json" : "runtime-extended.json")),
     JSON.stringify(
       {
         workingTree: true,

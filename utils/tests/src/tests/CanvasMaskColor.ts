@@ -73,14 +73,7 @@ describe("CanvasMask pixel color adoption", () => {
       },
     } as unknown as Container;
 
-    addParticlesFromCanvasPixels(
-      container,
-      data,
-      { x: 50, y: 50 },
-      1,
-      { color: true, opacity: false },
-      () => true,
-    );
+    addParticlesFromCanvasPixels(container, data, { x: 50, y: 50 }, 1, { color: true, opacity: false }, () => true);
 
     const captured = addedOptions as CapturedOptions;
 
@@ -99,10 +92,7 @@ describe("CanvasMask pixel color adoption", () => {
       },
       positions: number[] = [],
       maximumRandomValue = 0.75,
-      expectedPositions = Array.from(
-        { length: pixelData.width },
-        (_, index) => pixelData.width - index - 1,
-      ),
+      expectedPositions = Array.from({ length: pixelData.width }, (_, index) => pixelData.width - index - 1),
       expectedRandomCalls = pixelData.width - 1;
     let randomCalls = 0;
 

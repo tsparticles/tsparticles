@@ -49,9 +49,10 @@ conversion. Engine-side RGB output requires a documented boundary need.
   RGB and HSL accept modern slash alpha and retain legacy comma alpha.
 - Source interpretation is independent from output capabilities. Keep intrinsic
   spaces from formats such as `color(display-p3 …)`; untagged hex/named/RGB/HSL
-  inputs continue to mean sRGB. RGB channel objects can declare `colorSpace:
-  "srgb" | "display-p3"`; the input-only `p3: true/false` shorthand maps to
-  Display-P3/sRGB and is rejected when it conflicts with `colorSpace`. Neither
+  inputs continue to mean sRGB. RGB channel objects can declare the
+  `colorSpace` value `"srgb" | "display-p3"`; the input-only `p3: true/false`
+  shorthand maps to Display-P3/sRGB and is rejected when it conflicts with
+  `colorSpace`. Neither
   setting selects the output canvas space or overrides an intrinsically tagged
   string.
 - Do not accept a generic `hdr: true/false` as sufficient HDR source metadata.
@@ -128,4 +129,6 @@ Before C1 implementation, add independent reference vectors for conversion,
 neutral hue, alpha, gamut edges, and extended linear values. Before C2/C3, add
 characterization tests for input precedence, range/random call counts, and
 existing HSL animation inputs. C0 is a contract decision, not color rollout
-acceptance; C1–C4 and C5 remain open.
+acceptance; C1–C4 are recorded as accepted in the E5 closure. C5 remains open
+pending its final performance/distribution and broader browser gates; the E10
+Chrome pixel results are summarized in [V5-COLOR-REPORT.md](V5-COLOR-REPORT.md).

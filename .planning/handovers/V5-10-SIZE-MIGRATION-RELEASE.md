@@ -1,7 +1,9 @@
 # V5-10 — Size, migration, and final currently scoped verification
 
-Status pending. Execute in E10 after verified E0–E9 gates and completion of
-all technical handovers 01–09. See the [execution sequence](V5-EXECUTION.md).
+Status in progress — E10 checkpoint recorded 2026-11-24. E0–E9 are accepted;
+the final E10 verification and migration gates remain open. See the
+[execution sequence](V5-EXECUTION.md) and the
+[E10 evidence checkpoint](evidence/e10/README.md).
 
 ## Ownership
 
@@ -43,6 +45,9 @@ separate plan for additional verification before considering any release.
 Collect `V5-ENGINE-AUDIT.md`, `V5-PLUGIN-AUDIT.md`, and the browser matrix from 09. Verify complete coverage of engine source and extension packages, including
 Particle, ParticlesManager, utilities, options, and palettes. Record evidence
 for compatibility claims. Files or packages without an outcome keep the gate open.
+G1–G7 dispositions are recorded as closed in E8's source-review acceptance;
+this does not close the separate E10 architecture, legacy, browser, size, or
+migration checks below.
 
 ## Final checklist
 
@@ -55,10 +60,10 @@ for compatibility claims. Files or packages without an outcome keep the gate ope
       budgets met. Report ESM/CJS lazy subpath sizes separately where consumers
       use those entrypoints.
 - [ ] Draw/update/allocation regressions are either resolved or explained and accepted.
-- [ ] Targeted tests, full suite (`pnpm exec vitest`, plus a finite run if needed),
-      lint, and formatting pass. Verify Nx targets before running them.
-- [ ] Complete the rebuild outside CLI/website/palette required by AGENTS, builds
-      for affected CLI/generators/consumers, and `pnpm run build:ci`.
+- [x] Targeted tests, full Nx test matrix (85 projects), lint, and formatting pass.
+      The unsandboxed Nx run completes all finite browser/server targets.
+- [x] Rebuild the workspace, including CLI/generators/consumers, and
+      `pnpm run build:ci` (457/457 tasks in the E10 checkpoint).
 - [ ] Real browser smoke tests pass and guides/demos/templates/generated code work.
 - [ ] Breaking-change changelog and migration guide are complete, with English and translations aligned.
 - [ ] V5-LEG retirement, V5-ARCH evaluations, and V5-COLOR migration gates pass.
@@ -124,17 +129,21 @@ with final verification in E10: “Accettare lo scostamento e chiudere E5, con
 verifica finale in E10”. This is an E5 acceptance exception; do not change
 the original budgets or report the measured exceedances as passing.
 
-- [ ] Rerun M4/500 with the final source and matched same-browser controls.
-      Current quiet nine-repetition E5 update is 3.70 ms vs E0 ceiling 3.52;
-      frame p95 is 7.50 vs matched E4 6.50 (screen 7.15). The full matrix
-      instead has update 3.50/p95 7.70; retain dispersion and all reports.
-- [ ] Recheck the inherited E4 M6/500 release item. Current E5 p95 is 2.10 ms
-      vs E0 ceiling 1.87; a fresh prior-E5 corrected-RNG control gives 2.30.
-      Historical unseeded M6 runs are not comparable deterministic evidence.
-- [ ] Recheck the earlier E4 M8/500 item against final output; current E5
-      extended p95 1.40 passes the 1.65 ceiling, but does not close E10 early.
-- [ ] Review final consumer, distribution and all-chunk size deltas. The user
-      waived bundle growth for E5; this is not a claim that the 2% targets pass.
+- [x] Recheck M4/500 with the final source and matched same-browser control.
+      E10's nine-repetition quiet pair reports update 3.70 ms (E0 ceiling
+      3.52), draw 2.40 ms (2.53), and frame p95 7.60 ms (E4 reference 6.50;
+      E5 screen 7.15). Candidate and E6 control match on these medians. The
+      update and p95 exceedances remain visible; no budget changed.
+- [x] Recheck the inherited E4 M6/500 release item. E10's nine-repetition
+      extended confirmation gives SDR/HDR p95 1.90/2.20 ms vs E0 1.87; matched
+      E6 gives 1.90/2.30. HDR improves relative to control, but both absolute
+      E0 rows still fail.
+- [x] Recheck the earlier E4 M8/500 item against final output. Nine-repetition
+      extended candidate p95 is 1.40 ms in SDR and HDR, below E0 ceilings 1.65
+      and 1.54 respectively.
+- [x] Review final consumer, distribution and all-chunk size deltas. The E10
+      report records 17 bundle and 3 CJS failures; the earlier E5 bundle-growth
+      acceptance does not waive E0/E10 size targets.
 - [ ] Complete the currently scoped supported-browser and physical HDR checks with
       their recorded support-policy limitations. E5 headless readback does not
       certify display output or GPU completion.
@@ -154,18 +163,19 @@ ceilings are unchanged; neither recorded exceedances nor fresh E6 control
 exceedances are reclassified as passing. This is a stage-acceptance deferral,
 not a release-budget waiver or an extension of the earlier E5 exception.
 
-- [ ] Rerun the final M3–M8 matrix against original E0 ceilings with matched
-      controls; retain the first-pass flags and confirmation dispersion.
+- [x] Rerun the final M3–M8 matrix against original E0 ceilings with matched
+      controls; retain the first-pass flags and confirmation dispersion. Seven
+      initially flagged main-matrix rows pass their nine-repetition medians.
 - [ ] Investigate the absolute update/draw flags in E7's Chrome 158 and Chrome
       for Testing 157 reports, including differences between browser products
       and the original Google Chrome measurements. Fresh E6 controls also exceed
       several ceilings; this does not waive those ceilings.
-- [ ] Recheck SDR/HDR M6/M8 update/render/p95 and retention on final artifacts.
-      E7's relative flags pass repeated confirmation; the original final checks
-      and inherited M6 obligations still require final verification.
-- [ ] Recheck final minimal/all-chunk and standalone payloads against original
-      size targets. E7 increments are +130 gzip/+140 Brotli bytes for minimal
-      and +164/+265 for All; helper bytes and chunk counts are unchanged.
+- [x] Recheck SDR/HDR M6/M8 update/render/p95 and retention on final artifacts.
+      E10's nine-repetition matched measurements keep DOM/listeners stable and
+      confirm two inherited M6/500 p95 failures; M8/500 passes.
+- [x] Recheck final minimal/all-chunk and standalone payloads against original
+      size targets. E10 records the absolute results; bundle/CJS budget failures
+      remain release blockers.
 
 Evidence: [E7 acceptance](evidence/e7/closure/README.md),
 [verification](evidence/e7/closure/verification.json), `evidence/e7/budget-screen.json`,

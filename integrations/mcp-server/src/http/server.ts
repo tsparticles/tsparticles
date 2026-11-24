@@ -100,7 +100,10 @@ export async function startHttpServer({
    */
   function touchSession(sessionId: string): void {
     const entry = sessions.get(sessionId);
-    if (entry) entry.lastActivity = Date.now();
+
+    if (entry) {
+      entry.lastActivity = Date.now();
+    }
   }
 
   /**
@@ -109,7 +112,10 @@ export async function startHttpServer({
    */
   async function closeSession(sessionId: string): Promise<void> {
     const entry = sessions.get(sessionId);
-    if (!entry) return;
+
+    if (!entry) {
+      return;
+    }
     sessions.delete(sessionId);
     try {
       await entry.transport.close();
@@ -122,6 +128,7 @@ export async function startHttpServer({
   // without a clean DELETE doesn't leak memory indefinitely.
   const sweepInterval = setInterval(() => {
     const now = Date.now();
+
     for (const [sessionId, entry] of sessions) {
       if (now - entry.lastActivity > SESSION_IDLE_TIMEOUT_MS) {
         void closeSession(sessionId);
@@ -130,6 +137,7 @@ export async function startHttpServer({
     mcpRateLimiter.sweep();
     publicRateLimiter.sweep();
   }, SESSION_SWEEP_INTERVAL_MS);
+
   sweepInterval.unref();
 
   /**
@@ -241,6 +249,7 @@ export async function startHttpServer({
     if (!isOriginAllowed(req.headers.origin, allowedOrigins)) {
       res.writeHead(HttpStatusCode.Forbidden, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Origin not allowed" }));
+
       return false;
     }
 
@@ -249,6 +258,7 @@ export async function startHttpServer({
     if (sessionIdError) {
       res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: sessionIdError }));
+
       return false;
     }
 
@@ -271,6 +281,7 @@ export async function startHttpServer({
     if (contentType !== "application/json") {
       res.writeHead(HttpStatusCode.UnsupportedMediaType, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Unsupported media type, expected application/json" }));
+
       return { rejected: true };
     }
 
@@ -293,6 +304,7 @@ export async function startHttpServer({
             // written once the body has been fully read, so the client
             // gets a proper 413 instead of a reset connection.
             tooLarge = true;
+
             return;
           }
 
@@ -301,6 +313,7 @@ export async function startHttpServer({
         req.on("end", () => {
           if (tooLarge) {
             reject(new RequestBodyTooLargeError());
+
             return;
           }
 
@@ -324,6 +337,7 @@ export async function startHttpServer({
     } catch {
       res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Invalid JSON" }));
+
       return { rejected: true };
     }
   }
@@ -342,6 +356,7 @@ export async function startHttpServer({
     if (!sessionId || !sessions.has(sessionId)) {
       res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Session not found" }));
+
       return;
     }
 
@@ -349,7 +364,9 @@ export async function startHttpServer({
 
     const entry = sessions.get(sessionId);
 
-    if (!entry) return;
+    if (!entry) {
+      return;
+    }
 
     await entry.transport.handleRequest(req, res);
   }
@@ -368,6 +385,7 @@ export async function startHttpServer({
     if (!sessionId || !sessions.has(sessionId)) {
       res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Session not found" }));
+
       return;
     }
 
@@ -394,6 +412,7 @@ export async function startHttpServer({
     if (!entry) {
       res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Session not found" }));
+
       return;
     }
 
@@ -418,6 +437,7 @@ export async function startHttpServer({
     if (!isInitializeRequest(parsedBody)) {
       res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Missing session, expected initialize request" }));
+
       return;
     }
 
@@ -468,6 +488,7 @@ export async function startHttpServer({
             sessions.delete(closedSessionId);
           },
         });
+
       transport = newTransport;
 
       await newServer.connect(newTransport);
@@ -501,12 +522,14 @@ export async function startHttpServer({
     // existing session.
     if (req.method === "GET") {
       await handleSessionStream(req, res, sessionId);
+
       return;
     }
 
     // DELETE is used by clients to explicitly terminate a session.
     if (req.method === "DELETE") {
       await handleSessionTerminate(req, res, sessionId);
+
       return;
     }
 
@@ -516,15 +539,19 @@ export async function startHttpServer({
         Allow: "GET, POST, DELETE",
       });
       res.end(JSON.stringify({ error: "Method not allowed" }));
+
       return;
     }
 
     const { parsedBody, rejected } = await readRequestBody(req, res);
 
-    if (rejected) return;
+    if (rejected) {
+      return;
+    }
 
     if (sessionId) {
       await handleSessionPost(req, res, sessionId, parsedBody);
+
       return;
     }
 
@@ -538,7 +565,9 @@ export async function startHttpServer({
    */
   async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
     try {
-      if (!admitRequest(req, res)) return;
+      if (!admitRequest(req, res)) {
+        return;
+      }
 
       await dispatchRequest(req, res);
     } catch (error) {
@@ -589,7 +618,9 @@ export async function startHttpServer({
   if (process.env.NODE_ENV !== "test") {
     let shuttingDown = false;
     const shutdown = (signal: NodeJS.Signals): void => {
-      if (shuttingDown) return;
+      if (shuttingDown) {
+        return;
+      }
       shuttingDown = true;
       console.error(`Received ${signal}, shutting down gracefully...`);
 
@@ -600,6 +631,7 @@ export async function startHttpServer({
           console.error("Graceful shutdown timed out, forcing exit.");
           process.exit(EXIT_CODE_FAILURE);
         }, FORCE_EXIT_TIMEOUT_MS);
+
       forceExitTimer.unref();
 
       void closeSessions.finally(() => {

@@ -1,17 +1,25 @@
-# V5 migration guide — implementation draft
+# V5 migration guide — E10 working draft
 
-Status: E0 complete; E1 retirement verified and engine/consumer migration in progress; E2 service APIs and acceptance checks are complete. The engine/convenience APIs below are implemented in the working tree;
-consumer verification is ongoing. Do not publish these instructions as a
-completed v5 migration guide until installed-consumer checks pass in E1/E9/E10.
+Status: E10 in progress (2026-11-24). E9 installed-package and browser checks
+passed for the current candidate. This guide now describes the implemented v5
+engine, wrapper, bundle, and color contracts. The vanilla generated consumers
+and final package/size checks have been exercised; the E0 size ceilings remain
+unmet. Other generated frameworks, all translated guides, and final migration
+review remain open; do not publish it as the completed release migration guide
+yet.
+The vanilla TypeScript MCP-generated example has now passed an isolated
+consumer type-check and Chrome initialization using packed 4.6.0 candidate
+packages. The CLI vanilla scaffold also passes isolated type-check, production
+build, and Chrome canvas initialization from packed 4.6.0 candidate packages.
+Other generated frameworks and translated guides remain to be checked.
 
 ## Engine ownership
 
-Replace imports of the `tsParticles` singleton with `createEngine()` once E1
-lands. Keep the returned instance in application scope, pass it to each loader
-and supply it explicitly to wrappers/providers. A local variable may still be
-called `tsParticles`. Component teardown owns its container; it must not destroy
-unrelated containers using the same engine. Exact wrapper signatures and the
-CDN bootstrap namespace remain pending implementation and tests.
+Replace imports of the `tsParticles` singleton with `createEngine()`. Keep the
+returned instance in application scope, pass it to each loader, and supply it
+explicitly to wrappers/providers. A local variable may still be called
+`tsParticles`. Component teardown owns its container; it must not destroy
+unrelated containers using the same engine.
 
 Random/logger customization and animation scheduling are now instance-owned in
 the E2 implementation. Keep custom plugins on `container.engine` (or
@@ -41,10 +49,19 @@ This is scan evidence, not a claim that all compatibility aliases are unnecessar
 
 ## Color, options and public contracts
 
-Canonical OKLCH and h/c/l animation migration is mandatory in E5. Final examples,
-legacy HSL animation conversion, custom color manager changes, gamut/alpha/HDR
-behavior and any intentional option/API removals will be documented with their
-implementation. The current runtime has not been migrated.
+Color inputs still accept supported RGB, HSL, HSV, HWB, Lab, LCH, OKLab, CSS
+strings, arrays, and ranges. The particle animation contract is now OKLCH:
+replace legacy HSL animation components `{ h, s, l }` with `{ h, c, l }`.
+Hue remains an angle, chroma and lightness use the v5 OKLCH numeric scale, and
+alpha remains a separate opacity value. Do not copy HSL saturation into chroma;
+convert colors at the input boundary or retain a supported CSS/RGB input and let
+the engine parse it. Managers that implement the color extension point must
+follow the current OKLCH manager contract; see the [color decisions](V5-COLOR-DECISIONS.md)
+for accepted inputs, gamut mapping, alpha, and HDR behavior.
+
+The E0 scan found `applyPolyfills()` deprecated in a generated Stencil
+declaration, without a documented replacement. Check the Stencil generation
+contract before removing that call; do not substitute an unrelated engine API.
 
 ## Explicit-engine APIs implemented in E1
 
@@ -68,25 +85,59 @@ await engine.load({ id: "particles", options: {} });
 ```
 
 A standalone bundle includes engine definitions; external feature scripts require
-the matching engine/dependency scripts first. Keep package versions aligned. The
+the matching engine and dependencies first. Keep package versions aligned. The
 namespace holds definitions, not an engine. Loading another bundle never destroys
 an engine created previously. Same-canvas ownership is exclusive, even across
 separately bundled engine copies. Destroy the owner before transferring a canvas.
 Same IDs on distinct supplied canvases remain independent across engines.
 
-Convenience packages now export `createConfetti(engine)`, `createFireworks(engine)`,
-`createParticles(engine)` and `createRibbons(engine)`. Their returned callables retain
-`init`, `create` and `version`. Initialization failures can be retried. `initPjs(engine)`
-returns `{ particlesJS, pJSDom, Particles }`; it no longer assigns globals.
-`loadConfigs(engine)` explicitly registers the catalog and palettes.
+Use a separate engine where an application needs separate plugin registries,
+random sources, loggers, schedulers, or container ownership. Register every
+required feature with each engine that will use it:
 
-React/Next and Vue providers take `engine`; Preact, Solid, Inferno, Svelte, Qwik,
-Stencil and Riot components receive an engine prop. Angular service initialization
-is `service.init(engine, registrar)`, with separate service providers for independent
-engines. Angular convenience components also take an `engine` input and bind their callable API to it.
-Custom elements receive `.engine` as a property, never as a serialized attribute.
-Nuxt's configured initialization module exports both `engine` and `registerParticles`.
-Qwik supplies an engine on the client via `noSerialize`, after loading its plugins.
+```ts
+import { createEngine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const editor = createEngine();
+const preview = createEngine();
+await Promise.all([loadSlim(editor), loadSlim(preview)]);
+
+const editorContainer = await editor.load({ id: "editor", options: {} });
+const previewContainer = await preview.load({ id: "preview", options: {} });
+
+editorContainer?.destroy();
+previewContainer?.destroy();
+```
+
+Convenience packages export `createConfetti(engine)`, `createFireworks(engine)`,
+`createParticles(engine)`, and `createRibbons(engine)`. The returned callable is
+bound to that engine and retains `init`, `create`, and `version`:
+
+```ts
+import { createEngine } from "@tsparticles/engine";
+import { createConfetti } from "@tsparticles/confetti";
+
+const confetti = createConfetti(createEngine());
+await confetti({ count: 30, spread: 70 });
+```
+
+`initPjs(engine)` resolves to `{ particlesJS, pJSDom, Particles }`; it does not
+assign those compatibility APIs to `globalThis`. `loadConfigs(engine)` explicitly
+registers the catalog and palettes on that engine.
+
+| Wrapper family                                | Engine ownership and registration                                                                                                                                     |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| React / Next.js                               | Pass `engine` to `ParticlesProvider`; provide an `init` registrar that loads required plugins on it.                                                                  |
+| Vue 3                                         | Install the particles provider with `{ engine, init }`; call `useParticlesProvider()` from descendants.                                                               |
+| Angular                                       | Supply an engine to `service.init(engine, registrar)` and use a separate service provider for each independent engine. Convenience components take an `engine` input. |
+| Preact, Solid, Inferno, Svelte, Stencil, Riot | Supply the engine through the component/provider API and initialize that engine with `initParticlesEngine(engine, registrar)` where exposed.                          |
+| Qwik                                          | Create/register on the client and retain the engine with `noSerialize`; do not create an engine during server rendering.                                              |
+| Custom elements                               | Assign `.engine` as a property; it is not a serialized HTML attribute.                                                                                                |
+| Nuxt 4                                        | Use the configured initialization module's exported `engine` and `registerParticles`.                                                                                 |
+
+Use the signatures in each wrapper README for framework-specific setup and SSR
+constraints. Do not recreate an implicit module-level engine in a provider.
 
 Component teardown destroys only its owned container. Applications own shared engine
 lifetime and must settle pending loads and destroy containers before discarding it.
@@ -120,3 +171,35 @@ for that engine's initialization and do not create or initialize an implicit eng
 Use `$.particles(engine).init(registrar)` for jQuery. React/Vue providers and
 Angular service initialization perform the equivalent step. Failed registration
 rejects current waiters and allows a subsequent initialization attempt.
+
+## Module and browser entrypoints
+
+Import the package root for the standard ESM API. Use a package's `/lazy`
+subpath when its deferred entrypoint is needed; dynamic loading does not restore
+the old singleton. The installed package checks cover ESM `import`, CJS `require`,
+and the `browser` condition for root and `/lazy` entries.
+
+For classic browser output, the Rollup namespace contains factories and feature
+loaders. Create the engine after the namespace script loads and pass it to each
+loader. External feature scripts depend on the matching engine and shared
+dependencies; use a coherent version set and the order in the bundle's browser
+README. A standalone bundle contains its selected features. Neither loading the
+browser entrypoint nor importing a package root creates an engine automatically.
+
+## Package boundaries and removed singleton APIs
+
+Import runtime types and `createEngine` from `@tsparticles/engine`, then import
+only the feature packages needed by the application (for example `@tsparticles/slim`
+or a dedicated interaction/shape/updater package). Convenience packages are
+separate adapters. Prefer their declared exports over importing another package's
+internal `dist` or source paths. The E10 installed-package report is the authority
+for current `exports`, declaration, and resolution checks.
+
+The exported engine singleton and global engine mutation helpers were removed.
+Replace `setParticlesRandom`, `getParticlesRandom`, `getParticlesRandomFn`,
+`setParticlesLogger`, and `getParticlesLogger` with the corresponding methods on
+the engine that owns the container. If application code used `tsParticles.load`,
+`tsParticles.loadJSON`, or `tsParticles.dom`, call those operations on the explicit
+engine or retain the returned container. Do not access `window.tsParticles` from
+an imported ESM/CJS package; classic browser bundles expose the documented
+namespace separately.

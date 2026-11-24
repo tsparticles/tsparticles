@@ -1,5 +1,52 @@
 # V5 bundle and runtime report
 
+## E10 candidate checkpoint — 2026-11-24
+
+The fresh candidate measurements are recorded in
+[`evidence/e10/README.md`](evidence/e10/README.md) and
+[`evidence/e10/bundle-sizes.json`](evidence/e10/bundle-sizes.json). The report
+uses the E0 compression settings (gzip 9, Brotli 11); `raw` is the emitted
+unminified graph, `min` is the minified graph, and compressed totals are summed
+per emitted chunk. Consumer graph rows include actual entry/chunk sizes and
+module IDs in the JSON. Distribution rows cover the standalone files, with raw
+and minified byte lengths in the same artifact.
+
+| Candidate             |   Raw B |  Min B | Gzip B | Brotli B | Chunks |
+| --------------------- | ------: | -----: | -----: | -------: | -----: |
+| Import helper         |     644 |    314 |    189 |      166 |      1 |
+| Import factory        |  204720 |  79555 |  26904 |    23755 |      3 |
+| Import initialization |  204789 |  79583 |  26917 |    23737 |      3 |
+| Import minimal scene  |  257352 | 100428 |  33182 |    29534 |      4 |
+| Import factory-lazy   |  204730 |  79565 |  26915 |    23738 |      3 |
+| Engine standalone     |  275271 | 100276 |  32578 |    27776 |      1 |
+| Basic standalone      |  331043 | 121216 |  37277 |    32496 |      1 |
+| Slim standalone       |  523546 | 188758 |  55103 |    47284 |      1 |
+| Full standalone       |  655952 | 236005 |  67091 |    57192 |      1 |
+| All standalone        | 1276981 | 464624 | 128028 |   103535 |      1 |
+
+An isolated install of the packed engine also measures the CJS acquisition
+graphs and complete shipped CJS graph. All three exceed their frozen E0
+ceilings; this is a measured result, not a pending scenario.
+
+| CJS package graph      |  Raw B |  Min B | Gzip B | Brotli B | Gzip ceiling B | Brotli ceiling B |
+| ---------------------- | -----: | -----: | -----: | -------: | -------------: | ---------------: |
+| Root acquisition       | 153063 |  97004 |  35199 |    30647 |          30594 |            26477 |
+| Lazy acquisition       | 153063 |  97004 |  35199 |    30647 |          30606 |            26483 |
+| Full shipped CJS graph | 287481 | 159646 |  60841 |    52403 |          54213 |            46456 |
+
+The browser consumer graphs match the import graph sizes shown above. The
+minimal CDN page is 44,921 gzip / 38,808 Brotli bytes across 9 scripts. Against
+the frozen E0 ceilings, the helper passes; factory, initialization, minimal,
+factory-lazy, all five engine/distribution rows, and the CDN page exceed at
+least one ceiling. No threshold is changed or waived. The remaining E10 checks
+are still open. The detailed byte and percentage deltas and the 30-row runtime screen
+are in [`evidence/e10/budget-screen.json`](evidence/e10/budget-screen.json).
+All 30 runtime rows now have a same-browser Chrome 158 control measured from
+the preserved E6 pre-E7 artifact using the same harness; per-repetition
+samples and deltas are in `evidence/e10/runtime-control-comparison.json`. This
+control provides relative context, while E0's fixed absolute ceilings remain
+the acceptance thresholds.
+
 ## E0 checkpoint — 2026-11-13
 
 **Status: E0 complete; E1 retirement verified, factory migration pending.** Baseline measurements precede retirement. No singleton removal, performance gain or complete v5 compatibility is claimed. E11 is excluded.

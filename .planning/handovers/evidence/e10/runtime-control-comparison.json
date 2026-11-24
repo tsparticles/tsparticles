@@ -1,0 +1,1587 @@
+{
+  "control": {
+    "artifact": {
+      "bundlePath": ".planning/handovers/evidence/e6/draw-all.bundle.min.js.gz",
+      "bundleSha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d"
+    },
+    "measuredAt": "2026-11-24T11:59:15.639Z",
+    "browser": "Chrome/158.0.8127.38",
+    "revision": "354e1a5e5d5d4791cd85f0e8fb22d81426dfa08b",
+    "note": "E6 preserved pre-E7 artifact, rerun in Chrome 158 with the same E10 harness; it is a matched same-browser control, not the E0 source revision."
+  },
+  "candidate": {
+    "measuredAt": "2026-11-24T10:54:13.576Z",
+    "browser": "Chrome/158.0.8127.38",
+    "revision": "586bbd179db178d7fadf9cfce6f7d754f8032773"
+  },
+  "sameBrowser": true,
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.19999998807907104,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "candidateSamples": [
+          0.5,
+          0.40000003576278687,
+          0.40000003576278687
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.40000003576278687,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -19.999992847442627,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.9000000357627869,
+          0.9000000357627869,
+          0.9000000357627869
+        ],
+        "candidateSamples": [
+          1,
+          1,
+          1
+        ],
+        "controlMedian": 0.9000000357627869,
+        "candidateMedian": 1,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 11.111106695952415,
+        "e0Ceiling": 0.9,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.699999988079071,
+          0.699999988079071,
+          0.699999988079071
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.699999988079071,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 16.666660043928623,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          2.100000023841858,
+          1.9000000357627869,
+          2
+        ],
+        "candidateSamples": [
+          2.199999988079071,
+          2.800000011920929,
+          2.100000023841858
+        ],
+        "controlMedian": 2,
+        "candidateMedian": 2.199999988079071,
+        "delta": 0.19999998807907104,
+        "deltaPercent": 9.999999403953552,
+        "e0Ceiling": 1.87,
+        "candidatePassesE0Ceiling": false
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.600000023841858,
+          1.7000000476837158,
+          1.699999988079071
+        ],
+        "candidateSamples": [
+          1.5999999642372131,
+          1.600000023841858,
+          1.800000011920929
+        ],
+        "controlMedian": 1.699999988079071,
+        "candidateMedian": 1.600000023841858,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -5.882350878732001,
+        "e0Ceiling": 1.87,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.100000023841858,
+          1.1999999284744263,
+          1.0999999642372131
+        ],
+        "candidateSamples": [
+          1.100000023841858,
+          1.0999999642372131,
+          1.199999988079071
+        ],
+        "controlMedian": 1.100000023841858,
+        "candidateMedian": 1.100000023841858,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.65,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          3.5,
+          3.5,
+          3.300000011920929
+        ],
+        "candidateSamples": [
+          3.300000011920929,
+          3.199999988079071,
+          3.300000011920929
+        ],
+        "controlMedian": 3.5,
+        "candidateMedian": 3.300000011920929,
+        "delta": -0.19999998807907104,
+        "deltaPercent": -5.714285373687744,
+        "e0Ceiling": 4.07,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.10000002384185791,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.10000002384185791,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -49.99998509883792,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          0.40000003576278687,
+          0.40000003576278687,
+          0.3999999761581421
+        ],
+        "candidateSamples": [
+          0.3999999761581421,
+          0.3999999761581421,
+          0.40000003576278687
+        ],
+        "controlMedian": 0.40000003576278687,
+        "candidateMedian": 0.3999999761581421,
+        "delta": -5.960464477539063e-8,
+        "deltaPercent": -0.000014901159861580145,
+        "e0Ceiling": 0.5,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.699999988079071,
+          0.699999988079071
+        ],
+        "candidateSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "controlMedian": 0.699999988079071,
+        "candidateMedian": 0.6000000238418579,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -14.285709420028917,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5,
+          0.6000000238418579,
+          0.5999999642372131
+        ],
+        "candidateSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "controlMedian": 0.5999999642372131,
+        "candidateMedian": 0.5,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -16.66666169961264,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          1.5,
+          1.600000023841858,
+          1.5
+        ],
+        "candidateSamples": [
+          1.399999976158142,
+          1.399999976158142,
+          1.4000000357627869
+        ],
+        "controlMedian": 1.5,
+        "candidateMedian": 1.399999976158142,
+        "delta": -0.10000002384185791,
+        "deltaPercent": -6.66666825612386,
+        "e0Ceiling": 1.65,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.4000000357627869,
+          1.4000000357627869,
+          1.399999976158142
+        ],
+        "candidateSamples": [
+          1.399999976158142,
+          1.399999976158142,
+          1.4000000357627869
+        ],
+        "controlMedian": 1.4000000357627869,
+        "candidateMedian": 1.399999976158142,
+        "delta": -5.960464477539063e-8,
+        "deltaPercent": -0.000004257474518057078,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.1999999284744263,
+          1.1999999284744263,
+          1.0999999642372131
+        ],
+        "candidateSamples": [
+          1.100000023841858,
+          1.0999999642372131,
+          1.100000023841858
+        ],
+        "controlMedian": 1.1999999284744263,
+        "candidateMedian": 1.100000023841858,
+        "delta": -0.09999990463256836,
+        "deltaPercent": -8.333325882752291,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          3,
+          2.899999976158142,
+          3
+        ],
+        "candidateSamples": [
+          2.899999976158142,
+          2.800000011920929,
+          2.899999976158142
+        ],
+        "controlMedian": 3,
+        "candidateMedian": 2.899999976158142,
+        "delta": -0.10000002384185791,
+        "deltaPercent": -3.33333412806193,
+        "e0Ceiling": 3.3,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.19999998807907104,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.699999988079071,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.699999988079071,
+          0.7000000476837158,
+          0.7000000476837158
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.7000000476837158,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 16.66666997803569,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "candidateSamples": [
+          0.5,
+          0.5999999642372131,
+          0.5
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.5,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.399999976158142,
+          1.4000000357627869,
+          1.4000000357627869
+        ],
+        "candidateSamples": [
+          1.600000023841858,
+          1.600000023841858,
+          1.5
+        ],
+        "controlMedian": 1.4000000357627869,
+        "candidateMedian": 1.600000023841858,
+        "delta": 0.19999998807907104,
+        "deltaPercent": 14.285713069292996,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.0999999642372131,
+          1.100000023841858,
+          1.0999999642372131
+        ],
+        "candidateSamples": [
+          1.199999988079071,
+          1.199999988079071,
+          1.100000023841858
+        ],
+        "controlMedian": 1.0999999642372131,
+        "candidateMedian": 1.199999988079071,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 9.090911553911022,
+        "e0Ceiling": 1.32,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.30000001192092896,
+          0.30000001192092896,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.30000001192092896,
+          0.30000001192092896,
+          0.20000004768371582
+        ],
+        "controlMedian": 0.30000001192092896,
+        "candidateMedian": 0.30000001192092896,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.4,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.2999999523162842,
+          0.20000004768371582,
+          0.20000004768371582
+        ],
+        "candidateSamples": [
+          0.30000001192092896,
+          0.20000004768371582,
+          0.19999998807907104
+        ],
+        "controlMedian": 0.20000004768371582,
+        "candidateMedian": 0.20000004768371582,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          3.5,
+          3.5,
+          3.5
+        ],
+        "candidateSamples": [
+          3.899999976158142,
+          3.800000011920929,
+          3.800000011920929
+        ],
+        "controlMedian": 3.5,
+        "candidateMedian": 3.800000011920929,
+        "delta": 0.30000001192092896,
+        "deltaPercent": 8.571428912026542,
+        "e0Ceiling": 3.52,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          2.5,
+          2.5,
+          2.400000035762787
+        ],
+        "candidateSamples": [
+          2.600000023841858,
+          2.599999964237213,
+          2.600000023841858
+        ],
+        "controlMedian": 2.5,
+        "candidateMedian": 2.600000023841858,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 4.000000953674316,
+        "e0Ceiling": 2.53,
+        "candidatePassesE0Ceiling": false
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          13.600000023841858,
+          13.600000023841858,
+          12.699999988079071
+        ],
+        "candidateSamples": [
+          15.199999988079071,
+          14.699999988079071,
+          14.900000035762787
+        ],
+        "controlMedian": 13.600000023841858,
+        "candidateMedian": 14.900000035762787,
+        "delta": 1.300000011920929,
+        "deltaPercent": 9.558823600308292,
+        "e0Ceiling": 13.97,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          8.600000023841858,
+          8.800000011920929,
+          8.399999976158142
+        ],
+        "candidateSamples": [
+          8.999999940395355,
+          8.900000035762787,
+          8.899999976158142
+        ],
+        "controlMedian": 8.600000023841858,
+        "candidateMedian": 8.900000035762787,
+        "delta": 0.30000001192092896,
+        "deltaPercent": 3.488372221967863,
+        "e0Ceiling": 9.02,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.30000001192092896,
+          0.20000004768371582,
+          0.20000004768371582
+        ],
+        "candidateSamples": [
+          0.30000001192092896,
+          0.2999999523162842,
+          0.2999999523162842
+        ],
+        "controlMedian": 0.20000004768371582,
+        "candidateMedian": 0.2999999523162842,
+        "delta": 0.09999990463256836,
+        "deltaPercent": 49.999940395369435,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.09999996423721313,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          4,
+          4.100000023841858,
+          4.199999988079071
+        ],
+        "candidateSamples": [
+          4.599999964237213,
+          4.5,
+          4.899999976158142
+        ],
+        "controlMedian": 4.100000023841858,
+        "candidateMedian": 4.599999964237213,
+        "delta": 0.4999999403953552,
+        "deltaPercent": 12.195120426531998,
+        "e0Ceiling": 4.62,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5999999642372131,
+          0.6000000238418579,
+          0.5999999642372131
+        ],
+        "candidateSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "controlMedian": 0.5999999642372131,
+        "candidateMedian": 0.6000000238418579,
+        "delta": 5.960464477539063e-8,
+        "deltaPercent": 0.000009934108054684087,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          15.800000011920929,
+          15.600000023841858,
+          15.699999988079071
+        ],
+        "candidateSamples": [
+          17.19999998807907,
+          18,
+          19.19999998807907
+        ],
+        "controlMedian": 15.699999988079071,
+        "candidateMedian": 18,
+        "delta": 2.300000011920929,
+        "deltaPercent": 14.649681615715332,
+        "e0Ceiling": 17.82,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.300000011920929,
+          1.399999976158142,
+          1.300000011920929
+        ],
+        "candidateSamples": [
+          1.399999976158142,
+          1.4000000357627869,
+          1.300000011920929
+        ],
+        "controlMedian": 1.300000011920929,
+        "candidateMedian": 1.399999976158142,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 7.692304870786073,
+        "e0Ceiling": 1.65,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.7999999523162842,
+          0.7999999523162842,
+          0.699999988079071
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.7999999523162842,
+        "delta": 0.19999992847442627,
+        "deltaPercent": 33.333320087857246,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "candidateSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.5999999642372131
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.6000000238418579,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 20.000004768371582,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.300000011920929,
+          1.300000011920929,
+          1.2999999523162842
+        ],
+        "candidateSamples": [
+          1.5999999642372131,
+          1.5999999642372131,
+          1.600000023841858
+        ],
+        "controlMedian": 1.300000011920929,
+        "candidateMedian": 1.5999999642372131,
+        "delta": 0.2999999523162842,
+        "deltaPercent": 23.07691919733085,
+        "e0Ceiling": 1.32,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1,
+          1,
+          1
+        ],
+        "candidateSamples": [
+          1.2000000476837158,
+          1.199999988079071,
+          1.2000000476837158
+        ],
+        "controlMedian": 1,
+        "candidateMedian": 1.2000000476837158,
+        "delta": 0.20000004768371582,
+        "deltaPercent": 20.000004768371582,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.19999998807907104,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.699999988079071,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.699999988079071,
+          0.699999988079071,
+          0.800000011920929
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.699999988079071,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 16.666660043928623,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.699999988079071,
+          0.699999988079071,
+          0.699999988079071
+        ],
+        "candidateSamples": [
+          0.800000011920929,
+          0.699999988079071,
+          0.7000000476837158
+        ],
+        "controlMedian": 0.699999988079071,
+        "candidateMedian": 0.7000000476837158,
+        "delta": 5.960464477539063e-8,
+        "deltaPercent": 0.000008514949398635956,
+        "e0Ceiling": 0.9,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.4000000357627869,
+          1.300000011920929,
+          1.300000011920929
+        ],
+        "candidateSamples": [
+          1.5,
+          1.699999988079071,
+          1.5
+        ],
+        "controlMedian": 1.300000011920929,
+        "candidateMedian": 1.5,
+        "delta": 0.19999998807907104,
+        "deltaPercent": 15.384614326544776,
+        "e0Ceiling": 1.65,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.4000000357627869,
+          1.2999999523162842,
+          1.300000011920929
+        ],
+        "candidateSamples": [
+          1.4000000357627869,
+          1.4999999403953552,
+          1.4000000357627869
+        ],
+        "controlMedian": 1.300000011920929,
+        "candidateMedian": 1.4000000357627869,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 7.692309455758704,
+        "e0Ceiling": 1.76,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.09999996423721313
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.09999996423721313,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.699999988079071,
+          0.699999988079071,
+          0.699999988079071
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.699999988079071,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 16.666660043928623,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "candidateSamples": [
+          0.5,
+          0.5,
+          0.5999999642372131
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.5,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.399999976158142,
+          1.399999976158142,
+          1.300000011920929
+        ],
+        "candidateSamples": [
+          1.5,
+          1.5,
+          1.5
+        ],
+        "controlMedian": 1.399999976158142,
+        "candidateMedian": 1.5,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 7.142858967489158,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": false
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.100000023841858,
+          1.100000023841858,
+          1.100000023841858
+        ],
+        "candidateSamples": [
+          1.1999999284744263,
+          1.100000023841858,
+          1.100000023841858
+        ],
+        "controlMedian": 1.100000023841858,
+        "candidateMedian": 1.100000023841858,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.19999998807907104,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.19999998807907104,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.3,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.40000003576278687
+        ],
+        "candidateSamples": [
+          0.40000003576278687,
+          0.40000003576278687,
+          0.40000003576278687
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.40000003576278687,
+        "delta": -0.09999996423721313,
+        "deltaPercent": -19.999992847442627,
+        "e0Ceiling": 0.6,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.9000000357627869,
+          0.8999999761581421,
+          0.8999999761581421
+        ],
+        "candidateSamples": [
+          0.8999999761581421,
+          0.8999999761581421,
+          0.800000011920929
+        ],
+        "controlMedian": 0.8999999761581421,
+        "candidateMedian": 0.8999999761581421,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.9,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "candidateSamples": [
+          0.6000000238418579,
+          0.6000000238418579,
+          0.6000000238418579
+        ],
+        "controlMedian": 0.6000000238418579,
+        "candidateMedian": 0.6000000238418579,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.8,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          1.9000000357627869,
+          2.100000023841858,
+          2.400000035762787
+        ],
+        "candidateSamples": [
+          1.9000000357627869,
+          2.200000047683716,
+          2.100000023841858
+        ],
+        "controlMedian": 2.100000023841858,
+        "candidateMedian": 2.100000023841858,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.87,
+        "candidatePassesE0Ceiling": false
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.600000023841858,
+          1.5999999642372131,
+          1.699999988079071
+        ],
+        "candidateSamples": [
+          1.5,
+          1.600000023841858,
+          1.600000023841858
+        ],
+        "controlMedian": 1.600000023841858,
+        "candidateMedian": 1.600000023841858,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.65,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.100000023841858,
+          1.0999999642372131,
+          1.0999999642372131
+        ],
+        "candidateSamples": [
+          1.0999999642372131,
+          1.0999999642372131,
+          1.100000023841858
+        ],
+        "controlMedian": 1.0999999642372131,
+        "candidateMedian": 1.0999999642372131,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.54,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          3.100000023841858,
+          3.300000011920929,
+          3.300000011920929
+        ],
+        "candidateSamples": [
+          3,
+          3,
+          3.599999964237213
+        ],
+        "controlMedian": 3.300000011920929,
+        "candidateMedian": 3,
+        "delta": -0.30000001192092896,
+        "deltaPercent": -9.090909419309337,
+        "e0Ceiling": 3.52,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "candidateSamples": [
+          0.19999998807907104,
+          0.19999998807907104,
+          0.19999998807907104
+        ],
+        "controlMedian": 0.19999998807907104,
+        "candidateMedian": 0.19999998807907104,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "candidateSamples": [
+          0.10000002384185791,
+          0.10000002384185791,
+          0.10000002384185791
+        ],
+        "controlMedian": 0.10000002384185791,
+        "candidateMedian": 0.10000002384185791,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.2,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          0.40000003576278687,
+          0.40000003576278687,
+          0.3999999761581421
+        ],
+        "candidateSamples": [
+          0.40000003576278687,
+          0.3999999761581421,
+          0.40000003576278687
+        ],
+        "controlMedian": 0.40000003576278687,
+        "candidateMedian": 0.40000003576278687,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.5,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          0.699999988079071,
+          0.6000000238418579,
+          0.699999988079071
+        ],
+        "candidateSamples": [
+          0.699999988079071,
+          0.699999988079071,
+          0.699999988079071
+        ],
+        "controlMedian": 0.699999988079071,
+        "candidateMedian": 0.699999988079071,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "candidateSamples": [
+          0.5999999642372131,
+          0.5,
+          0.5999999642372131
+        ],
+        "controlMedian": 0.5,
+        "candidateMedian": 0.5999999642372131,
+        "delta": 0.09999996423721313,
+        "deltaPercent": 19.999992847442627,
+        "e0Ceiling": 0.7,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          1.5,
+          1.5999999642372131,
+          1.5
+        ],
+        "candidateSamples": [
+          1.5,
+          1.4000000357627869,
+          1.5
+        ],
+        "controlMedian": 1.5,
+        "candidateMedian": 1.5,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.54,
+        "candidatePassesE0Ceiling": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "repetitions": {
+        "control": 3,
+        "candidate": 3
+      },
+      "status": "measured",
+      "update": {
+        "controlSamples": [
+          1.4000000357627869,
+          1.300000011920929,
+          1.300000011920929
+        ],
+        "candidateSamples": [
+          1.399999976158142,
+          1.300000011920929,
+          1.300000011920929
+        ],
+        "controlMedian": 1.300000011920929,
+        "candidateMedian": 1.300000011920929,
+        "delta": 0,
+        "deltaPercent": 0,
+        "e0Ceiling": 1.54,
+        "candidatePassesE0Ceiling": true
+      },
+      "renderExcludingUpdate": {
+        "controlSamples": [
+          1.100000023841858,
+          1,
+          1
+        ],
+        "candidateSamples": [
+          1.100000023841858,
+          1,
+          1.100000023841858
+        ],
+        "controlMedian": 1,
+        "candidateMedian": 1.100000023841858,
+        "delta": 0.10000002384185791,
+        "deltaPercent": 10.000002384185791,
+        "e0Ceiling": 1.43,
+        "candidatePassesE0Ceiling": true
+      },
+      "frameP95": {
+        "controlSamples": [
+          3,
+          2.600000023841858,
+          2.899999976158142
+        ],
+        "candidateSamples": [
+          3.100000023841858,
+          2.699999988079071,
+          2.599999964237213
+        ],
+        "controlMedian": 2.899999976158142,
+        "candidateMedian": 2.699999988079071,
+        "delta": -0.19999998807907104,
+        "deltaPercent": -6.896551369770242,
+        "e0Ceiling": 3.19,
+        "candidatePassesE0Ceiling": true
+      }
+    }
+  ],
+  "complete": true
+}

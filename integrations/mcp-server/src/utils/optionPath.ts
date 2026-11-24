@@ -34,8 +34,13 @@ export function getOptionValue(obj: Record<string, unknown>, path: string): unkn
  * @param value
  */
 export function asArray<T = Record<string, unknown>>(value: unknown): T[] {
-  if (value === undefined || value === null) return [];
-  if (Array.isArray(value)) return value as T[];
+  if (value === undefined || value === null) {
+    return [];
+  }
+  if (Array.isArray(value)) {
+    return value as T[];
+  }
+
   return [value as T];
 }
 
@@ -51,13 +56,23 @@ export function asArray<T = Record<string, unknown>>(value: unknown): T[] {
 export function isOptionEnabled(obj: Record<string, unknown>, path: string): boolean {
   const value = getOptionValue(obj, path);
 
-  if (value === undefined) return false;
-  if (typeof value === "boolean") return value;
-  if (Array.isArray(value)) return value.length > 0; // eslint-disable-line @typescript-eslint/no-magic-numbers
+  if (value === undefined) {
+    return false;
+  }
+  if (typeof value === "boolean") {
+    return value;
+  }
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
 
   if (typeof value === "object" && value !== null) {
     const enableVal = (value as Record<string, unknown>).enable;
-    if (typeof enableVal === "boolean") return enableVal;
+
+    if (typeof enableVal === "boolean") {
+      return enableVal;
+    }
+
     return true;
   }
 

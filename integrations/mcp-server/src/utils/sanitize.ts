@@ -17,5 +17,6 @@ export function sanitizeReflection(value: unknown): string {
       .replace(/[\u0000-\u001F\u007F]/g, "") // eslint-disable-line no-control-regex
       .replace(/\s+/g, " ")
       .trim();
+
   return `\`${cleaned.replace(/`/g, "")}\``;
 }

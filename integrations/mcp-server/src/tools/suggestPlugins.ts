@@ -47,6 +47,7 @@ function findBundle(packages: string[]): string | undefined {
   // than kept as dead code.
   for (const bundle of bundlePriority) {
     const allPresent = bundle.pkgs.every(p => allNames.has(p));
+
     if (allPresent) {
       return bundle.name;
     }
@@ -62,8 +63,8 @@ function findBundle(packages: string[]): string | undefined {
 export function suggestPlugins(options: Record<string, unknown>): SuggestPluginsResult {
   const matched = new Set<string>(),
     imports: PackageImport[] = [],
-    particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles."));
-  const optionSources: Record<string, unknown>[] = [options];
+    particleOptionMappings = optionToPlugin.filter(mapping => mapping.optionPath.startsWith("particles.")),
+    optionSources: Record<string, unknown>[] = [options];
 
   for (const override of [...asArray<unknown>(options.themes), ...asArray<unknown>(options.responsive)]) {
     if (!override || typeof override !== "object" || Array.isArray(override)) {

@@ -23,7 +23,7 @@ describe("sanitizeReflection", () => {
   });
 
   it("handles non-string values", () => {
-    expect(sanitizeReflection(42)).toBe("`42`"); // eslint-disable-line @typescript-eslint/no-magic-numbers
+    expect(sanitizeReflection(42)).toBe("`42`");
     expect(sanitizeReflection(null)).toBe("`null`");
   });
 });

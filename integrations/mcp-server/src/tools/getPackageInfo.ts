@@ -22,6 +22,7 @@ export interface PackageInfoResult {
  */
 export function getPackageInfo(packageName: string): PackageInfoResult | null {
   const pkg = packageCatalog.byName[packageName] as PackageInfo | undefined;
+
   if (!pkg) {
     return null;
   }

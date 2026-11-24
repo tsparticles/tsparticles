@@ -56,6 +56,7 @@ export function listPackages(filters?: { category?: string; query?: string }): {
 
   if (filters?.query) {
     const q = filters.query.toLowerCase();
+
     results = results.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
   }
 

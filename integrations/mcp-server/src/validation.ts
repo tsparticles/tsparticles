@@ -20,7 +20,7 @@ export const diagnoseIssuesArgsSchema = z.object({
 });
 
 export const getPackageInfoArgsSchema = z.object({
-  package: z.string().min(1, "package must be a non-empty string"), // eslint-disable-line @typescript-eslint/no-magic-numbers
+  package: z.string().min(1, "package must be a non-empty string"),
 });
 
 export const categorySchema = z.enum([
@@ -48,7 +48,7 @@ export const listPackagesArgsSchema = z.object({
 });
 
 export const generateCodeArgsSchema = z.object({
-  description: z.string().trim().min(1, "description must be a non-empty string"), // eslint-disable-line @typescript-eslint/no-magic-numbers
+  description: z.string().trim().min(1, "description must be a non-empty string"),
   framework: z.enum(["vanilla", "react", "vue3", "svelte", "angular"]).optional(),
   typescript: z.boolean().optional(),
 });
@@ -68,7 +68,8 @@ export type GenerateCodeArgs = z.infer<typeof generateCodeArgsSchema>;
 export function formatZodError(error: z.ZodError): string {
   return error.issues
     .map(issue => {
-      const path = issue.path.length > 0 ? issue.path.join(".") : "(root)"; // eslint-disable-line @typescript-eslint/no-magic-numbers
+      const path = issue.path.length > 0 ? issue.path.join(".") : "(root)";
+
       return `${path}: ${issue.message}`;
     })
     .join("; ");

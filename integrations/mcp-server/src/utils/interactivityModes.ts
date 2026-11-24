@@ -5,8 +5,13 @@
  * @param value
  */
 export function parseModeNames(value: unknown): string[] {
-  if (typeof value === "string") return value.split(/[,\s]+/).filter(Boolean);
-  if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string" && v.length > 0); // eslint-disable-line @typescript-eslint/no-magic-numbers
+  if (typeof value === "string") {
+    return value.split(/[,\s]+/).filter(Boolean);
+  }
+  if (Array.isArray(value)) {
+    return value.filter((v): v is string => typeof v === "string" && v.length > 0);
+  }
+
   return [];
 }
 
@@ -20,10 +25,13 @@ export function parseModeNames(value: unknown): string[] {
  * @param interactivity
  */
 export function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
-  if (!interactivity) return [];
+  if (!interactivity) {
+    return [];
+  }
 
   const modeNames = new Set<string>(),
     modesSection = interactivity.modes as Record<string, unknown> | undefined;
+
   if (modesSection) {
     for (const mode of Object.keys(modesSection)) {
       modeNames.add(mode);
@@ -35,8 +43,11 @@ export function collectInteractivityModes(interactivity: Record<string, unknown>
     eventEntries = [events?.onClick, events?.onHover, ...onDivEntries];
 
   for (const entry of eventEntries) {
-    if (!entry || typeof entry !== "object") continue;
+    if (!entry || typeof entry !== "object") {
+      continue;
+    }
     const mode = (entry as Record<string, unknown>).mode;
+
     for (const modeName of parseModeNames(mode)) {
       modeNames.add(modeName);
     }

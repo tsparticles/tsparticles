@@ -10,6 +10,7 @@ import {
 describe("suggestPluginsArgsSchema", () => {
   it("accepts a plain options object", () => {
     const result = suggestPluginsArgsSchema.safeParse({ options: { particles: {} } });
+
     expect(result.success).toBe(true);
   });
 
@@ -22,7 +23,7 @@ describe("suggestPluginsArgsSchema", () => {
   });
 
   it("rejects options provided as an array", () => {
-    expect(suggestPluginsArgsSchema.safeParse({ options: [1, 2, 3] }).success).toBe(false); // eslint-disable-line @typescript-eslint/no-magic-numbers
+    expect(suggestPluginsArgsSchema.safeParse({ options: [1, 2, 3] }).success).toBe(false);
   });
 
   it("rejects options provided as null", () => {
@@ -79,9 +80,11 @@ describe("listPackagesArgsSchema", () => {
 describe("formatZodError", () => {
   it("produces a readable path: message summary", () => {
     const result = suggestPluginsArgsSchema.safeParse({});
+
     expect(result.success).toBe(false);
     if (!result.success) {
       const message = formatZodError(result.error);
+
       expect(message).toContain("options");
     }
   });

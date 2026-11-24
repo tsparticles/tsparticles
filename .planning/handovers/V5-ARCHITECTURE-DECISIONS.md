@@ -122,17 +122,22 @@ costs. A common descriptor must not create empty methods, per-frame dispatch,
 global scans, or type loss. E8 owns whole-ecosystem compatibility and two-engine
 extension verification; E4 owns partial-init cleanup and disposal.
 
-## E3 implementation and verification still required
+## E3 implementation and verification record
 
-- Complete the file-level review in `V5-ENGINE-AUDIT.md`, including public
-  exports, consumers, shared state, dependency cost, decision, and evidence.
-- Capture the current import graph, agree final internal paths, and enforce the
+E3 implementation and verification were accepted in the E3 handover. The
+requirements below are the architecture evaluation record and downstream
+evidence pointers; later gates own the scoped follow-up listed in each item.
+
+- Maintain the file-level review in `V5-ENGINE-AUDIT.md`; E10 reconciles the
+  remaining scoped rows against the E2–E9 handovers.
+- [x] Capture the current import graph, agree final internal paths, and enforce the
   boundary graph above without creating runtime cycles.
-- Characterize option precedence, mutation sites, registration behavior, and
+- [x] Characterize option precedence, mutation sites, registration behavior, and
   extension hook order with current source/tests before changing implementation.
-- Complete C0 decisions in `V5-COLOR-DECISIONS.md` and preserve the E0 color
-  fixtures as the reference baseline.
-- Rebuild the engine and representative downstream consumers after any moves;
+- C0 decisions are recorded in `V5-COLOR-DECISIONS.md`; color implementation,
+  acceptance, and current browser limitations are recorded in the E5 closure
+  and `V5-COLOR-REPORT.md`.
+- [x] Rebuild the engine and representative downstream consumers after any moves;
   rerun public ESM/CJS/browser/type and custom plugin checks.
 
 ## E7 rendering integration — 2026-11-24

@@ -147,24 +147,24 @@ describe("RateLimiter", () => {
   });
 
   it("allows requests under the limit", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 3);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
   });
 
   it("blocks requests over the limit within the window", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 2);
+
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(false);
   });
 
   it("tracks separate clients independently", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 1);
+
     expect(limiter.allow("client-c")).toBe(true);
     expect(limiter.allow("client-d")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);
@@ -172,8 +172,9 @@ describe("RateLimiter", () => {
 
   it("resets the window after it elapses", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
+
     expect(limiter.allow("client-e")).toBe(true);
     expect(limiter.allow("client-e")).toBe(false);
     vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
@@ -182,20 +183,21 @@ describe("RateLimiter", () => {
 
   it("sweep() removes stale entries", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
+
     limiter.allow("client-f");
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     expect(limiter.size).toBe(1);
     vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
     limiter.sweep();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     expect(limiter.size).toBe(0);
   });
 
   it("enforces a global cap across distinct clients", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 3, 4);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(true);
@@ -204,8 +206,8 @@ describe("RateLimiter", () => {
   });
 
   it("does not count per-key-rejected requests against the global cap", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 2, 5);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     // Blocked by the per-key limit, must not consume the global budget.
@@ -218,8 +220,9 @@ describe("RateLimiter", () => {
 
   it("resets the global cap after the window elapses", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 5, 2);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);

@@ -6,6 +6,7 @@ const MIN_EXPECTED_ISSUES = 5;
 describe("diagnoseIssues", () => {
   it("should return no issues for empty options", () => {
     const issues = diagnoseIssues({});
+
     expect(Array.isArray(issues)).toBe(true);
   });
 
@@ -15,6 +16,7 @@ describe("diagnoseIssues", () => {
         opacity: { value: 0 },
       },
     });
+
     expect(issues.some(i => i.title.includes("opacity = 0"))).toBe(true);
     expect(issues.find(i => i.title.includes("opacity = 0"))?.severity).toBe("error");
   });
@@ -25,6 +27,7 @@ describe("diagnoseIssues", () => {
         size: { value: 0 },
       },
     });
+
     expect(issues.some(i => i.title.includes("size = 0"))).toBe(true);
   });
 
@@ -34,6 +37,7 @@ describe("diagnoseIssues", () => {
         opacity: { value: 0, animation: { enable: true } },
       },
     });
+
     expect(issues.some(i => i.title.includes("opacity = 0"))).toBe(false);
   });
 
@@ -43,6 +47,7 @@ describe("diagnoseIssues", () => {
         links: { enable: true },
       },
     });
+
     expect(issues.some(i => i.title.includes("Links interaction"))).toBe(true);
   });
 
@@ -52,6 +57,7 @@ describe("diagnoseIssues", () => {
         events: { onClick: { mode: "push" } },
       },
     });
+
     expect(issues.some(i => i.title.includes("Interactivity plugin"))).toBe(true);
   });
 
@@ -71,6 +77,7 @@ describe("diagnoseIssues", () => {
         shape: { type: "star" },
       },
     });
+
     expect(issues.some(i => i.title.includes("Shape"))).toBe(true);
   });
 
@@ -78,6 +85,7 @@ describe("diagnoseIssues", () => {
     const issues = diagnoseIssues({
       emitters: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(issues.some(i => i.title.includes("Emitters plugin"))).toBe(true);
   });
 
@@ -85,6 +93,7 @@ describe("diagnoseIssues", () => {
     const issues = diagnoseIssues({
       absorbers: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(issues.some(i => i.title.includes("Absorbers plugin"))).toBe(true);
   });
 
@@ -96,6 +105,7 @@ describe("diagnoseIssues", () => {
         },
       },
     });
+
     expect(issues.some(i => i.title.includes("grab"))).toBe(true);
   });
 
@@ -105,6 +115,7 @@ describe("diagnoseIssues", () => {
         color: { value: "#ff0000" },
       },
     });
+
     expect(issues.some(i => i.title.includes("Hex color"))).toBe(true);
   });
 
@@ -114,11 +125,13 @@ describe("diagnoseIssues", () => {
         number: { value: 10 },
       },
     });
+
     expect(issues.some(i => i.title.includes("Low particle count"))).toBe(true);
   });
 
   it("should warn about fullScreen not set", () => {
     const issues = diagnoseIssues({});
+
     expect(issues.some(i => i.title.includes("Full-screen not enabled"))).toBe(true);
   });
 
@@ -128,6 +141,7 @@ describe("diagnoseIssues", () => {
         number: { value: 2000 },
       },
     });
+
     expect(issues.some(i => i.title.includes("High particle count"))).toBe(true);
   });
 
@@ -137,6 +151,7 @@ describe("diagnoseIssues", () => {
         move: { speed: 5 },
       },
     });
+
     expect(issues.some(i => i.title.includes("Move plugin"))).toBe(true);
   });
 
@@ -146,6 +161,7 @@ describe("diagnoseIssues", () => {
         shape: { type: "square" },
       },
     });
+
     expect(issues.some(i => i.title.includes("Emitter shape"))).toBe(true);
   });
 
@@ -158,6 +174,7 @@ describe("diagnoseIssues", () => {
         },
       },
     });
+
     expect(issues.some(i => i.title.includes("repulse"))).toBe(true);
     expect(issues.some(i => i.title.includes("attract"))).toBe(true);
   });
@@ -178,6 +195,7 @@ describe("diagnoseIssues", () => {
         number: { value: 5 },
       },
     });
+
     expect(issues.length).toBeGreaterThanOrEqual(MIN_EXPECTED_ISSUES);
   });
 });

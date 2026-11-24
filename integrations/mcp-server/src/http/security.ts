@@ -86,9 +86,12 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
   // No Origin header at all (e.g. non-browser clients, curl) is allowed —
   // the Origin check exists to defend against DNS-rebinding attacks from
   // browser contexts, which always send this header.
-  if (!origin) return true;
+  if (!origin) {
+    return true;
+  }
 
   const normalizedOrigin = normalizeOrigin(origin);
+
   if (!normalizedOrigin) {
     return false;
   }
@@ -101,6 +104,7 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
   // configured, since the server binds to 0.0.0.0 with no auth.
   try {
     const { hostname } = new URL(normalizedOrigin);
+
     return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1" || hostname === "[::1]";
   } catch {
     return false;
@@ -135,12 +139,14 @@ export function isValidAuthToken(provided: string, expected: string): boolean {
  * @param header
  */
 export function extractBearerToken(header: string | string[] | undefined): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const value = Array.isArray(header) ? header[0] : header;
-  if (!value) return undefined;
+
+  if (!value) {
+    return undefined;
+  }
 
   const match = /^Bearer\s+(\S+)$/i.exec(value.trim());
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
   return match ? match[1] : undefined;
 }
 
@@ -197,12 +203,14 @@ export class RateLimiter {
     }
 
     this.globalCount++;
+
     return true;
   }
 
   /** Drops stale entries so the map doesn't grow unbounded over time. */
   sweep(): void {
     const now = Date.now();
+
     for (const [key, entry] of this.hits) {
       if (now - entry.windowStart >= this.windowMs) {
         this.hits.delete(key);

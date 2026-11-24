@@ -1,0 +1,74 @@
+{
+  "generated": {
+    "framework": "vanilla",
+    "bundle": "@tsparticles/basic",
+    "installPackages": [
+      "@tsparticles/basic",
+      "@tsparticles/engine"
+    ]
+  },
+  "installedPackages": [
+    {
+      "name": "@tsparticles/engine",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/basic",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/updater-size",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/animation-utils",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/updater-paint",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/updater-out-modes",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/updater-opacity",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/shape-circle",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/plugin-rgb-color",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/plugin-move",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/plugin-hsl-color",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/plugin-hex-color",
+      "version": "4.6.0"
+    },
+    {
+      "name": "@tsparticles/plugin-blend",
+      "version": "4.6.0"
+    }
+  ],
+  "toolchain": {
+    "node": "v26.13.0",
+    "typescript": "6.0.3",
+    "rollup": "workspace-installed"
+  },
+  "typecheck": "pass",
+  "browser": "Chrome headless; generated code initialized one canvas",
+  "browserErrors": [],
+  "temporary": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-generated-consumer-Zst27l",
+  "installLog": "Extracted 13 packed workspace package tarballs into an isolated consumer node_modules tree"
+}

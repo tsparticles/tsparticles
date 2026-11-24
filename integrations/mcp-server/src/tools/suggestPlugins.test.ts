@@ -48,6 +48,7 @@ describe("suggestPlugins", () => {
     { hsl: { h: 120, s: 50, l: 50 } },
   ])("detects structured paint %j", value => {
     const result = suggestPlugins({ particles: { paint: { fill: { color: { value } } } } });
+
     expect(result.npmPackages).toContain(
       "r" in value || "rgb" in value ? "@tsparticles/plugin-rgb-color" : "@tsparticles/plugin-hsl-color",
     );
@@ -58,12 +59,14 @@ describe("suggestPlugins", () => {
       background: { color },
       particles: { paint: { fill: { color: { value: "rgb(1,2,3)" } } } },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
     expect(result.npmPackages).toContain("@tsparticles/plugin-rgb-color");
   });
 
   it("should return empty result for empty options", () => {
     const result = suggestPlugins({});
+
     expect(result.npmPackages).toEqual([]);
     expect(result.imports).toEqual([]);
     expect(result.suggestedBundle).toBeUndefined();
@@ -75,6 +78,7 @@ describe("suggestPlugins", () => {
         links: { enable: true },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/interaction-particles-links");
   });
 
@@ -84,6 +88,7 @@ describe("suggestPlugins", () => {
         collisions: { enable: true },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/interaction-particles-collisions");
   });
 
@@ -147,6 +152,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       absorbers: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-absorbers");
   });
 
@@ -154,6 +160,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       emitters: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
   });
 
@@ -355,6 +362,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       backgroundMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-background-mask");
   });
 
@@ -362,6 +370,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       canvasMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-canvas-mask");
   });
 
@@ -369,6 +378,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       sounds: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-sounds");
   });
 
@@ -376,6 +386,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       polygon: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-polygon-mask");
   });
 
@@ -383,6 +394,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       infection: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-infection");
   });
 
@@ -390,6 +402,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       poisson: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-poisson-disc");
   });
 
@@ -397,6 +410,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       manualParticles: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-manual-particles");
   });
 
@@ -404,6 +418,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       responsive: [{ maxWidth: 800, options: {} }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-responsive");
   });
 
@@ -465,6 +480,7 @@ describe("suggestPlugins", () => {
         shape: { type: "star" },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/shape-star");
   });
 
@@ -474,6 +490,7 @@ describe("suggestPlugins", () => {
         shape: { type: ["circle", "star", "heart"] },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/shape-star");
     expect(result.npmPackages).toContain("@tsparticles/shape-heart");
   });
@@ -487,6 +504,7 @@ describe("suggestPlugins", () => {
         },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/interaction-external-grab");
     expect(result.npmPackages).toContain("@tsparticles/interaction-external-bubble");
   });
@@ -534,6 +552,7 @@ describe("suggestPlugins", () => {
         shape: { type: "square" },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters-shape-square");
   });
 
@@ -543,6 +562,7 @@ describe("suggestPlugins", () => {
         move: { attract: { enable: true } },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/interaction-particles-attract");
   });
 
@@ -551,6 +571,7 @@ describe("suggestPlugins", () => {
         absorbers: [{ position: { x: 50, y: 50 } }],
       }),
       absImports = result.imports.filter(i => i.from === "@tsparticles/plugin-absorbers");
+
     expect(absImports.length).toBeGreaterThanOrEqual(MIN_ABSORBER_IMPORTS);
   });
 
@@ -558,6 +579,7 @@ describe("suggestPlugins", () => {
     const rootResult = suggestPlugins({
       blend: { enable: true },
     });
+
     expect(rootResult.npmPackages).toContain("@tsparticles/plugin-blend");
   });
 
@@ -574,6 +596,7 @@ describe("suggestPlugins", () => {
         },
       },
     });
+
     expect(result.npmPackages.length).toBeGreaterThan(MIN_RICH_MATCHES);
     expect(result.imports.length).toBeGreaterThan(MIN_RICH_MATCHES);
   });
@@ -582,8 +605,10 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       backgroundMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-background-mask");
     const suggestedBundle: unknown = result.suggestedBundle;
+
     expect(typeof suggestedBundle === "string" || suggestedBundle === undefined).toBe(true);
   });
 });

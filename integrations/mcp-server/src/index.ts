@@ -53,6 +53,7 @@ function readPackageVersion(): string {
       // style resolution and from the compiled dist/ output).
       pkgPath = join(__dirname, "..", "package.json"),
       pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as { version?: string };
+
     return typeof pkg.version === "string" ? pkg.version : "0.0.0";
   } catch {
     return "0.0.0";
@@ -76,7 +77,6 @@ interface ParsedArgs {
  *
  */
 function parseArgs(): ParsedArgs {
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const args = process.argv.slice(2),
     result: ParsedArgs = { mode: "stdio" };
   let rawHost: string | undefined, rawPort: string | undefined;
@@ -85,13 +85,12 @@ function parseArgs(): ParsedArgs {
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--stdio") {
       result.mode = "stdio";
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     } else if (args[i] === "--port" && i + 1 < args.length) {
       result.mode = "http";
       rawPort = args[++i];
     } else if (args[i].startsWith("--port=")) {
       result.mode = "http";
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
       rawPort = args[i].split("=")[1];
     } else if (args[i] === "--host") {
       result.mode = "http";
@@ -117,10 +116,8 @@ function parseArgs(): ParsedArgs {
     } else if (args[i].startsWith("--trusted-proxy=")) {
       result.mode = "http";
       rawTrustedProxies.push(args[i].slice("--trusted-proxy=".length));
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     } else if (args[i] === "--allowed-origin" && i + 1 < args.length) {
       result.allowedOrigins = (result.allowedOrigins ?? []).concat(args[++i]);
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     } else if (args[i] === "--auth-token" && i + 1 < args.length) {
       result.authToken = args[++i];
     } else if (args[i].startsWith("--auth-token=")) {
@@ -157,6 +154,7 @@ function parseArgs(): ParsedArgs {
 
   if (result.mode === "http") {
     const port = rawPort !== undefined ? Number(rawPort) : NaN;
+
     if (!Number.isInteger(port) || port < MIN_PORT || port > MAX_PORT) {
       console.error(
         `Invalid --port value: ${rawPort ?? "(missing)"}. Expected an integer between ${MIN_PORT} and ${MAX_PORT}.`,
@@ -174,7 +172,6 @@ function parseArgs(): ParsedArgs {
       result.host = rawHost.trim();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
       const normalized = result.allowedOrigins.map(origin => normalizeOrigin(origin));
 
@@ -186,7 +183,6 @@ function parseArgs(): ParsedArgs {
       result.allowedOrigins = [...new Set(normalized as string[])];
     }
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
       console.error("--allowed-origin can only be used with HTTP mode (--port <number>)");
       process.exit(ExitCode.Failure);
@@ -420,6 +416,7 @@ function createMcpServer(): McpServer {
 async function startStdio(): Promise<void> {
   const server = createMcpServer(),
     transport = new StdioServerTransport();
+
   await server.connect(transport);
   console.error("tsParticles MCP server running on stdio");
 }

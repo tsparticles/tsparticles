@@ -1,6 +1,6 @@
 # V5-02 — Engine-owned random and logging services
 
-Status: implementation in progress; acceptance remains open. Execute in E2 after E1. See the [execution sequence](V5-EXECUTION.md).
+Status: E2 accepted; final cross-package and release verification belongs to E10. See the [execution sequence](V5-EXECUTION.md) and the acceptance record below.
 
 ## Ownership
 
