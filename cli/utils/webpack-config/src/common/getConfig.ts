@@ -28,20 +28,8 @@ interface ConfigParams {
  * @param lazy - The lazy
  * @returns the webpack configuration
  */
-function getSingleConfig(
-  params: ConfigParams,
-  min: boolean,
-  lazy: boolean,
-): unknown {
-  const {
-    additionalExternals,
-    banner,
-    bundle,
-    dir,
-    entry,
-    minBanner,
-    version,
-  } = params;
+function getSingleConfig(params: ConfigParams, min: boolean, lazy: boolean): unknown {
+  const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params;
 
   return {
     entry: getEntry({ ...entry, min, lazy }),
