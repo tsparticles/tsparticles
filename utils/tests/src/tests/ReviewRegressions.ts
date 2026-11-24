@@ -229,6 +229,9 @@ describe("review regressions", () => {
       dispatchTouch("touchstart", 1);
       time.now += quickTapMs;
       dispatchPointer("pointerup", "touch");
+      dispatchPointer("pointerout", "touch");
+      dispatchPointer("pointerleave", "touch");
+      expect(data.mouse.position).toBeUndefined();
       dispatchTouch("touchend", 1);
 
       expect(handleClickMode).toHaveBeenCalledTimes(1);
@@ -270,4 +273,181 @@ describe("review regressions", () => {
       nowSpy.mockRestore();
     }
   });
+
+  it.each([
+    {
+      name: "reentrant pointer update",
+      duration: 100,
+      move: false,
+      cancel: false,
+      enabled: true,
+      count: 1,
+      reentrant: true,
+    },
+    {
+      name: "moved touch without plugin init",
+      duration: 100,
+      move: true,
+      cancel: false,
+      enabled: true,
+      count: 0,
+      skipInit: true,
+    },
+    {
+      name: "existing position precedence",
+      duration: 100,
+      move: false,
+      cancel: false,
+      enabled: true,
+      count: 1,
+      hover: true,
+    },
+    {
+      name: "plugin interception",
+      duration: 100,
+      move: false,
+      cancel: false,
+      enabled: true,
+      count: 0,
+      intercept: true,
+    },
+    { name: "staggered touches", duration: 100, move: false, cancel: false, enabled: true, count: 1, staggered: true },
+    { name: "quick tap after boundary cleanup", duration: 100, move: false, cancel: false, enabled: true, count: 1 },
+    {
+      name: "multiple changed touches after boundary cleanup",
+      duration: 100,
+      move: false,
+      cancel: false,
+      enabled: true,
+      count: 1,
+      multiple: true,
+    },
+    { name: "held touch after boundary cleanup", duration: 500, move: false, cancel: false, enabled: true, count: 0 },
+    { name: "moved touch after boundary cleanup", duration: 100, move: true, cancel: false, enabled: true, count: 0 },
+    {
+      name: "cancelled touch after boundary cleanup",
+      duration: 100,
+      move: false,
+      cancel: true,
+      enabled: true,
+      count: 0,
+    },
+    {
+      name: "disabled click after boundary cleanup",
+      duration: 100,
+      move: false,
+      cancel: false,
+      enabled: false,
+      count: 0,
+    },
+  ])(
+    "preserves $name",
+    ({ duration, move, cancel, enabled, count, multiple, hover, intercept, staggered, reentrant, skipInit }) => {
+      const el = document.createElement("canvas"),
+        dispatchedPositions: ({ x: number; y: number } | undefined)[] = [],
+        handleClickMode = vi.fn(() => {
+          dispatchedPositions.push(data.mouse.position ? { ...data.mouse.position } : undefined);
+          if (reentrant) {
+            data.mouse.position = { x: 99, y: 77 };
+          }
+        }),
+        data = { mouse: { clicking: false, inside: false } } as {
+          mouse: {
+            clicking: boolean;
+            clickPosition?: { x: number; y: number };
+            inside: boolean;
+            position?: { x: number; y: number };
+          };
+          status?: string;
+        },
+        clickPositionValid = vi.fn(() => !!intercept),
+        container = {
+          actualOptions: {
+            interactivity: { detectsOn: "canvas", events: { onClick: { enable: enabled, mode: "push" } } },
+          },
+          canvas: { domElement: el, setPointerEvents: (): void => undefined },
+          plugins: [{ clickPositionValid }],
+          retina: { pixelRatio: 2 },
+        },
+        listeners = new InteractivityEventListeners(container as never, { handleClickMode, interactivityData: data }),
+        nowSpy = vi.spyOn(performance, "now"),
+        touch = { identifier: 7, clientX: 40, clientY: 60 },
+        secondTouch = { identifier: 8, clientX: 50, clientY: 70 },
+        dispatch = (
+          type: string,
+          touches: (typeof touch)[] = [],
+          changed = multiple ? [secondTouch, touch] : [touch],
+        ): void => {
+          const event = new Event(type);
+
+          Object.defineProperties(event, {
+            touches: { value: touches },
+            changedTouches: { value: changed },
+            pointerType: { value: "touch" },
+          });
+          el.dispatchEvent(event);
+        };
+
+      vi.spyOn(el, "getBoundingClientRect").mockReturnValue({ left: 10, top: 20 } as DOMRect);
+      vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+      const startTime = 1000;
+
+      nowSpy.mockReturnValue(startTime);
+      if (!skipInit) {
+        listeners.init();
+      }
+      listeners.addListeners();
+
+      try {
+        dispatch("pointerdown");
+        dispatch("touchstart", multiple ? [secondTouch, touch] : [touch]);
+        if (staggered) {
+          dispatch("touchstart", [touch, secondTouch], [secondTouch]);
+        }
+        if (move) {
+          dispatch("touchmove", [touch]);
+        }
+        nowSpy.mockReturnValue(startTime + duration);
+        dispatch("pointerup");
+        dispatch("pointerout");
+        dispatch("pointerleave");
+        expect(data.mouse.position).toBeUndefined();
+        expect(data.mouse.inside).toBe(false);
+        if (hover) {
+          data.mouse.position = { x: 5, y: 9 };
+        }
+        dispatch(cancel ? "touchcancel" : "touchend", staggered ? [secondTouch] : []);
+        expect(handleClickMode).toHaveBeenCalledTimes(count);
+        let expectedPosition = hover ? { x: 5, y: 9 } : undefined;
+
+        if (reentrant) {
+          expectedPosition = { x: 99, y: 77 };
+        }
+        expect(data.mouse.position).toEqual(expectedPosition);
+        expect(data.mouse.inside).toBe(!!hover || !!reentrant);
+        expect(data.mouse.clicking).toBe(false);
+        if (intercept) {
+          expect(clickPositionValid).toHaveBeenCalledWith({ x: 60, y: 80 });
+        }
+        if (count) {
+          expect(data.mouse.clickPosition).toEqual(hover ? { x: 5, y: 9 } : { x: 60, y: 80 });
+          expect(dispatchedPositions).toEqual([hover ? { x: 5, y: 9 } : { x: 60, y: 80 }]);
+          expect(handleClickMode).toHaveBeenCalledWith("push");
+        }
+        if (staggered) {
+          handleClickMode.mockClear();
+          dispatch("touchcancel", [], [secondTouch]);
+          dispatch("pointerleave");
+          dispatch("touchend", [], [secondTouch]);
+          expect(handleClickMode).not.toHaveBeenCalled();
+        }
+        vi.runAllTimers();
+        expect(data.mouse.clickPosition).toBeUndefined();
+      } finally {
+        listeners.removeListeners();
+        nowSpy.mockRestore();
+        vi.useRealTimers();
+      }
+    },
+  );
 });
