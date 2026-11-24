@@ -5,7 +5,7 @@ export default {
   input: "src/index.ts",
   external: [
     ...builtinModules,
-    ...builtinModules.map(m => `node:${m}`),
+    ...builtinModules.map((m) => `node:${m}`),
     "rollup",
     "node:path",
     "@rollup/plugin-node-resolve",

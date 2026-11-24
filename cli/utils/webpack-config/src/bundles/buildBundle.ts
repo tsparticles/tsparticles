@@ -16,7 +16,15 @@ interface BundleParams {
  * @returns the webpack config
  */
 function loadParticlesBundle(params: BundleParams): unknown {
-  const { additionalExternals, bundle, bundleName, dir, moduleName, progress, version } = params,
+  const {
+      additionalExternals,
+      bundle,
+      bundleName,
+      dir,
+      moduleName,
+      progress,
+      version,
+    } = params,
     fixBundleName = bundleName ? `${bundleName} ` : "",
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
@@ -39,7 +47,11 @@ v${version}`,
   if (bundle ?? true) {
     configs.push(
       ...getConfig({
-        entry: { format: "", name: moduleName ? `${moduleName}.bundle` : "bundle", bundle: true },
+        entry: {
+          format: "",
+          name: moduleName ? `${moduleName}.bundle` : "bundle",
+          bundle: true,
+        },
         version,
         banner,
         minBanner: minBanner,

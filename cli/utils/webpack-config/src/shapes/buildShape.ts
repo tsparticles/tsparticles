@@ -15,7 +15,8 @@ interface ShapeParams {
  * @returns the webpack config
  */
 function loadParticlesShape(params: ShapeParams): unknown {
-  const { moduleName, shapeName, version, dir, additionalExternals, progress } = params,
+  const { moduleName, shapeName, version, dir, additionalExternals, progress } =
+      params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/

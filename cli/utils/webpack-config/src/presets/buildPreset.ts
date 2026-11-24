@@ -15,7 +15,14 @@ interface PresetParams {
  * @returns the webpack config
  */
 function loadParticlesPreset(params: PresetParams): unknown {
-  const { moduleName, presetName, version, dir, additionalExternals, progress } = params,
+  const {
+      moduleName,
+      presetName,
+      version,
+      dir,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/

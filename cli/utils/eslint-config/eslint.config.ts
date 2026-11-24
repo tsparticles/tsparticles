@@ -37,19 +37,33 @@ export default defineConfig([
       "@stylistic/keyword-spacing": "error",
       "@stylistic/no-extra-semi": "error",
       "@stylistic/quote-props": ["error", "as-needed"],
-      "@stylistic/quotes": ["error", "double", { allowTemplateLiterals: true, avoidEscape: true }],
+      "@stylistic/quotes": [
+        "error",
+        "double",
+        { allowTemplateLiterals: true, avoidEscape: true },
+      ],
       "@stylistic/semi": ["error", "always"],
       "@stylistic/space-before-blocks": "error",
       "@stylistic/space-in-parens": ["error", "never"],
       "@stylistic/space-infix-ops": "error",
-      "@stylistic/spaced-comment": ["error", "always", { block: { balanced: true } }],
+      "@stylistic/spaced-comment": [
+        "error",
+        "always",
+        { block: { balanced: true } },
+      ],
 
       // --- typescript-eslint ---
-      "@typescript-eslint/consistent-generic-constructors": ["error", "constructor"],
+      "@typescript-eslint/consistent-generic-constructors": [
+        "error",
+        "constructor",
+      ],
       "@typescript-eslint/consistent-type-exports": "error",
       "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/explicit-function-return-type": "error",
-      "@typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "no-public" }],
+      "@typescript-eslint/explicit-member-accessibility": [
+        "error",
+        { accessibility: "no-public" },
+      ],
       "@typescript-eslint/member-ordering": [
         "error",
         {

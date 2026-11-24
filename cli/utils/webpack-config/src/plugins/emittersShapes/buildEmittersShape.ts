@@ -15,8 +15,18 @@ interface EmittersShapeParams {
  * @param params - The parameters
  * @returns the webpack config
  */
-function loadParticlesPluginEmittersShape(params: EmittersShapeParams): unknown {
-  const { moduleName, pluginName, version, dir, bundle, additionalExternals, progress } = params,
+function loadParticlesPluginEmittersShape(
+  params: EmittersShapeParams,
+): unknown {
+  const {
+      moduleName,
+      pluginName,
+      version,
+      dir,
+      bundle,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
@@ -28,7 +38,11 @@ v${version}`,
   return bundle
     ? [
         ...getConfig({
-          entry: { format: "plugin.emitters.shape", name: moduleName, bundle: false },
+          entry: {
+            format: "plugin.emitters.shape",
+            name: moduleName,
+            bundle: false,
+          },
           version,
           banner,
           minBanner: minBanner,
@@ -38,7 +52,11 @@ v${version}`,
           progress,
         }),
         ...getConfig({
-          entry: { format: "plugin.emitters.shape", name: `${moduleName}.bundle`, bundle: true },
+          entry: {
+            format: "plugin.emitters.shape",
+            name: `${moduleName}.bundle`,
+            bundle: true,
+          },
           version,
           banner,
           minBanner: minBanner,
@@ -49,7 +67,11 @@ v${version}`,
         }),
       ]
     : getConfig({
-        entry: { format: "plugin.emitters.shape", name: moduleName, bundle: false },
+        entry: {
+          format: "plugin.emitters.shape",
+          name: moduleName,
+          bundle: false,
+        },
         version,
         banner,
         minBanner: minBanner,

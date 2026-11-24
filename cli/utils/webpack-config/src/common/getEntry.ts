@@ -16,7 +16,8 @@ const getEntry = (data: IEntryParams): unknown => {
     fixLazy = lazy ? ".lazy" : "",
     obj = {} as Record<string, string>;
 
-  obj[`tsparticles${fixFormat}${fixName}${fixLazy}${fixMin}`] = `./dist/browser/${completeFileName}.js`;
+  obj[`tsparticles${fixFormat}${fixName}${fixLazy}${fixMin}`] =
+    `./dist/browser/${completeFileName}.js`;
 
   return obj;
 };

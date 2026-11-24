@@ -15,7 +15,14 @@ interface EffectParams {
  * @returns the webpack config
  */
 function loadParticlesEffect(params: EffectParams): unknown {
-  const { moduleName, effectName, version, dir, additionalExternals, progress } = params,
+  const {
+      moduleName,
+      effectName,
+      version,
+      dir,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/

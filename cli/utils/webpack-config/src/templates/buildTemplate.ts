@@ -15,7 +15,14 @@ interface TemplateParams {
  * @returns the webpack config
  */
 function loadParticlesTemplate(params: TemplateParams): unknown {
-  const { moduleName, templateName, version, dir, additionalExternals, progress } = params,
+  const {
+      moduleName,
+      templateName,
+      version,
+      dir,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/

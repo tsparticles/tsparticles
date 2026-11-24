@@ -15,7 +15,14 @@ interface PaletteParams {
  * @returns the webpack config
  */
 function loadParticlesPalette(params: PaletteParams): unknown {
-  const { moduleName, paletteName, version, dir, additionalExternals, progress } = params,
+  const {
+      moduleName,
+      paletteName,
+      version,
+      dir,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/

@@ -15,7 +15,14 @@ interface InteractionParams {
  * @returns the webpack config
  */
 function loadParticlesInteraction(params: InteractionParams): unknown {
-  const { moduleName, pluginName, version, dir, additionalExternals, progress } = params,
+  const {
+      moduleName,
+      pluginName,
+      version,
+      dir,
+      additionalExternals,
+      progress,
+    } = params,
     banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
