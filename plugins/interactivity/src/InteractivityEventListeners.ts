@@ -392,7 +392,8 @@ export class InteractivityEventListeners {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
-    let isTap = true;
+    let isTap = true,
+      endedPosition: ICoordinates | undefined;
 
     for (const touch of touches) {
       const startTime = this.#touches.get(touch.identifier);
@@ -401,11 +402,41 @@ export class InteractivityEventListeners {
         isTap = false;
       }
 
+      // Boundary events may clear the hover position before touchend. Recover
+      // coordinates only from a touch tracked by this listener. As with touchmove,
+      // the last tracked changed touch wins. Existing hover position takes precedence.
+      // Movement/tap guards still apply and hover state is not retained.
+      const canvas = this.#container.canvas.domElement;
+
+      if (startTime !== undefined && canvas) {
+        const rect = canvas.getBoundingClientRect(),
+          ratio = this.#container.retina.pixelRatio;
+
+        endedPosition = { x: (touch.clientX - rect.left) * ratio, y: (touch.clientY - rect.top) * ratio };
+      }
+
       this.#touches.delete(touch.identifier);
     }
 
     if (isTap) {
-      this.#mouseTouchClick(e);
+      const { mouse } = this.#interactionManager.interactivityData,
+        restoreBoundaryState = !mouse.position && !!endedPosition,
+        wasInside = mouse.inside;
+
+      // Synchronous click consumers (including push) read mouse.position.
+      // Expose the fallback for dispatch only, then preserve boundary cleanup.
+      if (restoreBoundaryState) {
+        mouse.position = endedPosition;
+      }
+
+      try {
+        this.#mouseTouchClick(e);
+      } finally {
+        if (restoreBoundaryState && mouse.position === endedPosition) {
+          delete mouse.position;
+          mouse.inside = wasInside;
+        }
+      }
     } else {
       /* a long tap behaves like a movement: finish without firing click events */
       this.#mouseTouchFinish();
