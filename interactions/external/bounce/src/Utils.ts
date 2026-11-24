@@ -67,6 +67,7 @@ function processBounce(
   radius: number,
   area: BaseRange,
   enabledCb: (p: Particle) => boolean,
+  divBounds?: IBounds,
 ): void {
   const query = container.particles.grid.query(area, enabledCb);
 
@@ -80,7 +81,7 @@ function processBounce(
         factor: Vector.origin,
       });
     } else if (area instanceof Rectangle) {
-      rectBounce(particle, calculateBounds(position, radius));
+      rectBounce(particle, divBounds ?? calculateBounds(position, radius));
     }
   }
 }
@@ -96,7 +97,7 @@ function singleSelectorBounce(
   container: BounceContainer,
   selector: string,
   div: DivEvent,
-  bounceCb: (position: ICoordinates, radius: number, range: BaseRange) => void,
+  bounceCb: (position: ICoordinates, radius: number, range: BaseRange, divBounds?: IBounds) => void,
 ): void {
   const query = safeDocument().querySelectorAll(selector);
 
@@ -123,7 +124,12 @@ function singleSelectorBounce(
               elem.offsetHeight * pxRatio + tolerance * double,
             );
 
-    bounceCb(pos, radius, area);
+    bounceCb(pos, radius, area, {
+      bottom: (elem.offsetTop + elem.offsetHeight) * pxRatio,
+      left: elem.offsetLeft * pxRatio,
+      right: (elem.offsetLeft + elem.offsetWidth) * pxRatio,
+      top: elem.offsetTop * pxRatio,
+    });
   });
 }
 
@@ -141,8 +147,8 @@ export function divBounce(
   enabledCb: (p: Particle) => boolean,
 ): void {
   divModeExecute(bounceMode, divs, (selector, div): void => {
-    singleSelectorBounce(container, selector, div, (pos, radius, area): void => {
-      processBounce(container, pos, radius, area, enabledCb);
+    singleSelectorBounce(container, selector, div, (pos, radius, area, divBounds): void => {
+      processBounce(container, pos, radius, area, enabledCb, divBounds);
     });
   });
 }
