@@ -38,10 +38,6 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     };
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -64,9 +60,5 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     ...sources: RecursivePartial<(IModes & IRemoveMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "remove", Remove, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

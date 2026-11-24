@@ -1,0 +1,8 @@
+{
+  "example": "React guide: Confetti Effect",
+  "browser": "Chrome/158.0.8127.38",
+  "canvasCount": 1,
+  "particleCountAfterEmitterStart": 50,
+  "pageErrors": [],
+  "consoleErrors": []
+}

@@ -80,8 +80,4 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
   ): void {
     loadOptionProperty(options, "attract", Attract, ...sources);
   }
-
-  reset(): void {
-    // do nothing
-  }
 }

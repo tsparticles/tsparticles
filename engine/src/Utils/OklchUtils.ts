@@ -176,19 +176,7 @@ export function mapOklchToSrgb(color: IOklch): { color: IOklch; rgb: IRgb } {
 
 /** Converts OKLCH to floating-point Display-P3 channels without gamut mapping. */
 export function oklchToDisplayP3Float(color: IOklch): IRgb {
-  const srgb = oklchToRgbFloat(color),
-    r = srgbToLinear(srgb.r),
-    g = srgbToLinear(srgb.g),
-    b = srgbToLinear(srgb.b),
-    p3R = 0.82259287 * r + 0.17753395 * g,
-    p3G = 0.03319951 * r + 0.9667835 * g,
-    p3B = 0.01708535 * r + 0.07239572 * g + 0.91030148 * b;
-
-  return {
-    b: linearToSrgb(p3B),
-    g: linearToSrgb(p3G),
-    r: linearToSrgb(p3R),
-  };
+  return rgbToDisplayP3Float(oklchToRgbFloat(color));
 }
 
 /** Maps OKLCH to Display-P3 by reducing chroma at constant lightness and hue. */

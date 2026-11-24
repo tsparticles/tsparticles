@@ -81,7 +81,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     return this.#maxDistance;
   }
 
-  clear(particle: Particle, _delta: IDelta, force?: boolean): void {
+  override clear(particle: Particle, _delta: IDelta, force?: boolean): void {
     const mod = this.#modifiers.get(particle);
 
     if (mod?.inRange && !force) {
@@ -183,7 +183,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     loadOptionProperty(options, "bubble", Bubble, ...sources);
   }
 
-  reset(_interactivityData: IInteractivityData, particle: Particle): void {
+  override reset(_interactivityData: IInteractivityData, particle: Particle): void {
     const mod = this.#modifiers.get(particle);
 
     if (mod) {

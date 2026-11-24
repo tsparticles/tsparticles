@@ -33,10 +33,6 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     super(container);
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -157,9 +153,5 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "particle", InteractivityParticleOptions, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

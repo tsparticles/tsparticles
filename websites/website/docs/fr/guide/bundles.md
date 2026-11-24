@@ -169,7 +169,7 @@ CDN example for `@tsparticles/confetti`:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
 <script>
-  confetti({ particleCount: 100 });
+  confetti({ count: 100 });
 </script>
 ```
 

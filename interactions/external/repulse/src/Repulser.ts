@@ -112,10 +112,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
@@ -204,10 +200,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "repulse", Repulse, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 
   #clickRepulse(interactivityData: IInteractivityData): void {

@@ -45,19 +45,19 @@ mandatory fixes or imply release authorization.
 Follow E0–E10 in order. Within each stage, use the subdivisions below. A gate is
 complete only with its evidence and the shared checks in the [index](README.md).
 
-| Stage | Deliverable                                                 | Difficulty  | Impact                                     | Technical handovers                         | Exit gate                                                                                             |
-| ----- | ----------------------------------------------------------- | ----------- | ------------------------------------------ | ------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| E0    | Baseline, inventories, supported-consumer scope             | Medium      | Workspace-wide planning                    | 01, 03, 08, 09; IMP-01                      | Reproducible baseline, numeric budgets, owner matrices, retirement list and browser policy recorded   |
-| E1    | Explicit engines and migration of supported consumers       | High        | Workspace-wide API and distribution        | 01; early 08/09                             | No implicit engine; working package/CDN consumers; independent registries and resource ownership      |
-| E2    | Engine-owned services and mutable-state isolation           | High        | Utilities, plugins, async paths            | 02; ongoing 08                              | Independent RNG/loggers; scheduler/cache disposition and deterministic multi-engine checks            |
-| E3    | Shared contracts and domain boundaries                      | High        | Public types, options, extensions, imports | 03; ARCH-01–04; C0                          | Recorded decisions, representative typed consumers, acyclic boundaries and color contract             |
-| E4    | Container lifecycle and extension integration               | High        | Init, refresh, events, cleanup             | 04; ARCH-03/04; lifecycle part of IMP-06    | Stable hook order, cancellation, ownership and refresh/reset behavior                                 |
-| E5    | Particle/options model and complete OKLCH migration         | Very high   | Particle, all color consumers, canvas/HDR  | 07 + color portions of 05/08; C1–C4; IMP-05 | One canonical color model; all affected consumers migrated; numerical, animation and browser evidence |
-| E6    | Collections, pooling, update phases and spatial index       | High        | Simulation and interaction families        | 06; IMP-03/04                               | Preserved order/reset/query semantics and measured improvements on the final particle model           |
-| E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects    |
-| E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                 |
-| E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified             |
-| E10   | Final currently scoped verification and migration gate     | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All currently specified requirements, budgets, docs and CI gates closed; further pre-release checks planned separately; no release authorization |
+| Stage | Deliverable                                                 | Difficulty  | Impact                                     | Technical handovers                         | Exit gate                                                                                                                                        |
+| ----- | ----------------------------------------------------------- | ----------- | ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| E0    | Baseline, inventories, supported-consumer scope             | Medium      | Workspace-wide planning                    | 01, 03, 08, 09; IMP-01                      | Reproducible baseline, numeric budgets, owner matrices, retirement list and browser policy recorded                                              |
+| E1    | Explicit engines and migration of supported consumers       | High        | Workspace-wide API and distribution        | 01; early 08/09                             | No implicit engine; working package/CDN consumers; independent registries and resource ownership                                                 |
+| E2    | Engine-owned services and mutable-state isolation           | High        | Utilities, plugins, async paths            | 02; ongoing 08                              | Independent RNG/loggers; scheduler/cache disposition and deterministic multi-engine checks                                                       |
+| E3    | Shared contracts and domain boundaries                      | High        | Public types, options, extensions, imports | 03; ARCH-01–04; C0                          | Recorded decisions, representative typed consumers, acyclic boundaries and color contract                                                        |
+| E4    | Container lifecycle and extension integration               | High        | Init, refresh, events, cleanup             | 04; ARCH-03/04; lifecycle part of IMP-06    | Stable hook order, cancellation, ownership and refresh/reset behavior                                                                            |
+| E5    | Particle/options model and complete OKLCH migration         | Very high   | Particle, all color consumers, canvas/HDR  | 07 + color portions of 05/08; C1–C4; IMP-05 | One canonical color model; all affected consumers migrated; numerical, animation and browser evidence                                            |
+| E6    | Collections, pooling, update phases and spatial index       | High        | Simulation and interaction families        | 06; IMP-03/04                               | Preserved order/reset/query semantics and measured improvements on the final particle model                                                      |
+| E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects                                               |
+| E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                                                            |
+| E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified                                                        |
+| E10   | Final currently scoped verification and migration gate      | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All currently specified requirements, budgets, docs and CI gates closed; further pre-release checks planned separately; no release authorization |
 
 ### E0 — Prepare evidence without changing the runtime
 
@@ -185,8 +185,11 @@ which consumers or browsers earlier stages must support.
 
 E10 compares candidate artifacts with E0 using the same scenarios, closes audit
 and decision logs, runs the prescribed CI checks and validates the migration
-guide. Missed mandatory budgets, unsupported evidence or unresolved requirements
-keep the gate open. E10 is not release readiness or authorization. After E10,
+guide. E0 size ceilings remain diagnostic references. E10 requires explaining
+payload growth and resolving demonstrated waste, while the existing performance
+criteria and other mandatory checks keep their acceptance requirements. See
+[E10 acceptance criteria](V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
+E10 is not release readiness or authorization. After E10,
 define and agree the additional verification and planning required before any
 release is considered; those checks are outside this sequence.
 

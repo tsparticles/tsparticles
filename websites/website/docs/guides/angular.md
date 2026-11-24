@@ -197,7 +197,7 @@ export class AppModule {}
 ```html
 <ngx-confetti
   [options]="{
-    particleCount: 200,
+    count: 200,
     colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00']
   }"
 ></ngx-confetti>

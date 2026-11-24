@@ -5,6 +5,16 @@ the final E10 verification and migration gates remain open. See the
 [execution sequence](V5-EXECUTION.md) and the
 [E10 evidence checkpoint](evidence/e10/README.md).
 
+## E10 acceptance criteria update — 2026-11-24
+
+The user accepts justified v4-to-v5 payload growth. Keep the E0 size ceilings
+and measured deltas visible as diagnostic references. Assess size acceptance
+by explaining retained code and removing demonstrated avoidable growth, such
+as duplicate runtime copies or accidentally retained features. Judge the
+minimal, Slim, installed CJS and CDN graphs under this criterion as well.
+The runtime, allocation and retention criteria still apply, with performance
+taking priority over compressed size.
+
 ## Ownership
 
 Bundle reports, budgets, and CI checks, integration and package consumer tests,
@@ -56,9 +66,10 @@ migration checks below.
 - [ ] Registries, events, async initialization, and teardown are isolated across engines.
 - [ ] Full engine review, including ParticlesManager and Particle, and plugin and browser matrices complete.
 - [ ] Plugin APIs, option inheritance, and consumers using built packages verified.
-- [ ] The minimal scene and slim are smaller in gzip and Brotli, with all
-      budgets met. Report ESM/CJS lazy subpath sizes separately where consumers
-      use those entrypoints.
+- [x] Explain the payload growth for minimal, Slim, CDN and installed consumers
+      and resolve demonstrated avoidable retention or duplication. Report gzip
+      and Brotli against E0 and measure ESM/CJS lazy entries separately.
+      See [the size disposition](evidence/e10/README.md#size-disposition-under-the-updated-criterion).
 - [ ] Draw/update/allocation regressions are either resolved or explained and accepted.
 - [x] Targeted tests, full Nx test matrix (85 projects), lint, and formatting pass.
       The unsandboxed Nx run completes all finite browser/server targets.
@@ -142,8 +153,8 @@ the original budgets or report the measured exceedances as passing.
       extended candidate p95 is 1.40 ms in SDR and HDR, below E0 ceilings 1.65
       and 1.54 respectively.
 - [x] Review final consumer, distribution and all-chunk size deltas. The E10
-      report records 17 bundle and 3 CJS failures; the earlier E5 bundle-growth
-      acceptance does not waive E0/E10 size targets.
+      report records 17 size failures, including 3 CJS rows; the earlier E5 bundle-growth
+      acceptance predates the updated E10 size criterion above.
 - [ ] Complete the currently scoped supported-browser and physical HDR checks with
       their recorded support-policy limitations. E5 headless readback does not
       certify display output or GPU completion.
@@ -174,8 +185,8 @@ not a release-budget waiver or an extension of the earlier E5 exception.
       E10's nine-repetition matched measurements keep DOM/listeners stable and
       confirm two inherited M6/500 p95 failures; M8/500 passes.
 - [x] Recheck final minimal/all-chunk and standalone payloads against original
-      size targets. E10 records the absolute results; bundle/CJS budget failures
-      remain release blockers.
+      size targets. E10 records the absolute results; see the updated size
+      acceptance criterion above.
 
 Evidence: [E7 acceptance](evidence/e7/closure/README.md),
 [verification](evidence/e7/closure/verification.json), `evidence/e7/budget-screen.json`,

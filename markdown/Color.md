@@ -195,8 +195,9 @@ remain an engine color. It interpolates rectangular OKLab coordinates and
 returns canonical OKLCH with alpha. The color coordinates use premultiplied
 alpha while output alpha is interpolated separately; a zero total weight uses
 equal weights, and fully transparent inputs retain their deterministic weighted
-color coordinates. The older `colorMix()` returns RGB for compatibility and is
-deprecated.
+color coordinates. To migrate from `colorMix()`, convert RGB inputs with
+`rgbToOklch()`, then call `colorMixOklch()` with the same weights. Convert the
+result with `mapOklchToSrgb(result).rgb` if the consumer still needs RGB.
 
 ## Multiple colors
 

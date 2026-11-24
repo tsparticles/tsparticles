@@ -28,10 +28,6 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       bounce = container.actualOptions.interactivity?.modes.bounce;
@@ -89,9 +85,5 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "bounce", Bounce, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

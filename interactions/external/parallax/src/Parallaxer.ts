@@ -22,10 +22,6 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     super(container);
   }
 
-  clear(): void {
-    // no-op
-  }
-
   init(): void {
     // no-op
   }
@@ -49,10 +45,6 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     ...sources: RecursivePartial<(IModes & IParallaxMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "parallax", Parallax, ...sources);
-  }
-
-  reset(): void {
-    // no-op
   }
 
   #parallaxInteract(interactivityData: IInteractivityData, particle: Particle): void {

@@ -33,14 +33,14 @@ const confetti = createConfetti(createEngine());
 
 // Basic effect
 await confetti({
-  particleCount: 100,
+  count: 100,
   spread: 70,
-  origin: { x: 0.5, y: 0.5 },
+  position: { x: 50, y: 50 },
 });
 
 // On a specific canvas
 await confetti("my-canvas-id", {
-  particleCount: 50,
+  count: 50,
   angle: 90,
   spread: 45,
   colors: ["#ff0000", "#00ff00", "#0000ff"],
@@ -53,7 +53,7 @@ await confetti("my-canvas-id", {
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
 <script>
   confetti({
-    particleCount: 100,
+    count: 100,
     spread: 70,
     colors: ["#bb0000", "#ffffff"],
   });
@@ -62,16 +62,16 @@ await confetti("my-canvas-id", {
 
 ### Main parameters
 
-| Parameter       | Type     | Default      | Description                                          |
-| --------------- | -------- | ------------ | ---------------------------------------------------- |
-| `particleCount` | number   | 50           | Number of confetti pieces                            |
-| `spread`        | number   | 60           | Spread angle (degrees)                               |
-| `angle`         | number   | 90           | Direction (degrees, 90 = down)                       |
-| `startVelocity` | number   | 30           | Initial velocity                                     |
-| `colors`        | string[] | —            | Confetti colors                                      |
-| `origin`        | { x, y } | { 0.5, 0.5 } | Origin point (0-1)                                   |
-| `drift`         | number   | 0            | Horizontal drift                                     |
-| `shapes`        | string[] | —            | Shapes: "circle", "heart", "square", "star", "cards" |
+| Parameter       | Type     | Default    | Description                                          |
+| --------------- | -------- | ---------- | ---------------------------------------------------- |
+| `count`         | number   | 50         | Number of confetti pieces                            |
+| `spread`        | number   | 60         | Spread angle (degrees)                               |
+| `angle`         | number   | 90         | Direction (degrees, 90 = down)                       |
+| `startVelocity` | number   | 30         | Initial velocity                                     |
+| `colors`        | string[] | —          | Confetti colors                                      |
+| `position`      | { x, y } | { 50, 50 } | Position in percent                                  |
+| `drift`         | number   | 0          | Horizontal drift                                     |
+| `shapes`        | string[] | —          | Shapes: "circle", "heart", "square", "star", "cards" |
 
 ## Common mistakes
 

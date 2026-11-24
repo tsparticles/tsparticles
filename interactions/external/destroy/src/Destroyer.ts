@@ -28,10 +28,6 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       destroy = container.actualOptions.interactivity?.modes.destroy;
@@ -89,9 +85,5 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     ...sources: RecursivePartial<(IModes & IDestroyMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "destroy", Destroy, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

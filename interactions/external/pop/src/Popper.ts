@@ -44,10 +44,6 @@ export class Popper extends ExternalInteractorBase {
     };
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -63,9 +59,5 @@ export class Popper extends ExternalInteractorBase {
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
     return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(popMode, events.onClick.mode);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

@@ -57,7 +57,7 @@ hdr: {
 },
 ```
 
-Note that `mode` and `peakNits` only affect output when `enable` is `true` and HDR rendering is available; SDR ignores them. For canonical perceptual mixing, use `colorMixOklch()`, which interpolates rectangular OKLab and returns OKLCH. The deprecated `colorMix()` helper returns RGB.
+Note that `mode` and `peakNits` only affect output when `enable` is `true` and HDR rendering is available; SDR ignores them. For canonical perceptual mixing, use `colorMixOklch()`, which interpolates rectangular OKLab and returns OKLCH.
 
 ## Practical guidance
 

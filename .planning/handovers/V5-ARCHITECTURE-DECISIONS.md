@@ -131,14 +131,14 @@ evidence pointers; later gates own the scoped follow-up listed in each item.
 - Maintain the file-level review in `V5-ENGINE-AUDIT.md`; E10 reconciles the
   remaining scoped rows against the E2–E9 handovers.
 - [x] Capture the current import graph, agree final internal paths, and enforce the
-  boundary graph above without creating runtime cycles.
+      boundary graph above without creating runtime cycles.
 - [x] Characterize option precedence, mutation sites, registration behavior, and
-  extension hook order with current source/tests before changing implementation.
+      extension hook order with current source/tests before changing implementation.
 - C0 decisions are recorded in `V5-COLOR-DECISIONS.md`; color implementation,
   acceptance, and current browser limitations are recorded in the E5 closure
   and `V5-COLOR-REPORT.md`.
 - [x] Rebuild the engine and representative downstream consumers after any moves;
-  rerun public ESM/CJS/browser/type and custom plugin checks.
+      rerun public ESM/CJS/browser/type and custom plugin checks.
 
 ## E7 rendering integration — 2026-11-24
 
@@ -162,3 +162,17 @@ preserved; no new practical cap or bucket representation is introduced. Public
 exports and option-loader interfaces are unchanged. See the
 [E7 method/ownership review](V5-E7-REVIEW.md) and its verification checkpoint;
 E9/E10 retain final package, browser-policy and budget-verification ownership.
+
+## E10 evidence reconciliation — 2026-11-24
+
+| Decision | Verified outcome and consumer impact                                                                                                                                                                                                                                                             | Evidence                                                                                                                                                                                       |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ARCH-01  | Retain the Particle facade and live getters. The lazy scratch prototype gave no demonstrated warm saving; the plain-state prototype lost the class contract, and an inspection snapshot had a measured allocation cost. Existing extensions keep their Particle type and lifecycle hooks.        | [Particle model evaluation](architecture/V5-ARCH-01-PARTICLE-MODEL.md#e5-decision--2026-11-23), [E8 compatibility](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)                                  |
+| ARCH-02  | Retain the engine package with internal domains and the exported root and lazy entrypoints. The E3 graph rejects forbidden back-edges and consumer deep imports. Packed E9 probes cover ESM, CJS, browser and strict TypeScript with module augmentation. Package size compliance is still open. | [E3 verification](V5-E3-VERIFICATION.md#boundary-and-package-probes), [E9 installed consumers](evidence/e9/README.md#installed-consumers), [E10 budgets](evidence/e10/README.md#budget-status) |
+| ARCH-03  | Retain typed, owner-local option loaders. Prototype and plain copies failed to preserve reload behavior; normalized templates missed live source mutation. Existing derived classes and custom loaders keep the documented precedence and hooks.                                                 | [Options evaluation](architecture/V5-ARCH-03-OPTIONS.md#e5-decision--2026-11-23), [E8 compatibility](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)                                                |
+| ARCH-04  | Retain specialized registration and lifecycle methods. The E8 matrix and two-engine probes cover external extensions, duplicate registration, order, and concurrency; E4 covers partial initialization and cleanup.                                                                              | [E8 closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24), [E4 container review](V5-04-CONTAINER.md)                                                                                             |
+
+The four decision records now link their selected designs, alternatives and
+consumer evidence. The engine inventory matches all 161 tracked source paths
+with no missing or stale rows. This comparison verifies inventory completeness;
+the depth of review for each file remains the scope recorded in its audit row.

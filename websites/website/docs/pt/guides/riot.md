@@ -22,34 +22,34 @@ description: Complete guide for integrating tsParticles with Riot.js components.
 Install the Riot wrapper and the tsParticles engine via npm:
 
 ```bash
-npm install @tsparticles/riot tsparticles
+npm install riot @tsparticles/riot @tsparticles/engine @tsparticles/slim tsparticles
 ```
 
 Optionally install preset configs for quick setup:
 
 ```bash
 npm install @tsparticles/configs
-npm install @tsparticles/slim
 ```
 
 ---
 
 ## Engine Initialization
 
-The Riot wrapper exports an `initParticlesEngine` function. Call it in your component's `onBeforeMount` lifecycle hook to prepare the engine before the particles component renders.
+The Riot wrapper exports an `initParticlesEngine` function. Create an application-owned engine and pass it to the initializer. Call the initializer in your component's `onBeforeMount` lifecycle hook to prepare the engine before the particles component renders.
 
 ```html
 <my-component>
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
+
+    const engine = createEngine();
 
     export default {
       onBeforeMount() {
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          });
+          void initParticlesEngine(engine, loadSlim);
         }
       },
     };
@@ -57,23 +57,28 @@ The Riot wrapper exports an `initParticlesEngine` function. Call it in your comp
 </my-component>
 ```
 
-The engine initializes once and is shared across all `<riot-particles>` instances in your app.
+Pass the same engine to each `<riot-particles>` instance that should share the same registrations.
 
 ---
 
 ## Basic Usage
 
-After initializing the engine, use the `<riot-particles>` component in your template. Pass the configuration as a JSON-stringified options object or a reference to a property on your component.
+After initializing the engine, use the `<riot-particles>` component in your template. Pass the engine and the configuration object as component props.
 
 ```html
 <my-component>
-  <riot-particles id="tsparticles" options="{particlesConfig}" />
+  <riot-particles engine="{engine}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
+    const engine = createEngine();
+
     export default {
+      components: { "riot-particles": RiotParticles },
+      engine,
       particlesConfig: {
         fpsLimit: 60,
         particles: {
@@ -101,9 +106,7 @@ After initializing the engine, use the `<riot-particles>` component in your temp
       },
       onBeforeMount() {
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          });
+          void initParticlesEngine(engine, loadSlim);
         }
       },
     };
@@ -119,13 +122,18 @@ Use Riot's `if={}` directive with a state property to delay rendering the partic
 
 ```html
 <my-component>
-  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+  <riot-particles engine="{engine}" if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
+    const engine = createEngine();
+
     export default {
+      components: { "riot-particles": RiotParticles },
+      engine,
       particlesConfig: {
         particles: {
           number: { value: 50 },
@@ -140,9 +148,7 @@ Use Riot's `if={}` directive with a state property to delay rendering the partic
       onBeforeMount() {
         this.state.particlesInitialized = false;
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          }).then(() => {
+          initParticlesEngine(engine, loadSlim).then(() => {
             this.update({ particlesInitialized: true });
           });
         }
@@ -162,21 +168,24 @@ The `@tsparticles/configs` package provides pre-built configurations for common 
 
 ```html
 <my-component>
-  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+  <riot-particles engine="{engine}" if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
     import { loadFull } from "tsparticles";
     import configs from "@tsparticles/configs";
 
+    const engine = createEngine();
+
     export default {
+      components: { "riot-particles": RiotParticles },
+      engine,
       particlesConfig: configs.basic,
       onBeforeMount() {
         this.state.particlesInitialized = false;
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadFull(engine);
-          }).then(() => {
+          initParticlesEngine(engine, loadFull).then(() => {
             this.update({ particlesInitialized: true });
           });
         }
@@ -186,7 +195,7 @@ The `@tsparticles/configs` package provides pre-built configurations for common 
 </my-component>
 ```
 
-Available presets include `basic`, `confetti`, `fireworks`, `snow`, `stars`, and more. Each preset requires its corresponding preset package to be loaded in the engine callback. For example, `configs.fireworks` requires `loadFireworksPreset`.
+Available configurations include `basic`, `confetti`, `fireworks`, `snow`, `stars`, and more. If a configuration names a preset, register that preset on the same engine as well. For example, `configs.fireworks` requires `loadFireworksPreset`.
 
 ---
 
@@ -196,13 +205,18 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
 
 ```html
 <my-component>
-  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+  <riot-particles engine="{engine}" if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
+    const engine = createEngine();
+
     export default {
+      components: { "riot-particles": RiotParticles },
+      engine,
       particlesConfig: {
         fullScreen: { enable: true, zIndex: -1 },
         fpsLimit: 60,
@@ -253,9 +267,7 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
       onBeforeMount() {
         this.state.particlesInitialized = false;
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          }).then(() => {
+          initParticlesEngine(engine, loadSlim).then(() => {
             this.update({ particlesInitialized: true });
           });
         }
@@ -269,25 +281,27 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
 
 ## Full Component
 
-Below is a complete `.riot` file that ties everything together: engine initialization in `onBeforeMount`, conditional rendering with state, a rich configuration with interactivity, and a `particlesLoaded` callback via the component's built-in support for loaded events.
+Below is a complete `.riot` file that ties everything together: engine initialization in `onBeforeMount`, conditional rendering with state, and a configuration with hover and click interaction.
 
 ```html
 <my-component>
   <div class="particles-wrapper">
     <h1>tsParticles + Riot.js</h1>
 
-    {#if state.particlesInitialized}
-    <riot-particles id="tsparticles" options="{particlesConfig}" />
-    {:else}
-    <p>Loading particle engine...</p>
-    {/if}
+    <riot-particles engine="{engine}" if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+    <p if="{!state.particlesInitialized}">Loading particle engine...</p>
   </div>
 
   <script>
+    import { createEngine } from "@tsparticles/engine";
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
     import { loadSlim } from "@tsparticles/slim";
 
+    const engine = createEngine();
+
     export default {
+      components: { "riot-particles": RiotParticles },
+      engine,
       state: {
         particlesInitialized: false,
       },
@@ -330,9 +344,7 @@ Below is a complete `.riot` file that ties everything together: engine initializ
       },
       onBeforeMount() {
         if (typeof window !== "undefined") {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          }).then(() => {
+          initParticlesEngine(engine, loadSlim).then(() => {
             this.update({ particlesInitialized: true });
           });
         }

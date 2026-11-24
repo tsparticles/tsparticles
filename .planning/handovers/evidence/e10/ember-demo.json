@@ -1,0 +1,13 @@
+{
+  "demo": "@tsparticles/ember-demo",
+  "browser": "Chrome/158.0.8127.38",
+  "initialCanvases": 2,
+  "canvasesAfterConfettiToggle": 3,
+  "exercised": [
+    "switch config",
+    "switch theme",
+    "show confetti"
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

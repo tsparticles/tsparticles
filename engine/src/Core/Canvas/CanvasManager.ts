@@ -1,15 +1,7 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
-import {
-  cloneStyle,
-  getFullScreenStyle,
-  safeMatchMedia,
-  safeMutationObserver,
-} from "../../Utils/Utils.js";
+import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../../Utils/Utils.js";
 import { defaultZoom, generatedAttribute, half } from "../Utils/Constants.js";
-import {
-  getStyleFromOklch,
-  rangeColorToOklch,
-} from "../../Utils/ColorUtils.js";
+import { getStyleFromOklch, rangeColorToOklch } from "../../Utils/ColorUtils.js";
 import type { Container } from "../Container/Container.js";
 import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
@@ -30,18 +22,16 @@ import { transferredCanvasKey } from "./CanvasOwnership.js";
  * @returns The render canvas instance.
  */
 const getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
-    const transferredCanvas = (
-      canvas as HTMLCanvasElement & { [transferredCanvasKey]?: OffscreenCanvas }
-    )[transferredCanvasKey];
+    const transferredCanvas = (canvas as HTMLCanvasElement & { [transferredCanvasKey]?: OffscreenCanvas })[
+      transferredCanvasKey
+    ];
 
     if (transferredCanvas) {
       return transferredCanvas;
     }
 
     if (typeof canvas.transferControlToOffscreen !== "function") {
-      throw new TypeError(
-        getErrorMessage(ErrorCodes.offscreenCanvasUnsupported),
-      );
+      throw new TypeError(getErrorMessage(ErrorCodes.offscreenCanvasUnsupported));
     }
 
     try {
@@ -53,18 +43,11 @@ const getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
 
       return offscreenCanvas;
     } catch {
-      throw new TypeError(
-        getErrorMessage(ErrorCodes.offscreenCanvasTransferFailed),
-      );
+      throw new TypeError(getErrorMessage(ErrorCodes.offscreenCanvasTransferFailed));
     }
   },
-  isHtmlCanvasElement = (
-    canvas: HTMLCanvasElement | OffscreenCanvas,
-  ): canvas is HTMLCanvasElement => {
-    return (
-      typeof HTMLCanvasElement !== "undefined" &&
-      canvas instanceof HTMLCanvasElement
-    );
+  isHtmlCanvasElement = (canvas: HTMLCanvasElement | OffscreenCanvas): canvas is HTMLCanvasElement => {
+    return typeof HTMLCanvasElement !== "undefined" && canvas instanceof HTMLCanvasElement;
   },
   /**
    * Reads the effective color space a 2D context actually runs with.
@@ -74,9 +57,7 @@ const getTransferredCanvas = (canvas: HTMLCanvasElement): OffscreenCanvas => {
    * @param context - the 2D context to inspect, or `null` when none was obtained
    * @returns the effective color space, or `undefined` when the engine does not expose it
    */
-  getEffectiveColorSpace = (
-    context: OffscreenCanvasRenderingContext2D | null,
-  ): PredefinedColorSpace | undefined => {
+  getEffectiveColorSpace = (context: OffscreenCanvasRenderingContext2D | null): PredefinedColorSpace | undefined => {
     if (!context) {
       return undefined;
     }
@@ -106,11 +87,7 @@ function getEffectiveContextAttributes(
  * @param style - The style
  * @param important - The important
  */
-function setStyle(
-  canvas: HTMLCanvasElement,
-  style?: CSSStyleDeclaration,
-  important = false,
-): void {
+function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, important = false): void {
   if (!style) {
     return;
   }
@@ -269,10 +246,10 @@ export class CanvasManager {
    * Initializes the canvas element
    */
   init(): void {
-    this.#safeMutationObserver((obs) => {
+    this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
-    const observer = safeMutationObserver((records) => {
+    const observer = safeMutationObserver(records => {
       if (this.#mutationObserver !== observer) {
         return;
       }
@@ -287,7 +264,7 @@ export class CanvasManager {
     this.#mutationObserver = observer;
     this.resize();
     this.#initStyle();
-    this.#safeMutationObserver((obs) => {
+    this.#safeMutationObserver(obs => {
       const element = this.domElement;
 
       if (!element || !(element instanceof Node)) {
@@ -366,12 +343,8 @@ export class CanvasManager {
     const domCanvas = isHtmlCanvasElement(canvas) ? canvas : undefined;
 
     this.domElement = domCanvas;
-    this.#generated = domCanvas
-      ? domCanvas.dataset[generatedAttribute] === "true"
-      : false;
-    this.renderCanvas = domCanvas
-      ? getTransferredCanvas(domCanvas)
-      : (canvas as OffscreenCanvas);
+    this.#generated = domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false;
+    this.renderCanvas = domCanvas ? getTransferredCanvas(domCanvas) : (canvas as OffscreenCanvas);
 
     const domElement = this.domElement;
 
@@ -451,12 +424,8 @@ export class CanvasManager {
       container.particles.setResizeFactor({
         // A previously hidden axis has no scale to preserve. Keep its coordinates
         // until a nonzero size establishes a usable resize ratio.
-        width:
-          oldSize.width > 0 ? currentSize.width / oldSize.width : defaultZoom,
-        height:
-          oldSize.height > 0
-            ? currentSize.height / oldSize.height
-            : defaultZoom,
+        width: oldSize.width > 0 ? currentSize.width / oldSize.width : defaultZoom,
+        height: oldSize.height > 0 ? currentSize.height / oldSize.height : defaultZoom,
       });
     }
 
@@ -490,7 +459,7 @@ export class CanvasManager {
 
   /** Stops the canvas manager */
   stop(): void {
-    this.#safeMutationObserver((obs) => {
+    this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
 
@@ -531,16 +500,10 @@ export class CanvasManager {
     const container = this.#container,
       canSupportP3 = safeMatchMedia("(color-gamut: p3)")?.matches,
       canSupportHdr = Boolean(
-        container.actualOptions.hdr.enable &&
-        canSupportP3 &&
-        safeMatchMedia("(dynamic-range: high)")?.matches,
+        container.actualOptions.hdr.enable && canSupportP3 && safeMatchMedia("(dynamic-range: high)")?.matches,
       );
 
-    container.hdrMode = toEnumValue(
-      HdrMode,
-      container.actualOptions.hdr.mode,
-      HdrMode.standard,
-    );
+    container.hdrMode = toEnumValue(HdrMode, container.actualOptions.hdr.mode, HdrMode.standard);
     container.peakNits = container.actualOptions.hdr.peakNits;
 
     const renderCanvas = this.renderCanvas;
@@ -556,9 +519,7 @@ export class CanvasManager {
       alpha: true,
       desynchronized: true,
       willReadFrequently: false,
-      ...(canSupportP3
-        ? { colorSpace: "display-p3" as const }
-        : { colorSpace: "srgb" as const }),
+      ...(canSupportP3 ? { colorSpace: "display-p3" as const } : { colorSpace: "srgb" as const }),
       ...(canSupportHdr ? { colorType: "float16" as const } : {}),
     });
 
@@ -622,9 +583,7 @@ export class CanvasManager {
         const contextAttributes = getEffectiveContextAttributes(context);
 
         container.hdr =
-          canSupportHdr &&
-          effectiveColorSpace === "display-p3" &&
-          contextAttributes?.colorType === "float16";
+          canSupportHdr && effectiveColorSpace === "display-p3" && contextAttributes?.colorType === "float16";
       }
     }
   }
@@ -714,7 +673,7 @@ export class CanvasManager {
       return;
     }
 
-    this.#safeMutationObserver((observer) => {
+    this.#safeMutationObserver(observer => {
       observer.disconnect();
     });
     this.#initStyle();
@@ -725,7 +684,7 @@ export class CanvasManager {
     element.style.pointerEvents = pointerEvents;
     element.style.setProperty("pointer-events", pointerEvents);
 
-    this.#safeMutationObserver((observer) => {
+    this.#safeMutationObserver(observer => {
       if (!(element instanceof Node)) {
         return;
       }
@@ -760,10 +719,6 @@ export class CanvasManager {
       return;
     }
 
-    setStyle(
-      element,
-      getFullScreenStyle(this.#container.actualOptions.fullScreen.zIndex),
-      true,
-    );
+    setStyle(element, getFullScreenStyle(this.#container.actualOptions.fullScreen.zIndex), true);
   }
 }

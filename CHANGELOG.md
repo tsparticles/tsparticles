@@ -12,10 +12,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - Reject nonfinite or nonpositive `SpatialHashGrid` cell sizes with `RangeError`, including deferred size assignments.
 - Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Add input-only `p3` metadata for RGB channel objects and reject ambiguous `hdr`-tagged source channels; HDR options continue to control output rendering.
-- Add `colorMixOklch()` for canonical rectangular-OKLab mixing and deprecate the RGB-returning `colorMix()` compatibility helper.
+- Replace the RGB-returning `colorMix()` helper with `colorMixOklch()` for rectangular-OKLab mixing. Convert RGB inputs with `rgbToOklch()` before mixing.
+- Skip default no-op interactor resets and external clears in the particle loop. Custom subclasses that implement these hooks add `override` when using TypeScript's `noImplicitOverride`.
 - Preserve the source color space when sampled canvas pixels become emitter or canvas-mask particle colors; avoid applying pixel alpha twice when both mask overrides are enabled.
 - Replace the exported engine singleton with `createEngine()`. Applications own engine instances; supported wrappers receive an engine through their props, provider or service.
 - Replace implicit convenience instances with `createConfetti(engine)`, `createFireworks(engine)`, `createParticles(engine)` and `createRibbons(engine)`. `initPjs(engine)` returns compatibility APIs; `loadConfigs(engine)` registers the config catalog explicitly.
+- Remove deprecated Confetti `particleCount`/`origin` and Ribbons `particleCount`/`position`/`origin` options. Use `count`, Confetti's percent-based `position`, and Ribbons' percent-based `positionX`.
 - Standard browser module conditions resolve to pure ESM. Classic scripts expose factories and loaders through the `tsParticles` namespace. Concurrent ownership of the same canvas is rejected, including across independently loaded bundles.
 
 - Retire Vue 2, Nuxt 2 and Nuxt 3 wrappers, demos and template variants. Upgrade applications to Vue 3 or Nuxt 4 before using v5. The installer and app generator no longer recommend these retired integrations.

@@ -47,10 +47,6 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     this.#delay = 0;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -180,9 +176,5 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
   loadModeOptions(options: Modes & TrailMode, ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]): void {
     loadOptionProperty(options, "trail", Trail, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

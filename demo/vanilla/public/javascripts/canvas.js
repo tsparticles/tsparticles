@@ -22,17 +22,17 @@ async function startDemo() {
   async function confettiFrame() {
     await Promise.all([
       fetti({
-        particleCount: 2,
+        count: 2,
         angle: 60,
         spread: 55,
-        origin: { x: 0, y: 0.5 },
+        position: { x: 0, y: 50 },
         colors: colors,
       }),
       fetti({
-        particleCount: 2,
+        count: 2,
         angle: 120,
         spread: 55,
-        origin: { x: 1, y: 0.5 },
+        position: { x: 100, y: 50 },
         colors: colors,
       }),
     ]);

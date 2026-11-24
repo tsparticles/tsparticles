@@ -119,8 +119,4 @@ export class Repulser extends ParticlesInteractorBase {
   ): void {
     loadOptionProperty(options, "repulse", ParticlesRepulse, ...sources);
   }
-
-  reset(): void {
-    // do nothing
-  }
 }

@@ -18,7 +18,6 @@ import {
   getRandom,
   getRandomInRange,
   getRangeValue,
-  mix,
   parseAlpha,
   randomInRangeValue,
   setRangeValue,
@@ -1037,55 +1036,6 @@ export function colorMixOklch(
   size2: number,
 ): IOklcha {
   return mixOklch(color1, color2, size1, size2);
-}
-
-/**
- * Mixes two colors based on size proportions
- * @deprecated Use {@link colorMixOklch} for canonical engine color mixing.
- * @param color1 - the first color
- * @param color2 - the second color
- * @param size1 - the size of the first color
- * @param size2 - the size of the second color
- * @param hdr - whether to mix in linear space for HDR
- * @returns the mixed RGB color
- */
-export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number, hdr?: boolean): IRgb {
-  let rgb1 = color1 as IRgb,
-    rgb2 = color2 as IRgb;
-
-  if (!("r" in rgb1)) {
-    rgb1 = hdr ? hslToRgbFloat(color1 as IHsl) : hslToRgb(color1 as IHsl);
-  }
-
-  if (!("r" in rgb2)) {
-    rgb2 = hdr ? hslToRgbFloat(color2 as IHsl) : hslToRgb(color2 as IHsl);
-  }
-
-  if (hdr) {
-    const lin1 = {
-        b: srgbToLinear(rgb1.b / rgbMax),
-        g: srgbToLinear(rgb1.g / rgbMax),
-        r: srgbToLinear(rgb1.r / rgbMax),
-      },
-      lin2 = {
-        b: srgbToLinear(rgb2.b / rgbMax),
-        g: srgbToLinear(rgb2.g / rgbMax),
-        r: srgbToLinear(rgb2.r / rgbMax),
-      },
-      totalWeight = size1 + size2;
-
-    return {
-      b: linearToSrgb((lin1.b * size1 + lin2.b * size2) / totalWeight) * rgbMax,
-      g: linearToSrgb((lin1.g * size1 + lin2.g * size2) / totalWeight) * rgbMax,
-      r: linearToSrgb((lin1.r * size1 + lin2.r * size2) / totalWeight) * rgbMax,
-    };
-  }
-
-  return {
-    b: mix(rgb1.b, rgb2.b, size1, size2),
-    g: mix(rgb1.g, rgb2.g, size1, size2),
-    r: mix(rgb1.r, rgb2.r, size1, size2),
-  };
 }
 
 /**

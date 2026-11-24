@@ -26,10 +26,6 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     this.#pluginManager = pluginManager;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -82,7 +78,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     loadOptionProperty(options, "light", Light, ...sources);
   }
 
-  reset(): void {
-    // do nothing
+  override reset(): void {
+    // Keep the reset-phase isEnabled call that samples the mouse gradient.
   }
 }

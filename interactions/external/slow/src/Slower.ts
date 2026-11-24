@@ -37,7 +37,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     return this.#maxDistance;
   }
 
-  clear(particle: Particle, _delta: IDelta, force?: boolean): void {
+  override clear(particle: Particle, _delta: IDelta, force?: boolean): void {
     const mod = this.#modifiers.get(particle);
 
     if (mod?.enabled && !force) {
@@ -96,7 +96,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     loadOptionProperty(options, "slow", Slow, ...sources);
   }
 
-  reset(interactivityData: IInteractivityData, particle: Particle): void {
+  override reset(interactivityData: IInteractivityData, particle: Particle): void {
     const mod = this.#modifiers.get(particle);
 
     if (mod) {

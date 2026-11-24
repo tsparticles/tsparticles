@@ -60,8 +60,9 @@ corrected and rechecked in its target build.
   the measured lifecycle/retention checks. The canvas accepted Display-P3 and
   float16; this does not verify physical HDR luminance.
 - Bundle/runtime comparison is generated in `budget-screen.json`. It evaluates
-  unchanged E0 ceilings. Current absolute comparison: 2 bundle rows pass, 17
-  fail and 0 are pending; 28 of 30 runtime rows pass and 2 fail. The initial
+  unchanged E0 ceilings. Current absolute comparison: 2 size rows pass, 17
+  fail (including all 3 CJS rows) and 0 are pending; 28 of 30 runtime rows pass
+  and 2 fail. The initial
   three-repetition flags remain recorded alongside the nine-repetition
   confirmations. CJS sizes come from a fresh isolated install of the packed
   E10 engine.
@@ -101,18 +102,290 @@ corrected and rechecked in its target build.
   generated, type-checked, production-built, and started in Chrome from 41
   extracted package tarballs. See `generated-consumer.json` and
   `cli-scaffold.json`. Other framework outputs and translation review remain
-  open. G1–G7 source review dispositions were collected and closed in E8; the
-  separate ARCH and legacy closure checks still need their E10 outcomes. The
+  open. G1–G7 source review dispositions were collected and closed in E8.
+  The [architecture reconciliation](../../V5-ARCHITECTURE-DECISIONS.md#e10-evidence-reconciliation--2026-11-24)
+  links the four decisions to their consumer evidence. The
   color report is recorded, but C5 remains open for its E0 budget and broader
   browser/hardware gates.
 
+## Legacy retirement and translation review
+
+- The source scan found no tracked Vue 2, Nuxt 2 or Nuxt 3 wrapper, demo or
+  starter directories. The remaining Vue 2 issue contact was removed. The
+  installer retains an upgrade message for applications that already depend on
+  `vue2-particles`; WordPress retains its historical changelog entry.
+- A rerun of `check-retired-templates.mjs` passed for
+  [all nine packed template families](template-packages.json). The built engine
+  and bundle scan found the retired integration name only in the installer's
+  upgrade message. The built engine still checks for
+  `transferControlToOffscreen`; the recorded E0/E9 Browserslist policy remains
+  in force.
+- The English documentation and nine locale trees were searched for legacy
+  wrapper names and engine initialization patterns. The wrapper-name scan is
+  clear. Wrapper API examples outside the guides verified below still require
+  migration review.
+- The React Confetti example now registers the preset through
+  `ParticlesProvider` on the explicit engine. The replacement is identical and
+  transpiles as JSX in all ten locale copies. The snippet also passes strict
+  TypeScript checking against the built engine, React wrapper and preset
+  declarations. The rebuilt preset passed its 43-task Nx dependency build after
+  correcting missing `override` modifiers in the emitter interactor. A Chrome
+  158 run of the guide example mounted one canvas, started 50 particles and
+  recorded no page or console errors. Reproduce the package build with
+  `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/preset-confetti:build --skipNxCache --output-style=static`,
+  then run `node .planning/handovers/evidence/tools/check-e10-react-confetti.mjs`.
+  The browser result is in `react-confetti.json`.
+- The maintained React demo passed its Nx production build (62 tasks, 13
+  cached). A headless Chrome smoke test against the built static artifact
+  mounted exactly one particle canvas and recorded no page or console errors.
+  Reproduce with `NX_DAEMON=false pnpm nx run @tsparticles/react-demo:build`
+  followed by `node .planning/handovers/evidence/tools/check-e10-react-demo.mjs`;
+  the result is in `react-demo.json`. This verifies the React wrapper demo; it
+  complements the Confetti example run recorded above.
+- All eight Qwik guide examples now create and initialize their explicit engine
+  in a client task and keep it in a `noSerialize` signal. The lazy example
+  imports Full inside that task, and the callback example uses the wrapper's
+  `loaded` prop. All ten locale copies match and the eight snippets pass
+  strict TypeScript checking against the built Qwik, engine and Full package
+  declarations. The lazy example also passed a Qwik/Vite production build and
+  mounted its canvas in headless Chrome over local HTTP without page errors.
+- The Riot and Ember web guides now supply an explicit engine to the
+  initializer and component in all ten locale copies. All six Riot examples
+  compile; the full example passed a Vite production build and mounted its
+  canvas in headless Chrome without page errors. The six Ember TypeScript
+  snippets pass strict checking against the addon initializer and built engine
+  and Full declarations. All five Ember templates parse with Glimmer.
+  The Ember demo also passes its production build and Chrome 158 smoke test: two
+  canvases render initially; switching configuration and theme works; enabling
+  Confetti creates a third canvas; no page or console errors occur. Reproduce
+  with `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/ember-demo:build:ci --skipNxCache --output-style=static`
+  followed by `node .planning/handovers/evidence/tools/check-e10-ember-demo.mjs`.
+  The result is in `ember-demo.json`. The individual guide snippets have not
+  all been exercised as a generated Ember app.
+- Removed the deprecated Confetti `particleCount`/normalized `origin` aliases
+  and the Ribbons `particleCount`/`origin`/`position` aliases, including loader
+  fallbacks and class accessors. Migrated the vanilla demo, maintained English
+  guides and all translated active examples to `count`, percent-based
+  Confetti `position`, and Ribbons `positionX`. E9's deprecated API inventory
+  now records these removals and migration paths. Nx builds passed for the
+  Confetti and Ribbons packages, and the two existing bundle test files passed
+  all four tests. Generated declarations contain none of the removed aliases.
+  A broader local test run passed 816 tests but could not load six files because
+  their unrelated workspace packages were not built; the earlier full E10 Nx
+  matrix remains recorded above. Ribbons' generated minified bundle decreased
+  by 916 bytes from the previous build; Confetti's clean build had no previous
+  artifact available for a like-for-like size comparison. V5-LEG remains open
+  for the remaining engine/color formatter, PJS compatibility, and Stencil
+  loader deprecations.
+- Migrated the Confetti website examples from deprecated `particleCount` and
+  normalized `origin` to `count` and percent-based `position`, preserving their
+  coordinates with a conversion helper. The Confetti website Nx CI build passed
+  all 284 tasks in 6m51s. A local Chrome 158 run rendered a canvas, exercised
+  cannon, fireworks, snow and continuous modes, and recorded no page errors.
+  Its only console errors came from blocked Google Ads and Analytics requests.
+  Automatic review rejected a second browser run because it would send
+  navigation data to those external services, so the clean browser gate remains
+  open. The build command is `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/confetti-website:build:ci --skipNxCache --output-style=static`.
+
 ## Budget status
+
+### Interactor lifecycle optimization
+
+A Chrome CPU profile of 12 M6/500 runs found repeated work in the
+particle reset dispatcher, including enablement checks for built-in
+interactors with empty reset hooks. The manager now selects reset and
+external clear hooks after initialization and reuses those lists each
+frame. Custom hooks still run in the original order and evaluate live
+enablement. The light interactors retain their reset-phase checks because
+those checks sample colors.
+
+The table compares the previous and rebuilt production All bundles in
+Chrome 158, with nine repetitions per case and stable DOM and RNG checks.
+The E0 ceiling applies to frame p95.
+
+| Scenario   | Control update | Candidate update | Control p95 | Candidate p95 | E0 p95 ceiling |
+| ---------- | -------------: | ---------------: | ----------: | ------------: | -------------: |
+| M6/500 SDR |           0.90 |             0.60 |        2.00 |          1.70 |           1.87 |
+| M6/500 HDR |           0.90 |             0.60 |        2.40 |          1.90 |           1.87 |
+| M8/500 SDR |           0.70 |             0.40 |        1.50 |          1.20 |           1.65 |
+| M8/500 HDR |           0.70 |             0.50 |        1.50 |          1.40 |           1.54 |
+
+All times are milliseconds. Candidate M6/500 HDR p95 samples were 1.80,
+1.90, 1.90, 1.90, 1.90, 2.00, 2.00, 2.00 and 2.20 ms. The median is
+0.03 ms over the original E0 ceiling.
+The other 11 extended runtime rows meet all three of their E0 ceilings.
+
+The nine-repetition quiet M4/500 run against the archived E6 control measured
+3.40 ms update and 2.50 ms draw, within E0's 3.52 and 2.53 ms ceilings,
+respectively. Frame p95 was 7.10 ms against the E4 reference of 6.50 ms and
+the E5 screening value of 7.15 ms. The archived E5 scope exception remains
+recorded.
+
+Reproduce using `measure-runtime-extended-factory.mjs` with
+`--repetitions=9` for both bundles, once with `--force-hdr` and once without.
+Use `confirm-e10-quiet-runtime.mjs` for M4/500, writing its output separately
+from the archived checkpoint.
+
+The interactivity plugin and 22 affected interaction packages built
+successfully, followed by Slim, Full and All. The primary Nx suite passed
+960 tests across 61 files, including a regression test for hooks installed
+during initialization and for live enablement.
+
+The additional Firefox 138.0.1 color run remains unverified. Headless
+automation timed out, and a direct headless launch reported an operating
+system permission error for Firefox's content process. The existing Chrome
+color results and physical HDR verification scope remain recorded separately.
+
+### Size disposition under the updated criterion
+
+The user accepts payload growth attributable to required functionality. The
+absolute E0 size comparisons below remain as recorded diagnostics. Runtime and
+retention have their existing acceptance criteria.
+
+- Minimal ESM emits four chunks and retains 104 unique module identities,
+  the same module count as the baseline. The factory and lazy factory each
+  emit three chunks with 73 unique modules. The minimal graph contains no
+  All bundle or preset package. Browser consumer sizes match ESM.
+- Standalone Slim includes one engine plus its selected features. E4 to E5 is
+  the largest observed growth interval. The packed CJS module comparison
+  points to canonical color conversion and rendering as material contributors
+  (`OklchUtils` adds 1,877 gzip bytes and `ColorUtils` adds 1,748), alongside
+  the spatial grid and engine-scoped registration. Those per-file figures
+  characterize the installed CJS graph.
+- Installed CJS keeps both root and lazy entrypoints at 70 acquired modules.
+  The full shipped graph went from 153 to 161 modules. The deprecated RGB
+  mixer removal saves 200 gzip bytes in each packed CJS scenario.
+- The refreshed minimal CDN composition still uses nine requests and totals
+  44,733 gzip / 38,668 Brotli bytes, up from E0's 35,441 / 31,633 and down
+  188 / 140 from the original E10 checkpoint. Rollup reports no repeated
+  rendered module identities across the nine scripts. The report tracks
+  module identities. The known duplicated Display-P3 conversion was removed
+  separately in source.
+
+The measured shapes and identified contributors satisfy the current size
+criterion. See [the E9 composition report](../e9/composition-comparison.json)
+and the follow-up measurements below.
 
 The pure helper remains unchanged. The import/browser factory, initialization,
 minimal scene, lazy entry, engine, Basic, Slim, Full, All and minimal CDN page
 currently exceed their frozen gzip and Brotli ceilings. The measured candidate
 sizes, byte deltas, ratios and scenario-level status are in `budget-screen.json`
 and `bundle-sizes.json`. No budget is waived by this checkpoint.
+
+### Size growth across checkpoints
+
+Archived sizes in bytes (gzip / Brotli). The factory column uses E0 singleton
+acquisition as the original budget reference and explicit factory acquisition
+from E1 onward. All rows use Node 26.13.0, Rollup 4.67.4, gzip level 9 and
+Brotli quality 11.
+
+| Checkpoint                 | Import factory  | Import minimal  | Engine distribution | Slim distribution |
+| -------------------------- | --------------- | --------------- | ------------------- | ----------------- |
+| E0                         | 22,665 / 20,052 | 28,451 / 25,355 | 24,671 / 21,953     | 47,524 / 41,231   |
+| E1                         | 22,673 / 20,091 | 28,547 / 25,465 | 24,816 / 22,063     | 47,705 / 41,364   |
+| E3                         | 23,059 / 20,504 | 29,045 / 25,995 | 26,627 / 22,969     | 48,225 / 41,758   |
+| E4                         | 23,146 / 20,572 | 29,210 / 26,143 | 26,714 / 23,066     | 48,405 / 41,884   |
+| E5 closure                 | 25,613 / 22,617 | 31,899 / 28,418 | 31,190 / 26,655     | 53,704 / 46,210   |
+| E7 candidate               | 26,904 / 23,755 | 33,182 / 29,534 | 32,496 / 27,741     | 55,000 / 47,202   |
+| E10 checkpoint             | 26,904 / 23,755 | 33,182 / 29,534 | 32,578 / 27,776     | 55,103 / 47,284   |
+| E10 excess over E0 ceiling | +3,786 / +3,302 | +6,154 / +5,447 | +7,414 / +5,384     | +9,956 / +8,115   |
+
+E4 to E5 closure is the largest interval in each column. The archived
+checkpoints include multiple source changes per interval, so the table
+locates the growth without assigning a byte cost to any single feature.
+The matched E7 source-override experiment isolates a smaller increase of
+144 gzip bytes for factory acquisition and 130 for the minimal consumer.
+The override applies only to consumer bundles. See the [E5 closure payloads](../e5/closure/payloads/),
+[E7 control](../e7/payloads-baseline/bundle-sizes.json), and
+[E7 candidate](../e7/payloads-candidate/bundle-sizes.json).
+
+### Terser compression probe
+
+Ran the existing consumer harness twice on the same local compiled artifacts,
+first with the default Terser options and then with `compress.passes: 3`.
+The default run reproduced the archived E10 consumer totals. Import and
+browser totals were identical within each run. The table shows the change
+from default options, in bytes, summed over every emitted chunk.
+
+| Consumer       | Minified | Gzip | Brotli |
+| -------------- | -------: | ---: | -----: |
+| Pure helper    |        0 |    0 |      0 |
+| Factory        |     −103 |  −29 |    −66 |
+| Initialization |     −103 |  −31 |    −43 |
+| Minimal scene  |     −132 |  −20 |    +16 |
+| Lazy factory   |     −103 |  −28 |    −49 |
+
+Every previously failing consumer still exceeds its E0 ceilings. The
+experiment covers consumer bundles only. The production minifier settings
+stay at their defaults. To reproduce the probe without overwriting evidence:
+
+```sh
+probe_dir=$(mktemp -d)
+harness=.planning/handovers/evidence/tools/measure-e7-bundles.mjs
+sed 's/terser()/terser({ compress: { passes: 3 } })/' "$harness" > "$probe_dir/passes3.mjs"
+node "$harness" "$probe_dir/default"
+node "$probe_dir/passes3.mjs" "$probe_dir/passes3"
+```
+
+Compare `consumers[].minTotal` in the two generated `bundle-sizes.json` files.
+
+### Engine color changes after the checkpoint
+
+The engine now reuses its sRGB-to-P3 conversion for OKLCH output, keeping the
+original transfer functions and extended channel values. The deprecated
+RGB-returning `colorMix()` export was removed. Its replacement and output
+conversion are documented in the [migration guide](../../V5-MIGRATION.md#deprecated-apis).
+
+A matched Rollup/Terser probe of the built engine browser entrypoint swapped
+only the two color utility modules for their TypeScript source, stripped with
+Node. Both IIFEs exposed `colorMixOklch()`; only the control exposed
+`colorMix()`. The candidate shrank from 98,021 to 97,526 bytes minified, from
+32,536 to 32,350 gzip, and from 27,714 to 27,617 Brotli. This probe uses its
+own IIFE wrapper. The archived distribution and consumer budget screen above
+remains the original checkpoint.
+
+The production Rollup rebuild of Engine, Basic, Slim, Full and All and a fresh
+offline engine install measured the following compressed sizes. Deltas are
+relative to the archived E10 checkpoint. Root and lazy acquisitions share the
+same measured CJS size, with different E0 ceilings.
+
+| Scenario               | New gzip | New Brotli | Delta gzip / Brotli | E0 ceiling gzip / Brotli |
+| ---------------------- | -------: | ---------: | ------------------: | -----------------------: |
+| Import/browser factory |   26,894 |     23,743 |           −10 / −12 | 23,118 / 20,453 (import) |
+| Import/browser minimal |   33,169 |     29,524 |           −13 / −10 | 27,028 / 24,087 (import) |
+| Engine                 |   32,390 |     27,636 |         −188 / −140 |          25,164 / 22,392 |
+| Basic                  |   37,103 |     32,381 |         −174 / −115 |          30,873 / 27,283 |
+| Slim                   |   54,916 |     47,158 |         −187 / −126 |          45,147 / 39,169 |
+| Full                   |   66,912 |     56,972 |         −179 / −220 |          60,133 / 51,734 |
+| All                    |  127,837 |    103,526 |           −191 / −9 |         118,266 / 96,434 |
+| CJS root               |   34,999 |     30,489 |         −200 / −158 |          30,594 / 26,477 |
+| CJS lazy               |   34,999 |     30,489 |         −200 / −158 |          30,606 / 26,483 |
+| CJS shipped            |   60,641 |     52,245 |         −200 / −158 |          54,213 / 46,456 |
+
+Of the 18 rows in the table's consumer, distribution and installed graphs,
+both pure-helper rows meet the E0 reference and the other 16 exceed it. The
+CDN composition was also remeasured above. All six
+installed root/lazy ESM, CJS and browser probes passed and verified the retired
+export is absent, its replacement is available, and the engine version is
+resolved. The engine compiled for ESM, CJS, browser and declarations. The
+primary Nx test suite passed all 959 tests across 61 files after generating
+the distribution metadata and substituting the version placeholder.
+
+A separate prototype converted directly through linear light. Across 720
+sample colors, the largest channel difference was below 2e-13 and mapped
+chroma was identical. Despite a roughly twofold improvement in the isolated
+mapping loop, a three-repetition Chrome 158 forced-HDR run showed median
+frame p95 increasing from 1.40 to 1.60 ms for M8/500 and from 2.10 to 2.30 ms
+for M6/500. The prototype was dropped. These exploratory measurements use
+matched temporary All bundles and do not replace the existing E0 budget rows.
+
+The rebuilt production All bundle also completed the extended Chrome 158
+run in SDR and forced HDR, with no page errors, retained containers or DOM
+growth. Median M6/500 frame p95 was 2.10 ms SDR and 2.40 ms HDR against the
+1.87 ms ceiling. Median M8/500 was 1.50 ms in both modes, within its SDR/HDR
+ceilings of 1.65/1.54 ms. There were three repetitions per case; these results
+are a follow-up to the archived nine-repetition confirmation. The forced-HDR
+run exercises Display-P3 and float16 Canvas2D rendering.
 
 The original three-repetition screen flagged nine runtime rows. Selective
 nine-repetition confirmation clears the seven main-matrix flags; both remaining
@@ -131,11 +404,10 @@ All three CJS size scenarios exceed their original ceilings:
 | Lazy acquisition       | 153063 |  97004 |  35199 |    30647 |          30606 |            26483 |
 | Full shipped CJS graph | 287481 | 159646 |  60841 |    52403 |          54213 |            46456 |
 
-The root acquisition is +5,204 gzip / +4,689 Brotli bytes over E0; lazy is
-+5,193 / +4,683; full shipped CJS is +7,691 / +6,857. These are measured
-failures, not missing data. The E6 matched runtime control is complete, but it
-does not replace the E0 absolute ceilings and the candidate still has 9 runtime
-rows beyond them. Existing E5/E7 acceptance exceptions remain exceptions; they
-are not passing measurements or new budget waivers.
+The root acquisition is +4,605 gzip / +4,170 Brotli bytes over the E0 ceiling;
+lazy is +4,593 / +4,164; full shipped CJS is +6,628 / +5,947. Two extended
+runtime rows fail after confirmation. The separate quiet M4/500 update and
+frame p95 exceedances remain recorded above. The original ceilings and
+E5/E7 acceptance scope remain in force.
 
 No version bump, commit, publication, deployment or release was performed.

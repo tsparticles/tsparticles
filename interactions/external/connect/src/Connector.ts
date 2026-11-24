@@ -29,10 +29,6 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       connect = container.actualOptions.interactivity?.modes.connect;
@@ -107,9 +103,5 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "connect", Connect, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

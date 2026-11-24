@@ -111,7 +111,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
   /**
    * Clears the interactor state
    */
-  clear(): void {
+  override clear(): void {
     // no-op
   }
 
@@ -274,7 +274,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
   /**
    * Resets the interactor state
    */
-  reset(): void {
+  override reset(): void {
     // no-op
   }
 }

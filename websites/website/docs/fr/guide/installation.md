@@ -136,7 +136,7 @@ With dedicated API bundles:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
 <script>
-  confetti({ particleCount: 100, spread: 70 });
+  confetti({ count: 100, spread: 70 });
 </script>
 ```
 

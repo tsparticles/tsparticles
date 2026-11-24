@@ -41,10 +41,6 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       grab = container.actualOptions.interactivity?.modes.grab;
@@ -140,9 +136,5 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
   loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
     loadOptionProperty(options, "grab", Grab, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

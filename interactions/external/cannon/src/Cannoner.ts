@@ -143,7 +143,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * @param _particle - The particle to process
    * @param _delta - The delta time
    */
-  clear(_particle: InteractivityParticle, _delta: IDelta): void {
+  override clear(_particle: InteractivityParticle, _delta: IDelta): void {
     // nothing to clear per-particle
   }
 
@@ -236,9 +236,6 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * @param _interactivityData - The interactivity data
    * @param _particle - The particle to process
    */
-  reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
-    // nothing to reset
-  }
 
   // ── Private helpers ────────────────────────────────────────────────────────
   /**

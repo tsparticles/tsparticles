@@ -71,7 +71,6 @@ Main options:
 - `count` _Integer (default: 5)_
 - `ticks` _Number (default: 200)_
 - `positionX` _Number (default: 50, in percent)_
-- `position` _Object_ (`x`/`y`) — **deprecated**, use `positionX` instead; `y` is ignored (emitter always spawns at top-of-canvas)
 - `emitterSize` _Object_ (`width`/`height`, default 100/0, in percent) — spawn width is controlled by `emitterSize.width` (default 100); not always full width
 - `colors` _Array&lt;String&gt;_
 - `ribbonOptions` _Object_ (`particles.shape.options.ribbon`)
@@ -83,8 +82,5 @@ Main options:
 The `ribbons` bundle disables `roll`, `rotate`, `tilt`, and `wobble` on ribbon particles by default for better shape stability.
 The emitter spawns from `positionX` across a strip whose width is controlled by `emitterSize.width` (default 100%), with downward movement for a falling-from-top effect. The emitter is always positioned at the top of the canvas.
 
-Deprecated aliases still accepted:
-
-- `particleCount` (use `count`)
-- `position` (use `positionX`)
-- `origin` (use `positionX`)
+In v5, use `count` and `positionX`. The previous `particleCount`, `position`,
+and normalized `origin` aliases have been removed.

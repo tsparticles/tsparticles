@@ -61,10 +61,6 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
     super(container);
   }
 
-  clear(_particle: InteractivityParticle, _delta: IDelta): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -189,10 +185,6 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
 
   loadModeOptions(options: Modes & DragMode, ...sources: RecursivePartial<(IModes & IDragMode) | undefined>[]): void {
     loadOptionProperty(options, "drag", Drag, ...sources);
-  }
-
-  reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
-    // do nothing - release logic is handled in interact()
   }
 
   /**

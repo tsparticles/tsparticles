@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, writeFile, readdir, realpath } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, writeFile, readdir, realpath } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -7,7 +7,8 @@ import { createRequire } from "node:module";
 import { createHash } from "node:crypto";
 import { gzipSync, brotliCompressSync, constants } from "node:zlib";
 const root = process.cwd(),
-  output = path.join(root, ".planning/handovers/evidence/e10");
+  output = path.resolve(process.argv[2] ?? ".planning/handovers/evidence/e10");
+await mkdir(output, { recursive: true });
 const temporary = await mkdtemp(path.join(tmpdir(), "v5-installed-"));
 const pack = JSON.parse(
   execFileSync("pnpm", ["--dir", path.join(root, "engine/dist"), "pack", "--pack-destination", temporary, "--json"], {
@@ -43,8 +44,10 @@ const before=new Set(Object.keys(globalThis));
 const mode=process.argv[2],resolved=mode==='require'?require.resolve(specifier):import.meta.resolve(specifier);
 const engine=mode==='require'?require(specifier):await import(specifier);
 if ('tsParticles' in engine || 'Engine' in engine) throw new Error('Unexpected singleton or runtime class export');
+if ('colorMix' in engine || typeof engine.colorMixOklch !== 'function') throw new Error('Unexpected color mixer exports');
 const first=engine.createEngine(),second=engine.createEngine();
 if(first===second || first.pluginManager===second.pluginManager || first.items===second.items) throw new Error('Shared engine state');
+if (!/^[0-9]+[.][0-9]+[.][0-9]+/.test(first.version)) throw new Error('Engine version was not resolved at build time');
 await first.init();
 console.log(JSON.stringify({mode,subpath:process.argv[3],resolved,singleton:!!engine.tsParticles,factory:typeof engine.createEngine,globals:Object.keys(globalThis).filter(x=>!before.has(x)),loaded:Object.keys(require.cache).filter(x=>x.endsWith('.js'))}));`,
 );

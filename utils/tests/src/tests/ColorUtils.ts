@@ -1277,6 +1277,18 @@ describe("ColorUtils", async () => {
       expect(color).to.deep.equal(original);
     });
 
+    it("preserves extended Display-P3 coordinates when converting OKLCH", () => {
+      const belowGamut = oklchToDisplayP3Float({ c: 0.4, h: 145, l: 72 }),
+        aboveGamut = oklchToDisplayP3Float({ c: 0.4, h: 30, l: 110 });
+
+      expect(belowGamut.r).to.be.closeTo(-81.75144, 0.00001);
+      expect(belowGamut.g).to.be.closeTo(212.54383, 0.00001);
+      expect(belowGamut.b).to.be.closeTo(-74.80034, 0.00001);
+      expect(aboveGamut.r).to.be.closeTo(466.22699, 0.00001);
+      expect(aboveGamut.g).to.be.closeTo(156.93106, 0.00001);
+      expect(aboveGamut.b).to.be.closeTo(115.65621, 0.00001);
+    });
+
     it("keeps sRGB and Display-P3 cusp-boundary results in gamut", () => {
       const boundaryColors = [
           { c: 0.8, h: 0, l: 10 },

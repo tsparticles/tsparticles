@@ -89,10 +89,6 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       attract = container.actualOptions.interactivity?.modes.attract;
@@ -176,10 +172,6 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "attract", Attract, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 
   #restoreParticles(): void {

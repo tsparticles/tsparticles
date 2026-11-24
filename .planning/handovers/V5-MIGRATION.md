@@ -40,12 +40,28 @@ The matrix includes retained consumers that require explicit engines as well.
 
 ## Deprecated APIs
 
-The E0 TypeScript source scan of engine/extensions/wrappers/runtime utilities
-found `applyPolyfills()` marked deprecated in the generated Stencil loader
-declaration. That declaration does not document a replacement. Do not infer
-an engine API removal from this marker: inspect the Stencil generation contract
-in E1/E9. No `@deprecated` marker was found in `engine/src` by this scan.
-This is scan evidence, not a claim that all compatibility aliases are unnecessary.
+The engine's RGB-returning `colorMix()` was removed. Convert RGB inputs with
+`rgbToOklch()` (or use `hslToRgbFloat()` first for HSL), then pass the
+canonical colors and weights to `colorMixOklch()`. The resulting colors use
+perceptual interpolation. Use `mapOklchToSrgb(result).rgb` at an RGB-only
+output boundary.
+
+### Interactor lifecycle hooks
+
+The interactor base classes supply a default no-op `reset()` implementation.
+The external interactor base also supplies a default no-op `clear()`.
+The manager selects custom hooks after interactor initialization, including
+redraw initialization. Keep overrides that carry state or have reset-phase
+work, and add the TypeScript `override` modifier when using
+`noImplicitOverride`.
+
+See the [deprecated API inventory](evidence/e9/deprecated-migrations.md) for
+color formatters, Confetti and Ribbons options, and particles.js compatibility.
+Several entries remain in the candidate and still need a retirement decision.
+For applications upgrading their compiler to Stencil 5, remove
+`applyPolyfills()` and await `defineCustomElements()` where registration must
+finish before hydration. The current tsParticles Stencil wrapper uses Stencil
+4 and still declares `applyPolyfills()`.
 
 ## Color, options and public contracts
 
@@ -58,10 +74,6 @@ convert colors at the input boundary or retain a supported CSS/RGB input and let
 the engine parse it. Managers that implement the color extension point must
 follow the current OKLCH manager contract; see the [color decisions](V5-COLOR-DECISIONS.md)
 for accepted inputs, gamut mapping, alpha, and HDR behavior.
-
-The E0 scan found `applyPolyfills()` deprecated in a generated Stencil
-declaration, without a documented replacement. Check the Stencil generation
-contract before removing that call; do not substitute an unrelated engine API.
 
 ## Explicit-engine APIs implemented in E1
 

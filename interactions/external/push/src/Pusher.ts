@@ -65,10 +65,6 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     };
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -88,9 +84,5 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
 
   loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
     loadOptionProperty(options, "push", Push, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

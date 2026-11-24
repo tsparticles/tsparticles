@@ -146,10 +146,6 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     loadOptionProperty(options, "links", Links, ...sources);
   }
 
-  reset(): void {
-    // do nothing
-  }
-
   #getLinkColor(p1: LinkParticle, p2: LinkParticle): IOklcha | undefined {
     const container = this.container,
       linksOptions = p1.options.links;

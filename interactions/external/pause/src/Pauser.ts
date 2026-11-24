@@ -34,10 +34,6 @@ export class Pauser extends ExternalInteractorBase {
     };
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -52,9 +48,5 @@ export class Pauser extends ExternalInteractorBase {
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
     return !!events && isInArray(pauseMode, events.onClick.mode);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

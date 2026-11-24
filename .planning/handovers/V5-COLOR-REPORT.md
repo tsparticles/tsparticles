@@ -39,8 +39,8 @@ ran on Chrome only; other supported browsers and hardware remain unverified.
 
 E10 remeasured candidate bundle sizes, installed CJS package graphs, and the
 M3–M8 plus SDR/HDR runtime matrix. The unchanged E0 ceilings are not met by all
-candidate artifacts: the current budget screen records 2 bundle rows passing,
-17 failing and none pending; all 3 CJS rows fail. The first runtime screen
+candidate artifacts: the current budget screen records 2 size rows passing,
+17 failing (including all 3 CJS rows) and none pending. The first runtime screen
 recorded 21 of 30 rows passing and 9 failing. Nine-repetition confirmations
 clear seven main-matrix flags; the final reconciled runtime screen has 28 rows
 passing and 2 M6/500 extended p95 failures. Matched same-browser E6 artifact

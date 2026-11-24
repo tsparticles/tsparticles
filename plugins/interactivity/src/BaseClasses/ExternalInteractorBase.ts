@@ -34,7 +34,18 @@ export abstract class ExternalInteractorBase<
    * @param particle - the particle to clear
    * @param delta - this variable contains the delta between the current frame and the previous frame
    */
-  abstract clear(particle: TParticle, delta: IDelta): void;
+  clear(_particle?: TParticle, _delta?: IDelta): void {
+    // Stateless interactors have nothing to clear.
+  }
+
+  /**
+   * Before interaction reset
+   * @param interactivityData - the interactivity data of the event, contains the position of the event, etc
+   * @param particle - the particle to reset
+   */
+  reset(_interactivityData?: IInteractivityData, _particle?: TParticle): void {
+    // Stateless interactors have nothing to reset.
+  }
 
   /**
    * Initializes the interactivity manager
@@ -55,11 +66,4 @@ export abstract class ExternalInteractorBase<
    * @returns true or false, checking if the options enable this interaction manager
    */
   abstract isEnabled(interactivityData: IInteractivityData, particle?: TParticle): boolean;
-
-  /**
-   * Before interaction reset
-   * @param interactivityData - the interactivity data of the event, contains the position of the event, etc
-   * @param particle - the particle to reset
-   */
-  abstract reset(interactivityData: IInteractivityData, particle: TParticle): void;
 }

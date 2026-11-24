@@ -129,7 +129,7 @@ Some bundles have their own simplified API, no need to use `tsParticles.load()`:
   </head>
   <body>
     <script>
-      confetti({ particleCount: 100, spread: 70 });
+      confetti({ count: 100, spread: 70 });
     </script>
   </body>
 </html>

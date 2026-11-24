@@ -113,8 +113,4 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
   ): void {
     loadOptionProperty(options, "collisions", Collisions, ...sources);
   }
-
-  reset(_interactivityData: IInteractivityData, _particle: CollisionParticle): void {
-    /* nothing to reset: the fluid solver is stateless, it reads the current positions only */
-  }
 }

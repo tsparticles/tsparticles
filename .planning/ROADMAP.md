@@ -23,7 +23,9 @@ M4/500 runtime exception with final E10 verification, alongside the earlier
 bundle-growth exception. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
 
 **Status.** E0–E9 complete on branch `v5`, with package version `4.6.0`.
-E10 remains open. Follow the [handover index](handovers/README.md).
+E10 remains open. The size review is complete under the user's updated
+criterion. Runtime verification retains priority. See the
+[E10 acceptance update](handovers/V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
 
 Use the [dependency-driven E0–E10 sequence](handovers/V5-EXECUTION.md).
 These are the currently scoped gates, not full v5 release readiness. E10 does

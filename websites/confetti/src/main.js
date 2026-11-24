@@ -238,6 +238,13 @@ document.getElementById('themeToggle').addEventListener('click', function () {
   updateTheme(++currentStep % 3);
 });
 
+function toPercentPosition(position) {
+  return {
+    x: position.x === undefined ? undefined : position.x * 100,
+    y: position.y === undefined ? undefined : position.y * 100,
+  };
+}
+
 const modes = [
   {
     id: 'cannon',
@@ -250,9 +257,9 @@ const modes = [
     ],
     fn: function () {
       confetti({
-        particleCount: 100,
+        count: 100,
         spread: 70,
-        origin: { y: 0.6 },
+        position: toPercentPosition({ y: 0.6 }),
       });
     },
   },
@@ -274,8 +281,8 @@ const modes = [
       confetti({
         angle: randomInRange(55, 125),
         spread: randomInRange(50, 70),
-        particleCount: randomInRange(50, 100),
-        origin: { y: 0.6 },
+        count: randomInRange(50, 100),
+        position: toPercentPosition({ y: 0.6 }),
       });
     },
   },
@@ -292,13 +299,13 @@ const modes = [
     fn: function () {
       const count = 200,
         defaults = {
-          origin: { y: 0.7 },
+          position: toPercentPosition({ y: 0.7 }),
         };
 
       function fire(particleRatio, opts) {
         confetti(
           Object.assign({}, defaults, opts, {
-            particleCount: Math.floor(count * particleRatio),
+            count: Math.floor(count * particleRatio),
           })
         );
       }
@@ -358,19 +365,19 @@ const modes = [
 
       confetti({
         ...defaults,
-        particleCount: 50,
+        count: 50,
         scalar: 2,
       });
 
       confetti({
         ...defaults,
-        particleCount: 25,
+        count: 25,
         scalar: 3,
       });
 
       confetti({
         ...defaults,
-        particleCount: 10,
+        count: 10,
         scalar: 4,
       });
     },
@@ -403,14 +410,14 @@ const modes = [
       function shoot() {
         confetti({
           ...defaults,
-          particleCount: 40,
+          count: 40,
           scalar: 1.2,
           shapes: ['star'],
         });
 
         confetti({
           ...defaults,
-          particleCount: 10,
+          count: 10,
           scalar: 0.75,
           shapes: ['circle'],
         });
@@ -447,7 +454,7 @@ const modes = [
       function shoot() {
         confetti({
           ...defaults,
-          particleCount: 30,
+          count: 30,
           scalar: 1.2,
           shapes: ['circle', 'square'],
           colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
@@ -455,7 +462,7 @@ const modes = [
 
         confetti({
           ...defaults,
-          particleCount: 20,
+          count: 20,
           scalar: 2,
           shapes: ['emoji'],
           shapeOptions: {
@@ -492,7 +499,7 @@ const modes = [
         gravity: 1,
         decay: 0.94,
         startVelocity: 30,
-        particleCount: 100,
+        count: 100,
         scalar: 3,
         shapes: ['image'],
         shapeOptions: {
@@ -614,14 +621,14 @@ const modes = [
 
         confetti(
           Object.assign({}, defaults, {
-            particleCount,
-            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            count: particleCount,
+            position: toPercentPosition({ x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }),
           })
         );
         confetti(
           Object.assign({}, defaults, {
-            particleCount,
-            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            count: particleCount,
+            position: toPercentPosition({ x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }),
           })
         );
       }, 250);
@@ -656,13 +663,13 @@ const modes = [
         skew = Math.max(0.8, skew - 0.001);
 
         confetti({
-          particleCount: 1,
+          count: 1,
           startVelocity: 0,
           ticks: ticks,
-          origin: {
+          position: toPercentPosition({
             x: Math.random(),
             y: Math.random() * skew - 0.2,
-          },
+          }),
           colors: ['#ffffff'],
           shapes: ['circle'],
           gravity: randomInRange(0.4, 0.6),
@@ -697,18 +704,18 @@ const modes = [
 
       (function frame() {
         confetti({
-          particleCount: 2,
+          count: 2,
           angle: 60,
           spread: 55,
-          origin: { x: 0 },
+          position: toPercentPosition({ x: 0 }),
           colors: colors,
         });
 
         confetti({
-          particleCount: 2,
+          count: 2,
           angle: 120,
           spread: 55,
-          origin: { x: 1 },
+          position: toPercentPosition({ x: 1 }),
           colors: colors,
         });
 
@@ -736,8 +743,8 @@ const modes = [
       const defaults = {
         scalar: 2,
         spread: 270,
-        particleCount: 25,
-        origin: { y: 0.4 },
+        count: 25,
+        position: toPercentPosition({ y: 0.4 }),
         startVelocity: 35,
       };
 
@@ -792,7 +799,7 @@ const modes = [
 
         canvas.confetti({
           spread: 70,
-          origin: { y: 0.5 },
+          position: toPercentPosition({ y: 0.5 }),
         });
       })();
     },
@@ -822,10 +829,10 @@ const modes = [
           }
 
           confetti({
-            particleCount: 8,
+            count: 8,
             angle: 90,
             spread: 70,
-            origin: { x: Math.random(), y: 0 },
+            position: toPercentPosition({ x: Math.random(), y: 0 }),
             gravity: 1.2,
             ticks: 0,
             colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],

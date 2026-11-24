@@ -11,7 +11,7 @@ import {
   calcPositionOrRandomFromSizeRanged,
   checkDistance,
   clamp,
-  colorMix,
+  colorMixOklch,
   createEngine,
   deepExtend,
   degToRad,
@@ -37,6 +37,7 @@ import {
   parseAlpha,
   randomInRangeValue,
   rgbToHsl,
+  rgbToOklch,
   setRangeValue,
 } from "@tsparticles/engine";
 import { describe, expect, it, vi } from "vitest";
@@ -97,11 +98,11 @@ describe("EngineUtils", () => {
 
       engineA.setAnimationFunctions(
         () => 11,
-        (handle) => cancelledA.push(handle),
+        handle => cancelledA.push(handle),
       );
       engineB.setAnimationFunctions(
         () => 11,
-        (handle) => cancelledB.push(handle),
+        handle => cancelledB.push(handle),
       );
       const handleA = engineA.animate(vi.fn()),
         handleB = engineB.animate(vi.fn());
@@ -128,8 +129,7 @@ describe("EngineUtils", () => {
       engineB.setLogger({
         error: (...args: unknown[]): void => errorsB.push(args),
       });
-      globalThis.fetch = (): Promise<Response> =>
-        Promise.reject(new Error("engine A fetch failure"));
+      globalThis.fetch = (): Promise<Response> => Promise.reject(new Error("engine A fetch failure"));
 
       try {
         const result = await getDataFromUrl({
@@ -201,9 +201,7 @@ describe("EngineUtils", () => {
 
     it("randomInRangeValue samples the open range when min and max differ", () => {
       expect(randomInRangeValue({ min: 0, max: 10 }, () => 0.5)).to.equal(5);
-      expect(randomInRangeValue({ min: -10, max: -1 }, () => 0.5)).to.equal(
-        -5.5,
-      );
+      expect(randomInRangeValue({ min: -10, max: -1 }, () => 0.5)).to.equal(-5.5);
     });
 
     it("randomInRangeValue falls back to a zero based range when min equals max", () => {
@@ -254,44 +252,20 @@ describe("EngineUtils", () => {
       const center = { x: 0, y: 0 },
         position = { x: 1, y: 0 };
 
-      expect(
-        getParticleDirectionAngle(MoveDirection.right, position, center),
-      ).to.equal(0);
-      expect(
-        getParticleDirectionAngle(MoveDirection.top, position, center),
-      ).to.equal(-Math.PI / 2);
-      expect(
-        getParticleDirectionAngle(MoveDirection.bottom, position, center),
-      ).to.equal(Math.PI / 2);
-      expect(
-        getParticleDirectionAngle(MoveDirection.left, position, center),
-      ).to.equal(Math.PI);
-      expect(
-        getParticleDirectionAngle(MoveDirection.topRight, position, center),
-      ).to.equal(-Math.PI / 4);
+      expect(getParticleDirectionAngle(MoveDirection.right, position, center)).to.equal(0);
+      expect(getParticleDirectionAngle(MoveDirection.top, position, center)).to.equal(-Math.PI / 2);
+      expect(getParticleDirectionAngle(MoveDirection.bottom, position, center)).to.equal(Math.PI / 2);
+      expect(getParticleDirectionAngle(MoveDirection.left, position, center)).to.equal(Math.PI);
+      expect(getParticleDirectionAngle(MoveDirection.topRight, position, center)).to.equal(-Math.PI / 4);
     });
 
     it("getParticleDirectionAngle accepts numeric degrees", () => {
-      expect(
-        getParticleDirectionAngle(180, { x: 0, y: 0 }, { x: 0, y: 0 }),
-      ).to.equal(Math.PI);
+      expect(getParticleDirectionAngle(180, { x: 0, y: 0 }, { x: 0, y: 0 })).to.equal(Math.PI);
     });
 
     it("getParticleDirectionAngle points toward the center for inside", () => {
-      expect(
-        getParticleDirectionAngle(
-          MoveDirection.inside,
-          { x: 1, y: 0 },
-          { x: 0, y: 0 },
-        ),
-      ).to.equal(Math.PI);
-      expect(
-        getParticleDirectionAngle(
-          MoveDirection.outside,
-          { x: 1, y: 0 },
-          { x: 0, y: 0 },
-        ),
-      ).to.equal(0);
+      expect(getParticleDirectionAngle(MoveDirection.inside, { x: 1, y: 0 }, { x: 0, y: 0 })).to.equal(Math.PI);
+      expect(getParticleDirectionAngle(MoveDirection.outside, { x: 1, y: 0 }, { x: 0, y: 0 })).to.equal(0);
     });
 
     it("getParticleBaseVelocity returns a unit vector at the given angle", () => {
@@ -317,14 +291,9 @@ describe("EngineUtils", () => {
       });
     });
 
-    it.each([1e-200, 1e200])(
-      "getDistances preserves the length of a delta of %s",
-      (delta) => {
-        expect(
-          getDistances({ x: delta, y: 0 }, { x: 0, y: 0 }).distance,
-        ).to.equal(delta);
-      },
-    );
+    it.each([1e-200, 1e200])("getDistances preserves the length of a delta of %s", delta => {
+      expect(getDistances({ x: delta, y: 0 }, { x: 0, y: 0 }).distance).to.equal(delta);
+    });
 
     it("getDistanceSq and getDistance are consistent", () => {
       expect(getDistanceSq({ x: 0, y: 0 }, { x: 3, y: 4 })).to.equal(25);
@@ -345,9 +314,7 @@ describe("EngineUtils", () => {
     const size = { width: 800, height: 600 };
 
     it("calcPositionFromSize returns undefined when no position is given", () => {
-      expect(calcPositionFromSize({ size, position: { x: 50, y: 50 } })).to.eql(
-        { x: 400, y: 300 },
-      );
+      expect(calcPositionFromSize({ size, position: { x: 50, y: 50 } })).to.eql({ x: 400, y: 300 });
       expect(calcPositionFromSize({ size })).to.be.undefined;
     });
 
@@ -356,17 +323,12 @@ describe("EngineUtils", () => {
         x: 400,
         y: 300,
       });
-      expect(
-        calcPositionOrRandomFromSize({ size, position: { x: 25, y: 75 } }),
-      ).to.eql({ x: 200, y: 450 });
+      expect(calcPositionOrRandomFromSize({ size, position: { x: 25, y: 75 } })).to.eql({ x: 200, y: 450 });
     });
 
     it("calcPositionOrRandomFromSizeRanged samples ranged coordinates", () => {
       expect(
-        calcPositionOrRandomFromSizeRanged(
-          { size, position: { x: { min: 0, max: 100 }, y: 20 } },
-          () => 0.5,
-        ),
+        calcPositionOrRandomFromSizeRanged({ size, position: { x: { min: 0, max: 100 }, y: 20 } }, () => 0.5),
       ).to.eql({
         x: 400,
         y: 120,
@@ -374,9 +336,7 @@ describe("EngineUtils", () => {
     });
 
     it("calcExactPositionOrRandomFromSize keeps exact coordinates or samples pixels", () => {
-      expect(
-        calcExactPositionOrRandomFromSize({ size, position: { x: 10, y: 20 } }),
-      ).to.eql({ x: 10, y: 20 });
+      expect(calcExactPositionOrRandomFromSize({ size, position: { x: 10, y: 20 } })).to.eql({ x: 10, y: 20 });
       expect(calcExactPositionOrRandomFromSize({ size }, () => 0.5)).to.eql({
         x: 400,
         y: 300,
@@ -421,10 +381,11 @@ describe("EngineUtils", () => {
     });
 
     it("executeOnSingleOrMultiple maps arrays and wraps single values", () => {
-      expect(executeOnSingleOrMultiple([1, 2], (value) => value * 2)).to.eql([
-        2, 4,
+      expect(executeOnSingleOrMultiple([1, 2], value => value * 2)).to.eql([
+        2,
+        4,
       ]);
-      expect(executeOnSingleOrMultiple(3, (value) => value + 1)).to.equal(4);
+      expect(executeOnSingleOrMultiple(3, value => value + 1)).to.equal(4);
     });
   });
 
@@ -432,16 +393,15 @@ describe("EngineUtils", () => {
     const red: IRgb = { r: 255, g: 0, b: 0 },
       black: IRgb = { r: 0, g: 0, b: 0 };
 
-    it("colorMix blends two rgb colors by weight", () => {
-      expect(colorMix(red, black, 1, 1)).to.eql({ r: 127, g: 0, b: 0 });
-      expect(colorMix(red, black, 1, 0)).to.eql({ r: 255, g: 0, b: 0 });
-      expect(colorMix(black, red, 0, 1)).to.eql({ r: 255, g: 0, b: 0 });
-    });
+    it("mixes converted RGB inputs in canonical OKLCH", () => {
+      const redOklch = rgbToOklch(red),
+        blackOklch = rgbToOklch(black),
+        mixed = colorMixOklch(redOklch, blackOklch, 3, 1);
 
-    it("colorMix accepts hsl inputs", () => {
-      const green: IHsl = { h: 120, s: 100, l: 50 };
-
-      expect(colorMix(green, black, 1, 0)).to.eql({ r: 0, g: 255, b: 0 });
+      expect(mixed.a).to.equal(1);
+      expect(mixed.l).to.be.closeTo(redOklch.l * 0.75, 1e-10);
+      expect(mixed.c).to.be.closeTo(redOklch.c * 0.75, 1e-10);
+      expect(mixed.h).to.be.closeTo(redOklch.h, 1e-10);
     });
 
     it("rgbToHsl and hslToRgb are inverse for pure hues", () => {
@@ -522,9 +482,7 @@ describe("EngineUtils", () => {
     });
 
     it("drops dangerous prototype keys", () => {
-      const source = JSON.parse(
-          '{"__proto__": {"polluted": true}, "safe": 1}',
-        ) as Record<string, unknown>,
+      const source = JSON.parse('{"__proto__": {"polluted": true}, "safe": 1}') as Record<string, unknown>,
         result = deepExtend({}, source) as Record<string, unknown>;
 
       expect(result.safe).to.equal(1);

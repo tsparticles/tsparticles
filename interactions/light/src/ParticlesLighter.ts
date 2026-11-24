@@ -63,7 +63,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     return res;
   }
 
-  reset(): void {
-    // do nothing
+  override reset(): void {
+    // Keep the reset-phase isEnabled call that samples the particle shadow.
   }
 }

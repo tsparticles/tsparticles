@@ -12,6 +12,7 @@ import {
   touchMoveEvent,
   touchStartEvent,
 } from "./InteractivityConstants.js";
+import { ExternalInteractorBase } from "./BaseClasses/ExternalInteractorBase.js";
 import type { IExternalInteractor } from "./Interfaces/IExternalInteractor.js";
 import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
@@ -19,6 +20,7 @@ import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js"
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
 import type { InteractivityPluginManager } from "./InteractivityPluginManagerTypes.js";
 import { InteractorType } from "./Enums/InteractorType.js";
+import { ParticlesInteractorBase } from "./BaseClasses/ParticlesInteractorBase.js";
 
 const clickRadius = 1,
   touchEndLengthOffset = 1,
@@ -64,11 +66,14 @@ export class InteractionManager {
   /** The event listeners instance */
   readonly #eventListeners;
 
+  #externalClearInteractors: IExternalInteractor[] = [];
+
   /**
    * Registered external interactivity managers
    * @internal
    */
   #externalInteractors: IExternalInteractor[];
+  #externalResetInteractors: IExternalInteractor[] = [];
 
   /** The intersection observer for viewport detection */
   readonly #intersectionObserver;
@@ -78,6 +83,7 @@ export class InteractionManager {
    * @internal
    */
   #particleInteractors: IParticlesInteractor[];
+  #particleResetInteractors: IParticlesInteractor[] = [];
 
   /**
    * The plugin manager used for registering the interactions managers
@@ -99,7 +105,7 @@ export class InteractionManager {
         inside: false,
       },
     };
-    this.#intersectionObserver = safeIntersectionObserver((entries) => {
+    this.#intersectionObserver = safeIntersectionObserver(entries => {
       this.#intersectionManager(entries);
     });
   }
@@ -108,9 +114,7 @@ export class InteractionManager {
    * Adds a click/touch handler to the container element
    * @param callback - the callback to invoke on click/touch
    */
-  addClickHandler(
-    callback: (evt: Event, particles?: Particle[]) => void,
-  ): void {
+  addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
     const container = this.#container,
       interactivityData = this.interactivityData;
 
@@ -124,11 +128,7 @@ export class InteractionManager {
       return;
     }
 
-    const clickOrTouchHandler = (
-        e: Event,
-        pos: ICoordinates,
-        radius: number,
-      ): void => {
+    const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
         if (container.destroyed) {
           return;
         }
@@ -138,10 +138,7 @@ export class InteractionManager {
             x: pos.x * pxRatio,
             y: pos.y * pxRatio,
           },
-          particles = container.particles.grid.queryCircle(
-            posRetina,
-            radius * pxRatio,
-          );
+          particles = container.particles.grid.queryCircle(posRetina, radius * pxRatio);
 
         callback(e, particles);
       },
@@ -180,10 +177,7 @@ export class InteractionManager {
 
         if (touched && !touchMoved) {
           const touchEvent = e as TouchEvent,
-            lastTouch =
-              touchEvent.touches[
-                touchEvent.touches.length - touchEndLengthOffset
-              ];
+            lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
 
           if (!lastTouch) {
             return;
@@ -192,19 +186,11 @@ export class InteractionManager {
           const element = container.canvas.domElement,
             canvasRect = element ? element.getBoundingClientRect() : undefined,
             pos = {
-              x:
-                lastTouch.clientX -
-                (canvasRect ? canvasRect.left : minCoordinate),
-              y:
-                lastTouch.clientY -
-                (canvasRect ? canvasRect.top : minCoordinate),
+              x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
+              y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
             };
 
-          clickOrTouchHandler(
-            e,
-            pos,
-            Math.max(lastTouch.radiusX, lastTouch.radiusY),
-          );
+          clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
         }
 
         touched = false;
@@ -294,16 +280,24 @@ export class InteractionManager {
       switch (interactor.type) {
         case InteractorType.external:
           this.#externalInteractors.push(interactor as IExternalInteractor);
-
           break;
         case InteractorType.particles:
           this.#particleInteractors.push(interactor as IParticlesInteractor);
-
           break;
       }
 
       interactor.init();
     }
+
+    this.#externalClearInteractors = this.#externalInteractors.filter(
+      interactor => interactor.clear !== ExternalInteractorBase.prototype.clear,
+    );
+    this.#externalResetInteractors = this.#externalInteractors.filter(
+      interactor => interactor.reset !== ExternalInteractorBase.prototype.reset,
+    );
+    this.#particleResetInteractors = this.#particleInteractors.filter(
+      interactor => interactor.reset !== ParticlesInteractorBase.prototype.reset,
+    );
   }
 
   /** Initializes all interactors from the plugin manager */
@@ -314,12 +308,12 @@ export class InteractionManager {
       return;
     }
 
-    this.interactors = await getItemsFromInitializer(
-      this.#container,
-      pluginManager.initializers.interactors,
-    );
+    this.interactors = await getItemsFromInitializer(this.#container, pluginManager.initializers.interactors);
     this.#externalInteractors = [];
     this.#particleInteractors = [];
+    this.#externalClearInteractors.length = 0;
+    this.#externalResetInteractors.length = 0;
+    this.#particleResetInteractors.length = 0;
   }
 
   /**
@@ -330,7 +324,7 @@ export class InteractionManager {
   particlesInteract(particle: Particle, delta: IDelta): void {
     const interactivityData = this.interactivityData;
 
-    for (const interactor of this.#externalInteractors) {
+    for (const interactor of this.#externalClearInteractors) {
       interactor.clear(particle, delta);
     }
 
@@ -354,13 +348,13 @@ export class InteractionManager {
   reset(particle: Particle): void {
     const interactivityData = this.interactivityData;
 
-    for (const interactor of this.#externalInteractors) {
+    for (const interactor of this.#externalResetInteractors) {
       if (interactor.isEnabled(interactivityData)) {
         interactor.reset(interactivityData, particle);
       }
     }
 
-    for (const interactor of this.#particleInteractors) {
+    for (const interactor of this.#particleResetInteractors) {
       if (interactor.isEnabled(particle, interactivityData)) {
         interactor.reset(interactivityData, particle);
       }
@@ -416,10 +410,7 @@ export class InteractionManager {
   #intersectionManager(entries: IntersectionObserverEntry[]): void {
     const container = this.#container;
 
-    if (
-      container.destroyed ||
-      !container.actualOptions.pauseOnOutsideViewport
-    ) {
+    if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
       return;
     }
 

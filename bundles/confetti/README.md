@@ -209,10 +209,8 @@ Main options:
 - `zIndex` _Integer (default: 100)_
 - `disableForReducedMotion` _Boolean (default: true)_
 
-Deprecated aliases still accepted:
-
-- `particleCount` (use `count`)
-- `origin` (use `position`)
+In v5, use `count` and percent-based `position`. The previous `particleCount`
+and normalized `origin` aliases have been removed.
 
 ## Common pitfalls
 

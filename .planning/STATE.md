@@ -1,3 +1,58 @@
+## Session status — 2026-11-24 — E10 in progress
+
+- The user prioritizes runtime performance and accepts justified v4-to-v5
+  payload growth. The size review is complete under that criterion. E0 payload
+  ceilings remain recorded as diagnostics, and runtime, allocation and retention
+  criteria remain in effect. [Acceptance update](handovers/V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
+- Removed no-op interactor lifecycle work from the hot path. In nine
+  repetitions on the rebuilt production bundle, M6/500 frame p95 improved to
+  1.70 ms SDR and 1.90 ms HDR. The HDR row still exceeds its 1.87 ms ceiling.
+  Quiet M4/500 update and draw meet E0. [Runtime evidence](handovers/evidence/e10/README.md#interactor-lifecycle-optimization).
+- Reused the existing sRGB-to-Display-P3 path and removed the deprecated
+  `colorMix()` engine export. The rebuilt Engine saves 188 gzip and 140 Brotli
+  bytes. The 16 previously failing rows that were remeasured remain over
+  budget. [Probe and migration evidence](handovers/evidence/e10/README.md#engine-color-changes-after-the-checkpoint).
+
+- Reconciled the four architecture decisions with their implementation and
+  consumer evidence. The engine audit inventory matches all 161 tracked source
+  paths. Repacked all nine template families and confirmed the retired framework
+  variants are absent. Removed the remaining Vue 2 issue contact.
+- Updated the React Confetti example across all ten locale trees and checked it
+  against the built package declarations. Migrated all eight Qwik examples in
+  the same ten locale trees and verified their types. The lazy example builds
+  and mounts its canvas in Chrome. The Riot and Ember web guides now use the
+  explicit engine in all ten locale trees. The full Riot example runs in
+  Chrome; Ember passes strict TypeScript, template parsing and its production
+  demo browser check. The Ember demo renders two scenes and adds a third when
+  Confetti is enabled. Other wrapper documentation and generated framework
+  consumers still need verification. Deprecated API retirement and
+  browser/hardware coverage also remain open.
+- The maintained React demo production build passed (62 tasks, 13 cached), and
+  Chrome 158 mounted one canvas from the built artifact without page or console
+  errors. Reproduction and output are recorded in the E10 evidence README and
+  `react-demo.json`.
+- The React Confetti guide example now passes in Chrome 158: one canvas, 50
+  particles after emitter start, and no page or console errors. Its 43-task
+  preset build exposed two missing `override` modifiers in `EmittersInteractor`;
+  adding them restored the package build. See `react-confetti.json` and the
+  reproduction steps in the E10 evidence README.
+- The Confetti website examples now use `count` and percent-based `position`;
+  its 284-task Nx CI build passed. A local Chrome run exercised cannon,
+  fireworks, snow and continuous effects, but external Ads/Analytics requests
+  produced connection errors. Automatic review rejected a rerun because it
+  would send navigation data to those services, so the clean browser gate stays
+  open. See the E10 evidence README.
+- Removed deprecated Confetti and Ribbons option aliases, loader fallbacks, and
+  accessors; updated active demos, English docs, all nine translations, README,
+  migration inventory, and v5 changelog. Both bundle builds and all four bundle
+  tests pass; generated declarations no longer expose the aliases. Ribbons'
+  minified output fell 916 bytes. Other deprecated APIs and the broad E10 gates
+  remain open. See [E10 evidence](handovers/evidence/e10/README.md).
+- The frozen budget screen records 17 size failures, including three CJS graphs,
+  and two extended runtime failures after confirmation. The separate quiet
+  M4/500 check also records exceedances. See the
+  [E10 checkpoint](handovers/evidence/e10/README.md).
+
 ## Session status — 2026-11-24 — E9 accepted; E10 open
 
 - Installed engine/Basic package checks pass for ESM, CJS, browser, and lazy

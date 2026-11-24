@@ -84,48 +84,35 @@ export default function App() {
 }
 ```
 
-**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
+**Important**: The `<Particles />` component requires the engine to be initialized first. Pass an engine and a feature registrar to `<ParticlesProvider>`.
 
 ---
 
 ## Confetti Effect
 
-Render a confetti burst using the confetti preset.
-
-```jsx
-import Particles from "@tsparticles/react";
-
-export default function Confetti() {
-  const options = {
-    preset: "confetti",
-    fullScreen: { enable: true, zIndex: -1 },
-    confetti: {
-      colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"],
-      particleCount: 150,
-      spread: 70,
-      origin: { x: 0.5, y: 0.5 },
-    },
-  };
-
-  return <Particles id="confetti" options={options} />;
-}
-```
-
-Make sure you have loaded the confetti preset:
+Install the React wrapper, engine, and confetti preset:
 
 ```bash
-npm install @tsparticles/preset-confetti
+npm install @tsparticles/react @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-Then register it in your app entry point:
+Register the preset on the same engine that the provider gives the component:
 
 ```jsx
-import { initParticlesEngine } from "@tsparticles/react";
+import { createEngine } from "@tsparticles/engine";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
 
-initParticlesEngine(async (engine) => {
-  await loadConfettiPreset(engine);
-});
+const particlesEngine = createEngine();
+const options = { preset: "confetti", fullScreen: { enable: true, zIndex: -1 } };
+
+export default function Confetti() {
+  return (
+    <ParticlesProvider engine={particlesEngine} init={loadConfettiPreset}>
+      <Particles id="confetti" options={options} />
+    </ParticlesProvider>
+  );
+}
 ```
 
 ---
