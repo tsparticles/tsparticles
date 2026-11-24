@@ -31,11 +31,9 @@ export class NoneOutMode implements IOutModeManager {
 
     if (
       (particle.options.move.distance.horizontal &&
-        (direction === OutModeDirection.left ||
-          direction === OutModeDirection.right)) ||
+        (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
       (particle.options.move.distance.vertical &&
-        (direction === OutModeDirection.top ||
-          direction === OutModeDirection.bottom))
+        (direction === OutModeDirection.top || direction === OutModeDirection.bottom))
     ) {
       return;
     }
@@ -47,26 +45,15 @@ export class NoneOutMode implements IOutModeManager {
 
     if (!gravityOptions.enable) {
       if (
-        (particle.velocity.y > minVelocity &&
-          particle.position.y <= canvasSize.height + pRadius) ||
-        (particle.velocity.y < minVelocity &&
-          particle.position.y >= -pRadius) ||
-        (particle.velocity.x > minVelocity &&
-          particle.position.x <= canvasSize.width + pRadius) ||
+        (particle.velocity.y > minVelocity && particle.position.y <= canvasSize.height + pRadius) ||
+        (particle.velocity.y < minVelocity && particle.position.y >= -pRadius) ||
+        (particle.velocity.x > minVelocity && particle.position.x <= canvasSize.width + pRadius) ||
         (particle.velocity.x < minVelocity && particle.position.x >= -pRadius)
       ) {
         return;
       }
 
-      if (
-        !isPointInside(
-          particle.position,
-          container.canvas.size,
-          originPoint,
-          pRadius,
-          direction,
-        )
-      ) {
+      if (!isPointInside(particle.position, container.canvas.size, originPoint, pRadius, direction)) {
         particle.destroy();
       }
     } else {
@@ -76,9 +63,7 @@ export class NoneOutMode implements IOutModeManager {
         (!gravityOptions.inverse &&
           position.y > canvasSize.height + pRadius &&
           direction === OutModeDirection.bottom) ||
-        (gravityOptions.inverse &&
-          position.y < -pRadius &&
-          direction === OutModeDirection.top)
+        (gravityOptions.inverse && position.y < -pRadius && direction === OutModeDirection.top)
       ) {
         particle.destroy();
       }
