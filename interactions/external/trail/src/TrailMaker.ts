@@ -103,7 +103,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             y: mousePos.y / height,
           },
           hasWeights = (comp?: ITrailColorComponent): boolean => {
-            return !!(comp?.weights?.x ?? comp?.weights?.y);
+            return !!comp?.weights && (comp.weights.x !== defaultWeight || comp.weights.y !== defaultWeight);
           },
           calculateValue = (
             comp: ITrailColorComponent | undefined,
