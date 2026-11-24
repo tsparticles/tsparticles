@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import {
+  AlterType,
   type Container,
   type ISourceOptions,
   type RecursivePartial,
+  colorMix,
+  getLinkColor,
   getStyleFromHsl,
+  rgbToHsl,
   tsParticles,
 } from "@tsparticles/engine";
 import {
@@ -12,10 +16,17 @@ import {
   interpolateStops,
 } from "../../../../updaters/colorTransitions/src/Utils.js";
 import { beforeAll, describe, expect, it } from "vitest";
+import { Bubble } from "../../../../interactions/external/bubble/src/Options/Classes/Bubble.js";
+import type { BubbleContainer } from "../../../../interactions/external/bubble/src/Types.js";
+import { BubbleModifier } from "../../../../interactions/external/bubble/src/BubbleModifier.js";
+import { Bubbler } from "../../../../interactions/external/bubble/src/Bubbler.js";
 import { ColorTransitions } from "../../../../updaters/colorTransitions/src/Options/Classes/ColorTransitions.js";
 import type { ColorTransitionsParticle } from "../../../../updaters/colorTransitions/src/Types.js";
 import { ColorTransitionsUpdater } from "../../../../updaters/colorTransitions/src/ColorTransitionsUpdater.js";
+import { Engine } from "../../../../engine/dist/esm/Core/Engine.js";
+import type { Engine as EngineType } from "../../../../engine/dist/types/Core/Engine.js";
 import type { ILifetimeColorTransitions } from "../../../../updaters/colorTransitions/src/Options/Interfaces/IColorTransitions.js";
+import { Interactivity } from "../../../../plugins/interactivity/src/Options/Classes/Interactivity.js";
 import { Life } from "../../../../updaters/life/src/Options/Classes/Life.js";
 import { LifeUpdater } from "../../../../updaters/life/src/LifeUpdater.js";
 import { LifetimeColorTransitions } from "../../../../updaters/colorTransitions/src/Options/Classes/LifetimeColorTransitions.js";
@@ -23,6 +34,7 @@ import { TestWindow } from "../Fixture/Window.js";
 import configs from "@tsparticles/configs";
 import { createCanvas } from "@napi-rs/canvas";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { gradient } from "../../../../interactions/external/connect/src/Utils.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadColorTransitionsUpdater } from "../../../../updaters/colorTransitions/dist/esm/index.js";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
@@ -257,7 +269,7 @@ describe("ColorTransitionsUpdater", () => {
     }
   });
 
-  it("keeps the base colors when the particle has no finite lifetime", async () => {
+  it("uses a one-second standalone clock when the particle has no finite lifetime", async () => {
     const { container, particle, updater } = await fixture({
       stops: [
         { offset: 0, value: "#ffff00" },
@@ -268,10 +280,9 @@ describe("ColorTransitionsUpdater", () => {
     try {
       expect(particle).toHaveProperty("colorTransitions.lifetime.enable", true);
 
-      updater.update(particle, { factor: 1, value: 16.66 });
-      expect(particle.colorTransitions?.lifetime.fill?.current).toBeUndefined();
-      expect(particle.colorTransitions?.lifetime.stroke?.current).toBeUndefined();
-      expect(updater.getColorStyles(particle, undefined as never, 0, 1)).toEqual({});
+      updater.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 30, l: 25, s: 50 });
+      expect(particle.colorTransitions?.lifetime.stroke?.current).toEqual({ h: 30, l: 25, s: 50 });
     } finally {
       container.destroy();
     }
@@ -428,7 +439,7 @@ describe("ColorTransitionsUpdater", () => {
     }
   });
 
-  it("keeps the base colors on an infinite life clock, even with a custom duration", async () => {
+  it("uses standalone time with custom duration when the real life clock is infinite", async () => {
     const { container, particle, updater } = await fixture({
       duration: 0.5,
       stops: [
@@ -456,9 +467,9 @@ describe("ColorTransitionsUpdater", () => {
 
       lifeUpdater.update(particle, { factor: 1, value: 250 });
       updater.update(particle, { factor: 1, value: 250 });
-      expect(particle.colorTransitions?.lifetime.fill?.current).toBeUndefined();
-      expect(particle.colorTransitions?.lifetime.stroke?.current).toBeUndefined();
-      expect(updater.getColorStyles(particle, undefined as never, 0, 1)).toEqual({});
+      expect(particle.life?.time).toBe(0);
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 50, s: 0 });
+      expect(particle.colorTransitions?.lifetime.stroke?.current).toEqual({ h: 0, l: 50, s: 0 });
     } finally {
       container.destroy();
     }
@@ -717,6 +728,154 @@ describe("ColorTransitionsUpdater", () => {
   });
 });
 
+describe("ColorTransitions standalone integration", () => {
+  it("works through a fresh engine without loading the life updater", async () => {
+    const engine = new Engine() as EngineType;
+
+    await loadBasic(engine);
+    await loadColorTransitionsUpdater(engine);
+
+    const container = await engine.load({
+      id: `color-standalone-${id++}`,
+      element: createCustomCanvas(800, 200) as unknown as HTMLCanvasElement,
+      options: {
+        autoPlay: false,
+        particles: {
+          number: { value: 0 },
+          colorTransitions: {
+            lifetime: {
+              enable: true,
+              duration: 2,
+              stops: [
+                { offset: 0, value: "#000000" },
+                { offset: 1, value: "#ffffff" },
+              ],
+            },
+          },
+        },
+      },
+    });
+
+    if (!container) {
+      throw new Error("Missing standalone container");
+    }
+
+    try {
+      const particle = container.particles.addParticle({ x: 10, y: 10 }) as ColorTransitionsParticle,
+        updater = container.particleUpdaters.find(u => u.constructor.name === "ColorTransitionsUpdater");
+
+      expect(particle.life).toBeUndefined();
+      expect(container.particleUpdaters.some(u => u.constructor.name === "LifeUpdater")).toBe(false);
+      expect(updater).toBeDefined();
+      updater?.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 25, s: 0 });
+      updater?.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 50, s: 0 });
+      updater?.update(particle, { factor: 1, value: 3000 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 100, s: 0 });
+      expect(particle.life).toBeUndefined();
+      // A custom/stale finite life object must not suppress standalone progress
+      // when this engine has no life updater to advance that clock.
+      particle.life = { duration: 1000, time: 0 };
+      updater?.init(particle);
+      updater?.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 25, s: 0 });
+      expect(particle.life.time).toBe(0);
+      particle.fillOpacity = 0.25;
+      const bubble = new BubbleModifier();
+
+      bubble.enabled = true;
+      bubble.fillColor = { h: 120, s: 100, l: 50 };
+      particle.addModifier(bubble);
+      expect(particle.getFillColor()).toEqual(bubble.fillColor);
+      expect(updater?.getColorStyles?.(particle, undefined as never, 0, 0.8).fill).toBe(
+        getStyleFromHsl(bubble.fillColor, container.hdr, 0.2, container.peakNits, container.hdrMode),
+      );
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("prefers finite life time without adding the frame delta twice", async () => {
+    const { container, particle, updater } = await fixture({
+      duration: 1,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life = { duration: 2000, time: 250 };
+      updater.update(particle, { factor: 1, value: 250 });
+      expect(particle.colorTransitions?.lifetime.time).toBe(0);
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 25, s: 0 });
+      particle.life.time = 0;
+      updater.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 0, s: 0 });
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("does not advance with invalid deltas or an invalid explicit duration", async () => {
+    const { container, particle, updater } = await fixture({
+      duration: 1,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life = undefined;
+      for (const value of [-1, NaN, Infinity]) {
+        updater.update(particle, { factor: 1, value });
+      }
+      expect(particle.colorTransitions?.lifetime.time).toBe(0);
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 0, s: 0 });
+      const state = particle.colorTransitions?.lifetime;
+
+      if (!state) {
+        throw new Error("Missing transition state");
+      }
+      for (const duration of [0, -1, NaN, Infinity]) {
+        state.duration = duration;
+        updater.update(particle, { factor: 1, value: 100 });
+        expect(state.fill?.current).toBeUndefined();
+      }
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("pauses standalone progress while spawning and resets elapsed time on reinitialization", async () => {
+    const { container, particle, updater } = await fixture({
+      duration: 1,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life = undefined;
+      updater.update(particle, { factor: 1, value: 250 });
+      expect(particle.colorTransitions?.lifetime.time).toBe(250);
+      particle.spawning = true;
+      updater.update(particle, { factor: 1, value: 500 });
+      expect(particle.colorTransitions?.lifetime.time).toBe(250);
+      particle.spawning = false;
+      updater.init(particle);
+      expect(particle.colorTransitions?.lifetime.time).toBe(0);
+      updater.update(particle, { factor: 1, value: 100 });
+      expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 0, l: 10, s: 0 });
+    } finally {
+      container.destroy();
+    }
+  });
+});
+
 describe("ColorTransitions integration", () => {
   it("transitions fill and stroke through the real engine draw pipeline with the preset", async () => {
     const preset = (configs as Record<string, ISourceOptions | undefined>).colorTransitions;
@@ -769,6 +928,9 @@ describe("ColorTransitions integration", () => {
       lifeUpdater.update(particle, { factor: 1, value: 2500 });
       colorUpdater.update(particle, { factor: 1, value: 2500 });
 
+      particle.fillOpacity = 0.25;
+      particle.strokeOpacity = 0.5;
+
       // Shared stops red -> green -> blue at half life: the fill is green.
       expect(particle.colorTransitions?.lifetime.fill?.current).toEqual({ h: 120, l: 50, s: 100 });
       // Stroke override white -> magenta at half life.
@@ -798,7 +960,16 @@ describe("ColorTransitions integration", () => {
 
       container.canvas.render.setContext(ctx);
 
+      particle.roll = {
+        enable: true,
+        angle: Math.PI,
+        horizontal: false,
+        vertical: true,
+        speed: 0,
+        alter: { type: AlterType.darken, value: 10 },
+      };
       particle.draw({ factor: 1, value: 0 });
+      expect(particle.getFillColor()?.l).toBe(40);
 
       const { opacity } = particle.getOpacity(),
         styles = colorUpdater.getColorStyles(particle, ctx, 0, opacity),
@@ -818,7 +989,7 @@ describe("ColorTransitions integration", () => {
       expect(normalize(assigned.fill)).toBe(normalize(styles.fill));
       expect(normalize(assigned.stroke)).toBe(normalize(styles.stroke));
 
-      // The drawn styles come from the transition, not the base paint colors.
+      // Getter consumers observe the same effective colors as the draw pipeline.
       const fillColor = particle.getFillColor(),
         strokeColor = particle.getStrokeColor();
 
@@ -826,15 +997,196 @@ describe("ColorTransitions integration", () => {
         throw new Error("Missing base paint colors");
       }
 
-      expect(normalize(assigned.fill)).to.not.equal(
-        normalize(getStyleFromHsl(fillColor, container.hdr, opacity, container.peakNits, container.hdrMode)),
+      expect(normalize(assigned.fill)).to.equal(
+        normalize(
+          getStyleFromHsl(
+            fillColor,
+            container.hdr,
+            opacity * particle.fillOpacity,
+            container.peakNits,
+            container.hdrMode,
+          ),
+        ),
       );
-      expect(normalize(assigned.stroke)).to.not.equal(
-        normalize(getStyleFromHsl(strokeColor, container.hdr, opacity, container.peakNits, container.hdrMode)),
+      expect(normalize(assigned.stroke)).to.equal(
+        normalize(
+          getStyleFromHsl(
+            strokeColor,
+            container.hdr,
+            opacity * particle.strokeOpacity,
+            container.peakNits,
+            container.hdrMode,
+          ),
+        ),
       );
     } finally {
       // Restore the real context: the proxy is only needed to observe the style assignments.
       container.canvas.render.setContext(realCtx);
+      container.destroy();
+    }
+  });
+});
+
+describe("ColorTransitions plugin combinations", () => {
+  it.each(["finite", "infinite", "absent"])("preserves channel opacity, bubble and roll with %s life", async clock => {
+    const { container, particle, updater } = await fixture({
+      sync: true,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life =
+        clock === "absent"
+          ? undefined
+          : { duration: clock === "infinite" ? -1 : 1000, time: clock === "infinite" ? 0 : 500 };
+      updater.update(particle, { factor: 1, value: 500 });
+      particle.fillOpacity = 0.25;
+      particle.strokeOpacity = 0.5;
+      expect(particle.getFillColor()).toEqual({ h: 0, s: 0, l: 50 });
+      let styles = updater.getColorStyles(particle, undefined as never, 0, 0.8);
+
+      expect(styles.fill).toBe(
+        getStyleFromHsl({ h: 0, s: 0, l: 50 }, container.hdr, 0.2, container.peakNits, container.hdrMode),
+      );
+      expect(styles.stroke).toBe(
+        getStyleFromHsl({ h: 0, s: 0, l: 50 }, container.hdr, 0.4, container.peakNits, container.hdrMode),
+      );
+      const bubble = new BubbleModifier();
+
+      bubble.enabled = true;
+      bubble.fillColor = { h: 120, s: 100, l: 50 };
+      bubble.strokeColor = { h: 240, s: 100, l: 50 };
+      particle.addModifier(bubble);
+      expect(particle.getFillColor()).toEqual(bubble.fillColor);
+      expect(particle.getStrokeColor()).toEqual(bubble.strokeColor);
+      styles = updater.getColorStyles(particle, undefined as never, 0, 0.8);
+      expect(styles.fill).toBe(
+        getStyleFromHsl(bubble.fillColor, container.hdr, 0.2, container.peakNits, container.hdrMode),
+      );
+      particle.roll = { enable: true, angle: Math.PI, horizontal: false, vertical: true, speed: 0 };
+      particle.backColor = { h: 300, s: 100, l: 50 };
+      expect(particle.getFillColor()).toEqual(particle.backColor);
+      expect(particle.getStrokeColor()).toEqual(particle.backColor);
+      expect(updater.getColorStyles(particle, undefined as never, 0, 0.8).fill).toBe(
+        getStyleFromHsl(particle.backColor, container.hdr, 0.2, container.peakNits, container.hdrMode),
+      );
+      bubble.enabled = false;
+      particle.backColor = undefined;
+      particle.roll.alter = { type: AlterType.darken, value: 10 };
+      expect(particle.getFillColor()?.l).toBe(40);
+      expect(updater.getColorStyles(particle, undefined as never, 0, 0.8).fill).toBe(
+        getStyleFromHsl({ h: 0, s: 0, l: 40 }, container.hdr, 0.2, container.peakNits, container.hdrMode),
+      );
+      particle.roll.angle = 0;
+      expect(particle.getFillColor()?.l).toBe(50);
+      updater.init(particle);
+      expect(particle.getModifier("bubble")).toBe(bubble);
+      particle.options.colorTransitions = undefined;
+      updater.init(particle);
+      expect(particle.getModifier("colorTransitions")).toBeUndefined();
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("feeds actual connect gradient and mid-link color consumers", async () => {
+    const { container, particle, updater } = await fixture({
+      sync: true,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life = { duration: 1000, time: 500 };
+      updater.update(particle, { factor: 1, value: 500 });
+      const second = container.particles.addParticle({ x: 60, y: 10 }) as ColorTransitionsParticle;
+
+      second.options.colorTransitions = particle.options.colorTransitions;
+      updater.init(second);
+      second.life = { duration: 1000, time: 1000 };
+      updater.update(second, { factor: 1, value: 1000 });
+      const firstColor = { h: 0, s: 0, l: 50 },
+        secondColor = { h: 0, s: 0, l: 100 },
+        mixed = colorMix(firstColor, secondColor, particle.getRadius(), second.getRadius(), container.hdr);
+
+      expect(second.getFillColor()).toEqual(secondColor);
+      expect(getLinkColor(particle, second, "mid", container.hdr)).toEqual(mixed);
+      const stops: string[] = [],
+        context = {
+          createLinearGradient: () => ({
+            addColorStop: (_offset: number, color: string) => {
+              stops.push(color);
+            },
+          }),
+        };
+
+      gradient(container, context as never, particle, second, 1);
+      expect(stops).toHaveLength(3);
+      expect(stops[0]).toBe(
+        getStyleFromHsl({ h: 0, s: 0, l: 50 }, container.hdr, 1, container.peakNits, container.hdrMode),
+      );
+      expect(stops[2]).toBe(getStyleFromHsl(secondColor, container.hdr, 1, container.peakNits, container.hdrMode));
+      expect(stops[2]).not.toBe(stops[0]);
+    } finally {
+      container.destroy();
+    }
+  });
+});
+
+describe("ColorTransitions real Bubbler frames", () => {
+  it.each([false, true])("composes hover interaction with mix=%s", async mix => {
+    const { container, particle, updater } = await fixture({
+      sync: true,
+      stops: [
+        { offset: 0, value: "#000000" },
+        { offset: 1, value: "#ffffff" },
+      ],
+    });
+
+    try {
+      particle.life = { duration: -1, time: 0 };
+      updater.update(particle, { factor: 1, value: 500 });
+      const bubbleContainer = container as BubbleContainer,
+        options = new Interactivity(),
+        bubble = new Bubble();
+
+      options.load({ events: { onHover: { enable: true, mode: "bubble" } } });
+      bubble.load({ distance: 100, color: "#00ff00", mix });
+      bubbleContainer.actualOptions.interactivity = options;
+      bubbleContainer.actualOptions.interactivity.modes.bubble = bubble;
+      container.particles.grid.insert(particle);
+      const interactor = new Bubbler(tsParticles.pluginManager, bubbleContainer),
+        data = { mouse: { clicking: false, inside: true, position: { x: 60, y: 10 } }, status: "pointermove" };
+
+      interactor.init();
+      interactor.interact(data, { factor: 1, value: 16 });
+      const expected = mix
+        ? rgbToHsl(colorMix({ h: 0, s: 0, l: 50 }, { h: 120, s: 100, l: 50 }, 0.5, 0.5, container.hdr))
+        : { h: 120, s: 100, l: 50 };
+
+      expect(particle.getFillColor()).toEqual(expected);
+      expect(particle.getStrokeColor()).toEqual(expected);
+      expect(updater.getColorStyles(particle, undefined as never, 0, 1).fill).toBe(
+        getStyleFromHsl(expected, container.hdr, 1, container.peakNits, container.hdrMode),
+      );
+      interactor.reset(data, particle);
+      expect(particle.getFillColor()).toEqual({ h: 0, s: 0, l: 50 });
+      updater.update(particle, { factor: 1, value: 250 });
+      interactor.interact(data, { factor: 1, value: 16 });
+      const nextExpected = mix
+        ? rgbToHsl(colorMix({ h: 0, s: 0, l: 75 }, { h: 120, s: 100, l: 50 }, 0.5, 0.5, container.hdr))
+        : expected;
+
+      expect(particle.getFillColor()).toEqual(nextExpected);
+      data.status = "pointerleave";
+      interactor.interact(data, { factor: 1, value: 16 });
+      expect(particle.getFillColor()).toEqual({ h: 0, s: 0, l: 75 });
+    } finally {
       container.destroy();
     }
   });
