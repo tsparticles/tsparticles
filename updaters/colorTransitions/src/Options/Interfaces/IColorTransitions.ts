@@ -17,8 +17,8 @@ export interface IColorTransitionChannel {
 /** Lifetime-based color transitions options */
 export interface ILifetimeColorTransitions {
   /**
-   * Custom transition duration in seconds, overriding the particle life duration; the transition
-   * still requires the life updater with a finite life duration, since the life clock drives the progress
+   * Custom transition duration in seconds, overriding a finite particle life duration. Without
+   * a finite life clock, the updater uses elapsed frame time with a default duration of one second.
    */
   duration?: number;
   /** Whether lifetime transitions are enabled */
@@ -36,8 +36,7 @@ export interface ILifetimeColorTransitions {
 /** Color transitions options */
 export interface IColorTransitions {
   /**
-   * Transitions driven by the particle life progress, requires the life updater with a finite life
-   * duration, since the life clock drives the progress (a custom transition duration only rescales it)
+   * Transitions use finite particle life progress when available, otherwise their own elapsed clock.
    */
   lifetime: ILifetimeColorTransitions;
 }
