@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## Unreleased — v5
+
+### Breaking Changes
+
+- remove deprecated `getStyleFromRgb` and `getStyleFromHsl`; use `getStyleFromOklch` for output-aware engine styles
+
 # [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
 
 ### Bug Fixes

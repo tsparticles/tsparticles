@@ -5,9 +5,9 @@
     {
       "root": "engine",
       "file": "engine/dist/tsparticles.engine.min.js",
-      "raw": 100276,
-      "gzip": 32578,
-      "brotli": 27776
+      "raw": 99012,
+      "gzip": 32197,
+      "brotli": 27498
     },
     {
       "root": "utils/animationUtils",
@@ -67,8 +67,8 @@
     }
   ],
   "total": {
-    "raw": 151880,
-    "gzip": 44921,
-    "brotli": 38808
+    "raw": 150616,
+    "gzip": 44540,
+    "brotli": 38530
   }
 }

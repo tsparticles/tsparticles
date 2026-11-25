@@ -13,6 +13,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Add input-only `p3` metadata for RGB channel objects and reject ambiguous `hdr`-tagged source channels; HDR options continue to control output rendering.
 - Replace the RGB-returning `colorMix()` helper with `colorMixOklch()` for rectangular-OKLab mixing. Convert RGB inputs with `rgbToOklch()` before mixing.
+- Remove deprecated `getStyleFromRgb()` and `getStyleFromHsl()` output helpers. Convert inputs to OKLCH and use `getStyleFromOklch()` for destination-aware formatting.
 - Skip default no-op interactor resets and external clears in the particle loop. Custom subclasses that implement these hooks add `override` when using TypeScript's `noImplicitOverride`.
 - Preserve the source color space when sampled canvas pixels become emitter or canvas-mask particle colors; avoid applying pixel alpha twice when both mask overrides are enabled.
 - Replace the exported engine singleton with `createEngine()`. Applications own engine instances; supported wrappers receive an engine through their props, provider or service.

@@ -1,8 +1,8 @@
 {
   "workingTree": true,
   "comparisonMode": "final built tree",
-  "measuredAt": "2026-11-24T11:46:32.858Z",
-  "revision": "354e1a5e5d5d4791cd85f0e8fb22d81426dfa08b",
+  "measuredAt": "2026-11-25T00:19:59.049Z",
+  "revision": "49aacae8d1fa4d02c82e823fba12269c45ea4d32",
   "node": "v26.13.0",
   "rollup": "4.67.4",
   "compression": {
@@ -100,20 +100,20 @@
           "gzip": 77,
           "brotli": 61,
           "imports": [
-            "e1-factory-RyV4F3J2.js"
+            "e1-factory-DhCTW6BW.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-RyV4F3J2.js",
+          "file": "e1-factory-DhCTW6BW.js",
           "entry": false,
           "raw": 41797,
           "gzip": 9958,
-          "brotli": 8673,
+          "brotli": 8680,
           "imports": [],
           "dynamicImports": [
-            "Container-DgOx8PMM.js"
+            "Container-DnyH5Hnu.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -138,13 +138,13 @@
           ]
         },
         {
-          "file": "Container-DgOx8PMM.js",
+          "file": "Container-DnyH5Hnu.js",
           "entry": false,
-          "raw": 162866,
-          "gzip": 30561,
-          "brotli": 26413,
+          "raw": 163227,
+          "gzip": 30552,
+          "brotli": 26411,
           "imports": [
-            "e1-factory-RyV4F3J2.js"
+            "e1-factory-DhCTW6BW.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -213,20 +213,20 @@
           "gzip": 72,
           "brotli": 56,
           "imports": [
-            "e1-factory-BuMGkyBJ.js"
+            "e1-factory-C58pDqAt.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-BuMGkyBJ.js",
+          "file": "e1-factory-C58pDqAt.js",
           "entry": false,
           "raw": 16901,
-          "gzip": 6404,
-          "brotli": 5674,
+          "gzip": 6405,
+          "brotli": 5658,
           "imports": [],
           "dynamicImports": [
-            "Container-JDieW91k.js"
+            "Container-CyOnb91Z.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -251,13 +251,13 @@
           ]
         },
         {
-          "file": "Container-JDieW91k.js",
+          "file": "Container-CyOnb91Z.js",
           "entry": false,
-          "raw": 62602,
-          "gzip": 20428,
-          "brotli": 18025,
+          "raw": 62691,
+          "gzip": 20431,
+          "brotli": 18029,
           "imports": [
-            "e1-factory-BuMGkyBJ.js"
+            "e1-factory-C58pDqAt.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -319,14 +319,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204720,
-        "gzip": 40596,
-        "brotli": 35147
+        "raw": 205081,
+        "gzip": 40587,
+        "brotli": 35152
       },
       "minTotal": {
-        "raw": 79555,
-        "gzip": 26904,
-        "brotli": 23755
+        "raw": 79644,
+        "gzip": 26908,
+        "brotli": 23743
       },
       "warnings": []
     },
@@ -340,22 +340,22 @@
           "entry": true,
           "raw": 69,
           "gzip": 82,
-          "brotli": 70,
+          "brotli": 73,
           "imports": [
-            "e1-initialization-DBz-B9b9.js"
+            "e1-initialization-SWYlNg9m.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-initialization-DBz-B9b9.js",
+          "file": "e1-initialization-SWYlNg9m.js",
           "entry": false,
           "raw": 41847,
           "gzip": 9970,
-          "brotli": 8685,
+          "brotli": 8688,
           "imports": [],
           "dynamicImports": [
-            "Container-BTs62go8.js"
+            "Container-cQetm50K.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -380,13 +380,13 @@
           ]
         },
         {
-          "file": "Container-BTs62go8.js",
+          "file": "Container-cQetm50K.js",
           "entry": false,
-          "raw": 162873,
-          "gzip": 30562,
-          "brotli": 26376,
+          "raw": 163234,
+          "gzip": 30553,
+          "brotli": 26381,
           "imports": [
-            "e1-initialization-DBz-B9b9.js"
+            "e1-initialization-SWYlNg9m.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -453,22 +453,22 @@
           "entry": true,
           "raw": 64,
           "gzip": 77,
-          "brotli": 67,
+          "brotli": 68,
           "imports": [
-            "e1-initialization-SEx9D7bK.js"
+            "e1-initialization-aqIZDy-t.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-initialization-SEx9D7bK.js",
+          "file": "e1-initialization-aqIZDy-t.js",
           "entry": false,
           "raw": 16910,
-          "gzip": 6409,
-          "brotli": 5651,
+          "gzip": 6410,
+          "brotli": 5654,
           "imports": [],
           "dynamicImports": [
-            "Container-CgomI-rO.js"
+            "Container-B-f8K0M2.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -493,13 +493,13 @@
           ]
         },
         {
-          "file": "Container-CgomI-rO.js",
+          "file": "Container-B-f8K0M2.js",
           "entry": false,
-          "raw": 62609,
-          "gzip": 20431,
-          "brotli": 18019,
+          "raw": 62698,
+          "gzip": 20434,
+          "brotli": 18012,
           "imports": [
-            "e1-initialization-SEx9D7bK.js"
+            "e1-initialization-aqIZDy-t.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -561,14 +561,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204789,
-        "gzip": 40614,
-        "brotli": 35131
+        "raw": 205150,
+        "gzip": 40605,
+        "brotli": 35142
       },
       "minTotal": {
-        "raw": 79583,
-        "gzip": 26917,
-        "brotli": 23737
+        "raw": 79672,
+        "gzip": 26921,
+        "brotli": 23734
       },
       "warnings": []
     },
@@ -584,21 +584,21 @@
           "gzip": 76,
           "brotli": 60,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-minimal-DM1zd93q.js",
+          "file": "e1-minimal-BAu1Jp4b.js",
           "entry": false,
-          "raw": 104692,
-          "gzip": 22545,
-          "brotli": 19369,
+          "raw": 104727,
+          "gzip": 22515,
+          "brotli": 19331,
           "imports": [],
           "dynamicImports": [
-            "Container-uSXXCpUU.js",
-            "MovePluginInstance-BZcPQABQ.js"
+            "Container-BkvGjmnk.js",
+            "MovePluginInstance-CCutIl7P.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -668,13 +668,13 @@
           ]
         },
         {
-          "file": "MovePluginInstance-BZcPQABQ.js",
+          "file": "MovePluginInstance-CCutIl7P.js",
           "entry": false,
           "raw": 12558,
           "gzip": 2894,
           "brotli": 2619,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -684,13 +684,13 @@
           ]
         },
         {
-          "file": "Container-uSXXCpUU.js",
+          "file": "Container-BkvGjmnk.js",
           "entry": false,
-          "raw": 140046,
-          "gzip": 24927,
-          "brotli": 21610,
+          "raw": 140372,
+          "gzip": 24950,
+          "brotli": 21623,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -742,21 +742,21 @@
           "gzip": 71,
           "brotli": 55,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-minimal--TAeDbJ-.js",
+          "file": "e1-minimal-DBvyLRNh.js",
           "entry": false,
-          "raw": 41886,
-          "gzip": 14493,
-          "brotli": 12788,
+          "raw": 41897,
+          "gzip": 14481,
+          "brotli": 12765,
           "imports": [],
           "dynamicImports": [
-            "Container-BBjhZFlL.js",
-            "MovePluginInstance-B-h_kUw4.js"
+            "Container-C8SCysuG.js",
+            "MovePluginInstance-CWdSUKGj.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -826,13 +826,13 @@
           ]
         },
         {
-          "file": "MovePluginInstance-B-h_kUw4.js",
+          "file": "MovePluginInstance-CWdSUKGj.js",
           "entry": false,
           "raw": 4788,
-          "gzip": 1888,
-          "brotli": 1734,
+          "gzip": 1889,
+          "brotli": 1732,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -842,13 +842,13 @@
           ]
         },
         {
-          "file": "Container-BBjhZFlL.js",
+          "file": "Container-C8SCysuG.js",
           "entry": false,
-          "raw": 53703,
-          "gzip": 16730,
-          "brotli": 14957,
+          "raw": 53781,
+          "gzip": 16743,
+          "brotli": 14953,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -893,14 +893,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 257352,
-        "gzip": 50442,
-        "brotli": 43658
+        "raw": 257713,
+        "gzip": 50435,
+        "brotli": 43633
       },
       "minTotal": {
-        "raw": 100428,
-        "gzip": 33182,
-        "brotli": 29534
+        "raw": 100517,
+        "gzip": 33184,
+        "brotli": 29505
       },
       "warnings": []
     },
@@ -916,20 +916,20 @@
           "gzip": 82,
           "brotli": 66,
           "imports": [
-            "e1-factory-lazy-BLiXIaMz.js"
+            "e1-factory-lazy-B53c-KGw.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-lazy-BLiXIaMz.js",
+          "file": "e1-factory-lazy-B53c-KGw.js",
           "entry": false,
           "raw": 41797,
-          "gzip": 9960,
-          "brotli": 8680,
+          "gzip": 9957,
+          "brotli": 8682,
           "imports": [],
           "dynamicImports": [
-            "Container-C1DWUX62.js"
+            "Container-fB8aS3rk.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -954,13 +954,13 @@
           ]
         },
         {
-          "file": "Container-C1DWUX62.js",
+          "file": "Container-fB8aS3rk.js",
           "entry": false,
-          "raw": 162871,
-          "gzip": 30565,
-          "brotli": 26397,
+          "raw": 163232,
+          "gzip": 30558,
+          "brotli": 26371,
           "imports": [
-            "e1-factory-lazy-BLiXIaMz.js"
+            "e1-factory-lazy-B53c-KGw.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1029,20 +1029,20 @@
           "gzip": 77,
           "brotli": 61,
           "imports": [
-            "e1-factory-lazy-BTQ_hm3H.js"
+            "e1-factory-lazy-OMySVaDJ.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-lazy-BTQ_hm3H.js",
+          "file": "e1-factory-lazy-OMySVaDJ.js",
           "entry": false,
           "raw": 16901,
-          "gzip": 6406,
-          "brotli": 5654,
+          "gzip": 6405,
+          "brotli": 5655,
           "imports": [],
           "dynamicImports": [
-            "Container-CQeV6yHG.js"
+            "Container-CZeRE0jT.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1067,13 +1067,13 @@
           ]
         },
         {
-          "file": "Container-CQeV6yHG.js",
+          "file": "Container-CZeRE0jT.js",
           "entry": false,
-          "raw": 62607,
-          "gzip": 20432,
-          "brotli": 18023,
+          "raw": 62696,
+          "gzip": 20436,
+          "brotli": 18030,
           "imports": [
-            "e1-factory-lazy-BTQ_hm3H.js"
+            "e1-factory-lazy-OMySVaDJ.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1135,14 +1135,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204730,
-        "gzip": 40607,
-        "brotli": 35143
+        "raw": 205091,
+        "gzip": 40597,
+        "brotli": 35119
       },
       "minTotal": {
-        "raw": 79565,
-        "gzip": 26915,
-        "brotli": 23738
+        "raw": 79654,
+        "gzip": 26918,
+        "brotli": 23746
       },
       "warnings": []
     },
@@ -1206,20 +1206,20 @@
           "gzip": 77,
           "brotli": 61,
           "imports": [
-            "e1-factory-RyV4F3J2.js"
+            "e1-factory-DhCTW6BW.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-RyV4F3J2.js",
+          "file": "e1-factory-DhCTW6BW.js",
           "entry": false,
           "raw": 41797,
           "gzip": 9958,
-          "brotli": 8673,
+          "brotli": 8680,
           "imports": [],
           "dynamicImports": [
-            "Container-DgOx8PMM.js"
+            "Container-DnyH5Hnu.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1244,13 +1244,13 @@
           ]
         },
         {
-          "file": "Container-DgOx8PMM.js",
+          "file": "Container-DnyH5Hnu.js",
           "entry": false,
-          "raw": 162866,
-          "gzip": 30561,
-          "brotli": 26413,
+          "raw": 163227,
+          "gzip": 30552,
+          "brotli": 26411,
           "imports": [
-            "e1-factory-RyV4F3J2.js"
+            "e1-factory-DhCTW6BW.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1319,20 +1319,20 @@
           "gzip": 72,
           "brotli": 56,
           "imports": [
-            "e1-factory-BuMGkyBJ.js"
+            "e1-factory-C58pDqAt.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-BuMGkyBJ.js",
+          "file": "e1-factory-C58pDqAt.js",
           "entry": false,
           "raw": 16901,
-          "gzip": 6404,
-          "brotli": 5674,
+          "gzip": 6405,
+          "brotli": 5658,
           "imports": [],
           "dynamicImports": [
-            "Container-JDieW91k.js"
+            "Container-CyOnb91Z.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1357,13 +1357,13 @@
           ]
         },
         {
-          "file": "Container-JDieW91k.js",
+          "file": "Container-CyOnb91Z.js",
           "entry": false,
-          "raw": 62602,
-          "gzip": 20428,
-          "brotli": 18025,
+          "raw": 62691,
+          "gzip": 20431,
+          "brotli": 18029,
           "imports": [
-            "e1-factory-BuMGkyBJ.js"
+            "e1-factory-C58pDqAt.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1425,14 +1425,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204720,
-        "gzip": 40596,
-        "brotli": 35147
+        "raw": 205081,
+        "gzip": 40587,
+        "brotli": 35152
       },
       "minTotal": {
-        "raw": 79555,
-        "gzip": 26904,
-        "brotli": 23755
+        "raw": 79644,
+        "gzip": 26908,
+        "brotli": 23743
       },
       "warnings": []
     },
@@ -1446,22 +1446,22 @@
           "entry": true,
           "raw": 69,
           "gzip": 82,
-          "brotli": 70,
+          "brotli": 73,
           "imports": [
-            "e1-initialization-DBz-B9b9.js"
+            "e1-initialization-SWYlNg9m.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-initialization-DBz-B9b9.js",
+          "file": "e1-initialization-SWYlNg9m.js",
           "entry": false,
           "raw": 41847,
           "gzip": 9970,
-          "brotli": 8685,
+          "brotli": 8688,
           "imports": [],
           "dynamicImports": [
-            "Container-BTs62go8.js"
+            "Container-cQetm50K.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1486,13 +1486,13 @@
           ]
         },
         {
-          "file": "Container-BTs62go8.js",
+          "file": "Container-cQetm50K.js",
           "entry": false,
-          "raw": 162873,
-          "gzip": 30562,
-          "brotli": 26376,
+          "raw": 163234,
+          "gzip": 30553,
+          "brotli": 26381,
           "imports": [
-            "e1-initialization-DBz-B9b9.js"
+            "e1-initialization-SWYlNg9m.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1559,22 +1559,22 @@
           "entry": true,
           "raw": 64,
           "gzip": 77,
-          "brotli": 67,
+          "brotli": 68,
           "imports": [
-            "e1-initialization-SEx9D7bK.js"
+            "e1-initialization-aqIZDy-t.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-initialization-SEx9D7bK.js",
+          "file": "e1-initialization-aqIZDy-t.js",
           "entry": false,
           "raw": 16910,
-          "gzip": 6409,
-          "brotli": 5651,
+          "gzip": 6410,
+          "brotli": 5654,
           "imports": [],
           "dynamicImports": [
-            "Container-CgomI-rO.js"
+            "Container-B-f8K0M2.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1599,13 +1599,13 @@
           ]
         },
         {
-          "file": "Container-CgomI-rO.js",
+          "file": "Container-B-f8K0M2.js",
           "entry": false,
-          "raw": 62609,
-          "gzip": 20431,
-          "brotli": 18019,
+          "raw": 62698,
+          "gzip": 20434,
+          "brotli": 18012,
           "imports": [
-            "e1-initialization-SEx9D7bK.js"
+            "e1-initialization-aqIZDy-t.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1667,14 +1667,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204789,
-        "gzip": 40614,
-        "brotli": 35131
+        "raw": 205150,
+        "gzip": 40605,
+        "brotli": 35142
       },
       "minTotal": {
-        "raw": 79583,
-        "gzip": 26917,
-        "brotli": 23737
+        "raw": 79672,
+        "gzip": 26921,
+        "brotli": 23734
       },
       "warnings": []
     },
@@ -1690,21 +1690,21 @@
           "gzip": 76,
           "brotli": 60,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-minimal-DM1zd93q.js",
+          "file": "e1-minimal-BAu1Jp4b.js",
           "entry": false,
-          "raw": 104692,
-          "gzip": 22545,
-          "brotli": 19369,
+          "raw": 104727,
+          "gzip": 22515,
+          "brotli": 19331,
           "imports": [],
           "dynamicImports": [
-            "Container-uSXXCpUU.js",
-            "MovePluginInstance-BZcPQABQ.js"
+            "Container-BkvGjmnk.js",
+            "MovePluginInstance-CCutIl7P.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1774,13 +1774,13 @@
           ]
         },
         {
-          "file": "MovePluginInstance-BZcPQABQ.js",
+          "file": "MovePluginInstance-CCutIl7P.js",
           "entry": false,
           "raw": 12558,
           "gzip": 2894,
           "brotli": 2619,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1790,13 +1790,13 @@
           ]
         },
         {
-          "file": "Container-uSXXCpUU.js",
+          "file": "Container-BkvGjmnk.js",
           "entry": false,
-          "raw": 140046,
-          "gzip": 24927,
-          "brotli": 21610,
+          "raw": 140372,
+          "gzip": 24950,
+          "brotli": 21623,
           "imports": [
-            "e1-minimal-DM1zd93q.js"
+            "e1-minimal-BAu1Jp4b.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1848,21 +1848,21 @@
           "gzip": 71,
           "brotli": 55,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-minimal--TAeDbJ-.js",
+          "file": "e1-minimal-DBvyLRNh.js",
           "entry": false,
-          "raw": 41886,
-          "gzip": 14493,
-          "brotli": 12788,
+          "raw": 41897,
+          "gzip": 14481,
+          "brotli": 12765,
           "imports": [],
           "dynamicImports": [
-            "Container-BBjhZFlL.js",
-            "MovePluginInstance-B-h_kUw4.js"
+            "Container-C8SCysuG.js",
+            "MovePluginInstance-CWdSUKGj.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -1932,13 +1932,13 @@
           ]
         },
         {
-          "file": "MovePluginInstance-B-h_kUw4.js",
+          "file": "MovePluginInstance-CWdSUKGj.js",
           "entry": false,
           "raw": 4788,
-          "gzip": 1888,
-          "brotli": 1734,
+          "gzip": 1889,
+          "brotli": 1732,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1948,13 +1948,13 @@
           ]
         },
         {
-          "file": "Container-BBjhZFlL.js",
+          "file": "Container-C8SCysuG.js",
           "entry": false,
-          "raw": 53703,
-          "gzip": 16730,
-          "brotli": 14957,
+          "raw": 53781,
+          "gzip": 16743,
+          "brotli": 14953,
           "imports": [
-            "e1-minimal--TAeDbJ-.js"
+            "e1-minimal-DBvyLRNh.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1999,14 +1999,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 257352,
-        "gzip": 50442,
-        "brotli": 43658
+        "raw": 257713,
+        "gzip": 50435,
+        "brotli": 43633
       },
       "minTotal": {
-        "raw": 100428,
-        "gzip": 33182,
-        "brotli": 29534
+        "raw": 100517,
+        "gzip": 33184,
+        "brotli": 29505
       },
       "warnings": []
     },
@@ -2022,20 +2022,20 @@
           "gzip": 82,
           "brotli": 66,
           "imports": [
-            "e1-factory-lazy-BLiXIaMz.js"
+            "e1-factory-lazy-B53c-KGw.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-lazy-BLiXIaMz.js",
+          "file": "e1-factory-lazy-B53c-KGw.js",
           "entry": false,
           "raw": 41797,
-          "gzip": 9960,
-          "brotli": 8680,
+          "gzip": 9957,
+          "brotli": 8682,
           "imports": [],
           "dynamicImports": [
-            "Container-C1DWUX62.js"
+            "Container-fB8aS3rk.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -2060,13 +2060,13 @@
           ]
         },
         {
-          "file": "Container-C1DWUX62.js",
+          "file": "Container-fB8aS3rk.js",
           "entry": false,
-          "raw": 162871,
-          "gzip": 30565,
-          "brotli": 26397,
+          "raw": 163232,
+          "gzip": 30558,
+          "brotli": 26371,
           "imports": [
-            "e1-factory-lazy-BLiXIaMz.js"
+            "e1-factory-lazy-B53c-KGw.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2135,20 +2135,20 @@
           "gzip": 77,
           "brotli": 61,
           "imports": [
-            "e1-factory-lazy-BTQ_hm3H.js"
+            "e1-factory-lazy-OMySVaDJ.js"
           ],
           "dynamicImports": [],
           "modules": []
         },
         {
-          "file": "e1-factory-lazy-BTQ_hm3H.js",
+          "file": "e1-factory-lazy-OMySVaDJ.js",
           "entry": false,
           "raw": 16901,
-          "gzip": 6406,
-          "brotli": 5654,
+          "gzip": 6405,
+          "brotli": 5655,
           "imports": [],
           "dynamicImports": [
-            "Container-CQeV6yHG.js"
+            "Container-CZeRE0jT.js"
           ],
           "modules": [
             "engine/dist/esm/Utils/ErrorCodes.js",
@@ -2173,13 +2173,13 @@
           ]
         },
         {
-          "file": "Container-CQeV6yHG.js",
+          "file": "Container-CZeRE0jT.js",
           "entry": false,
-          "raw": 62607,
-          "gzip": 20432,
-          "brotli": 18023,
+          "raw": 62696,
+          "gzip": 20436,
+          "brotli": 18030,
           "imports": [
-            "e1-factory-lazy-BTQ_hm3H.js"
+            "e1-factory-lazy-OMySVaDJ.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2241,14 +2241,14 @@
         }
       ],
       "rawTotal": {
-        "raw": 204730,
-        "gzip": 40607,
-        "brotli": 35143
+        "raw": 205091,
+        "gzip": 40597,
+        "brotli": 35119
       },
       "minTotal": {
-        "raw": 79565,
-        "gzip": 26915,
-        "brotli": 23738
+        "raw": 79654,
+        "gzip": 26918,
+        "brotli": 23746
       },
       "warnings": []
     }
@@ -2256,27 +2256,27 @@
   "distributions": [
     {
       "file": "engine/dist/tsparticles.engine.js",
-      "raw": 275271,
-      "gzip": 49633,
-      "brotli": 41647
+      "raw": 272019,
+      "gzip": 49088,
+      "brotli": 41122
     },
     {
       "file": "engine/dist/tsparticles.engine.min.js",
-      "raw": 100276,
-      "gzip": 32578,
-      "brotli": 27776
+      "raw": 99012,
+      "gzip": 32197,
+      "brotli": 27498
     },
     {
       "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
-      "raw": 331043,
-      "gzip": 57473,
-      "brotli": 47859
+      "raw": 327897,
+      "gzip": 56946,
+      "brotli": 47442
     },
     {
       "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
-      "raw": 121216,
-      "gzip": 37277,
-      "brotli": 32496
+      "raw": 120004,
+      "gzip": 36918,
+      "brotli": 32226
     },
     {
       "file": "bundles/basic/dist/tsparticles.basic.js",
@@ -2292,15 +2292,15 @@
     },
     {
       "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
-      "raw": 523546,
-      "gzip": 86613,
-      "brotli": 69681
+      "raw": 520649,
+      "gzip": 86150,
+      "brotli": 69279
     },
     {
       "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
-      "raw": 188758,
-      "gzip": 55103,
-      "brotli": 47284
+      "raw": 187616,
+      "gzip": 54811,
+      "brotli": 47075
     },
     {
       "file": "bundles/slim/dist/tsparticles.slim.js",
@@ -2316,15 +2316,15 @@
     },
     {
       "file": "bundles/full/dist/tsparticles.bundle.js",
-      "raw": 655952,
-      "gzip": 105980,
-      "brotli": 84223
+      "raw": 652928,
+      "gzip": 105523,
+      "brotli": 83883
     },
     {
       "file": "bundles/full/dist/tsparticles.bundle.min.js",
-      "raw": 236005,
-      "gzip": 67091,
-      "brotli": 57192
+      "raw": 234815,
+      "gzip": 66785,
+      "brotli": 56966
     },
     {
       "file": "bundles/full/dist/tsparticles.js",
@@ -2340,15 +2340,15 @@
     },
     {
       "file": "bundles/all/dist/tsparticles.all.bundle.js",
-      "raw": 1276981,
-      "gzip": 197301,
-      "brotli": 148254
+      "raw": 1273732,
+      "gzip": 196867,
+      "brotli": 147986
     },
     {
       "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
-      "raw": 464624,
-      "gzip": 128028,
-      "brotli": 103535
+      "raw": 463364,
+      "gzip": 127703,
+      "brotli": 103301
     },
     {
       "file": "bundles/all/dist/tsparticles.all.js",

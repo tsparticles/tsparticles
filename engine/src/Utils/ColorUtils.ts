@@ -60,7 +60,6 @@ import {
   mapOklchToSrgb,
   mixOklch,
   oklchToDisplayP3Float,
-  rgbToDisplayP3Float,
   rgbToOklch,
 } from "./OklchUtils.js";
 import { isArray, isString } from "./TypeUtils.js";
@@ -84,10 +83,6 @@ const styleCache = new Map<string, string>(),
   hdrCacheProbeInterval = 64,
   rgbNoiseThreshold = 0.001,
   hueGradsPerTurn = 400,
-  rgbFixedPrecision = 2,
-  hslFixedPrecision = 2,
-  hdrRgbFixedPrecision = 4,
-  hdrHslFixedPrecision = 4,
   sdrReferenceWhiteNits = 203,
   acesA = 2.51,
   acesB = 0.03,
@@ -820,34 +815,6 @@ export function getRandomRgbColor(min?: number, hdr?: boolean, random?: () => nu
 /**
  * Gets a CSS style string from a {@link IRgb} object and opacity value
  * @param color - the {@link IRgb} input color
- * @param hdr - whether the color is in HDR mode or not
- * @param opacity - the opacity value
- * @param peakNits - the peak brightness in nits for HDR rendering
- * @param mode - the HDR rendering mode
- * @returns the CSS style string
- * @deprecated Use {@link getStyleFromOklch} for engine color output; this helper preserves the legacy RGB output API.
- */
-export function getStyleFromRgb(
-  color: IRgb,
-  hdr: boolean,
-  opacity?: number,
-  peakNits?: number,
-  mode?: HdrMode,
-): string {
-  const rgbPrecision = hdr ? hdrRgbFixedPrecision : rgbFixedPrecision,
-    op = opacity ?? defaultOpacity,
-    key = hdr
-      ? `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-hdr-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`
-      : `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-sdr-${op.toString()}`;
-
-  return getCachedStyle(key, () =>
-    hdr ? getHdrStyleFromRgb(rgbToDisplayP3Float(color), opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
-  );
-}
-
-/**
- * Gets a CSS style string from a {@link IRgb} object and opacity value
- * @param color - the {@link IRgb} input color
  * @param opacity - the opacity value
  * @param peakNits - the peak brightness in nits, for future HDR API support, defaults to 400
  * @param mode - the HDR mode
@@ -927,46 +894,6 @@ function hdrToneMap(normalized: number, headroom: number, middleGray: number): n
   const expanded = normalized + (normalized - middleGray) * (headroom - one);
 
   return acesFilmic(expanded);
-}
-
-/**
- * Gets a CSS style string from a {@link IRgb} object and opacity value
- * @param color - the {@link IRgb} input color
- * @param opacity - the opacity value
- * @returns the CSS style string
- */
-function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
-  return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
-}
-
-/**
- * Gets a CSS style string from a {@link IHsl} object and opacity value
- * @param color - the {@link IHsl} input color
- * @param hdr - whether the color is in HDR mode or not
- * @param opacity - the opacity value
- * @param peakNits - the peak brightness in nits for HDR rendering
- * @param mode - the HDR rendering mode
- * @returns the CSS style string
- * @deprecated Use {@link getStyleFromOklch} for engine color output; this helper preserves the legacy HSL output API.
- */
-export function getStyleFromHsl(
-  color: IHsl,
-  hdr: boolean,
-  opacity?: number,
-  peakNits?: number,
-  mode?: HdrMode,
-): string {
-  const hslPrecision = hdr ? hdrHslFixedPrecision : hslFixedPrecision,
-    op = opacity ?? defaultOpacity,
-    key = hdr
-      ? `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-hdr-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`
-      : `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-sdr-${op.toString()}`;
-
-  return getCachedStyle(key, () =>
-    hdr
-      ? getHdrStyleFromRgb(rgbToDisplayP3Float(hslToRgbFloat(color)), opacity, peakNits, mode)
-      : `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${op.toString()})`,
-  );
 }
 
 /** Formats a canonical OKLCH color at the output boundary. */

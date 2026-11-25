@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-24",
+  "fixture": ".planning/handovers/evidence/e5/browser-color.html",
+  "method": "Interactive browser runs against the local checkout served on 127.0.0.1:8765; cases counted with each browser's in-page find for status failures.",
+  "results": [
+    {
+      "browser": "Chrome",
+      "version": "158.0.8127.38",
+      "cases": 8,
+      "passed": 8,
+      "failed": 0,
+      "displayP3Canvas": "supported",
+      "float16Canvas": "supported",
+      "evidence": "color-browser-results.json"
+    },
+    {
+      "browser": "Firefox",
+      "version": "138.0.1",
+      "cases": 8,
+      "passed": 4,
+      "failed": 4,
+      "displayP3Canvas": "requested display-p3 contexts reported srgb",
+      "float16Canvas": "not available in the tested context",
+      "failedCases": [
+        "Extended Display-P3 HDR style through float16 canvas",
+        "Mapped display-p3 alpha and unchanged shared source",
+        "Natural HDR tone mapping at 400 nits",
+        "Natural HDR tone mapping at 1000 nits"
+      ],
+      "interpretation": "Strict fixture failures: the tests request P3/HDR output even when the actual context falls back to sRGB. The fixture's luminance comparison is not valid for the sRGB readback."
+    },
+    {
+      "browser": "Safari",
+      "version": "27.2",
+      "cases": 8,
+      "passed": 5,
+      "failed": 3,
+      "displayP3Canvas": "supported",
+      "float16Canvas": "not reported by getContextAttributes; HDR pixel cases failed",
+      "failedCases": [
+        "Extended Display-P3 HDR style through float16 canvas",
+        "Natural HDR tone mapping at 400 nits",
+        "Natural HDR tone mapping at 1000 nits"
+      ],
+      "interpretation": "P3 SDR cases pass. The three strict HDR cases do not have an effective float16 context and do not certify HDR output."
+    }
+  ],
+  "limitations": [
+    "Firefox and Safari pixel observations were collected interactively; the existing automated runner is Chrome-specific and does not export their full per-case JSON.",
+    "These runs do not verify physical HDR presentation or extended-range output on a display and browser context that support float16 Display-P3."
+  ],
+  "engineFallbackSmoke": {
+    "fixture": ".planning/handovers/evidence/e10/color-context-fallback.html",
+    "result": "pass",
+    "summary": "Both browsers loaded the all bundle, created one canvas, and set hdr=false with outputColorSpace=srgb when color-gamut:p3 and dynamic-range:high were false.",
+    "browsers": [
+      {
+        "browser": "Firefox 138.0.1",
+        "containerLoaded": true,
+        "canvasCount": 1,
+        "outputColorSpace": "srgb",
+        "hdr": false,
+        "displayP3MediaQuery": false,
+        "highDynamicRangeMediaQuery": false
+      },
+      {
+        "browser": "Safari 27.2",
+        "containerLoaded": true,
+        "canvasCount": 1,
+        "outputColorSpace": "srgb",
+        "hdr": false,
+        "displayP3MediaQuery": false,
+        "highDynamicRangeMediaQuery": false
+      }
+    ]
+  }
+}

@@ -69,6 +69,6 @@
   "typecheck": "pass",
   "browser": "Chrome headless; generated code initialized one canvas",
   "browserErrors": [],
-  "temporary": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-generated-consumer-Zst27l",
+  "temporary": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-generated-consumer-3AV3Sh",
   "installLog": "Extracted 13 packed workspace package tarballs into an isolated consumer node_modules tree"
 }

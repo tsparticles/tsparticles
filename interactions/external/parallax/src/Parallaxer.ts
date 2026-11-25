@@ -5,18 +5,8 @@ import {
   type InteractivityParticle,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
-import type {
-  IParallaxMode,
-  ParallaxContainer,
-  ParallaxMode,
-} from "./Types.js";
-import {
-  type Particle,
-  type RecursivePartial,
-  half,
-  isInArray,
-  loadOptionProperty,
-} from "@tsparticles/engine";
+import type { IParallaxMode, ParallaxContainer, ParallaxMode } from "./Types.js";
+import { type Particle, type RecursivePartial, half, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { Parallax } from "./Options/Classes/Parallax.js";
 
 const parallaxMode = "parallax";
@@ -37,28 +27,17 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
   }
 
   interact(interactivityData: IInteractivityData): void {
-    for (const particle of this.container.particles.filter((p) =>
-      this.isEnabled(interactivityData, p),
-    )) {
+    for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
       this.#parallaxInteract(interactivityData, particle);
     }
   }
 
-  isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
-      events = (
-        particle?.interactivity ?? container.actualOptions.interactivity
-      )?.events;
+      events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-    return (
-      !!events?.onHover.enable &&
-      !!mouse.position &&
-      isInArray(parallaxMode, events.onHover.mode)
-    );
+    return !!events?.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
   }
 
   loadModeOptions(
@@ -68,10 +47,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     loadOptionProperty(options, "parallax", Parallax, ...sources);
   }
 
-  #parallaxInteract(
-    interactivityData: IInteractivityData,
-    particle: Particle,
-  ): void {
+  #parallaxInteract(interactivityData: IInteractivityData, particle: Particle): void {
     if (!this.isEnabled(interactivityData, particle)) {
       return;
     }

@@ -38,6 +38,7 @@ node .planning/handovers/evidence/tools/screen-e10-budgets.mjs
 NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run-many -t test --skipNxCache --output-style=static
 node .planning/handovers/evidence/tools/check-e10-generated-consumer.mjs
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=react
 python3 -m http.server 8765 --bind 127.0.0.1
 # In another terminal, run against the live built engine exposed at /engine/dist/esm:
 node .planning/handovers/evidence/tools/check-e10-color-browser.mjs
@@ -85,6 +86,13 @@ corrected and rechecked in its target build.
   The matched E6 values are 1.90/2.30 ms, so the candidate ties SDR and improves
   HDR but does not pass either absolute ceiling. The final runtime screen is 28
   pass, 2 fail, 0 pending; no threshold is waived.
+  An additive 21-repetition candidate-only confirmation reproduced the same
+  M6/500 medians: 1.90 ms SDR and 2.20 ms HDR. HDR again used a Display-P3,
+  float16 context; both runs had no page errors, removed all containers, stable
+  DOM counts and stable RNG counts. The individual samples are in
+  `runtime-21/runtime-extended-e10-21.json` and
+  `runtime-21/runtime-extended-hdr-e10-21.json`; this does not alter the fixed
+  E0 limits or clear either runtime row.
 - Full Nx test matrix: all 85 projects passed with cache disabled. This includes
   the primary suite (61 files / 959 tests), MCP suite (11 files / 270 tests),
   CLI generators, wrappers and browser-based demos. The first sandboxed matrix
@@ -98,15 +106,17 @@ corrected and rechecked in its target build.
 - E9 installed-package and browser/CDN evidence remains the recorded evidence
   for framework/package conditions and real-browser distribution. The MCP
   vanilla TypeScript example has been compiled and run from 13 extracted
-  package tarballs in an isolated consumer; the CLI vanilla scaffold has been
+  package tarballs in an isolated consumer. The CLI Vanilla scaffold was
   generated, type-checked, production-built, and started in Chrome from 41
-  extracted package tarballs. See `generated-consumer.json` and
-  `cli-scaffold.json`. Other framework outputs and translation review remain
-  open. G1–G7 source review dispositions were collected and closed in E8.
+  extracted package tarballs; React passed the same checks from 42 tarballs.
+  See `generated-consumer.json`, `cli-scaffold.json`, and
+  `cli-react-scaffold.json`. Other framework outputs and translation review
+  remain open. G1–G7 source review dispositions were collected and closed in E8.
   The [architecture reconciliation](../../V5-ARCHITECTURE-DECISIONS.md#e10-evidence-reconciliation--2026-11-24)
   links the four decisions to their consumer evidence. The
-  color report is recorded, but C5 remains open for its E0 budget and broader
-  browser/hardware gates.
+  color report is recorded, but C5 remains open for two extended runtime E0
+  exceedances and broader browser/hardware gates. Size ceilings remain
+  diagnostic references under the updated E10 acceptance criterion.
 
 ## Legacy retirement and translation review
 
@@ -124,6 +134,13 @@ corrected and rechecked in its target build.
   wrapper names and engine initialization patterns. The wrapper-name scan is
   clear. Wrapper API examples outside the guides verified below still require
   migration review.
+- Documentation disposition: the default and nine localized Vanilla guides
+  are byte-identical copies, and their CDN examples explicitly pin the still
+  published v4 packages (`@4`). The generated TypeDoc site also identifies a
+  v4 prerelease. These examples document the current v4 API and are preserved
+  until v5 is published; they must not be mistaken for v5 consumer validation.
+  The planning migration guide remains a draft and has no translated or
+  published v5 counterpart yet, so that release-documentation gate stays open.
 - The React Confetti example now registers the preset through
   `ParticlesProvider` on the explicit engine. The replacement is identical and
   transpiles as JSX in all ten locale copies. The snippet also passes strict
@@ -142,6 +159,29 @@ corrected and rechecked in its target build.
   followed by `node .planning/handovers/evidence/tools/check-e10-react-demo.mjs`;
   the result is in `react-demo.json`. This verifies the React wrapper demo; it
   complements the Confetti example run recorded above.
+- The Web Components demo passed its Nx CI build (21 tasks). Chrome 158 loaded
+  the full bundle and wrapper, assigned the explicit engine to `<web-particles>`,
+  and mounted one canvas without page or console errors. The smoke test maps
+  both `webcomponentsjs` CDN scripts to the installed local package and
+  records zero external requests. Reproduce with
+  `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/webcomponents-demo:build:ci --skipNxCache --output-style=static`
+  followed by `node .planning/handovers/evidence/tools/check-e10-webcomponents.mjs`;
+  the result is in `webcomponents-demo.json`.
+  The wrapper's Nx test target also passes all 9 tests with cache disabled.
+- E10 removed the deprecated engine `getStyleFromRgb()` and `getStyleFromHsl()`
+  helpers, HSV `getStyleFromHsv()`, and the OKLCH plugin's local
+  `getStyleFromOklch()` formatter. Workspace source had no runtime callers.
+  Consumers now resolve to canonical OKLCH and use the engine's destination-
+  aware formatter. The clean engine build reduced its measured bundle by 854
+  bytes. Both color plugin targets pass (24 OKLCH tests, 11 HSV tests), and the
+  primary Nx suite passes 946 tests across 61 files. The selected full package
+  build passed 420 tasks; three interactor failures were fixed and rebuilt.
+  The first sandboxed Next.js build could not fetch Google Fonts; its authorized
+  retry passed. After rebuilding the publishable packages, the installed
+  engine probe passed all six ESM/CJS/browser root and
+  lazy conditions. The E10 bundle report and budget screen were regenerated
+  from these artifacts: 2 size rows pass, 17 remain over the diagnostic E0
+  ceilings, and none are pending; runtime remains 28 pass and 2 fail.
 - All eight Qwik guide examples now create and initialize their explicit engine
   in a client task and keep it in a `noSerialize` signal. The lazy example
   imports Full inside that task, and the callback example uses the wrapper's
@@ -174,18 +214,23 @@ corrected and rechecked in its target build.
   their unrelated workspace packages were not built; the earlier full E10 Nx
   matrix remains recorded above. Ribbons' generated minified bundle decreased
   by 916 bytes from the previous build; Confetti's clean build had no previous
-  artifact available for a like-for-like size comparison. V5-LEG remains open
-  for the remaining engine/color formatter, PJS compatibility, and Stencil
-  loader deprecations.
+  artifact available for a like-for-like size comparison. V5-LEG remains open for the retained deprecated PJS compatibility API and
+  the Stencil v4 loader declaration; the Stencil wrapper must move to v5 before
+  `applyPolyfills()` can be removed from generated output.
 - Migrated the Confetti website examples from deprecated `particleCount` and
   normalized `origin` to `count` and percent-based `position`, preserving their
   coordinates with a conversion helper. The Confetti website Nx CI build passed
   all 284 tasks in 6m51s. A local Chrome 158 run rendered a canvas, exercised
   cannon, fireworks, snow and continuous modes, and recorded no page errors.
-  Its only console errors came from blocked Google Ads and Analytics requests.
-  Automatic review rejected a second browser run because it would send
-  navigation data to those external services, so the clean browser gate remains
-  open. The build command is `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/confetti-website:build:ci --skipNxCache --output-style=static`.
+  A repeatable smoke check now serves only the built local artifact and aborts
+  every external request before dispatch. It exercised cannon, fireworks, snow
+  and continuous modes with one or two canvases, no page errors and no app
+  console errors. The blocked origins were Google Fonts, Google Ads, Google
+  Analytics and the external particles.js.org favicon; no navigation data was
+  sent to them. Reproduce the build with
+  `NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run @tsparticles/confetti-website:build:ci --skipNxCache --output-style=static`,
+  then run `node .planning/handovers/evidence/tools/check-e10-confetti-website.mjs`.
+  The result is in `confetti-website.json`.
 
 ## Budget status
 
@@ -231,10 +276,18 @@ successfully, followed by Slim, Full and All. The primary Nx suite passed
 960 tests across 61 files, including a regression test for hooks installed
 during initialization and for live enablement.
 
-The additional Firefox 138.0.1 color run remains unverified. Headless
-automation timed out, and a direct headless launch reported an operating
-system permission error for Firefox's content process. The existing Chrome
-color results and physical HDR verification scope remain recorded separately.
+The local color fixture now has interactive runs in Firefox 138.0.1 and
+Safari 27.2. Firefox passed 4/8 strict cases; four P3/HDR cases failed because
+requested Display-P3 contexts reported sRGB and float16 was unavailable. Safari
+passed 5/8: P3 SDR cases passed, while the three float16 HDR cases failed. The
+fixture's Firefox HDR luminance comparison is not valid for its sRGB readback.
+A separate end-to-end smoke loads the All bundle in both browsers and verifies
+that the engine creates one canvas with `outputColorSpace: "srgb"` and
+`hdr: false` when the host reports neither P3 gamut nor high dynamic range. The
+engine-level fallback passes in Firefox and Safari; extended-range output and
+physical HDR presentation remain unverified. Exact observations are recorded in
+`browser-color-matrix.json`; reproduce with a local HTTP server and
+`color-context-fallback.html`.
 
 ### Size disposition under the updated criterion
 
@@ -395,6 +448,53 @@ confirmation samples, matched E6 values, and fixed ceilings are in
 `runtime-extended-confirmation-comparison.json`. E0 used Chrome 157; candidate
 and matched controls use Chrome 158. The E6 comparison informs attribution but
 does not replace E0 acceptance thresholds.
+
+### M6 particle-transform hook dispatch
+
+The M6/500 profile found 13 container plugins but only one plugin implementing
+`drawParticleTransform`. `RenderManager` now builds a transform-hook list during
+plugin initialization and visits that list in the per-particle draw path,
+avoiding the previous scan of all container plugins for every particle. The
+focused `RenderingLifecycle.ts` suite passes (15 tests), and the rebuilt All
+bundle SHA-256 is `ba134cd8979b8b17a4b506560098592ee98a3d64f42d9e40e23cfdd992dbf615`.
+
+A matched 21-repetition Chrome 158 comparison changes only that dispatch loop;
+all other built candidate code is identical. Median M6/500 frame p95 improved
+from 1.8 to 1.7 ms in SDR and from 2.2 to 1.9 ms in forced HDR. The SDR median
+is within the fixed 1.87 ms E0 ceiling; HDR remains 0.03 ms over it. Candidate
+and control raw results are in `drawhook-ab/`; the sampled Chrome profile is in
+`m6-cpu-profile.json` with its compressed DevTools profile alongside it. This
+does not close the M6 HDR performance gate.
+
+A follow-up Chrome 158 experiment replaced only the renderer's
+`resetTransform()` call with the equivalent identity `setTransform(...)` call.
+Across 21 forced-HDR repetitions, the current bundle median was 2.0 ms and the
+variant median was 1.9 ms; both sample ranges overlap broadly and the variant
+does not clear 1.87 ms. The profile identifies transform reset as a hot path,
+but it restores the context contract after shape/plugin callbacks and exceptions.
+The experiment is not adopted; bundle hashes, raw samples, and the compressed
+variant are in `drawhook-ab/reset-transform-ab/`.
+
+After the engine change, all 85 Nx test targets were attempted: the 61 Vitest
+files passed (946 tests), and the four local-server Karma/MCP targets that
+could not bind inside the sandbox passed on an authorized retry. In the broad
+build, 232 of 235 project targets passed. Electron, Angular and Next.js demo
+builds passed with an authorized retry across those projects and 91 dependency
+tasks; Angular reported its existing component-style budget warning. The
+refreshed engine package probes all pass; current distribution and
+installed-package sizes are recorded in `bundle-sizes.json` and
+`installed-package.json`.
+
+The vanilla MCP-generated consumer and CLI scaffold were re-extracted from the
+fresh package builds and rechecked after the renderer change. The MCP consumer
+passed strict TypeScript and mounted one canvas in headless Chrome from 13
+package tarballs. The CLI Vanilla scaffold passed strict TypeScript, Vite
+production build and headless Chrome initialization with one canvas and no
+browser or console errors. The same isolated CLI check now accepts
+`--framework=react`; React also passes strict TypeScript, Vite production build
+and Chrome initialization with one canvas and no browser or console errors.
+Results are in `generated-consumer.json`, `cli-scaffold.json`, and
+`cli-react-scaffold.json`. Other generated framework combinations remain open.
 
 All three CJS size scenarios exceed their original ceilings:
 

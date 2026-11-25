@@ -1,17 +1,23 @@
+/* global console, document, process, URL */
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { createServer } from "node:http";
-import { cp, mkdir, mkdtemp, readFile, writeFile, symlink } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, readdir, writeFile, symlink } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import puppeteer from "puppeteer";
 
+const framework = process.argv.find((arg) => arg.startsWith("--framework="))?.slice("--framework=".length) ?? "vanilla";
+
+assert(["vanilla", "react"].includes(framework), `Unsupported E10 scaffold framework: ${framework}`);
+
 const root = process.cwd(),
-  temporary = await mkdtemp(path.join(tmpdir(), "v5-cli-scaffold-")),
+  temporary = await mkdtemp(path.join(tmpdir(), `v5-cli-${framework}-scaffold-`)),
   projectDir = path.join(temporary, "project"),
-  outputPath = path.join(root, ".planning/handovers/evidence/e10/cli-scaffold.json"),
+  outputName = framework === "vanilla" ? "cli-scaffold.json" : `cli-${framework}-scaffold.json`,
+  outputPath = path.join(root, ".planning/handovers/evidence/e10", outputName),
   require = createRequire(path.join(root, "package.json")),
   viteRequire = createRequire(path.join(root, "websites/website/package.json")),
   manifestPaths = execFileSync(
@@ -56,8 +62,8 @@ const scaffoldModule = await import(pathToFileURL(path.join(root, "cli/commands/
 
 await scaffoldModule.createAppProject({
   destination: projectDir,
-  framework: "vanilla",
-  projectName: "v5-e10-scaffold",
+  framework,
+  projectName: `v5-e10-${framework}-scaffold`,
   skipInstall: true,
   useCase: "none",
 });
@@ -111,6 +117,30 @@ await symlink(
   "dir",
 );
 await symlink(vitePackageRoot, path.join(projectDir, "node_modules", "vite"), "dir");
+
+if (framework === "react") {
+  const storeRoot = path.join(root, "node_modules/.pnpm"),
+    storeEntries = await readdir(storeRoot),
+    dependencies = [
+      ["react", "react@19.3.1"],
+      ["react-dom", "react-dom@19.3.1_react@19.3.1"],
+      ["@vitejs/plugin-react", "@vitejs+plugin-react@6.2.1_"],
+      ["@types/react", "@types+react@19.2.17"],
+      ["@types/react-dom", "@types+react-dom@19.2.3_"],
+    ];
+
+  for (const [packageName, storePrefix] of dependencies) {
+    const storeEntry = storeEntries.find((entry) => entry.startsWith(storePrefix));
+
+    assert(storeEntry, `Workspace package store entry missing: ${storePrefix}`);
+
+    const packagePath = path.join(projectDir, "node_modules", ...packageName.split("/")),
+      storePath = path.join(storeRoot, storeEntry, "node_modules", ...packageName.split("/"));
+
+    await mkdir(path.dirname(packagePath), { recursive: true });
+    await symlink(storePath, packagePath, "dir");
+  }
+}
 
 const tscPath = path.join(path.dirname(require.resolve("typescript")), "../bin/tsc"),
   vitePath = path.join(vitePackageRoot, "bin/vite.js");
@@ -178,7 +208,7 @@ assert.deepEqual(browserErrors, []);
 assert.deepEqual(browserConsoleErrors, []);
 
 const result = {
-  framework: "vanilla",
+  framework,
   template: "scaffold",
   projectDependencies: projectManifest.dependencies,
   distributionArchives: [...packages],

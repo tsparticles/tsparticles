@@ -1,17 +1,24 @@
 # V5 migration guide — E10 working draft
 
-Status: E10 in progress (2026-11-24). E9 installed-package and browser checks
-passed for the current candidate. This guide now describes the implemented v5
-engine, wrapper, bundle, and color contracts. The vanilla generated consumers
-and final package/size checks have been exercised; the E0 size ceilings remain
-unmet. Other generated frameworks, all translated guides, and final migration
-review remain open; do not publish it as the completed release migration guide
-yet.
-The vanilla TypeScript MCP-generated example has now passed an isolated
-consumer type-check and Chrome initialization using packed 4.6.0 candidate
-packages. The CLI vanilla scaffold also passes isolated type-check, production
-build, and Chrome canvas initialization from packed 4.6.0 candidate packages.
-Other generated frameworks and translated guides remain to be checked.
+Status: E10 in progress (2026-11-25). E9 installed-package and browser checks
+passed for the current candidate. This guide describes implemented v5 engine,
+wrapper, bundle, and color contracts. The E0 size ceilings remain visible as
+diagnostic references under the updated E10 size criterion; they are not
+represented as passing. Runtime, allocation, and retention criteria remain
+active, with the M6/500 forced-HDR frame p95 still above the fixed E0 ceiling.
+
+The vanilla TypeScript MCP-generated example and CLI scaffold pass isolated
+type-checking and Chrome initialization using rebuilt candidate packages; the
+CLI scaffold also passes its production build. All nine packed template
+families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants. Generated
+framework combinations beyond Vanilla and React, translated guides, broader
+consumer review, and the HDR/browser hardware gate remain open. Keep this as an internal
+draft; it is not the completed release migration guide.
+
+The live website's default and nine localized Vanilla guides are byte-identical
+and pin the currently published v4 CDN packages. Their singleton examples are
+kept as v4 documentation until the v5 migration page is ready for publication;
+they do not count as v5 consumer checks.
 
 ## Engine ownership
 
@@ -40,11 +47,16 @@ The matrix includes retained consumers that require explicit engines as well.
 
 ## Deprecated APIs
 
-The engine's RGB-returning `colorMix()` was removed. Convert RGB inputs with
-`rgbToOklch()` (or use `hslToRgbFloat()` first for HSL), then pass the
-canonical colors and weights to `colorMixOklch()`. The resulting colors use
-perceptual interpolation. Use `mapOklchToSrgb(result).rgb` at an RGB-only
-output boundary.
+The RGB-returning `colorMix()` was removed. The deprecated engine
+`getStyleFromRgb()` and `getStyleFromHsl()` helpers, the HSV plugin's
+`getStyleFromHsv()`, and the OKLCH plugin's package-local `getStyleFromOklch()`
+formatter were also removed. Convert RGB with `rgbToOklch()`, HSL with
+`rgbToOklch(hslToRgbFloat(color))`, and resolve HSV options through the
+registered HSV color manager with `rangeColorToOklch(engine.pluginManager,
+{ value: { hsv: color } })`. Pass the canonical result to the engine's
+output-aware `getStyleFromOklch()`. The engine formatter handles destination
+gamut mapping and HDR settings. For a genuine RGB-only output boundary, use
+`mapOklchToSrgb(result).rgb`.
 
 ### Interactor lifecycle hooks
 
@@ -56,8 +68,8 @@ work, and add the TypeScript `override` modifier when using
 `noImplicitOverride`.
 
 See the [deprecated API inventory](evidence/e9/deprecated-migrations.md) for
-color formatters, Confetti and Ribbons options, and particles.js compatibility.
-Several entries remain in the candidate and still need a retirement decision.
+retired color formatters, Confetti and Ribbons options, and the retained opt-in
+particles.js compatibility surface.
 For applications upgrading their compiler to Stencil 5, remove
 `applyPolyfills()` and await `defineCustomElements()` where registration must
 finish before hydration. The current tsParticles Stencil wrapper uses Stencil

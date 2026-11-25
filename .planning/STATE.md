@@ -1,4 +1,44 @@
-## Session status — 2026-11-24 — E10 in progress
+## Session status — 2026-11-25 — E10 in progress
+
+- A focused renderer optimization caches only plugins that implement
+  `drawParticleTransform` (1 of 13 container plugins), removing the 13-plugin
+  scan from each particle draw. The matched 21-repetition Chrome 158 M6/500
+  result improves median frame p95 from 1.8 to 1.7 ms SDR and 2.2 to 1.9 ms
+  forced HDR; SDR meets 1.87 ms, HDR remains 0.03 ms over. Candidate and control
+  artifacts are in `handovers/evidence/e10/drawhook-ab/`.
+- The focused rendering lifecycle tests pass (15). The full Nx test run has 946
+  passing tests across 61 files; four server-based targets passed when retried
+  with local-port access. The broad build succeeded for 232 of 235 projects;
+  the three Electron, Angular and Next.js demo targets then passed with their
+  91 dependency tasks on retry. Angular reported its existing component-style
+  budget warning. Bundle and installed-package evidence has been refreshed
+  after the engine build. E10 remains open pending the HDR row and remaining
+  release gates.
+- Repeated the packed-template retirement check after the rebuild: all nine
+  template archives still contain zero retired Vue 2/Nuxt 2/Nuxt 3 variants,
+  matching the existing E10 evidence byte-for-byte. Engine and test-project
+  lint pass after the renderer change.
+- Re-ran both vanilla generated consumers against the fresh package builds:
+  the MCP consumer type-checks and mounts one canvas from 13 packed packages;
+  the CLI scaffold type-checks, production-builds and mounts one canvas in
+  Chrome without browser or console errors. Added a parameterized React CLI
+  scaffold check; its type-check, production build and Chrome one-canvas smoke
+  also pass without browser or console errors. Other generated framework
+  outputs remain open.
+- Tested a semantically equivalent Canvas2D transform reset in a 21-run HDR
+  comparison. The variant's 1.9 ms median did not establish a stable win over
+  the current 2.0 ms run or clear the 1.87 ms limit; it is archived and not
+  adopted. The reset preserves renderer state across plugin/shape hooks and
+  thrown draws, so no further source change was justified by this experiment.
+
+- Removed the deprecated engine RGB/HSL CSS helpers, HSV formatter and OKLCH
+  plugin-local formatter after confirming no workspace runtime callers. The
+  migration guide and package changelogs document the replacements. Color plugin
+  suites pass (35 tests total), the primary suite passes 946 tests across 61
+  files, and the engine bundle fell 854 bytes. A 420-task package build found
+  three missing `override` modifiers, now fixed and rebuilt. The initial
+  sandboxed Next.js demo build could not fetch Google Fonts; its authorized
+  retry passed, as did the Electron and Angular demo build retries.
 
 - The user prioritizes runtime performance and accepts justified v4-to-v5
   payload growth. The size review is complete under that criterion. E0 payload
@@ -8,11 +48,23 @@
   repetitions on the rebuilt production bundle, M6/500 frame p95 improved to
   1.70 ms SDR and 1.90 ms HDR. The HDR row still exceeds its 1.87 ms ceiling.
   Quiet M4/500 update and draw meet E0. [Runtime evidence](handovers/evidence/e10/README.md#interactor-lifecycle-optimization).
+- Repeated the extended M6/500 candidate check 21 times per output mode. The
+  medians remain 1.90 ms SDR and 2.20 ms HDR against 1.87 ms; HDR used
+  Display-P3/float16. Lifecycle, DOM and RNG checks pass, but both E0 runtime
+  rows stay open. Raw samples are under
+  `handovers/evidence/e10/runtime-21/`.
 - Reused the existing sRGB-to-Display-P3 path and removed the deprecated
   `colorMix()` engine export. The rebuilt Engine saves 188 gzip and 140 Brotli
   bytes. The 16 previously failing rows that were remeasured remain over
   budget. [Probe and migration evidence](handovers/evidence/e10/README.md#engine-color-changes-after-the-checkpoint).
 
+- Added local Firefox 138.0.1 and Safari 27.2 color fixture evidence. Firefox
+  passed 4/8 strict cases because P3 contexts fell back to sRGB; Safari passed
+  5/8, with its P3 SDR cases passing and three HDR cases lacking an effective
+  float16 context. The All-bundle fallback smoke passes in both browsers, with
+  one canvas, sRGB output, and HDR disabled when the host reports no P3/high
+  dynamic range. Physical HDR remains open. See
+  `handovers/evidence/e10/browser-color-matrix.json`.
 - Reconciled the four architecture decisions with their implementation and
   consumer evidence. The engine audit inventory matches all 161 tracked source
   paths. Repacked all nine template families and confirmed the retired framework
@@ -36,18 +88,23 @@
   preset build exposed two missing `override` modifiers in `EmittersInteractor`;
   adding them restored the package build. See `react-confetti.json` and the
   reproduction steps in the E10 evidence README.
+- The Web Components demo passed its 21-task Nx CI build. Chrome 158 mounted
+  one canvas with the explicit engine assigned, no page or console errors, and
+  no external requests. The wrapper target passes all 9 tests. Reproduction
+  and output are in the E10 checkpoint.
 - The Confetti website examples now use `count` and percent-based `position`;
   its 284-task Nx CI build passed. A local Chrome run exercised cannon,
-  fireworks, snow and continuous effects, but external Ads/Analytics requests
-  produced connection errors. Automatic review rejected a rerun because it
-  would send navigation data to those services, so the clean browser gate stays
-  open. See the E10 evidence README.
+  fireworks, snow and continuous effects. A repeatable browser check now allows
+  only localhost and blocks all external requests before dispatch; Chrome 158
+  reports no page or application console errors. See
+  `handovers/evidence/e10/confetti-website.json` and the E10 evidence README.
 - Removed deprecated Confetti and Ribbons option aliases, loader fallbacks, and
   accessors; updated active demos, English docs, all nine translations, README,
   migration inventory, and v5 changelog. Both bundle builds and all four bundle
   tests pass; generated declarations no longer expose the aliases. Ribbons'
-  minified output fell 916 bytes. Other deprecated APIs and the broad E10 gates
-  remain open. See [E10 evidence](handovers/evidence/e10/README.md).
+  minified output fell 916 bytes. The retained PJS compatibility API and Stencil
+  v4 loader declaration still carry deprecations; the broader E10 gates remain
+  open. See [E10 evidence](handovers/evidence/e10/README.md).
 - The frozen budget screen records 17 size failures, including three CJS graphs,
   and two extended runtime failures after confirmation. The separate quiet
   M4/500 check also records exceedances. See the

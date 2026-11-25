@@ -1,13 +1,13 @@
 {
-  "revision": "354e1a5e5d5d4791cd85f0e8fb22d81426dfa08b",
+  "revision": "49aacae8d1fa4d02c82e823fba12269c45ea4d32",
   "archive": "tsparticles-engine-4.6.0.tgz",
-  "sha256": "f6d64141ec92fe9a5954f1a10140de05881668176e15fdab869d3b6cc6ba2336",
+  "sha256": "51c304d8e3eb395bdc7f4e7c85141efbf8c2a6bce5cefd81746fe0447699461e",
   "pack": {
     "name": "@tsparticles/engine",
     "version": "4.6.0",
-    "filename": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-xgVjXF/tsparticles-engine-4.6.0.tgz",
-    "integrity": "sha512-VrUN4KHlB9Q4ilGfa2pbtGjkNGh3I4iwzZUUMWzz/HBLpFnlvMkL0C61q8Lav53qoav5xC/ZwbIAY//PLsfweg==",
-    "size": 251444,
+    "filename": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-92IqW3/tsparticles-engine-4.6.0.tgz",
+    "integrity": "sha512-UlJZtPHJw6cS7F0WS0UL7CoWqDF95hdLygoI+XKzUlW8VqeCeQkqagPsArR1hKfdc/LImeZvsGPjG80BQSpPUA==",
+    "size": 244182,
     "files": [
       {
         "path": "browser/browser.js"
@@ -2087,12 +2087,12 @@
       }
     }
   },
-  "install": "Progress: resolved 1, reused 0, downloaded 0, added 0\nPackages are cloned from the content-addressable store to the virtual store.\n  Content-addressable store is at: /var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-xgVjXF/store/v11\n  Virtual store is at:             node_modules/.pnpm\nPackages: +1\n+\nProgress: resolved 1, reused 0, downloaded 1, added 1, done\n\ndependencies:\n+ @tsparticles/engine 4.6.0\n\nDone in 175ms using pnpm v12.23.0\n",
+  "install": "Progress: resolved 1, reused 0, downloaded 0, added 0\nPackages are cloned from the content-addressable store to the virtual store.\n  Content-addressable store is at: /var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-92IqW3/store/v11\n  Virtual store is at:             node_modules/.pnpm\nPackages: +1\n+\nProgress: resolved 1, reused 0, downloaded 1, added 1, done\n\ndependencies:\n+ @tsparticles/engine 4.6.0\n\nDone in 223ms using pnpm v12.23.0\n",
   "conditions": [
     {
       "mode": "import",
       "subpath": "",
-      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/esm/index.js",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/esm/index.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2101,7 +2101,7 @@
     {
       "mode": "import",
       "subpath": "/lazy",
-      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/esm/index.lazy.js",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/esm/index.lazy.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2110,7 +2110,7 @@
     {
       "mode": "require",
       "subpath": "",
-      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/cjs/index.js",
+      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/cjs/index.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2190,7 +2190,7 @@
     {
       "mode": "require",
       "subpath": "/lazy",
-      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/cjs/index.lazy.js",
+      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/cjs/index.lazy.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2270,7 +2270,7 @@
     {
       "mode": "browser",
       "subpath": "",
-      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/esm/index.js",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/esm/index.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2279,7 +2279,7 @@
     {
       "mode": "browser",
       "subpath": "/lazy",
-      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_48548194466b47d25bbf6aa46bc47991/node_modules/@tsparticles/engine/esm/index.lazy.js",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_616bf3bda7acbbbf754ea337c6a709dc/node_modules/@tsparticles/engine/esm/index.lazy.js",
       "singleton": false,
       "factory": "function",
       "globals": [],
@@ -2368,14 +2368,14 @@
           "cjs/Utils/LegacyColorManagerAdapter.js"
         ],
         "raw": {
-          "bytes": 153063,
-          "gzip": 43263,
-          "brotli": 37731
+          "bytes": 149479,
+          "gzip": 42712,
+          "brotli": 37280
         },
         "min": {
-          "bytes": 97004,
-          "gzip": 35199,
-          "brotli": 30647
+          "bytes": 94739,
+          "gzip": 34782,
+          "brotli": 30298
         }
       },
       {
@@ -2453,28 +2453,28 @@
           "cjs/Utils/LegacyColorManagerAdapter.js"
         ],
         "raw": {
-          "bytes": 153063,
-          "gzip": 43263,
-          "brotli": 37731
+          "bytes": 149479,
+          "gzip": 42712,
+          "brotli": 37280
         },
         "min": {
-          "bytes": 97004,
-          "gzip": 35199,
-          "brotli": 30647
+          "bytes": 94739,
+          "gzip": 34782,
+          "brotli": 30298
         }
       }
     ],
     "full": {
       "modules": 161,
       "raw": {
-        "bytes": 287481,
-        "gzip": 76265,
-        "brotli": 65869
+        "bytes": 284223,
+        "gzip": 75732,
+        "brotli": 65432
       },
       "min": {
-        "bytes": 159646,
-        "gzip": 60841,
-        "brotli": 52403
+        "bytes": 157456,
+        "gzip": 60436,
+        "brotli": 52059
       }
     },
     "modules": [
@@ -3105,14 +3105,14 @@
       {
         "file": "cjs/Core/Rendering/RenderManager.js",
         "raw": {
-          "bytes": 19633,
-          "gzip": 3668,
-          "brotli": 3262
+          "bytes": 19959,
+          "gzip": 3686,
+          "brotli": 3276
         },
         "min": {
-          "bytes": 8059,
-          "gzip": 2698,
-          "brotli": 2432
+          "bytes": 8134,
+          "gzip": 2710,
+          "brotli": 2437
         }
       },
       {
@@ -4314,14 +4314,14 @@
       {
         "file": "cjs/Utils/ColorUtils.js",
         "raw": {
-          "bytes": 35480,
-          "gzip": 6949,
-          "brotli": 6198
+          "bytes": 32202,
+          "gzip": 6458,
+          "brotli": 5792
         },
         "min": {
-          "bytes": 20360,
-          "gzip": 5221,
-          "brotli": 4759
+          "bytes": 18278,
+          "gzip": 4846,
+          "brotli": 4441
         }
       },
       {
@@ -4418,14 +4418,14 @@
       {
         "file": "cjs/Utils/OklchUtils.js",
         "raw": {
-          "bytes": 7554,
-          "gzip": 2388,
-          "brotli": 2132
+          "bytes": 7248,
+          "gzip": 2328,
+          "brotli": 2087
         },
         "min": {
-          "bytes": 4501,
-          "gzip": 1919,
-          "brotli": 1704
+          "bytes": 4318,
+          "gzip": 1877,
+          "brotli": 1673
         }
       },
       {

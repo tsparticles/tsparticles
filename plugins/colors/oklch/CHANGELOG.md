@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## Unreleased — v5
+
+### Breaking Changes
+
+- remove the deprecated package-local `getStyleFromOklch`; use the engine's formatter to apply the active output gamut
+
 # [4.6.0](https://github.com/tsparticles/tsparticles/compare/v4.5.4...v4.6.0) (2026-11-13)
 
 **Note:** Version bump only for package @tsparticles/plugin-oklch-color
@@ -19,7 +25,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fixes after AI reviews ([8b9678b](https://github.com/tsparticles/tsparticles/commit/8b9678b02e7c85b59a4472b043f26ff0e8659161))
+- fixes after AI reviews ([8b9678b](https://github.com/tsparticles/tsparticles/commit/8b9678b02e7c85b59a4472b043f26ff0e8659161))
 
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 

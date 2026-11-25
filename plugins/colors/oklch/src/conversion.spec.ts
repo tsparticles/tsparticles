@@ -1,23 +1,10 @@
 import type { IOklch, IRgb } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
-import { getStyleFromOklch, oklchToRgb } from "./utils.js";
 import { OklchColorManager } from "./OklchColorManager.js";
+import { oklchToRgb } from "./utils.js";
 
 describe("OKLCH conversion", () => {
   const manager = new OklchColorManager();
-
-  it("formats a CSS-compatible numeric hue in the legacy helper", () => {
-    const color = { l: 50, c: 0.2, h: 270 };
-
-    /* eslint-disable @typescript-eslint/no-deprecated -- Verify the supported legacy formatter output. */
-    expect(getStyleFromOklch(color)).toBe("oklch(50% 0.2 270)");
-    expect(getStyleFromOklch(color, 0.4)).toBe("oklch(50% 0.2 270 / 0.4)");
-    expect(manager.parseStringOklch(getStyleFromOklch(color, 0.4))).toEqual({
-      ...color,
-      a: 0.4,
-    });
-    /* eslint-enable @typescript-eslint/no-deprecated */
-  });
 
   describe("oklchToRgb (programmatic API)", () => {
     const testCases: {

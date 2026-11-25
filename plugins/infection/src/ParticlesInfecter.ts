@@ -99,7 +99,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
     return this.container.actualOptions.infection?.enable ?? false;
   }
 
-  reset(): void {
+  override reset(): void {
     // do nothing
   }
 }

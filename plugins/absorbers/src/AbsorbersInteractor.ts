@@ -101,7 +101,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   /**
    * Clears the interactor state
    */
-  clear(): void {
+  override clear(): void {
     // no-op
   }
 
@@ -219,7 +219,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   /**
    * Resets the interactor state
    */
-  reset(): void {
+  override reset(): void {
     // no-op
   }
 }

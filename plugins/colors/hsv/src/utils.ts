@@ -1,5 +1,4 @@
 import {
-  type HdrMode,
   type IHsl,
   type IHsla,
   type IHsv,
@@ -7,11 +6,9 @@ import {
   type IRgb,
   type IRgba,
   double,
-  getStyleFromOklch,
   half,
   percentDenominator,
   rgbMax,
-  rgbToOklch,
 } from "@tsparticles/engine";
 
 /**
@@ -67,26 +64,6 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
     a: rgba.a,
     ...rgbToHsv(rgba),
   };
-}
-
-/**
- * Gets a CSS style string from a {@link IHsv} object and opacity value
- * @param color - the {@link IHsv} input color
- * @param hdr - indicates if the color is in HDR space
- * @param opacity - the opacity value
- * @param peakNits - the peak brightness in nits
- * @param mode - the HDR mode
- * @returns the CSS style string
- * @deprecated Use the engine's output-aware OKLCH formatter for new engine color output.
- */
-export function getStyleFromHsv(
-  color: IHsv,
-  hdr: boolean,
-  opacity?: number,
-  peakNits?: number,
-  mode?: HdrMode,
-): string {
-  return getStyleFromOklch(rgbToOklch(hsvToRgbFloat(color)), hdr, opacity, peakNits, mode);
 }
 
 /**

@@ -51,17 +51,17 @@
         "metrics": {
           "gzip": {
             "original": 22665,
-            "candidate": 26904,
-            "deltaBytes": 4239,
-            "deltaPercent": 18.70284579748511,
+            "candidate": 26894,
+            "deltaBytes": 4229,
+            "deltaPercent": 18.65872490624311,
             "ceiling": 23118,
             "pass": false
           },
           "brotli": {
             "original": 20052,
-            "candidate": 23755,
-            "deltaBytes": 3703,
-            "deltaPercent": 18.466985836824257,
+            "candidate": 23743,
+            "deltaBytes": 3691,
+            "deltaPercent": 18.407141432276084,
             "ceiling": 20453,
             "pass": false
           }
@@ -75,17 +75,17 @@
         "metrics": {
           "gzip": {
             "original": 22665,
-            "candidate": 26917,
-            "deltaBytes": 4252,
-            "deltaPercent": 18.760202956099715,
+            "candidate": 26905,
+            "deltaBytes": 4240,
+            "deltaPercent": 18.70725788660931,
             "ceiling": 23118,
             "pass": false
           },
           "brotli": {
             "original": 20072,
-            "candidate": 23737,
-            "deltaBytes": 3665,
-            "deltaPercent": 18.259266640095657,
+            "candidate": 23716,
+            "deltaBytes": 3644,
+            "deltaPercent": 18.154643284176963,
             "ceiling": 20473,
             "pass": false
           }
@@ -99,17 +99,17 @@
         "metrics": {
           "gzip": {
             "original": 28451,
-            "candidate": 33182,
-            "deltaBytes": 4731,
-            "deltaPercent": 16.628589504762576,
+            "candidate": 33169,
+            "deltaBytes": 4718,
+            "deltaPercent": 16.58289691047766,
             "ceiling": 27028,
             "pass": false
           },
           "brotli": {
             "original": 25355,
-            "candidate": 29534,
-            "deltaBytes": 4179,
-            "deltaPercent": 16.48195622165253,
+            "candidate": 29524,
+            "deltaBytes": 4169,
+            "deltaPercent": 16.442516268980476,
             "ceiling": 24087,
             "pass": false
           }
@@ -123,17 +123,17 @@
         "metrics": {
           "gzip": {
             "original": 22680,
-            "candidate": 26915,
-            "deltaBytes": 4235,
-            "deltaPercent": 18.67283950617284,
+            "candidate": 26903,
+            "deltaBytes": 4223,
+            "deltaPercent": 18.619929453262788,
             "ceiling": 23133,
             "pass": false
           },
           "brotli": {
             "original": 20069,
-            "candidate": 23738,
-            "deltaBytes": 3669,
-            "deltaPercent": 18.281927350640288,
+            "candidate": 23733,
+            "deltaBytes": 3664,
+            "deltaPercent": 18.25701330410085,
             "ceiling": 20470,
             "pass": false
           }
@@ -171,17 +171,17 @@
         "metrics": {
           "gzip": {
             "original": 22676,
-            "candidate": 26904,
-            "deltaBytes": 4228,
-            "deltaPercent": 18.645263714940906,
+            "candidate": 26894,
+            "deltaBytes": 4218,
+            "deltaPercent": 18.601164226494973,
             "ceiling": 23129,
             "pass": false
           },
           "brotli": {
             "original": 20083,
-            "candidate": 23755,
-            "deltaBytes": 3672,
-            "deltaPercent": 18.28412089827217,
+            "candidate": 23743,
+            "deltaBytes": 3660,
+            "deltaPercent": 18.22436886919285,
             "ceiling": 20484,
             "pass": false
           }
@@ -195,17 +195,17 @@
         "metrics": {
           "gzip": {
             "original": 22672,
-            "candidate": 26917,
-            "deltaBytes": 4245,
-            "deltaPercent": 18.72353563867325,
+            "candidate": 26905,
+            "deltaBytes": 4233,
+            "deltaPercent": 18.67060691601976,
             "ceiling": 23125,
             "pass": false
           },
           "brotli": {
             "original": 20083,
-            "candidate": 23737,
-            "deltaBytes": 3654,
-            "deltaPercent": 18.194492854653188,
+            "candidate": 23716,
+            "deltaBytes": 3633,
+            "deltaPercent": 18.089926803764378,
             "ceiling": 20484,
             "pass": false
           }
@@ -219,17 +219,17 @@
         "metrics": {
           "gzip": {
             "original": 28467,
-            "candidate": 33182,
-            "deltaBytes": 4715,
-            "deltaPercent": 16.563037903537428,
+            "candidate": 33169,
+            "deltaBytes": 4702,
+            "deltaPercent": 16.517370990972,
             "ceiling": 27043,
             "pass": false
           },
           "brotli": {
             "original": 25375,
-            "candidate": 29534,
-            "deltaBytes": 4159,
-            "deltaPercent": 16.390147783251233,
+            "candidate": 29524,
+            "deltaBytes": 4149,
+            "deltaPercent": 16.35073891625616,
             "ceiling": 24106,
             "pass": false
           }
@@ -243,17 +243,17 @@
         "metrics": {
           "gzip": {
             "original": 22686,
-            "candidate": 26915,
-            "deltaBytes": 4229,
-            "deltaPercent": 18.641452878427224,
+            "candidate": 26903,
+            "deltaBytes": 4217,
+            "deltaPercent": 18.588556819183637,
             "ceiling": 23139,
             "pass": false
           },
           "brotli": {
             "original": 20095,
-            "candidate": 23738,
-            "deltaBytes": 3643,
-            "deltaPercent": 18.128887783030603,
+            "candidate": 23733,
+            "deltaBytes": 3638,
+            "deltaPercent": 18.104005971634734,
             "ceiling": 20496,
             "pass": false
           }
@@ -266,17 +266,17 @@
         "metrics": {
           "gzip": {
             "original": 24671,
-            "candidate": 32578,
-            "deltaBytes": 7907,
-            "deltaPercent": 32.049775039520085,
+            "candidate": 32175,
+            "deltaBytes": 7504,
+            "deltaPercent": 30.41627822139354,
             "ceiling": 25164,
             "pass": false
           },
           "brotli": {
             "original": 21953,
-            "candidate": 27776,
-            "deltaBytes": 5823,
-            "deltaPercent": 26.524848540062862,
+            "candidate": 27504,
+            "deltaBytes": 5551,
+            "deltaPercent": 25.2858379264793,
             "ceiling": 22392,
             "pass": false
           }
@@ -289,17 +289,17 @@
         "metrics": {
           "gzip": {
             "original": 30268,
-            "candidate": 37277,
-            "deltaBytes": 7009,
-            "deltaPercent": 23.156468878022995,
+            "candidate": 36895,
+            "deltaBytes": 6627,
+            "deltaPercent": 21.8944099378882,
             "ceiling": 30873,
             "pass": false
           },
           "brotli": {
             "original": 26749,
-            "candidate": 32496,
-            "deltaBytes": 5747,
-            "deltaPercent": 21.484915323937344,
+            "candidate": 32212,
+            "deltaBytes": 5463,
+            "deltaPercent": 20.423193390407118,
             "ceiling": 27283,
             "pass": false
           }
@@ -312,17 +312,17 @@
         "metrics": {
           "gzip": {
             "original": 47524,
-            "candidate": 55103,
-            "deltaBytes": 7579,
-            "deltaPercent": 15.947731672418147,
+            "candidate": 54797,
+            "deltaBytes": 7273,
+            "deltaPercent": 15.303846477569227,
             "ceiling": 45147,
             "pass": false
           },
           "brotli": {
             "original": 41231,
-            "candidate": 47284,
-            "deltaBytes": 6053,
-            "deltaPercent": 14.680701413984623,
+            "candidate": 47091,
+            "deltaBytes": 5860,
+            "deltaPercent": 14.212607018990564,
             "ceiling": 39169,
             "pass": false
           }
@@ -335,17 +335,17 @@
         "metrics": {
           "gzip": {
             "original": 58954,
-            "candidate": 67091,
-            "deltaBytes": 8137,
-            "deltaPercent": 13.802286528479831,
+            "candidate": 66987,
+            "deltaBytes": 8033,
+            "deltaPercent": 13.625877803032873,
             "ceiling": 60133,
             "pass": false
           },
           "brotli": {
             "original": 50720,
-            "candidate": 57192,
-            "deltaBytes": 6472,
-            "deltaPercent": 12.760252365930599,
+            "candidate": 57102,
+            "deltaBytes": 6382,
+            "deltaPercent": 12.58280757097792,
             "ceiling": 51734,
             "pass": false
           }
@@ -358,17 +358,17 @@
         "metrics": {
           "gzip": {
             "original": 115948,
-            "candidate": 128028,
-            "deltaBytes": 12080,
-            "deltaPercent": 10.41846344913237,
+            "candidate": 127908,
+            "deltaBytes": 11960,
+            "deltaPercent": 10.314968779107875,
             "ceiling": 118266,
             "pass": false
           },
           "brotli": {
             "original": 94544,
-            "candidate": 103535,
-            "deltaBytes": 8991,
-            "deltaPercent": 9.50985784396683,
+            "candidate": 103548,
+            "deltaBytes": 9004,
+            "deltaPercent": 9.523608055508546,
             "ceiling": 96434,
             "pass": false
           }
@@ -381,17 +381,17 @@
         "metrics": {
           "gzip": {
             "original": 29995,
-            "candidate": 35199,
-            "deltaBytes": 5204,
-            "deltaPercent": 17.34955825970995,
+            "candidate": 34782,
+            "deltaBytes": 4787,
+            "deltaPercent": 15.959326554425738,
             "ceiling": 30594,
             "pass": false
           },
           "brotli": {
             "original": 25958,
-            "candidate": 30647,
-            "deltaBytes": 4689,
-            "deltaPercent": 18.06379536173819,
+            "candidate": 30298,
+            "deltaBytes": 4340,
+            "deltaPercent": 16.71931581785962,
             "ceiling": 26477,
             "pass": false
           }
@@ -404,17 +404,17 @@
         "metrics": {
           "gzip": {
             "original": 30006,
-            "candidate": 35199,
-            "deltaBytes": 5193,
-            "deltaPercent": 17.306538692261547,
+            "candidate": 34782,
+            "deltaBytes": 4776,
+            "deltaPercent": 15.916816636672666,
             "ceiling": 30606,
             "pass": false
           },
           "brotli": {
             "original": 25964,
-            "candidate": 30647,
-            "deltaBytes": 4683,
-            "deltaPercent": 18.036512093668154,
+            "candidate": 30298,
+            "deltaBytes": 4334,
+            "deltaPercent": 16.692343244492374,
             "ceiling": 26483,
             "pass": false
           }
@@ -427,17 +427,17 @@
         "metrics": {
           "gzip": {
             "original": 53150,
-            "candidate": 60841,
-            "deltaBytes": 7691,
-            "deltaPercent": 14.470366886171213,
+            "candidate": 60424,
+            "deltaBytes": 7274,
+            "deltaPercent": 13.68579492003763,
             "ceiling": 54213,
             "pass": false
           },
           "brotli": {
             "original": 45546,
-            "candidate": 52403,
-            "deltaBytes": 6857,
-            "deltaPercent": 15.055109120449655,
+            "candidate": 52054,
+            "deltaBytes": 6508,
+            "deltaPercent": 14.288850832125762,
             "ceiling": 46456,
             "pass": false
           }
@@ -450,17 +450,17 @@
         "metrics": {
           "gzip": {
             "original": 35441,
-            "candidate": 44921,
-            "deltaBytes": 9480,
-            "deltaPercent": 26.748680906294968,
+            "candidate": 44518,
+            "deltaBytes": 9077,
+            "deltaPercent": 25.611579808696145,
             "ceiling": 36149,
             "pass": false
           },
           "brotli": {
             "original": 31633,
-            "candidate": 38808,
-            "deltaBytes": 7175,
-            "deltaPercent": 22.682009294091614,
+            "candidate": 38536,
+            "deltaBytes": 6903,
+            "deltaPercent": 21.822147757089116,
             "ceiling": 32265,
             "pass": false
           }
