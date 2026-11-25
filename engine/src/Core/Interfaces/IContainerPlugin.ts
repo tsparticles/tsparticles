@@ -14,9 +14,16 @@ export interface IContainerPlugin {
   /** Handles canvas painting, returns true if handled */
   canvasPaint?: () => boolean;
   /** Checks if a particle position is valid, with retry count */
-  checkParticlePosition?: (particle: Particle, position: ICoordinates, tryCount: number) => boolean;
+  checkParticlePosition?: (
+    particle: Particle,
+    position: ICoordinates,
+    tryCount: number,
+  ) => boolean;
   /** Clears plugin-specific drawings from the canvas */
-  clearDraw?: (context: OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
+  clearDraw?: (
+    context: OffscreenCanvasRenderingContext2D,
+    delta: IDelta,
+  ) => void;
   /** Validates a click position */
   clickPositionValid?: (position: ICoordinates) => boolean;
   /** Cleans up plugin resources */
@@ -24,19 +31,40 @@ export interface IContainerPlugin {
   /** Draws plugin content on the canvas */
   draw?: (context: OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
   /** Draws a particle managed by the plugin */
-  drawParticle?: (context: OffscreenCanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+  drawParticle?: (
+    context: OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
   /** Cleanup after drawing a particle */
-  drawParticleCleanup?: (context: OffscreenCanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+  drawParticleCleanup?: (
+    context: OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
   /** Setup before drawing a particle */
-  drawParticleSetup?: (context: OffscreenCanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+  drawParticleSetup?: (
+    context: OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
   /** Applies canvas transform before drawing a particle */
   drawParticleTransform?: (data: IShapeDrawData) => void;
   /** Cleanup after drawing settings */
-  drawSettingsCleanup?: (context: OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
+  drawSettingsCleanup?: (
+    context: OffscreenCanvasRenderingContext2D,
+    delta: IDelta,
+  ) => void;
   /** Setup before drawing settings */
-  drawSettingsSetup?: (context: OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
+  drawSettingsSetup?: (
+    context: OffscreenCanvasRenderingContext2D,
+    delta: IDelta,
+  ) => void;
   /** Exports the container content */
-  export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
+  export?: (
+    type: string,
+    data: Record<string, unknown>,
+  ) => Promise<ExportResult>;
   /** Initializes the plugin */
   init?: () => Promise<void>;
   /**
@@ -51,15 +79,24 @@ export interface IContainerPlugin {
    */
   layer?: DrawLayer;
   /** Handles particle bounce with the given direction */
-  particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+  particleBounce?: (
+    particle: Particle,
+    delta: IDelta,
+    direction: OutModeDirection,
+  ) => boolean;
   /** Called when a particle is created */
   particleCreated?: (particle: Particle) => void;
   /** Called when a particle is destroyed */
   particleDestroyed?: (particle: Particle, override?: boolean) => void;
   /** Returns the fill color for a particle */
-  particleFillColor?: (particle: Particle) => string | IOptionsColor | undefined;
+  particleFillColor?: (
+    particle: Particle,
+  ) => string | IOptionsColor | undefined;
   /** Returns a custom position for a particle */
-  particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
+  particlePosition?: (
+    position?: ICoordinates,
+    particle?: Particle,
+  ) => ICoordinates | undefined;
   /** Resets a particle state */
   particleReset?: (particle: Particle) => void;
   /** Returns the particle density count */
@@ -69,7 +106,9 @@ export interface IContainerPlugin {
   /** Sets up particles for the container */
   particlesSetup?: () => void;
   /** Returns the stroke color for a particle */
-  particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
+  particleStrokeColor?: (
+    particle: Particle,
+  ) => string | IOptionsColor | undefined;
   /** Updates a particle each frame */
   particleUpdate?: (particle: Particle, delta: IDelta) => void;
   /** Pauses the plugin */

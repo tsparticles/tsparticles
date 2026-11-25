@@ -15,7 +15,11 @@ import {
   loadOptionProperty,
   safeDocument,
 } from "@tsparticles/engine";
-import type { IParticleMode, InteractivityParticleContainer, ParticleMode } from "./Types.js";
+import type {
+  IParticleMode,
+  InteractivityParticleContainer,
+  ParticleMode,
+} from "./Types.js";
 import { InteractivityParticleOptions } from "./Options/Classes/InteractivityParticleOptions.js";
 
 const particleMode = "particle";
@@ -80,7 +84,8 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         }
 
         if (interactivityParticleOptions.replaceCursor) {
-          const element = interactivityData.element as HTMLElement | Window | Document | undefined;
+          const element = interactivityData.element as
+            HTMLElement | Window | Document | undefined;
 
           if (element) {
             if (element instanceof Window || element instanceof Document) {
@@ -112,10 +117,14 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         },
       }) as RecursivePartial<ParticlesOptions>;
 
-      this.#particle = container.particles.addParticle(this.#lastPosition, particleOptions);
+      this.#particle = container.particles.addParticle(
+        this.#lastPosition,
+        particleOptions,
+      );
 
       if (interactivityParticleOptions.replaceCursor) {
-        const element = interactivityData.element as HTMLElement | Window | Document | undefined;
+        const element = interactivityData.element as
+          HTMLElement | Window | Document | undefined;
 
         if (element) {
           if (element instanceof Window || element instanceof Document) {
@@ -135,7 +144,10 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     this.#particle.position.y = this.#lastPosition.y;
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -143,8 +155,13 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
     return (
       !!events &&
-      ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(particleMode, events.onClick.mode)) ||
-        (mouse.inside && !!mouse.position && isInArray(particleMode, events.onHover.mode)))
+      ((mouse.clicking &&
+        mouse.inside &&
+        !!mouse.position &&
+        isInArray(particleMode, events.onClick.mode)) ||
+        (mouse.inside &&
+          !!mouse.position &&
+          isInArray(particleMode, events.onHover.mode)))
     );
   }
 
@@ -152,6 +169,11 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     options: Modes & ParticleMode,
     ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
   ): void {
-    loadOptionProperty(options, "particle", InteractivityParticleOptions, ...sources);
+    loadOptionProperty(
+      options,
+      "particle",
+      InteractivityParticleOptions,
+      ...sources,
+    );
   }
 }
