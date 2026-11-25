@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import type { BackgroundDrawContext, IDelta, ISourceOptions } from "@tsparticles/engine";
+import type {
+  BackgroundDrawContext,
+  IDelta,
+  ISourceOptions,
+} from "@tsparticles/engine";
 
 const hues = new WeakMap<BackgroundDrawContext, number>(),
   options: ISourceOptions = {
@@ -63,7 +67,12 @@ const hues = new WeakMap<BackgroundDrawContext, number>(),
 
         hues.set(ctx, hue);
 
-        const gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, ctx.canvas.height);
+        const gradient = ctx.createLinearGradient(
+          0,
+          0,
+          ctx.canvas.width,
+          ctx.canvas.height,
+        );
 
         gradient.addColorStop(0, `hsl(${hue}, 70%, 20%)`);
         gradient.addColorStop(1, `hsl(${(hue + 60) % 360}, 70%, 10%)`);

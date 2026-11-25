@@ -6,7 +6,12 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
-import { type RecursivePartial, getRangeValue, isInArray, loadOptionProperty } from "@tsparticles/engine";
+import {
+  type RecursivePartial,
+  getRangeValue,
+  isInArray,
+  loadOptionProperty,
+} from "@tsparticles/engine";
 import { Remove } from "./Options/Classes/Remove.js";
 
 const removeMode = "remove";
@@ -15,7 +20,10 @@ const removeMode = "remove";
  * Particle attract manager
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
-  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (
+    mode: string,
+    interactivityData: IInteractivityData,
+  ) => void;
 
   readonly maxDistance = 0;
 
@@ -30,7 +38,10 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
         return;
       }
 
-      const removeNb = getRangeValue(options.interactivity.modes.remove.quantity, container.engine.getRandomFn());
+      const removeNb = getRangeValue(
+        options.interactivity.modes.remove.quantity,
+        container.engine.getRandomFn(),
+      );
 
       for (let i = 0; i < removeNb; i++) {
         container.particles.get(i)?.destroy();
@@ -46,13 +57,22 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     // do nothing
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
-    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(removeMode, events.onClick.mode);
+    return (
+      !!events &&
+      mouse.clicking &&
+      mouse.inside &&
+      !!mouse.position &&
+      isInArray(removeMode, events.onClick.mode)
+    );
   }
 
   loadModeOptions(

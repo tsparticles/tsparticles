@@ -37,7 +37,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
   /**
    * Handles click mode for adding emitters on click
    */
-  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (
+    mode: string,
+    interactivityData: IInteractivityData,
+  ) => void;
 
   /**
    * The maximum distance for the interactor
@@ -49,7 +52,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
   readonly #instancesManager;
 
-  constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
+  constructor(
+    instancesManager: EmittersInstancesManager,
+    container: EmitterContainer,
+  ) {
     super(container);
 
     this.#instancesManager = instancesManager;
@@ -76,7 +82,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
           const usedIndexes = new Set<number>();
 
           for (let i = 0; i < modeEmitters.random.count; i++) {
-            const idx = Math.floor(getRandom(container.engine.getRandomFn()) * modeEmitters.value.length);
+            const idx = Math.floor(
+              getRandom(container.engine.getRandomFn()) *
+                modeEmitters.value.length,
+            );
 
             if (usedIndexes.has(idx) && usedIndexes.size < modeEmittersCount) {
               i--;
@@ -103,8 +112,12 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       const emittersOptions = emittersModeOptions,
         ePosition = interactivityData.mouse.clickPosition;
 
-      void executeOnSingleOrMultiple(emittersOptions, async emitter => {
-        await this.#instancesManager.addEmitter(this.container, emitter, ePosition);
+      void executeOnSingleOrMultiple(emittersOptions, async (emitter) => {
+        await this.#instancesManager.addEmitter(
+          this.container,
+          emitter,
+          ePosition,
+        );
       });
     };
   }
@@ -131,7 +144,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     const container = this.container,
       emitters = this.#instancesManager.getArray(container),
-      updateEmitters = !container.plugins.some(plugin => plugin instanceof EmittersPluginInstance);
+      updateEmitters = !container.plugins.some(
+        (plugin) => plugin instanceof EmittersPluginInstance,
+      );
 
     if (!interactivityData.mouse.clicking) {
       this.#dragging = false;
@@ -145,8 +160,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         if (mouse.clicking && mouse.downPosition) {
           if (!this.#dragging) {
             const inside =
-              Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width * half &&
-              Math.abs(mouse.downPosition.y - emitter.position.y) <= emitter.size.height * half;
+              Math.abs(mouse.downPosition.x - emitter.position.x) <=
+                emitter.size.width * half &&
+              Math.abs(mouse.downPosition.y - emitter.position.y) <=
+                emitter.size.height * half;
 
             if (inside) {
               this.#dragging = true;
@@ -155,7 +172,11 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
           }
         }
 
-        if (this.#dragging && this.#draggingEmitter === emitter && mouse.position) {
+        if (
+          this.#dragging &&
+          this.#draggingEmitter === emitter &&
+          mouse.position
+        ) {
           emitter.setPosition(mouse.position);
         }
       }
@@ -172,7 +193,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * @param particle - the optional particle
    * @returns true if the interactor is enabled
    */
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -189,7 +213,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
     if (
       mouse.clicking &&
-      this.#instancesManager.getArray(container).some(emitter => emitter.options.draggable && !emitter.options.domId)
+      this.#instancesManager
+        .getArray(container)
+        .some((emitter) => emitter.options.draggable && !emitter.options.domId)
     ) {
       return true;
     }
@@ -231,8 +257,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       } else if ("value" in source.emitters) {
         const emitterModeOptions = source.emitters;
 
-        options.emitters.random.enable = emitterModeOptions.random?.enable ?? options.emitters.random.enable;
-        options.emitters.random.count = emitterModeOptions.random?.count ?? options.emitters.random.count;
+        options.emitters.random.enable =
+          emitterModeOptions.random?.enable ?? options.emitters.random.enable;
+        options.emitters.random.count =
+          emitterModeOptions.random?.count ?? options.emitters.random.count;
 
         if (isArray(emitterModeOptions.value)) {
           for (const emitter of emitterModeOptions.value) {
@@ -264,11 +292,15 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * @param emitter - the emitter instance to remove
    */
   removeEmitter(emitter: EmitterInstance): void {
-    const index = this.#instancesManager.getArray(this.container).indexOf(emitter),
+    const index = this.#instancesManager
+        .getArray(this.container)
+        .indexOf(emitter),
       deleteCount = 1;
 
     if (index >= minIndex) {
-      this.#instancesManager.getArray(this.container).splice(index, deleteCount);
+      this.#instancesManager
+        .getArray(this.container)
+        .splice(index, deleteCount);
     }
   }
 
