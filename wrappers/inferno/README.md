@@ -10,19 +10,19 @@ Official Inferno component wrapper for [tsParticles](https://github.com/matteobr
 ## Installation
 
 ```bash
-pnpm add @tsparticles/inferno @tsparticles/engine
+pnpm add @tsparticles/inferno @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-npm install @tsparticles/inferno @tsparticles/engine
+npm install @tsparticles/inferno @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-yarn add @tsparticles/inferno @tsparticles/engine
+yarn add @tsparticles/inferno @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage

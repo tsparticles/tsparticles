@@ -11,13 +11,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Lit web compo
 ## Installation
 
 ```shell
-npm install @tsparticles/lit @tsparticles/engine
+npm install @tsparticles/lit @tsparticles/engine tsparticles
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/lit @tsparticles/engine
+yarn add @tsparticles/lit @tsparticles/engine tsparticles
 ```
 
 ## Usage

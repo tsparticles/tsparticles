@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS comp
 ## Installation
 
 ```shell
-npm install @tsparticles/svelte
+npm install @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/svelte
+yarn add @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage
@@ -92,12 +92,13 @@ yarn add @tsparticles/svelte
 
 ## Component props
 
-| Prop      | Type             | Default         | Description                                                           |
-| --------- | ---------------- | --------------- | --------------------------------------------------------------------- |
-| `id`      | `string`         | `"tsparticles"` | The DOM element id used for the particles container.                  |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Reactive: changing replaces particles. |
-| `url`     | `string`         | `""`            | Remote JSON config URL. Reactive: changing reloads from URL.          |
-| `theme`   | `string`         | —               | Theme name to apply (requires `@tsparticles/plugin-themes`).          |
+| Prop      | Type             | Default         | Description                                                                 |
+| --------- | ---------------- | --------------- | --------------------------------------------------------------------------- |
+| `engine`  | `Engine`         | required        | Explicit engine used to register plugins and create the particle container. |
+| `id`      | `string`         | `"tsparticles"` | The DOM element id used for the particles container.                        |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Reactive: changing replaces particles.       |
+| `url`     | `string`         | `""`            | Remote JSON config URL. Reactive: changing reloads from URL.                |
+| `theme`   | `string`         | —               | Theme name to apply (requires `@tsparticles/plugin-themes`).                |
 
 ## Reactive behavior
 
@@ -118,7 +119,7 @@ The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://ww
 ```ts
 import { loadThemePlugin } from '@tsparticles/plugin-themes';
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(particlesEngine, async (engine) => {
 	await loadThemePlugin(engine);
 	// ... load other presets/plugins
 });
@@ -128,7 +129,7 @@ When the plugin is loaded, changing `theme` applies the new theme on the fly wit
 
 ## Particles loaded event
 
-The `on:particlesLoaded` event fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+The `on:particlesLoaded` event detail contains an optional container after the supplied engine's `load()` resolves. Always guard for `event.detail.particles` being undefined. Pass the same initialized `particlesEngine` used to register plugins:
 
 ```html
 <script>
@@ -141,7 +142,7 @@ The `on:particlesLoaded` event fires with `Container | undefined` after `tsParti
 	};
 </script>
 
-<Particles on:particlesLoaded="{handleParticlesLoaded}" />
+<Particles engine="{particlesEngine}" on:particlesLoaded="{handleParticlesLoaded}" />
 ```
 
 ## SSR

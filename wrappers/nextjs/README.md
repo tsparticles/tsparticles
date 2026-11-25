@@ -13,19 +13,19 @@ Next.js integration wrapper for [@tsparticles/react](https://www.npmjs.com/packa
 ## Installation
 
 ```bash
-pnpm add @tsparticles/nextjs @tsparticles/react @tsparticles/engine
+pnpm add @tsparticles/nextjs @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-npm install @tsparticles/nextjs @tsparticles/react @tsparticles/engine
+npm install @tsparticles/nextjs @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-yarn add @tsparticles/nextjs @tsparticles/react @tsparticles/engine
+yarn add @tsparticles/nextjs @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
 > [!IMPORTANT]

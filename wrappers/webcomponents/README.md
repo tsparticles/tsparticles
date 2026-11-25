@@ -9,20 +9,20 @@ Official [tsParticles](https://github.com/tsparticles/tsparticles) Web Component
 ## Installation
 
 ```shell
-npm install @tsparticles/webcomponents @tsparticles/engine
+npm install @tsparticles/webcomponents @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/webcomponents @tsparticles/engine
+yarn add @tsparticles/webcomponents @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage
 
 ```ts
 import { createEngine } from "@tsparticles/engine";
-import { initParticlesEngine } from "@tsparticles/webcomponents";
+import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 
 const engine = createEngine();
@@ -30,41 +30,45 @@ const engine = createEngine();
 await initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
+
+defineParticlesElement();
 ```
 
-Then use the custom element:
+Using the initialized `engine` from the setup above, create the element, assign
+the engine property, and only then connect it to the document. Engine objects
+cannot be serialized as HTML attributes:
 
-```html
-<web-particles id="tsparticles" url="https://foo.bar/particles.json"></web-particles>
+```js
+const urlElement = document.createElement("web-particles");
+urlElement.id = "tsparticles";
+urlElement.engine = engine;
+urlElement.url = "https://foo.bar/particles.json";
+document.body.append(urlElement);
 
-<!-- or -->
-
-<web-particles id="tsparticles-options"></web-particles>
-
-<script>
-  const element = document.getElementById("tsparticles-options");
-
-  element.engine = engine;
-  element.options = {
-    background: {
-      color: {
-        value: "#0d47a1",
-      },
+// Or configure particles with an options object.
+const optionsElement = document.createElement("web-particles");
+optionsElement.id = "tsparticles-options";
+optionsElement.engine = engine;
+optionsElement.options = {
+  background: {
+    color: {
+      value: "#0d47a1",
     },
-    particles: {
-      links: {
-        enable: true,
-      },
-      move: {
-        enable: true,
-      },
+  },
+  particles: {
+    links: {
+      enable: true,
     },
-  };
+    move: {
+      enable: true,
+    },
+  },
+};
 
-  element.addEventListener("particlesLoaded", event => {
-    console.log(event.detail);
-  });
-</script>
+optionsElement.addEventListener("particlesLoaded", event => {
+  console.log(event.detail);
+});
+document.body.append(optionsElement);
 ```
 
 ## Observed Attributes
@@ -80,8 +84,8 @@ The `<web-particles>` custom element observes the following attributes for react
 
 > **Note**: Theme support requires the optional `@tsparticles/plugin-themes` plugin. Without it, `data-theme` changes are silently ignored.
 
-The engine is an object property and must be assigned from JavaScript after
-creating it. It cannot be configured with an HTML attribute.
+The `engine` property is required on every element. Assign it from JavaScript
+before connecting the element; it is not an observed HTML attribute.
 
 ## Reactivity
 

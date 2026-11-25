@@ -1,35 +1,34 @@
-// Type definitions for preact-particles
-// Project: https://github.com/matteobruni/tsparticles
-// Definitions by: Matteo Bruni <https://github.com/matteobruni>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
-import type { ComponentClass } from "react";
-import { CSSProperties, RefObject } from "react";
+import type { ComponentClass, CSSProperties, RefObject } from "preact/compat";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 
 export interface IParticlesProps {
-    id?: string;
-    width?: string;
-    height?: string;
-    options?: ISourceOptions;
-    url?: string;
-    params?: ISourceOptions;
-    style?: CSSProperties;
-    className?: string;
-    canvasClassName?: string;
-    container?: RefObject<Container>;
-    particlesLoaded?: (container: Container) => Promise<void>;
+  engine: Engine;
+  id?: string;
+  width?: string;
+  height?: string;
+  options?: ISourceOptions;
+  url?: string;
+  params?: ISourceOptions;
+  style?: CSSProperties;
+  className?: string;
+  canvasClassName?: string;
+  container?: RefObject<Container | undefined>;
+  particlesLoaded?: (container?: Container) => Promise<void>;
+  theme?: string;
 }
 
 export interface IParticlesState {
-    library?: Container;
+  init: boolean;
+  library?: Container;
 }
+
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 type Particles = ComponentClass<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;
 
-declare function initParticlesEngine(cb: (engine: Engine) => Promise<void>): Promise<void>;
+declare function initParticlesEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void>;
 
 export default Particles;
 export { Particles, initParticlesEngine };

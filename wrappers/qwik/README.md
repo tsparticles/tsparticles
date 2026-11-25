@@ -10,19 +10,19 @@ Official Qwik component wrapper for [tsParticles](https://github.com/matteobruni
 ## Installation
 
 ```bash
-pnpm add @tsparticles/qwik @tsparticles/engine
+pnpm add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-npm install @tsparticles/qwik @tsparticles/engine
+npm install @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-yarn add @tsparticles/qwik @tsparticles/engine
+yarn add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage

@@ -2,7 +2,7 @@
   {
     "name": "scaffold",
     "archive": "tsparticles-template-scaffold-4.6.0.tgz",
-    "files": 228,
+    "files": 250,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -30,7 +30,7 @@
   {
     "name": "login",
     "archive": "tsparticles-template-login-4.6.0.tgz",
-    "files": 74,
+    "files": 93,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -58,7 +58,7 @@
   {
     "name": "portfolio",
     "archive": "tsparticles-template-portfolio-4.6.0.tgz",
-    "files": 72,
+    "files": 91,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -86,7 +86,7 @@
   {
     "name": "landing",
     "archive": "tsparticles-template-landing-4.6.0.tgz",
-    "files": 69,
+    "files": 88,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -114,7 +114,7 @@
   {
     "name": "tictactoe",
     "archive": "tsparticles-template-tictactoe-4.6.0.tgz",
-    "files": 76,
+    "files": 96,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -142,7 +142,7 @@
   {
     "name": "confetti",
     "archive": "tsparticles-template-confetti-4.6.0.tgz",
-    "files": 71,
+    "files": 90,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -170,7 +170,7 @@
   {
     "name": "ribbons",
     "archive": "tsparticles-template-ribbons-4.6.0.tgz",
-    "files": 69,
+    "files": 88,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -198,7 +198,7 @@
   {
     "name": "particles",
     "archive": "tsparticles-template-particles-4.6.0.tgz",
-    "files": 69,
+    "files": 88,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "angular-confetti",
@@ -226,7 +226,7 @@
   {
     "name": "404",
     "archive": "tsparticles-template-404-4.6.0.tgz",
-    "files": 14,
+    "files": 15,
     "retiredVariants": 0,
     "supportedFrameworks": [
       "vanilla"

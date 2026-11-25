@@ -12,6 +12,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "@tsparticles/nextjs": "^4.4.0",
+    "@tsparticles/react": "^4.4.0",
     "@tsparticles/engine": "^4.4.0",
     "@tsparticles/slim": "^4.4.0"
   },

@@ -15,28 +15,18 @@ If you are using Next.js, prefer [@tsparticles/nextjs](https://www.npmjs.com/pac
 ## Installation
 
 ```shell
-npm install @tsparticles/react
+npm install @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/react
+yarn add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-### TypeScript Installation
-
-```shell
-npm install @tsparticles/react @tsparticles/engine
-```
-
-or
-
-```shell
-yarn add @tsparticles/react @tsparticles/engine
-```
-
-[@tsparticles/engine](https://npmjs.com/package/@tsparticles/engine) is the core package for [tsParticles](https://particles.js.org), it contains useful types like `ISourceOptions`, `Engine` or `Container`.
+The examples use `@tsparticles/slim` as the feature loader. The engine package
+is also required at runtime to create the explicit engine and provides types
+such as `ISourceOptions`, `Engine` and `Container`.
 
 ### React templates
 

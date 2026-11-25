@@ -14,8 +14,8 @@
   and 1.8 ms forced HDR against the unchanged 1.87 ms ceiling. Bundle SHA-256
   and row results are in `handovers/evidence/e10/budget-screen-callback-fastpath.json`.
   The quiet M4/500 E0 update/render ceilings also pass; its 7.2 ms frame p95 is
-  0.05 ms above the historical E5 reference. The physical HDR, guide review and
-  remaining generated-framework gates keep E10 in progress.
+  0.05 ms above the historical E5 reference. Physical HDR and documentation
+  reviews keep E10 in progress; the CLI scaffold consumer gate is now complete.
 - The focused rendering lifecycle tests pass (15). The full Nx test run has 946
   passing tests across 61 files; four server-based targets passed when retried
   with local-port access. The broad build succeeded for 232 of 235 projects;
@@ -23,7 +23,7 @@
   91 dependency tasks on retry. Angular reported its existing component-style
   budget warning. Bundle and installed-package evidence has been refreshed
   after the engine build. The callback-free draw follow-up now passes the HDR
-  row and all 30 E0 runtime rows; hardware HDR and remaining release gates are
+  row and all 30 E0 runtime rows; hardware HDR and other release gates are
   still open.
 - Repeated the packed-template retirement check after the rebuild: all nine
   template archives still contain zero retired Vue 2/Nuxt 2/Nuxt 3 variants,
@@ -38,15 +38,35 @@
   a second canvas. The jQuery consumer exposed an ESM/UMD global mismatch;
   updated the scaffold to bind the imported jQuery instance before dynamically
   loading its plugin. The Riot consumer also exposed missing package declarations;
-  added and shipped types for the wrapper API. All ten checked CLI frameworks
-  pass type checking, production build and Chrome one-canvas smoke without
-  browser or console errors. Riot and Astro wrapper tests pass. The ten
-  untested CLI scaffold templates are Angular, Angular Confetti, Angular
-  Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and Stencil.
+  added and shipped types for the wrapper API. Added consumer checks for the
+  remaining ten frameworks and fixed the Angular builders, Preact declarations,
+  Stencil host page, Next.js React-wrapper dependency/favicon, Nuxt 4 package
+  dependency/client-only component registration, and Ember engine module/argument.
+  All twenty CLI frameworks pass type checking, production build and Chrome
+  one-canvas smoke without browser or console errors. Riot and Astro wrapper
+  tests pass; no generated scaffold consumer checks remain open.
+- Continued the wrapper README audit: corrected stale initialization and
+  missing-engine examples or install instructions in Riot, Ember and Svelte;
+  added the required engine to Stencil and Web Components examples; and
+  corrected singleton-based load descriptions in Angular, Vue, Solid, Svelte
+  and Stencil. A wrapper README scan now finds no `tsParticles.load` references.
+  The Astro README's server-side initialization and invalid import-map example
+  were replaced with valid Astro frontmatter plus client-side engine
+  registration and property assignment. Astro's 4 tests and direct `build:ci`
+  passed. Wrapper README installation commands were also cross-checked against
+  their imports; the affected React, Angular, Vue, Inferno, Next.js, Nuxt,
+  Qwik, Stencil, Svelte and Web Components examples now install the engine and
+  their feature loader, while Angular Fireworks installs its direct engine
+  peer. Preact, Solid and Lit now install `tsparticles` for `loadFull`.
+  Targeted Angular, Vue, Svelte, Stencil, Web Components and Solid tests pass;
+  the Web Components package's direct `build:ci` also passes. Its Nx build
+  target remains blocked by pre-existing Prettier failures in the Rollup
+  plugin dependency. Broader consumer documentation review remains open.
 - Added internal first-pass v5 migration drafts for all nine supported locales.
   The structural checker verifies each section hierarchy, all five unchanged
   code examples and resolving local links. Native-language review remains
-  open; the current v4 website documentation is unchanged.
+  open; eight drafts still have stale scaffold-coverage summaries to correct
+  during review. The current v4 website documentation is unchanged.
 - Tested a semantically equivalent Canvas2D transform reset in a 21-run HDR
   comparison. The variant's 1.9 ms median did not establish a stable win over
   the current 2.0 ms run or clear the 1.87 ms limit; it is archived and not
@@ -98,9 +118,9 @@
   explicit engine in all ten locale trees. The full Riot example runs in
   Chrome; Ember passes strict TypeScript, template parsing and its production
   demo browser check. The Ember demo renders two scenes and adds a third when
-  Confetti is enabled. Other wrapper documentation and generated framework
-  consumers still need verification. Deprecated API retirement and
-  browser/hardware coverage also remain open.
+  Confetti is enabled. Broader wrapper documentation still needs review, but
+  all twenty generated CLI framework consumers now pass. Deprecated API
+  retirement and browser/hardware coverage also remain open.
 - The maintained React demo production build passed (62 tasks, 13 cached), and
   Chrome 158 mounted one canvas from the built artifact without page or console
   errors. Reproduction and output are recorded in the E10 evidence README and

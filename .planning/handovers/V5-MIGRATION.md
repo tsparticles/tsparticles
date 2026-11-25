@@ -8,15 +8,13 @@ represented as passing. The callback-free renderer follow-up passes all 30
 runtime rows against unchanged E0 ceilings; runtime, allocation, and retention
 criteria remain active.
 
-The vanilla TypeScript MCP-generated example and CLI scaffold pass isolated
-type-checking and Chrome initialization using rebuilt candidate packages; the
-CLI scaffold also passes its production build. All nine packed template
-families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants. Ten of the
-twenty CLI scaffold templates have isolated consumer checks. Angular, Angular
-Confetti, Angular Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and
-Stencil consumer checks, native-language review of all nine first-pass
-translation drafts, broader consumer review, and the HDR/browser hardware gate
-remain open. Drafts and locale status are tracked in
+The vanilla TypeScript MCP-generated example and all twenty CLI scaffold
+templates pass isolated consumer checks against rebuilt candidate packages,
+including production builds and Chrome initialization. All nine packed
+template families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants.
+Native-language review of all nine first-pass translation drafts, broader
+consumer review, and the HDR/browser hardware gate remain open. Drafts and
+locale status are tracked in
 [`migration-drafts/`](evidence/e10/migration-drafts/README.md). Keep these as
 internal drafts; they are not completed release migration guides.
 

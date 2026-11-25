@@ -20,3 +20,10 @@ Run `node .planning/handovers/evidence/tools/check-migration-draft-alignment.mjs
 to verify that each draft retains the English guide's section hierarchy and
 exact code examples and that its relative Markdown links resolve. This
 structural check does not replace terminology or native-language review.
+
+Native-language review is still required for every draft. The progress
+paragraphs in the German, Spanish, French, Hindi, Japanese, Portuguese,
+Russian, and Chinese drafts still say generated combinations beyond Vanilla,
+React, Vue 3, Solid, and Lit are pending. That status is stale now that all 20
+CLI scaffolds pass; correct it during native-language review rather than
+treating the structural check as language sign-off.

@@ -1,7 +1,12 @@
 import { Component, type JSX, h } from "@stencil/core";
 import type { Engine } from "@tsparticles/engine";
+import { defineCustomElements } from "@tsparticles/stencil/loader";
 import { engine } from "../../../particlesEngine";
 import { loadSlim } from "@tsparticles/slim";
+
+if (typeof window !== "undefined") {
+  defineCustomElements(window);
+}
 
 @Component({
   tag: "app-home",

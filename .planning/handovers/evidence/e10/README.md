@@ -3,8 +3,9 @@
 E10 remains open and does not authorize a release. The latest callback-free
 renderer follow-up passes all 30 runtime rows against unchanged E0 ceilings.
 The remaining closure gates are physical HDR verification, native-language
-review of the migration drafts, and consumer checks for the ten CLI framework
-templates not yet covered below. Frozen E0 budgets remain unchanged.
+review of the migration drafts, and broader consumer-documentation review. All
+20 CLI scaffold templates now pass isolated consumer checks. Frozen E0 budgets
+remain unchanged.
 
 ## Reproduction
 
@@ -49,6 +50,16 @@ node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=s
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=webcomponents
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=riot
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=astro
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=angular
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=angular-confetti
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=angular-fireworks
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=ember
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=inferno
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=nextjs
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=nuxt4
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=preact
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=qwik
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=stencil
 node .planning/handovers/evidence/tools/measure-e10-runtime-control.mjs .planning/handovers/evidence/e10 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js --file=runtime-callback-fastpath-confirmation.json --repetitions=9 --cases=M3:100,M3:500,M3:1000,M4:100,M4:500,M4:1000,M5:100,M5:500,M5:1000,M6:100,M6:500,M6:1000,M7:100,M7:500,M7:1000,M8:100,M8:500,M8:1000
 node .planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs --output-dir=.planning/handovers/evidence/e10 --file=runtime-extended-callback-fastpath-confirmation.json --repetitions=9 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js
 node .planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs --force-hdr --output-dir=.planning/handovers/evidence/e10 --file=runtime-extended-hdr-callback-fastpath-confirmation.json --repetitions=9 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js
@@ -124,15 +135,17 @@ corrected and rechecked in its target build.
   vanilla TypeScript example has been compiled and run from 13 extracted
   package tarballs in an isolated consumer. The CLI Vanilla scaffold was
   generated, type-checked, production-built, and started in Chrome from 41
-  extracted package tarballs. All ten checked framework scaffolds pass the same
-  consumer checks from their packed local package graphs. See
-  `generated-consumer.json` and `cli-*-scaffold.json`. The checked frameworks
-  are Astro, jQuery, Lit, React, Riot, Solid, Svelte, Vanilla, Vue 3 and Web
-  Components. The remaining scaffold templates are Angular, Angular Confetti,
-  Angular Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and Stencil.
-  Their generated-consumer checks and native-language migration-draft review
-  remain open. G1–G7 source review dispositions were collected and closed in
-  E8.
+  extracted package tarballs. All twenty framework scaffolds pass isolated
+  type-check/build and Chrome one-canvas checks from their local package
+  graphs. See `generated-consumer.json` and `cli-*-scaffold.json`. The verified
+  frameworks are Angular, Angular Confetti, Angular Fireworks, Astro, Ember,
+  Inferno, jQuery, Lit, Next.js, Nuxt 4, Preact, Qwik, React, Riot, Solid,
+  Stencil, Svelte, Vanilla, Vue 3 and Web Components. The final consumer pass
+  fixed the Next.js React-wrapper dependency, Nuxt 4's published `@nuxt/kit`
+  dependency and client-only component registration, and Ember's engine module
+  path and modifier argument. Native-language migration-draft and broader
+  consumer-documentation reviews remain open. G1–G7 source review dispositions
+  were collected and closed in E8.
   The [architecture reconciliation](../../V5-ARCHITECTURE-DECISIONS.md#e10-evidence-reconciliation--2026-11-24)
   links the four decisions to their consumer evidence. The
   color report is recorded. At this checkpoint C5 remained open for two
@@ -153,10 +166,40 @@ corrected and rechecked in its target build.
   upgrade message. The built engine still checks for
   `transferControlToOffscreen`; the recorded E0/E9 Browserslist policy remains
   in force.
+- Eight localized migration drafts still describe generated combinations
+  beyond Vanilla, React, Vue 3, Solid and Lit as pending, despite the 20/20
+  scaffold results. Correct those status paragraphs during the pending
+  native-language review; the structural alignment check is not language
+  sign-off.
 - The English documentation and nine locale trees were searched for legacy
   wrapper names and engine initialization patterns. The wrapper-name scan is
-  clear. Wrapper API examples outside the guides verified below still require
-  migration review.
+  clear. A spot-audit of wrapper READMEs found stale engine-first initializer
+  calls in Riot, Ember and Svelte, plus missing required engine props in the
+  Riot/Ember examples and incomplete engine dependency/prop documentation.
+  Corrected those examples and install commands. A follow-up audit found that
+  Stencil's required engine prop was missing from its examples, its raw HTML
+  URL example could not supply that property, and several callback descriptions
+  still attributed loads to the old `tsParticles` singleton. The Stencil and
+  Web Components guides now pass an explicit engine before connecting custom
+  elements; Angular, Vue, Solid, Svelte and Stencil callback docs describe the
+  engine-owned load behavior. The current targeted runs pass Angular (9),
+  Vue (7), Svelte (5), Stencil (4), Web Components (9), and Solid (10 client
+  plus 2 SSR) tests; the earlier Riot/Ember/Svelte batch passed 14. Remaining
+  wrapper README and consumer examples still require broader migration review.
+  The Web Components direct package `build:ci` passes and exports
+  `defineParticlesElement`; the Nx `build:ci` path is still blocked upstream by
+  existing Prettier failures in the Rollup plugin dependency
+  (`createSingleConfig.ts`, `iifePolicy.ts`).
+- The Astro README's malformed frontmatter, server-side engine initialization,
+  and invalid import-map example were replaced with valid server-rendered
+  markup and a client script that initializes an engine, waits for the custom
+  element definition, and assigns the engine property. The Astro test target
+  passed 4 tests and its direct `build:ci` passed.
+- Wrapper README install commands were cross-checked against example imports.
+  React, Angular, Vue, Inferno, Next.js, Nuxt, Qwik, Stencil, Svelte and Web
+  Components now install the engine and feature loader used in their examples;
+  Angular Fireworks installs its direct engine peer. Preact, Solid and Lit now
+  install `tsparticles` for their `loadFull` examples.
 - Documentation disposition: the default and nine localized Vanilla guides
   are byte-identical copies, and their CDN examples explicitly pin the still
   published v4 packages (`@4`). The generated TypeDoc site also identifies a
@@ -513,25 +556,26 @@ installed-package sizes are recorded in `bundle-sizes.json` and
 The vanilla MCP-generated consumer and CLI scaffold were re-extracted from the
 fresh package builds and rechecked after the renderer change. The MCP consumer
 passed strict TypeScript and mounted one canvas in headless Chrome from 13
-package tarballs. The CLI scaffold check now covers Vanilla, React, Vue 3, Solid,
-Lit, Svelte, Web Components, Riot, Astro and jQuery. All ten pass framework-appropriate
-type checking, production build and headless Chrome initialization with one
-canvas and no browser or console errors. Vue 3 uses `vue-tsc`; Svelte uses
-`svelte-check`; Astro uses `astro check`; other frameworks use TypeScript. The
-Web Components consumer check found and fixed a scaffold issue: its custom
-element had no options, so it initialized without a canvas. Riot's consumer
-check found missing public TypeScript declarations and missing scaffold
-component registration/engine state. The wrapper now ships declarations, and
-the scaffold registers the component with its owning engine. The Astro check
-found a missing component in its scaffold and that the wrapper failed to pass
-its host element to the engine, resulting in a duplicate canvas; both are
-fixed. The Riot and Astro wrapper Nx test targets pass. Results are in
-`cli-*-scaffold.json`. The jQuery check exposed an ESM/UMD global mismatch:
-the generated app imported jQuery as an ES module but loaded a wrapper bundle
-that expects `window.jQuery`. The scaffold now binds that instance before
-dynamically importing the plugin. Its isolated typecheck, production build and
-Chrome smoke pass; the result is in `cli-jquery-scaffold.json`. Other generated
-framework combinations remain open.
+package tarballs. The CLI scaffold check now covers all twenty frameworks:
+Angular, Angular Confetti, Angular Fireworks, Astro, Ember, Inferno, jQuery,
+Lit, Next.js, Nuxt 4, Preact, Qwik, React, Riot, Solid, Stencil, Svelte,
+Vanilla, Vue 3 and Web Components. All pass framework-appropriate type
+checking, production build and headless Chrome initialization with one canvas
+and no browser or console errors. Vue 3 uses `vue-tsc`; Svelte uses
+`svelte-check`; Astro uses `astro check`; other frameworks use their production
+build/typecheck path. The earlier Web Components, Riot, Astro and jQuery
+consumer findings are fixed: custom-element options, Riot declarations and
+registration/engine state, Astro component/host wiring, and the jQuery ESM/UMD
+global are covered by the scaffold fixes; Riot and Astro wrapper Nx test
+targets pass.
+
+The final ten checks found and fixed additional scaffold issues: obsolete
+Angular builders; stale Preact public declarations; a Stencil app without a
+host page or registered custom element; missing Next.js React-wrapper
+dependency and favicon; Nuxt 4's omitted published `@nuxt/kit` dependency and
+incorrect SSR component usage; and Ember's engine module path and missing
+modifier engine argument. Their results are in `cli-*-scaffold.json`. No CLI
+scaffold consumer checks remain open.
 
 First-pass drafts for all nine supported locales are in `migration-drafts/`.
 `check-migration-draft-alignment.mjs` confirms each section hierarchy and all
@@ -576,8 +620,9 @@ containers.
 The fresh quiet M4/500 comparison also passes E0 update (3.30 ms / 3.52 ms)
 and render (2.40 ms / 2.53 ms) ceilings. Its frame p95 is 7.20 ms, 0.05 ms
 above the historical E5 reference of 7.15 ms. E10 remains open for physical
-HDR verification, native-language migration-guide review and the remaining
-generated framework consumers. Size references remain diagnostic under the
-accepted E10 criterion; no budget threshold was changed.
+HDR verification, native-language migration-guide review and broader consumer
+documentation review. All generated CLI scaffold consumers pass. Size
+references remain diagnostic under the accepted E10 criterion; no budget
+threshold was changed.
 
 No version bump, commit, publication, deployment or release was performed.

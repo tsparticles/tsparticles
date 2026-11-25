@@ -4,7 +4,6 @@ import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import { MutableRefObject } from "react";
 import React from "preact/compat";
 import { deepCompare } from "./Utils";
 
@@ -193,7 +192,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     this.#container = container;
 
     if (this.props.container) {
-      (this.props.container as MutableRefObject<Container | undefined>).current = container;
+      this.props.container.current = container;
     }
 
     this.setState({ library: container });

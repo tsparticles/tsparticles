@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) solid compone
 ## Installation
 
 ```shell
-npm install @tsparticles/solid
+npm install @tsparticles/solid @tsparticles/engine tsparticles
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/solid
+yarn add @tsparticles/solid @tsparticles/engine tsparticles
 ```
 
 ## How to use
@@ -81,20 +81,20 @@ function App() {
 
 ### Props
 
-| Prop            | Type                                       | Default         | Description                                                                                    |
-| --------------- | ------------------------------------------ | --------------- | ---------------------------------------------------------------------------------------------- |
-| id              | string                                     | `"tsparticles"` | The id of the element. Reactive: changing destroys old container and creates a new one.        |
-| width           | string                                     |                 | The width of the canvas.                                                                       |
-| height          | string                                     |                 | The height of the canvas.                                                                      |
-| options         | `ISourceOptions`                           |                 | The options of the particles instance. Reactive: changing replaces particles.                  |
-| url             | string                                     |                 | The remote options url, called using an AJAX request. Reactive: changing reloads from URL.     |
-| params          | `ISourceOptions`                           |                 | Alias for `options`.                                                                           |
-| style           | `JSX.CSSProperties`                        |                 | The style of the canvas element.                                                               |
-| class           | string                                     |                 | The class name of the canvas wrapper.                                                          |
-| canvasClass     | string                                     |                 | The class name of the canvas.                                                                  |
-| container       | `{ current: Container }`                   |                 | Reference to the particles container instance.                                                 |
-| theme           | string                                     |                 | Theme name to apply (requires `@tsparticles/plugin-themes`).                                   |
-| particlesLoaded | `(container?: Container) => Promise<void>` |                 | Callback fired after `tsParticles.load()` resolves. The container may be undefined on failure. |
+| Prop            | Type                                       | Default         | Description                                                                                              |
+| --------------- | ------------------------------------------ | --------------- | -------------------------------------------------------------------------------------------------------- |
+| id              | string                                     | `"tsparticles"` | The id of the element. Reactive: changing destroys old container and creates a new one.                  |
+| width           | string                                     |                 | The width of the canvas.                                                                                 |
+| height          | string                                     |                 | The height of the canvas.                                                                                |
+| options         | `ISourceOptions`                           |                 | The options of the particles instance. Reactive: changing replaces particles.                            |
+| url             | string                                     |                 | The remote options url, called using an AJAX request. Reactive: changing reloads from URL.               |
+| params          | `ISourceOptions`                           |                 | Alias for `options`.                                                                                     |
+| style           | `JSX.CSSProperties`                        |                 | The style of the canvas element.                                                                         |
+| class           | string                                     |                 | The class name of the canvas wrapper.                                                                    |
+| canvasClass     | string                                     |                 | The class name of the canvas.                                                                            |
+| container       | `{ current: Container }`                   |                 | Reference to the particles container instance.                                                           |
+| theme           | string                                     |                 | Theme name to apply (requires `@tsparticles/plugin-themes`).                                             |
+| particlesLoaded | `(container?: Container) => Promise<void>` |                 | Callback fired after the supplied engine's `load()` resolves. The container may be undefined on failure. |
 
 ## Reactive behavior
 
@@ -120,7 +120,7 @@ When the plugin is loaded, changing `theme` applies the new theme on the fly wit
 
 ## Loaded callback
 
-The `particlesLoaded` callback fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+The `particlesLoaded` callback fires with `Container | undefined` after the supplied engine's `load()` resolves. Always guard for `undefined`:
 
 ```ts
 function particlesLoaded(container?: Container): void {

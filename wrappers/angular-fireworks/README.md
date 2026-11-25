@@ -9,13 +9,13 @@ Official Angular wrapper for [@tsparticles/fireworks](https://www.npmjs.com/pack
 ## Installation
 
 ```shell
-npm install angular-fireworks @tsparticles/fireworks
+npm install angular-fireworks @tsparticles/fireworks @tsparticles/engine
 ```
 
 or
 
 ```shell
-yarn add angular-fireworks @tsparticles/fireworks
+yarn add angular-fireworks @tsparticles/fireworks @tsparticles/engine
 ```
 
 ## How to use

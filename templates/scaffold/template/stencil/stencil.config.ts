@@ -7,5 +7,9 @@ export const config: Config = {
     {
       type: "dist",
     },
+    {
+      type: "www",
+      serviceWorker: null,
+    },
   ],
 };

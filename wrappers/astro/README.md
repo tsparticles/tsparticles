@@ -13,100 +13,71 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Astro compone
 ## Installation
 
 ```shell
-npm install @tsparticles/astro
+npm install @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/astro
+yarn add @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
 ## How to use
 
 ```astro
-import { createEngine } from "@tsparticles/engine";
-const particlesEngine = createEngine();
 ---
-import Particles, { initParticlesEngine } from "@tsparticles/astro";
-import { loadSlim } from "@tsparticles/slim";
+import Particles from "@tsparticles/astro";
 import type { ISourceOptions } from "@tsparticles/engine";
 
-await initParticlesEngine(particlesEngine, async (engine) => {
-    await loadSlim(engine);
-});
-
 const options: ISourceOptions = {
-    background: {
-        color: {
-            value: "#000"
-        }
+  background: {
+    color: {
+      value: "#000",
     },
-    fullScreen: {
-        zIndex: -1,
+  },
+  fullScreen: {
+    zIndex: -1,
+  },
+  particles: {
+    links: {
+      enable: true,
     },
-    particles: {
-        links: {
-            enable: true,
-        },
-        number: {
-            value: 100,
-        },
-        move: {
-            enable: true,
-        },
-    }
+    number: {
+      value: 100,
+    },
+    move: {
+      enable: true,
+    },
+  },
 };
 ---
+<Particles id="tsparticles" options={options} />
 
 <script>
-    import type { Container } from "@tsparticles/engine";
-
-    window.particlesLoaded = function (container: Container) {
-        console.log("particlesLoaded callback");
-    };
-</script>
-
-<Particles id="tsparticles" options={options} loaded="particlesLoaded" />
-```
-
-## Dev notes
-
-When running the Astro demo in development, Vite/Astro may serve modules directly from the workspace and
-the browser needs a browser-ready ESM entry for the wrapper. To ensure the client runtime is initialized
-before the custom element upgrades, call initParticlesEngine on the client before the element is upgraded.
-
-Recommended minimal pattern (client-side) — place this in your page before the <Particles> element:
-
-```html
-<script type="importmap">
-    import { createEngine } from "@tsparticles/engine";
-  const particlesEngine = createEngine();
-  {
-      "imports": {
-        "@tsparticles/astro": "/node_modules/@tsparticles/astro/dist/index.client.js",
-        "tsparticles": "/node_modules/tsparticles/esm/index.js"
-      }
-    }
-</script>
-
-<script type="module">
+  import { createEngine } from "@tsparticles/engine";
+  import { loadSlim } from "@tsparticles/slim";
   import { initParticlesEngine } from "@tsparticles/astro";
 
-  // Initialize the engine before the web component upgrades.
-  initParticlesEngine(particlesEngine, async engine => {
-    const { loadFull } = await import("tsparticles");
-    await loadFull(engine);
-  }).catch(console.error);
+  void (async () => {
+    const engine = createEngine();
+
+    await initParticlesEngine(engine, async engine => {
+      await loadSlim(engine);
+    });
+
+    await customElements.whenDefined("astro-particles");
+
+    document.querySelectorAll("astro-particles").forEach(element => {
+      Object.assign(element, { engine });
+    });
+  })();
 </script>
 ```
 
-Notes:
-
-- The importmap above is a pragmatic development-time helper so the browser can resolve bare specifiers to
-  the local node_modules dist files. In production builds a bundler or proper package exports should make this unnecessary.
-- The important part is that initParticlesEngine is invoked (and begins initialization) before the custom element is
-  defined/upgraded in the page so the component can detect the initialization and not throw.
+The component renders its host element as Astro markup, but its `engine` is a
+client-side JavaScript property rather than a serializable Astro prop. Create
+and initialize the engine in a browser script, then assign it to each
+`<astro-particles>` element as shown above.
 
 ### Props
 

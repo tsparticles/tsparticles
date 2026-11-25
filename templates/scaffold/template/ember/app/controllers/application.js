@@ -1,4 +1,4 @@
-import { engine } from "../../particlesEngine";
+import { engine } from "../particlesEngine";
 import Controller from "@ember/controller";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadSlim } from "@tsparticles/slim";

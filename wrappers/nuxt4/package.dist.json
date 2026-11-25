@@ -17,6 +17,7 @@
     }
   },
   "dependencies": {
+    "@nuxt/kit": "^4.6.3",
     "@tsparticles/vue3": "__VERSION__"
   },
   "peerDependencies": {
