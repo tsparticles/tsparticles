@@ -1,8 +1,5 @@
 import { type IDelta, double, getRandom } from "@tsparticles/engine";
-import {
-  type IInteractivityData,
-  ParticlesInteractorBase,
-} from "@tsparticles/plugin-interactivity";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
 const minStagesCount = 1;
@@ -30,11 +27,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
     // do nothing
   }
 
-  interact(
-    p1: InfectableParticle,
-    _interactivityData: IInteractivityData,
-    delta: IDelta,
-  ): void {
+  interact(p1: InfectableParticle, _interactivityData: IInteractivityData, delta: IDelta): void {
     const infecter = this.container.infecter;
 
     if (!infecter) {
@@ -51,10 +44,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
       options = container.actualOptions,
       infectionOptions = options.infection;
 
-    if (
-      !infectionOptions?.enable ||
-      infectionOptions.stages.length < minStagesCount
-    ) {
+    if (!infectionOptions?.enable || infectionOptions.stages.length < minStagesCount) {
       return;
     }
 
@@ -81,10 +71,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
         infP2 === p1 ||
         infP2.destroyed ||
         infP2.spawning ||
-        !(
-          infP2.infection?.stage === undefined ||
-          infP2.infection.stage !== p1.infection.stage
-        ) ||
+        !(infP2.infection?.stage === undefined || infP2.infection.stage !== p1.infection.stage) ||
         getRandom(container.engine.getRandomFn()) >= infections / neighbors
       ) {
         continue;
@@ -101,8 +88,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
           continue;
         }
 
-        const infectedStage2 =
-          infectionStage2.infectedStage ?? infP2.infection.stage;
+        const infectedStage2 = infectionStage2.infectedStage ?? infP2.infection.stage;
 
         infecter.updateInfectionStage(p1, infectedStage2);
       }

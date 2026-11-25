@@ -100,11 +100,13 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 
       if (this.dataset.url) {
         container = await engine.load({
+          element: this,
           id: this.dataset.id,
           url: this.dataset.url,
         });
       } else if (this.dataset.options) {
         container = await engine.load({
+          element: this,
           id: this.dataset.id,
           options: JSON.parse(this.dataset.options),
         });

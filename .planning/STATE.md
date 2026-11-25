@@ -6,25 +6,47 @@
   result improves median frame p95 from 1.8 to 1.7 ms SDR and 2.2 to 1.9 ms
   forced HDR; SDR meets 1.87 ms, HDR remains 0.03 ms over. Candidate and control
   artifacts are in `handovers/evidence/e10/drawhook-ab/`.
+- Removed the per-particle callback wrapper in `RenderManager.drawParticle`;
+  it now reads the already-owned canvas context directly while preserving the
+  null-context guard, nested save/restore and `try/finally` cleanup. The 9-run
+  Chrome 158 follow-up passes all 30 E0 runtime rows: the 18-row main matrix
+  and 12-row SDR/HDR extended matrix. M6/500 frame p95 medians are 1.5 ms SDR
+  and 1.8 ms forced HDR against the unchanged 1.87 ms ceiling. Bundle SHA-256
+  and row results are in `handovers/evidence/e10/budget-screen-callback-fastpath.json`.
+  The quiet M4/500 E0 update/render ceilings also pass; its 7.2 ms frame p95 is
+  0.05 ms above the historical E5 reference. The physical HDR, guide review and
+  remaining generated-framework gates keep E10 in progress.
 - The focused rendering lifecycle tests pass (15). The full Nx test run has 946
   passing tests across 61 files; four server-based targets passed when retried
   with local-port access. The broad build succeeded for 232 of 235 projects;
   the three Electron, Angular and Next.js demo targets then passed with their
   91 dependency tasks on retry. Angular reported its existing component-style
   budget warning. Bundle and installed-package evidence has been refreshed
-  after the engine build. E10 remains open pending the HDR row and remaining
-  release gates.
+  after the engine build. The callback-free draw follow-up now passes the HDR
+  row and all 30 E0 runtime rows; hardware HDR and remaining release gates are
+  still open.
 - Repeated the packed-template retirement check after the rebuild: all nine
   template archives still contain zero retired Vue 2/Nuxt 2/Nuxt 3 variants,
   matching the existing E10 evidence byte-for-byte. Engine and test-project
   lint pass after the renderer change.
-- Re-ran both vanilla generated consumers against the fresh package builds:
-  the MCP consumer type-checks and mounts one canvas from 13 packed packages;
-  the CLI scaffold type-checks, production-builds and mounts one canvas in
-  Chrome without browser or console errors. Added a parameterized React CLI
-  scaffold check; its type-check, production build and Chrome one-canvas smoke
-  also pass without browser or console errors. Other generated framework
-  outputs remain open.
+- Re-ran the MCP consumer and CLI Vanilla scaffold against fresh package builds.
+  Added isolated CLI scaffold checks for React, Vue 3, Solid, Lit, Svelte, Riot
+  and Astro. Fixed the Web Components scaffold, which registered its custom
+  element but supplied no options; the Riot scaffold, which omitted component
+  registration and engine state; and Astro, whose scaffold omitted its
+  component and whose wrapper did not pass its element to the engine, creating
+  a second canvas. The jQuery consumer exposed an ESM/UMD global mismatch;
+  updated the scaffold to bind the imported jQuery instance before dynamically
+  loading its plugin. The Riot consumer also exposed missing package declarations;
+  added and shipped types for the wrapper API. All ten checked CLI frameworks
+  pass type checking, production build and Chrome one-canvas smoke without
+  browser or console errors. Riot and Astro wrapper tests pass. The ten
+  untested CLI scaffold templates are Angular, Angular Confetti, Angular
+  Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and Stencil.
+- Added internal first-pass v5 migration drafts for all nine supported locales.
+  The structural checker verifies each section hierarchy, all five unchanged
+  code examples and resolving local links. Native-language review remains
+  open; the current v4 website documentation is unchanged.
 - Tested a semantically equivalent Canvas2D transform reset in a 21-run HDR
   comparison. The variant's 1.9 ms median did not establish a stable win over
   the current 2.0 ms run or clear the 1.87 ms limit; it is archived and not
@@ -105,9 +127,11 @@
   minified output fell 916 bytes. The retained PJS compatibility API and Stencil
   v4 loader declaration still carry deprecations; the broader E10 gates remain
   open. See [E10 evidence](handovers/evidence/e10/README.md).
-- The frozen budget screen records 17 size failures, including three CJS graphs,
-  and two extended runtime failures after confirmation. The separate quiet
-  M4/500 check also records exceedances. See the
+- The frozen checkpoint budget screen records 17 size rows over diagnostic
+  references, including three CJS graphs, and two extended runtime failures
+  before the callback-free renderer follow-up. The current nine-repetition
+  follow-up passes all 30 E0 runtime rows; the quiet M4/500 frame p95 remains
+  0.05 ms above the historical E5 reference. See the
   [E10 checkpoint](handovers/evidence/e10/README.md).
 
 ## Session status — 2026-11-24 — E9 accepted; E10 open

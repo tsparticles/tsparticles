@@ -2,7 +2,7 @@
   <div id="app-content">
     <h1>Hello, tsParticles!</h1>
   </div>
-  <riot-particles engine={engine} id="tsparticles" options={ state.options }></riot-particles>
+  <riot-particles engine={ state.engine } id="tsparticles" options={ state.options }></riot-particles>
 
   <script>
 import { engine } from "../particlesEngine";
@@ -12,6 +12,7 @@ import { engine } from "../particlesEngine";
 
     export default {
       state: {
+        engine,
         options: {
           fullScreen: { enable: true, zIndex: -1 },
           background: { color: { value: "#1a1a2e" } },
@@ -65,4 +66,5 @@ import { engine } from "../particlesEngine";
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
   </style>
+
 </app>

@@ -1,11 +1,5 @@
-import type {
-  IRepulseParticlesOptions,
-  RepulseParticlesOptions,
-} from "./Types.js";
-import {
-  type InteractivityContainer,
-  ParticlesInteractorBase,
-} from "@tsparticles/plugin-interactivity";
+import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
+import { type InteractivityContainer, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import {
   type Particle,
   type RecursivePartial,
@@ -69,10 +63,7 @@ export class Repulser extends ParticlesInteractorBase {
         return;
       }
 
-      const repulseDistance = getRangeValue(
-        repulseOpt1.distance,
-        container.engine.getRandomFn(),
-      );
+      const repulseDistance = getRangeValue(repulseOpt1.distance, container.engine.getRandomFn());
 
       if (repulseDistance > this.maxDistance) {
         this.#maxDistance = repulseDistance;
@@ -81,10 +72,7 @@ export class Repulser extends ParticlesInteractorBase {
       p1.repulse = {
         distance: repulseDistance * container.retina.pixelRatio,
         speed: getRangeValue(repulseOpt1.speed, container.engine.getRandomFn()),
-        factor: getRangeValue(
-          repulseOpt1.factor,
-          container.engine.getRandomFn(),
-        ),
+        factor: getRangeValue(repulseOpt1.factor, container.engine.getRandomFn()),
       };
     }
 
@@ -106,11 +94,7 @@ export class Repulser extends ParticlesInteractorBase {
 
       if (distanceSq > minDistance) {
         const repulseFactor =
-          clamp(
-            (identity - distanceSq * p1DistanceFactorSq) * velocity,
-            minVelocity,
-            velocity,
-          ) / Math.sqrt(distanceSq);
+          clamp((identity - distanceSq * p1DistanceFactorSq) * velocity, minVelocity, velocity) / Math.sqrt(distanceSq);
 
         this.#normVec.x = dx * repulseFactor;
         this.#normVec.y = dy * repulseFactor;

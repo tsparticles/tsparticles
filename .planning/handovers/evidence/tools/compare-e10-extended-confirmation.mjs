@@ -3,9 +3,20 @@ import path from "node:path";
 
 const root = process.cwd(),
   evidence = path.join(root, ".planning/handovers/evidence/e10"),
+  args = new Map(
+    process.argv.slice(2).map((arg) => {
+      const [key, ...value] = arg.slice(2).split("=");
+
+      return [key, value.join("=")];
+    }),
+  ),
   read = async (file) => JSON.parse(await readFile(file, "utf8")),
-  candidateSdr = await read(path.join(evidence, "runtime-extended-e10-confirmation.json")),
-  candidateHdr = await read(path.join(evidence, "runtime-extended-hdr-e10-confirmation.json")),
+  candidateSdr = await read(
+    path.resolve(args.get("candidate-sdr") ?? path.join(evidence, "runtime-extended-e10-confirmation.json")),
+  ),
+  candidateHdr = await read(
+    path.resolve(args.get("candidate-hdr") ?? path.join(evidence, "runtime-extended-hdr-e10-confirmation.json")),
+  ),
   controlSdr = await read(path.join(evidence, "e6-control/runtime-extended-e6-confirmation.json")),
   controlHdr = await read(path.join(evidence, "e6-control/runtime-extended-hdr-e6-confirmation.json")),
   budgets = await read(path.join(root, ".planning/handovers/evidence/e0/runtime-budgets.json")),
@@ -79,12 +90,10 @@ const browsers = [controlSdr.browser, controlHdr.browser, candidateSdr.browser, 
     sameBrowser: new Set(browsers).size === 1,
     scenarios: rows,
     complete: new Set(browsers).size === 1 && rows.length === 12 && rows.every((row) => row.status === "measured"),
-  };
+  },
+  outputPath = path.resolve(args.get("output") ?? path.join(evidence, "runtime-extended-confirmation-comparison.json"));
 
-await writeFile(
-  path.join(evidence, "runtime-extended-confirmation-comparison.json"),
-  `${JSON.stringify(result, null, 2)}\n`,
-);
+await writeFile(outputPath, `${JSON.stringify(result, null, 2)}\n`);
 console.log(
   JSON.stringify({
     browser: controlSdr.browser,

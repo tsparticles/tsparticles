@@ -1,0 +1,558 @@
+{
+  "candidate": {
+    "revision": "8386475385b181645b89826c87ca6059d6bf4011",
+    "workingTree": true,
+    "bundle": {
+      "bundlePath": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "bundleSha256": "6c904d8a18208395e00c457fb84305b4caaf46059fa68bc6dff4af960fda52d4"
+    },
+    "browser": "Chrome/158.0.8127.38",
+    "repetitions": 9
+  },
+  "extendedComparison": "runtime-extended-callback-fastpath-comparison.json",
+  "rows": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.3,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      "render": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.7000000476837158,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8000000715255737,
+        "ceiling": 1.32,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.20000004768371582,
+        "ceiling": 0.4,
+        "pass": true
+      },
+      "render": {
+        "median": 0.20000004768371582,
+        "ceiling": 0.3,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 3.200000047683716,
+        "ceiling": 3.52,
+        "pass": true
+      },
+      "render": {
+        "median": 2.299999952316284,
+        "ceiling": 2.53,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 13.400000095367432,
+        "ceiling": 13.97,
+        "pass": true
+      },
+      "render": {
+        "median": 8.299999952316284,
+        "ceiling": 9.02,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.20000004768371582,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 3.799999952316284,
+        "ceiling": 4.62,
+        "pass": true
+      },
+      "render": {
+        "median": 0.5,
+        "ceiling": 0.8,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 15,
+        "ceiling": 17.82,
+        "pass": true
+      },
+      "render": {
+        "median": 1.1999999284744263,
+        "ceiling": 1.65,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      "render": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.7999999523162842,
+        "ceiling": 1.32,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.43,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.19999992847442627,
+        "ceiling": 0.3,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      "render": {
+        "median": 0.6000000238418579,
+        "ceiling": 0.9,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.8000000715255737,
+        "ceiling": 1.65,
+        "pass": true
+      },
+      "render": {
+        "median": 1.100000023841858,
+        "ceiling": 1.76,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      "render": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.8,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.7999999523162842,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.43,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 0.40000009536743164,
+        "ceiling": 0.7,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.6000000238418579,
+        "ceiling": 0.9,
+        "pass": true
+      },
+      "render": {
+        "median": 0.5,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 1.5,
+        "ceiling": 1.87,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 1.0999999046325684,
+        "ceiling": 1.87,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.65,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 2.399999976158142,
+        "ceiling": 4.07,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 0.30000007152557373,
+        "ceiling": 0.5,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      "render": {
+        "median": 0.5,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 1.100000023841858,
+        "ceiling": 1.65,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "forceHdr": false,
+      "repetitions": 9,
+      "update": {
+        "median": 0.7999999523162842,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 2,
+        "ceiling": 3.3,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.6,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 0.6000000238418579,
+        "ceiling": 0.9,
+        "pass": true
+      },
+      "render": {
+        "median": 0.5,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 1.8000000715255737,
+        "ceiling": 1.87,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 1,
+        "ceiling": 1.65,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.54,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 2.3000000715255737,
+        "ceiling": 3.52,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "render": {
+        "median": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 0.2999999523162842,
+        "ceiling": 0.5,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 0.3999999761581421,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      "render": {
+        "median": 0.5,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 1.2000000476837158,
+        "ceiling": 1.54,
+        "pass": true
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "forceHdr": true,
+      "repetitions": 9,
+      "update": {
+        "median": 0.7999999523162842,
+        "ceiling": 1.54,
+        "pass": true
+      },
+      "render": {
+        "median": 0.8999999761581421,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      "frameP95": {
+        "median": 2,
+        "ceiling": 3.19,
+        "pass": true
+      }
+    }
+  ],
+  "complete": true,
+  "passing": 30,
+  "failing": 0
+}

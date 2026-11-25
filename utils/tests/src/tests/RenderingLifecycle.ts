@@ -362,7 +362,7 @@ it("isolates reusable styles and transforms during nested particle drawing", () 
     restore: vi.fn(),
   });
   container.shapeDrawers.set("test", {
-    draw: (data) => {
+    draw: data => {
       colors.push(data.context.fillStyle);
       transforms.push(data.transformData.a);
     },
@@ -371,11 +371,11 @@ it("isolates reusable styles and transforms during nested particle drawing", () 
     init: () => undefined,
     isEnabled: () => true,
     update: () => undefined,
-    getColorStyles: (particle) => ({
+    getColorStyles: particle => ({
       fill: particle === first ? "red" : "blue",
     }),
-    getTransformValues: (particle) => ({ a: particle === first ? 2 : 3 }),
-    beforeDraw: (particle) => {
+    getTransformValues: particle => ({ a: particle === first ? 2 : 3 }),
+    beforeDraw: particle => {
       if (particle === first) {
         render.drawParticle(second, { factor: 1, value: 16 });
       }
@@ -455,7 +455,7 @@ it("reapplies styles after external drawers mutate the context and preserves esc
     second = drawingParticle(2),
     plugins: IContainerPlugin[] = [
       {
-        drawParticleTransform: (value) => {
+        drawParticleTransform: value => {
           data.push(value);
         },
       },
@@ -470,7 +470,7 @@ it("reapplies styles after external drawers mutate the context and preserves esc
   Object.assign(container, { plugins });
   render.initPlugins();
   container.shapeDrawers.set("test", {
-    draw: (value) => {
+    draw: value => {
       styles.push(value.context.fillStyle);
       value.context.fillStyle = "green";
     },
@@ -495,24 +495,21 @@ it("reapplies styles after external drawers mutate the context and preserves esc
 it.each([
   ["unsupported", "TSP-1101"],
   ["failed", "TSP-1102"],
-])(
-  "reports the stable production code for an %s canvas transfer",
-  (mode, code) => {
-    vi.stubEnv("NODE_ENV", "production");
-    const element = document.createElement("canvas"),
-      container = { retina: { pixelRatio: 1 } } as Container,
-      manager = new CanvasManager({} as PluginManager, container);
+])("reports the stable production code for an %s canvas transfer", (mode, code) => {
+  vi.stubEnv("NODE_ENV", "production");
+  const element = document.createElement("canvas"),
+    container = { retina: { pixelRatio: 1 } } as Container,
+    manager = new CanvasManager({} as PluginManager, container);
 
-    Object.defineProperty(element, "transferControlToOffscreen", {
-      value:
-        mode === "unsupported"
-          ? undefined
-          : () => {
-              throw new Error("transfer rejected");
-            },
-    });
-    expect(() => {
-      manager.loadCanvas(element);
-    }).toThrow(`[tsParticles Error ${code}]`);
-  },
-);
+  Object.defineProperty(element, "transferControlToOffscreen", {
+    value:
+      mode === "unsupported"
+        ? undefined
+        : () => {
+            throw new Error("transfer rejected");
+          },
+  });
+  expect(() => {
+    manager.loadCanvas(element);
+  }).toThrow(`[tsParticles Error ${code}]`);
+});

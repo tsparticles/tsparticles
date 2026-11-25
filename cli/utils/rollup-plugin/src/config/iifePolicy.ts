@@ -14,9 +14,7 @@ const FIRST_INDEX = 0,
       .split("-")
       .filter(Boolean)
       .map((segment, index) =>
-        index === FIRST_INDEX
-          ? segment
-          : `${segment[FIRST_INDEX].toUpperCase()}${segment.slice(INDEX_AFTER_FIRST)}`,
+        index === FIRST_INDEX ? segment : `${segment[FIRST_INDEX].toUpperCase()}${segment.slice(INDEX_AFTER_FIRST)}`,
       )
       .join("");
   },
@@ -42,10 +40,7 @@ const FIRST_INDEX = 0,
 
     return "bundle";
   },
-  buildTypePrefix: Record<
-    Exclude<ParticlesBuildType, "bundle" | "engine" | "util">,
-    string
-  > = {
+  buildTypePrefix: Record<Exclude<ParticlesBuildType, "bundle" | "engine" | "util">, string> = {
     effect: "effects",
     interaction: "interactions",
     interactionExternal: "interactions",
@@ -79,10 +74,7 @@ const FIRST_INDEX = 0,
     return prefix ? `${prefix}${rawLeaf}` : rawLeaf;
   };
 
-export const getIifePolicyData = (
-  type: ParticlesBuildType,
-  moduleName?: string,
-): IifePolicyData => {
+export const getIifePolicyData = (type: ParticlesBuildType, moduleName?: string): IifePolicyData => {
   if (type === "engine") {
     return {
       kind: "engine",
@@ -124,7 +116,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
     return `${internalRoot}.${prefix}.${leaf}`;
   },
   bundleLeafGlobals = new Map(
-    ["all", "basic", "confetti", "fireworks", "pjs", "slim"].map((leaf) => [
+    ["all", "basic", "confetti", "fireworks", "pjs", "slim"].map(leaf => [
       leaf,
       `${internalRoot}.bundles.${leaf}`,
     ]),
@@ -150,12 +142,12 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
     {
       prefix: "interaction-external-",
       scope: "interactions",
-      transform: (segment) => `external-${segment}`,
+      transform: segment => `external-${segment}`,
     },
     {
       prefix: "interaction-particles-",
       scope: "interactions",
-      transform: (segment) => `particles-${segment}`,
+      transform: segment => `particles-${segment}`,
     },
     {
       prefix: "interaction-",
@@ -194,10 +186,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
 
       const segment = leaf.slice(rule.prefix.length);
 
-      return buildScopedPath(
-        rule.scope,
-        rule.transform ? rule.transform(segment) : segment,
-      );
+      return buildScopedPath(rule.scope, rule.transform ? rule.transform(segment) : segment);
     }
 
     return undefined;
@@ -254,12 +243,32 @@ export const getIifeGlobalsBootstrap = (): string => {
       "effects",
       "engine",
       "interactions",
+      "fractal",
+      "fractal.noise",
+      "noise",
+      "noise.field",
+      "perlin",
+      "perlin.noise",
       "palettes",
       "paths",
+      "paths.curl",
+      "paths.curl.noise",
+      "paths.fractal",
+      "paths.fractal.noise",
+      "paths.perlin",
+      "paths.perlin.noise",
+      "paths.simplex",
+      "paths.simplex.noise",
       "plugins",
       "plugins.emittersShapes",
       "presets",
+      "configs",
       "shapes",
+      "simplex",
+      "simplex.noise",
+      "smooth",
+      "smooth.value",
+      "smooth.value.noise",
       "updaters",
       "utils",
       "animation",
@@ -270,12 +279,12 @@ export const getIifeGlobalsBootstrap = (): string => {
       "path.utils",
     ],
     namespacesBootstrap = namespaces
-      .map((namespace) => {
+      .map(namespace => {
         const segments = namespace.split(".");
         let currentPath = "g.__tsParticlesInternals";
 
         return segments
-          .map((segment) => {
+          .map(segment => {
             currentPath += `.${segment}`;
 
             return `${currentPath}=${currentPath}||{};`;
@@ -290,12 +299,14 @@ export const getIifeGlobalsBootstrap = (): string => {
     `g.__tsParticlesInternals.bundles=__tsProxyFactory(g.__tsParticlesInternals.bundles);` +
     `g.__tsParticlesInternals.effects=__tsProxyFactory(g.__tsParticlesInternals.effects);` +
     `g.__tsParticlesInternals.interactions=__tsProxyFactory(g.__tsParticlesInternals.interactions);` +
+    `g.__tsParticlesInternals.noise=__tsProxyFactory(g.__tsParticlesInternals.noise);` +
     `g.__tsParticlesInternals.palettes=__tsProxyFactory(g.__tsParticlesInternals.palettes);` +
     `g.__tsParticlesInternals.paths=__tsProxyFactory(g.__tsParticlesInternals.paths);` +
     `g.__tsParticlesInternals.plugins=__tsProxyFactory(g.__tsParticlesInternals.plugins);` +
     `g.__tsParticlesInternals.plugins.emittersShapes=__tsProxyFactory(g.__tsParticlesInternals.plugins.emittersShapes);` +
     `g.__tsParticlesInternals.presets=__tsProxyFactory(g.__tsParticlesInternals.presets);` +
     `g.__tsParticlesInternals.shapes=__tsProxyFactory(g.__tsParticlesInternals.shapes);` +
+    `g.__tsParticlesInternals.smooth=__tsProxyFactory(g.__tsParticlesInternals.smooth);` +
     `g.__tsParticlesInternals.updaters=__tsProxyFactory(g.__tsParticlesInternals.updaters);` +
     `g.__tsParticlesInternals.utils=__tsProxyFactory(g.__tsParticlesInternals.utils);` +
     `g.__tsParticlesInternals.animation=__tsProxyFactory(g.__tsParticlesInternals.animation);` +

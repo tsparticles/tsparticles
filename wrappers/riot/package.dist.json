@@ -82,8 +82,10 @@
   "prettier": "@tsparticles/prettier-config",
   "module": "riot-particles.esm.js",
   "main": "riot-particles.cjs",
+  "types": "riot-particles.d.ts",
   "exports": {
     ".": {
+      "types": "./riot-particles.d.ts",
       "import": "./riot-particles.esm.js",
       "require": "./riot-particles.cjs"
     }

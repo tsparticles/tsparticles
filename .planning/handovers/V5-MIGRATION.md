@@ -4,16 +4,21 @@ Status: E10 in progress (2026-11-25). E9 installed-package and browser checks
 passed for the current candidate. This guide describes implemented v5 engine,
 wrapper, bundle, and color contracts. The E0 size ceilings remain visible as
 diagnostic references under the updated E10 size criterion; they are not
-represented as passing. Runtime, allocation, and retention criteria remain
-active, with the M6/500 forced-HDR frame p95 still above the fixed E0 ceiling.
+represented as passing. The callback-free renderer follow-up passes all 30
+runtime rows against unchanged E0 ceilings; runtime, allocation, and retention
+criteria remain active.
 
 The vanilla TypeScript MCP-generated example and CLI scaffold pass isolated
 type-checking and Chrome initialization using rebuilt candidate packages; the
 CLI scaffold also passes its production build. All nine packed template
-families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants. Generated
-framework combinations beyond Vanilla and React, translated guides, broader
-consumer review, and the HDR/browser hardware gate remain open. Keep this as an internal
-draft; it is not the completed release migration guide.
+families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants. Ten of the
+twenty CLI scaffold templates have isolated consumer checks. Angular, Angular
+Confetti, Angular Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and
+Stencil consumer checks, native-language review of all nine first-pass
+translation drafts, broader consumer review, and the HDR/browser hardware gate
+remain open. Drafts and locale status are tracked in
+[`migration-drafts/`](evidence/e10/migration-drafts/README.md). Keep these as
+internal drafts; they are not completed release migration guides.
 
 The live website's default and nine localized Vanilla guides are byte-identical
 and pin the currently published v4 CDN packages. Their singleton examples are

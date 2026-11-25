@@ -1,15 +1,5 @@
-import type {
-  AttractParticle,
-  IParticlesAttractOptions,
-  ParticlesAttractOptions,
-} from "./Types.js";
-import {
-  type Container,
-  type RecursivePartial,
-  getRangeValue,
-  isNull,
-  loadOptionProperty,
-} from "@tsparticles/engine";
+import type { AttractParticle, IParticlesAttractOptions, ParticlesAttractOptions } from "./Types.js";
+import { type Container, type RecursivePartial, getRangeValue, isNull, loadOptionProperty } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
@@ -17,10 +7,7 @@ const attractFactor = 1000,
   identity = 1;
 
 /** Particle attract interactor */
-export class Attractor extends ParticlesInteractorBase<
-  Container,
-  AttractParticle
-> {
+export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
   #maxDistance;
 
   constructor(container: Container) {
@@ -49,10 +36,7 @@ export class Attractor extends ParticlesInteractorBase<
     const container = this.container;
 
     if (isNull(p1.attractDistance)) {
-      const attractDistance = getRangeValue(
-        p1.options.attract.distance,
-        container.engine.getRandomFn(),
-      );
+      const attractDistance = getRangeValue(p1.options.attract.distance, container.engine.getRandomFn());
 
       if (attractDistance > this.#maxDistance) {
         this.#maxDistance = attractDistance;
@@ -63,18 +47,10 @@ export class Attractor extends ParticlesInteractorBase<
 
     const distance = p1.attractDistance,
       pos1 = p1.getPosition(),
-      query = container.particles.grid.queryCircle(
-        pos1,
-        distance,
-      ) as AttractParticle[];
+      query = container.particles.grid.queryCircle(pos1, distance) as AttractParticle[];
 
     for (const p2 of query) {
-      if (
-        p1 === p2 ||
-        !p2.options.attract?.enable ||
-        p2.destroyed ||
-        p2.spawning
-      ) {
+      if (p1 === p2 || !p2.options.attract?.enable || p2.destroyed || p2.spawning) {
         continue;
       }
 

@@ -1,8 +1,10 @@
-# E10 checkpoint — 2026-11-24
+# E10 checkpoint — 2026-11-24, updated 2026-11-25
 
-E10 has started and remains open. This checkpoint records the first fresh
-candidate measurements and workspace checks. It does not authorize a release.
-Frozen E0 budgets remain unchanged.
+E10 remains open and does not authorize a release. The latest callback-free
+renderer follow-up passes all 30 runtime rows against unchanged E0 ceilings.
+The remaining closure gates are physical HDR verification, native-language
+review of the migration drafts, and consumer checks for the ten CLI framework
+templates not yet covered below. Frozen E0 budgets remain unchanged.
 
 ## Reproduction
 
@@ -39,6 +41,19 @@ NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run-many -t te
 node .planning/handovers/evidence/tools/check-e10-generated-consumer.mjs
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs
 node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=react
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=vue3
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=solid
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=lit
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=jquery
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=svelte
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=webcomponents
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=riot
+node .planning/handovers/evidence/tools/check-e10-cli-scaffold.mjs --framework=astro
+node .planning/handovers/evidence/tools/measure-e10-runtime-control.mjs .planning/handovers/evidence/e10 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js --file=runtime-callback-fastpath-confirmation.json --repetitions=9 --cases=M3:100,M3:500,M3:1000,M4:100,M4:500,M4:1000,M5:100,M5:500,M5:1000,M6:100,M6:500,M6:1000,M7:100,M7:500,M7:1000,M8:100,M8:500,M8:1000
+node .planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs --output-dir=.planning/handovers/evidence/e10 --file=runtime-extended-callback-fastpath-confirmation.json --repetitions=9 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js
+node .planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs --force-hdr --output-dir=.planning/handovers/evidence/e10 --file=runtime-extended-hdr-callback-fastpath-confirmation.json --repetitions=9 --bundle=bundles/all/dist/tsparticles.all.bundle.min.js
+node .planning/handovers/evidence/tools/compare-e10-extended-confirmation.mjs --candidate-sdr=.planning/handovers/evidence/e10/runtime-extended-callback-fastpath-confirmation.json --candidate-hdr=.planning/handovers/evidence/e10/runtime-extended-hdr-callback-fastpath-confirmation.json --output=.planning/handovers/evidence/e10/runtime-extended-callback-fastpath-comparison.json
+node .planning/handovers/evidence/tools/summarize-e10-callback-fastpath.mjs
 python3 -m http.server 8765 --bind 127.0.0.1
 # In another terminal, run against the live built engine exposed at /engine/dist/esm:
 node .planning/handovers/evidence/tools/check-e10-color-browser.mjs
@@ -60,13 +75,14 @@ corrected and rechecked in its target build.
   remaining containers, stable RNG counts and no listener or DOM growth during
   the measured lifecycle/retention checks. The canvas accepted Display-P3 and
   float16; this does not verify physical HDR luminance.
-- Bundle/runtime comparison is generated in `budget-screen.json`. It evaluates
+- The earlier bundle/runtime checkpoint in `budget-screen.json` evaluates
   unchanged E0 ceilings. Current absolute comparison: 2 size rows pass, 17
   fail (including all 3 CJS rows) and 0 are pending; 28 of 30 runtime rows pass
   and 2 fail. The initial
   three-repetition flags remain recorded alongside the nine-repetition
   confirmations. CJS sizes come from a fresh isolated install of the packed
-  E10 engine.
+  E10 engine. The callback-free renderer follow-up below supersedes that
+  checkpoint's 28/30 runtime result.
 - Matched runtime control covers all 30 rows in Chrome 158 using the preserved
   E6 bundle and the same harness as E10. The E6 artifact is a pre-E7 control,
   not the E0 source revision. The comparison records both control and candidate
@@ -108,14 +124,21 @@ corrected and rechecked in its target build.
   vanilla TypeScript example has been compiled and run from 13 extracted
   package tarballs in an isolated consumer. The CLI Vanilla scaffold was
   generated, type-checked, production-built, and started in Chrome from 41
-  extracted package tarballs; React passed the same checks from 42 tarballs.
-  See `generated-consumer.json`, `cli-scaffold.json`, and
-  `cli-react-scaffold.json`. Other framework outputs and translation review
-  remain open. G1–G7 source review dispositions were collected and closed in E8.
+  extracted package tarballs. All ten checked framework scaffolds pass the same
+  consumer checks from their packed local package graphs. See
+  `generated-consumer.json` and `cli-*-scaffold.json`. The checked frameworks
+  are Astro, jQuery, Lit, React, Riot, Solid, Svelte, Vanilla, Vue 3 and Web
+  Components. The remaining scaffold templates are Angular, Angular Confetti,
+  Angular Fireworks, Ember, Inferno, Next.js, Nuxt 4, Preact, Qwik and Stencil.
+  Their generated-consumer checks and native-language migration-draft review
+  remain open. G1–G7 source review dispositions were collected and closed in
+  E8.
   The [architecture reconciliation](../../V5-ARCHITECTURE-DECISIONS.md#e10-evidence-reconciliation--2026-11-24)
   links the four decisions to their consumer evidence. The
-  color report is recorded, but C5 remains open for two extended runtime E0
-  exceedances and broader browser/hardware gates. Size ceilings remain
+  color report is recorded. At this checkpoint C5 remained open for two
+  extended runtime E0 exceedances and broader browser/hardware gates; the
+  callback-free follow-up below clears the runtime rows. Physical HDR remains
+  open. Size ceilings remain
   diagnostic references under the updated E10 acceptance criterion.
 
 ## Legacy retirement and translation review
@@ -181,7 +204,9 @@ corrected and rechecked in its target build.
   engine probe passed all six ESM/CJS/browser root and
   lazy conditions. The E10 bundle report and budget screen were regenerated
   from these artifacts: 2 size rows pass, 17 remain over the diagnostic E0
-  ceilings, and none are pending; runtime remains 28 pass and 2 fail.
+  ceilings, and none are pending; runtime was 28 pass and 2 fail at that
+  checkpoint. `budget-screen-callback-fastpath.json` records the later 30/30
+  runtime follow-up.
 - All eight Qwik guide examples now create and initialize their explicit engine
   in a client task and keep it in a `noSerialize` signal. The lazy example
   imports Full inside that task, and the callback example uses the wrapper's
@@ -488,13 +513,31 @@ installed-package sizes are recorded in `bundle-sizes.json` and
 The vanilla MCP-generated consumer and CLI scaffold were re-extracted from the
 fresh package builds and rechecked after the renderer change. The MCP consumer
 passed strict TypeScript and mounted one canvas in headless Chrome from 13
-package tarballs. The CLI Vanilla scaffold passed strict TypeScript, Vite
-production build and headless Chrome initialization with one canvas and no
-browser or console errors. The same isolated CLI check now accepts
-`--framework=react`; React also passes strict TypeScript, Vite production build
-and Chrome initialization with one canvas and no browser or console errors.
-Results are in `generated-consumer.json`, `cli-scaffold.json`, and
-`cli-react-scaffold.json`. Other generated framework combinations remain open.
+package tarballs. The CLI scaffold check now covers Vanilla, React, Vue 3, Solid,
+Lit, Svelte, Web Components, Riot, Astro and jQuery. All ten pass framework-appropriate
+type checking, production build and headless Chrome initialization with one
+canvas and no browser or console errors. Vue 3 uses `vue-tsc`; Svelte uses
+`svelte-check`; Astro uses `astro check`; other frameworks use TypeScript. The
+Web Components consumer check found and fixed a scaffold issue: its custom
+element had no options, so it initialized without a canvas. Riot's consumer
+check found missing public TypeScript declarations and missing scaffold
+component registration/engine state. The wrapper now ships declarations, and
+the scaffold registers the component with its owning engine. The Astro check
+found a missing component in its scaffold and that the wrapper failed to pass
+its host element to the engine, resulting in a duplicate canvas; both are
+fixed. The Riot and Astro wrapper Nx test targets pass. Results are in
+`cli-*-scaffold.json`. The jQuery check exposed an ESM/UMD global mismatch:
+the generated app imported jQuery as an ES module but loaded a wrapper bundle
+that expects `window.jQuery`. The scaffold now binds that instance before
+dynamically importing the plugin. Its isolated typecheck, production build and
+Chrome smoke pass; the result is in `cli-jquery-scaffold.json`. Other generated
+framework combinations remain open.
+
+First-pass drafts for all nine supported locales are in `migration-drafts/`.
+`check-migration-draft-alignment.mjs` confirms each section hierarchy and all
+five code examples match the English source exactly and that local Markdown
+links resolve. Native-language review remains open; no translated guide was
+added to the published website.
 
 All three CJS size scenarios exceed their original ceilings:
 
@@ -505,9 +548,36 @@ All three CJS size scenarios exceed their original ceilings:
 | Full shipped CJS graph | 287481 | 159646 |  60841 |    52403 |          54213 |            46456 |
 
 The root acquisition is +4,605 gzip / +4,170 Brotli bytes over the E0 ceiling;
-lazy is +4,593 / +4,164; full shipped CJS is +6,628 / +5,947. Two extended
-runtime rows fail after confirmation. The separate quiet M4/500 update and
-frame p95 exceedances remain recorded above. The original ceilings and
-E5/E7 acceptance scope remain in force.
+lazy is +4,593 / +4,164; full shipped CJS is +6,628 / +5,947. The earlier
+two extended runtime failures and quiet M4/500 sample are archived above; the
+current callback-free follow-up below passes all E0 runtime rows. The original
+ceilings and E5/E7 acceptance scope remain in force.
+
+### Callback-free per-particle drawing follow-up
+
+The sampled profile also showed per-particle calls passing a fresh callback to
+`draw()`. `RenderManager.drawParticle` now reads its owned context directly,
+retaining the missing-context return, nested context save/restore and
+`try/finally` cleanup. This removes one callback allocation per drawn particle.
+
+The rebuilt All bundle has SHA-256
+`6c904d8a18208395e00c457fb84305b4caaf46059fa68bc6dff4af960fda52d4`. Its
+nine-repetition Chrome 158 follow-up passes 18/18 main runtime rows and 12/12
+extended rows against unchanged E0 ceilings. M6/500 frame p95 is 1.5 ms SDR
+and 1.8 ms forced HDR against 1.87 ms; the matched E6 medians are 1.9 and 2.3
+ms. M8/500 is 1.1 ms SDR and 1.2 ms forced HDR, within 1.65/1.54 ms. The
+current per-row summary is `budget-screen-callback-fastpath.json`; raw samples
+are in `runtime-callback-fastpath-confirmation.json`,
+`runtime-extended-callback-fastpath-confirmation.json` and
+`runtime-extended-hdr-callback-fastpath-confirmation.json`. All validation
+flags pass: no page errors, stable RNG counts and DOM, and no retained
+containers.
+
+The fresh quiet M4/500 comparison also passes E0 update (3.30 ms / 3.52 ms)
+and render (2.40 ms / 2.53 ms) ceilings. Its frame p95 is 7.20 ms, 0.05 ms
+above the historical E5 reference of 7.15 ms. E10 remains open for physical
+HDR verification, native-language migration-guide review and the remaining
+generated framework consumers. Size references remain diagnostic under the
+accepted E10 criterion; no budget threshold was changed.
 
 No version bump, commit, publication, deployment or release was performed.

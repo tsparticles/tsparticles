@@ -11,7 +11,12 @@ import puppeteer from "puppeteer";
 
 const framework = process.argv.find((arg) => arg.startsWith("--framework="))?.slice("--framework=".length) ?? "vanilla";
 
-assert(["vanilla", "react"].includes(framework), `Unsupported E10 scaffold framework: ${framework}`);
+assert(
+  ["astro", "jquery", "lit", "react", "riot", "solid", "svelte", "vanilla", "vue3", "webcomponents"].includes(
+    framework,
+  ),
+  `Unsupported E10 scaffold framework: ${framework}`,
+);
 
 const root = process.cwd(),
   temporary = await mkdtemp(path.join(tmpdir(), `v5-cli-${framework}-scaffold-`)),
@@ -58,6 +63,16 @@ for (const manifestPath of manifestPaths) {
     manifests.set(manifest.name, { manifest, directory: path.dirname(manifestPath) });
 }
 
+if (!manifests.has("@tsparticles/lit")) {
+  const manifest = JSON.parse(await readFile(path.join(root, "wrappers/lit/package.json"), "utf8"));
+
+  manifests.set(manifest.name, { manifest, directory: path.join(root, "wrappers/lit") });
+}
+
+const astroManifest = JSON.parse(await readFile(path.join(root, "wrappers/astro/package.json"), "utf8"));
+
+manifests.set(astroManifest.name, { manifest: astroManifest, directory: path.join(root, "wrappers/astro") });
+
 const scaffoldModule = await import(pathToFileURL(path.join(root, "cli/commands/create-app/dist/scaffold.js")));
 
 await scaffoldModule.createAppProject({
@@ -97,7 +112,17 @@ for (const packageName of packages) {
     packageDirectory = path.join(stagingRoot, "package");
 
   await mkdir(packageDirectory, { recursive: true });
-  await cp(entry.directory, packageDirectory, { recursive: true });
+  if (packageName === "@tsparticles/lit") {
+    await cp(path.join(entry.directory, "package.json"), path.join(packageDirectory, "package.json"));
+    await cp(path.join(entry.directory, "lib"), path.join(packageDirectory, "lib"), { recursive: true });
+  } else if (packageName === "@tsparticles/astro") {
+    for (const file of ["package.json", "env.d.ts", "index.ts", "index.client.js", "index.server.js"]) {
+      await cp(path.join(entry.directory, file), path.join(packageDirectory, file));
+    }
+    await cp(path.join(entry.directory, "src"), path.join(packageDirectory, "src"), { recursive: true });
+  } else {
+    await cp(entry.directory, packageDirectory, { recursive: true });
+  }
   execFileSync("tar", ["-czf", archivePath, "-C", stagingRoot, "package"]);
   tarballs.push({ name: packageName, path: archivePath });
 }
@@ -118,18 +143,50 @@ await symlink(
 );
 await symlink(vitePackageRoot, path.join(projectDir, "node_modules", "vite"), "dir");
 
-if (framework === "react") {
-  const storeRoot = path.join(root, "node_modules/.pnpm"),
-    storeEntries = await readdir(storeRoot),
-    dependencies = [
+const frameworkPackages =
+  {
+    react: [
       ["react", "react@19.3.1"],
       ["react-dom", "react-dom@19.3.1_react@19.3.1"],
       ["@vitejs/plugin-react", "@vitejs+plugin-react@6.2.1_"],
       ["@types/react", "@types+react@19.2.17"],
       ["@types/react-dom", "@types+react-dom@19.2.3_"],
-    ];
+    ],
+    vue3: [
+      ["vue", "vue@3.5.44"],
+      ["@vitejs/plugin-vue", "@vitejs+plugin-vue@6.0.10_vite@8.3.5_"],
+      ["vue-tsc", "vue-tsc@3.3.14_"],
+    ],
+    solid: [
+      ["solid-js", "solid-js@1.9.14"],
+      ["vite-plugin-solid", "vite-plugin-solid@2.11.14_"],
+    ],
+    lit: [["lit", "lit@3.3.3"]],
+    jquery: [
+      ["jquery", "jquery@4.0.0"],
+      ["@types/jquery", "@types+jquery@4.0.1"],
+    ],
+    riot: [
+      ["riot", "riot@10.1.6"],
+      ["@riotjs/compiler", "@riotjs+compiler@10.0.4"],
+      ["rollup-plugin-riot", "rollup-plugin-riot@10.0.0_"],
+    ],
+    astro: [
+      ["astro", "astro@7.4.7_"],
+      ["@astrojs/check", "@astrojs+check@0.9.10_"],
+    ],
+    svelte: [
+      ["svelte", "svelte@5.57.3_"],
+      ["@sveltejs/vite-plugin-svelte", "@sveltejs+vite-plugin-svelte@7.3.1_"],
+      ["svelte-check", "svelte-check@4.7.8_"],
+    ],
+  }[framework] ?? [];
 
-  for (const [packageName, storePrefix] of dependencies) {
+if (frameworkPackages.length) {
+  const storeRoot = path.join(root, "node_modules/.pnpm"),
+    storeEntries = await readdir(storeRoot);
+
+  for (const [packageName, storePrefix] of frameworkPackages) {
     const storeEntry = storeEntries.find((entry) => entry.startsWith(storePrefix));
 
     assert(storeEntry, `Workspace package store entry missing: ${storePrefix}`);
@@ -145,8 +202,50 @@ if (framework === "react") {
 const tscPath = path.join(path.dirname(require.resolve("typescript")), "../bin/tsc"),
   vitePath = path.join(vitePackageRoot, "bin/vite.js");
 
-execFileSync(process.execPath, [tscPath, "--project", path.join(projectDir, "tsconfig.json")], { stdio: "inherit" });
-execFileSync(process.execPath, [vitePath, "build"], { cwd: projectDir, stdio: "inherit" });
+if (framework === "astro") {
+  const astroManifest = JSON.parse(await readFile(path.join(projectDir, "node_modules/astro/package.json"), "utf8")),
+    astroBin = typeof astroManifest.bin === "string" ? astroManifest.bin : astroManifest.bin.astro;
+
+  execFileSync(process.execPath, [path.join(projectDir, "node_modules/astro", astroBin), "check"], {
+    cwd: projectDir,
+    stdio: "inherit",
+  });
+  execFileSync(process.execPath, [path.join(projectDir, "node_modules/astro", astroBin), "build"], {
+    cwd: projectDir,
+    stdio: "inherit",
+  });
+} else if (framework === "vue3") {
+  const vueTscManifest = JSON.parse(await readFile(path.join(projectDir, "node_modules/vue-tsc/package.json"), "utf8")),
+    vueTscBin = typeof vueTscManifest.bin === "string" ? vueTscManifest.bin : vueTscManifest.bin["vue-tsc"];
+
+  execFileSync(process.execPath, [path.join(projectDir, "node_modules/vue-tsc", vueTscBin), "--noEmit"], {
+    cwd: projectDir,
+    stdio: "inherit",
+  });
+} else if (framework === "svelte") {
+  const svelteCheckManifest = JSON.parse(
+      await readFile(path.join(projectDir, "node_modules/svelte-check/package.json"), "utf8"),
+    ),
+    svelteCheckBin =
+      typeof svelteCheckManifest.bin === "string" ? svelteCheckManifest.bin : svelteCheckManifest.bin["svelte-check"];
+
+  execFileSync(
+    process.execPath,
+    [path.join(projectDir, "node_modules/svelte-check", svelteCheckBin), "--tsconfig", "./tsconfig.json"],
+    {
+      cwd: projectDir,
+      stdio: "inherit",
+    },
+  );
+} else {
+  execFileSync(process.execPath, [tscPath, "--project", path.join(projectDir, "tsconfig.json")], {
+    stdio: "inherit",
+  });
+}
+
+if (framework !== "astro") {
+  execFileSync(process.execPath, [vitePath, "build"], { cwd: projectDir, stdio: "inherit" });
+}
 
 const distDirectory = path.join(projectDir, "dist"),
   server = createServer(async (request, response) => {
@@ -198,7 +297,13 @@ try {
     if (message.type() === "error") browserConsoleErrors.push(message.text());
   });
   await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "networkidle0" });
-  await page.waitForFunction(() => document.querySelectorAll("canvas").length === 1, { timeout: 15_000 });
+  await page
+    .waitForFunction(() => document.querySelectorAll("canvas").length === 1, { timeout: 15_000 })
+    .catch(() => {
+      throw new Error(
+        `Expected one canvas; page errors: ${JSON.stringify(browserErrors)}; console errors: ${JSON.stringify(browserConsoleErrors)}`,
+      );
+    });
 } finally {
   await browser.close();
   await new Promise((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));

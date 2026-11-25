@@ -25,10 +25,7 @@ const pushMode = "push",
  * Particle attract manager
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
-  handleClickMode: (
-    mode: string,
-    interactivityData: IInteractivityData,
-  ) => void;
+  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly maxDistance = 0;
 
@@ -48,42 +45,23 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         return;
       }
 
-      const quantity = getRangeValue(
-        pushOptions.quantity,
-        container.engine.getRandomFn(),
-      );
+      const quantity = getRangeValue(pushOptions.quantity, container.engine.getRandomFn());
 
       if (quantity <= minQuantity) {
         return;
       }
 
-      const group = itemFromArray(
-          [undefined, ...pushOptions.groups],
-          undefined,
-          true,
-          container.engine.getRandomFn(),
-        ),
-        groupOptions =
-          group !== undefined
-            ? container.actualOptions.particles.groups[group]
-            : undefined,
+      const group = itemFromArray([undefined, ...pushOptions.groups], undefined, true, container.engine.getRandomFn()),
+        groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined,
         particlesOptions = itemFromSingleOrMultiple(
           pushOptions.particles,
           undefined,
           undefined,
           container.engine.getRandomFn(),
         ),
-        overrideOptions = deepExtend(
-          groupOptions,
-          particlesOptions,
-        ) as RecursivePartial<IParticlesOptions>;
+        overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
-      container.particles.push(
-        quantity,
-        interactivityData.mouse.position,
-        overrideOptions,
-        group,
-      );
+      container.particles.push(quantity, interactivityData.mouse.position, overrideOptions, group);
     };
   }
 
@@ -95,28 +73,16 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     // do nothing
   }
 
-  isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
-    return (
-      !!events &&
-      mouse.clicking &&
-      mouse.inside &&
-      !!mouse.position &&
-      isInArray(pushMode, events.onClick.mode)
-    );
+    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(pushMode, events.onClick.mode);
   }
 
-  loadModeOptions(
-    options: Modes & PushMode,
-    ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]
-  ): void {
+  loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
     loadOptionProperty(options, "push", Push, ...sources);
   }
 }

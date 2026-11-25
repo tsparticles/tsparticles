@@ -1,11 +1,11 @@
 import $ from "jquery";
 import { engine } from "../particlesEngine";
-import "@tsparticles/jquery";
-
 import { loadSlim } from "@tsparticles/slim";
 import "./style.css";
 
 (async () => {
+  Object.assign(window, { $, jQuery: $ });
+  await import("@tsparticles/jquery");
   await loadSlim(engine);
 
   await $.particles(engine).init();

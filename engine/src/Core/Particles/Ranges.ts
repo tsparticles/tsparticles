@@ -91,18 +91,12 @@ export class Circle extends BaseRange {
       dx = pos2.x - pos1.x,
       dy = pos2.y - pos1.y;
 
-    if (
-      range instanceof Circle ||
-      range.type === (RangeType.circle as string)
-    ) {
+    if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
         rSum = r + circleRange.radius;
 
       return rSum > 0 && dx * dx + dy * dy < rSum * rSum;
-    } else if (
-      range instanceof Rectangle ||
-      range.type === (RangeType.rectangle as string)
-    ) {
+    } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
       const rectRange = range as Rectangle,
         { width, height } = rectRange.size,
         nearestX = Math.max(pos2.x, Math.min(pos1.x, pos2.x + width)),
@@ -110,12 +104,7 @@ export class Circle extends BaseRange {
         distanceX = pos1.x - nearestX,
         distanceY = pos1.y - nearestY;
 
-      return (
-        r >= 0 &&
-        width >= 0 &&
-        height >= 0 &&
-        distanceX * distanceX + distanceY * distanceY <= r * r
-      );
+      return r >= 0 && width >= 0 && height >= 0 && distanceX * distanceX + distanceY * distanceY <= r * r;
     }
 
     return false;
@@ -170,12 +159,7 @@ export class Rectangle extends BaseRange {
       h = this.size.height,
       pos = this.position;
 
-    return (
-      point.x >= pos.x &&
-      point.x <= pos.x + w &&
-      point.y >= pos.y &&
-      point.y <= pos.y + h
-    );
+    return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
   }
 
   /**
@@ -200,12 +184,7 @@ export class Rectangle extends BaseRange {
       w2 = size2.width,
       h2 = size2.height;
 
-    return (
-      pos2.x < pos1.x + w &&
-      pos2.x + w2 > pos1.x &&
-      pos2.y < pos1.y + h &&
-      pos2.y + h2 > pos1.y
-    );
+    return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
   }
 
   /**

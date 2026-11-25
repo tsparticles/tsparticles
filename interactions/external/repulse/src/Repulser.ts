@@ -51,10 +51,7 @@ interface IRepulseRestoreData {
  * Particle repulse manager
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
-  handleClickMode: (
-    mode: string,
-    interactivityData: IInteractivityData,
-  ) => void;
+  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly #clickVec: Vector;
   readonly #interactedThisFrame;
@@ -125,8 +122,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     this.#maxDistance = repulse.distance;
 
-    container.retina.repulseModeDistance =
-      repulse.distance * container.retina.pixelRatio;
+    container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
   }
 
   /**
@@ -170,10 +166,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
    * @param particle - The particle to process
    * @returns The boolean value
    */
-  isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -188,22 +181,14 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       click = events.onClick,
       divRepulse = isDivModeEnabled(repulseMode, divs);
 
-    if (!(
-      divRepulse ||
-      (hover.enable && !!mouse.position) ||
-      (click.enable && mouse.clickPosition)
-    )) {
+    if (!(divRepulse || (hover.enable && !!mouse.position) || (click.enable && mouse.clickPosition))) {
       return false;
     }
 
     const hoverMode = hover.mode,
       clickMode = click.mode;
 
-    return (
-      isInArray(repulseMode, hoverMode) ||
-      isInArray(repulseMode, clickMode) ||
-      divRepulse
-    );
+    return isInArray(repulseMode, hoverMode) || isInArray(repulseMode, clickMode) || divRepulse;
   }
 
   /**
@@ -243,20 +228,15 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         return;
       }
 
-      const repulseRadius = Math.pow(
-          repulseDistance / repulseRadiusFactor,
-          repulseRadiusPower,
-        ),
+      const repulseRadius = Math.pow(repulseDistance / repulseRadiusFactor, repulseRadiusPower),
         mouseClickPos = interactivityData.mouse.clickPosition;
 
       if (mouseClickPos === undefined) {
         return;
       }
 
-      const query = container.particles.grid.queryCircle(
-          mouseClickPos,
-          repulseRadius,
-          (p) => this.isEnabled(interactivityData, p),
+      const query = container.particles.grid.queryCircle(mouseClickPos, repulseRadius, p =>
+          this.isEnabled(interactivityData, p),
         ),
         forceScale = repulseRadius * repulseOptions.speed;
 
@@ -271,10 +251,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
           repulse.particles.push(particle);
 
-          const inverseDistance =
-              distanceSq > minDistance ? 1 / Math.sqrt(distanceSq) : minSpeed,
-            force =
-              distanceSq > minDistance ? forceScale / distanceSq : minSpeed;
+          const inverseDistance = distanceSq > minDistance ? 1 / Math.sqrt(distanceSq) : minSpeed,
+            force = distanceSq > minDistance ? forceScale / distanceSq : minSpeed;
 
           this.#clickVec.x = dx * inverseDistance * force;
           this.#clickVec.y = dy * inverseDistance * force;
@@ -300,12 +278,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       return;
     }
 
-    this.#processRepulse(
-      interactivityData,
-      mousePos,
-      repulseRadius,
-      new Circle(mousePos.x, mousePos.y, repulseRadius),
-    );
+    this.#processRepulse(interactivityData, mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
   }
 
   #processRepulse(
@@ -316,9 +289,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     divRepulse?: RepulseDiv,
   ): void {
     const container = this.container,
-      query = container.particles.grid.query(area, (p) =>
-        this.isEnabled(interactivityData, p),
-      ),
+      query = container.particles.grid.query(area, p => this.isEnabled(interactivityData, p)),
       repulseOptions = container.actualOptions.interactivity?.modes.repulse;
 
     if (!repulseOptions) {
@@ -333,11 +304,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       const dx = particle.position.x - position.x,
         dy = particle.position.y - position.y,
         distance = hypot(dx, dy),
-        repulseFactor = clamp(
-          easingFunc(easingOffset - distance / repulseRadius) * velocity,
-          minSpeed,
-          maxSpeed,
-        );
+        repulseFactor = clamp(easingFunc(easingOffset - distance / repulseRadius) * velocity, minSpeed, maxSpeed);
 
       this.#normVec.x = !distance ? velocity : (dx / distance) * repulseFactor;
       this.#normVec.y = !distance ? velocity : (dy / distance) * repulseFactor;
@@ -348,8 +315,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   #restoreParticles(): void {
-    const restore =
-      this.container.actualOptions.interactivity?.modes.repulse?.restore;
+    const restore = this.container.actualOptions.interactivity?.modes.repulse?.restore;
 
     if (!restore?.enable || !this.#restoreData.size) {
       return;
@@ -357,10 +323,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     const now = Date.now(),
       restoreDelay = restore.delay * millisecondsToSeconds,
-      restoreSpeed = Math.max(
-        minRestoreSpeed,
-        Math.min(maxRestoreSpeed, restore.speed),
-      );
+      restoreSpeed = Math.max(minRestoreSpeed, Math.min(maxRestoreSpeed, restore.speed));
 
     for (const [particle, restoreData] of this.#restoreData) {
       if (this.#interactedThisFrame.has(particle)) {
@@ -405,11 +368,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
   }
 
-  #singleSelectorRepulse(
-    interactivityData: IInteractivityData,
-    selector: string,
-    div: DivEvent,
-  ): void {
+  #singleSelectorRepulse(interactivityData: IInteractivityData, selector: string, div: DivEvent): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
 
@@ -423,7 +382,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       return;
     }
 
-    query.forEach((item) => {
+    query.forEach(item => {
       const elem = item as HTMLElement,
         pxRatio = container.retina.pixelRatio,
         pos = {
@@ -443,21 +402,14 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         divs = repulse.divs,
         divRepulse = divMode(divs, elem);
 
-      this.#processRepulse(
-        interactivityData,
-        pos,
-        repulseRadius,
-        area,
-        divRepulse,
-      );
+      this.#processRepulse(interactivityData, pos, repulseRadius, area, divRepulse);
     });
   }
 
   #trackInteractedParticle(particle: InteractivityParticle): void {
     this.#interactedThisFrame.add(particle);
 
-    const restore =
-      this.container.actualOptions.interactivity?.modes.repulse?.restore;
+    const restore = this.container.actualOptions.interactivity?.modes.repulse?.restore;
 
     if (!restore?.enable) {
       return;

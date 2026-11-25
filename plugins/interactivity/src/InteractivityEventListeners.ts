@@ -58,10 +58,7 @@ export class InteractivityEventListeners {
    * @param container - the calling container
    * @param interactionManager - the interaction manager instance
    */
-  constructor(
-    container: InteractivityContainer,
-    interactionManager: IInteractionManager,
-  ) {
+  constructor(container: InteractivityContainer, interactionManager: IInteractionManager) {
     this.#container = container;
     this.#clickPositionPlugins = [];
     this.#interactionManager = interactionManager;
@@ -110,9 +107,7 @@ export class InteractivityEventListeners {
   init(): void {
     this.#clickPositionPlugins.length = 0;
 
-    for (const plugin of this.#container.plugins.filter(
-      (p) => !!p.clickPositionValid,
-    )) {
+    for (const plugin of this.#container.plugins.filter(p => !!p.clickPositionValid)) {
       this.#clickPositionPlugins.push(plugin);
     }
   }
@@ -150,7 +145,7 @@ export class InteractivityEventListeners {
         return;
       }
 
-      executeOnSingleOrMultiple(onClick.mode, (mode) => {
+      executeOnSingleOrMultiple(onClick.mode, mode => {
         interactionManager.handleClickMode(mode);
       });
     }
@@ -192,27 +187,12 @@ export class InteractivityEventListeners {
     manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
     const onClickEnabled = !!options.interactivity?.events.onClick.enable;
 
-    manageListener(
-      interactivityEl,
-      touchEndEvent,
-      handlers.touchEndClick,
-      add && onClickEnabled,
-    );
-    manageListener(
-      interactivityEl,
-      touchEndEvent,
-      handlers.touchEnd,
-      add && !onClickEnabled,
-    );
+    manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add && onClickEnabled);
+    manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add && !onClickEnabled);
     manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
     manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
     manageListener(interactivityEl, mouseLeaveEvent, handlers.mouseLeave, add);
-    manageListener(
-      interactivityEl,
-      touchCancelEvent,
-      handlers.touchCancel,
-      add,
-    );
+    manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
   }
 
   /**
@@ -231,8 +211,7 @@ export class InteractivityEventListeners {
     if (detectType === InteractivityDetect.window) {
       interactionManager.interactivityData.element = safeDocument();
     } else if (detectType === InteractivityDetect.parent && canvasEl) {
-      interactionManager.interactivityData.element =
-        canvasEl.parentElement ?? canvasEl.parentNode;
+      interactionManager.interactivityData.element = canvasEl.parentElement ?? canvasEl.parentNode;
     } else {
       interactionManager.interactivityData.element = canvasEl;
     }
@@ -240,13 +219,7 @@ export class InteractivityEventListeners {
     this.#manageInteractivityListeners(add);
 
     if (typeof document !== "undefined") {
-      manageListener(
-        document,
-        visibilityChangeEvent,
-        handlers.visibilityChange,
-        add,
-        false,
-      );
+      manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
     }
   }
 
@@ -345,9 +318,7 @@ export class InteractivityEventListeners {
             y: mouseEvent.clientY - clientRect.top,
           };
         }
-      } else if (
-        options.interactivity?.detectsOn === InteractivityDetect.parent
-      ) {
+      } else if (options.interactivity?.detectsOn === InteractivityDetect.parent) {
         const source = mouseEvent.target as HTMLElement,
           target = mouseEvent.currentTarget as HTMLElement;
 
@@ -357,14 +328,8 @@ export class InteractivityEventListeners {
             canvasRect = canvasEl.getBoundingClientRect();
 
           pos = {
-            x:
-              mouseEvent.offsetX +
-              double * sourceRect.left -
-              (targetRect.left + canvasRect.left),
-            y:
-              mouseEvent.offsetY +
-              double * sourceRect.top -
-              (targetRect.top + canvasRect.top),
+            x: mouseEvent.offsetX + double * sourceRect.left - (targetRect.left + canvasRect.left),
+            y: mouseEvent.offsetY + double * sourceRect.top - (targetRect.top + canvasRect.top),
           };
         } else {
           pos = {
@@ -383,8 +348,7 @@ export class InteractivityEventListeners {
 
       if (canvasEl) {
         const touchEvent = e as TouchEvent,
-          lastTouch =
-            touchEvent.touches[touchEvent.touches.length - lengthOffset],
+          lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset],
           canvasRect = canvasEl.getBoundingClientRect();
 
         if (!lastTouch) {
