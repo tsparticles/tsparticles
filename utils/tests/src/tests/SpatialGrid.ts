@@ -51,8 +51,16 @@ describe("SpatialGrid tests", () => {
   describe("Circle (776, 352, 200)", () => {
     const circle1 = new Circle(776, 352, 200);
 
-    it("should intersect with a (-634, -190, 1143, 3807) rectangle", () => {
+    it("should not intersect a (-634, -190, 1143, 3807) rectangle ending before its left edge", () => {
       const rect2 = new Rectangle(-634, -190, 1143, 3807);
+
+      // The rectangle ends at x=509; the circle starts at x=576.
+      expect(circle1.intersects(rect2)).to.be.false;
+      expect(rect2.intersects(circle1)).to.be.false;
+    });
+
+    it("should intersect when the rectangle extends into its radius", () => {
+      const rect2 = new Rectangle(-634, -190, 1243, 3807);
 
       expect(circle1.intersects(rect2)).to.be.true;
       expect(rect2.intersects(circle1)).to.be.true;
