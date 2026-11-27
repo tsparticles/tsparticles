@@ -1,9 +1,25 @@
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, double, doublePI, half, quarter, squareExp } from "@tsparticles/engine";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  type ICoordinates,
+  type IDimension,
+  double,
+  doublePI,
+  half,
+  quarter,
+  squareExp,
+} from "@tsparticles/engine";
 
 export class EmittersCircleShape extends EmitterShapeBase {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
+  constructor(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: unknown,
+  ) {
     super(position, size, fill, options);
   }
 
@@ -14,7 +30,15 @@ export class EmittersCircleShape extends EmitterShapeBase {
       startAngle = 0,
       endAngle = doublePI;
 
-    context.ellipse(position.x, position.y, size.width * half, size.height * half, rotation, startAngle, endAngle);
+    context.ellipse(
+      position.x,
+      position.y,
+      size.width * half,
+      size.height * half,
+      rotation,
+      startAngle,
+      endAngle,
+    );
   }
 
   async init(): Promise<void> {
@@ -41,7 +65,11 @@ export class EmittersCircleShape extends EmitterShapeBase {
         }
       },
       radius = (x: number, y: number, theta: number): number =>
-        (x * y) / Math.sqrt((y * Math.cos(theta)) ** squareExp + (x * Math.sin(theta)) ** squareExp),
+        (x * y) /
+        Math.sqrt(
+          (y * Math.cos(theta)) ** squareExp +
+            (x * Math.sin(theta)) ** squareExp,
+        ),
       [a, b] = [size.width * half, size.height * half],
       randomTheta = generateTheta(a, b),
       maxRadius = radius(a, b, randomTheta),

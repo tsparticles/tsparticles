@@ -9,7 +9,7 @@ declare const __VERSION__: string;
 export async function loadHwbColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(async e => {
+  await engine.pluginManager.register(async (e) => {
     const { HwbColorManager } = await import("./HwbColorManager.js");
 
     e.addColorManager("hwb", new HwbColorManager(e.getRandomFn()));

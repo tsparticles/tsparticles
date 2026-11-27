@@ -7,8 +7,14 @@ import {
   percentDenominator,
   safeDocument,
 } from "@tsparticles/engine";
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  generateRandomPointOnPathPerimeter,
+  generateRandomPointWithinPath,
+} from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 import { ErrorCodes } from "./ErrorCodes.js";
 
@@ -26,7 +32,9 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
   ) {
     super(position, size, fill, options);
 
-    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.render.settings);
+    const ctx = safeDocument()
+      .createElement("canvas")
+      .getContext("2d", container.canvas.render.settings);
 
     if (!ctx) {
       throw new Error(getErrorMessage(ErrorCodes.emittersPathNo2dContext));

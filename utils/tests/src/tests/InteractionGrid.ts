@@ -7,16 +7,22 @@ import type { InteractivityPluginManager } from "../../../../plugins/interactivi
 import { InteractorType } from "../../../../plugins/interactivity/src/Enums/InteractorType.js";
 import { SpatialHashGrid } from "../../../../engine/src/Core/Particles/SpatialHashGrid.js";
 
-function fixture(distances: number[], pixelRatio = 1): { grid: SpatialHashGrid; manager: InteractionManager } {
+function fixture(
+  distances: number[],
+  pixelRatio = 1,
+): { grid: SpatialHashGrid; manager: InteractionManager } {
   const grid = new SpatialHashGrid(64),
     container = {
       particles: { grid },
       plugins: [],
       retina: { pixelRatio },
     } as unknown as Container,
-    manager = new InteractionManager({} as InteractivityPluginManager, container);
+    manager = new InteractionManager(
+      {} as InteractivityPluginManager,
+      container,
+    );
 
-  manager.interactors = distances.map(maxDistance => ({
+  manager.interactors = distances.map((maxDistance) => ({
     maxDistance,
     type: InteractorType.particles,
     init: () => undefined,
@@ -61,11 +67,14 @@ describe("interactivity grid sizing", () => {
 
     stateful.isEnabled.mockReturnValue(true);
     manager.reset(particle);
-    expect(reset).toHaveBeenCalledExactlyOnceWith(manager.interactivityData, particle);
+    expect(reset).toHaveBeenCalledExactlyOnceWith(
+      manager.interactivityData,
+      particle,
+    );
   });
 
   it.each(
-    [[], [0], [-1], [NaN], [Infinity], [-Infinity]].map(distances => ({
+    [[], [0], [-1], [NaN], [Infinity], [-Infinity]].map((distances) => ({
       distances,
     })),
   )("retains valid cell size for distances $distances", ({ distances }) => {
@@ -94,7 +103,7 @@ describe("interactivity grid sizing", () => {
 
   it.each([0, -1, NaN, Infinity, Number.MAX_VALUE])(
     "retains cell size for invalid or overflowing pixel ratio %s",
-    pixelRatio => {
+    (pixelRatio) => {
       const { grid, manager } = fixture([80], pixelRatio);
 
       expect(() => {

@@ -52,9 +52,20 @@ export class SpiralPathGenerator implements IMovePathGenerator {
       angle: this.#container.engine.getRandom() * doublePI,
       radius: minRadius,
       direction: SpiralDirection.positive,
-      maxRadius: getRangeValue(options.maxRadius, this.#container.engine.getRandomFn()),
-      angularSpeed: getRangeValue(options.angularSpeed, this.#container.engine.getRandomFn()) * speedFactor,
-      radialSpeed: getRangeValue(options.radialSpeed, this.#container.engine.getRandomFn()) * speedFactor,
+      maxRadius: getRangeValue(
+        options.maxRadius,
+        this.#container.engine.getRandomFn(),
+      ),
+      angularSpeed:
+        getRangeValue(
+          options.angularSpeed,
+          this.#container.engine.getRandomFn(),
+        ) * speedFactor,
+      radialSpeed:
+        getRangeValue(
+          options.radialSpeed,
+          this.#container.engine.getRandomFn(),
+        ) * speedFactor,
     };
 
     const spiral = particle.spiral;
@@ -65,10 +76,16 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     // advance radial oscillation
     spiral.radius += spiral.radialSpeed * spiral.direction * delta.factor;
 
-    if (spiral.radius > spiral.maxRadius && spiral.direction === SpiralDirection.positive) {
+    if (
+      spiral.radius > spiral.maxRadius &&
+      spiral.direction === SpiralDirection.positive
+    ) {
       spiral.radius = spiral.maxRadius;
       spiral.direction = SpiralDirection.negative;
-    } else if (spiral.radius < minRadius && spiral.direction === SpiralDirection.negative) {
+    } else if (
+      spiral.radius < minRadius &&
+      spiral.direction === SpiralDirection.negative
+    ) {
       spiral.radius = minRadius;
       spiral.direction = SpiralDirection.positive;
     }
@@ -89,11 +106,18 @@ export class SpiralPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
+    const sourceOptions =
+      this.#container.actualOptions.particles.move.path.options;
 
-    this.options.maxRadius = (sourceOptions["maxRadius"] as RangeValue | undefined) ?? this.options.maxRadius;
-    this.options.angularSpeed = (sourceOptions["angularSpeed"] as RangeValue | undefined) ?? this.options.angularSpeed;
-    this.options.radialSpeed = (sourceOptions["radialSpeed"] as RangeValue | undefined) ?? this.options.radialSpeed;
+    this.options.maxRadius =
+      (sourceOptions["maxRadius"] as RangeValue | undefined) ??
+      this.options.maxRadius;
+    this.options.angularSpeed =
+      (sourceOptions["angularSpeed"] as RangeValue | undefined) ??
+      this.options.angularSpeed;
+    this.options.radialSpeed =
+      (sourceOptions["radialSpeed"] as RangeValue | undefined) ??
+      this.options.radialSpeed;
   }
 
   /**

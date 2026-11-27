@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { type Container, Vector, doublePI } from "@tsparticles/engine";
-import type { IBranchesInertiaOptions, IBranchesPathOptions } from "./IBranchesPathOptions.js";
+import type {
+  IBranchesInertiaOptions,
+  IBranchesPathOptions,
+} from "./IBranchesPathOptions.js";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 
@@ -56,14 +59,20 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const b = p.branching;
 
     if (b.remaining <= 0) {
-      const branch = this.#container.engine.getRandom() < (opts.branchChance ?? 0),
+      const branch =
+          this.#container.engine.getRandom() < (opts.branchChance ?? 0),
         maxAngle = opts.maxAngle ?? defaultOptions.maxAngle,
-        delta = (this.#container.engine.getRandom() * 2 - 1) * (branch ? maxAngle : maxAngle * 0.3);
+        delta =
+          (this.#container.engine.getRandom() * 2 - 1) *
+          (branch ? maxAngle : maxAngle * 0.3);
 
       b.angle += delta;
       b.remaining = opts.segmentLength;
 
-      const speedFactor = 1 + (this.#container.engine.getRandom() * 2 - 1) * (opts.speedVariation ?? 0);
+      const speedFactor =
+        1 +
+        (this.#container.engine.getRandom() * 2 - 1) *
+          (opts.speedVariation ?? 0);
 
       b.speed = b.baseSpeed * speedFactor;
     }
@@ -97,12 +106,20 @@ export class BranchesPathGenerator implements IMovePathGenerator {
   init(): void {
     const source = this.#container.actualOptions.particles.move.path.options;
 
-    this.options.segmentLength = (source["segmentLength"] as number | undefined) ?? this.options.segmentLength;
-    this.options.branchChance = (source["branchChance"] as number | undefined) ?? this.options.branchChance;
-    this.options.maxAngle = (source["maxAngle"] as number | undefined) ?? this.options.maxAngle;
-    this.options.speedVariation = (source["speedVariation"] as number | undefined) ?? this.options.speedVariation;
+    this.options.segmentLength =
+      (source["segmentLength"] as number | undefined) ??
+      this.options.segmentLength;
+    this.options.branchChance =
+      (source["branchChance"] as number | undefined) ??
+      this.options.branchChance;
+    this.options.maxAngle =
+      (source["maxAngle"] as number | undefined) ?? this.options.maxAngle;
+    this.options.speedVariation =
+      (source["speedVariation"] as number | undefined) ??
+      this.options.speedVariation;
 
-    const inertiaSource = source["inertia"] as IBranchesInertiaOptions | undefined;
+    const inertiaSource = source["inertia"] as
+      IBranchesInertiaOptions | undefined;
 
     if (inertiaSource) {
       const inertiaOptions = { ...defaultOptions.inertia };

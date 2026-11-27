@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type Container, type ICoordinates, Vector, deepExtend } from "@tsparticles/engine";
+import {
+  type Container,
+  type ICoordinates,
+  Vector,
+  deepExtend,
+} from "@tsparticles/engine";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
 import type { PolygonPathParticle } from "./PolygonPathParticle.js";
@@ -50,7 +55,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
     if (p.hexStep % turnSteps === 0) {
       p.hexDirection =
-        this.#container.engine.getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
+        this.#container.engine.getRandom() > 0.5
+          ? (p.hexDirection + 1) % sides
+          : (p.hexDirection + sides - 1) % sides;
     }
 
     p.velocity.x = 0;
@@ -72,10 +79,15 @@ export class PolygonPathGenerator implements IMovePathGenerator {
       sourceOptions = container.actualOptions.particles.move.path.options;
 
     this.options.sides =
-      (sourceOptions["sides"] as number) > 0 ? (sourceOptions["sides"] as number) : this.options.sides;
-    this.options.angle = (sourceOptions["angle"] as number | undefined) ?? this.options.angle;
+      (sourceOptions["sides"] as number) > 0
+        ? (sourceOptions["sides"] as number)
+        : this.options.sides;
+    this.options.angle =
+      (sourceOptions["angle"] as number | undefined) ?? this.options.angle;
     this.options.turnSteps =
-      (sourceOptions["turnSteps"] as number) >= 0 ? (sourceOptions["turnSteps"] as number) : this.options.turnSteps;
+      (sourceOptions["turnSteps"] as number) >= 0
+        ? (sourceOptions["turnSteps"] as number)
+        : this.options.turnSteps;
 
     this.#createDirs();
   }
@@ -103,7 +115,12 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     for (let i = 0; i < 360; i += 360 / options.sides) {
       const angle = options.angle + i;
 
-      this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
+      this.dirsList.push(
+        Vector.create(
+          Math.cos((angle * Math.PI) / 180),
+          Math.sin((angle * Math.PI) / 180),
+        ),
+      );
     }
   }
 }

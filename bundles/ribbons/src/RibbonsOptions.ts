@@ -12,7 +12,9 @@ import {
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
 
 /** Ribbons options class */
-export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOptions> {
+export class RibbonsOptions
+  implements IRibbonsOptions, IOptionLoader<IRibbonsOptions>
+{
   /** Ribbon colors */
   colors: SingleOrMultiple<string>;
 
@@ -106,7 +108,10 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
     }
 
     if (data.ribbonOptions !== undefined) {
-      this.ribbonOptions = deepExtend({}, data.ribbonOptions) as SingleOrMultiple<IShapeValues>;
+      this.ribbonOptions = deepExtend(
+        {},
+        data.ribbonOptions,
+      ) as SingleOrMultiple<IShapeValues>;
     }
 
     loadProperty(this, "scalar", data.scalar);

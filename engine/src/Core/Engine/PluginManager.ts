@@ -22,7 +22,10 @@ export type AsyncLoadPluginNoEngine = () => Promise<void>;
 export type SyncLoadPluginNoEngine = () => void;
 /** Plugin loader function type */
 export type LoadPluginFunction =
-  AsyncLoadPluginFunction | SyncLoadPluginFunction | AsyncLoadPluginNoEngine | SyncLoadPluginNoEngine;
+  | AsyncLoadPluginFunction
+  | SyncLoadPluginFunction
+  | AsyncLoadPluginNoEngine
+  | SyncLoadPluginNoEngine;
 
 /**
  * Stores and resolves plugins, shapes, effects, palettes and updaters.
@@ -78,7 +81,8 @@ export class PluginManager {
     this.#engine = engine;
 
     const boundMethods = new WeakMap<object, (...args: unknown[]) => unknown>(),
-      loaderInit = (): Promise<void> => (this.#activeLoaderCount > 0 ? Promise.resolve() : engine.init());
+      loaderInit = (): Promise<void> =>
+        this.#activeLoaderCount > 0 ? Promise.resolve() : engine.init();
 
     this.#loaderEngine = new Proxy(engine, {
       get: (target, property) => {
@@ -95,7 +99,8 @@ export class PluginManager {
         let boundMethod = boundMethods.get(value);
 
         if (!boundMethod) {
-          boundMethod = (...args: unknown[]): unknown => Reflect.apply(value, target, args) as unknown;
+          boundMethod = (...args: unknown[]): unknown =>
+            Reflect.apply(value, target, args) as unknown;
           boundMethods.set(value, boundMethod);
         }
 
@@ -144,7 +149,9 @@ export class PluginManager {
     const key = config.key ?? config.name ?? "default";
 
     this.#configs.set(key, config);
-    this.#engine.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
+    this.#engine.dispatchEvent(EventType.configAdded, {
+      data: { name: key, config },
+    });
   }
 
   /**
@@ -189,7 +196,10 @@ export class PluginManager {
    * @param name - the particle updater name used as a key
    * @param updaterInitializer - the particle updater initializer
    */
-  addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
+  addParticleUpdater(
+    name: string,
+    updaterInitializer: UpdaterInitializer,
+  ): void {
     this.#checkRegistrationOpen();
 
     this.initializers.updaters.set(name, updaterInitializer);
@@ -218,7 +228,11 @@ export class PluginManager {
    * @param options - the options to add to the preset
    * @param override - if true, the preset will override any existing with the same name
    */
-  addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
+  addPreset(
+    preset: string,
+    options: Readonly<ISourceOptions>,
+    override = false,
+  ): void {
     this.#checkRegistrationOpen();
 
     if (!(override || !this.getPreset(preset))) {
@@ -265,7 +279,7 @@ export class PluginManager {
    * @returns the plugin if found, or undefined
    */
   getPlugin(plugin: string): IPlugin | undefined {
-    return this.#plugins.find(t => t.id === plugin);
+    return this.#plugins.find((t) => t.id === plugin);
   }
 
   /**
@@ -297,10 +311,16 @@ export class PluginManager {
       try {
         while (
           this.#inFlightLoaders.size > 0 ||
-          [...this.#allLoadersSet].some(loader => !this.#executedSet.has(loader))
+          [...this.#allLoadersSet].some(
+            (loader) => !this.#executedSet.has(loader),
+          )
         ) {
           for (const loader of this.#allLoadersSet) {
-            await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+            await this.#runLoader(
+              loader,
+              this.#executedSet,
+              this.#allLoadersSet,
+            );
           }
 
           const inFlightLoaders = [...this.#inFlightLoaders];
@@ -360,7 +380,8 @@ export class PluginManager {
 
     this.#activeLoaderCount++;
 
-    const loaderPromise = (async (): Promise<void> => loader(this.#loaderEngine))();
+    const loaderPromise = (async (): Promise<void> =>
+      loader(this.#loaderEngine))();
 
     this.#inFlightLoaders.add(loaderPromise);
 

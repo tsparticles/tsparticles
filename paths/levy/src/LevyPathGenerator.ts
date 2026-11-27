@@ -73,9 +73,12 @@ export class LevyPathGenerator implements IMovePathGenerator {
   init(): void {
     const source = this.#container.actualOptions.particles.move.path.options;
 
-    this.options.alpha = (source["alpha"] as number | undefined) ?? this.options.alpha;
-    this.options.scale = (source["scale"] as number | undefined) ?? this.options.scale;
-    this.options.maxStep = (source["maxStep"] as number | undefined) ?? this.options.maxStep;
+    this.options.alpha =
+      (source["alpha"] as number | undefined) ?? this.options.alpha;
+    this.options.scale =
+      (source["scale"] as number | undefined) ?? this.options.scale;
+    this.options.maxStep =
+      (source["maxStep"] as number | undefined) ?? this.options.maxStep;
   }
 
   /**

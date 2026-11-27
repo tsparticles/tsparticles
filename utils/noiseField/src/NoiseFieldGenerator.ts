@@ -1,4 +1,11 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, identity } from "@tsparticles/engine";
+import {
+  type Container,
+  type Particle,
+  Vector,
+  deepExtend,
+  doublePI,
+  identity,
+} from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -35,7 +42,10 @@ const originCoordinate = 0,
       z: 40000,
     },
   },
-  globalEvents = globalThis as unknown as Pick<Partial<typeof globalThis>, "addEventListener" | "removeEventListener">;
+  globalEvents = globalThis as unknown as Pick<
+    Partial<typeof globalThis>,
+    "addEventListener" | "removeEventListener"
+  >;
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   readonly container: Container;
@@ -102,7 +112,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
       return;
     }
 
-    this.container.canvas.render.draw(ctx => {
+    this.container.canvas.render.draw((ctx) => {
       this.#drawField(ctx);
     });
   }
@@ -142,7 +152,13 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
             z * lengthFactor + options.offset.z,
             noiseW,
           );
-          cell.angle = noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * doublePI;
+          cell.angle =
+            noiseGen.noise4d(
+              x * angleFactor,
+              y * angleFactor,
+              z * angleFactor,
+              noiseW,
+            ) * doublePI;
         }
       }
     }
@@ -228,7 +244,10 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     options.width = container.canvas.size.width;
     options.height = container.canvas.size.height;
-    options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
+    options.size =
+      (sourceOptions["size"] as number) > empty
+        ? (sourceOptions["size"] as number)
+        : defaultOptions.size;
     options.increment =
       (sourceOptions["increment"] as number) > empty
         ? (sourceOptions["increment"] as number)
@@ -249,9 +268,12 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     this.noiseGen.seed(options.seed ?? container.engine.getRandom());
 
-    options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
-    options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
-    options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
+    options.columns =
+      Math.floor(options.width / options.size) + optionsSizeOffset;
+    options.rows =
+      Math.floor(options.height / options.size) + optionsSizeOffset;
+    options.layers =
+      Math.floor(container.zLayers / options.size) + optionsSizeOffset;
 
     this.#initField();
   }

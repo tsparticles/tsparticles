@@ -7,8 +7,15 @@ import {
   loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
-import type { IOpacityParticlesOptions, OpacityParticle, OpacityParticlesOptions } from "./Types.js";
-import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
+import type {
+  IOpacityParticlesOptions,
+  OpacityParticle,
+  OpacityParticlesOptions,
+} from "./Types.js";
+import {
+  initParticleNumericAnimationValue,
+  updateAnimation,
+} from "@tsparticles/animation-utils";
 import { Opacity } from "./Options/Classes/Opacity.js";
 
 /**
@@ -38,13 +45,21 @@ export class OpacityUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.opacity = initParticleNumericAnimationValue(opacityOptions, pxRatio, this.#container.engine.getRandomFn());
+    particle.opacity = initParticleNumericAnimationValue(
+      opacityOptions,
+      pxRatio,
+      this.#container.engine.getRandomFn(),
+    );
 
     const opacityAnimation = opacityOptions.animation;
 
     if (opacityAnimation.enable) {
       particle.opacity.velocity =
-        (getRangeValue(opacityAnimation.speed, this.#container.engine.getRandomFn()) / percentDenominator) *
+        (getRangeValue(
+          opacityAnimation.speed,
+          this.#container.engine.getRandomFn(),
+        ) /
+          percentDenominator) *
         this.#container.retina.reduceFactor;
 
       if (!opacityAnimation.sync) {
@@ -68,7 +83,8 @@ export class OpacityUpdater implements IParticleUpdater {
       particle.opacity.enable &&
       ((particle.opacity.maxLoops ?? none) <= none ||
         ((particle.opacity.maxLoops ?? none) > none &&
-          (particle.opacity.loops ?? none) < (particle.opacity.maxLoops ?? none)))
+          (particle.opacity.loops ?? none) <
+            (particle.opacity.maxLoops ?? none)))
     );
   }
 
@@ -103,10 +119,20 @@ export class OpacityUpdater implements IParticleUpdater {
    * @param delta - The delta time
    */
   update(particle: OpacityParticle, delta: IDelta): void {
-    if (!this.isEnabled(particle) || !particle.opacity || !particle.options.opacity) {
+    if (
+      !this.isEnabled(particle) ||
+      !particle.opacity ||
+      !particle.options.opacity
+    ) {
       return;
     }
 
-    updateAnimation(particle, particle.opacity, true, particle.options.opacity.animation.destroy, delta);
+    updateAnimation(
+      particle,
+      particle.opacity,
+      true,
+      particle.options.opacity.animation.destroy,
+      delta,
+    );
   }
 }

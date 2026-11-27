@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadRgbColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.addColorManager("rgb", new RgbColorManager(e.getRandomFn()));
   });
 }

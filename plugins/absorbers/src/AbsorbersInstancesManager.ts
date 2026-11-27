@@ -1,4 +1,10 @@
-import { type ICoordinates, type PluginManager, type RecursivePartial, doublePI, isNumber } from "@tsparticles/engine";
+import {
+  type ICoordinates,
+  type PluginManager,
+  type RecursivePartial,
+  doublePI,
+  isNumber,
+} from "@tsparticles/engine";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -18,7 +24,10 @@ export class AbsorbersInstancesManager {
 
   constructor(pluginManager: PluginManager) {
     this.#pluginManager = pluginManager;
-    this.#containerArrays = new WeakMap<AbsorberContainer, AbsorberInstance[]>();
+    this.#containerArrays = new WeakMap<
+      AbsorberContainer,
+      AbsorberInstance[]
+    >();
   }
 
   async addAbsorber(
@@ -26,18 +35,28 @@ export class AbsorbersInstancesManager {
     options: RecursivePartial<IAbsorber>,
     position?: ICoordinates,
   ): Promise<AbsorberInstance | undefined> {
-    return this.addAbsorbers(container, [{ options, position }]).then(res => res[defaultIndex]);
+    return this.addAbsorbers(container, [{ options, position }]).then(
+      (res) => res[defaultIndex],
+    );
   }
 
   async addAbsorbers(
     container: AbsorberContainer,
-    absorbers: { options: RecursivePartial<IAbsorber>; position?: ICoordinates }[],
+    absorbers: {
+      options: RecursivePartial<IAbsorber>;
+      position?: ICoordinates;
+    }[],
   ): Promise<AbsorberInstance[]> {
     const { AbsorberInstance } = await import("./AbsorberInstance.js"),
       res = [];
 
     for (const { options, position } of absorbers) {
-      const absorber = new AbsorberInstance(this.#pluginManager, container, options, position),
+      const absorber = new AbsorberInstance(
+          this.#pluginManager,
+          container,
+          options,
+          position,
+        ),
         array = this.getArray(container);
 
       array.push(absorber);
@@ -78,12 +97,14 @@ export class AbsorbersInstancesManager {
 
     this.#containerArrays.set(container, []);
 
-    container.getAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined => {
+    container.getAbsorber ??= (
+      idxOrName?: number | string,
+    ): AbsorberInstance | undefined => {
       const array = this.getArray(container);
 
       return idxOrName === undefined || isNumber(idxOrName)
         ? array[idxOrName ?? defaultIndex]
-        : array.find(t => t.name === idxOrName);
+        : array.find((t) => t.name === idxOrName);
     };
 
     container.addAbsorber ??= (
@@ -94,13 +115,19 @@ export class AbsorbersInstancesManager {
     };
 
     container.addAbsorbers ??= (
-      absorbers: { options: RecursivePartial<IAbsorber>; position?: ICoordinates }[],
+      absorbers: {
+        options: RecursivePartial<IAbsorber>;
+        position?: ICoordinates;
+      }[],
     ): Promise<AbsorberInstance[]> => {
       return this.addAbsorbers(container, absorbers);
     };
   }
 
-  removeAbsorber(container: AbsorberContainer, absorber: AbsorberInstance): void {
+  removeAbsorber(
+    container: AbsorberContainer,
+    absorber: AbsorberInstance,
+  ): void {
     const index = this.getArray(container).indexOf(absorber),
       deleteCount = 1;
 
@@ -119,7 +146,10 @@ export class AbsorbersInstancesManager {
    * @param container - the absorber container
    * @param absorber - the absorber to split
    */
-  splitAbsorber(container: AbsorberContainer, absorber: AbsorberInstance): void {
+  splitAbsorber(
+    container: AbsorberContainer,
+    absorber: AbsorberInstance,
+  ): void {
     if (!absorber.options.split.enable) {
       return;
     }
@@ -138,7 +168,8 @@ export class AbsorbersInstancesManager {
     }
 
     // the absorbed mass is shared between the released particles, minus the drained slice
-    const particleSize = (size * splitMassRatio) / quantity / container.retina.pixelRatio;
+    const particleSize =
+      (size * splitMassRatio) / quantity / container.retina.pixelRatio;
 
     for (let i = defaultIndex; i < quantity; i++) {
       const angle = this.#pluginManager.engine.getRandom() * doublePI;

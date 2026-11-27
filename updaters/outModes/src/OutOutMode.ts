@@ -104,7 +104,11 @@ export class OutOutMode implements IOutModeManager {
     particle.justWarped = true;
   }
 
-  #applyOutModeNormal(particle: Particle, container: Container, direction: OutModeDirection): void {
+  #applyOutModeNormal(
+    particle: Particle,
+    container: Container,
+    direction: OutModeDirection,
+  ): void {
     const warp = particle.options.move.warp,
       canvasSize = container.canvas.size,
       sizeValue = particle.getRadius(),
@@ -116,31 +120,43 @@ export class OutOutMode implements IOutModeManager {
       },
       nextBounds = calculateBounds(particle.position, sizeValue);
 
-    if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width + particle.offset.x) {
+    if (
+      direction === OutModeDirection.right &&
+      nextBounds.left > canvasSize.width + particle.offset.x
+    ) {
       particle.position.x = newPos.left;
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = this.#container.engine.getRandom() * canvasSize.height;
+        particle.position.y =
+          this.#container.engine.getRandom() * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
       particle.justWarped = true;
-    } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
+    } else if (
+      direction === OutModeDirection.left &&
+      nextBounds.right < -particle.offset.x
+    ) {
       particle.position.x = newPos.right;
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = this.#container.engine.getRandom() * canvasSize.height;
+        particle.position.y =
+          this.#container.engine.getRandom() * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
       particle.justWarped = true;
     }
 
-    if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height + particle.offset.y) {
+    if (
+      direction === OutModeDirection.bottom &&
+      nextBounds.top > canvasSize.height + particle.offset.y
+    ) {
       if (!warp) {
-        particle.position.x = this.#container.engine.getRandom() * canvasSize.width;
+        particle.position.x =
+          this.#container.engine.getRandom() * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 
@@ -148,9 +164,13 @@ export class OutOutMode implements IOutModeManager {
       particle.initialPosition.y = particle.position.y;
 
       particle.justWarped = true;
-    } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
+    } else if (
+      direction === OutModeDirection.top &&
+      nextBounds.bottom < -particle.offset.y
+    ) {
       if (!warp) {
-        particle.position.x = this.#container.engine.getRandom() * canvasSize.width;
+        particle.position.x =
+          this.#container.engine.getRandom() * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 

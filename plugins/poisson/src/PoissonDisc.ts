@@ -1,4 +1,11 @@
-import { type ICoordinates, type IDimension, double, doublePI, getDistanceSq, minCount } from "@tsparticles/engine";
+import {
+  type ICoordinates,
+  type IDimension,
+  double,
+  doublePI,
+  getDistanceSq,
+  minCount,
+} from "@tsparticles/engine";
 import type { IPoissonPoint } from "./Interfaces/IPoissonPoint.js";
 
 /**
@@ -183,7 +190,7 @@ export class PoissonDisc {
       this.steps(step);
 
       if (++iterations % yieldEvery === yieldStepModule) {
-        await new Promise<void>(resolve => setTimeout(resolve));
+        await new Promise<void>((resolve) => setTimeout(resolve));
       }
     }
   }
@@ -204,7 +211,10 @@ export class PoissonDisc {
     } // n loop
   }
 
-  #getNewPoint(currentPoint: IPoissonPoint, tries: number): ICoordinates | undefined {
+  #getNewPoint(
+    currentPoint: IPoissonPoint,
+    tries: number,
+  ): ICoordinates | undefined {
     const minCoordinate = 0,
       gridMinValue = 0,
       maxNeighbourIndex = 1,
@@ -271,9 +281,13 @@ export class PoissonDisc {
           continue;
         }
 
-        const neighbourCellValue = this.grid[neighbourGrid.y]?.[neighbourGrid.x];
+        const neighbourCellValue =
+          this.grid[neighbourGrid.y]?.[neighbourGrid.x];
 
-        if (neighbourCellValue === undefined || neighbourCellValue < gridMinValue) {
+        if (
+          neighbourCellValue === undefined ||
+          neighbourCellValue < gridMinValue
+        ) {
           continue;
         }
 

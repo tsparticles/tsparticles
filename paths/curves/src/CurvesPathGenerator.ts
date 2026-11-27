@@ -1,4 +1,10 @@
-import { type Container, Vector, deepExtend, doublePI, isFunction } from "@tsparticles/engine";
+import {
+  type Container,
+  Vector,
+  deepExtend,
+  doublePI,
+  isFunction,
+} from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
@@ -62,12 +68,16 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
     if (particle.curveVelocity) {
       particle.curveVelocity.length += 0.01;
-      particle.curveVelocity.angle = (particle.curveVelocity.angle + particle.pathGen()) % doublePI;
+      particle.curveVelocity.angle =
+        (particle.curveVelocity.angle + particle.pathGen()) % doublePI;
     } else {
       particle.curveVelocity = Vector.origin;
 
-      particle.curveVelocity.length = randomVelocity(this.#container.engine.getRandomFn());
-      particle.curveVelocity.angle = this.#container.engine.getRandom() * doublePI;
+      particle.curveVelocity.length = randomVelocity(
+        this.#container.engine.getRandomFn(),
+      );
+      particle.curveVelocity.angle =
+        this.#container.engine.getRandom() * doublePI;
     }
 
     particle.velocity.x = 0;
@@ -78,17 +88,28 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this.#container.actualOptions.particles.move.path.options,
+    const sourceOptions =
+        this.#container.actualOptions.particles.move.path.options,
       randomFunction = sourceOptions["rndFunc"];
 
-    this.options.rndFunc = isFunction(randomFunction) ? (randomFunction as () => number) : null;
+    this.options.rndFunc = isFunction(randomFunction)
+      ? (randomFunction as () => number)
+      : null;
 
-    this.options.period = (sourceOptions["period"] as number | undefined) ?? this.options.period;
-    this.options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? this.options.nbHarmonics;
+    this.options.period =
+      (sourceOptions["period"] as number | undefined) ?? this.options.period;
+    this.options.nbHarmonics =
+      (sourceOptions["nbHarmonics"] as number | undefined) ??
+      this.options.nbHarmonics;
     this.options.attenHarmonics =
-      (sourceOptions["attenHarmonics"] as number | undefined) ?? this.options.attenHarmonics;
-    this.options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? this.options.lowValue;
-    this.options.highValue = (sourceOptions["highValue"] as number | undefined) ?? this.options.highValue;
+      (sourceOptions["attenHarmonics"] as number | undefined) ??
+      this.options.attenHarmonics;
+    this.options.lowValue =
+      (sourceOptions["lowValue"] as number | undefined) ??
+      this.options.lowValue;
+    this.options.highValue =
+      (sourceOptions["highValue"] as number | undefined) ??
+      this.options.highValue;
   }
 
   /**

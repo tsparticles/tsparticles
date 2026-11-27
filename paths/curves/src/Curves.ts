@@ -39,7 +39,10 @@ export function CurvesPathGen(
   } // for kh
 
   /* normalize amplitudes */
-  amplitudes.forEach((value, kh) => (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)));
+  amplitudes.forEach(
+    (value, kh) =>
+      (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)),
+  );
 
   /* returned function here */
   return () => {

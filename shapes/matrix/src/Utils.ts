@@ -1,4 +1,11 @@
-import { type IShapeDrawData, type Particle, double, getRangeMax, getRangeMin, originPoint } from "@tsparticles/engine";
+import {
+  type IShapeDrawData,
+  type Particle,
+  double,
+  getRangeMax,
+  getRangeMin,
+  originPoint,
+} from "@tsparticles/engine";
 import type { MatrixParticle } from "./MatrixParticle.js";
 
 /**
@@ -215,7 +222,11 @@ function randomChar(random: () => number): string {
  * @param maxInterval - The maxInterval
  * @returns a random interval between MIN_INTERVAL and MAX_INTERVAL
  */
-function randomInterval(minInterval: number, maxInterval: number, random: () => number): number {
+function randomInterval(
+  minInterval: number,
+  maxInterval: number,
+  random: () => number,
+): number {
   return minInterval + random() * (maxInterval - minInterval);
 }
 
@@ -225,14 +236,22 @@ function randomInterval(minInterval: number, maxInterval: number, random: () => 
  * @param maxInterval - The maxInterval
  * @returns the state for the given particle
  */
-function getState(particle: Particle, minInterval: number, maxInterval: number): MatrixCharState {
+function getState(
+  particle: Particle,
+  minInterval: number,
+  maxInterval: number,
+): MatrixCharState {
   let state = charCache.get(particle);
 
   if (!state) {
     state = {
       char: randomChar(particle.container.engine.getRandomFn()),
       elapsed: 0,
-      interval: randomInterval(minInterval, maxInterval, particle.container.engine.getRandomFn()), // each particle gets its own speed
+      interval: randomInterval(
+        minInterval,
+        maxInterval,
+        particle.container.engine.getRandomFn(),
+      ), // each particle gets its own speed
     };
 
     charCache.set(particle, state);
@@ -258,7 +277,11 @@ export function drawMatrix(data: IShapeDrawData<MatrixParticle>): void {
   if (state.elapsed >= state.interval) {
     state.char = randomChar(particle.container.engine.getRandomFn());
     state.elapsed -= state.interval;
-    state.interval = randomInterval(minInterval, maxInterval, particle.container.engine.getRandomFn());
+    state.interval = randomInterval(
+      minInterval,
+      maxInterval,
+      particle.container.engine.getRandomFn(),
+    );
   }
 
   const fontSize = Math.round(radius * double);

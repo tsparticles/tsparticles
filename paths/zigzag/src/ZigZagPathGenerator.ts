@@ -79,18 +79,28 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
 
     particle.zigzag ??= {
       counter: this.#container.engine.getRandom(),
-      waveHeight: getRangeValue(options.waveHeight, this.#container.engine.getRandomFn()),
-      waveLength: getRangeValue(options.waveLength, this.#container.engine.getRandomFn()),
+      waveHeight: getRangeValue(
+        options.waveHeight,
+        this.#container.engine.getRandomFn(),
+      ),
+      waveLength: getRangeValue(
+        options.waveLength,
+        this.#container.engine.getRandomFn(),
+      ),
     };
 
-    const angularFrequency = (angularFrequencyFactor / particle.zigzag.waveLength) * delta.factor;
+    const angularFrequency =
+      (angularFrequencyFactor / particle.zigzag.waveLength) * delta.factor;
 
     particle.zigzag.counter += angularFrequency;
 
-    const zigzagAngle = particle.zigzag.waveHeight * Math.sin(particle.zigzag.counter);
+    const zigzagAngle =
+      particle.zigzag.waveHeight * Math.sin(particle.zigzag.counter);
 
-    particle.position.x += zigzagAngle * Math.cos(particle.velocity.angle + halfPI);
-    particle.position.y += zigzagAngle * Math.sin(particle.velocity.angle + halfPI);
+    particle.position.x +=
+      zigzagAngle * Math.cos(particle.velocity.angle + halfPI);
+    particle.position.y +=
+      zigzagAngle * Math.sin(particle.velocity.angle + halfPI);
 
     this.#res.x = 0;
     this.#res.y = 0;
@@ -100,10 +110,15 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
+    const sourceOptions =
+      this.#container.actualOptions.particles.move.path.options;
 
-    this.options.waveLength = (sourceOptions["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
-    this.options.waveHeight = (sourceOptions["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
+    this.options.waveLength =
+      (sourceOptions["waveLength"] as RangeValue | undefined) ??
+      this.options.waveLength;
+    this.options.waveHeight =
+      (sourceOptions["waveHeight"] as RangeValue | undefined) ??
+      this.options.waveHeight;
   }
 
   /** Resets the path generator (no-op) */

@@ -37,7 +37,10 @@ export function generateRandomPolygon(
  * @param polygon - The polygon
  * @returns a random point within the polygon
  */
-export function generateRandomPointWithinPolygon(polygon: ICoordinates[], random: () => number): ICoordinates | null {
+export function generateRandomPointWithinPolygon(
+  polygon: ICoordinates[],
+  random: () => number,
+): ICoordinates | null {
   const firstIndex = 0,
     firstPoint = polygon[firstIndex];
 
@@ -109,7 +112,10 @@ export function generateRandomPointOnPolygonPerimeter(
 
   const t = random();
 
-  return { x: startPoint.x + (endPoint.x - startPoint.x) * t, y: startPoint.y + (endPoint.y - startPoint.y) * t };
+  return {
+    x: startPoint.x + (endPoint.x - startPoint.x) * t,
+    y: startPoint.y + (endPoint.y - startPoint.y) * t,
+  };
 }
 
 /**
@@ -118,7 +124,10 @@ export function generateRandomPointOnPolygonPerimeter(
  * @param polygon - The polygon
  * @returns whether the point is within the polygon
  */
-export function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): boolean {
+export function isPointInPolygon(
+  point: ICoordinates,
+  polygon: ICoordinates[],
+): boolean {
   let inside = false;
 
   const offset = 1;
@@ -132,7 +141,8 @@ export function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): 
     }
 
     const intersect =
-      pi.y > point.y !== pj.y > point.y && point.x < ((pj.x - pi.x) * (point.y - pi.y)) / (pj.y - pi.y) + pi.x;
+      pi.y > point.y !== pj.y > point.y &&
+      point.x < ((pj.x - pi.x) * (point.y - pi.y)) / (pj.y - pi.y) + pi.x;
 
     if (intersect) {
       inside = !inside;

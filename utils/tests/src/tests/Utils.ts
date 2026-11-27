@@ -129,14 +129,19 @@ describe("Utils", () => {
       const weight1 = Math.floor(tsParticles.getRandom() * (size - 1) + 1),
         weight2 = 0;
 
-      expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1.toString()}`).to.be.equal(Math.floor(comp1));
+      expect(
+        mix(comp1, comp2, weight1, weight2),
+        `weight 1: ${weight1.toString()}`,
+      ).to.be.equal(Math.floor(comp1));
     });
 
     it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
       const weight1 = 0,
         weight2 = Math.floor(tsParticles.getRandom() * (size - 1) + 1);
 
-      expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
+      expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(
+        Math.floor(comp2),
+      );
     });
 
     it("should return the expected weighted-average when weights differ", () => {
@@ -164,9 +169,17 @@ describe("Utils", () => {
       objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
     it("should always return a random item from a numeric array", () => {
-      const randomItem = itemFromArray(numericArray, undefined, true, tsParticles.getRandomFn());
+      const randomItem = itemFromArray(
+        numericArray,
+        undefined,
+        true,
+        tsParticles.getRandomFn(),
+      );
 
-      expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
+      expect(
+        numericArray,
+        "itemFromArray returned us an item not in the original array",
+      ).to.include(randomItem);
     });
 
     it("should return the requested numeric item when specifying index", () => {
@@ -176,9 +189,17 @@ describe("Utils", () => {
     });
 
     it("should always return a random item from a string array", () => {
-      const randomItem = itemFromArray(stringArray, undefined, true, tsParticles.getRandomFn());
+      const randomItem = itemFromArray(
+        stringArray,
+        undefined,
+        true,
+        tsParticles.getRandomFn(),
+      );
 
-      expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
+      expect(
+        stringArray,
+        "itemFromArray returned us an item not in the original array",
+      ).to.include(randomItem);
     });
 
     it("should return the requested string item when specifying index", () => {
@@ -188,9 +209,17 @@ describe("Utils", () => {
     });
 
     it("should always return a random object from an array of objects", () => {
-      const randomObject = itemFromArray(objectArray, undefined, true, tsParticles.getRandomFn());
+      const randomObject = itemFromArray(
+        objectArray,
+        undefined,
+        true,
+        tsParticles.getRandomFn(),
+      );
 
-      expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(randomObject);
+      expect(
+        objectArray,
+        "itemFromArray returned us an item not in the original array",
+      ).to.include(randomObject);
     });
 
     it("should return the requested object when specifying index", () => {
@@ -204,7 +233,10 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range in positive reals", () => {
       const min = 1,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
+        randomNumber = randomInRangeValue(
+          setRangeValue(min, max),
+          tsParticles.getRandomFn(),
+        );
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -212,7 +244,10 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range in negative reals", () => {
       const min = -10,
         max = -1,
-        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
+        randomNumber = randomInRangeValue(
+          setRangeValue(min, max),
+          tsParticles.getRandomFn(),
+        );
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -220,7 +255,10 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
       const min = -10,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
+        randomNumber = randomInRangeValue(
+          setRangeValue(min, max),
+          tsParticles.getRandomFn(),
+        );
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -228,7 +266,10 @@ describe("Utils", () => {
     it("should set min as 0 when max equals to min", () => {
       const min = 10,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
+        randomNumber = randomInRangeValue(
+          setRangeValue(min, max),
+          tsParticles.getRandomFn(),
+        );
 
       expect(randomNumber).to.be.within(0, max);
     });
@@ -260,7 +301,10 @@ describe("Utils", () => {
       const pointA = point,
         pointB = { x: -1, y: -1 };
 
-      expect(getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
+      expect(getDistance(pointA, pointB)).to.be.closeTo(
+        2 * Math.SQRT2,
+        precision,
+      );
     });
 
     it("should return the same distance regardless of the order of the points", () => {
@@ -409,7 +453,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.top;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .true;
     });
 
     it("should return false when direction is top and the bounds do not intersect the screen and are above", () => {
@@ -421,7 +466,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.top;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .false;
     });
 
     it("should return true when direction is bottom and the bounds do not intersect the screen and are above", () => {
@@ -433,7 +479,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.bottom;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .true;
     });
 
     it("should return false when direction is bottom and the bounds do not intersect the screen and are below", () => {
@@ -445,7 +492,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.bottom;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .false;
     });
 
     it("should return true when direction is left and the bounds do not intersect the screen and are to the right", () => {
@@ -457,7 +505,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.left;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .true;
     });
 
     it("should return false when direction is left and the bounds do not intersect the screen and are to the left", () => {
@@ -469,7 +518,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.left;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .false;
     });
 
     it("should return true when direction is right and the bounds do not intersect the screen and are to the left", () => {
@@ -481,7 +531,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.right;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .true;
     });
 
     it("should return false when direction is right and the bounds do not intersect the screen and are to the right", () => {
@@ -493,7 +544,8 @@ describe("Utils", () => {
         },
         direction = OutModeDirection.right;
 
-      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+      expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be
+        .false;
     });
   });
 
@@ -510,15 +562,18 @@ describe("Utils", () => {
     });
 
     it("should return true when the point lies inside the screen, radius inside dimensions", () => {
-      expect(isPointInside(centerPoint, dimension, Vector.origin, 100)).to.be.true;
+      expect(isPointInside(centerPoint, dimension, Vector.origin, 100)).to.be
+        .true;
     });
 
     it("should return true when the point overlaps top and bottom but not left and right", () => {
-      expect(isPointInside(centerPoint, dimension, Vector.origin, 1000)).to.be.true;
+      expect(isPointInside(centerPoint, dimension, Vector.origin, 1000)).to.be
+        .true;
     });
 
     it("should return true when the point overlaps all sides of the screen", () => {
-      expect(isPointInside(centerPoint, dimension, Vector.origin, 10000)).to.be.true;
+      expect(isPointInside(centerPoint, dimension, Vector.origin, 10000)).to.be
+        .true;
     });
 
     it("should return false when point lies on top boundary of screen with no radius", () => {
@@ -526,7 +581,14 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on top boundary of screen with non-zero radius", () => {
-      expect(isPointInside(topPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
+      expect(
+        isPointInside(
+          topPoint,
+          dimension,
+          Vector.origin,
+          tsParticles.getRandom(),
+        ),
+      ).to.be.true;
     });
 
     it("should return false when point lies on bottom boundary of screen with no radius", () => {
@@ -534,7 +596,14 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on bottom boundary of screen with non-zero radius", () => {
-      expect(isPointInside(bottomPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
+      expect(
+        isPointInside(
+          bottomPoint,
+          dimension,
+          Vector.origin,
+          tsParticles.getRandom(),
+        ),
+      ).to.be.true;
     });
 
     it("should return false when point lies on left boundary of screen with no radius", () => {
@@ -542,7 +611,14 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on left boundary of screen with non-zero radius", () => {
-      expect(isPointInside(leftPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
+      expect(
+        isPointInside(
+          leftPoint,
+          dimension,
+          Vector.origin,
+          tsParticles.getRandom(),
+        ),
+      ).to.be.true;
     });
 
     it("should return false when point lies on right boundary of screen with no radius", () => {
@@ -550,7 +626,14 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on right boundary of screen with non-zero radius", () => {
-      expect(isPointInside(rightPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
+      expect(
+        isPointInside(
+          rightPoint,
+          dimension,
+          Vector.origin,
+          tsParticles.getRandom(),
+        ),
+      ).to.be.true;
     });
   });
 
@@ -570,21 +653,31 @@ describe("Utils", () => {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 2);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        -Math.PI / 2,
+      );
     });
 
     it("should return the proper base velocity, when it's moving top-right", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.topRight);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.topRight,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 4);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        -Math.PI / 4,
+      );
     });
 
     it("should return the proper base velocity, when it's moving right", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.right);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.right,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
@@ -594,37 +687,55 @@ describe("Utils", () => {
     });
 
     it("should return the proper base velocity, when it's moving bottom-right", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.bottomRight);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.bottomRight,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 4);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        Math.PI / 4,
+      );
     });
 
     it("should return the proper base velocity, when it's moving bottom", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.bottom);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.bottom,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 2);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        Math.PI / 2,
+      );
     });
 
     it("should return the proper base velocity, when it's moving bottom-left", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.bottomLeft);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.bottomLeft,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql((3 * Math.PI) / 4);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        (3 * Math.PI) / 4,
+      );
     });
 
     it("should return the proper base velocity, when it's moving left", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.left);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.left,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
@@ -634,13 +745,18 @@ describe("Utils", () => {
     });
 
     it("should return the proper base velocity, when it's moving top-left", () => {
-      const particle = buildParticleWithDirection(container, MoveDirection.topLeft);
+      const particle = buildParticleWithDirection(
+        container,
+        MoveDirection.topLeft,
+      );
 
       if (!particle) {
         throw new Error("Particle not found");
       }
 
-      expect(getParticleBaseVelocity(particle.direction).angle).to.eql((-3 * Math.PI) / 4);
+      expect(getParticleBaseVelocity(particle.direction).angle).to.eql(
+        (-3 * Math.PI) / 4,
+      );
     });
   });
 
@@ -659,7 +775,10 @@ describe("Utils", () => {
     velocity.angle = (238.91568442036498 * Math.PI) / 180;
 
     console.log("segment", start, stop);
-    console.log("s. angle", ((Math.atan2(start.y - stop.y, start.x - stop.x) * 180) / Math.PI) % 360);
+    console.log(
+      "s. angle",
+      ((Math.atan2(start.y - stop.y, start.x - stop.x) * 180) / Math.PI) % 360,
+    );
     console.log("p. speed", velocity.length);
     console.log("p. angle", ((velocity.angle * 180) / Math.PI) % 360);
 

@@ -1,5 +1,11 @@
-import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
-import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
+import type {
+  ICoordinates,
+  ICoordinatesWithMode,
+} from "../Core/Interfaces/ICoordinates.js";
+import type {
+  IDimension,
+  IDimensionWithMode,
+} from "../Core/Interfaces/IDimension.js";
 import {
   canvasFirstIndex,
   canvasTag,
@@ -66,7 +72,9 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
  * @param callback - the observer callback
  * @returns the mutation observer, if supported
  */
-export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
+export function safeMutationObserver(
+  callback: (records: MutationRecord[]) => void,
+): MutationObserver | undefined {
   if (typeof MutationObserver === "undefined") {
     return;
   }
@@ -91,13 +99,20 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
  * @param useIndex - if true, the index will be used instead of a random index
  * @returns the item found
  */
-export function itemFromArray<T>(array: T[], index?: number, useIndex = true, random?: () => number): T | undefined {
+export function itemFromArray<T>(
+  array: T[],
+  index?: number,
+  useIndex = true,
+  random?: () => number,
+): T | undefined {
   if (index !== undefined && useIndex) {
     return array[index % array.length];
   }
 
   if (!random) {
-    throw new Error("A random provider is required to select an array item without an index.");
+    throw new Error(
+      "A random provider is required to select an array item without an index.",
+    );
   }
 
   return array[Math.floor(getRandomValue(random) * array.length)];
@@ -119,7 +134,12 @@ export function isPointInside(
   radius?: number,
   direction?: OutModeDirection,
 ): boolean {
-  return areBoundsInside(calculateBounds(point, radius ?? minRadius), size, offset, direction);
+  return areBoundsInside(
+    calculateBounds(point, radius ?? minRadius),
+    size,
+    offset,
+    direction,
+  );
 }
 
 /**
@@ -178,7 +198,10 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
  * @param sources - the source objects
  * @returns the merged destination object
  */
-export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
+export function deepExtend(
+  destination: unknown,
+  ...sources: unknown[]
+): unknown {
   for (const source of sources) {
     if (isNull(source)) {
       continue;
@@ -203,7 +226,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     // prototype/constructor keys to avoid prototype pollution.
     const sourceKeys = Object.keys(source),
       // Detect if the source contains nested structures that need full deep merging
-      hasNested = sourceKeys.some(k => {
+      hasNested = sourceKeys.some((k) => {
         const v = (source as Record<string, unknown>)[k];
 
         return isObject(v) || Array.isArray(v);
@@ -239,7 +262,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
         value = sourceDict[key];
 
       destDict[key] = Array.isArray(value)
-        ? value.map(v => deepExtend(undefined, v))
+        ? value.map((v) => deepExtend(undefined, v))
         : deepExtend(destDict[key], value);
     }
   }
@@ -259,8 +282,14 @@ export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
     mass: p.getMass(),
     velocity: p.velocity,
     factor: Vector.create(
-      getRangeValue(p.options.bounce.horizontal.value, p.container.engine.getRandomFn()),
-      getRangeValue(p.options.bounce.vertical.value, p.container.engine.getRandomFn()),
+      getRangeValue(
+        p.options.bounce.horizontal.value,
+        p.container.engine.getRandomFn(),
+      ),
+      getRangeValue(
+        p.options.bounce.vertical.value,
+        p.container.engine.getRandomFn(),
+      ),
     ),
   };
 }
@@ -309,7 +338,9 @@ export function executeOnSingleOrMultiple<T, U = void>(
 ): SingleOrMultiple<U> {
   const defaultIndex = 0;
 
-  return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, defaultIndex);
+  return isArray(obj)
+    ? obj.map((item, index) => callback(item, index))
+    : callback(obj, defaultIndex);
 }
 
 /**
@@ -364,7 +395,10 @@ function getPositionOrSize(
  * @param canvasSize - The canvasSize
  * @returns the calculated position
  */
-export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimension): ICoordinates {
+export function getPosition(
+  position: ICoordinatesWithMode,
+  canvasSize: IDimension,
+): ICoordinates {
   return getPositionOrSize(position, canvasSize) as ICoordinates;
 }
 
@@ -373,8 +407,11 @@ export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimensi
  * @param style - the style to clone
  * @returns the cloned style
  */
-export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclaration {
-  const clonedStyle: CSSStyleDeclaration = safeDocument().createElement("div").style;
+export function cloneStyle(
+  style: Partial<CSSStyleDeclaration>,
+): CSSStyleDeclaration {
+  const clonedStyle: CSSStyleDeclaration =
+    safeDocument().createElement("div").style;
 
   for (const key in style) {
     const styleKey = style[key];
@@ -401,7 +438,8 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
   return clonedStyle;
 }
 
-let _cachedZIndex: number | undefined, _cachedStyle: CSSStyleDeclaration | undefined;
+let _cachedZIndex: number | undefined,
+  _cachedStyle: CSSStyleDeclaration | undefined;
 
 /**
  * Full-screen canvas style builder with inline cache.
@@ -481,11 +519,14 @@ export function manageListener(
  * @param initializers - The initializers
  * @returns the items from the given initializer
  */
-export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+export async function getItemsFromInitializer<
+  TItem,
+  TInitializer extends GenericInitializer<TItem>,
+>(
   container: Container,
   initializers: Map<string, TInitializer>,
 ): Promise<TItem[]> {
-  return await Promise.all([...initializers.values()].map(t => t(container)));
+  return await Promise.all([...initializers.values()].map((t) => t(container)));
 }
 
 /**
@@ -493,12 +534,17 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
  * @param initializers - The initializers
  * @returns the items from the given initializer
  */
-export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+export async function getItemMapFromInitializer<
+  TItem,
+  TInitializer extends GenericInitializer<TItem>,
+>(
   container: Container,
   initializers: Map<string, TInitializer>,
 ): Promise<Map<string, TItem>> {
   const entries = await Promise.all(
-    [...initializers.entries()].map(([key, initializer]) => initializer(container).then(item => [key, item] as const)),
+    [...initializers.entries()].map(([key, initializer]) =>
+      initializer(container).then((item) => [key, item] as const),
+    ),
   );
 
   return new Map(entries);
@@ -542,7 +588,9 @@ export async function getDataFromUrl(
 
       logger.error("invalid configuration data while retrieving config file");
     } else {
-      logger.error(`${response.status.toString()} while retrieving config file`);
+      logger.error(
+        `${response.status.toString()} while retrieving config file`,
+      );
     }
   } catch (error) {
     if (signal?.aborted) {
@@ -561,7 +609,9 @@ export async function getDataFromUrl(
  * @param value - the parsed JSON value to check
  * @returns true when the value is a source options object
  */
-function isSourceOptionsValue(value: unknown): value is SingleOrMultiple<Readonly<ISourceOptions>> {
+function isSourceOptionsValue(
+  value: unknown,
+): value is SingleOrMultiple<Readonly<ISourceOptions>> {
   if (isArray(value)) {
     return value.every((entry: unknown) => isObject(entry) && !isArray(entry));
   }
@@ -574,11 +624,15 @@ function isSourceOptionsValue(value: unknown): value is SingleOrMultiple<Readonl
  * @param domContainer -
  * @returns the canvas
  */
-export function getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasElement {
+export function getCanvasFromContainer(
+  domContainer: HTMLElement,
+): HTMLCanvasElement {
   let canvasEl: HTMLCanvasElement;
 
   const documentSafe = safeDocument(),
-    isCanvas = domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag;
+    isCanvas =
+      domContainer instanceof HTMLCanvasElement ||
+      domContainer.tagName.toLowerCase() === canvasTag;
 
   if (isCanvas) {
     canvasEl = domContainer as HTMLCanvasElement;

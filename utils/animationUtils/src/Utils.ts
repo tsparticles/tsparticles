@@ -18,7 +18,9 @@ import {
 
 function requireRandom(random: (() => number) | undefined): () => number {
   if (!random) {
-    throw new Error("A random provider is required for this animation operation.");
+    throw new Error(
+      "A random provider is required for this animation operation.",
+    );
   }
 
   return random;
@@ -69,7 +71,8 @@ export function initParticleNumericAnimationValue(
   const valueRange = options.value,
     animationOptions = options.animation,
     res: IParticleNumericValueAnimation = {
-      delayTime: getRangeValue(animationOptions.delay, random) * millisecondsToSeconds,
+      delayTime:
+        getRangeValue(animationOptions.delay, random) * millisecondsToSeconds,
       enable: animationOptions.enable,
       value: getRangeValue(options.value, random) * pxRatio,
       max: getRangeMax(valueRange) * pxRatio,
@@ -94,7 +97,10 @@ export function initParticleNumericAnimationValue(
         break;
 
       case AnimationMode.random:
-        res.status = requireRandom(random)() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+        res.status =
+          requireRandom(random)() >= half
+            ? AnimationStatus.increasing
+            : AnimationStatus.decreasing;
 
         break;
       default:
@@ -127,7 +133,10 @@ export function initParticleNumericAnimationValue(
         res.value = randomInRangeValue(res, requireRandom(random));
 
         if (autoStatus) {
-          res.status = requireRandom(random)() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+          res.status =
+            requireRandom(random)() >= half
+              ? AnimationStatus.increasing
+              : AnimationStatus.decreasing;
         }
 
         break;
@@ -163,7 +172,8 @@ export function updateAnimation(
   if (
     particle.destroyed ||
     !data.enable ||
-    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    ((data.maxLoops ?? minLoops) > minLoops &&
+      (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
   ) {
     return;
   }

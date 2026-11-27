@@ -18,7 +18,7 @@ export function setLinkFrequency(
   dictionary: Map<string, number>,
   random: () => number,
 ): number {
-  const key = getLinkKey(particles.map(t => t.id));
+  const key = getLinkKey(particles.map((t) => t.id));
 
   let res = dictionary.get(key);
 

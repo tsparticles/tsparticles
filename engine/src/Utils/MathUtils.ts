@@ -2,7 +2,10 @@ import type {
   IPositionFromSizeParams,
   IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
-import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
+import {
+  MoveDirection,
+  type MoveDirectionAlt,
+} from "../Enums/Directions/MoveDirection.js";
 import {
   defaultAlpha,
   double,
@@ -41,7 +44,11 @@ function requireRandom(random: (() => number) | undefined): () => number {
  * @param max - The maximum value of the range.
  * @returns a random number between the given range
  */
-export function getRandomInRange(min: number, max: number, random: () => number): number {
+export function getRandomInRange(
+  min: number,
+  max: number,
+  random: () => number,
+): number {
   return getRandomValue(random) * (max - min) + min;
 }
 
@@ -63,7 +70,12 @@ export function clamp(num: number, min: number, max: number): number {
  * @param weight2 - The weight2
  * @returns the mixed value
  */
-export function mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
+export function mix(
+  comp1: number,
+  comp2: number,
+  weight1: number,
+  weight2: number,
+): number {
   return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 }
 
@@ -71,7 +83,10 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @param r - The red component
  * @returns the random value in the given range
  */
-export function randomInRangeValue(r: RangeValue, random: () => number): number {
+export function randomInRangeValue(
+  r: RangeValue,
+  random: () => number,
+): number {
   const max = getRangeMax(r),
     minOffset = 0;
 
@@ -88,8 +103,13 @@ export function randomInRangeValue(r: RangeValue, random: () => number): number 
  * @param value - The value
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
-export function getRangeValue(value: RangeValue, random?: () => number): number {
-  return isNumber(value) ? value : randomInRangeValue(value, requireRandom(random));
+export function getRangeValue(
+  value: RangeValue,
+  random?: () => number,
+): number {
+  return isNumber(value)
+    ? value
+    : randomInRangeValue(value, requireRandom(random));
 }
 
 /**
@@ -146,7 +166,10 @@ export function hypot(x: number, y: number): number {
  * @param pointB - the second coordinate
  * @returns the signed deltas and distance between the two coordinates
  */
-export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
+export function getDistances(
+  pointA: ICoordinates,
+  pointB: ICoordinates,
+): { distance: number; dx: number; dy: number } {
   const dx = pointA.x - pointB.x,
     dy = pointA.y - pointB.y;
 
@@ -159,7 +182,10 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
  * @param pointB - the second coordinate
  * @returns the distance squared between the two coordinates
  */
-export function getDistanceSq(pointA: ICoordinates, pointB: ICoordinates): number {
+export function getDistanceSq(
+  pointA: ICoordinates,
+  pointB: ICoordinates,
+): number {
   const dx = pointA.x - pointB.x,
     dy = pointA.y - pointB.y;
 
@@ -172,7 +198,10 @@ export function getDistanceSq(pointA: ICoordinates, pointB: ICoordinates): numbe
  * @param pointB - the second coordinate
  * @returns the distance between the two coordinates
  */
-export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+export function getDistance(
+  pointA: ICoordinates,
+  pointB: ICoordinates,
+): number {
   return Math.sqrt(getDistanceSq(pointA, pointB));
 }
 
@@ -183,7 +212,11 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  * @param distance - the distance to check
  * @returns true if the distance between the two coordinates is less than the given distance, false otherwise
  */
-export function checkDistance(pointA: ICoordinates, pointB: ICoordinates, distance: number): boolean {
+export function checkDistance(
+  pointA: ICoordinates,
+  pointB: ICoordinates,
+  distance: number,
+): boolean {
   return getDistanceSq(pointA, pointB) <= distance * distance;
 }
 /**
@@ -202,7 +235,8 @@ export function degToRad(degrees: number): number {
  * @returns the angle of the direction
  */
 export function getParticleDirectionAngle(
-  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
+  direction:
+    MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
   position: ICoordinates,
   center: ICoordinates,
   random?: () => number,
@@ -258,8 +292,16 @@ export function getParticleBaseVelocity(direction: number): Vector {
  * @param m2 - The m2
  * @returns the velocity after collision
  */
-export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-  return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2), v1.y);
+export function collisionVelocity(
+  v1: Vector,
+  v2: Vector,
+  m1: number,
+  m2: number,
+): Vector {
+  return Vector.create(
+    (v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2),
+    v1.y,
+  );
 }
 
 /**
@@ -267,7 +309,9 @@ export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
+export function calcPositionFromSize(
+  data: IPositionFromSizeParams,
+): ICoordinates | undefined {
   return data.position?.x !== undefined && data.position.y !== undefined
     ? {
         x: (data.position.x * data.size.width) / percentDenominator,
@@ -281,13 +325,20 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams, random?: () => number): ICoordinates {
+export function calcPositionOrRandomFromSize(
+  data: IPositionFromSizeParams,
+  random?: () => number,
+): ICoordinates {
   return {
     x:
-      ((data.position?.x ?? getRandomValue(requireRandom(random)) * percentDenominator) * data.size.width) /
+      ((data.position?.x ??
+        getRandomValue(requireRandom(random)) * percentDenominator) *
+        data.size.width) /
       percentDenominator,
     y:
-      ((data.position?.y ?? getRandomValue(requireRandom(random)) * percentDenominator) * data.size.height) /
+      ((data.position?.y ??
+        getRandomValue(requireRandom(random)) * percentDenominator) *
+        data.size.height) /
       percentDenominator,
   };
 }
@@ -302,8 +353,14 @@ export function calcPositionOrRandomFromSizeRanged(
   random?: () => number,
 ): ICoordinates {
   const position = {
-    x: data.position?.x !== undefined ? getRangeValue(data.position.x, random) : undefined,
-    y: data.position?.y !== undefined ? getRangeValue(data.position.y, random) : undefined,
+    x:
+      data.position?.x !== undefined
+        ? getRangeValue(data.position.x, random)
+        : undefined,
+    y:
+      data.position?.y !== undefined
+        ? getRangeValue(data.position.y, random)
+        : undefined,
   };
 
   return calcPositionOrRandomFromSize({ size: data.size, position }, random);
@@ -314,7 +371,10 @@ export function calcPositionOrRandomFromSizeRanged(
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
-export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams, random?: () => number): ICoordinates {
+export function calcExactPositionOrRandomFromSize(
+  data: IPositionFromSizeParams,
+  random?: () => number,
+): ICoordinates {
   const { position, size } = data;
 
   return {
@@ -332,5 +392,7 @@ export function parseAlpha(input?: string): number {
     return defaultAlpha;
   }
 
-  return input.endsWith("%") ? Number.parseFloat(input) / percentDenominator : Number.parseFloat(input);
+  return input.endsWith("%")
+    ? Number.parseFloat(input) / percentDenominator
+    : Number.parseFloat(input);
 }
