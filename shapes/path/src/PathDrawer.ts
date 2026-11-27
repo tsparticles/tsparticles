@@ -20,6 +20,14 @@ export class PathDrawer implements IShapeDrawer<PathParticle> {
   }
 
   /**
+   * Releases copied path data when the particle enters the pool
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: PathParticle): void {
+    delete particle.pathData;
+  }
+
+  /**
    * Initializes the path data for the particle
    * @param _container - The container to handle
    * @param particle - The particle to process

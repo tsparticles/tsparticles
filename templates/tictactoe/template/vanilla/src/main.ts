@@ -1,8 +1,9 @@
+import { type GameState, createGameState, makeMove, resetBoard } from "./game/game-state";
 import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-import { createGameState, makeMove, resetBoard, type GameState } from "./game/game-state";
+
 import { renderBoard, setupBoard } from "./game/board";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 let state: GameState = createGameState();
 
@@ -28,9 +29,9 @@ resetBtn.addEventListener("click", handleReset);
 renderBoard(state);
 
 (async () => {
-  await loadSlim(tsParticles);
+  await loadSlim(engine);
 
-  await tsParticles.load({
+  await engine.load({
     id: "tsparticles",
     options: {
       fullScreen: { enable: true, zIndex: -1 },

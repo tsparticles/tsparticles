@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-zigzag
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadZigZagPath } = require("@tsparticles/path-zigzag");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadZigZagPath } = require("@tsparticles/path-zigzag");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadZigZagPath } from "@tsparticles/path-zigzag";
 
 (async () => {

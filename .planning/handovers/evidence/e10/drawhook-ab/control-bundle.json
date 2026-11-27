@@ -1,0 +1,7 @@
+{
+  "sourceBundle": "bundles/all/dist/tsparticles.all.bundle.js",
+  "sourceSha256": "ba134cd8979b8b17a4b506560098592ee98a3d64f42d9e40e23cfdd992dbf615",
+  "controlSha256": "40ed38efd5b3a07758ea1382975cba6f86acbf2a030908f47b7957ef1f4210d7",
+  "patch": "Restore the pre-optimization per-particle scan of container.plugins; all other built candidate code remains identical.",
+  "controlArtifact": "render-manager-control.bundle.js.gz"
+}

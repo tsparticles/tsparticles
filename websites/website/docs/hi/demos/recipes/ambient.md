@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-ambient
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadAmbientPreset } from "@tsparticles/preset-ambient";
 import type { Container } from "@tsparticles/engine";
 

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/updater-wobble
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadWobbleUpdater } = require("@tsparticles/updater-wobble");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadWobbleUpdater } = require("@tsparticles/updater-wobble");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
 (async () => {

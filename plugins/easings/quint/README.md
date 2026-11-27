@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-easing-quint
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEasingQuintPlugin } = require("@tsparticles/plugin-easing-quint");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadEasingQuintPlugin } = require("@tsparticles/plugin-easing-quint");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingQuintPlugin } from "@tsparticles/plugin-easing-quint";
 
 (async () => {

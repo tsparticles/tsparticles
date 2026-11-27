@@ -1,0 +1,32 @@
+{
+  "demo": "@tsparticles/confetti-website",
+  "artifact": "websites/confetti/dist",
+  "browser": "Chrome/158.0.8127.38",
+  "networkPolicy": "Only 127.0.0.1 HTTP allowed; every external request aborted before dispatch",
+  "blockedExternalOrigins": [
+    "https://fonts.googleapis.com",
+    "https://pagead2.googlesyndication.com",
+    "https://particles.js.org",
+    "https://www.googletagmanager.com"
+  ],
+  "blockedRequestConsoleErrors": [
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+  ],
+  "modesRun": [
+    "cannon",
+    "fireworks",
+    "snow",
+    "continuous"
+  ],
+  "canvasesByMode": {
+    "cannon": 1,
+    "fireworks": 2,
+    "snow": 2,
+    "continuous": 2
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

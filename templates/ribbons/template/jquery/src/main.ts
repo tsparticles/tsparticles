@@ -1,6 +1,8 @@
-import "./style.css";
 import $ from "jquery";
-import { ribbons } from "@tsparticles/ribbons";
+import "./style.css";
+import { createRibbons } from "@tsparticles/ribbons";
+import { engine } from "../particlesEngine";
+const ribbons = createRibbons(engine);
 
 $(() => {
   $("#fireBtn").on("click", () => ribbons());

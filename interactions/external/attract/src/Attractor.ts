@@ -32,7 +32,10 @@ interface IAttractRestoreData {
  * Particle external attract manager
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
-  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (
+    mode: string,
+    interactivityData: IInteractivityData,
+  ) => void;
 
   readonly #interactedThisFrame;
   #maxDistance;
@@ -89,10 +92,6 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       attract = container.actualOptions.interactivity?.modes.attract;
@@ -103,7 +102,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
     this.#maxDistance = attract.distance;
 
-    container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
+    container.retina.attractModeDistance =
+      attract.distance * container.retina.pixelRatio;
   }
 
   interact(interactivityData: IInteractivityData): void {
@@ -126,8 +126,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         this.#pluginManager,
         this.container,
         interactivityData,
-        p => this.isEnabled(interactivityData, p),
-        p => {
+        (p) => this.isEnabled(interactivityData, p),
+        (p) => {
           this.#trackInteractedParticle(p);
         },
       );
@@ -136,8 +136,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         this.#pluginManager,
         this.container,
         interactivityData,
-        p => this.isEnabled(interactivityData, p),
-        p => {
+        (p) => this.isEnabled(interactivityData, p),
+        (p) => {
           this.#trackInteractedParticle(p);
         },
       );
@@ -151,20 +151,28 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
    * @param particle - The particle to process
    * @returns The boolean value
    */
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
-    if ((!mouse.position || !events?.onHover.enable) && (!mouse.clickPosition || !events?.onClick.enable)) {
+    if (
+      (!mouse.position || !events?.onHover.enable) &&
+      (!mouse.clickPosition || !events?.onClick.enable)
+    ) {
       return false;
     }
 
     const hoverMode = events.onHover.mode,
       clickMode = events.onClick.mode;
 
-    return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
+    return (
+      isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode)
+    );
   }
 
   /**
@@ -178,12 +186,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     loadOptionProperty(options, "attract", Attract, ...sources);
   }
 
-  reset(): void {
-    // do nothing
-  }
-
   #restoreParticles(): void {
-    const restore = this.container.actualOptions.interactivity?.modes.attract?.restore;
+    const restore =
+      this.container.actualOptions.interactivity?.modes.attract?.restore;
 
     if (!restore?.enable || !this.#restoreData.size) {
       return;
@@ -191,7 +196,10 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
     const now = Date.now(),
       restoreDelay = restore.delay * millisecondsToSeconds,
-      restoreSpeed = Math.max(minRestoreSpeed, Math.min(maxRestoreSpeed, restore.speed));
+      restoreSpeed = Math.max(
+        minRestoreSpeed,
+        Math.min(maxRestoreSpeed, restore.speed),
+      );
 
     for (const [particle, restoreData] of this.#restoreData) {
       if (this.#interactedThisFrame.has(particle)) {
@@ -219,7 +227,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
           velocityLengthSq = vx * vx + vy * vy + vz * vz;
 
         if (velocityLengthSq > minVelocityLengthSq) {
-          const parallelScale = (dx * vx + dy * vy + dz * vz) / velocityLengthSq;
+          const parallelScale =
+            (dx * vx + dy * vy + dz * vz) / velocityLengthSq;
 
           dx -= vx * parallelScale;
           dy -= vy * parallelScale;
@@ -246,7 +255,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
   #trackInteractedParticle(particle: InteractivityParticle): void {
     this.#interactedThisFrame.add(particle);
 
-    const restore = this.container.actualOptions.interactivity?.modes.attract?.restore;
+    const restore =
+      this.container.actualOptions.interactivity?.modes.attract?.restore;
 
     if (!restore?.enable) {
       return;

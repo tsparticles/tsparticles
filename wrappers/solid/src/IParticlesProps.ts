@@ -1,7 +1,9 @@
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+
 import { JSX } from "solid-js";
 
 export interface IParticlesProps {
+  engine: Engine;
   id?: string;
   width?: string;
   height?: string;

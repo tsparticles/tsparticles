@@ -15,6 +15,10 @@ export class EmittersPluginInstance implements IContainerPlugin {
     this.#instancesManager.initContainer(container);
   }
 
+  destroy(): void {
+    this.#instancesManager.destroyContainer(this.#container);
+  }
+
   draw(context: OffscreenCanvasRenderingContext2D, _delta: IDelta): void {
     for (const emitter of this.#instancesManager.getArray(this.#container)) {
       emitter.draw(context);

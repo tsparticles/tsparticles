@@ -10,32 +10,34 @@ The `@tsparticles/qwik` package provides a `<Particles>` component optimized for
 ## Installation
 
 ```bash
-npm install @tsparticles/qwik tsparticles
+npm install @tsparticles/qwik @tsparticles/engine tsparticles
 ```
 
 TypeScript declarations are included — no additional type packages required.
 
 ## Engine Initialization
 
-In Qwik, the engine must be initialized inside a `useVisibleTask$` block to ensure it runs only on the client (never during SSR). Use a signal to track readiness:
+Create and initialize the engine inside a `useVisibleTask$` block to ensure it runs only on the client (never during SSR). Keep the ready engine in a signal and mark it with noSerialize:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine } from "@tsparticles/engine";
+import { createEngine, type Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={{}} />}</>;
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={{}} />}</>;
 });
 ```
 
@@ -44,20 +46,22 @@ export default component$(() => {
 Once the engine is ready, render the `<Particles>` component with your configuration:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine } from "@tsparticles/engine";
+import { createEngine, type Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
   const options = {
     background: {
@@ -80,31 +84,33 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={options} />}</>;
 });
 ```
 
 ## Conditional Rendering
 
-The `engineReady` signal pattern ensures the `<Particles>` component is only mounted after the engine is fully initialized. This prevents hydration mismatches between server and client:
+The `readyEngine` signal pattern ensures the `<Particles>` component is only mounted after the engine is fully initialized. This prevents hydration mismatches between server and client:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine } from "@tsparticles/engine";
+import { createEngine, type Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
   const loading = useSignal(true);
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-    loading.value = false;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+      loading.value = false;
+    },
+    { strategy: "document-ready" },
+  );
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
@@ -121,8 +127,9 @@ export default component$(() => {
           Loading particles...
         </div>
       )}
-      {engineReady.value && (
+      {readyEngine.value && (
         <Particles
+          engine={readyEngine.value}
           id="tsparticles"
           options={{
             background: { color: "#0d1117" },
@@ -146,20 +153,22 @@ export default component$(() => {
 Enable hover and click interactions by adding the `interactivity` section to your options:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine } from "@tsparticles/engine";
+import { createEngine, type Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
   const options = {
     background: { color: "#0d1117" },
@@ -185,7 +194,7 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={options} />}</>;
 });
 ```
 
@@ -194,20 +203,22 @@ export default component$(() => {
 A complete configuration with animations, multiple colors, and rich interactivity:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { createEngine, type Engine, type ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
   const options: ISourceOptions = {
     background: { color: "#0d1117" },
@@ -231,22 +242,16 @@ export default component$(() => {
         random: true,
         straight: false,
         outModes: "bounce",
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200,
-        },
       },
       number: {
         value: 120,
         density: { enable: true },
       },
       opacity: {
-        value: 0.8,
+        value: { min: 0.1, max: 0.8 },
         animation: {
           enable: true,
           speed: 0.5,
-          minimumValue: 0.1,
           sync: false,
         },
       },
@@ -255,7 +260,6 @@ export default component$(() => {
         animation: {
           enable: true,
           speed: 3,
-          minimumValue: 1,
           sync: false,
         },
       },
@@ -281,29 +285,31 @@ export default component$(() => {
     detectRetina: true,
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={options} />}</>;
 });
 ```
 
 ## TypeScript
 
-The `@tsparticles/qwik` package exports full types. Use `ISourceOptions` for type-safe configurations and `Engine` for the initialization callback:
+The `@tsparticles/qwik` package exports full types. Use `ISourceOptions` for type-safe configurations and `Engine` for the client-side signal:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { createEngine, type Engine, type ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
   const options: ISourceOptions = {
     background: { color: "#000" },
@@ -313,83 +319,74 @@ export default component$(() => {
     },
   };
 
-  return <>{engineReady.value && <Particles id="tsparticles" options={options} />}</>;
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={options} />}</>;
 });
 ```
 
 ## Lazy Loading
 
-Qwik's resumability model means the particles code is only loaded and executed when the component becomes visible in the viewport. The `useVisibleTask$` hook triggers engine initialization, and the `<Particles>` component itself is code-split automatically by Qwik when imported:
+Import the Full bundle dynamically inside the visible task to defer loading it until the task runs in the browser:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
-import type { Engine } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import { component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
+import { createEngine, type Engine } from "@tsparticles/engine";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
-
-  return (
-    <div>
-      {engineReady.value && (
-        <Particles
-          id="tsparticles"
-          options={{
-            background: { color: "#0d1117" },
-          }}
-        />
-      )}
-    </div>
+  useVisibleTask$(
+    async () => {
+      const { loadFull } = await import("tsparticles");
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
   );
+
+  return <>{readyEngine.value && <Particles engine={readyEngine.value} id="tsparticles" options={{}} />}</>;
 });
 ```
 
 Use the `$` suffix convention for Qwik-optimized event handlers when wiring callbacks:
 
 ```tsx
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, noSerialize, useSignal, useVisibleTask$, type NoSerialize } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import type { Engine, Container } from "@tsparticles/engine";
+import { createEngine, type Engine, type Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default component$(() => {
-  const engineReady = useSignal(false);
-  const containerRef = useSignal<Container | undefined>();
+  const readyEngine = useSignal<NoSerialize<Engine>>();
 
-  useVisibleTask$(async () => {
-    await initParticlesEngine(async (engine: Engine) => {
-      await loadFull(engine);
-    });
-    engineReady.value = true;
-  });
+  useVisibleTask$(
+    async () => {
+      const particlesEngine = createEngine();
+      await initParticlesEngine(particlesEngine, loadFull);
+      readyEngine.value = noSerialize(particlesEngine);
+    },
+    { strategy: "document-ready" },
+  );
 
-  const handleParticlesLoaded = $((container?: Container) => {
-    containerRef.value = container;
+  const handleParticlesLoaded = $(async (container?: Container) => {
     console.log("Particles loaded:", container?.id);
   });
 
   return (
     <>
-      {engineReady.value && (
+      {readyEngine.value && (
         <Particles
+          engine={readyEngine.value}
           id="tsparticles"
           options={{ background: { color: "#0d1117" } }}
-          particlesLoaded={handleParticlesLoaded}
+          loaded={handleParticlesLoaded}
         />
       )}
     </>
   );
 });
 ```
-
-This approach ensures your particle animations are fully tree-shakeable and only shipped to clients when needed.
 
 ## Reactive Behavior
 

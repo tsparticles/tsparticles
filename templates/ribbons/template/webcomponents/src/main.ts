@@ -1,5 +1,7 @@
+import { createRibbons } from "@tsparticles/ribbons";
 import "./style.css";
-import { ribbons } from "@tsparticles/ribbons";
+import { engine } from "../particlesEngine";
+const ribbons = createRibbons(engine);
 
 const app = document.getElementById("app")!;
 

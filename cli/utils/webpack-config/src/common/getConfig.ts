@@ -32,6 +32,7 @@ function getSingleConfig(params: ConfigParams, min: boolean, lazy: boolean): unk
   const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params;
 
   return {
+    context: dir,
     entry: getEntry({ ...entry, min, lazy }),
     target: "web",
     mode: min ? "production" : "development",
@@ -118,12 +119,13 @@ function getSingleConfig(params: ConfigParams, min: boolean, lazy: boolean): unk
 }
 
 const getConfig = (params: ConfigParams): unknown[] => {
-  return [
-    getSingleConfig(params, false, false),
-    getSingleConfig(params, true, false),
-    getSingleConfig(params, false, true),
-    getSingleConfig(params, true, true),
-  ];
+  const configs = [getSingleConfig(params, false, false), getSingleConfig(params, true, false)];
+
+  if (!params.entry.bundle) {
+    configs.push(getSingleConfig(params, false, true), getSingleConfig(params, true, true));
+  }
+
+  return configs;
 };
 
 export { getConfig };

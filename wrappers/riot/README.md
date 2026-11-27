@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/tsparticles/tsparticles) Riot componen
 ## Installation
 
 ```shell
-npm install @tsparticles/riot
+npm install @tsparticles/riot @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/riot
+yarn add @tsparticles/riot @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage
@@ -24,10 +24,13 @@ Initialize the engine once before mounting the component.
 
 ```html
 <script>
+  import { createEngine } from "@tsparticles/engine";
   import { initParticlesEngine } from "@tsparticles/riot";
   import { loadSlim } from "@tsparticles/slim";
 
-  void initParticlesEngine(async (engine) => {
+  const particlesEngine = createEngine();
+
+  void initParticlesEngine(particlesEngine, async (engine) => {
     await loadSlim(engine);
   });
 
@@ -37,6 +40,7 @@ Initialize the engine once before mounting the component.
 </script>
 
 <riot-particles
+  engine={particlesEngine}
   id="tsparticles"
   options={{
     background: {
@@ -59,6 +63,7 @@ Initialize the engine once before mounting the component.
 <!-- or -->
 
 <riot-particles
+  engine={particlesEngine}
   id="tsparticles"
   url="https://foo.bar/particles.json"
   particlesLoaded={(container) => console.log(container)}
@@ -67,13 +72,14 @@ Initialize the engine once before mounting the component.
 
 ## Props
 
-| Prop              | Type       | Description                                                                                                       |
-| ----------------- | ---------- | ----------------------------------------------------------------------------------------------------------------- |
-| `id`              | `string`   | The container id.                                                                                                 |
-| `options`         | `object`   | The particles options object.                                                                                     |
-| `url`             | `string`   | A remote URL to a JSON configuration file.                                                                        |
+| Prop              | Type       | Description                                                                                                            |
+| ----------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `engine`          | `Engine`   | Explicit engine used to register plugins and create the particle container.                                            |
+| `id`              | `string`   | The container id.                                                                                                      |
+| `options`         | `object`   | The particles options object.                                                                                          |
+| `url`             | `string`   | A remote URL to a JSON configuration file.                                                                             |
 | `theme`           | `string`   | The theme name to apply. Requires `@tsparticles/plugin-themes`. Without the plugin, setting this prop is a safe no-op. |
-| `particlesLoaded` | `function` | Callback invoked when particles are loaded, receives `(container?: Container)`.                                    |
+| `particlesLoaded` | `function` | Callback invoked when particles are loaded, receives `(container?: Container)`.                                        |
 
 ## Reactivity
 

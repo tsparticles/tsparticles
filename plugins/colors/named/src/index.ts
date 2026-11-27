@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadNamedColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("named", new NamedColorManager());
+  await engine.pluginManager.register((e) => {
+    e.addColorManager("named", new NamedColorManager(e));
   });
 }

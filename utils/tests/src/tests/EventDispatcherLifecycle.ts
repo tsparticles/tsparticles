@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type CustomEventArgs, EventType, tsParticles } from "@tsparticles/engine";
+import { type CustomEventArgs, EventType, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { EventDispatcher } from "../../../../engine/src/Utils/EventDispatcher.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 describe("event listener removal during dispatch", () => {
   it("notifies remaining listeners when a one-shot listener removes itself", async () => {
@@ -49,6 +51,25 @@ describe("event listener removal during dispatch", () => {
 });
 
 describe("event listener snapshots", () => {
+  it("runs every listener before rethrowing the first listener error", () => {
+    const dispatcher = new EventDispatcher(),
+      received: string[] = [],
+      listenerError = new Error("listener failed");
+
+    dispatcher.addEventListener("test", () => {
+      received.push("throwing");
+      throw listenerError;
+    });
+    dispatcher.addEventListener("test", () => {
+      received.push("following");
+    });
+
+    expect(() => {
+      dispatcher.dispatchEvent("test");
+    }).to.throw(listenerError);
+    expect(received).toEqual(["throwing", "following"]);
+  });
+
   it("does not call a listener twice when it re-registers itself", () => {
     const dispatcher = new EventDispatcher(),
       received: string[] = [],

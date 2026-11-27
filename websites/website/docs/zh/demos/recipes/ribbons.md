@@ -13,7 +13,9 @@ pnpm add @tsparticles/engine @tsparticles/ribbons
 ## 即用型（全页）
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   count: 5,
@@ -24,7 +26,9 @@ await ribbons({
 ## 限定在特定 Canvas 中
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 import type { Container } from "@tsparticles/engine";
 
 const canvas = document.getElementById("ribbons-canvas") as HTMLCanvasElement;
@@ -54,7 +58,9 @@ export function resume(): void {
 默认情况下，每个彩带粒子在画布整个宽度上的随机x位置生成。使用 `emitterSize` 控制生成区域 — 将其设置为 `{ width: 0, height: 0 }` 可使所有彩带从同一点开始：
 
 ```ts
-import { ribbons } from "@tsparticles/ribbons";
+import { createEngine } from "@tsparticles/engine";
+import { createRibbons } from "@tsparticles/ribbons";
+const ribbons = createRibbons(createEngine());
 
 await ribbons({
   positionX: 50,

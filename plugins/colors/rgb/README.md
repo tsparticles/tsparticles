@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-rgb-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadRgbColorPlugin } = require("@tsparticles/plugin-rgb-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadRgbColorPlugin } = require("@tsparticles/plugin-rgb-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
 (async () => {

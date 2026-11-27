@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-24",
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "node": "v26.13.0",
+  "pnpm": "12.23.0",
+  "browser": "Chrome/158.0.8127.38",
+  "measurementConcurrency": "No agent package builds or test runs overlap the final matched runtime measurements.",
+  "previousFrameworkLaunch": "Chrome 157 helper remains on disk, but is not a standalone browser launcher; CDP closes before target discovery."
+}

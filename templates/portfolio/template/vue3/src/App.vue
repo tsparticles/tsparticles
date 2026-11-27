@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 
 const keys = Object.keys(configs);
-const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+const randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs;
 
 const options: ISourceOptions = {
   ...(configs[randomKey] as ISourceOptions),
@@ -33,7 +34,13 @@ function handleSubmit(e: Event) {
 <template>
   <vue-particles id="tsparticles" :options="options" />
   <nav id="navbar">
-    <a v-for="item in ['Home', 'About', 'Projects', 'Skills', 'Contact']" :key="item" :href="'#' + item.toLowerCase()" class="nav-link">{{ item }}</a>
+    <a
+      v-for="item in ['Home', 'About', 'Projects', 'Skills', 'Contact']"
+      :key="item"
+      :href="'#' + item.toLowerCase()"
+      class="nav-link"
+      >{{ item }}</a
+    >
   </nav>
   <section id="hero" class="section">
     <div class="hero-content">
@@ -44,7 +51,10 @@ function handleSubmit(e: Event) {
   <section id="about" class="section content-section">
     <div class="container">
       <h2>About Me</h2>
-      <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+      <p>
+        A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+        JavaScript frameworks, cloud infrastructure, and UI/UX design.
+      </p>
     </div>
   </section>
   <section id="projects" class="section content-section">
@@ -185,7 +195,9 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1.5rem;
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
 }
 
 .project-card:hover {

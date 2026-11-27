@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-named-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadNamedColorPlugin } = require("@tsparticles/plugin-named-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadNamedColorPlugin } = require("@tsparticles/plugin-named-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
 
 (async () => {

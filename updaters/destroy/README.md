@@ -58,7 +58,8 @@ $ yarn add @tsparticles/updater-destroy
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadDestroyUpdater } = require("@tsparticles/updater-destroy");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadDestroyUpdater } = require("@tsparticles/updater-destroy");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 
 (async () => {

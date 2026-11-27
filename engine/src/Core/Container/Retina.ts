@@ -1,0 +1,61 @@
+import { defaultRatio, defaultReduceFactor } from "../Utils/Constants.js";
+import type { Container } from "./Container.js";
+import type { Particle } from "../Particles/Particle.js";
+import { getRangeValue } from "../../Utils/MathUtils.js";
+
+/** Retina handling class for device pixel ratio adjustments */
+export class Retina {
+  /** Device pixel ratio */
+  pixelRatio: number;
+  /** Reduce factor for performance */
+  reduceFactor: number;
+
+  readonly #container: Container;
+
+  constructor(container: Container) {
+    this.#container = container;
+    this.pixelRatio = defaultRatio;
+    this.reduceFactor = defaultReduceFactor;
+  }
+
+  /**
+   * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
+   */
+  init(): void {
+    const container = this.#container,
+      options = container.actualOptions;
+
+    this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;
+    this.reduceFactor = defaultReduceFactor;
+
+    const ratio = this.pixelRatio,
+      canvas = container.canvas,
+      element = canvas.domElement;
+
+    if (element) {
+      canvas.size.width = element.offsetWidth * ratio;
+      canvas.size.height = element.offsetHeight * ratio;
+    }
+  }
+
+  /**
+   * Initializes retina-scaled properties for a particle
+   * @param particle - The particle to process
+   */
+  initParticle(particle: Particle): void {
+    const options = particle.options,
+      ratio = this.pixelRatio,
+      moveOptions = options.move,
+      moveDistance = moveOptions.distance,
+      props = particle.retina;
+
+    props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed, this.#container.engine.getRandomFn()) * ratio;
+    props.moveDrift = getRangeValue(moveOptions.drift, this.#container.engine.getRandomFn()) * ratio;
+    props.moveSpeed = getRangeValue(moveOptions.speed, this.#container.engine.getRandomFn()) * ratio;
+
+    const maxDistance = props.maxDistance;
+
+    maxDistance.horizontal = moveDistance.horizontal === undefined ? undefined : moveDistance.horizontal * ratio;
+    maxDistance.vertical = moveDistance.vertical === undefined ? undefined : moveDistance.vertical * ratio;
+  }
+}

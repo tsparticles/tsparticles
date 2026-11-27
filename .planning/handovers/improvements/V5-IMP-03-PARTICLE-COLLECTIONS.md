@@ -1,6 +1,6 @@
 # V5-IMP-03 — Groups, deferred removal, pooling, and ordering
 
-Status pending analysis. High priority. Handover 06 owns this plan, with
+Status complete for E6; [completion evidence](../evidence/e6/closure/README.md) and [method review](../V5-E6-REVIEW.md); see the [E6 checkpoint](../V5-E6-STATUS.md) for current-source findings and the measured P2 candidate. High priority. Handover 06 owns this plan, with
 Particle contracts in 07 and plugins in 08. Requires
 [IMP-01](V5-IMP-01-MEASUREMENT.md) and stable state and lifecycle contracts.
 
@@ -65,4 +65,49 @@ Run regressions for counts, groups, density, limits, reset, lifecycle, hook
 order, and emitter/absorber/collision consumers. Benchmark identical M3, M6,
 M7, and M9 scenarios. Attach operation counts, allocations, heap, timings,
 and bundle deltas. Document rejected alternatives with data. Handover 06
-closes P1–P4 and passes the required invariants to 07/08.
+closes P1–P4 in E6 using the Particle/reset invariants from 07 in E5 and
+passes integration evidence to 08.
+
+## E6 continuation decisions — 2026-11-23
+
+Evidence: `evidence/e6/collection-order.json`, `collection-order-final.json`,
+`storage-evaluation.json`, `live-pool.json` and `live-pool-final.json`.
+The source hashes and frozen manager variants identify each experiment; these
+synthetic measurements do not replace matched browser scenes.
+
+| Item | Decision and measured reason                                                                                                                                                                                                                                                                                                                              |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| P1   | Keep allocation-free live group scans. At 1,000 particles, ten group queries take approximately 0.044 ms versus 0.099 ms with filtered arrays. Aggregation takes 0.011 ms but becomes stale when callbacks mutate the public group or add particles. No per-frame counter cache is introduced.                                                            |
+| P2   | Reuse an ID-to-particle Map, with a separate buffer for nested updates and finally cleanup. An ID snapshot prevents removal of a recycled object. A deduplicated list reaches 0.389 ms versus Map 0.163 ms at 1,000 removals in the synthetic fixture; retain Map.                                                                                        |
+| P3   | Use binary insertion when IDs arrive out of order, with a fast append for the usual case. At 1,000 particles in the skewed-depth fixture, repeated sorting takes 2.429 ms versus sorted insertion 0.477 ms. Dirty sorting is faster (0.344 ms), but postpones ordering and adds state. Immediate observable ID ordering is retained.                      |
+| P4   | Retain the owner-local pool without an automatic cap. A live 5,000-particle trough retains approximately 57.5 MB, versus 2.9 MB with cap 256. Returning to peak constructs 0 versus 4,744 particles; cap 256 also worsens some churn tails. The tradeoff is explicit, and destroy releases the pool. No automatic shrink policy is claimed as beneficial. |
+
+Traversal uses an owner-local cursor stack rather than per-frame copies. Structural
+removal adjusts active cursors; clear replaces the cohort. Callback boundaries
+check identity after a structural mutation so recycled objects do not continue the
+old particle's phase. IDs are reserved before initialization hooks. A rejected
+last reservation rolls back; a committed nested insertion can leave an ID gap.
+Limits are checked again using the final group before insertion, and listener
+refills cannot force an over-limit commit or an unbounded eviction loop.
+
+Cleanup remains idempotent after direct destruction, including rejected initializers.
+Explicit removal clears collision immunity before disposing and pooling a particle.
+Invalid nonfinite or unsafe addition targets become zero before entering loops;
+positive fractions retain their existing ceiling behavior. Removal quotas are
+bounded by the starting active count even when listeners refill the collection.
+
+## Draw-pass completion
+
+A live bucket iterator does not survive arbitrary drawer callbacks: regression
+fixtures show skipped entries after removal and mixed/repeated entries after
+clear, reuse or migration. Keep update phases live, but capture draw membership,
+ID identity and initial bucket order in owner-local reusable buffers. Additions
+are drawn on the next pass. Nested draws use different buffers; finally clears
+particle references and destroy releases capacity.
+
+`draw-traversal.json` compares fifteen alternating samples per count, with three
+warmups and no-op drawers. At 1,000 particles the additional traversal cost is
+approximately 0.0055 ms; at 5,000, 0.0375 ms. Diagnostic inspection finds zero
+retained particle references after each pass. This cost is accepted only with
+final browser scene/retention verification; it is a correctness repair rather
+than an optimization claim. No new public API or per-particle fields are added.

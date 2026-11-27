@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-easing-linear
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEasingLinearPlugin } = require("@tsparticles/plugin-easing-linear");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadEasingLinearPlugin } = require("@tsparticles/plugin-easing-linear");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 
 (async () => {

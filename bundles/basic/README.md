@@ -61,8 +61,8 @@ bb --> u
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)
-2. Call the package loader function(s) before `tsParticles.load(...)`
-3. Apply the package options in your `tsParticles.load(...)` config
+2. Create an engine and call the package loader function(s) before `engine.load(...)`
+3. Apply the package options in your `engine.load(...)` config
 
 ## How to use it
 
@@ -76,8 +76,7 @@ The CDN/Vanilla version JS has two different files:
 
 #### Bundle
 
-Including the `tsparticles.basic.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
-instance in the same way.
+Including the `tsparticles.basic.bundle.min.js` file exposes feature definitions and the `tsParticles.createEngine()` factory. Create an engine explicitly, then load the bundle's features into that engine before starting a scene.
 
 This is the easiest usage, since it's a single file with the some of the `v1` features.
 
@@ -94,9 +93,10 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-  await loadBasic(tsParticles);
+  const engine = tsParticles.createEngine();
+  await loadBasic(engine);
 
-  await tsParticles.load({
+  await engine.load({
     id: "tsparticles",
     options: {/* options */},
   });
@@ -210,7 +210,7 @@ let particlesInit = async engine => {
 
 ## Common pitfalls
 
-- Calling `tsParticles.load(...)` before `loadBasic(...)`
+- Calling `engine.load(...)` before `loadBasic(engine)`
 - Verify required peer packages before enabling advanced options
 - Change one option group at a time to isolate regressions quickly
 

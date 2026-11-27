@@ -58,7 +58,8 @@ $ yarn add @tsparticles/simplex-noise
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadSimplexNoisePath } = require("@tsparticles/path-simplex-noise");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadSimplexNoisePath } = require("@tsparticles/path-simplex-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 
 (async () => {

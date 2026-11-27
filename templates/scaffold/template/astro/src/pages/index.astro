@@ -1,35 +1,63 @@
 ---
-import { initParticlesEngine } from "@tsparticles/astro";
-import { loadSlim } from "@tsparticles/slim";
+import Particles from "@tsparticles/astro";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const id = "tsparticles";
+const options: ISourceOptions = {
+  particles: {
+    number: { value: 50 },
+  },
+};
 
 // On the server, just defer to the client component.
 // The init script below runs client-side.
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{projectName}}</title>
+    <title>tsParticles</title>
     <style>
-      body { margin: 0; overflow: hidden; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
-      #app { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; color: #fff; pointer-events: none; }
-      h1 { font-size: 3.2em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      }
+      #app {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        text-align: center;
+        color: #fff;
+        pointer-events: none;
+      }
+      h1 {
+        font-size: 3.2em;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <h1>Hello, tsParticles!</h1>
     </div>
+    <Particles id={id} options={options} />
   </body>
 </html>
 
 <script>
+  import { engine } from "../../particlesEngine";
+
   import { initParticlesEngine } from "@tsparticles/astro";
   import { loadSlim } from "@tsparticles/slim";
 
-  await initParticlesEngine(async (engine) => {
+  await initParticlesEngine(engine, async (engine) => {
     await loadSlim(engine);
   });
+  for (const element of document.querySelectorAll("astro-particles")) {
+    (element as HTMLElement & { engine: typeof engine }).engine = engine;
+  }
 </script>

@@ -1,0 +1,8 @@
+{
+  "demo": "@tsparticles/react-demo",
+  "artifact": "demo/react/dist",
+  "browser": "Chrome/158.0.8127.38",
+  "canvasCount": 1,
+  "pageErrors": [],
+  "consoleErrors": []
+}

@@ -41,9 +41,18 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
       container.canvas.render.settings,
       container.peakNits,
       container.hdrMode,
+      container.outputColorSpace,
     );
 
     context.globalAlpha = defaultOpacity;
+  }
+
+  /**
+   * Releases copied card data when the particle enters the pool
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: CardParticle): void {
+    delete particle.cardData;
   }
 
   /**

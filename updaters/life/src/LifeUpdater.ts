@@ -4,12 +4,15 @@ import {
   type IParticleUpdater,
   type Particle,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
-import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types.js";
+import type {
+  ILifeParticlesOptions,
+  LifeParticle,
+  LifeParticlesOptions,
+} from "./Types.js";
 import { Life } from "./Options/Classes/Life.js";
 import { updateLife } from "./Utils.js";
 
@@ -43,17 +46,31 @@ export class LifeUpdater implements IParticleUpdater {
       return;
     }
 
-    const delayFactor = lifeOptions.delay.sync ? identity : getRandom(),
-      durationFactor = lifeOptions.duration.sync ? identity : getRandom();
+    const delayFactor = lifeOptions.delay.sync
+        ? identity
+        : this.#container.engine.getRandom(),
+      durationFactor = lifeOptions.duration.sync
+        ? identity
+        : this.#container.engine.getRandom();
 
     particle.life = {
       delay: container.retina.reduceFactor
-        ? ((getRangeValue(lifeOptions.delay.value) * delayFactor) / container.retina.reduceFactor) *
+        ? ((getRangeValue(
+            lifeOptions.delay.value,
+            this.#container.engine.getRandomFn(),
+          ) *
+            delayFactor) /
+            container.retina.reduceFactor) *
           millisecondsToSeconds
         : noTime,
       delayTime: noTime,
       duration: container.retina.reduceFactor
-        ? ((getRangeValue(lifeOptions.duration.value) * durationFactor) / container.retina.reduceFactor) *
+        ? ((getRangeValue(
+            lifeOptions.duration.value,
+            this.#container.engine.getRandomFn(),
+          ) *
+            durationFactor) /
+            container.retina.reduceFactor) *
           millisecondsToSeconds
         : noTime,
       time: noTime,

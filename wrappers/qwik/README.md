@@ -10,19 +10,19 @@ Official Qwik component wrapper for [tsParticles](https://github.com/matteobruni
 ## Installation
 
 ```bash
-pnpm add @tsparticles/qwik @tsparticles/engine
+pnpm add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-npm install @tsparticles/qwik @tsparticles/engine
+npm install @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```bash
-yarn add @tsparticles/qwik @tsparticles/engine
+yarn add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage
@@ -30,11 +30,13 @@ yarn add @tsparticles/qwik @tsparticles/engine
 Initialize tsParticles once in your app bootstrap, then use `<Particles />` wherever needed.
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { component$, useSignal } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import type { Engine } from "@tsparticles/engine";
 
-void initParticlesEngine(async (engine: Engine) => {
+void initParticlesEngine(particlesEngine, async (engine: Engine) => {
   const [{ loadSlim }] = await Promise.all([import("@tsparticles/slim")]);
 
   await loadSlim(engine);
@@ -45,6 +47,7 @@ export default component$(() => {
 
   return (
     <Particles
+      engine={particlesEngine}
       id="tsparticles"
       options={{
         fullScreen: {

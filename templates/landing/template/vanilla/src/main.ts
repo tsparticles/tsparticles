@@ -1,11 +1,12 @@
+import { engine } from "../particlesEngine";
 import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
+
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  await loadSlim(tsParticles);
+  await loadSlim(engine);
 
-  await tsParticles.load({
+  await engine.load({
     id: "tsparticles",
     options: {
       fullScreen: { enable: true, zIndex: -1 },

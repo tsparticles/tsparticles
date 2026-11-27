@@ -1,6 +1,7 @@
 import MyComponent from './my-component.riot'
 import { expect } from 'chai'
 import { component } from 'riot'
+import { engine } from '../../../../particlesEngine.js'
 
 describe('My Component Unit Test', () => {
   const mountMyComponent = component(MyComponent)
@@ -13,5 +14,7 @@ describe('My Component Unit Test', () => {
     })
 
     expect(component.$('p').innerHTML).to.be.equal('hello')
+    expect(component.engine).to.equal(engine)
+    component.unmount()
   })
 })

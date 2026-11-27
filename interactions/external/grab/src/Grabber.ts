@@ -6,7 +6,12 @@ import {
   type Modes,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
+import type {
+  GrabContainer,
+  GrabMode,
+  IGrabMode,
+  LinkParticle,
+} from "./Types.js";
 import {
   type PluginManager,
   type RecursivePartial,
@@ -41,10 +46,6 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       grab = container.actualOptions.interactivity?.modes.grab;
@@ -55,7 +56,8 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
     this.#maxDistance = grab.distance;
 
-    container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
+    container.retina.grabModeDistance =
+      grab.distance * container.retina.pixelRatio;
   }
 
   interact(interactivityData: IInteractivityData): void {
@@ -83,8 +85,10 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
       return;
     }
 
-    const query = container.particles.grid.queryCircle(mousePos, distance, p =>
-      this.isEnabled(interactivityData, p),
+    const query = container.particles.grid.queryCircle(
+      mousePos,
+      distance,
+      (p) => this.isEnabled(interactivityData, p),
     ) as LinkParticle[];
 
     for (const particle of query) {
@@ -120,7 +124,12 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         );
       }
 
-      const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor, container.hdr);
+      const colorLine = getLinkColor(
+        particle,
+        undefined,
+        container.particles.grabLineColor,
+        container.hdr,
+      );
 
       if (!colorLine) {
         continue;
@@ -130,19 +139,27 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     }
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
-      events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
+      events = (
+        particle?.interactivity ?? container.actualOptions.interactivity
+      )?.events;
 
-    return !!events?.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
+    return (
+      !!events?.onHover.enable &&
+      !!mouse.position &&
+      isInArray(grabMode, events.onHover.mode)
+    );
   }
 
-  loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
+  loadModeOptions(
+    options: Modes & GrabMode,
+    ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]
+  ): void {
     loadOptionProperty(options, "grab", Grab, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

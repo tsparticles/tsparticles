@@ -1,7 +1,10 @@
-/* eslint-disable */
 import { describe, expect, it } from "vitest";
+/* eslint-disable */
 import { TestWindow } from "../Fixture/Window.js";
-import { particles } from "@tsparticles/particles";
+import { createEngine } from "@tsparticles/engine";
+import { createParticles } from "@tsparticles/particles";
+
+const particles = createParticles(createEngine());
 
 describe("particles.js bundle", async () => {
   globalThis.window = TestWindow;

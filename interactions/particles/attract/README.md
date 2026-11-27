@@ -60,7 +60,8 @@ $ yarn add @tsparticles/interaction-particles-attract
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadParticlesAttractInteraction } = require("@tsparticles/interaction-particles-attract");
 
@@ -73,7 +74,8 @@ const { loadParticlesAttractInteraction } = require("@tsparticles/interaction-pa
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadParticlesAttractInteraction } from "@tsparticles/interaction-particles-attract";
 

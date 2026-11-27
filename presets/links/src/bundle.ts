@@ -1,14 +1,14 @@
+import { createEngine } from "@tsparticles/engine";
 import { loadLinksPreset } from "./index.js";
-import { tsParticles } from "@tsparticles/engine";
 export { loadLinksPreset } from "./index.js";
-export { tsParticles };
+export { createEngine };
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadLinksPreset?: typeof loadLinksPreset;
-  tsParticles?: typeof tsParticles;
+  tsParticles?: { createEngine: typeof createEngine };
 };
 
 globalObject.loadLinksPreset = loadLinksPreset;
 
-globalObject.tsParticles = tsParticles;
+globalObject.tsParticles = { ...globalObject.tsParticles, createEngine };

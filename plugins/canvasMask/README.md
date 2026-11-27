@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-canvas-mask
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadCanvasMaskPlugin } = require("@tsparticles/plugin-canvas-mask");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadCanvasMaskPlugin } = require("@tsparticles/plugin-canvas-mask");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 
 (async () => {

@@ -1,7 +1,10 @@
 # V5-06 — Full ParticlesManager review
 
-Status pending. Requires completion of 05. Review the entire area, including
-work beyond changes required by Container or CanvasManager.
+Status complete (2026-11-23); see the [E6 completion evidence](evidence/e6/closure/README.md) and [method review](V5-E6-REVIEW.md). E5 accepted. See the
+[E6 checkpoint](V5-E6-STATUS.md) for spatial contract fixtures, current-source
+findings, callback/identity fixes, P1–P4/S1–S4 decisions and current verification.
+Review the entire area, including work beyond signature adaptations.
+See the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -53,17 +56,32 @@ Particle contract changes with 07 and preserve other contributors' changes.
 - Complete the full suite, lint/format, downstream builds, and min/gzip/Brotli deltas.
 
 Carry the mixed-radius collision symmetry and fractional-density idempotence
-checks from [V4-B08 and V4-B09](../v4-review/CORRECTNESS.md) into the tests.
+checks from V4-B08 and V4-B09 into the tests.
 Also compare the index in sparse scenes where the query area greatly exceeds
 occupied cells, while preserving observable query order.
 
 ## Deliverables
 
 List reviewed methods and invariants, applied simplifications, and retained
-code with reasons. Report bundle/runtime results and contracts to verify in
-07/08. Update the full engine coverage matrix and index status.
+code with reasons. Report bundle/runtime results, recheck the reset contracts established by 07
+in E5, and provide evidence for the final audit in 08. Update the full engine coverage matrix and index status.
 
 ## Performance and size plans
 
 See [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md) and [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Architecture evaluations
+
+Consult [ARCH-01 — Particle model](architecture/V5-ARCH-01-PARTICLE-MODEL.md)
+and [ARCH-04 — Extensions](architecture/V5-ARCH-04-EXTENSIONS.md) before
+changing collections and pipelines. Agree with 07 on state, helper, and
+manager boundaries. ParticlesManager owns collections, pools, and phase
+coordination. Define snapshot restore invariants only if the capability is adopted.
+
+## Source-review acceptance additions
+
+Apply G4/G5 from the [source review](V5-CODE-REVIEW.md). Specify phase snapshots
+and cell membership after plugin movement, including fluid re-queries. Preserve
+the existing sparse path and reentrant/live predicates. Add independent geometry
+fixtures, finite cell-size validation and predicate-driven sparse workloads.

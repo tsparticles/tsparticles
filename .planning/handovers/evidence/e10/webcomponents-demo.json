@@ -1,0 +1,9 @@
+{
+  "demo": "@tsparticles/webcomponents-demo",
+  "browser": "Chrome/158.0.8127.38",
+  "engineAssigned": true,
+  "canvasCount": 1,
+  "externalRequests": [],
+  "pageErrors": [],
+  "consoleErrors": []
+}

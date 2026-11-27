@@ -1,0 +1,827 @@
+{
+  "protocol": "Median of three repetitions, same browser/machine/options. Compare to frozen E0 ceilings; E1 is not the E10 budget gate.",
+  "rows": [
+    {
+      "file": "runtime.json",
+      "scenario": "M3",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.19999992847442627,
+          "e1": 0.19999992847442627,
+          "ceiling": 0.3,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M3",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M3",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.2999999523162842,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.43,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.2000000476837158,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.32,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M4",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.2999999523162842,
+          "e1": 0.20000004768371582,
+          "ceiling": 0.4,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.20000004768371582,
+          "e1": 0.20000004768371582,
+          "ceiling": 0.3,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M4",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 3.200000047683716,
+          "e1": 3.200000047683716,
+          "ceiling": 3.52,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 2.299999952316284,
+          "e1": 2.299999952316284,
+          "ceiling": 2.53,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M4",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 12.700000047683716,
+          "e1": 12.799999952316284,
+          "ceiling": 13.97,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 8.200000047683716,
+          "e1": 8.200000047683716,
+          "ceiling": 9.02,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M5",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.20000004768371582,
+          "e1": 0.2999999523162842,
+          "ceiling": 0.3,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M5",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 4.200000047683716,
+          "e1": 4.299999952316284,
+          "ceiling": 4.62,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6999999284744263,
+          "e1": 0.7000000476837158,
+          "ceiling": 0.8,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M5",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 16.199999928474426,
+          "e1": 16.100000023841858,
+          "ceiling": 17.82,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.5,
+          "e1": 1.5,
+          "ceiling": 1.65,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M6",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M6",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M6",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.2000000476837158,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.32,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.2999999523162842,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.43,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M7",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.19999992847442627,
+          "e1": 0.19999992847442627,
+          "ceiling": 0.3,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M7",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6999999284744263,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.8,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.8000000715255737,
+          "e1": 0.7000000476837158,
+          "ceiling": 0.9,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M7",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.5,
+          "e1": 1.3000000715255737,
+          "ceiling": 1.65,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.600000023841858,
+          "e1": 1.5,
+          "ceiling": 1.76,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M8",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M8",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6999999284744263,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.8,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6999999284744263,
+          "e1": 0.6999999284744263,
+          "ceiling": 0.8,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime.json",
+      "scenario": "M8",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.2999999523162842,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.43,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.3000000715255737,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.43,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M6-extensions",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.20000004768371582,
+          "e1": 0.19999992847442627,
+          "ceiling": 0.3,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.19999992847442627,
+          "e1": 0.19999992847442627,
+          "ceiling": 0.3,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.5,
+          "ceiling": 0.7,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M6-extensions",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.8000000715255737,
+          "e1": 0.8000000715255737,
+          "ceiling": 0.9,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.7000000476837158,
+          "e1": 0.7000000476837158,
+          "ceiling": 0.8,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 1.7000000476837158,
+          "e1": 1.9000000953674316,
+          "ceiling": 1.87,
+          "pass": false
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.7000000476837158,
+          "e1": 1.600000023841858,
+          "ceiling": 1.87,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.5,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.65,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 3.6999999284744263,
+          "e1": 3.200000047683716,
+          "ceiling": 4.07,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 0.3999999761581421,
+          "e1": 0.30000007152557373,
+          "ceiling": 0.5,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6999999284744263,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.8,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 1.5,
+          "e1": 1.399999976158142,
+          "ceiling": 1.65,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.3000000715255737,
+          "e1": 1.3000000715255737,
+          "ceiling": 1.43,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.3000000715255737,
+          "e1": 1.3000000715255737,
+          "ceiling": 1.43,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 3,
+          "e1": 2.899999976158142,
+          "ceiling": 3.3,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M6-extensions",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.20000004768371582,
+          "e1": 0.20000004768371582,
+          "ceiling": 0.3,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.19999992847442627,
+          "e1": 0.19999992847442627,
+          "ceiling": 0.3,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 0.5,
+          "e1": 0.5,
+          "ceiling": 0.6,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M6-extensions",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.7999999523162842,
+          "e1": 0.7999999523162842,
+          "ceiling": 0.9,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.7000000476837158,
+          "e1": 0.7000000476837158,
+          "ceiling": 0.8,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 1.6999999284744263,
+          "e1": 1.7000000476837158,
+          "ceiling": 1.87,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.5,
+          "e1": 1.5999999046325684,
+          "ceiling": 1.65,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.399999976158142,
+          "e1": 1.399999976158142,
+          "ceiling": 1.54,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 3.200000047683716,
+          "e1": 3.299999952316284,
+          "ceiling": 3.52,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.10000002384185791,
+          "e1": 0.10000002384185791,
+          "ceiling": 0.2,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 0.3999999761581421,
+          "e1": 0.30000007152557373,
+          "ceiling": 0.5,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 0.6000000238418579,
+          "e1": 0.6000000238418579,
+          "ceiling": 0.7,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 1.4000000953674316,
+          "e1": 1.5,
+          "ceiling": 1.54,
+          "pass": true
+        }
+      }
+    },
+    {
+      "file": "runtime-extended-hdr.json",
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "measurements": {
+        "updateMedianCeilingMs": {
+          "e0": 1.399999976158142,
+          "e1": 1.2999999523162842,
+          "ceiling": 1.54,
+          "pass": true
+        },
+        "renderMedianCeilingMs": {
+          "e0": 1.3000000715255737,
+          "e1": 1.3000000715255737,
+          "ceiling": 1.43,
+          "pass": true
+        },
+        "frameP95CeilingMs": {
+          "e0": 2.9000000953674316,
+          "e1": 3,
+          "ceiling": 3.19,
+          "pass": true
+        }
+      }
+    }
+  ],
+  "exceeded": [
+    {
+      "file": "runtime-extended.json",
+      "scenario": "M6-extensions",
+      "count": 500,
+      "metric": "frameP95CeilingMs",
+      "e0": 1.7000000476837158,
+      "e1": 1.9000000953674316,
+      "ceiling": 1.87,
+      "pass": false
+    }
+  ],
+  "extendedRepeat": {
+    "firstEvidence": "runtime-extended-first.json",
+    "repeatEvidence": "runtime-extended.json",
+    "rows": [
+      {
+        "scenario": "M6-extensions",
+        "count": 100,
+        "metric": "updateMedianCeilingMs",
+        "first": 0.19999992847442627,
+        "repeat": 0.20000004768371582,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 100,
+        "metric": "renderMedianCeilingMs",
+        "first": 0.19999992847442627,
+        "repeat": 0.19999992847442627,
+        "ceiling": 0.3,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 100,
+        "metric": "frameP95CeilingMs",
+        "first": 0.5,
+        "repeat": 0.5,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 500,
+        "metric": "updateMedianCeilingMs",
+        "first": 0.8000000715255737,
+        "repeat": 0.8999999761581421,
+        "ceiling": 0.9,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 500,
+        "metric": "renderMedianCeilingMs",
+        "first": 0.7000000476837158,
+        "repeat": 0.7000000476837158,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 500,
+        "metric": "frameP95CeilingMs",
+        "first": 1.9000000953674316,
+        "repeat": 1.9000000953674316,
+        "ceiling": 1.87,
+        "pass": false
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 1000,
+        "metric": "updateMedianCeilingMs",
+        "first": 1.600000023841858,
+        "repeat": 1.600000023841858,
+        "ceiling": 1.87,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 1000,
+        "metric": "renderMedianCeilingMs",
+        "first": 1.2999999523162842,
+        "repeat": 1.4000000953674316,
+        "ceiling": 1.65,
+        "pass": true
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 1000,
+        "metric": "frameP95CeilingMs",
+        "first": 3.200000047683716,
+        "repeat": 3.399999976158142,
+        "ceiling": 4.07,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 100,
+        "metric": "updateMedianCeilingMs",
+        "first": 0.10000002384185791,
+        "repeat": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 100,
+        "metric": "renderMedianCeilingMs",
+        "first": 0.10000002384185791,
+        "repeat": 0.10000002384185791,
+        "ceiling": 0.2,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 100,
+        "metric": "frameP95CeilingMs",
+        "first": 0.30000007152557373,
+        "repeat": 0.30000007152557373,
+        "ceiling": 0.5,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 500,
+        "metric": "updateMedianCeilingMs",
+        "first": 0.6000000238418579,
+        "repeat": 0.6000000238418579,
+        "ceiling": 0.7,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 500,
+        "metric": "renderMedianCeilingMs",
+        "first": 0.6000000238418579,
+        "repeat": 0.6999999284744263,
+        "ceiling": 0.8,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 500,
+        "metric": "frameP95CeilingMs",
+        "first": 1.399999976158142,
+        "repeat": 1.5,
+        "ceiling": 1.65,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 1000,
+        "metric": "updateMedianCeilingMs",
+        "first": 1.3000000715255737,
+        "repeat": 1.2999999523162842,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 1000,
+        "metric": "renderMedianCeilingMs",
+        "first": 1.3000000715255737,
+        "repeat": 1.3000000715255737,
+        "ceiling": 1.43,
+        "pass": true
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 1000,
+        "metric": "frameP95CeilingMs",
+        "first": 2.899999976158142,
+        "repeat": 2.9000000953674316,
+        "ceiling": 3.3,
+        "pass": true
+      }
+    ]
+  }
+}

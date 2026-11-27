@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-blend
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadBlendPlugin } = require("@tsparticles/plugin-blend");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadBlendPlugin } = require("@tsparticles/plugin-blend");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 
 (async () => {

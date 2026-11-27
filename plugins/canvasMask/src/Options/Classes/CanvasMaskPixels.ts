@@ -13,7 +13,7 @@ const minAlpha = 0;
 
 export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {
   offset = 4;
-  filter: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
+  filter: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean = (pixel): boolean => pixel.a > minAlpha;
 
   load(data?: RecursivePartial<ICanvasMaskPixels>): void {
     if (isNull(data)) {
@@ -23,7 +23,9 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
     if (data.filter !== undefined) {
       if (isString(data.filter)) {
         if (data.filter in globalThis) {
-          const filter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[data.filter];
+          const filter = (
+            globalThis as unknown as Record<string, (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean>
+          )[data.filter];
 
           if (isFunction(filter)) {
             this.filter = filter;

@@ -61,7 +61,8 @@ $ yarn add @tsparticles/effect-filter
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadFilterEffect } = require("@tsparticles/effect-filter");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadFilterEffect } = require("@tsparticles/effect-filter");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFilterEffect } from "@tsparticles/effect-filter";
 
 (async () => {

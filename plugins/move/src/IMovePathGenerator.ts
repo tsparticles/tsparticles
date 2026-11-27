@@ -2,6 +2,8 @@ import type { IDelta, Particle, Vector } from "@tsparticles/engine";
 
 /** Move path generator interface */
 export interface IMovePathGenerator {
+  /** Releases container-scoped resources */
+  destroy?: () => void;
   /** Generates a path vector for the given particle */
   generate: (particle: Particle, delta: IDelta) => Vector;
 

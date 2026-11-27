@@ -28,6 +28,8 @@ SolidJS runs entirely in the browser (no SSR), so you do not need to guard again
 Use `initParticlesEngine` inside `onMount` to load the engine features, then conditionally render the `<Particles>` component with `<Show>`:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -38,7 +40,7 @@ const App: Component = () => {
   const [initialized, setInitialized] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine(async (engine: Engine) => {
+    initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     }).then(() => setInitialized(true));
   });
@@ -56,7 +58,7 @@ const App: Component = () => {
 
   return (
     <Show when={initialized()}>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={particlesEngine} id="tsparticles" options={options} />
     </Show>
   );
 };
@@ -71,6 +73,8 @@ The `<Show>` component ensures the `<Particles>` element is only inserted into t
 The `initParticlesEngine` function accepts a callback that receives the `Engine` instance. Use this callback to register the features your configuration needs:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
 import { loadSlim } from "@tsparticles/slim";
@@ -78,17 +82,17 @@ import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import type { Engine } from "@tsparticles/engine";
 
 // Minimal — only basic shapes and moves
-initParticlesEngine((engine: Engine) => loadSlim(engine)).then(() => {
+initParticlesEngine(particlesEngine, (engine: Engine) => loadSlim(engine)).then(() => {
   console.log("Engine ready (slim)");
 });
 
 // Full — every feature included
-initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => {
+initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => {
   console.log("Engine ready (full)");
 });
 
 // Preset-only — just the features needed for a specific preset
-initParticlesEngine((engine: Engine) => loadConfettiPreset(engine)).then(() => {
+initParticlesEngine(particlesEngine, (engine: Engine) => loadConfettiPreset(engine)).then(() => {
   console.log("Confetti preset loaded");
 });
 ```
@@ -100,6 +104,8 @@ Call `initParticlesEngine` once in your app — typically in the root component'
 Use SolidJS's `<Show>` control flow to defer rendering until the engine is initialized:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { createSignal, Show, onMount } from "solid-js";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
@@ -110,12 +116,13 @@ const App: Component = () => {
   const [ready, setReady] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
+    initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
   return (
     <Show when={ready()} fallback={<p>Loading particles...</p>}>
       <Particles
+        engine={particlesEngine}
         id="tsparticles"
         options={{
           fullScreen: { zIndex: -1 },
@@ -138,6 +145,8 @@ npm install @tsparticles/configs
 ```
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import configs from "@tsparticles/configs";
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
@@ -149,14 +158,14 @@ const App: Component = () => {
   const [ready, setReady] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
+    initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
   return (
     <Show when={ready()}>
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <Particles id="basic" options={configs.basic} />
-        <Particles id="bubbles" options={configs.bubbles} />
+        <Particles engine={particlesEngine} id="basic" options={configs.basic} />
+        <Particles engine={particlesEngine} id="bubbles" options={configs.bubbles} />
       </div>
     </Show>
   );
@@ -172,6 +181,8 @@ Available configs include: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `co
 Add click and hover interactions by configuring the `interactivity` section:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -182,7 +193,7 @@ const App: Component = () => {
   const [ready, setReady] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
+    initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
   const options: ISourceOptions = {
@@ -207,7 +218,7 @@ const App: Component = () => {
 
   return (
     <Show when={ready()}>
-      <Particles id="interactive" options={options} />
+      <Particles engine={particlesEngine} id="interactive" options={options} />
     </Show>
   );
 };
@@ -223,6 +234,8 @@ export default App;
 A full custom configuration with multiple particle shapes, color palettes, and motion settings:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -233,7 +246,7 @@ const App: Component = () => {
   const [ready, setReady] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
+    initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
   const options: ISourceOptions = {
@@ -309,7 +322,7 @@ const App: Component = () => {
 
   return (
     <Show when={ready()}>
-      <Particles id="custom" options={options} />
+      <Particles engine={particlesEngine} id="custom" options={options} />
     </Show>
   );
 };
@@ -322,6 +335,8 @@ export default App;
 A complete typed component with container reference, engine initialization, and manual controls:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -334,7 +349,7 @@ const App: Component = () => {
   const [paused, setPaused] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine(async (engine: Engine) => {
+    initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadFull(engine);
     }).then(() => setReady(true));
   });
@@ -369,7 +384,7 @@ const App: Component = () => {
 
   return (
     <Show when={ready()}>
-      <Particles id="full-example" options={options} particlesLoaded={particlesLoaded} />
+      <Particles engine={particlesEngine} id="full-example" options={options} particlesLoaded={particlesLoaded} />
       <button
         onClick={togglePause}
         style={{
@@ -394,6 +409,8 @@ export default App;
 SolidJS's signals drive reactive prop changes — when `id`, `options`, or `url` change, the component destroys the old container and reloads particles with the new values. Use signals to create new object references on each change:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadFull } from "tsparticles";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -406,7 +423,7 @@ const App: Component = () => {
   const [particleCount, setParticleCount] = createSignal(60);
 
   onMount(() => {
-    initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
+    initParticlesEngine(particlesEngine, (engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
   // options are a regular object — it will be read reactively through
@@ -424,7 +441,7 @@ const App: Component = () => {
 
   return (
     <Show when={ready()}>
-      <Particles id="dynamic" options={options()} particlesLoaded={() => {}} />
+      <Particles engine={particlesEngine} id="dynamic" options={options()} particlesLoaded={() => {}} />
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 10 }}>
         <label>
           Color:
@@ -456,6 +473,8 @@ Because `options` is a function that accesses signals, every time `color()` or `
 Load a preset, then merge custom overrides for a tailored effect:
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { loadSnowPreset } from "@tsparticles/preset-snow";
 import { createSignal, Show, onMount } from "solid-js";
 import type { Component } from "solid-js";
@@ -466,7 +485,7 @@ const App: Component = () => {
   const [ready, setReady] = createSignal(false);
 
   onMount(() => {
-    initParticlesEngine(async (engine: Engine) => {
+    initParticlesEngine(particlesEngine, async (engine: Engine) => {
       await loadSnowPreset(engine);
     }).then(() => setReady(true));
   });
@@ -485,7 +504,7 @@ const App: Component = () => {
 
   return (
     <Show when={ready()}>
-      <Particles id="custom-snow" options={options} />
+      <Particles engine={particlesEngine} id="custom-snow" options={options} />
     </Show>
   );
 };

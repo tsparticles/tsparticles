@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-hwb-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadHwbColorPlugin } = require("@tsparticles/plugin-hwb-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadHwbColorPlugin } = require("@tsparticles/plugin-hwb-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHwbColorPlugin } from "@tsparticles/plugin-hwb-color";
 
 (async () => {

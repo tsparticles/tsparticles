@@ -12,7 +12,10 @@ const popMode = "pop";
  * Particle attract manager
  */
 export class Popper extends ExternalInteractorBase {
-  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (
+    mode: string,
+    interactivityData: IInteractivityData,
+  ) => void;
 
   readonly maxDistance = 0;
 
@@ -32,7 +35,10 @@ export class Popper extends ExternalInteractorBase {
         return;
       }
 
-      const poppedParticles = container.particles.grid.queryCircle(clickPos, container.retina.pixelRatio);
+      const poppedParticles = container.particles.grid.queryCircle(
+        clickPos,
+        container.retina.pixelRatio,
+      );
 
       if (!poppedParticles.length) {
         return;
@@ -44,10 +50,6 @@ export class Popper extends ExternalInteractorBase {
     };
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     // do nothing
   }
@@ -56,16 +58,21 @@ export class Popper extends ExternalInteractorBase {
     // do nothing
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity)?.events;
 
-    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(popMode, events.onClick.mode);
-  }
-
-  reset(): void {
-    // do nothing
+    return (
+      !!events &&
+      mouse.clicking &&
+      mouse.inside &&
+      !!mouse.position &&
+      isInArray(popMode, events.onClick.mode)
+    );
   }
 }

@@ -49,6 +49,10 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     this.#instancesManager.initContainer(container);
   }
 
+  destroy(): void {
+    this.#instancesManager.destroyContainer(this.#container);
+  }
+
   draw(context: OffscreenCanvasRenderingContext2D): void {
     for (const absorber of this.#instancesManager.getArray(this.#container)) {
       absorber.draw(context);
@@ -193,7 +197,9 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
    * @param particle - the particle to recycle
    */
   #recycleParticle(particle: OrbitingParticle): void {
-    particle.position.setTo(calcPositionOrRandomFromSize({ size: this.#container.canvas.size }));
+    particle.position.setTo(
+      calcPositionOrRandomFromSize({ size: this.#container.canvas.size }, this.#container.engine.getRandomFn()),
+    );
     particle.velocity.setTo(particle.initialVelocity);
     particle.absorberOrbit = undefined;
     particle.absorberOrbitDirection = undefined;

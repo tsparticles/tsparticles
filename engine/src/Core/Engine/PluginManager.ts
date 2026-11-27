@@ -1,0 +1,399 @@
+import type {
+  EffectInitializer,
+  Initializers,
+  ShapeInitializer,
+  UpdaterInitializer,
+} from "../../Types/EngineInitializers.js";
+import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
+import type { EasingFunction } from "../../Types/EasingFunction.js";
+import type { Engine } from "./Engine.js";
+import { EventType } from "../../Enums/Types/EventType.js";
+import type { IPalette } from "../Interfaces/IPalette.js";
+import type { IPlugin } from "../Interfaces/IPlugin.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+
+/** Async plugin loader with engine parameter */
+export type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
+/** Sync plugin loader with engine parameter */
+export type SyncLoadPluginFunction = (engine: Engine) => void;
+/** Async plugin loader without engine parameter */
+export type AsyncLoadPluginNoEngine = () => Promise<void>;
+/** Sync plugin loader without engine parameter */
+export type SyncLoadPluginNoEngine = () => void;
+/** Plugin loader function type */
+export type LoadPluginFunction =
+  | AsyncLoadPluginFunction
+  | SyncLoadPluginFunction
+  | AsyncLoadPluginNoEngine
+  | SyncLoadPluginNoEngine;
+
+/**
+ * Stores and resolves plugins, shapes, effects, palettes and updaters.
+ */
+export class PluginManager {
+  /** The easing functions map */
+  readonly easingFunctions = new Map<string, EasingFunction>();
+
+  /** The initializers map */
+  readonly initializers: Initializers = {
+    effects: new Map<string, EffectInitializer>(),
+    shapes: new Map<string, ShapeInitializer>(),
+    updaters: new Map<string, UpdaterInitializer>(),
+  };
+
+  /** The palettes map */
+  readonly palettes = new Map<string, IPalette>();
+
+  /**
+   * The presets array
+   */
+  /** The presets map */
+  readonly presets = new Map<string, ISourceOptions>();
+
+  #activeLoaderCount = 0;
+
+  #allLoadersSet = new Set<LoadPluginFunction>();
+
+  readonly #configs = new Map<string, ISourceOptions>();
+
+  readonly #engine;
+
+  readonly #executedSet = new Set<LoadPluginFunction>();
+
+  readonly #inFlightLoaders = new Set<Promise<void>>();
+
+  /**
+   * Checks if the engine instance is initialized
+   */
+  #initialized = false;
+  #initPromise?: Promise<void>;
+
+  #isRunningLoaders = false;
+
+  readonly #loaderEngine: Engine;
+
+  readonly #loadPromises = new Set<LoadPluginFunction>();
+
+  readonly #plugins: IPlugin[] = [];
+  #pluginsView?: readonly IPlugin[];
+
+  constructor(engine: Engine) {
+    this.#engine = engine;
+
+    const boundMethods = new WeakMap<object, (...args: unknown[]) => unknown>(),
+      loaderInit = (): Promise<void> =>
+        this.#activeLoaderCount > 0 ? Promise.resolve() : engine.init();
+
+    this.#loaderEngine = new Proxy(engine, {
+      get: (target, property) => {
+        if (property === "init") {
+          return loaderInit;
+        }
+
+        const value: unknown = Reflect.get(target, property, target);
+
+        if (typeof value !== "function") {
+          return value;
+        }
+
+        let boundMethod = boundMethods.get(value);
+
+        if (!boundMethod) {
+          boundMethod = (...args: unknown[]): unknown =>
+            Reflect.apply(value, target, args) as unknown;
+          boundMethods.set(value, boundMethod);
+        }
+
+        return boundMethod;
+      },
+    });
+  }
+
+  /**
+   * The configs record
+   * @returns the available configs
+   */
+  get configs(): Record<string, ISourceOptions> {
+    const res: Record<string, ISourceOptions> = {};
+
+    for (const [name, config] of this.#configs) {
+      res[name] = config;
+    }
+
+    return res;
+  }
+
+  /** The engine that owns this registry and its runtime services. */
+  get engine(): Engine {
+    return this.#engine;
+  }
+
+  get initialized(): boolean {
+    return this.#initialized;
+  }
+
+  /**
+   * @returns The plugins registered with this manager
+   */
+  get plugins(): readonly IPlugin[] {
+    return (this.#pluginsView ??= Object.freeze([...this.#plugins]));
+  }
+
+  /**
+   * Adds a config to the manager
+   * @param config - the configuration to add
+   */
+  addConfig(config: ISourceOptions): void {
+    this.#checkRegistrationOpen();
+
+    const key = config.key ?? config.name ?? "default";
+
+    this.#configs.set(key, config);
+    this.#engine.dispatchEvent(EventType.configAdded, {
+      data: { name: key, config },
+    });
+  }
+
+  /**
+   * Registers an easing function.
+   * @param name - Easing identifier.
+   * @param easing - Easing function implementation.
+   */
+  addEasing(name: string, easing: EasingFunction): void {
+    this.#checkRegistrationOpen();
+
+    if (this.easingFunctions.get(name)) {
+      return;
+    }
+
+    this.easingFunctions.set(name, easing);
+  }
+
+  /**
+   * addEffect adds effect to tsParticles, it will be available to all future instances created
+   * @param effect - the effect name
+   * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
+   */
+  addEffect(effect: string, drawer: EffectInitializer): void {
+    this.#checkRegistrationOpen();
+
+    this.initializers.effects.set(effect, drawer);
+  }
+
+  /**
+   * Adds a palette to the manager
+   * @param name - the palette name
+   * @param palette - the palette to add
+   */
+  addPalette(name: string, palette: IPalette): void {
+    this.#checkRegistrationOpen();
+
+    this.palettes.set(name, palette);
+  }
+
+  /**
+   * Adds a particle updater to the collection
+   * @param name - the particle updater name used as a key
+   * @param updaterInitializer - the particle updater initializer
+   */
+  addParticleUpdater(
+    name: string,
+    updaterInitializer: UpdaterInitializer,
+  ): void {
+    this.#checkRegistrationOpen();
+
+    this.initializers.updaters.set(name, updaterInitializer);
+  }
+
+  /**
+   * Adds a plugin from a registered loader during engine initialization.
+   * @param plugin - the plugin implementation of {@link IPlugin}
+   */
+  addPlugin(plugin: IPlugin): void {
+    if (!this.#isRunningLoaders) {
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
+    }
+
+    if (this.getPlugin(plugin.id)) {
+      return;
+    }
+
+    this.#plugins.push(plugin);
+    this.#pluginsView = undefined;
+  }
+
+  /**
+   * addPreset adds preset to tsParticles, it will be available to all future instances created
+   * @param preset - the preset name
+   * @param options - the options to add to the preset
+   * @param override - if true, the preset will override any existing with the same name
+   */
+  addPreset(
+    preset: string,
+    options: Readonly<ISourceOptions>,
+    override = false,
+  ): void {
+    this.#checkRegistrationOpen();
+
+    if (!(override || !this.getPreset(preset))) {
+      return;
+    }
+
+    this.presets.set(preset, options);
+  }
+
+  /**
+   * addShape adds shape to tsParticles, it will be available to all future instances created
+   * @param shapes - the shape names to add, it can be a single shape or an array of shapes
+   * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
+   */
+  addShape(shapes: string[], drawer: ShapeInitializer): void {
+    this.#checkRegistrationOpen();
+
+    for (const shape of shapes) {
+      this.initializers.shapes.set(shape, drawer);
+    }
+  }
+
+  /**
+   * Gets an easing function by name.
+   * @param name - Easing identifier.
+   * @returns The easing function, or a passthrough easing if not found.
+   */
+  getEasing(name: string): EasingFunction {
+    return this.easingFunctions.get(name) ?? ((value: number): number => value);
+  }
+
+  /**
+   * Gets a palette by name
+   * @param name - the palette name
+   * @returns the palette if found
+   */
+  getPalette(name: string): IPalette | undefined {
+    return this.palettes.get(name);
+  }
+
+  /**
+   * Searches if the specified plugin exists and returns it
+   * @param plugin - the plugin name
+   * @returns the plugin if found, or undefined
+   */
+  getPlugin(plugin: string): IPlugin | undefined {
+    return this.#plugins.find((t) => t.id === plugin);
+  }
+
+  /**
+   * Searches the preset with the given name
+   * @param preset - the preset name to search
+   * @returns the preset if found, or undefined
+   */
+  getPreset(preset: string): ISourceOptions | undefined {
+    return this.presets.get(preset);
+  }
+
+  /**
+   * init method, used by imports
+   */
+  async init(): Promise<void> {
+    if (this.#initialized) {
+      return;
+    }
+
+    if (this.#initPromise) {
+      return this.#initPromise;
+    }
+
+    /* Publish the shared promise before any loader can call back into init(). */
+    this.#initPromise = Promise.resolve().then(async () => {
+      this.#isRunningLoaders = true;
+      this.#allLoadersSet = new Set(this.#loadPromises);
+
+      try {
+        while (
+          this.#inFlightLoaders.size > 0 ||
+          [...this.#allLoadersSet].some(
+            (loader) => !this.#executedSet.has(loader),
+          )
+        ) {
+          for (const loader of this.#allLoadersSet) {
+            await this.#runLoader(
+              loader,
+              this.#executedSet,
+              this.#allLoadersSet,
+            );
+          }
+
+          const inFlightLoaders = [...this.#inFlightLoaders];
+
+          if (inFlightLoaders.length) {
+            await Promise.all(inFlightLoaders);
+          }
+        }
+
+        this.#loadPromises.clear();
+        this.#initialized = true;
+      } finally {
+        this.#isRunningLoaders = false;
+        this.#initPromise = undefined;
+      }
+    });
+
+    return this.#initPromise;
+  }
+
+  /**
+   * Queues plugin loaders before initialization. Loaders can compose other loaders during initialization.
+   * The engine passed to a loader resolves nested init() calls immediately while a loader is executing;
+   * calls made afterward delegate to the original engine.
+   * @param loaders - the plugin loader functions to register
+   */
+  async register(...loaders: LoadPluginFunction[]): Promise<void> {
+    this.#checkRegistrationOpen();
+
+    for (const loader of loaders) {
+      if (this.#isRunningLoaders) {
+        this.#loadPromises.add(loader);
+        await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
+      } else {
+        this.#loadPromises.add(loader);
+      }
+    }
+  }
+
+  #checkRegistrationOpen(): void {
+    if (this.#initialized) {
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
+    }
+  }
+
+  async #runLoader(
+    loader: LoadPluginFunction,
+    executed: Set<LoadPluginFunction>,
+    allLoaders: Set<LoadPluginFunction>,
+  ): Promise<void> {
+    if (executed.has(loader)) {
+      return;
+    }
+
+    executed.add(loader);
+    allLoaders.add(loader);
+
+    this.#activeLoaderCount++;
+
+    const loaderPromise = (async (): Promise<void> =>
+      loader(this.#loaderEngine))();
+
+    this.#inFlightLoaders.add(loaderPromise);
+
+    try {
+      await loaderPromise;
+    } catch (error) {
+      executed.delete(loader);
+
+      throw error;
+    } finally {
+      this.#activeLoaderCount--;
+      this.#inFlightLoaders.delete(loaderPromise);
+    }
+  }
+}

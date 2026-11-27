@@ -1,7 +1,3 @@
-/* eslint-disable sort-imports */
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { camelize, capitalize, dash } from "./string-utils.js";
 import {
   type IProjectMetadata,
   copyEmptyTemplateFiles,
@@ -10,6 +6,9 @@ import {
   updatePackageDistFile,
   updatePackageFile,
 } from "./template-utils.js";
+import { camelize, capitalize, dash } from "./string-utils.js";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 export type CreateProjectKind =
   "bundle" | "effect" | "interaction" | "palette" | "path" | "plugin" | "preset" | "shape" | "updater";
@@ -121,7 +120,7 @@ export * from "./index.js";
 function getBundleFile(loadFunction: string, reexportEngine: boolean): string {
   return `import { ${loadFunction} } from "./index.js";
 
-${reexportEngine ? 'export { tsParticles } from "@tsparticles/engine";' : ""}
+${reexportEngine ? 'export { createEngine } from "@tsparticles/engine";' : ""}
 export { ${loadFunction} } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
@@ -206,7 +205,9 @@ npm install ${config.packageSuffix}
 ## Usage
 
 \`\`\`ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 import { ${config.loadFunction} } from "${config.packageSuffix}";
 
 await ${config.loadFunction}(tsParticles);
@@ -888,22 +889,22 @@ export class ${pluginClass} implements IPlugin {
     rollupNameKey: "pluginName",
     rollupNameValue: `${nameData.pascalName} Color`,
     srcFiles: {
-      "src/ColorManager.ts": `import type { IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
+      "src/ColorManager.ts": `import type { IColor, IColorManager, IOklcha, IRangeColor } from "@tsparticles/engine";
 
 export class ${managerClass} implements IColorManager {
   accepts(input: string): boolean {
     return input.startsWith("${nameData.camelName}(");
   }
 
-  handleColor(_color: IColor): IRgb | undefined {
+  handleColorOklch(_color: IColor): IOklcha | undefined {
     return undefined;
   }
 
-  handleRangeColor(_color: IRangeColor): IRgb | undefined {
+  handleRangeColorOklch(_color: IRangeColor): IOklcha | undefined {
     return undefined;
   }
 
-  parseString(_input: string): IRgba | undefined {
+  parseStringOklch(_input: string): IOklcha | undefined {
     return undefined;
   }
 }
@@ -917,7 +918,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("${nameData.camelName}", new ${managerClass}());
+    e.addColorManager("${nameData.camelName}", new ${managerClass}());
   });
 }
 `,

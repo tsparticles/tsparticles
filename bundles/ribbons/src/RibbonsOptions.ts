@@ -1,5 +1,4 @@
 import {
-  type ICoordinates,
   type IDimension,
   type IOptionLoader,
   type IShapeValues,
@@ -9,12 +8,13 @@ import {
   isArray,
   isNull,
   loadProperty,
-  percentDenominator,
 } from "@tsparticles/engine";
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
 
 /** Ribbons options class */
-export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOptions> {
+export class RibbonsOptions
+  implements IRibbonsOptions, IOptionLoader<IRibbonsOptions>
+{
   /** Ribbon colors */
   colors: SingleOrMultiple<string>;
 
@@ -77,57 +77,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   }
 
   /**
-   * @deprecated use positionX instead
-   * @returns the origin of the ribbons
-   */
-  get origin(): ICoordinates {
-    return {
-      x: this.positionX / percentDenominator,
-      y: 0,
-    };
-  }
-
-  /**
-   * @deprecated use positionX instead
-   */
-  set origin(value: ICoordinates) {
-    this.positionX = value.x * percentDenominator;
-  }
-
-  /**
-   * @deprecated use count instead
-   * @returns the number of particles
-   */
-  get particleCount(): number {
-    return this.count;
-  }
-
-  /**
-   * @deprecated use count instead
-   */
-  set particleCount(value: number) {
-    this.count = value;
-  }
-
-  /**
-   * @deprecated use positionX instead
-   * @returns the ribbons horizontal position
-   */
-  get position(): ICoordinates {
-    return {
-      x: this.positionX,
-      y: 0,
-    };
-  }
-
-  /**
-   * @deprecated use positionX instead
-   */
-  set position(value: ICoordinates) {
-    this.positionX = value.x;
-  }
-
-  /**
    * Loads ribbons options from the provided data
    * @param data - The data to handle
    */
@@ -136,12 +85,7 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
-    const count = data.count ?? data.particleCount;
-
-    if (count !== undefined) {
-      this.count = count;
-    }
+    loadProperty(this, "count", data.count);
 
     if (data.emitterSize) {
       if (data.emitterSize.width !== undefined) {
@@ -155,29 +99,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
     loadProperty(this, "positionX", data.positionX);
 
-    if (data.positionX === undefined) {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
-      const origin = data.origin;
-
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
-      if (origin && !data.position) {
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        data.position = {
-          x: origin.x === undefined ? undefined : origin.x * percentDenominator,
-          y: 0,
-        };
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
-      const position = data.position;
-
-      if (position) {
-        if (position.x !== undefined) {
-          this.positionX = position.x;
-        }
-      }
-    }
-
     if (data.colors !== undefined) {
       if (isArray(data.colors)) {
         this.colors = [...data.colors];
@@ -187,7 +108,10 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
     }
 
     if (data.ribbonOptions !== undefined) {
-      this.ribbonOptions = deepExtend({}, data.ribbonOptions) as SingleOrMultiple<IShapeValues>;
+      this.ribbonOptions = deepExtend(
+        {},
+        data.ribbonOptions,
+      ) as SingleOrMultiple<IShapeValues>;
     }
 
     loadProperty(this, "scalar", data.scalar);

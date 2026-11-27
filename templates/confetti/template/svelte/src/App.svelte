@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { confetti } from "@tsparticles/confetti";
+  import { engine } from "../particlesEngine";
+
+  import { createConfetti } from "@tsparticles/confetti";
+  const confetti = createConfetti(engine);
 
   let mode = $state("cannon");
 
   function randomInRange(min: number, max: number): number {
-    return Math.random() * (max - min) + min;
+    return engine.getRandom() * (max - min) + min;
   }
 
   function fire(): void {

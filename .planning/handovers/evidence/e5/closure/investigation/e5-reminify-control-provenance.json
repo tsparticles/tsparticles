@@ -1,0 +1,10 @@
+{
+  "mode": "control",
+  "originalSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "patchedSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "minifiedSha256": "2ade7f06d95557e12c83babdcf4363ca7e6f7f70dd6548fb409b549c8d24a4d4",
+  "patches": [],
+  "limitations": [
+    "In-memory getter prototype, no production source changed; default Terser settings differ from the release bundle configuration."
+  ]
+}

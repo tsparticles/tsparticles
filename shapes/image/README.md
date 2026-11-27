@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-image
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadImageShape } = require("@tsparticles/shape-image");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadImageShape } = require("@tsparticles/shape-image");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadImageShape } from "@tsparticles/shape-image";
 
 (async () => {

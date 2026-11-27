@@ -1,16 +1,22 @@
-import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
 import { Particles, initParticlesEngine } from "@tsparticles/qwik";
-import { confetti } from "@tsparticles/confetti";
+import { component$, noSerialize, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 export default component$(() => {
+  const readyEngine = useSignal<typeof engine>();
   const mode = useSignal("cannon");
 
-  useVisibleTask$(() => {
-    void initParticlesEngine(() => Promise.resolve());
+  useVisibleTask$(async () => {
+    await initParticlesEngine(engine, async () => {
+      await confetti.init();
+    });
+    readyEngine.value = noSerialize(engine);
   });
 
   const fireConfetti = () => {
@@ -55,7 +61,7 @@ export default component$(() => {
           </select>
         </div>
       </div>
-      <Particles id="tsparticles" options={{}} />
+      <Particles engine={readyEngine.value} id="tsparticles" options={{}} />
     </div>
   );
 });

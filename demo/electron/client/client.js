@@ -1,9 +1,10 @@
-import { tsParticles } from "@tsparticles/engine";
+import { engine } from "../particlesEngine.js";
+
 import { loadFull } from "tsparticles";
 import configs from "@tsparticles/configs";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadFull(tsParticles);
+  await loadFull(engine);
 
-    await tsParticles.load({ options: configs.basic });
+  await engine.load({ options: configs.basic });
 });

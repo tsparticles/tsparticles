@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-easing-elastic
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEasingElasticPlugin } = require("@tsparticles/plugin-easing-elastic");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadEasingElasticPlugin } = require("@tsparticles/plugin-easing-elastic"
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingElasticPlugin } from "@tsparticles/plugin-easing-elastic";
 
 (async () => {

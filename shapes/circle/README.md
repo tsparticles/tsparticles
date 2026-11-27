@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-circle
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadCircleShape } = require("@tsparticles/shape-circle");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadCircleShape } = require("@tsparticles/shape-circle");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCircleShape } from "@tsparticles/shape-circle";
 
 (async () => {

@@ -9,14 +9,17 @@ import {
   degToRad,
   double,
   doublePI,
-  getRandom,
   getRangeValue,
   half,
   identity,
   loadOptionProperty,
   minIndex,
 } from "@tsparticles/engine";
-import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
+import type {
+  ITiltParticlesOptions,
+  TiltParticle,
+  TiltParticlesOptions,
+} from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
 import { updateAnimation } from "@tsparticles/animation-utils";
@@ -41,7 +44,9 @@ export class TiltUpdater implements IParticleUpdater {
    * @param particle - The particle to process
    * @returns The result
    */
-  getTransformValues(particle: TiltParticle): Partial<IParticleTransformValues> {
+  getTransformValues(
+    particle: TiltParticle,
+  ): Partial<IParticleTransformValues> {
     const tilt = particle.tilt?.enable && particle.tilt;
 
     return {
@@ -63,9 +68,13 @@ export class TiltUpdater implements IParticleUpdater {
 
     particle.tilt = {
       enable: tiltOptions.enable,
-      value: degToRad(getRangeValue(tiltOptions.value)),
-      sinDirection: getRandom() >= half ? identity : -identity,
-      cosDirection: getRandom() >= half ? identity : -identity,
+      value: degToRad(
+        getRangeValue(tiltOptions.value, this.#container.engine.getRandomFn()),
+      ),
+      sinDirection:
+        this.#container.engine.getRandom() >= half ? identity : -identity,
+      cosDirection:
+        this.#container.engine.getRandom() >= half ? identity : -identity,
       min: 0,
       max: doublePI,
     };
@@ -73,9 +82,12 @@ export class TiltUpdater implements IParticleUpdater {
     let tiltDirection = tiltOptions.direction;
 
     if (tiltDirection === TiltDirection.random) {
-      const index = Math.floor(getRandom() * double);
+      const index = Math.floor(this.#container.engine.getRandom() * double);
 
-      tiltDirection = index > minIndex ? TiltDirection.counterClockwise : TiltDirection.clockwise;
+      tiltDirection =
+        index > minIndex
+          ? TiltDirection.counterClockwise
+          : TiltDirection.clockwise;
     }
 
     switch (tiltDirection) {
@@ -94,11 +106,22 @@ export class TiltUpdater implements IParticleUpdater {
     const tiltAnimation = particle.options.tilt?.animation;
 
     if (tiltAnimation?.enable) {
-      particle.tilt.decay = identity - getRangeValue(tiltAnimation.decay);
-      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this.#container.retina.reduceFactor;
+      particle.tilt.decay =
+        identity -
+        getRangeValue(
+          tiltAnimation.decay,
+          this.#container.engine.getRandomFn(),
+        );
+      particle.tilt.velocity =
+        (getRangeValue(
+          tiltAnimation.speed,
+          this.#container.engine.getRandomFn(),
+        ) /
+          maxAngle) *
+        this.#container.retina.reduceFactor;
 
       if (!tiltAnimation.sync) {
-        particle.tilt.velocity *= getRandom();
+        particle.tilt.velocity *= this.#container.engine.getRandom();
       }
     }
   }

@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-22",
+  "workingTree": true,
+  "downstreamBuild": {
+    "command": "pnpm nx show projects --json | jq -r '.[]' | rg -v 'cli|website|palette' | xargs pnpm nx run-many -t build --parallel=50% --projects",
+    "exitCode": 0,
+    "targets": 453,
+    "succeeded": 453,
+    "cached": 186,
+    "runUrl": "https://cloud.nx.app/runs/rqrIMcaLuf"
+  },
+  "workspaceTests": {
+    "command": "pnpm nx run-many -t test --output-style=static",
+    "exitCode": 1,
+    "projects": 85,
+    "failedTargets": {
+      "@tsparticles/ember-demo:test": "Acceptance test fails resolving @tsparticles/particlesEngine from the application controller.",
+      "@tsparticles/riot-demo:test": "Node ESM test loader cannot resolve extensionless demo/riot/particlesEngine import."
+    },
+    "demoSourcesChangedInThisContinuation": false,
+    "runUrl": "https://cloud.nx.app/runs/eR6Ozsadbg"
+  },
+  "primaryTests": {
+    "target": "@tsparticles/tests:test",
+    "files": 55,
+    "passed": 810
+  },
+  "oklchPluginTests": {
+    "target": "@tsparticles/plugin-oklch-color:test",
+    "files": 1,
+    "passed": 25
+  },
+  "browserPixels": {
+    "report": "browser-color-results.json",
+    "passed": 8
+  },
+  "notes": [
+    "The full tests-package build includes its lint, Prettier and test steps.",
+    "No commit or publication performed."
+  ]
+}

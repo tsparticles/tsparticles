@@ -1,12 +1,14 @@
-import { createApp } from "vue";
-import Particles from "@tsparticles/vue3";
-import { loadSlim } from "@tsparticles/slim";
 import App from "./App.vue";
+import Particles from "@tsparticles/vue3";
+import { createApp } from "vue";
+import { engine } from "../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
 
 const app = createApp(App);
 
 app.use(Particles, {
-  init: async (engine) => {
+  engine,
+  init: async engine => {
     await loadSlim(engine);
   },
 });

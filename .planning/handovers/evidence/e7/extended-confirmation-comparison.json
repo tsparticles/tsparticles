@@ -1,0 +1,151 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "matchingSamples": 54,
+  "summary": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "metrics": {
+        "update": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.19999998807907104,
+          "allowance": 0.299999988079071,
+          "pass": true
+        },
+        "render": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.10000002384185791,
+          "allowance": 0.299999988079071,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 0.5999999642372131,
+          "candidate": 0.5,
+          "allowance": 0.6999999642372131,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "metrics": {
+        "update": {
+          "baseline": 1,
+          "candidate": 1,
+          "allowance": 1.1,
+          "pass": true
+        },
+        "render": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.699999988079071,
+          "allowance": 0.799999988079071,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 2.5,
+          "candidate": 2.399999976158142,
+          "allowance": 2.75,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "metrics": {
+        "update": {
+          "baseline": 1.699999988079071,
+          "candidate": 1.699999988079071,
+          "allowance": 1.8699999868869783,
+          "pass": true
+        },
+        "render": {
+          "baseline": 1.100000023841858,
+          "candidate": 1.100000023841858,
+          "allowance": 1.2100000262260437,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 3.399999976158142,
+          "candidate": 3.399999976158142,
+          "allowance": 3.7399999737739567,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "metrics": {
+        "update": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.19999998807907104,
+          "allowance": 0.20000002384185792,
+          "pass": true
+        },
+        "render": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.10000002384185791,
+          "allowance": 0.20000002384185792,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 0.3999999761581421,
+          "candidate": 0.3999999761581421,
+          "allowance": 0.49999997615814207,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "metrics": {
+        "update": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.699999988079071,
+          "allowance": 0.799999988079071,
+          "pass": true
+        },
+        "render": {
+          "baseline": 0.5,
+          "candidate": 0.5000000596046448,
+          "allowance": 0.6,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 1.5,
+          "candidate": 1.5999999642372131,
+          "allowance": 1.6500000000000001,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "metrics": {
+        "update": {
+          "baseline": 1.399999976158142,
+          "candidate": 1.300000011920929,
+          "allowance": 1.5399999737739565,
+          "pass": true
+        },
+        "render": {
+          "baseline": 1.0999999642372131,
+          "candidate": 1.0999999642372131,
+          "allowance": 1.2099999606609346,
+          "pass": true
+        },
+        "frame": {
+          "baseline": 3,
+          "candidate": 2.899999976158142,
+          "allowance": 3.3000000000000003,
+          "pass": true
+        }
+      }
+    }
+  ],
+  "postPeakHeapDriftBytes": 89976
+}

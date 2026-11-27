@@ -81,16 +81,3 @@ export function oklchaToRgba(oklcha: IOklcha): IRgba {
     ...oklchToRgb(oklcha),
   };
 }
-
-/**
- * Gets a CSS style string from an OKLCH ({@link IOklch}) object and an optional opacity value
- * @param color - the OKLCH ({@link IOklch}) object
- * @param opacity - the opacity value
- * @returns the CSS style string
- */
-export function getStyleFromOklch(color: IOklch, opacity?: number): string {
-  const { l, c, h } = color,
-    alpha = opacity !== undefined ? ` / ${opacity.toString()}` : "";
-
-  return `oklch(${l.toString()}% ${c.toString()} ${h.toString()}°${alpha})`;
-}

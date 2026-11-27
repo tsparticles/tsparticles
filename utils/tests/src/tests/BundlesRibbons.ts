@@ -1,11 +1,16 @@
 /* eslint-disable */
-import { tsParticles, type Container } from "@tsparticles/engine";
-import { tsParticles as lazyTsParticles } from "@tsparticles/engine/lazy";
+import { type Container, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-import { ribbons } from "@tsparticles/ribbons";
-import { ribbons as lazyRibbons } from "@tsparticles/ribbons/lazy";
+import { createEngine as createLazyEngine } from "@tsparticles/engine/lazy";
+import { createRibbons as createLazyRibbons } from "@tsparticles/ribbons/lazy";
+import { createRibbons } from "@tsparticles/ribbons";
+
+const tsParticles = createEngine();
+const ribbons = createRibbons(tsParticles);
+const lazyTsParticles = createLazyEngine();
+const lazyRibbons = createLazyRibbons(lazyTsParticles);
 
 /**
  * Creates a test canvas with controllable ID attributes and the shared test document.

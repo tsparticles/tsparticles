@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-hyperspace
 ## उपयोग के लिए तैयार (स्टार्ट/स्टॉप मैनुअल)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHyperspacePreset } from "@tsparticles/preset-hyperspace";
 import type { Container } from "@tsparticles/engine";
 

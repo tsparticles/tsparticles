@@ -1,4 +1,10 @@
-import { type Container, Vector, deepExtend, doublePI, getRandom, isFunction, isString } from "@tsparticles/engine";
+import {
+  type Container,
+  Vector,
+  deepExtend,
+  doublePI,
+  isFunction,
+} from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
@@ -16,11 +22,11 @@ const defaultOptions: ICurvesOptions = {
 /**
  * @returns a random velocity
  */
-function randomVelocity(): number {
+function randomVelocity(random: () => number): number {
   const offset = 0.8,
     factor = 0.6;
 
-  return getRandom() * factor + offset;
+  return random() * factor + offset;
 }
 
 /** Curves path generator plugin */
@@ -51,7 +57,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
       const options = this.options;
 
       particle.pathGen = CurvesPathGen(
-        options.rndFunc,
+        options.rndFunc ?? this.#container.engine.getRandomFn(),
         options.period,
         options.nbHarmonics,
         options.attenHarmonics,
@@ -62,12 +68,16 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
     if (particle.curveVelocity) {
       particle.curveVelocity.length += 0.01;
-      particle.curveVelocity.angle = (particle.curveVelocity.angle + particle.pathGen()) % doublePI;
+      particle.curveVelocity.angle =
+        (particle.curveVelocity.angle + particle.pathGen()) % doublePI;
     } else {
       particle.curveVelocity = Vector.origin;
 
-      particle.curveVelocity.length = randomVelocity();
-      particle.curveVelocity.angle = getRandom() * doublePI;
+      particle.curveVelocity.length = randomVelocity(
+        this.#container.engine.getRandomFn(),
+      );
+      particle.curveVelocity.angle =
+        this.#container.engine.getRandom() * doublePI;
     }
 
     particle.velocity.x = 0;
@@ -78,22 +88,28 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
+    const sourceOptions =
+        this.#container.actualOptions.particles.move.path.options,
+      randomFunction = sourceOptions["rndFunc"];
 
-    if (isFunction(sourceOptions["rndFunc"])) {
-      this.options.rndFunc = sourceOptions["rndFunc"] as () => number;
-    } else if (isString(sourceOptions["rndFunc"])) {
-      this.options.rndFunc =
-        ((globalThis as Record<string, unknown>)[sourceOptions["rndFunc"]] as (() => number) | null | undefined) ??
-        this.options.rndFunc;
-    }
+    this.options.rndFunc = isFunction(randomFunction)
+      ? (randomFunction as () => number)
+      : null;
 
-    this.options.period = (sourceOptions["period"] as number | undefined) ?? this.options.period;
-    this.options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? this.options.nbHarmonics;
+    this.options.period =
+      (sourceOptions["period"] as number | undefined) ?? this.options.period;
+    this.options.nbHarmonics =
+      (sourceOptions["nbHarmonics"] as number | undefined) ??
+      this.options.nbHarmonics;
     this.options.attenHarmonics =
-      (sourceOptions["attenHarmonics"] as number | undefined) ?? this.options.attenHarmonics;
-    this.options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? this.options.lowValue;
-    this.options.highValue = (sourceOptions["highValue"] as number | undefined) ?? this.options.highValue;
+      (sourceOptions["attenHarmonics"] as number | undefined) ??
+      this.options.attenHarmonics;
+    this.options.lowValue =
+      (sourceOptions["lowValue"] as number | undefined) ??
+      this.options.lowValue;
+    this.options.highValue =
+      (sourceOptions["highValue"] as number | undefined) ??
+      this.options.highValue;
   }
 
   /**

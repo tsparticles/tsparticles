@@ -4,13 +4,13 @@ The {@link Container} class is the runtime manager of a single tsParticles insta
 
 You usually get a container from:
 
-- {@link Engine.load | tsParticles.load}
-- {@link Engine.loadJSON | tsParticles.loadJSON} (`then(container => ...)`)
+- {@link Engine.load | engine.load}
+- {@link Engine.loadJSON | engine.loadJSON} (`then(container => ...)`)
 
 You can also access loaded instances with:
 
-- {@link Engine.items | tsParticles.items}
-- {@link Engine.item | tsParticles.item(index)}
+- {@link Engine.items | engine.items}
+- {@link Engine.item | engine.item(index)}
 
 ## Quick runtime example
 

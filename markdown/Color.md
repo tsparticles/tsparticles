@@ -1,6 +1,13 @@
 # Colors
 
 This page explains all color formats accepted by tsParticles options.
+Every resolved engine color is stored internally as floating-point OKLCH plus
+independent alpha. Other supported formats are converted at input resolution;
+animation and extensions use the same canonical color model.
+Supported CSS/Canvas destinations receive `oklch(...)` directly. Before
+serialization, the engine maps a copy into the effective sRGB or Display-P3
+gamut by reducing chroma while preserving lightness and hue; canonical runtime
+state stays unchanged. HDR output remains a separate rendering path.
 
 Most color fields accept either:
 
@@ -50,7 +57,7 @@ Note: particle base color has additional behaviors, see {@link IParticlesOptions
 
 ### RGB
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "rgb(255, 255, 255)"
@@ -58,7 +65,7 @@ Alpha in color strings is ignored; use dedicated opacity options.
 
 ### HSL
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "hsl(0, 100%, 100%)"
@@ -66,10 +73,16 @@ Alpha in color strings is ignored; use dedicated opacity options.
 
 ### HSV
 
-Alpha in color strings is ignored; use dedicated opacity options.
+Alpha in color strings is preserved and composes with dedicated opacity options.
 
 ```json
 "hsv(0, 100%, 100%)"
+```
+
+### Display-P3
+
+```json
+"color(display-p3 1 0 0 / 50%)"
 ```
 
 ### Random
@@ -99,6 +112,36 @@ Alpha in color strings is ignored; use dedicated opacity options.
   }
 }
 ```
+
+Untagged RGB objects mean sRGB. Specify `colorSpace` when the channels use
+Display-P3 primaries. `p3: true` and `p3: false` are equivalent input-only
+shorthands for `colorSpace: "display-p3"` and `colorSpace: "srgb"`:
+
+```json
+{
+  "value": {
+    "r": 255,
+    "g": 0,
+    "b": 0,
+    "colorSpace": "display-p3",
+    "a": 0.5
+  }
+}
+```
+
+This describes the source channels and does not select the canvas output space.
+When both `p3` and `colorSpace` are supplied, they must agree. Intrinsically
+tagged strings such as `color(display-p3 ...)` keep their own source space.
+The same source metadata and optional alpha are accepted for wrapped
+`value.rgb` objects and ranged RGB channel objects.
+Channel objects with an `hdr` property are rejected: a boolean does not identify
+the transfer function, channel scale, reference white, or absolute luminance.
+HDR source decoding is not currently supported; `hdr` options configure output.
+Canvas image/text sampling retains the color space reported by `ImageData`; when
+a sampled pixel becomes an emitter or canvas-mask particle color, that source
+space is used for the OKLCH conversion. Readback uses RGBA-unorm8, so sampled
+pixels do not retain HDR headroom. Canvas pixel filter callbacks receive the
+source space as an optional second argument.
 
 ### HSL object
 
@@ -144,6 +187,17 @@ Alpha in color strings is ignored; use dedicated opacity options.
 ```
 
 If both `rgb` and `hsl` are provided, `rgb` is used.
+
+## Mixing colors
+
+Use `colorMixOklch(color1, color2, weight1, weight2)` when a mixed color will
+remain an engine color. It interpolates rectangular OKLab coordinates and
+returns canonical OKLCH with alpha. The color coordinates use premultiplied
+alpha while output alpha is interpolated separately; a zero total weight uses
+equal weights, and fully transparent inputs retain their deterministic weighted
+color coordinates. To migrate from `colorMix()`, convert RGB inputs with
+`rgbToOklch()`, then call `colorMixOklch()` with the same weights. Convert the
+result with `mapOklchToSrgb(result).rgb` if the consumer still needs RGB.
 
 ## Multiple colors
 

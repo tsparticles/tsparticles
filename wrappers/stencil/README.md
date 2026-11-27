@@ -9,16 +9,16 @@ Official [tsParticles](https://github.com/tsparticles/tsparticles) Stencil wrapp
 ## Installation
 
 ```shell
-npm install @tsparticles/stencil @tsparticles/engine
+npm install @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/stencil @tsparticles/engine
+yarn add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 ```
 
-If you need prebuilt features, install one loader package too, for example `@tsparticles/slim`.
+This example uses `@tsparticles/slim`; substitute another loader package if needed.
 
 ## Usage
 
@@ -34,10 +34,14 @@ Use the component in your app and initialize features with the `init` callback:
 
 ```tsx
 import { h } from "@stencil/core";
+import { createEngine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
+
+const engine = createEngine();
 
 export const Background = () => (
   <stencil-particles
+    engine={engine}
     container-id="tsparticles"
     init={async engine => {
       await loadSlim(engine);
@@ -46,23 +50,27 @@ export const Background = () => (
       fullScreen: { enable: false },
       particles: {
         move: { enable: true },
-        number: { value: 80 }
-      }
+        number: { value: 80 },
+      },
     }}
   ></stencil-particles>
 );
 ```
 
-You can also load options from URL:
+For DOM usage, pass the initialized `engine` as a JavaScript property before
+connecting the element. Engine objects cannot be serialized as HTML attributes:
 
-```html
-
-<stencil-particles container-id="tsparticles" url="/assets/default.json"></stencil-particles>
+```js
+const particles = document.createElement("stencil-particles");
+particles.engine = engine;
+particles.url = "/assets/default.json";
+document.body.append(particles);
 ```
 
 ## Props
 
-- `container-id`: container id used by `tsParticles.load`
+- `engine` (required): engine instance used to create the container; this is a property, not an HTML attribute
+- `container-id`: container id used by `engine.load`
 - `options`: inline particles options (`ISourceOptions`)
 - `url`: path/url to a JSON options file
 - `init`: async callback used to register plugins on the same engine instance used by the component
@@ -70,7 +78,7 @@ You can also load options from URL:
 
 ## Events
 
-- `particlesLoaded`: emitted when the particles container has been successfully initialized
+- `particlesLoaded`: emitted after `engine.load()` completes; its detail may be `undefined`
 
 ### Reactive behavior
 

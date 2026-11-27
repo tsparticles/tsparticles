@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { engine } from "../particlesEngine";
+
   import Particles from "@tsparticles/svelte";
   import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -43,9 +45,7 @@
 <section id="hero" class="section">
   <div class="hero-content">
     <h1>Build <span class="gradient-text">Amazing</span> Products</h1>
-    <p class="hero-subtitle">
-      Modern solutions for modern teams. Ship faster with less friction.
-    </p>
+    <p class="hero-subtitle">Modern solutions for modern teams. Ship faster with less friction.</p>
     <div class="hero-cta">
       <a href="#features" class="btn btn-primary btn-large">Get Started</a>
       <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
@@ -149,7 +149,7 @@
 <footer id="footer">
   <div class="container">
     <div class="footer-content">
-      <p>&copy; 2024 {{projectName}}. All rights reserved.</p>
+      <p>&copy; 2024 {{ projectName }}. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -159,7 +159,7 @@
   </div>
 </footer>
 
-<Particles id="tsparticles" options={options} />
+<Particles {engine} id="tsparticles" {options} />
 
 <style>
   :global(*) {
@@ -246,7 +246,9 @@
     font-weight: 600;
     border-radius: 8px;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
     display: inline-block;
   }
 
@@ -283,7 +285,9 @@
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
-    transition: transform 0.3s, border-color 0.3s;
+    transition:
+      transform 0.3s,
+      border-color 0.3s;
   }
 
   .feature-card:hover {

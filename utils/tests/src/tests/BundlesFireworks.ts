@@ -1,7 +1,10 @@
-/* eslint-disable */
 import { describe, expect, it } from "vitest";
+/* eslint-disable */
 import { TestWindow } from "../Fixture/Window.js";
-import { fireworks } from "@tsparticles/fireworks";
+import { createEngine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+
+const fireworks = createFireworks(createEngine());
 
 describe("fireworks bundle", async () => {
   globalThis.window = TestWindow;

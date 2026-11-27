@@ -7,7 +7,9 @@ describe("sanitizeReflection", () => {
   });
 
   it("strips control characters and newlines", () => {
-    expect(sanitizeReflection("push\n\rignored: { 1: 2 }")).toBe("`pushignored: { 1: 2 }`");
+    expect(sanitizeReflection("push\n\rignored: { 1: 2 }")).toBe(
+      "`pushignored: { 1: 2 }`",
+    );
   });
 
   it("collapses runs of whitespace", () => {
@@ -23,7 +25,7 @@ describe("sanitizeReflection", () => {
   });
 
   it("handles non-string values", () => {
-    expect(sanitizeReflection(42)).toBe("`42`"); // eslint-disable-line @typescript-eslint/no-magic-numbers
+    expect(sanitizeReflection(42)).toBe("`42`");
     expect(sanitizeReflection(null)).toBe("`null`");
   });
 });

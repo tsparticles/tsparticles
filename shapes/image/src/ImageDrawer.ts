@@ -105,9 +105,41 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    void this.#loadImageShape(container, imageData).then(() => {
-      this.loadShape(particle);
-    });
+    const particleId = particle.id;
+
+    void this.#loadImageShape(container, imageData)
+      .then(() => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        this.loadShape(particle);
+      })
+      .catch((error: unknown) => {
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          particle.id !== particleId ||
+          particle.shapeData !== imageData
+        ) {
+          return;
+        }
+
+        container.engine.getLogger().error(`Error loading image shape "${imageData.src}"`, error);
+      });
+  }
+
+  /**
+   * Releases the particle's reference to the loaded image when it enters the pool
+   * @param particle - the particle to process
+   */
+  particleDestroy(particle: ImageParticle): void {
+    delete particle.image;
   }
 
   /**
@@ -128,7 +160,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src),
+      particleId = particle.id;
 
     if (!image) {
       return;
@@ -156,6 +189,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           container.hdr,
           container.peakNits,
           container.hdrMode,
+          container.engine.getLogger(),
         );
       } else {
         imageRes = {
@@ -172,6 +206,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
       if (!imageRes.ratio) {
         imageRes.ratio = 1;
+      }
+
+      if (particle.destroyed || particle.id !== particleId || particle.shapeData !== imageData) {
+        return;
       }
 
       const close = imageData.close ?? particle.shapeClose,

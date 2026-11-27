@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E10 effective canvas color context</title>
+    <style>
+      body {
+        background: #202124;
+        color: #f1f3f4;
+        font:
+          14px ui-monospace,
+          monospace;
+        margin: 1rem;
+      }
+
+      pre {
+        white-space: pre-wrap;
+      }
+
+      #tsparticles {
+        height: 160px;
+        width: 240px;
+      }
+    </style>
+    <script src="/bundles/all/dist/tsparticles.all.bundle.js"></script>
+  </head>
+  <body>
+    <div id="tsparticles"></div>
+    <pre id="result">Running…</pre>
+    <script>
+      const resultNode = document.querySelector("#result");
+
+      addEventListener("error", event => {
+        resultNode.textContent = `Error: ${event.message} at ${event.filename}:${event.lineno}`;
+      });
+
+      addEventListener("unhandledrejection", event => {
+        resultNode.textContent = `Unhandled rejection: ${event.reason}`;
+      });
+
+      (async () => {
+        const engine = tsParticles.createEngine();
+
+        await loadAll(engine);
+
+        const container = await engine.load({
+          id: "tsparticles",
+          options: {
+            hdr: { enable: true },
+            particles: {
+              color: { value: "#ff8120" },
+              move: { enable: false },
+              number: { value: 1 },
+            },
+          },
+        });
+        const summary = {
+          browser: navigator.userAgent,
+          canvasCount: document.querySelectorAll("#tsparticles canvas").length,
+          containerLoaded: !!container,
+          hdr: container?.hdr,
+          matchMedia: {
+            displayP3: matchMedia("(color-gamut: p3)").matches,
+            highDynamicRange: matchMedia("(dynamic-range: high)").matches,
+          },
+          outputColorSpace: container?.outputColorSpace,
+          result: container && ["srgb", "display-p3"].includes(container.outputColorSpace) ? "pass" : "fail",
+        };
+
+        resultNode.textContent = JSON.stringify(summary, null, 2);
+      })().catch(error => {
+        resultNode.textContent = `Setup failed: ${error?.stack ?? error}`;
+      });
+    </script>
+  </body>
+</html>

@@ -1,10 +1,12 @@
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
 import {
   type ICoordinates,
   type IDimension,
   double,
   doublePI,
-  getRandom,
   half,
   quarter,
   squareExp,
@@ -12,7 +14,12 @@ import {
 
 export class EmittersCircleShape extends EmitterShapeBase {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
+  constructor(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: unknown,
+  ) {
     super(position, size, fill, options);
   }
 
@@ -23,21 +30,29 @@ export class EmittersCircleShape extends EmitterShapeBase {
       startAngle = 0,
       endAngle = doublePI;
 
-    context.ellipse(position.x, position.y, size.width * half, size.height * half, rotation, startAngle, endAngle);
+    context.ellipse(
+      position.x,
+      position.y,
+      size.width * half,
+      size.height * half,
+      rotation,
+      startAngle,
+      endAngle,
+    );
   }
 
   async init(): Promise<void> {
     // nothing to do
   }
 
-  randomPosition(): IRandomPositionData {
+  randomPosition(random: () => number): IRandomPositionData {
     const size = this.size,
       fill = this.fill,
       position = this.position,
       generateTheta = (x: number, y: number): number => {
-        const u = getRandom() * quarter,
+        const u = random() * quarter,
           theta = Math.atan((y / x) * Math.tan(doublePI * u)),
-          v = getRandom();
+          v = random();
 
         if (v < quarter) {
           return theta;
@@ -50,11 +65,15 @@ export class EmittersCircleShape extends EmitterShapeBase {
         }
       },
       radius = (x: number, y: number, theta: number): number =>
-        (x * y) / Math.sqrt((y * Math.cos(theta)) ** squareExp + (x * Math.sin(theta)) ** squareExp),
+        (x * y) /
+        Math.sqrt(
+          (y * Math.cos(theta)) ** squareExp +
+            (x * Math.sin(theta)) ** squareExp,
+        ),
       [a, b] = [size.width * half, size.height * half],
       randomTheta = generateTheta(a, b),
       maxRadius = radius(a, b, randomTheta),
-      randomRadius = fill ? maxRadius * Math.sqrt(getRandom()) : maxRadius;
+      randomRadius = fill ? maxRadius * Math.sqrt(random()) : maxRadius;
 
     return {
       position: {

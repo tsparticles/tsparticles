@@ -5,3 +5,5 @@ import type { RecursivePartial } from "@tsparticles/engine/lazy";
 export type ParticlesOptions = RecursivePartial<IParticlesOptions>;
 
 export * from "./particles.lazy.js";
+
+export type { ParticlesApi } from "./types.js";

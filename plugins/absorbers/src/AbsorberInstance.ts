@@ -2,22 +2,24 @@ import {
   type Container,
   type ICoordinates,
   type IDelta,
-  type IRgb,
+  type IOklcha,
   type Particle,
   type PluginManager,
   type RecursivePartial,
   type RotateDirection,
   Vector,
   calcPositionOrRandomFromSizeRanged,
+  defaultAlpha,
   doublePI,
   getDistanceSq,
   getRangeValue,
-  getStyleFromRgb,
+  getStyleFromOklch,
   isPointInside,
   millisecondsToSeconds,
   minRadius,
+  none,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -64,7 +66,7 @@ export class AbsorberInstance {
   /**
    * The absorber color
    */
-  color: IRgb;
+  color: IOklcha;
 
   /**
    * The absorber size limit
@@ -151,7 +153,8 @@ export class AbsorberInstance {
     this.name = this.options.name;
     this.opacity = this.options.opacity;
     this.orbits = this.options.orbits;
-    this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
+    this.size =
+      getRangeValue(this.options.size.value, this.#container.engine.getRandomFn()) * container.retina.pixelRatio;
     this.mass = this.size * this.options.size.density * container.retina.reduceFactor;
 
     this.#initialSize = this.size;
@@ -164,10 +167,11 @@ export class AbsorberInstance {
       mass: limit.mass,
     };
 
-    this.color = rangeColorToRgb(this.#pluginManager, this.options.color) ?? {
-      b: 0,
-      g: 0,
-      r: 0,
+    this.color = rangeColorToOklch(this.#pluginManager, this.options.color) ?? {
+      a: defaultAlpha,
+      c: none,
+      h: none,
+      l: none,
     };
 
     this.position = this.#initialPosition?.copy() ?? this.#calcPosition();
@@ -176,7 +180,8 @@ export class AbsorberInstance {
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+          millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
   }
@@ -233,12 +238,13 @@ export class AbsorberInstance {
     context.beginPath();
     context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
     context.closePath();
-    context.fillStyle = getStyleFromRgb(
+    context.fillStyle = getStyleFromOklch(
       this.color,
       this.#container.hdr,
       this.opacity,
       this.#container.peakNits,
       this.#container.hdrMode,
+      this.#container.outputColorSpace,
     );
     context.fill();
   }
@@ -329,7 +335,8 @@ export class AbsorberInstance {
           this.position = this.#calcPosition();
 
           this.#spawnDelay = this.#container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+                millisecondsToSeconds) /
               this.#container.retina.reduceFactor
             : Infinity;
         }
@@ -359,10 +366,13 @@ export class AbsorberInstance {
    * @returns the calculated position for the absorber
    */
   #calcPosition(): Vector {
-    const exactPosition = calcPositionOrRandomFromSizeRanged({
-      size: this.#container.canvas.size,
-      position: this.options.position,
-    });
+    const exactPosition = calcPositionOrRandomFromSizeRanged(
+      {
+        size: this.#container.canvas.size,
+        position: this.options.position,
+      },
+      this.#container.engine.getRandomFn(),
+    );
 
     return Vector.create(exactPosition.x, exactPosition.y);
   }
@@ -388,7 +398,10 @@ export class AbsorberInstance {
    * @internal
    */
   #prepareToDie(): void {
-    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+    const duration =
+        this.options.life.duration !== undefined
+          ? getRangeValue(this.options.life.duration, this.#container.engine.getRandomFn())
+          : undefined,
       minDuration = 0;
 
     if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {

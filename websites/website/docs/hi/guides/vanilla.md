@@ -70,7 +70,8 @@ npm install @tsparticles/engine @tsparticles/slim
 Then import and use it:
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
@@ -192,9 +193,9 @@ Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
     <script>
       confetti({
-        particleCount: 100,
+        count: 100,
         spread: 70,
-        origin: { x: 0.5, y: 0.5 },
+        position: { x: 50, y: 50 },
       });
     </script>
   </body>

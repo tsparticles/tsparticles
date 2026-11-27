@@ -87,7 +87,8 @@ Example:
 
 ```ts
 // Engine + bundle loader
-import { tsParticles } from "@tsparticles/engine";
+import {  createEngine  } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);
@@ -135,7 +136,7 @@ With dedicated API bundles:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
 <script>
-  confetti({ particleCount: 100, spread: 70 });
+  confetti({ count: 100, spread: 70 });
 </script>
 ```
 

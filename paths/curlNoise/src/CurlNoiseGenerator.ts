@@ -1,4 +1,10 @@
-import { type Container, type Particle, Vector, deepExtend, double, getRandom } from "@tsparticles/engine";
+import {
+  type Container,
+  type Particle,
+  Vector,
+  deepExtend,
+  double,
+} from "@tsparticles/engine";
 import type { ICurlOptions } from "./ICurlOptions.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import { SimplexNoise } from "@tsparticles/simplex-noise";
@@ -61,10 +67,12 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
 
     this.options.seed = sourceOptions["seed"] as number | undefined;
     this.options.speed =
-      ((sourceOptions["speed"] as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
-    this.options.step = (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
+      ((sourceOptions["speed"] as number | undefined) ?? defaultOptions.speed) *
+      container.retina.pixelRatio;
+    this.options.step =
+      (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
 
-    this.#simplex.seed(this.options.seed ?? getRandom());
+    this.#simplex.seed(this.options.seed ?? this.#container.engine.getRandom());
   }
 
   /** Resets the generator state */

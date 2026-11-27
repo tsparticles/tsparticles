@@ -5,7 +5,7 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 export interface IParticleValueAnimation<T> {
   /** Value decay factor applied each frame */
   decay?: number;
-  /** Delay before the animation starts, in seconds */
+  /** Delay before the animation starts, in milliseconds */
   delayTime?: number;
   /** Enables or disables the animation */
   enable: boolean;
@@ -17,7 +17,7 @@ export interface IParticleValueAnimation<T> {
   maxLoops?: number;
   /** Current animation status (increasing, decreasing, or none) */
   status?: AnimationStatus;
-  /** Elapsed time since the animation started */
+  /** Elapsed time since the animation started, in milliseconds */
   time?: number;
   /** Current animated value */
   value: T;

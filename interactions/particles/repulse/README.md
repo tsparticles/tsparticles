@@ -60,7 +60,8 @@ $ yarn add @tsparticles/interaction-particles-repulse
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadParticlesRepulseInteraction } = require("@tsparticles/interaction-particles-repulse");
 
@@ -73,7 +74,8 @@ const { loadParticlesRepulseInteraction } = require("@tsparticles/interaction-pa
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
 

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-oklch-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadOklchColorPlugin } = require("@tsparticles/plugin-oklch-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadOklchColorPlugin } = require("@tsparticles/plugin-oklch-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 
 (async () => {

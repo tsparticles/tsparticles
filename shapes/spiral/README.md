@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-spiral
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadSpiralShape } = require("@tsparticles/shape-spiral");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadSpiralShape } = require("@tsparticles/shape-spiral");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
 
 (async () => {

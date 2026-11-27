@@ -1,5 +1,4 @@
 import {
-  type HdrMode,
   type IHsl,
   type IHsla,
   type IHsv,
@@ -7,7 +6,6 @@ import {
   type IRgb,
   type IRgba,
   double,
-  getStyleFromHsl,
   half,
   percentDenominator,
   rgbMax,
@@ -66,25 +64,6 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
     a: rgba.a,
     ...rgbToHsv(rgba),
   };
-}
-
-/**
- * Gets a CSS style string from a {@link IHsv} object and opacity value
- * @param color - the {@link IHsv} input color
- * @param hdr - indicates if the color is in HDR space
- * @param opacity - the opacity value
- * @param peakNits - the peak brightness in nits
- * @param mode - the HDR mode
- * @returns the CSS style string
- */
-export function getStyleFromHsv(
-  color: IHsv,
-  hdr: boolean,
-  opacity?: number,
-  peakNits?: number,
-  mode?: HdrMode,
-): string {
-  return getStyleFromHsl(hsvToHsl(color), hdr, opacity, peakNits, mode);
 }
 
 /**
@@ -156,7 +135,7 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
  * @param hsv - the Hue Saturation Lightness ({@link IHsv}) object
  * @returns the {@link IRgb} object
  */
-export function hsvToRgb(hsv: IHsv): IRgb {
+export function hsvToRgbFloat(hsv: IHsv): IRgb {
   const result: IRgb = { b: 0, g: 0, r: 0 },
     phase = 60,
     hsvPercent = {
@@ -219,12 +198,23 @@ export function hsvToRgb(hsv: IHsv): IRgb {
   if (tempRgb) {
     const m = hsvPercent.v - c;
 
-    result.r = Math.floor((tempRgb.r + m) * rgbMax);
-    result.g = Math.floor((tempRgb.g + m) * rgbMax);
-    result.b = Math.floor((tempRgb.b + m) * rgbMax);
+    result.r = (tempRgb.r + m) * rgbMax;
+    result.g = (tempRgb.g + m) * rgbMax;
+    result.b = (tempRgb.b + m) * rgbMax;
   }
 
   return result;
+}
+
+/** Converts HSV to legacy integer RGB channels. */
+export function hsvToRgb(hsv: IHsv): IRgb {
+  const color = hsvToRgbFloat(hsv);
+
+  return {
+    r: Math.floor(color.r),
+    g: Math.floor(color.g),
+    b: Math.floor(color.b),
+  };
 }
 
 /**

@@ -1,10 +1,12 @@
 import {
   type IColor,
   type IColorManager,
+  type IOklcha,
   type IRangeColor,
   type IRgb,
   type IRgba,
   defaultAlpha,
+  rgbToOklch,
 } from "@tsparticles/engine";
 
 /**
@@ -52,6 +54,12 @@ export class HexColorManager implements IColorManager {
     return this.#parseString(color.value);
   }
 
+  handleColorOklch(color: IColor): IOklcha | undefined {
+    const rgba = this.#parseString(color.value);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
+  }
+
   /**
    * Converts an IRangeColor to RGB
    * @param color - The color
@@ -61,6 +69,12 @@ export class HexColorManager implements IColorManager {
     return this.#parseString(color.value);
   }
 
+  handleRangeColorOklch(color: IRangeColor): IOklcha | undefined {
+    const rgba = this.#parseString(color.value);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
+  }
+
   /**
    * Parses a hex color string to RGBA
    * @param input - The input value
@@ -68,6 +82,12 @@ export class HexColorManager implements IColorManager {
    */
   parseString(input: string): IRgba | undefined {
     return this.#parseString(input);
+  }
+
+  parseStringOklch(input: string): IOklcha | undefined {
+    const rgba = this.#parseString(input);
+
+    return rgba ? { ...rgbToOklch(rgba), a: rgba.a } : undefined;
   }
 
   #parseString(hexColor: unknown): IRgba | undefined {

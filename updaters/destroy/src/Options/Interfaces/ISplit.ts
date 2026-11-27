@@ -1,7 +1,7 @@
 import type {
   IOptionsColor,
   IParticlesOptions,
-  IRangeHsl,
+  IRangeOklch,
   IValueWithRandom,
   RecursivePartial,
   SingleOrMultiple,
@@ -16,7 +16,7 @@ export interface ISplit {
   /** The split fill color */
   fillColor?: string | IOptionsColor;
   /** The split fill color offset */
-  fillColorOffset?: Partial<IRangeHsl>;
+  fillColorOffset?: Partial<IRangeOklch>;
   /** The split particles options */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** The split rate */
@@ -26,5 +26,5 @@ export interface ISplit {
   /** The split stroke color */
   strokeColor?: string | IOptionsColor;
   /** The split stroke color offset */
-  strokeColorOffset?: Partial<IRangeHsl>;
+  strokeColorOffset?: Partial<IRangeOklch>;
 }

@@ -1,46 +1,56 @@
-import { tsParticles, type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
-let initialized = false;
-let initPromise: Promise<void> | undefined;
+type InitializationState = {
+	loaded: boolean;
+	started: boolean;
+	promise: Promise<void>;
+	resolve: () => void;
+	reject: (error: unknown) => void;
+};
 
-export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
-	if (initialized) {
-		return;
+const states = new WeakMap<Engine, InitializationState>();
+
+function getInitializationState(engine: Engine): InitializationState {
+	const existing = states.get(engine);
+	if (existing) {
+		return existing;
 	}
-
-	if (initPromise) {
-		// A previous initialization is already in progress. Don't throw if the
-		// init callback identity changed (HMR or remounts) — just await the
-		// existing initialization so callers see a consistent initialized state.
-		await initPromise;
-
-		return;
-	}
-
-	initPromise = (async () => {
-		if (init) {
-			await init(tsParticles);
-		}
-
-		await tsParticles.init();
-
-		initialized = true;
-	})().catch((error: unknown) => {
-		initPromise = undefined;
-		initialized = false;
-
-		throw error;
+	let resolve = (): void => {},
+		reject: (error: unknown) => void = () => {};
+	const promise = new Promise<void>((onResolve, onReject) => {
+		resolve = onResolve;
+		reject = onReject;
 	});
-
-	await initPromise;
+	const state = { loaded: false, started: false, promise, resolve, reject };
+	states.set(engine, state);
+	return state;
 }
 
-export function isParticlesEngineInitialized(): boolean {
-	return initialized;
+export async function initParticlesEngine(engine: Engine, init?: ParticlesPluginRegistrar): Promise<void> {
+	const state = getInitializationState(engine);
+	if (!state.started) {
+		state.started = true;
+		void Promise.resolve()
+			.then(async () => {
+				await init?.(engine);
+				await engine.init();
+				state.loaded = true;
+				state.resolve();
+			})
+			.catch((error: unknown) => {
+				states.delete(engine);
+				state.reject(error);
+			});
+	}
+	return state.promise;
 }
 
-export async function waitForParticlesEngineInitialization(): Promise<void> {
-	await (initPromise ?? Promise.resolve());
+export function isParticlesEngineInitialized(engine: Engine): boolean {
+	return states.get(engine)?.loaded ?? false;
+}
+
+export async function waitForParticlesEngineInitialization(engine: Engine): Promise<void> {
+	await getInitializationState(engine).promise;
 }

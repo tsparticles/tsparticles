@@ -1,5 +1,5 @@
 <app>
-  <riot-particles id="tsparticles"></riot-particles>
+  <riot-particles engine={engine} id="tsparticles"></riot-particles>
   <div id="app">
     <h1>Tic-Tac-Toe</h1>
     <div class="scoreboard">
@@ -19,9 +19,12 @@
   </div>
 
   <script>
-    import { confetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+
+    import {  createConfetti  } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
     import { loadSlim } from "@tsparticles/slim";
-    import { tsParticles } from "@tsparticles/engine";
+
 
     const WIN_PATTERNS = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -102,8 +105,8 @@
         });
       },
       async onMounted() {
-        await loadSlim(tsParticles);
-        await tsParticles.load({
+        await loadSlim(engine);
+        await engine.load({
           id: "tsparticles",
           options: {
             fullScreen: { enable: true, zIndex: -1 },

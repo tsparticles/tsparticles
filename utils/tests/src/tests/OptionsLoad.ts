@@ -1,15 +1,15 @@
 /* eslint-disable */
 import {
+  AnimatableColor,
   AnimationOptions,
   AnimationValueWithRandom,
-  AnimatableColor,
   Background,
   ColorAnimation,
   Fill,
   FullScreen,
   HDROptions,
   HdrMode,
-  HslAnimation,
+  OklchAnimation,
   LimitMode,
   Move,
   MoveAngle,
@@ -35,13 +35,17 @@ import {
   Stroke,
   ValueWithRandom,
   ZIndex,
+  createEngine,
   loadProperty,
   loadRangeProperty,
-  tsParticles,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
+import { loadAll } from "@tsparticles/all";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 interface TestPropertyTarget {
   value?: unknown;
@@ -75,8 +79,234 @@ async function loadContainer(options: Record<string, unknown> = {}) {
   return container;
 }
 
+function collectObjects(value: unknown, objects = new Set<object>()): Set<object> {
+  if (typeof value !== "object" || value === null || objects.has(value)) {
+    return objects;
+  }
+
+  objects.add(value);
+
+  for (const key of Reflect.ownKeys(value)) {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+
+    if (descriptor && "value" in descriptor) {
+      collectObjects(descriptor.value, objects);
+    }
+  }
+
+  return objects;
+}
+
 describe("Options load tests", () => {
   globalThis.window = TestWindow;
+
+  it("does not mutate caller-owned options while loading and refreshing particles", async () => {
+    const sourceOptions = {
+        autoPlay: false,
+        detectRetina: false,
+        particles: {
+          groups: { one: { move: { drift: 2, speed: { max: 4, min: 2 } }, number: { value: 1 } } },
+          move: { drift: 1, speed: 3 },
+          number: { value: 1 },
+        },
+      },
+      originalOptions = structuredClone(sourceOptions),
+      container = await loadContainer(sourceOptions);
+
+    container.particles.addParticle(undefined, { move: { speed: 5 } }, "one");
+    await container.refresh();
+
+    expect(sourceOptions).toEqual(originalOptions);
+
+    container.destroy();
+  });
+
+  it("copies preset arrays instead of retaining caller-owned references", async () => {
+    const container = await loadContainer({ particles: { number: { value: 0 } } }),
+      presets: string[] = [];
+
+    container.actualOptions.load({ preset: presets });
+
+    expect(container.actualOptions.preset).toEqual([]);
+    expect(container.actualOptions.preset).not.toBe(presets);
+
+    presets.push("caller-change");
+
+    expect(container.actualOptions.preset).toEqual([]);
+
+    if (Array.isArray(container.actualOptions.preset)) {
+      container.actualOptions.preset.push("options-change");
+    }
+
+    expect(presets).toEqual(["caller-change"]);
+
+    container.destroy();
+  });
+
+  it("keeps nested particle options independent between live particles", async () => {
+    const container = await loadContainer({
+      particles: {
+        move: { speed: 3 },
+        number: { value: 0 },
+        paint: [{ fill: { opacity: 0.5 }, stroke: { opacity: 0.75, width: { min: 1, max: 3 } } }],
+        shape: { options: { circle: { particles: { move: { speed: 2 } } } } },
+      },
+    });
+    const first = container.particles.addParticle(),
+      second = container.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+    expect(second).not.toBeUndefined();
+    expect(first?.options).not.toBe(second?.options);
+    expect(first?.options.move).not.toBe(second?.options.move);
+    expect(first?.options.paint).not.toBe(second?.options.paint);
+    expect(first?.shapeData).not.toBe(second?.shapeData);
+
+    if (first && second) {
+      const firstPaint = Array.isArray(first.options.paint) ? first.options.paint[0] : first.options.paint,
+        secondPaint = Array.isArray(second.options.paint) ? second.options.paint[0] : second.options.paint;
+
+      expect(firstPaint).not.toBe(secondPaint);
+      expect(firstPaint?.fill).not.toBe(secondPaint?.fill);
+      expect(firstPaint?.stroke).not.toBe(secondPaint?.stroke);
+
+      first.options.move.speed = 7;
+      firstPaint?.fill?.load({ opacity: 0.2 });
+      firstPaint?.stroke?.load({ width: 9 });
+      if (first.shapeData?.particles?.move) {
+        first.shapeData.particles.move.speed = 8;
+      }
+
+      expect(second.options.move.speed).toBe(2);
+      expect(secondPaint?.fill?.opacity).toBe(0.5);
+      expect(secondPaint?.stroke?.width).toEqual({ min: 1, max: 3 });
+      expect(second.shapeData?.particles?.move?.speed).toBe(2);
+    }
+
+    container.destroy();
+  });
+
+  it("isolates every loaded particle option object across live particles", async () => {
+    const engine = createEngine();
+
+    await loadAll(engine);
+
+    const container = await engine.load({
+        id: "options-load-all-option-ownership",
+        options: {
+          autoPlay: false,
+          detectRetina: false,
+          particles: {
+            number: { value: 0 },
+            paint: [
+              {
+                fill: { color: { value: "oklch(65% 0.2 30)" }, opacity: 0.5 },
+                stroke: { color: { value: "oklch(45% 0.15 250)" }, opacity: 0.75, width: { min: 1, max: 3 } },
+              },
+            ],
+            shape: { options: { circle: { particles: { move: { speed: 2 } } } } },
+          },
+        },
+        element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
+      }),
+      first = container?.particles.addParticle(),
+      second = container?.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+    expect(second).not.toBeUndefined();
+
+    if (first && second) {
+      const firstObjects = collectObjects([first.options, first.shapeData, first.effectData]),
+        secondObjects = collectObjects([second.options, second.shapeData, second.effectData]);
+
+      for (const object of firstObjects) {
+        expect(secondObjects.has(object)).toBe(false);
+      }
+    }
+
+    container?.destroy();
+  });
+
+  it("resolves supported color syntaxes into canonical particle fill state", async () => {
+    const engine = createEngine();
+
+    await loadAll(engine);
+
+    const container = await engine.load({
+      id: "options-load-color-syntax-to-particle",
+      options: {
+        autoPlay: false,
+        detectRetina: false,
+        particles: { number: { value: 0 } },
+      },
+      element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
+    });
+
+    expect(container).not.toBeUndefined();
+
+    if (!container) {
+      return;
+    }
+
+    const inputs = [
+      ["hex", "#ff0000"],
+      ["named", "red"],
+      ["RGB", "rgb(255, 0, 0)"],
+      ["HSL", "hsl(0 100% 50%)"],
+      ["HSV", "hsv(0°, 100%, 100%)"],
+      ["HWB", "hwb(0 0% 0%)"],
+      ["Lab", "lab(54.2943% 80.8192 69.8969)"],
+      ["LCH", "lch(54.2943% 106.8519 40.855)"],
+      ["OKLab", "oklab(0.627955 0.224863 0.125846)"],
+      ["OKLCH", "oklch(62.7955% 0.2577 29.2339)"],
+    ] as const;
+
+    for (const [name, value] of inputs) {
+      const expected = rangeColorToOklch(container.engine.pluginManager, value),
+        particle = container.particles.addParticle(undefined, {
+          paint: { color: { value }, fill: { enable: true } },
+        }),
+        actual = particle?.getFillColor();
+
+      expect(expected, `${name} source resolves`).toBeDefined();
+      expect(actual, `${name} particle fill`).toEqual(expected);
+    }
+
+    container.destroy();
+  });
+
+  it("copies shape and effect type arrays for the container and each particle", async () => {
+    const sourceOptions = {
+        particles: {
+          effect: { type: ["trail", "orbit"] },
+          number: { value: 0 },
+          shape: { type: ["circle", "square"] },
+        },
+      },
+      container = await loadContainer(sourceOptions),
+      actualParticles = container.actualOptions.particles,
+      first = container.particles.addParticle(),
+      second = container.particles.addParticle();
+
+    expect(actualParticles.effect.type).not.toBe(sourceOptions.particles.effect.type);
+    expect(actualParticles.shape.type).not.toBe(sourceOptions.particles.shape.type);
+    expect(first?.options.effect.type).not.toBe(second?.options.effect.type);
+    expect(first?.options.shape.type).not.toBe(second?.options.shape.type);
+
+    if (first && Array.isArray(first.options.effect.type) && Array.isArray(first.options.shape.type)) {
+      first.options.effect.type[0] = "updated-effect";
+      first.options.shape.type[0] = "updated-shape";
+    }
+
+    expect(second?.options.effect.type).toEqual(["trail", "orbit"]);
+    expect(second?.options.shape.type).toEqual(["circle", "square"]);
+    expect(actualParticles.effect.type).toEqual(["trail", "orbit"]);
+    expect(actualParticles.shape.type).toEqual(["circle", "square"]);
+    expect(sourceOptions.particles.effect.type).toEqual(["trail", "orbit"]);
+    expect(sourceOptions.particles.shape.type).toEqual(["circle", "square"]);
+
+    container.destroy();
+  });
 
   it("loadProperty keeps defaults on undefined and sets primitives/objects otherwise", () => {
     const target: TestPropertyTarget = { value: "default" };
@@ -195,18 +425,18 @@ describe("Options load tests", () => {
     expect(options.enable).toBe(true);
   });
 
-  it("HslAnimation owns the three color channels", () => {
-    const options = new HslAnimation();
+  it("OklchAnimation owns the three color channels", () => {
+    const options = new OklchAnimation();
 
     expect(options.h).toBeInstanceOf(ColorAnimation);
-    expect(options.s).toBeInstanceOf(ColorAnimation);
+    expect(options.c).toBeInstanceOf(ColorAnimation);
     expect(options.l).toBeInstanceOf(ColorAnimation);
     expect(options.h.sync).toBe(true);
 
-    options.load({ h: { enable: true, offset: 30 }, s: { offset: 12 } });
+    options.load({ h: { enable: true, offset: 30 }, c: { offset: 0.12 } });
     expect(options.h.enable).toBe(true);
     expect(options.h.offset).toBe(30);
-    expect(options.s.offset).toBe(12);
+    expect(options.c.offset).toBe(0.12);
     expect(options.l.offset).toBe(0);
   });
 
@@ -228,19 +458,93 @@ describe("Options load tests", () => {
     expect(options.value).toBe("#fff");
   });
 
+  it("copies nested color objects and arrays when loading OptionsColor", () => {
+    const value = [{ oklch: { a: 0.75, c: 0.2, h: 30, l: 70 } }, "red"],
+      options = new OptionsColor();
+
+    options.load({ value });
+
+    expect(options.value).not.toBe(value);
+
+    if (Array.isArray(options.value) && typeof options.value[0] === "object" && "oklch" in options.value[0]) {
+      expect(options.value[0]).not.toBe(value[0]);
+      expect(options.value[0].oklch).not.toBe(value[0].oklch);
+      value[0].oklch.c = 0.3;
+
+      expect(options.value[0].oklch.c).toBe(0.2);
+
+      options.value[0].oklch.h = 60;
+
+      expect(value[0].oklch.h).toBe(30);
+    } else {
+      throw new Error("Expected OptionsColor to retain an OKLCH object in its value array");
+    }
+  });
+
+  it("isolates explicit color objects in loaded particle options", async () => {
+    const color = { oklch: { a: 0.75, c: 0.2, h: 30, l: 70 } },
+      container = await loadContainer({
+        particles: {
+          number: { value: 0 },
+          paint: { color: { value: color } },
+        },
+      }),
+      configuredPaint = container.actualOptions.particles.paint,
+      paint = Array.isArray(configuredPaint) ? configuredPaint[0] : configuredPaint,
+      configuredColor = paint.color.value as { oklch?: { c: number; h: number } };
+
+    expect(configuredColor).not.toBe(color);
+    expect(configuredColor.oklch).not.toBe(color.oklch);
+
+    color.oklch.c = 0.3;
+
+    expect(configuredColor.oklch?.c).toBe(0.2);
+
+    if (configuredColor.oklch) {
+      configuredColor.oklch.h = 60;
+    }
+
+    expect(color.oklch.h).toBe(30);
+
+    container.destroy();
+  });
+
   it("AnimatableColor keeps the animation channel and color value", () => {
     const options = new AnimatableColor();
 
     expect(options.value).toBe("");
-    expect(options.animation).toBeInstanceOf(HslAnimation);
+    expect(options.animation).toBeInstanceOf(OklchAnimation);
 
-    options.load({ value: "#123", animation: { h: { enable: true } } });
+    options.load({
+      value: "#123",
+      animation: {
+        c: { enable: true, max: 0.16, min: 0.04, speed: 0.02 },
+        h: { enable: true, max: 300, min: 60, speed: 12 },
+        l: { enable: true, max: 82, min: 38, speed: 3 },
+      },
+    });
     expect(options.value).toBe("#123");
     expect(options.animation.h.enable).toBe(true);
+    expect(options.animation.h.min).toBe(60);
+    expect(options.animation.h.max).toBe(300);
+    expect(options.animation.h.speed).toBe(12);
+    expect(options.animation.c.min).toBe(0.04);
+    expect(options.animation.c.max).toBe(0.16);
+    expect(options.animation.c.speed).toBe(0.02);
+    expect(options.animation.l.min).toBe(38);
+    expect(options.animation.l.max).toBe(82);
+    expect(options.animation.l.speed).toBe(3);
 
     const copy = AnimatableColor.create(options, "#f00");
 
     expect(copy.value).toBe("#f00");
+    expect(copy.animation.h.sync).toBe(true);
+  });
+
+  it("rejects legacy HSL animation with a migration hint", () => {
+    const options = new AnimatableColor();
+
+    expect(() => options.load({ animation: { s: { enable: true } } as never })).toThrow("animation.s");
   });
 
   it("Background defaults and merge semantics", () => {
@@ -556,6 +860,31 @@ describe("Options load tests", () => {
     container.destroy(false);
   });
 
+  it.each([0, -1, NaN, Infinity, -Infinity])(
+    "rejects invalid render depth %s before allocating layers",
+    async value => {
+      const container = await loadContainer();
+
+      try {
+        expect(() => container.options.load({ zLayers: value })).toThrow(RangeError);
+        expect(container.options.zLayers).toBe(100);
+      } finally {
+        container.destroy(false);
+      }
+    },
+  );
+
+  it("preserves positive fractional render depth", async () => {
+    const container = await loadContainer();
+
+    try {
+      container.options.load({ zLayers: 10.5 });
+      expect(container.options.zLayers).toBe(10.5);
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("Options accepts boolean hdr and fullScreen shorthand", async () => {
     const container = await loadContainer({ autoPlay: false, hdr: true, fullScreen: true }),
       options = container.options;
@@ -606,6 +935,111 @@ describe("Options load tests", () => {
 
     expect(particles.groups.g1.number?.value).toBe(10);
     expect(particles.groups.g1.move?.enable).toBe(true);
+
+    container.destroy(false);
+  });
+
+  it("uses the selected group's shape options when creating a grouped particle", async () => {
+    const container = await loadContainer({
+      particles: {
+        number: { value: 0 },
+        shape: { type: "circle" },
+        effect: { type: "baseEffect" },
+        groups: {
+          squareGroup: {
+            effect: { type: "groupEffect" },
+            number: { value: 0 },
+            shape: { type: "square" },
+          },
+        },
+      },
+    });
+
+    const groupOptions = container.actualOptions.particles.groups.squareGroup,
+      particle = container.particles.addParticle(undefined, groupOptions, "squareGroup");
+
+    expect(particle?.group).toBe("squareGroup");
+    expect(particle?.shape).toBe("square");
+    expect(particle?.effect).toBe("groupEffect");
+
+    container.destroy(false);
+  });
+
+  it("resolves grouped shape and effect types with shape data layered after effect data", async () => {
+    const container = await loadContainer({
+        particles: {
+          effect: {
+            close: true,
+            options: {
+              baseEffect: { close: true },
+              groupEffect: {
+                close: false,
+                particles: {
+                  move: { drift: 0.8, speed: 4 },
+                },
+              },
+            },
+            type: "baseEffect",
+          },
+          groups: {
+            grouped: {
+              effect: { type: "groupEffect" },
+              move: { drift: 0.3, speed: 2 },
+              number: { value: 0 },
+              shape: { type: "square" },
+            },
+          },
+          number: { value: 0 },
+          move: { drift: 0.1, speed: 1 },
+          shape: {
+            close: true,
+            options: {
+              square: {
+                close: false,
+                particles: { move: { speed: 5 } },
+              },
+            },
+            type: "circle",
+          },
+        },
+      }),
+      groupOptions = container.actualOptions.particles.groups.grouped,
+      groupedParticle = container.particles.addParticle(undefined, groupOptions, "grouped"),
+      explicitParticle = container.particles.addParticle(undefined, {
+        effect: { type: "baseEffect" },
+        shape: { type: "circle" },
+      });
+
+    expect(groupedParticle?.shape).toBe("square");
+    expect(groupedParticle?.effect).toBe("groupEffect");
+    expect(groupedParticle?.shapeClose).toBe(false);
+    expect(groupedParticle?.effectClose).toBe(false);
+    expect(groupedParticle?.options.move.speed).toBe(5);
+    expect(groupedParticle?.options.move.drift).toBe(0.8);
+
+    expect(explicitParticle?.shape).toBe("circle");
+    expect(explicitParticle?.effect).toBe("baseEffect");
+    expect(explicitParticle?.shapeClose).toBe(true);
+    expect(explicitParticle?.effectClose).toBe(true);
+
+    container.destroy(false);
+  });
+
+  it("clears a particle's random index when reusing it from the pool", async () => {
+    const container = await loadContainer({ particles: { number: { value: 0 } } }),
+      first = container.particles.addParticle();
+
+    expect(first).not.toBeUndefined();
+
+    if (first) {
+      first.randomIndexData = 3;
+      container.particles.remove(first);
+
+      const reused = container.particles.addParticle();
+
+      expect(reused).toBe(first);
+      expect(reused?.randomIndexData).toBeUndefined();
+    }
 
     container.destroy(false);
   });

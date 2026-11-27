@@ -6,3 +6,5 @@ export type ConfettiOptions = RecursivePartial<IConfettiOptions>;
 
 export * from "./confetti.lazy.js";
 export type * from "./ConfettiParams.js";
+
+export type { ConfettiApi } from "./types.js";

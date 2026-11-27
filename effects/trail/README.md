@@ -61,7 +61,8 @@ $ yarn add @tsparticles/effect-trail
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadTrailEffect } = require("@tsparticles/effect-trail");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadTrailEffect } = require("@tsparticles/effect-trail");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 (async () => {

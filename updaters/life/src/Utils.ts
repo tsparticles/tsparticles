@@ -69,8 +69,8 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
   const widthRange = setRangeValue(minCanvasSize, canvasSize.width),
     heightRange = setRangeValue(minCanvasSize, canvasSize.height);
 
-  particle.position.x = randomInRangeValue(widthRange);
-  particle.position.y = randomInRangeValue(heightRange);
+  particle.position.x = randomInRangeValue(widthRange, particle.container.engine.getRandomFn());
+  particle.position.y = randomInRangeValue(heightRange, particle.container.engine.getRandomFn());
   particle.spawning = true;
   life.delayTime = noTime;
   life.time = noTime;
@@ -79,7 +79,9 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
   const lifeOptions = particle.options.life;
 
   if (lifeOptions) {
-    life.delay = getRangeValue(lifeOptions.delay.value) * millisecondsToSeconds;
-    life.duration = getRangeValue(lifeOptions.duration.value) * millisecondsToSeconds;
+    life.delay =
+      getRangeValue(lifeOptions.delay.value, particle.container.engine.getRandomFn()) * millisecondsToSeconds;
+    life.duration =
+      getRangeValue(lifeOptions.duration.value, particle.container.engine.getRandomFn()) * millisecondsToSeconds;
   }
 }

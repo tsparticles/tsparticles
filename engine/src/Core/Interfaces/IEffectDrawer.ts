@@ -1,7 +1,7 @@
 import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./IParticleCanvasBounds.js";
-import type { Container } from "../Container.js";
+import type { Container } from "../Container/Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /**
  * Effect drawer lifecycle callbacks.
@@ -42,6 +42,12 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
    * @param particle - the particle using the shape
    */
   loadEffect?: (particle: TParticle) => void;
+
+  /**
+   * Effect particle destroy function
+   * @param particle - the particle being destroyed
+   */
+  particleDestroy?: (particle: TParticle) => void;
 
   /**
    * Shape particle init function

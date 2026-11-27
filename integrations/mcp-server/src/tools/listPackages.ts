@@ -46,7 +46,9 @@ export function listPackages(filters?: { category?: string; query?: string }): {
   // process can be handling several concurrent HTTP sessions that all
   // import the same `packageCatalog` module.
   if (filters?.category && filters.category in packageCatalog.byCategory) {
-    results = [...packageCatalog.byCategory[filters.category as PackageCategory]];
+    results = [
+      ...packageCatalog.byCategory[filters.category as PackageCategory],
+    ];
   } else {
     results = [];
     for (const cat of categories) {
@@ -56,14 +58,19 @@ export function listPackages(filters?: { category?: string; query?: string }): {
 
   if (filters?.query) {
     const q = filters.query.toLowerCase();
-    results = results.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+
+    results = results.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q),
+    );
   }
 
   results.sort((a, b) => a.name.localeCompare(b.name));
 
   return {
     categories,
-    packages: results.map(p => ({
+    packages: results.map((p) => ({
       category: p.category,
       description: p.description,
       loadFunction: p.loadFunction,

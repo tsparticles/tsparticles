@@ -1,4 +1,4 @@
-import type { Container } from "../Core/Container.js";
+import type { Container } from "../Core/Container/Container.js";
 
 /** Custom event arguments with optional container reference and data */
 export interface CustomEventArgs {

@@ -1,11 +1,9 @@
 {
   "name": "@tsparticles/engine",
   "version": "4.6.0",
-  "description": "Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "description": "Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {
-    "prettify:ci:schema": "prettier --check ./schema/options.schema.json",
-    "prettify:schema": "prettier --write ./schema/options.schema.json",
     "build": "tsparticles-build",
     "version": "tsparticles-build -d && git add package.dist.json && tsparticles-build -p -l && git add .",
     "postversion": "git push && git push --tags",
@@ -95,21 +93,21 @@
     "dist"
   ],
   "sideEffects": false,
-  "browser": "dist/browser/browser.js",
+  "browser": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "browser": "./dist/browser/browser.js",
+      "browser": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/esm/index.js"
     },
     "./lazy": {
       "types": "./dist/types/index.lazy.d.ts",
-      "browser": "./dist/browser/browser.js",
+      "browser": "./dist/esm/index.lazy.js",
       "import": "./dist/esm/index.lazy.js",
       "require": "./dist/cjs/index.lazy.js",
       "default": "./dist/esm/index.lazy.js"

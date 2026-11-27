@@ -1,0 +1,163 @@
+[
+  {
+    "step": "clear",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-e7-clear.mjs"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "matrix-baseline",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/profile-e5-browser.mjs",
+      ".planning/handovers/evidence/e7/browser-baseline.json",
+      ".planning/handovers/evidence/e6/draw-all.bundle.min.js.gz"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "matrix-candidate",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/profile-e5-browser.mjs",
+      ".planning/handovers/evidence/e7/browser-candidate.json",
+      ".planning/handovers/evidence/e7/final-all.bundle.min.js.gz"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "matrix-compare",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/compare-e5-profiles.mjs",
+      ".planning/handovers/evidence/e7/browser-baseline.json",
+      ".planning/handovers/evidence/e7/browser-candidate.json",
+      ".planning/handovers/evidence/e7/browser-comparison.json"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "extended-baseline",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs",
+      "--output-dir=.planning/handovers/evidence/e7/extended-baseline",
+      "--bundle=.planning/handovers/evidence/e6/draw-all.bundle.min.js.gz"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "extended-candidate",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs",
+      "--output-dir=.planning/handovers/evidence/e7/extended-candidate",
+      "--bundle=.planning/handovers/evidence/e7/final-all.bundle.min.js.gz"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "extended-baseline-hdr",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs",
+      "--output-dir=.planning/handovers/evidence/e7/extended-baseline",
+      "--bundle=.planning/handovers/evidence/e6/draw-all.bundle.min.js.gz",
+      "--force-hdr"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "extended-candidate-hdr",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-runtime-extended-factory.mjs",
+      "--output-dir=.planning/handovers/evidence/e7/extended-candidate",
+      "--bundle=.planning/handovers/evidence/e7/final-all.bundle.min.js.gz",
+      "--force-hdr"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "contracts-baseline",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/check-e7-browser.mjs",
+      ".planning/handovers/evidence/e6/draw-all.bundle.min.js.gz",
+      ".planning/handovers/evidence/e7/contracts-baseline"
+    ],
+    "environment": {
+      "E7_EXPECT_BASELINE_WORKER_FAILURE": "true"
+    }
+  },
+  {
+    "step": "contracts-candidate",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/check-e7-browser.mjs",
+      ".planning/handovers/evidence/e7/final-all.bundle.min.js.gz",
+      ".planning/handovers/evidence/e7/contracts-candidate"
+    ],
+    "environment": {
+      "E7_EXPECT_BASELINE_WORKER_FAILURE": "false"
+    }
+  },
+  {
+    "step": "bundles-baseline",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-e7-bundles.mjs",
+      ".planning/handovers/evidence/e7/payloads-baseline"
+    ],
+    "environment": {
+      "E7_BUNDLE_BASELINE": "true"
+    }
+  },
+  {
+    "step": "bundles-candidate",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/measure-e7-bundles.mjs",
+      ".planning/handovers/evidence/e7/payloads-candidate"
+    ],
+    "environment": {
+      "E7_BUNDLE_BASELINE": "false"
+    }
+  },
+  {
+    "step": "canvas-cpu-baseline",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/profile-e7-canvas.mjs",
+      ".planning/handovers/evidence/e6/draw-all.bundle.min.js.gz",
+      ".planning/handovers/evidence/e7/canvas-cpu-baseline.json"
+    ],
+    "environment": {}
+  },
+  {
+    "step": "canvas-cpu-candidate",
+    "exit": 0,
+    "command": [
+      "node",
+      ".planning/handovers/evidence/tools/profile-e7-canvas.mjs",
+      "bundles/all/dist/tsparticles.all.bundle.js",
+      ".planning/handovers/evidence/e7/canvas-cpu-candidate.json"
+    ],
+    "environment": {}
+  }
+]

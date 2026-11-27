@@ -26,7 +26,9 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s, color 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s;
 }
 
 .auth-container {
@@ -140,12 +142,19 @@ button[type="submit"]:hover {
   opacity: 0.7;
 }
 
-.toggle-text a {
+.toggle-text button {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  width: auto;
+  font: inherit;
+  cursor: pointer;
   color: var(--accent);
   text-decoration: none;
   margin-left: 0.3em;
 }
 
-.toggle-text a:hover {
+.toggle-text button:hover {
   text-decoration: underline;
 }

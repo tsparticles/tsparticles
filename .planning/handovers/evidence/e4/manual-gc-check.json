@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-17",
+  "browser": "Chrome 157 headed",
+  "method": "DevTools Memory > Collect garbage, followed by Console evaluation in the page context",
+  "collections": 2,
+  "reads": [
+    {
+      "expression": "performance.memory.usedJSHeapSize",
+      "valueBytes": 86400000,
+      "domNodes": 11
+    },
+    {
+      "expression": "JSON.stringify({usedHeap:performance.memory.usedJSHeapSize,domNodes:document.querySelectorAll('*').length})",
+      "value": {
+        "usedHeap": 86400000,
+        "domNodes": 11
+      }
+    }
+  ],
+  "limitations": [
+    "This is a manual headed run after the 30-cycle retention harness.",
+    "The page Performance API value is not comparable to E0 CDP Runtime.getHeapUsage snapshots.",
+    "This observation does not close the retained-heap acceptance gate."
+  ]
+}

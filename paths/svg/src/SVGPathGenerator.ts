@@ -8,9 +8,7 @@ import {
   type Particle,
   PixelMode,
   Vector,
-  getLogger,
   getPosition,
-  getRandom,
   half,
   minIndex,
   randomInRangeValue,
@@ -116,13 +114,32 @@ export class SVGPathGenerator implements IMovePathGenerator {
     const container = this.#container,
       pxRatio = container.retina.pixelRatio;
 
-    particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
-    particle.svgPathIndex ??= Math.floor(getRandom() * this.#paths.length);
-    particle.svgSpeed ??= particle.velocity.mult(particle.retina.moveSpeed * half).length;
-    particle.svgStep ??= randomInRangeValue({ min: 0, max: this.#paths[particle.svgPathIndex]!.length }) * pxRatio;
+    particle.svgDirection ??=
+      this.#container.engine.getRandom() > half
+        ? SVGPathDirection.normal
+        : SVGPathDirection.reverse;
+    particle.svgPathIndex ??= Math.floor(
+      this.#container.engine.getRandom() * this.#paths.length,
+    );
+    particle.svgSpeed ??= particle.velocity.mult(
+      particle.retina.moveSpeed * half,
+    ).length;
+    particle.svgStep ??=
+      randomInRangeValue(
+        { min: 0, max: this.#paths[particle.svgPathIndex]!.length },
+        this.#container.engine.getRandomFn(),
+      ) * pxRatio;
     particle.svgOffset ??= {
-      width: randomInRangeValue({ min: -this.#width * half, max: this.#width * half }) * pxRatio,
-      height: randomInRangeValue({ min: -this.#width * half, max: this.#width * half }) * pxRatio,
+      width:
+        randomInRangeValue(
+          { min: -this.#width * half, max: this.#width * half },
+          this.#container.engine.getRandomFn(),
+        ) * pxRatio,
+      height:
+        randomInRangeValue(
+          { min: -this.#width * half, max: this.#width * half },
+          this.#container.engine.getRandomFn(),
+        ) * pxRatio,
     };
     particle.svgInitialPosition ??= particle.position.copy();
     particle.velocity.x = 0;
@@ -180,9 +197,15 @@ export class SVGPathGenerator implements IMovePathGenerator {
       scale = this.#scale * pxRatio;
 
     particle.position.x =
-      (pos.x - this.#size.width * half) * scale + particle.svgInitialPosition.x + offset.x + particle.svgOffset.width;
+      (pos.x - this.#size.width * half) * scale +
+      particle.svgInitialPosition.x +
+      offset.x +
+      particle.svgOffset.width;
     particle.position.y =
-      (pos.y - this.#size.height * half) * scale + particle.svgInitialPosition.y + offset.y + particle.svgOffset.height;
+      (pos.y - this.#size.height * half) * scale +
+      particle.svgInitialPosition.y +
+      offset.y +
+      particle.svgOffset.height;
 
     this.#res.x = 0;
     this.#res.y = 0;
@@ -192,7 +215,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
   /** Initializes the SVG path data */
   init(): void {
-    const options = this.#container.actualOptions.particles.move.path.options as SVGPathOptions,
+    const options = this.#container.actualOptions.particles.move.path
+        .options as SVGPathOptions,
       position = options.position ?? this.#offset;
 
     this.#reverse = options.reverse ?? this.#reverse;
@@ -214,7 +238,9 @@ export class SVGPathGenerator implements IMovePathGenerator {
           const response = await fetch(url);
 
           if (!response.ok) {
-            throw new Error(`Failed to load SVG path from ${url}: ${response.status} ${response.statusText}`);
+            throw new Error(
+              `Failed to load SVG path from ${url}: ${response.status} ${response.statusText}`,
+            );
           }
 
           const data = await response.text(),
@@ -225,12 +251,14 @@ export class SVGPathGenerator implements IMovePathGenerator {
           }
 
           this.#paths = paths;
-          this.#ready = paths.some(path => path.length > 0);
+          this.#ready = paths.some((path) => path.length > 0);
           this.#size.width = size.width;
           this.#size.height = size.height;
         } catch (error) {
           if (requestId === this.#requestId) {
-            getLogger().error("error loading SVG path", error);
+            this.#container.engine
+              .getLogger()
+              .error("error loading SVG path", error);
           }
         }
       })();
@@ -238,7 +266,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
       const path = options.path;
 
       this.#paths = createSVGPaths(options.path.data);
-      this.#ready = this.#paths.some(path => path.length > 0);
+      this.#ready = this.#paths.some((path) => path.length > 0);
       this.#size.height = path.size.height;
       this.#size.width = path.size.width;
     }

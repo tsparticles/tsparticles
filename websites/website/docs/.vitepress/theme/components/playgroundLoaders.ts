@@ -1,9 +1,9 @@
 import { loadAll } from "@tsparticles/all";
-import { confetti } from "@tsparticles/confetti";
-import { tsParticles, type Engine } from "@tsparticles/engine";
-import { fireworks } from "@tsparticles/fireworks";
-import { particles } from "@tsparticles/particles";
-import { ribbons } from "@tsparticles/ribbons";
+import { createConfetti } from "@tsparticles/confetti";
+import { createEngine, type Engine } from "@tsparticles/engine";
+import { createFireworks } from "@tsparticles/fireworks";
+import { createParticles } from "@tsparticles/particles";
+import { createRibbons } from "@tsparticles/ribbons";
 
 import { loadAmbientPreset } from "@tsparticles/preset-ambient";
 import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
@@ -233,6 +233,12 @@ let playgroundInitialized = false;
 let playgroundInitializing = false;
 let playgroundInitError: unknown;
 let playgroundInitPromise: Promise<void> | undefined;
+
+export const engine = createEngine();
+export const confetti = createConfetti(engine);
+export const fireworks = createFireworks(engine);
+export const particles = createParticles(engine);
+export const ribbons = createRibbons(engine);
 
 const presetLoaders: readonly ((engine: Engine) => Promise<void>)[] = [
   loadAmbientPreset,
@@ -476,7 +482,7 @@ export function getPlaygroundFeaturesInitState(): PlaygroundInitState {
   };
 }
 
-export function initPlaygroundFeaturesOnce(engine?: Engine): Promise<void> {
+export function initPlaygroundFeaturesOnce(playgroundEngine?: Engine): Promise<void> {
   if (playgroundInitialized) {
     return Promise.resolve();
   }
@@ -489,7 +495,7 @@ export function initPlaygroundFeaturesOnce(engine?: Engine): Promise<void> {
   playgroundInitError = undefined;
 
   playgroundInitPromise = (async () => {
-    const resolvedEngine = engine ?? tsParticles;
+    const resolvedEngine = playgroundEngine ?? engine;
 
     await preloadPlaygroundFeatures(resolvedEngine);
 

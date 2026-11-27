@@ -27,6 +27,7 @@ particles: {
 
 - Defines the particle inner color.
 - Supports static values, arrays, and color animation.
+- 色のアニメーションでは、OKLCH の各チャンネルを個別に設定します。`h` は度数の色相、`c` は OKLab 単位のクロマ、`l` は 0〜100 の明度です。従来の HSL チャンネル `s` は移行メッセージとともに拒否されます。
 
 ## Stroke (`particles.paint.stroke`)
 

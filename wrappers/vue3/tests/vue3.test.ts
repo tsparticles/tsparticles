@@ -1,12 +1,6 @@
 /* eslint-disable */
-import { createApp } from "vue";
 import { describe, expect, it, vi } from "vitest";
-
-vi.mock("@tsparticles/engine", () => ({
-  tsParticles: {
-    init: vi.fn(async () => Promise.resolve()),
-  },
-}));
+import { createApp } from "vue";
 
 type ProviderModule = typeof import("../src/components/particles-provider.js");
 
@@ -16,7 +10,7 @@ async function loadModule(): Promise<{ module: ProviderModule; engine: { init: R
   delete (globalThis as Record<string, unknown>)["__tsparticles_vue3_init_state__"];
 
   const module = (await import("../src/components/particles-provider.js")) as ProviderModule,
-    engine = (await import("@tsparticles/engine")).tsParticles as unknown as { init: ReturnType<typeof vi.fn> };
+    engine = { init: vi.fn(async () => undefined) };
 
   engine.init.mockClear();
 
@@ -25,8 +19,8 @@ async function loadModule(): Promise<{ module: ProviderModule; engine: { init: R
 
 describe("vue3 particles provider", () => {
   it("creates a reactive context starting unloaded", async () => {
-    const { module } = await loadModule(),
-      context = module.createParticlesProviderContext();
+    const { module, engine } = await loadModule(),
+      context = module.createParticlesProviderContext(engine as never);
 
     expect(context.loaded).toBe(false);
   });
@@ -34,7 +28,7 @@ describe("vue3 particles provider", () => {
   it("calls the init callback and the engine init, then marks the context as loaded", async () => {
     const { module, engine } = await loadModule(),
       init = vi.fn(async () => Promise.resolve()),
-      context = module.createParticlesProviderContext();
+      context = module.createParticlesProviderContext(engine as never);
 
     await module.initParticlesProvider({} as never, context, init);
 
@@ -45,9 +39,9 @@ describe("vue3 particles provider", () => {
   });
 
   it("does not re-run the init when called again after being loaded", async () => {
-    const { module } = await loadModule(),
+    const { module, engine } = await loadModule(),
       init = vi.fn(async () => Promise.resolve()),
-      context = module.createParticlesProviderContext();
+      context = module.createParticlesProviderContext(engine as never);
 
     await module.initParticlesProvider({} as never, context, init);
     await module.initParticlesProvider({} as never, context, init);
@@ -55,21 +49,22 @@ describe("vue3 particles provider", () => {
     expect(init).toHaveBeenCalledTimes(1);
   });
 
-  it("throws when the init callback changes while initializing", async () => {
-    const { module } = await loadModule(),
-      init = vi.fn(async () => Promise.resolve()),
-      first = module.initParticlesProvider({} as never, module.createParticlesProviderContext(), init);
-
-    expect(() =>
-      module.initParticlesProvider({} as never, module.createParticlesProviderContext(), async () => Promise.resolve()),
-    ).toThrow(/stable across the app lifecycle/i);
-
-    await first;
+  it("isolates two contexts with distinct engines", async () => {
+    const { module, engine } = await loadModule(),
+      other = { init: vi.fn(async () => undefined) };
+    const first = module.createParticlesProviderContext(engine as never),
+      second = module.createParticlesProviderContext(other as never);
+    await module.initParticlesProvider({} as never, first);
+    expect(first.loaded).toBe(true);
+    expect(second.loaded).toBe(false);
+    await module.initParticlesProvider({} as never, second);
+    expect(other.init).toHaveBeenCalledOnce();
+    expect(first.engine).toBe(engine);
   });
 
   it("resolves the context through useParticlesProvider inside an app", async () => {
-    const { module } = await loadModule(),
-      context = module.createParticlesProviderContext(),
+    const { module, engine } = await loadModule(),
+      context = module.createParticlesProviderContext(engine as never),
       app = createApp({ render: () => null }),
       resolved = app.runWithContext(() => {
         app.provide(module.particlesProviderKey, context);
@@ -81,13 +76,13 @@ describe("vue3 particles provider", () => {
   });
 
   it("throws from useParticlesProvider when the plugin is not registered", async () => {
-    const { module } = await loadModule(),
+    const { module, engine } = await loadModule(),
       app = createApp({ render: () => null });
 
     expect(() =>
       app.runWithContext(() => {
         return module.useParticlesProvider();
       }),
-    ).toThrow(/plugin is required/i);
+    ).toThrow(/requires app.use/i);
   });
 });

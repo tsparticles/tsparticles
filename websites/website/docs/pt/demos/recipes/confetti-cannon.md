@@ -13,7 +13,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ## Pronto para uso (partida/parada manual)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiCannonPreset } from "@tsparticles/preset-confetti-cannon";
 import type { Container } from "@tsparticles/engine";
 

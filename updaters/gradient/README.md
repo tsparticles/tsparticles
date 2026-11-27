@@ -58,7 +58,8 @@ $ yarn add @tsparticles/updater-gradient
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadGradientUpdater } = require("@tsparticles/updater-gradient");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadGradientUpdater } = require("@tsparticles/updater-gradient");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 
 (async () => {

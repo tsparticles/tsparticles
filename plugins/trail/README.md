@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-trail
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadTrailPlugin } = require("@tsparticles/plugin-trail");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadTrailPlugin } = require("@tsparticles/plugin-trail");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadTrailPlugin } from "@tsparticles/plugin-trail";
 
 (async () => {

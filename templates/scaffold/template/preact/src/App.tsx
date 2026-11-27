@@ -1,11 +1,12 @@
-import { useEffect } from "preact/hooks";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "../particlesEngine";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
+import { useEffect } from "preact/hooks";
 
 export default function App() {
   useEffect(() => {
-    void initParticlesEngine(async (engine) => {
+    void initParticlesEngine(engine, async engine => {
       await loadSlim(engine);
     });
   }, []);
@@ -37,7 +38,7 @@ export default function App() {
       <div id="app-content">
         <h1>Hello, tsParticles!</h1>
       </div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
     </div>
   );
 }

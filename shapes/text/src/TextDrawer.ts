@@ -49,11 +49,20 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
   }
 
   /**
+   * Releases particle-specific text layout when the particle enters the pool
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: TextParticle): void {
+    delete particle.textLines;
+    delete particle.maxTextLength;
+  }
+
+  /**
    * Loads the text shape to the given particle
    * @param _container - the particles container
    * @param particle - the particle loading the text shape
    */
-  particleInit(_container: Container, particle: TextParticle): void {
+  particleInit(container: Container, particle: TextParticle): void {
     if (!particle.shape || !validTypes.includes(particle.shape)) {
       return;
     }
@@ -70,7 +79,10 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
       return;
     }
 
-    particle.textLines = itemFromSingleOrMultiple(textData, particle.randomIndexData)?.split("\n") ?? [];
+    particle.textLines =
+      itemFromSingleOrMultiple(textData, particle.randomIndexData, undefined, container.engine.getRandomFn())?.split(
+        "\n",
+      ) ?? [];
     particle.maxTextLength = particle.textLines.length
       ? Math.max(...particle.textLines.map(t => t.length))
       : (particle.textLines[firstIndex]?.length ?? minLength);

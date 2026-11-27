@@ -16,7 +16,9 @@ const WINDOW_MS = 60_000,
 
 describe("normalizeOrigin", () => {
   it("lowercases and strips path/query from a valid origin", () => {
-    expect(normalizeOrigin("http://Localhost:3000/foo?bar=1")).toBe("http://localhost:3000");
+    expect(normalizeOrigin("http://Localhost:3000/foo?bar=1")).toBe(
+      "http://localhost:3000",
+    );
   });
 
   it("rejects non-http(s) protocols", () => {
@@ -38,7 +40,9 @@ describe("parseSessionIdHeader", () => {
   });
 
   it("accepts a well-formed session id", () => {
-    expect(parseSessionIdHeader("abc-123_ABC.def:456")).toEqual({ value: "abc-123_ABC.def:456" });
+    expect(parseSessionIdHeader("abc-123_ABC.def:456")).toEqual({
+      value: "abc-123_ABC.def:456",
+    });
   });
 
   it("rejects an empty string", () => {
@@ -50,7 +54,9 @@ describe("parseSessionIdHeader", () => {
   });
 
   it("rejects a session id over the max length", () => {
-    expect(parseSessionIdHeader("a".repeat(OVER_MAX_SESSION_ID_LENGTH)).error).toBeDefined();
+    expect(
+      parseSessionIdHeader("a".repeat(OVER_MAX_SESSION_ID_LENGTH)).error,
+    ).toBeDefined();
   });
 
   it("rejects multiple header values", () => {
@@ -97,11 +103,15 @@ describe("isOriginAllowed", () => {
   });
 
   it("allows an origin present in the explicit allow-list", () => {
-    expect(isOriginAllowed("https://app.example.com", ["https://app.example.com"])).toBe(true);
+    expect(
+      isOriginAllowed("https://app.example.com", ["https://app.example.com"]),
+    ).toBe(true);
   });
 
   it("rejects an origin not present in the explicit allow-list", () => {
-    expect(isOriginAllowed("https://other.example.com", ["https://app.example.com"])).toBe(false);
+    expect(
+      isOriginAllowed("https://other.example.com", ["https://app.example.com"]),
+    ).toBe(false);
   });
 });
 
@@ -123,7 +133,9 @@ describe("extractBearerToken", () => {
   });
 
   it("handles array header values by taking the first entry", () => {
-    expect(extractBearerToken(["Bearer abc123", "Bearer other"])).toBe("abc123");
+    expect(extractBearerToken(["Bearer abc123", "Bearer other"])).toBe(
+      "abc123",
+    );
   });
 });
 
@@ -147,24 +159,24 @@ describe("RateLimiter", () => {
   });
 
   it("allows requests under the limit", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 3);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
   });
 
   it("blocks requests over the limit within the window", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 2);
+
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(false);
   });
 
   it("tracks separate clients independently", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 1);
+
     expect(limiter.allow("client-c")).toBe(true);
     expect(limiter.allow("client-d")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);
@@ -172,8 +184,9 @@ describe("RateLimiter", () => {
 
   it("resets the window after it elapses", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
+
     expect(limiter.allow("client-e")).toBe(true);
     expect(limiter.allow("client-e")).toBe(false);
     vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
@@ -182,20 +195,21 @@ describe("RateLimiter", () => {
 
   it("sweep() removes stale entries", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
+
     limiter.allow("client-f");
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     expect(limiter.size).toBe(1);
     vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
     limiter.sweep();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     expect(limiter.size).toBe(0);
   });
 
   it("enforces a global cap across distinct clients", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 3, 4);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(true);
@@ -204,8 +218,8 @@ describe("RateLimiter", () => {
   });
 
   it("does not count per-key-rejected requests against the global cap", () => {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const limiter = new RateLimiter(WINDOW_MS, 2, 5);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     // Blocked by the per-key limit, must not consume the global budget.
@@ -218,8 +232,9 @@ describe("RateLimiter", () => {
 
   it("resets the global cap after the window elapses", () => {
     vi.useFakeTimers();
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
     const limiter = new RateLimiter(SHORT_WINDOW_MS, 5, 2);
+
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);

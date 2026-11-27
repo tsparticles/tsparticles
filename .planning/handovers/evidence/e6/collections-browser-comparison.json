@@ -1,0 +1,823 @@
+{
+  "baselinePath": ".planning/handovers/evidence/e6/collections-browser-baseline.json",
+  "candidatePath": ".planning/handovers/evidence/e6/collections-browser-candidate.json",
+  "browser": "Chrome/157.0.8103.79",
+  "baselineBundleSha256": "68ea12ed89e4022b7735317cd9e391ddf64a895595b3d2d1931af8ab60e5fbeb",
+  "candidateBundleSha256": "4254165a851ee7559f70e91843702a82020ebcef2dfe521490173cebf414f52c",
+  "sceneSnapshotsCompared": 135,
+  "sceneMismatches": [],
+  "comparable": true,
+  "timingPolicy": "Median across 3 repetitions; screening allowance is max(baseline * 1.10, baseline + 0.1 ms), with 1e-6 ms roundoff tolerance. This comparison does not waive E0 ceilings.",
+  "scenarios": [
+    {
+      "scenario": "M3",
+      "count": 100,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 6.100000023841858,
+          "candidate": 6.5,
+          "delta": 0.3999999761581421,
+          "ratio": 1.0655737663270068
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 8035.36,
+          "candidate": 8067.16,
+          "delta": 31.800000000000182,
+          "ratio": 1.0039575078154557
+        },
+        "updateMedianMs": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.19999998807907104,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.299999988079071,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.10000002384185791,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.20000002384185792,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.40000003576278687,
+          "candidate": 0.40000003576278687,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.5000000357627868,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 123033.46666666666,
+          "candidate": 110339.86666666667,
+          "delta": -12693.599999999991,
+          "ratio": 0.8968280717116536
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 224300.33333333334,
+          "candidate": 223693.86666666667,
+          "delta": -606.4666666666744,
+          "ratio": 0.9972961847285113
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 13.299999952316284,
+          "candidate": 12.800000011920929,
+          "delta": -0.4999999403953552,
+          "ratio": 0.9624060193843628
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6432.752,
+          "candidate": 6441.208,
+          "delta": 8.455999999999221,
+          "ratio": 1.001314522928911
+        },
+        "updateMedianMs": {
+          "baseline": 0.6000000238418579,
+          "candidate": 0.6000000238418579,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.7000000238418579,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.5,
+          "candidate": 0.5,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.6,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 1.5,
+          "candidate": 1.4000000357627869,
+          "delta": -0.09999996423721313,
+          "ratio": 0.9333333571751913,
+          "allowanceMs": 1.6500000000000001,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 362114,
+          "candidate": 365958.5333333333,
+          "delta": 3844.5333333333256,
+          "ratio": 1.0106169143787131
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 791896.6666666666,
+          "candidate": 809277.6,
+          "delta": 17380.93333333335,
+          "ratio": 1.0219484865449617
+        }
+      }
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 22,
+          "candidate": 21.600000023841858,
+          "delta": -0.3999999761581421,
+          "ratio": 0.9818181829019026
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6271.56,
+          "candidate": 6275.82,
+          "delta": 4.259999999999309,
+          "ratio": 1.0006792568356198
+        },
+        "updateMedianMs": {
+          "baseline": 1.399999976158142,
+          "candidate": 1.5,
+          "delta": 0.10000002384185791,
+          "ratio": 1.0714285896748916,
+          "allowanceMs": 1.5399999737739565,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.0999999642372131,
+          "candidate": 1.1999999284744263,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0909090613530676,
+          "allowanceMs": 1.2099999606609346,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 2.899999976158142,
+          "candidate": 2.899999976158142,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 3.1899999737739564,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 727573.8666666667,
+          "candidate": 724918.6666666666,
+          "delta": -2655.20000000007,
+          "ratio": 0.9963506110903011
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1607892.4,
+          "candidate": 1600434.4666666666,
+          "delta": -7457.933333333349,
+          "ratio": 0.9953616713821564
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 4.400000035762787,
+          "candidate": 4.599999964237213,
+          "delta": 0.19999992847442627,
+          "ratio": 1.0454545288292831
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 8425.2,
+          "candidate": 8517.2,
+          "delta": 92,
+          "ratio": 1.0109196220861225
+        },
+        "updateMedianMs": {
+          "baseline": 0.30000001192092896,
+          "candidate": 0.30000001192092896,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.40000001192092893,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.2999999523162842,
+          "candidate": 0.2999999523162842,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.39999995231628416,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.7000000476837158,
+          "candidate": 0.800000011920929,
+          "delta": 0.09999996423721313,
+          "ratio": 1.1428570820360808,
+          "allowanceMs": 0.8000000476837158,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 393324.73333333334,
+          "candidate": 379068.8,
+          "delta": -14255.933333333349,
+          "ratio": 0.9637553092262525
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 431471.5333333333,
+          "candidate": 436069.2,
+          "delta": 4597.666666666686,
+          "ratio": 1.010655782158205
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 13.200000047683716,
+          "candidate": 12.399999976158142,
+          "delta": -0.8000000715255737,
+          "ratio": 0.9393939341942689
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6956.912,
+          "candidate": 6970.248,
+          "delta": 13.33599999999933,
+          "ratio": 1.001916942459528
+        },
+        "updateMedianMs": {
+          "baseline": 3.5,
+          "candidate": 3.400000035762787,
+          "delta": -0.09999996423721313,
+          "ratio": 0.9714285816465106,
+          "allowanceMs": 3.8500000000000005,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 2.400000035762787,
+          "candidate": 2.3999999165534973,
+          "delta": -1.1920928955078125e-7,
+          "ratio": 0.9999999503294634,
+          "allowanceMs": 2.640000039339066,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 7.699999988079071,
+          "candidate": 7.099999964237213,
+          "delta": -0.6000000238418579,
+          "ratio": 0.92207791886094,
+          "allowanceMs": 8.469999986886979,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 4416445.133333334,
+          "candidate": 4409954.466666667,
+          "delta": -6490.666666666977,
+          "ratio": 0.9985303413784814
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 5062789.533333333,
+          "candidate": 5096140.333333333,
+          "delta": 33350.799999999814,
+          "ratio": 1.0065874355985802
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 21.80000001192093,
+          "candidate": 20.900000035762787,
+          "delta": -0.8999999761581421,
+          "ratio": 0.958715597446514
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 7225.88,
+          "candidate": 7225.304,
+          "delta": -0.5760000000000218,
+          "ratio": 0.999920286525655
+        },
+        "updateMedianMs": {
+          "baseline": 12.700000047683716,
+          "candidate": 12.699999988079071,
+          "delta": -5.960464477539063e-8,
+          "ratio": 0.9999999953067209,
+          "allowanceMs": 13.970000052452088,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 8,
+          "candidate": 7.899999976158142,
+          "delta": -0.10000002384185791,
+          "ratio": 0.9874999970197678,
+          "allowanceMs": 8.8,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 22.30000001192093,
+          "candidate": 22.799999952316284,
+          "delta": 0.4999999403953552,
+          "ratio": 1.0224215219788373,
+          "allowanceMs": 24.530000013113025,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 16520398.4,
+          "candidate": 16521917.066666666,
+          "delta": 1518.6666666660458,
+          "ratio": 1.0000919267580537
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 18189712.133333333,
+          "candidate": 18237984.133333333,
+          "delta": 48272,
+          "ratio": 1.002653807803343
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 5,
+          "candidate": 4.600000023841858,
+          "delta": -0.3999999761581421,
+          "ratio": 0.9200000047683716
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 8325.72,
+          "candidate": 8413.12,
+          "delta": 87.40000000000146,
+          "ratio": 1.0104975905987712
+        },
+        "updateMedianMs": {
+          "baseline": 0.30000001192092896,
+          "candidate": 0.30000001192092896,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.40000001192092893,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.10000002384185791,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.20000002384185792,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.6000000238418579,
+          "delta": -0.09999996423721313,
+          "ratio": 0.8571429057997109,
+          "allowanceMs": 0.799999988079071,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 438861.06666666665,
+          "candidate": 429563.86666666664,
+          "delta": -9297.200000000012,
+          "ratio": 0.9788151633713691
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 486385.06666666665,
+          "candidate": 495492,
+          "delta": 9106.933333333349,
+          "ratio": 1.018723710815683
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 13.100000023841858,
+          "candidate": 12.100000023841858,
+          "delta": -1,
+          "ratio": 0.9236641222763351
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6488.384,
+          "candidate": 6501.888,
+          "delta": 13.503999999999905,
+          "ratio": 1.0020812578293763
+        },
+        "updateMedianMs": {
+          "baseline": 4.200000047683716,
+          "candidate": 4.300000011920929,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0238095150242588,
+          "allowanceMs": 4.620000052452088,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.5999999642372131,
+          "candidate": 0.5999999642372131,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.6999999642372131,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 5.600000023841858,
+          "candidate": 5.5,
+          "delta": -0.10000002384185791,
+          "ratio": 0.9821428529614089,
+          "allowanceMs": 6.160000026226045,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 5528949.6,
+          "candidate": 5531445.266666667,
+          "delta": 2495.666666666977,
+          "ratio": 1.0004513816994582
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 6082020.8,
+          "candidate": 6111629.933333334,
+          "delta": 29609.133333333768,
+          "ratio": 1.00486830517471
+        }
+      }
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 21.5,
+          "candidate": 20.900000035762787,
+          "delta": -0.5999999642372131,
+          "ratio": 0.9720930249191994
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6338.172,
+          "candidate": 6343.172,
+          "delta": 5,
+          "ratio": 1.0007888709867767
+        },
+        "updateMedianMs": {
+          "baseline": 16.799999952316284,
+          "candidate": 16.299999952316284,
+          "delta": -0.5,
+          "ratio": 0.9702380951536216,
+          "allowanceMs": 18.479999947547913,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.199999988079071,
+          "candidate": 1.199999988079071,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.3199999868869783,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 18.69999998807907,
+          "candidate": 19.200000047683716,
+          "delta": 0.5000000596046448,
+          "ratio": 1.0267379711188978,
+          "allowanceMs": 20.56999998688698,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 20911970.933333334,
+          "candidate": 20925681.866666667,
+          "delta": 13710.933333333582,
+          "ratio": 1.0006556499804367
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 22457225.066666666,
+          "candidate": 22489286.866666667,
+          "delta": 32061.800000000745,
+          "ratio": 1.001427683068804
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 4.699999988079071,
+          "candidate": 5.300000011920929,
+          "delta": 0.6000000238418579,
+          "ratio": 1.1276595798646125
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 7680.64,
+          "candidate": 7743.8,
+          "delta": 63.159999999999854,
+          "ratio": 1.0082232730605782
+        },
+        "updateMedianMs": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.19999998807907104,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.299999988079071,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.19999998807907104,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.299999988079071,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.5999999642372131,
+          "candidate": 0.5999999642372131,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.6999999642372131,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 145298.6,
+          "candidate": 134723.06666666668,
+          "delta": -10575.533333333326,
+          "ratio": 0.9272151739016526
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 232491.46666666667,
+          "candidate": 239365.06666666668,
+          "delta": 6873.600000000006,
+          "ratio": 1.0295649560758073
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 12.5,
+          "candidate": 13,
+          "delta": 0.5,
+          "ratio": 1.04
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6419.656,
+          "candidate": 6431.04,
+          "delta": 11.384000000000015,
+          "ratio": 1.0017733037408858
+        },
+        "updateMedianMs": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.699999988079071,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.799999988079071,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.7999999523162842,
+          "delta": 0.09999996423721313,
+          "ratio": 1.1428570942002891,
+          "allowanceMs": 0.799999988079071,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 1.800000011920929,
+          "candidate": 1.9000000357627869,
+          "delta": 0.10000002384185791,
+          "ratio": 1.0555555684331022,
+          "allowanceMs": 1.980000013113022,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 364565.6,
+          "candidate": 362645.26666666666,
+          "delta": -1920.333333333314,
+          "ratio": 0.99473254379093
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 866167.8666666667,
+          "candidate": 891389.4666666667,
+          "delta": 25221.599999999977,
+          "ratio": 1.0291186050309877
+        }
+      }
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 20.900000035762787,
+          "candidate": 21.899999976158142,
+          "delta": 0.9999999403953552,
+          "ratio": 1.0478468870183837
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6321.308,
+          "candidate": 6323.048,
+          "delta": 1.7399999999997817,
+          "ratio": 1.0002752594874351
+        },
+        "updateMedianMs": {
+          "baseline": 1.399999976158142,
+          "candidate": 1.5,
+          "delta": 0.10000002384185791,
+          "ratio": 1.0714285896748916,
+          "allowanceMs": 1.5399999737739565,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.300000011920929,
+          "candidate": 1.4000000357627869,
+          "delta": 0.10000002384185791,
+          "ratio": 1.076923094557587,
+          "allowanceMs": 1.430000013113022,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 3.100000023841858,
+          "candidate": 3.600000023841858,
+          "delta": 0.5,
+          "ratio": 1.161290321340174,
+          "allowanceMs": 3.410000026226044,
+          "withinAllowance": false
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 722449.6,
+          "candidate": 724598.5333333333,
+          "delta": 2148.933333333349,
+          "ratio": 1.0029745096866733
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1683032.5333333334,
+          "candidate": 1708649,
+          "delta": 25616.466666666558,
+          "ratio": 1.015220422754355
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 4.5,
+          "candidate": 4.599999964237213,
+          "delta": 0.09999996423721313,
+          "ratio": 1.0222222142749362
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 7588.92,
+          "candidate": 7653.4,
+          "delta": 64.47999999999956,
+          "ratio": 1.0084965976713418
+        },
+        "updateMedianMs": {
+          "baseline": 0.19999998807907104,
+          "candidate": 0.19999998807907104,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.299999988079071,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.10000002384185791,
+          "candidate": 0.10000002384185791,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.20000002384185792,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 0.40000003576278687,
+          "candidate": 0.5,
+          "delta": 0.09999996423721313,
+          "ratio": 1.249999888241301,
+          "allowanceMs": 0.5000000357627868,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 148012.46666666667,
+          "candidate": 134817.33333333334,
+          "delta": -13195.133333333331,
+          "ratio": 0.9108512030743356
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 209110.33333333334,
+          "candidate": 214495.13333333333,
+          "delta": 5384.799999999988,
+          "ratio": 1.025750999073854
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 12,
+          "candidate": 12.100000023841858,
+          "delta": 0.10000002384185791,
+          "ratio": 1.008333335320155
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6350.56,
+          "candidate": 6357.712,
+          "delta": 7.152000000000044,
+          "ratio": 1.0011261998941825
+        },
+        "updateMedianMs": {
+          "baseline": 0.699999988079071,
+          "candidate": 0.699999988079071,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 0.799999988079071,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 0.5,
+          "candidate": 0.5999999642372131,
+          "delta": 0.09999996423721313,
+          "ratio": 1.1999999284744263,
+          "allowanceMs": 0.6,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 1.5999999642372131,
+          "candidate": 1.5999999642372131,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.7599999606609347,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 364787.13333333336,
+          "candidate": 363699.06666666665,
+          "delta": -1088.0666666667094,
+          "ratio": 0.9970172559083315
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 824927.8,
+          "candidate": 842995.8,
+          "delta": 18068,
+          "ratio": 1.021902522863213
+        }
+      }
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "metrics": {
+        "initializationMs": {
+          "baseline": 21.200000047683716,
+          "candidate": 21.299999952316284,
+          "delta": 0.09999990463256836,
+          "ratio": 1.0047169766230022
+        },
+        "retainedBytesPerParticle": {
+          "baseline": 6257.392,
+          "candidate": 6257.448,
+          "delta": 0.056000000000494765,
+          "ratio": 1.0000089494153475
+        },
+        "updateMedianMs": {
+          "baseline": 1.5,
+          "candidate": 1.5,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.6500000000000001,
+          "withinAllowance": true
+        },
+        "drawMedianMs": {
+          "baseline": 1.199999988079071,
+          "candidate": 1.199999988079071,
+          "delta": 0,
+          "ratio": 1,
+          "allowanceMs": 1.3199999868869783,
+          "withinAllowance": true
+        },
+        "frameP95Ms": {
+          "baseline": 2.899999976158142,
+          "candidate": 3.099999964237213,
+          "delta": 0.19999998807907104,
+          "ratio": 1.0689655136977023,
+          "allowanceMs": 3.1899999737739564,
+          "withinAllowance": true
+        },
+        "updateSampledBytesPerTick": {
+          "baseline": 722521.1333333333,
+          "candidate": 722509.9333333333,
+          "delta": -11.199999999953434,
+          "ratio": 0.9999844987233131
+        },
+        "frameSampledBytesPerTick": {
+          "baseline": 1623249.2,
+          "candidate": 1643493.8666666667,
+          "delta": 20244.666666666744,
+          "ratio": 1.0124716936048186
+        }
+      }
+    }
+  ]
+}

@@ -7,4 +7,7 @@ export interface ISoundsNote {
 
   /** The note value */
   value: SingleOrMultiple<string>;
+
+  /** The note waveform */
+  waveform?: "sine" | "square" | "sawtooth" | "triangle";
 }

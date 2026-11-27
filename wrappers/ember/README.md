@@ -15,13 +15,14 @@ Official Ember component for [tsParticles](https://github.com/tsparticles/tspart
 ## Installation
 
 ```bash
-npm install @tsparticles/ember
+npm install @tsparticles/ember @tsparticles/engine
 # or
-yarn add @tsparticles/ember
+yarn add @tsparticles/ember @tsparticles/engine
 # or
-pnpm add @tsparticles/ember
+pnpm add @tsparticles/ember @tsparticles/engine
 # or
 ember install @tsparticles/ember
+npm install @tsparticles/engine
 ```
 
 If you want the full bundle loader in examples below:
@@ -36,15 +37,17 @@ Initialize the engine once in your app lifecycle, then render `<Particles />` wh
 
 ```ts
 import Controller from '@ember/controller';
-import type { Engine } from '@tsparticles/engine';
+import { createEngine, type Engine } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 
 export default class ApplicationController extends Controller {
+  public engine = createEngine();
+
   public constructor(...args: unknown[]) {
     super(...args);
 
-    void initParticlesEngine(async (engine: Engine) => {
+    void initParticlesEngine(this.engine, async (engine: Engine) => {
       await loadFull(engine);
     });
   }
@@ -52,17 +55,23 @@ export default class ApplicationController extends Controller {
 ```
 
 ```hbs
-<Particles @options={{this.options}} @theme={{this.theme}} @particlesLoaded={{this.loadedCallback}} />
+<Particles
+  @engine={{this.engine}}
+  @options={{this.options}}
+  @theme={{this.theme}}
+  @particlesLoaded={{this.loadedCallback}}
+/>
 ```
 
 The component accepts these named args:
 
-| Arg                | Type                                       | Description                                                                                                 |
-|--------------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `@options`         | `Options`                                  | Particles options object                                                                                    |
-| `@url`             | `string`                                   | Remote JSON config URL                                                                                      |
-| `@particlesLoaded` | `(container?: Container) => void`          | Callback invoked when the container is loaded, receives `Container \| undefined`                            |
-| `@theme`           | `string` (optional)                        | Theme name to apply. Requires `@tsparticles/plugin-themes` to be loaded. Without the plugin, this is a safe no-op. |
+| Arg                | Type                              | Description                                                                                                        |
+| ------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `@engine`          | `Engine`                          | Explicit tsParticles engine used to register plugins and create the container.                                     |
+| `@options`         | `Options`                         | Particles options object                                                                                           |
+| `@url`             | `string`                          | Remote JSON config URL                                                                                             |
+| `@particlesLoaded` | `(container?: Container) => void` | Callback invoked when the container is loaded, receives `Container \| undefined`                                   |
+| `@theme`           | `string` (optional)               | Theme name to apply. Requires `@tsparticles/plugin-themes` to be loaded. Without the plugin, this is a safe no-op. |
 
 ### Reactive behavior
 
@@ -79,12 +88,14 @@ When the element is removed from the DOM (or the modifier is torn down), the par
 ### Template import syntax (`.gjs`)
 
 ```js
-import type { Engine } from "@tsparticles/engine";
+import { createEngine, type Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import Particles from "@tsparticles/ember/components/particles";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 
-void initParticlesEngine(async (engine: Engine) => {
+const engine = createEngine();
+
+void initParticlesEngine(engine, async (engine: Engine) => {
   await loadFull(engine);
 });
 
@@ -100,7 +111,7 @@ const options = {
 };
 
 <template>
-  <Particles @options={{options}} />
+  <Particles @engine={{engine}} @options={{options}} />
 </template>;
 ```
 
@@ -111,15 +122,24 @@ npm install @tsparticles/preset-confetti
 ```
 
 ```ts
-import type { Engine } from '@tsparticles/engine';
+import Controller from '@ember/controller';
+import { createEngine, type Engine } from '@tsparticles/engine';
 import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 
-void initParticlesEngine(async (engine: Engine) => {
-  await loadConfettiPreset(engine);
-});
+export default class ApplicationController extends Controller {
+  public engine = createEngine();
+
+  public constructor(...args: unknown[]) {
+    super(...args);
+
+    void initParticlesEngine(this.engine, async (engine: Engine) => {
+      await loadConfettiPreset(engine);
+    });
+  }
+}
 ```
 
 ```hbs
-<Particles @options={{hash preset='confetti'}} />
+<Particles @engine={{this.engine}} @options={{hash preset='confetti'}} />
 ```

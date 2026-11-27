@@ -1,0 +1,1041 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "bundlePath": "bundles/all/dist/tsparticles.all.bundle.js",
+  "bundleSha256": "ba134cd8979b8b17a4b506560098592ee98a3d64f42d9e40e23cfdd992dbf615",
+  "scenario": "M6-extensions",
+  "particles": 500,
+  "pluginCounts": {
+    "containerPlugins": 13,
+    "drawParticleTransformPlugins": 1
+  },
+  "measuredFrames": 120,
+  "elapsedMs": 166.60000002384186,
+  "contextAttributes": {
+    "alpha": true,
+    "colorSpace": "srgb",
+    "colorType": "unorm8",
+    "desynchronized": true,
+    "toneMapping": {
+      "mode": "standard"
+    },
+    "willReadFrequently": false
+  },
+  "hot": [
+    {
+      "functionName": "resetTransform",
+      "line": 0,
+      "selfSamples": 88,
+      "positionTicks": [
+        {
+          "line": 22809,
+          "ticks": 88,
+          "source": "context.resetTransform();"
+        }
+      ]
+    },
+    {
+      "functionName": "update",
+      "line": 24579,
+      "selfSamples": 69,
+      "positionTicks": [
+        {
+          "line": 24587,
+          "ticks": 8,
+          "source": "this.#updateParticlesPhase1(delta, particlesToDelete);"
+        },
+        {
+          "line": 24591,
+          "ticks": 61,
+          "source": "this.#updateParticlesPhase2(delta, particlesToDelete);"
+        }
+      ]
+    },
+    {
+      "functionName": "setTransform",
+      "line": 0,
+      "selfSamples": 67,
+      "positionTicks": [
+        {
+          "line": 22773,
+          "ticks": 67,
+          "source": "context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);"
+        }
+      ]
+    },
+    {
+      "functionName": "fill",
+      "line": 0,
+      "selfSamples": 56,
+      "positionTicks": [
+        {
+          "line": 22832,
+          "ticks": 56,
+          "source": "context.fill();"
+        }
+      ]
+    },
+    {
+      "functionName": "#drawParticle",
+      "line": 22768,
+      "selfSamples": 50,
+      "positionTicks": [
+        {
+          "line": 22801,
+          "ticks": 3,
+          "source": "const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined, shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;"
+        },
+        {
+          "line": 22809,
+          "ticks": 1,
+          "source": "context.resetTransform();"
+        },
+        {
+          "line": 22798,
+          "ticks": 1,
+          "source": "for (const plugin of this.#drawParticleTransformPlugins) {"
+        },
+        {
+          "line": 22775,
+          "ticks": 2,
+          "source": "context.fillStyle = colorStyles.fill;"
+        },
+        {
+          "line": 22787,
+          "ticks": 1,
+          "source": "opacity,"
+        },
+        {
+          "line": 22768,
+          "ticks": 2,
+          "source": "#drawParticle(data) {"
+        },
+        {
+          "line": 22784,
+          "ticks": 3,
+          "source": "particle,"
+        },
+        {
+          "line": 22804,
+          "ticks": 1,
+          "source": "this.#drawShape(shape, drawData);"
+        },
+        {
+          "line": 22769,
+          "ticks": 1,
+          "source": "const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data, { effectDrawers, shapeDrawers } = container, pos = particle.getPosition(), transformData = particle.getTransformData(transform), drawScale = defaultZoom, drawPosition = {"
+        },
+        {
+          "line": 22793,
+          "ticks": 13,
+          "source": "position: { ...pos },"
+        },
+        {
+          "line": 22798,
+          "ticks": 1,
+          "source": "for (const plugin of this.#drawParticleTransformPlugins) {"
+        },
+        {
+          "line": 22780,
+          "ticks": 8,
+          "source": "context.strokeStyle = colorStyles.stroke;"
+        },
+        {
+          "line": 22801,
+          "ticks": 3,
+          "source": "const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined, shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;"
+        },
+        {
+          "line": 22769,
+          "ticks": 1,
+          "source": "const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data, { effectDrawers, shapeDrawers } = container, pos = particle.getPosition(), transformData = particle.getTransformData(transform), drawScale = defaultZoom, drawPosition = {"
+        },
+        {
+          "line": 22773,
+          "ticks": 4,
+          "source": "context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);"
+        },
+        {
+          "line": 22778,
+          "ticks": 4,
+          "source": "context.lineWidth = strokeWidth;"
+        },
+        {
+          "line": 22769,
+          "ticks": 1,
+          "source": "const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data, { effectDrawers, shapeDrawers } = container, pos = particle.getPosition(), transformData = particle.getTransformData(transform), drawScale = defaultZoom, drawPosition = {"
+        }
+      ]
+    },
+    {
+      "functionName": "#updateParticlesPhase1",
+      "line": 24938,
+      "selfSamples": 45,
+      "positionTicks": [
+        {
+          "line": 24974,
+          "ticks": 1,
+          "source": "if (particle.destroyed) {"
+        },
+        {
+          "line": 24965,
+          "ticks": 5,
+          "source": "for (const plugin of this.#particleUpdatePlugins) {"
+        },
+        {
+          "line": 24969,
+          "ticks": 5,
+          "source": "plugin.particleUpdate?.(particle, delta);"
+        },
+        {
+          "line": 24956,
+          "ticks": 3,
+          "source": "for (const plugin of this.#particleResetPlugins) {"
+        },
+        {
+          "line": 24965,
+          "ticks": 1,
+          "source": "for (const plugin of this.#particleUpdatePlugins) {"
+        },
+        {
+          "line": 24965,
+          "ticks": 6,
+          "source": "for (const plugin of this.#particleUpdatePlugins) {"
+        },
+        {
+          "line": 24978,
+          "ticks": 4,
+          "source": "this.#grid.insert(particle);"
+        },
+        {
+          "line": 24938,
+          "ticks": 19,
+          "source": "#updateParticlesPhase1(delta, particlesToDelete) {"
+        }
+      ]
+    },
+    {
+      "functionName": "#updateParticlesPhase2",
+      "line": 24985,
+      "selfSamples": 44,
+      "positionTicks": [
+        {
+          "line": 25009,
+          "ticks": 1,
+          "source": "if (!particle.spawning) {"
+        },
+        {
+          "line": 25006,
+          "ticks": 1,
+          "source": "if (!this.#isParticleActive(particle, id, removalVersion)) {"
+        },
+        {
+          "line": 25004,
+          "ticks": 9,
+          "source": "updater.update(particle, delta);"
+        },
+        {
+          "line": 25010,
+          "ticks": 3,
+          "source": "for (const plugin of this.#postParticleUpdatePlugins) {"
+        },
+        {
+          "line": 25010,
+          "ticks": 1,
+          "source": "for (const plugin of this.#postParticleUpdatePlugins) {"
+        },
+        {
+          "line": 25000,
+          "ticks": 10,
+          "source": "for (const updater of this.#container.particleUpdaters) {"
+        },
+        {
+          "line": 25000,
+          "ticks": 6,
+          "source": "for (const updater of this.#container.particleUpdaters) {"
+        },
+        {
+          "line": 25000,
+          "ticks": 1,
+          "source": "for (const updater of this.#container.particleUpdaters) {"
+        },
+        {
+          "line": 24985,
+          "ticks": 10,
+          "source": "#updateParticlesPhase2(delta, particlesToDelete) {"
+        }
+      ]
+    },
+    {
+      "functionName": "",
+      "line": 22563,
+      "selfSamples": 33,
+      "positionTicks": [
+        {
+          "line": 22581,
+          "ticks": 1,
+          "source": "transform,"
+        },
+        {
+          "line": 22589,
+          "ticks": 1,
+          "source": "this.#drawingParticle = nested;"
+        },
+        {
+          "line": 22569,
+          "ticks": 1,
+          "source": "for (const plugin of this.#drawParticlesSetupPlugins) {"
+        },
+        {
+          "line": 22579,
+          "ticks": 3,
+          "source": "radius: radius * zIndexFactor ** zIndexOptions.sizeRate,"
+        },
+        {
+          "line": 22572,
+          "ticks": 15,
+          "source": "this.#applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);"
+        },
+        {
+          "line": 22564,
+          "ticks": 1,
+          "source": "if (nested) {"
+        },
+        {
+          "line": 22580,
+          "ticks": 1,
+          "source": "opacity: opacity,"
+        },
+        {
+          "line": 22584,
+          "ticks": 1,
+          "source": "for (const plugin of this.#drawParticlesCleanupPlugins) {"
+        },
+        {
+          "line": 22573,
+          "ticks": 1,
+          "source": "this.#drawParticle({"
+        },
+        {
+          "line": 22573,
+          "ticks": 8,
+          "source": "this.#drawParticle({"
+        }
+      ]
+    },
+    {
+      "functionName": "(program)",
+      "line": 0,
+      "selfSamples": 27
+    },
+    {
+      "functionName": "#applyPreDrawUpdaters",
+      "line": 22728,
+      "selfSamples": 27,
+      "positionTicks": [
+        {
+          "line": 22739,
+          "ticks": 2,
+          "source": "if (updater.getTransformValues) {"
+        },
+        {
+          "line": 22741,
+          "ticks": 1,
+          "source": "for (const key in updaterTransform) {"
+        },
+        {
+          "line": 22730,
+          "ticks": 1,
+          "source": "if (updater.getColorStyles) {"
+        },
+        {
+          "line": 22731,
+          "ticks": 1,
+          "source": "const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);"
+        },
+        {
+          "line": 22731,
+          "ticks": 10,
+          "source": "const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);"
+        },
+        {
+          "line": 22740,
+          "ticks": 1,
+          "source": "const updaterTransform = updater.getTransformValues(particle);"
+        },
+        {
+          "line": 22732,
+          "ticks": 1,
+          "source": "if (fill) {"
+        },
+        {
+          "line": 22729,
+          "ticks": 2,
+          "source": "for (const updater of this.#preDrawUpdaters) {"
+        },
+        {
+          "line": 22731,
+          "ticks": 2,
+          "source": "const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);"
+        },
+        {
+          "line": 22728,
+          "ticks": 2,
+          "source": "#applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform) {"
+        },
+        {
+          "line": 22745,
+          "ticks": 1,
+          "source": "updater.beforeDraw?.(particle);"
+        },
+        {
+          "line": 22742,
+          "ticks": 1,
+          "source": "setTransformValue(transform, updaterTransform, key);"
+        }
+      ]
+    },
+    {
+      "functionName": "particleUpdate",
+      "line": 27132,
+      "selfSamples": 26,
+      "positionTicks": [
+        {
+          "line": 27142,
+          "ticks": 2,
+          "source": "for (const absorber of absorbers) {"
+        },
+        {
+          "line": 27138,
+          "ticks": 1,
+          "source": "for (const absorber of absorbers) {"
+        },
+        {
+          "line": 27142,
+          "ticks": 3,
+          "source": "for (const absorber of absorbers) {"
+        },
+        {
+          "line": 27137,
+          "ticks": 1,
+          "source": "const position = orbiting.getPosition(), force = Vector.origin, orbitDriven = absorbers.some(absorber => absorber.orbits);"
+        },
+        {
+          "line": 27132,
+          "ticks": 1,
+          "source": "particleUpdate(particle, delta) {"
+        },
+        {
+          "line": 27139,
+          "ticks": 1,
+          "source": "force.addTo(absorber.getForce(position));"
+        },
+        {
+          "line": 27144,
+          "ticks": 1,
+          "source": "if (particle.destroyed) {"
+        },
+        {
+          "line": 27149,
+          "ticks": 1,
+          "source": "this.#recycleParticle(orbiting);"
+        },
+        {
+          "line": 27138,
+          "ticks": 1,
+          "source": "for (const absorber of absorbers) {"
+        },
+        {
+          "line": 27137,
+          "ticks": 1,
+          "source": "const position = orbiting.getPosition(), force = Vector.origin, orbitDriven = absorbers.some(absorber => absorber.orbits);"
+        },
+        {
+          "line": 27142,
+          "ticks": 1,
+          "source": "for (const absorber of absorbers) {"
+        },
+        {
+          "line": 27143,
+          "ticks": 4,
+          "source": "absorber.attract(orbiting, delta);"
+        },
+        {
+          "line": 27137,
+          "ticks": 5,
+          "source": "const position = orbiting.getPosition(), force = Vector.origin, orbitDriven = absorbers.some(absorber => absorber.orbits);"
+        }
+      ]
+    },
+    {
+      "functionName": "insert",
+      "line": 24117,
+      "selfSamples": 26,
+      "positionTicks": [
+        {
+          "line": 24122,
+          "ticks": 2,
+          "source": "this.#cells.set(key, cell);"
+        },
+        {
+          "line": 24125,
+          "ticks": 2,
+          "source": "}"
+        },
+        {
+          "line": 24119,
+          "ticks": 22,
+          "source": "let cell = this.#cells.get(key);"
+        }
+      ]
+    },
+    {
+      "functionName": "draw",
+      "line": 22533,
+      "selfSamples": 24,
+      "positionTicks": [
+        {
+          "line": 22535,
+          "ticks": 1,
+          "source": "if (!ctx) {"
+        },
+        {
+          "line": 22533,
+          "ticks": 1,
+          "source": "draw(cb) {"
+        },
+        {
+          "line": 22538,
+          "ticks": 21,
+          "source": "return cb(ctx);"
+        }
+      ]
+    },
+    {
+      "functionName": "(garbage collector)",
+      "line": 0,
+      "selfSamples": 22
+    },
+    {
+      "functionName": "move",
+      "line": 25793,
+      "selfSamples": 19,
+      "positionTicks": [
+        {
+          "line": 25807,
+          "ticks": 1,
+          "source": "particle.velocity.y += integrateAcceleration(accelerationY);"
+        },
+        {
+          "line": 25795,
+          "ticks": 1,
+          "source": "const gravityOptions = particle.gravity, gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity$3 : identity$3, initialVelocityX = particle.velocity.x, initialVelocityY = particle.velocity.y, deltaFactor = delta.factor || identity$3, decay = particle.moveDecay ?? noDecay, decay"
+        },
+        {
+          "line": 25831,
+          "ticks": 1,
+          "source": "const zIndexOptions = particle.options.zIndex, zVelocityFactor = (identity$3 - particle.zIndexFactor) ** zIndexOptions.velocityRate;"
+        },
+        {
+          "line": 25806,
+          "ticks": 2,
+          "source": "particle.velocity.x += integrateAcceleration(accelerationX);"
+        },
+        {
+          "line": 25831,
+          "ticks": 1,
+          "source": "const zIndexOptions = particle.options.zIndex, zVelocityFactor = (identity$3 - particle.zIndexFactor) ** zIndexOptions.velocityRate;"
+        },
+        {
+          "line": 25795,
+          "ticks": 1,
+          "source": "const gravityOptions = particle.gravity, gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity$3 : identity$3, initialVelocityX = particle.velocity.x, initialVelocityY = particle.velocity.y, deltaFactor = delta.factor || identity$3, decay = particle.moveDecay ?? noDecay, decay"
+        },
+        {
+          "line": 25840,
+          "ticks": 3,
+          "source": "position.x += Math.sin(position.x * Math.cos(position.y)) * reduceFactor;"
+        },
+        {
+          "line": 25839,
+          "ticks": 8,
+          "source": "if (moveOptions.vibrate) {"
+        }
+      ]
+    },
+    {
+      "functionName": "#updateOutMode",
+      "line": 12148,
+      "selfSamples": 17,
+      "positionTicks": [
+        {
+          "line": 12149,
+          "ticks": 1,
+          "source": "for (const updater of this.updaters.values()) {"
+        },
+        {
+          "line": 12149,
+          "ticks": 1,
+          "source": "for (const updater of this.updaters.values()) {"
+        },
+        {
+          "line": 12149,
+          "ticks": 2,
+          "source": "for (const updater of this.updaters.values()) {"
+        },
+        {
+          "line": 12150,
+          "ticks": 1,
+          "source": "updater.update(particle, direction, delta, outMode);"
+        },
+        {
+          "line": 12148,
+          "ticks": 10,
+          "source": "#updateOutMode(particle, delta, outMode, direction) {"
+        }
+      ]
+    },
+    {
+      "functionName": "update",
+      "line": 12134,
+      "selfSamples": 16,
+      "positionTicks": [
+        {
+          "line": 12136,
+          "ticks": 1,
+          "source": "particle.justWarped = false;"
+        },
+        {
+          "line": 12135,
+          "ticks": 2,
+          "source": "const outModes = particle.options.move.outModes;"
+        },
+        {
+          "line": 12139,
+          "ticks": 2,
+          "source": "this.#updateOutMode(particle, delta, outModes.right ?? outModes.default, exports.OutModeDirection.right);"
+        },
+        {
+          "line": 12138,
+          "ticks": 1,
+          "source": "this.#updateOutMode(particle, delta, outModes.left ?? outModes.default, exports.OutModeDirection.left);"
+        },
+        {
+          "line": 12139,
+          "ticks": 2,
+          "source": "this.#updateOutMode(particle, delta, outModes.right ?? outModes.default, exports.OutModeDirection.right);"
+        },
+        {
+          "line": 12138,
+          "ticks": 1,
+          "source": "this.#updateOutMode(particle, delta, outModes.left ?? outModes.default, exports.OutModeDirection.left);"
+        },
+        {
+          "line": 12137,
+          "ticks": 2,
+          "source": "this.#updateOutMode(particle, delta, outModes.bottom ?? outModes.default, exports.OutModeDirection.bottom);"
+        },
+        {
+          "line": 12134,
+          "ticks": 5,
+          "source": "update(particle, delta) {"
+        }
+      ]
+    },
+    {
+      "functionName": "particlesInteract",
+      "line": 26539,
+      "selfSamples": 16,
+      "positionTicks": [
+        {
+          "line": 26545,
+          "ticks": 2,
+          "source": "if (interactor.isEnabled(particle, interactivityData)) {"
+        },
+        {
+          "line": 26541,
+          "ticks": 3,
+          "source": "for (const interactor of this.#externalClearInteractors) {"
+        },
+        {
+          "line": 26542,
+          "ticks": 3,
+          "source": "interactor.clear(particle, delta);"
+        },
+        {
+          "line": 26544,
+          "ticks": 1,
+          "source": "for (const interactor of this.#particleInteractors) {"
+        },
+        {
+          "line": 26541,
+          "ticks": 1,
+          "source": "for (const interactor of this.#externalClearInteractors) {"
+        },
+        {
+          "line": 26539,
+          "ticks": 6,
+          "source": "particlesInteract(particle, delta) {"
+        }
+      ]
+    },
+    {
+      "functionName": "arc",
+      "line": 0,
+      "selfSamples": 16,
+      "positionTicks": [
+        {
+          "line": 11412,
+          "ticks": 16,
+          "source": "context.arc(originPoint.x, originPoint.y, radius, circleRange.min, circleRange.max, false);"
+        }
+      ]
+    },
+    {
+      "functionName": "#drawShape",
+      "line": 22818,
+      "selfSamples": 14,
+      "positionTicks": [
+        {
+          "line": 22832,
+          "ticks": 2,
+          "source": "context.fill();"
+        },
+        {
+          "line": 22831,
+          "ticks": 1,
+          "source": "if (fill) {"
+        },
+        {
+          "line": 22822,
+          "ticks": 1,
+          "source": "const { context, fill, particle, stroke } = data;"
+        },
+        {
+          "line": 22826,
+          "ticks": 8,
+          "source": "context.beginPath();"
+        }
+      ]
+    },
+    {
+      "functionName": "attract",
+      "line": 31303,
+      "selfSamples": 13,
+      "positionTicks": [
+        {
+          "line": 31304,
+          "ticks": 1,
+          "source": "const container = this.#container, options = this.options, pos = particle.getPosition(), particleRadius = particle.getRadius(), distanceSq = getDistanceSq(this.position, pos), contactRadius = this.size + particleRadius;"
+        },
+        {
+          "line": 31304,
+          "ticks": 1,
+          "source": "const container = this.#container, options = this.options, pos = particle.getPosition(), particleRadius = particle.getRadius(), distanceSq = getDistanceSq(this.position, pos), contactRadius = this.size + particleRadius;"
+        },
+        {
+          "line": 31323,
+          "ticks": 4,
+          "source": "this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;"
+        },
+        {
+          "line": 31322,
+          "ticks": 3,
+          "source": "if (this.limit.mass <= minMass || this.mass < this.limit.mass) {"
+        },
+        {
+          "line": 31313,
+          "ticks": 1,
+          "source": "particle.needsNewPosition = true;"
+        }
+      ]
+    },
+    {
+      "functionName": "particleReset",
+      "line": 26638,
+      "selfSamples": 13,
+      "positionTicks": [
+        {
+          "line": 26639,
+          "ticks": 13,
+          "source": "this.#container.interactionManager?.reset(particle);"
+        }
+      ]
+    },
+    {
+      "functionName": "drawParticle",
+      "line": 22540,
+      "selfSamples": 13,
+      "positionTicks": [
+        {
+          "line": 22555,
+          "ticks": 1,
+          "source": "const container = this.#container, zIndexOptions = particle.options.zIndex, zIndexFactor = zIndexFactorOffset - particle.zIndexFactor, { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(), nested = this.#drawingParticle, transform = nested ? {} : this.#reusableTransform, colorStyles = nes"
+        },
+        {
+          "line": 22563,
+          "ticks": 1,
+          "source": "this.draw((context) => {"
+        },
+        {
+          "line": 22548,
+          "ticks": 1,
+          "source": "const pfColor = particle.getFillColor(), psColor = particle.getStrokeColor();"
+        },
+        {
+          "line": 22556,
+          "ticks": 2,
+          "source": "? getStyleFromOklch(fColor, container.hdr, fillOpacity * opacity, container.peakNits, container.hdrMode, container.outputColorSpace)"
+        },
+        {
+          "line": 22555,
+          "ticks": 1,
+          "source": "const container = this.#container, zIndexOptions = particle.options.zIndex, zIndexFactor = zIndexFactorOffset - particle.zIndexFactor, { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(), nested = this.#drawingParticle, transform = nested ? {} : this.#reusableTransform, colorStyles = nes"
+        },
+        {
+          "line": 22549,
+          "ticks": 1,
+          "source": "let [fColor, sColor] = this.#getPluginParticleColors(particle);"
+        },
+        {
+          "line": 22555,
+          "ticks": 2,
+          "source": "const container = this.#container, zIndexOptions = particle.options.zIndex, zIndexFactor = zIndexFactorOffset - particle.zIndexFactor, { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(), nested = this.#drawingParticle, transform = nested ? {} : this.#reusableTransform, colorStyles = nes"
+        },
+        {
+          "line": 22540,
+          "ticks": 3,
+          "source": "drawParticle(particle, delta) {"
+        },
+        {
+          "line": 22555,
+          "ticks": 1,
+          "source": "const container = this.#container, zIndexOptions = particle.options.zIndex, zIndexFactor = zIndexFactorOffset - particle.zIndexFactor, { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(), nested = this.#drawingParticle, transform = nested ? {} : this.#reusableTransform, colorStyles = nes"
+        }
+      ]
+    },
+    {
+      "functionName": "getOpacity",
+      "line": 23784,
+      "selfSamples": 13,
+      "positionTicks": [
+        {
+          "line": 23789,
+          "ticks": 1,
+          "source": "return this.#cachedOpacityData;"
+        },
+        {
+          "line": 23785,
+          "ticks": 2,
+          "source": "const zIndexOptions = this.options.zIndex, zIndexFactor = zIndexFactorOffset - this.zIndexFactor, zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate, baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity$3, this.container.engine.getRandomFn()), modifierOpacity = this.#applyModifi"
+        },
+        {
+          "line": 23785,
+          "ticks": 1,
+          "source": "const zIndexOptions = this.options.zIndex, zIndexFactor = zIndexFactorOffset - this.zIndexFactor, zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate, baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity$3, this.container.engine.getRandomFn()), modifierOpacity = this.#applyModifi"
+        },
+        {
+          "line": 23785,
+          "ticks": 8,
+          "source": "const zIndexOptions = this.options.zIndex, zIndexFactor = zIndexFactorOffset - this.zIndexFactor, zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate, baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity$3, this.container.engine.getRandomFn()), modifierOpacity = this.#applyModifi"
+        }
+      ]
+    },
+    {
+      "functionName": "#getDefaultInsideCanvasResult",
+      "line": 23958,
+      "selfSamples": 12,
+      "positionTicks": [
+        {
+          "line": 23960,
+          "ticks": 1,
+          "source": "if (direction === exports.OutModeDirection.bottom) {"
+        },
+        {
+          "line": 23959,
+          "ticks": 2,
+          "source": "const radius = this.getRadius(), canvasSize = this.container.canvas.size, isBounce = outMode === exports.OutMode.bounce || outMode === exports.OutMode.split, position = isBounce ? this.getPosition() : this.position;"
+        },
+        {
+          "line": 23972,
+          "ticks": 2,
+          "source": "if (direction === exports.OutModeDirection.right) {"
+        },
+        {
+          "line": 23974,
+          "ticks": 1,
+          "source": "inside: isBounce ? position.x + radius < canvasSize.width : position.x - radius < canvasSize.width,"
+        },
+        {
+          "line": 23968,
+          "ticks": 1,
+          "source": "inside: isBounce ? position.x - radius > defaultAngle$1 : position.x + radius > defaultAngle$1,"
+        },
+        {
+          "line": 23964,
+          "ticks": 1,
+          "source": "};"
+        },
+        {
+          "line": 23958,
+          "ticks": 2,
+          "source": "#getDefaultInsideCanvasResult(direction, outMode) {"
+        },
+        {
+          "line": 23959,
+          "ticks": 1,
+          "source": "const radius = this.getRadius(), canvasSize = this.container.canvas.size, isBounce = outMode === exports.OutMode.bounce || outMode === exports.OutMode.split, position = isBounce ? this.getPosition() : this.position;"
+        }
+      ]
+    },
+    {
+      "functionName": "#updateFromAngle",
+      "line": 212,
+      "selfSamples": 11,
+      "positionTicks": [
+        {
+          "line": 213,
+          "ticks": 1,
+          "source": "this.x = Math.cos(angle) * length;"
+        },
+        {
+          "line": 212,
+          "ticks": 2,
+          "source": "#updateFromAngle(angle, length) {"
+        },
+        {
+          "line": 213,
+          "ticks": 3,
+          "source": "this.x = Math.cos(angle) * length;"
+        },
+        {
+          "line": 214,
+          "ticks": 3,
+          "source": "this.y = Math.sin(angle) * length;"
+        },
+        {
+          "line": 214,
+          "ticks": 2,
+          "source": "this.y = Math.sin(angle) * length;"
+        }
+      ]
+    },
+    {
+      "functionName": "reset",
+      "line": 26553,
+      "selfSamples": 11,
+      "positionTicks": [
+        {
+          "line": 26555,
+          "ticks": 1,
+          "source": "for (const interactor of this.#externalResetInteractors) {"
+        },
+        {
+          "line": 26560,
+          "ticks": 2,
+          "source": "for (const interactor of this.#particleResetInteractors) {"
+        },
+        {
+          "line": 26555,
+          "ticks": 2,
+          "source": "for (const interactor of this.#externalResetInteractors) {"
+        },
+        {
+          "line": 26556,
+          "ticks": 2,
+          "source": "if (interactor.isEnabled(interactivityData)) {"
+        },
+        {
+          "line": 26555,
+          "ticks": 3,
+          "source": "for (const interactor of this.#externalResetInteractors) {"
+        }
+      ]
+    },
+    {
+      "functionName": "#getInsideCanvasResult",
+      "line": 24001,
+      "selfSamples": 11,
+      "positionTicks": [
+        {
+          "line": 24002,
+          "ticks": 1,
+          "source": "const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode), container = this.container, shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined, effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;"
+        },
+        {
+          "line": 24003,
+          "ticks": 1,
+          "source": "if (!shapeDrawer?.isInsideCanvas && !effectDrawer?.isInsideCanvas) {"
+        },
+        {
+          "line": 24002,
+          "ticks": 1,
+          "source": "const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode), container = this.container, shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined, effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;"
+        },
+        {
+          "line": 24002,
+          "ticks": 1,
+          "source": "const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode), container = this.container, shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined, effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;"
+        },
+        {
+          "line": 24002,
+          "ticks": 6,
+          "source": "const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode), container = this.container, shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined, effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;"
+        },
+        {
+          "line": 24002,
+          "ticks": 1,
+          "source": "const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode), container = this.container, shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined, effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;"
+        }
+      ]
+    },
+    {
+      "functionName": "initContainer",
+      "line": 27052,
+      "selfSamples": 10,
+      "positionTicks": [
+        {
+          "line": 27053,
+          "ticks": 2,
+          "source": "if (this.#containerArrays.has(container)) {"
+        },
+        {
+          "line": 27052,
+          "ticks": 8,
+          "source": "initContainer(container) {"
+        }
+      ]
+    },
+    {
+      "functionName": "particleUpdate",
+      "line": 25960,
+      "selfSamples": 10,
+      "positionTicks": [
+        {
+          "line": 25966,
+          "ticks": 1,
+          "source": "if (moveOptions.spin.enable) {"
+        },
+        {
+          "line": 25960,
+          "ticks": 2,
+          "source": "particleUpdate(particle, delta) {"
+        },
+        {
+          "line": 25972,
+          "ticks": 1,
+          "source": "applyDistance(particle);"
+        },
+        {
+          "line": 25970,
+          "ticks": 5,
+          "source": "move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, reduceFactor, delta);"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Instrumented CPU profile identifies candidate hotspots; elapsed time is not a budget measurement.",
+    "Profile sampling and unminified code may change absolute timings; confirm any change with the fixed runtime harness."
+  ]
+}

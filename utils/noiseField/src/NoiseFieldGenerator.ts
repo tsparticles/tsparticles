@@ -1,4 +1,11 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
+import {
+  type Container,
+  type Particle,
+  Vector,
+  deepExtend,
+  doublePI,
+  identity,
+} from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -34,7 +41,11 @@ const originCoordinate = 0,
       y: 40000,
       z: 40000,
     },
-  };
+  },
+  globalEvents = globalThis as unknown as Pick<
+    Partial<typeof globalThis>,
+    "addEventListener" | "removeEventListener"
+  >;
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   readonly container: Container;
@@ -43,6 +54,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   noiseW: number;
   readonly options: INoiseFieldOptions;
   readonly #res: Vector;
+  #resizeHandler?: () => void;
 
   protected constructor(container: Container, noiseGen: INoiseGenerator) {
     this.container = container;
@@ -51,6 +63,13 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     this.noiseW = 0;
     this.#res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
+  }
+
+  destroy(): void {
+    if (this.#resizeHandler) {
+      globalEvents.removeEventListener?.("resize", this.#resizeHandler);
+      this.#resizeHandler = undefined;
+    }
   }
 
   generate(particle: Particle): Vector {
@@ -93,7 +112,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
       return;
     }
 
-    this.container.canvas.render.draw(ctx => {
+    this.container.canvas.render.draw((ctx) => {
       this.#drawField(ctx);
     });
   }
@@ -133,7 +152,13 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
             z * lengthFactor + options.offset.z,
             noiseW,
           );
-          cell.angle = noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * doublePI;
+          cell.angle =
+            noiseGen.noise4d(
+              x * angleFactor,
+              y * angleFactor,
+              z * angleFactor,
+              noiseW,
+            ) * doublePI;
         }
       }
     }
@@ -219,7 +244,10 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     options.width = container.canvas.size.width;
     options.height = container.canvas.size.height;
-    options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
+    options.size =
+      (sourceOptions["size"] as number) > empty
+        ? (sourceOptions["size"] as number)
+        : defaultOptions.size;
     options.increment =
       (sourceOptions["increment"] as number) > empty
         ? (sourceOptions["increment"] as number)
@@ -238,11 +266,14 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     options.factor.length = factor?.length ?? defaultOptions.factor.length;
     options.seed = sourceOptions["seed"] as number | undefined;
 
-    this.noiseGen.seed(options.seed ?? getRandom());
+    this.noiseGen.seed(options.seed ?? container.engine.getRandom());
 
-    options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
-    options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
-    options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
+    options.columns =
+      Math.floor(options.width / options.size) + optionsSizeOffset;
+    options.rows =
+      Math.floor(options.height / options.size) + optionsSizeOffset;
+    options.layers =
+      Math.floor(container.zLayers / options.size) + optionsSizeOffset;
 
     this.#initField();
   }
@@ -252,8 +283,11 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     this.#resetField();
 
-    addEventListener("resize", () => {
+    this.destroy();
+    this.#resizeHandler = (): void => {
       this.#resetField();
-    });
+    };
+
+    globalEvents.addEventListener?.("resize", this.#resizeHandler);
   }
 }

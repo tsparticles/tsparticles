@@ -1,0 +1,924 @@
+import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../../Types/EngineInitializers.js";
+import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "../Utils/Constants.js";
+import { getItemMapFromInitializer, getItemsFromInitializer } from "../../Utils/Utils.js";
+import { CanvasManager } from "../Canvas/CanvasManager.js";
+import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
+import type { Engine } from "../Engine/Engine.js";
+import { EventListeners } from "./EventListeners.js";
+import { EventType } from "../../Enums/Types/EventType.js";
+import { HdrMode } from "../../Enums/Modes/HdrMode.js";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
+import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
+import type { IPlugin } from "../Interfaces/IPlugin.js";
+import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import { Options } from "../../Options/Classes/Options.js";
+import { ParticlesManager } from "../Particles/ParticlesManager.js";
+import type { PluginManager } from "../Engine/PluginManager.js";
+import { Retina } from "./Retina.js";
+import { getRangeValue } from "../../Utils/MathUtils.js";
+import { loadOptions } from "../../Utils/OptionLoader.js";
+import { toEnumValue } from "../../Utils/TypeUtils.js";
+
+/** Container constructor parameters */
+export interface ContainerParams {
+  /** Event dispatch callback */
+  dispatchCallback: (eventType: string, args?: CustomEventArgs) => void;
+  /** The owning engine and its runtime services */
+  engine: Engine;
+  /** The container id */
+  id: string;
+  /** Destroy callback */
+  onDestroy: (remove: boolean) => void;
+  /** The plugin manager instance */
+  pluginManager: PluginManager;
+  /** Source options to load */
+  sourceOptions?: ISourceOptions;
+}
+
+/**
+ * Checks if the container is still usable
+ * @param container - the container to check
+ * @returns true if the container is still usable
+ */
+function guardCheck(container: Container): boolean {
+  return !container.destroyed;
+}
+
+/**
+ * @param delta - the delta object to update
+ * @param value - the delta value
+ * @param fpsLimit - the fps limit
+ * @param smooth - if true, uses smooth delta
+ */
+function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth = false): void {
+  delta.value = value;
+  delta.factor = smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds;
+}
+
+/**
+ * @param pluginManager - The plugin manager
+ * @param container - The container to handle
+ * @param sourceOptionsArr - The sourceOptionsArr
+ * @returns the options loaded
+ */
+function loadContainerOptions(
+  pluginManager: PluginManager,
+  container: Container,
+  ...sourceOptionsArr: (ISourceOptions | undefined)[]
+): Options {
+  const options = new Options(pluginManager, container);
+
+  loadOptions(options, ...sourceOptionsArr);
+
+  return options;
+}
+
+const emptyPlugins: readonly IContainerPlugin[] = Object.freeze([]);
+
+interface CleanupFailure {
+  error: unknown;
+  hasError: boolean;
+}
+
+function attemptCleanup(failure: CleanupFailure, callback: () => void): void {
+  try {
+    callback();
+  } catch (error: unknown) {
+    if (!failure.hasError) {
+      failure.error = error;
+      failure.hasError = true;
+    }
+  }
+}
+
+/**
+ * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
+ * [[include:Container.md]]
+ */
+export class Container {
+  /**
+   * The options loaded by the container, it's a full {@link Options} object
+   */
+  actualOptions;
+
+  /**
+   * Canvas object, in charge of the canvas element and drawing functions
+   */
+  readonly canvas;
+
+  /**
+   * Check if the particles' container is destroyed, if so it's not recommended using it
+   */
+  destroyed;
+
+  /** The effect drawers map */
+  effectDrawers: Map<string, IEffectDrawer>;
+
+  /** The engine that owns this container. */
+  readonly engine: Engine;
+
+  /**
+   * The container fps limit, coming from options
+   */
+  fpsLimit;
+
+  /**
+   * The container hdr support flag
+   */
+  hdr: boolean;
+
+  /**
+   * The HDR rendering mode preset
+   */
+  hdrMode: HdrMode;
+
+  /** The container id */
+  readonly id;
+
+  /** The effective color space used by the render canvas. */
+  outputColorSpace: PredefinedColorSpace;
+
+  /**
+   * The container check if it's hidden on the web page
+   */
+  pageHidden;
+
+  /**
+   * The particles manager
+   */
+  readonly particles;
+
+  /** The particle updaters array */
+  particleUpdaters: IParticleUpdater[];
+
+  /**
+   * The peak brightness in nits for HDR rendering
+   */
+  peakNits: number;
+
+  /** The retina manager */
+  readonly retina;
+
+  /** The shape drawers map */
+  shapeDrawers: Map<string, IShapeDrawer>;
+
+  /**
+   * Check if the particles container is started
+   */
+  started;
+
+  /** The number of z-layers */
+  zLayers;
+
+  #delay: number;
+  #delayResolve?: () => void;
+  #delayTimeout?: number;
+  readonly #delta: IDelta = { value: 0, factor: 0 };
+  readonly #dispatchCallback;
+  #drawAnimationFrame?: number;
+  /**
+   * The container duration
+   */
+  #duration;
+  readonly #eventListeners;
+  #firstStart;
+  #initialSourceOptions;
+  /**
+   * Last frame time, used for delta values, for keeping animation correct in lower frame rates
+   */
+  #lastFrameTime?: number;
+  /**
+   * The container lifetime
+   */
+  #lifeTime;
+  readonly #onDestroy;
+  #options;
+  #particleCreatedPlugins = emptyPlugins;
+  #particleDestroyedPlugins = emptyPlugins;
+  #particlePositionPlugins = emptyPlugins;
+  #paused;
+  #pendingPlugins: IContainerPlugin[] = [];
+  readonly #pluginManager;
+  #plugins = emptyPlugins;
+  #smooth;
+  #sourceOptions;
+  #startCancel?: () => void;
+  #startGeneration = 0;
+  #startPromise?: Promise<void>;
+
+  /**
+   * This is the core class, create an instance to have a new working particles manager
+   * @param params - The parameters
+   */
+  constructor(params: ContainerParams) {
+    this.engine = params.engine;
+    const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
+
+    this.#pluginManager = pluginManager;
+    this.#dispatchCallback = dispatchCallback;
+    this.#onDestroy = onDestroy;
+    this.id = Symbol(id);
+    this.fpsLimit = 120;
+    this.hdr = false;
+    this.outputColorSpace = "srgb";
+    this.hdrMode = HdrMode.standard;
+    this.peakNits = 400;
+    this.#smooth = false;
+    this.#delay = 0;
+    this.#duration = 0;
+    this.#lifeTime = 0;
+    this.#firstStart = true;
+    this.started = false;
+    this.destroyed = false;
+    this.#paused = true;
+    this.#lastFrameTime = 0;
+    this.zLayers = 100;
+    this.pageHidden = false;
+    this.#sourceOptions = sourceOptions;
+    this.#initialSourceOptions = sourceOptions;
+    this.effectDrawers = new Map();
+    this.shapeDrawers = new Map();
+    this.particleUpdaters = [];
+    this.retina = new Retina(this);
+    this.canvas = new CanvasManager(this.#pluginManager, this);
+    this.particles = new ParticlesManager(this.#pluginManager, this);
+    /* tsParticles variables with default values */
+    this.#options = loadContainerOptions(this.#pluginManager, this);
+    this.actualOptions = loadContainerOptions(this.#pluginManager, this);
+
+    /* ---------- tsParticles - start ------------ */
+    this.#eventListeners = new EventListeners(this);
+    this.dispatchEvent(EventType.containerBuilt);
+  }
+
+  /**
+   * Gets the animation status
+   * @returns `true` is playing, `false` is paused
+   */
+  get animationStatus(): boolean {
+    return !this.#paused && !this.pageHidden && guardCheck(this);
+  }
+
+  /**
+   * The options used by the container, it's a full {@link Options} object
+   * @returns the options used by the container
+   */
+  get options(): Options {
+    return this.#options;
+  }
+
+  /**
+   * @returns Particle created plugins
+   */
+  get particleCreatedPlugins(): readonly IContainerPlugin[] {
+    return this.#particleCreatedPlugins;
+  }
+
+  /**
+   * @returns Particle destroyed plugins
+   */
+  get particleDestroyedPlugins(): readonly IContainerPlugin[] {
+    return this.#particleDestroyedPlugins;
+  }
+
+  /**
+   * @returns Particle position plugins
+   */
+  get particlePositionPlugins(): readonly IContainerPlugin[] {
+    return this.#particlePositionPlugins;
+  }
+
+  /**
+   * @returns All the plugins used by the container
+   */
+  get plugins(): readonly IContainerPlugin[] {
+    return this.#plugins;
+  }
+
+  /**
+   * The options that were initially passed to the container
+   * @returns the source options passed to the container
+   */
+  get sourceOptions(): ISourceOptions | undefined {
+    return this.#sourceOptions;
+  }
+
+  /**
+   * Adds to the container lifetime
+   * @param value - The value
+   */
+  addLifeTime(value: number): void {
+    this.#lifeTime += value;
+  }
+
+  /**
+   * Checks if the container is still alive
+   * @returns true if particle lifetime is less than duration, or if duration is not set, false otherwise
+   */
+  alive(): boolean {
+    return !this.#duration || this.#lifeTime <= this.#duration;
+  }
+
+  /**
+   * Destroys the current container, invalidating it
+   * @param remove - if true, removes the container from the engine
+   */
+  destroy(remove = true): void {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    const failure: CleanupFailure = { error: undefined, hasError: false };
+
+    attemptCleanup(failure, () => {
+      this.stop();
+    });
+    attemptCleanup(failure, () => {
+      this.particles.destroy();
+    });
+    attemptCleanup(failure, () => {
+      this.canvas.destroy();
+    });
+
+    for (const [, effectDrawer] of this.effectDrawers) {
+      attemptCleanup(failure, () => effectDrawer.destroy?.(this));
+    }
+
+    for (const [, shapeDrawer] of this.shapeDrawers) {
+      attemptCleanup(failure, () => shapeDrawer.destroy?.(this));
+    }
+
+    this.effectDrawers = new Map();
+    this.shapeDrawers = new Map();
+    this.particleUpdaters = [];
+    this.#plugins = emptyPlugins;
+
+    this.destroyed = true;
+
+    attemptCleanup(failure, () => {
+      this.#onDestroy(remove);
+    });
+    attemptCleanup(failure, () => {
+      this.dispatchEvent(EventType.containerDestroyed);
+    });
+
+    if (failure.hasError) {
+      throw failure.error;
+    }
+  }
+
+  /**
+   * Dispatches an event from the container
+   * @param type - The type
+   * @param data - The data to handle
+   */
+  dispatchEvent(type: string, data?: unknown): void {
+    this.#dispatchCallback(type, {
+      container: this,
+      data,
+    });
+  }
+
+  /**
+   * Draws a frame
+   * @param force - The force
+   */
+  draw(force: boolean): void {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    if (this.#drawAnimationFrame !== undefined) {
+      if (!force) {
+        return;
+      }
+
+      this.engine.cancelAnimation(this.#drawAnimationFrame);
+      this.#drawAnimationFrame = undefined;
+    }
+
+    let refreshTime = force;
+
+    this.#drawAnimationFrame = this.engine.animate((timestamp: number): void => {
+      this.#drawAnimationFrame = undefined;
+
+      if (refreshTime) {
+        this.#lastFrameTime = undefined;
+
+        refreshTime = false;
+      }
+
+      this.#nextFrame(timestamp);
+    });
+  }
+
+  /**
+   * Exports the container canvas to the specified format
+   * @param type - The type
+   * @param options - The options to handle
+   * @returns the promise for the export data
+   */
+  async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
+    for (const plugin of this.plugins) {
+      if (!plugin.export) {
+        continue;
+      }
+
+      const res = await plugin.export(type, options);
+
+      if (!res.supported) {
+        continue;
+      }
+
+      return res.blob;
+    }
+
+    this.engine.getLogger().error(`Export plugin with type ${type} not found`);
+
+    return undefined;
+  }
+
+  /**
+   * Initializes the container
+   * @returns the promise for the init
+   */
+  async init(): Promise<void> {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    const generation = this.#startGeneration,
+      allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
+
+    for (const plugin of this.#pluginManager.plugins) {
+      const containerPlugin = await plugin.getPlugin(this);
+
+      if (generation !== this.#startGeneration || this.destroyed) {
+        try {
+          containerPlugin.destroy?.();
+        } catch (error: unknown) {
+          this.engine
+            .getLogger()
+            .warning("Error cleaning up a container plugin after initialization was cancelled", error);
+        }
+
+        return;
+      }
+
+      this.#pendingPlugins.push(containerPlugin);
+
+      if (containerPlugin.preInit) {
+        await containerPlugin.preInit();
+
+        if (generation !== this.#startGeneration) {
+          return;
+        }
+      }
+
+      allContainerPlugins.set(plugin, containerPlugin);
+    }
+
+    await this.initDrawersAndUpdaters();
+
+    if (generation !== this.#startGeneration) {
+      return;
+    }
+
+    /* options settings */
+    this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this.#pluginManager, this, this.#options);
+
+    this.#initPlugins(allContainerPlugins);
+
+    /* init canvas + particles */
+    this.retina.init();
+    this.canvas.init();
+
+    this.updateActualOptions();
+
+    this.canvas.initBackground();
+    this.canvas.resize();
+
+    const { delay, duration, fpsLimit, smooth, zLayers } = this.actualOptions,
+      hdrOptions = this.actualOptions.hdr;
+
+    this.hdrMode = toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard);
+    this.peakNits = hdrOptions.peakNits;
+    this.zLayers = zLayers;
+    this.#duration = getRangeValue(duration, this.engine.getRandomFn()) * millisecondsToSeconds;
+    this.#delay = getRangeValue(delay, this.engine.getRandomFn()) * millisecondsToSeconds;
+    this.#lifeTime = 0;
+    this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
+    this.#smooth = smooth;
+
+    for (const plugin of this.plugins) {
+      await plugin.init?.();
+
+      if (generation !== this.#startGeneration) {
+        return;
+      }
+    }
+
+    await this.particles.init();
+
+    if (generation !== this.#startGeneration) {
+      return;
+    }
+
+    this.dispatchEvent(EventType.containerInit);
+
+    this.particles.setDensity();
+
+    for (const plugin of this.plugins) {
+      plugin.particlesSetup?.();
+    }
+
+    this.dispatchEvent(EventType.particlesSetup);
+    this.#pendingPlugins = [];
+  }
+
+  /** Initializes the effect drawers, shape drawers and particle updaters */
+  async initDrawersAndUpdaters(): Promise<void> {
+    const pluginManager = this.#pluginManager;
+
+    this.effectDrawers = await getItemMapFromInitializer<IEffectDrawer, EffectInitializer>(
+      this,
+      pluginManager.initializers.effects,
+    );
+    this.shapeDrawers = await getItemMapFromInitializer<IShapeDrawer, ShapeInitializer>(
+      this,
+      pluginManager.initializers.shapes,
+    );
+    this.particleUpdaters = await getItemsFromInitializer<IParticleUpdater, UpdaterInitializer>(
+      this,
+      pluginManager.initializers.updaters,
+    );
+  }
+
+  /**
+   * Pauses animations
+   */
+  pause(): void {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    if (this.#drawAnimationFrame !== undefined) {
+      this.engine.cancelAnimation(this.#drawAnimationFrame);
+
+      this.#drawAnimationFrame = undefined;
+    }
+
+    if (this.#paused) {
+      return;
+    }
+
+    for (const plugin of this.plugins) {
+      plugin.pause?.();
+    }
+
+    if (!this.pageHidden) {
+      this.#paused = true;
+    }
+
+    this.dispatchEvent(EventType.containerPaused);
+  }
+
+  /**
+   * Starts animations and resume from pause
+   * @param force - The force
+   */
+  play(force?: boolean): void {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    const needsUpdate = this.#paused || force;
+
+    if (this.#firstStart && !this.actualOptions.autoPlay) {
+      this.#firstStart = false;
+
+      return;
+    }
+
+    if (this.#paused) {
+      this.#paused = false;
+    }
+
+    if (needsUpdate) {
+      for (const plugin of this.plugins) {
+        if (plugin.play) {
+          plugin.play();
+        }
+      }
+    }
+
+    this.dispatchEvent(EventType.containerPlay);
+
+    this.draw(needsUpdate ?? false);
+  }
+
+  /**
+   * Restarts the container, just a {@link Container.stop}/{@link Container.start} alias
+   * @returns the Promise of the start method
+   */
+  async refresh(): Promise<void> {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    /* restart */
+    this.stop();
+
+    return this.start();
+  }
+
+  /**
+   * Resets the container with new options
+   * @param sourceOptions - The sourceOptions
+   * @returns the promise for the reset
+   */
+  async reset(sourceOptions?: ISourceOptions): Promise<void> {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    this.#initialSourceOptions = sourceOptions;
+    this.#sourceOptions = sourceOptions;
+    this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this.#pluginManager, this, this.#options);
+
+    return this.refresh();
+  }
+
+  /**
+   * Starts the container, initializes what are needed to create animations and event handling
+   */
+  async start(): Promise<void> {
+    if (!guardCheck(this) || this.started) {
+      return;
+    }
+
+    if (this.#startPromise) {
+      return this.#startPromise;
+    }
+
+    const generation = ++this.#startGeneration;
+    let cancel!: () => void;
+    const cancelled = new Promise<void>(resolve => {
+      cancel = resolve;
+    });
+
+    this.#startCancel = cancel;
+    this.#startPromise = (async (): Promise<void> => {
+      try {
+        await Promise.race([this.init(), cancelled]);
+
+        if (generation !== this.#startGeneration) {
+          return;
+        }
+
+        this.started = true;
+
+        await Promise.race([
+          new Promise<void>(resolve => {
+            this.#delayResolve = resolve;
+            this.#delayTimeout = setTimeout(() => {
+              this.#delayTimeout = undefined;
+              this.#delayResolve = undefined;
+              resolve();
+            }, this.#delay);
+          }),
+          cancelled,
+        ]);
+
+        if (generation !== this.#startGeneration || this.destroyed) {
+          return;
+        }
+
+        this.#eventListeners.addListeners();
+
+        const startPlugins = async (): Promise<void> => {
+          for (const plugin of this.plugins) {
+            if (generation !== this.#startGeneration) {
+              return;
+            }
+
+            await plugin.start?.();
+          }
+        };
+
+        await Promise.race([startPlugins(), cancelled]);
+
+        if (generation !== this.#startGeneration) {
+          return;
+        }
+
+        this.dispatchEvent(EventType.containerStarted);
+        this.play();
+      } catch (error) {
+        if (generation === this.#startGeneration && !this.destroyed) {
+          try {
+            this.stop();
+          } catch (cleanupError: unknown) {
+            this.engine.getLogger().warning("Error cleaning up after container start failed", cleanupError);
+          }
+        }
+
+        throw error;
+      } finally {
+        if (generation === this.#startGeneration) {
+          this.#startPromise = undefined;
+          this.#startCancel = undefined;
+        }
+      }
+    })();
+
+    return this.#startPromise;
+  }
+
+  /**
+   * Stops the container, opposite to `start`. Clears some resources and stops events.
+   */
+  stop(): void {
+    if (!guardCheck(this)) {
+      return;
+    }
+
+    const wasStarted = this.started,
+      failure: CleanupFailure = { error: undefined, hasError: false };
+
+    this.#startGeneration++;
+    this.#startCancel?.();
+    this.#startCancel = undefined;
+    this.#startPromise = undefined;
+
+    if (this.#delayTimeout !== undefined) {
+      clearTimeout(this.#delayTimeout);
+
+      this.#delayTimeout = undefined;
+      this.#delayResolve?.();
+      this.#delayResolve = undefined;
+    }
+
+    this.#firstStart = true;
+    this.started = false;
+    attemptCleanup(failure, () => {
+      this.#eventListeners.removeListeners();
+    });
+    if (wasStarted) {
+      attemptCleanup(failure, () => {
+        this.pause();
+      });
+    }
+    attemptCleanup(failure, () => {
+      this.particles.clear();
+    });
+    attemptCleanup(failure, () => {
+      this.canvas.stop();
+    });
+
+    const activePlugins = this.plugins;
+
+    for (const plugin of activePlugins) {
+      attemptCleanup(failure, () => plugin.stop?.());
+    }
+
+    const activePluginSet = new Set(activePlugins);
+
+    for (const plugin of this.#pendingPlugins) {
+      if (!activePluginSet.has(plugin)) {
+        attemptCleanup(failure, () => plugin.stop?.());
+        attemptCleanup(failure, () => plugin.destroy?.());
+      }
+    }
+
+    for (const plugin of activePlugins) {
+      attemptCleanup(failure, () => plugin.destroy?.());
+    }
+
+    this.#pendingPlugins = [];
+    this.#plugins = emptyPlugins;
+
+    this.#particleCreatedPlugins = emptyPlugins;
+    this.#particleDestroyedPlugins = emptyPlugins;
+    this.#particlePositionPlugins = emptyPlugins;
+
+    this.#sourceOptions = this.#options;
+
+    if (wasStarted) {
+      attemptCleanup(failure, () => {
+        this.dispatchEvent(EventType.containerStopped);
+      });
+    }
+
+    if (failure.hasError) {
+      throw failure.error;
+    }
+  }
+
+  /**
+   * Updates the container options
+   * @returns true if the options were updated, false otherwise
+   */
+  updateActualOptions(): boolean {
+    let refresh = false;
+
+    for (const plugin of this.plugins) {
+      if (plugin.updateActualOptions) {
+        refresh = plugin.updateActualOptions() || refresh;
+      }
+    }
+
+    this.canvas.render.updateBackgroundElement();
+
+    return refresh;
+  }
+
+  #initPlugins(allContainerPlugins: Map<IPlugin, IContainerPlugin>): void {
+    const plugins: IContainerPlugin[] = [],
+      particleCreatedPlugins: IContainerPlugin[] = [],
+      particleDestroyedPlugins: IContainerPlugin[] = [],
+      particlePositionPlugins: IContainerPlugin[] = [];
+
+    for (const [plugin, containerPlugin] of allContainerPlugins) {
+      if (!plugin.needsPlugin(this.actualOptions)) {
+        continue;
+      }
+
+      plugins.push(containerPlugin);
+
+      if (containerPlugin.particleCreated) {
+        particleCreatedPlugins.push(containerPlugin);
+      }
+
+      if (containerPlugin.particleDestroyed) {
+        particleDestroyedPlugins.push(containerPlugin);
+      }
+
+      if (containerPlugin.particlePosition) {
+        particlePositionPlugins.push(containerPlugin);
+      }
+    }
+
+    this.#plugins = Object.freeze(plugins);
+    this.#particleCreatedPlugins = Object.freeze(particleCreatedPlugins);
+    this.#particleDestroyedPlugins = Object.freeze(particleDestroyedPlugins);
+    this.#particlePositionPlugins = Object.freeze(particlePositionPlugins);
+
+    const activePlugins = new Set(plugins);
+
+    for (const plugin of this.#pendingPlugins) {
+      if (!activePlugins.has(plugin)) {
+        plugin.stop?.();
+        plugin.destroy?.();
+      }
+    }
+
+    this.#pendingPlugins = this.#pendingPlugins.filter(plugin => activePlugins.has(plugin));
+  }
+
+  #nextFrame(timestamp: DOMHighResTimeStamp): void {
+    try {
+      if (
+        !this.#smooth &&
+        this.#lastFrameTime !== undefined &&
+        timestamp < this.#lastFrameTime + millisecondsToSeconds / this.fpsLimit
+      ) {
+        this.draw(false);
+
+        return;
+      }
+
+      this.#lastFrameTime ??= timestamp;
+
+      updateDelta(this.#delta, timestamp - this.#lastFrameTime, this.fpsLimit, this.#smooth);
+
+      this.addLifeTime(this.#delta.value);
+      this.#lastFrameTime = timestamp;
+
+      if (this.#delta.value > millisecondsToSeconds) {
+        this.draw(false);
+
+        return;
+      }
+
+      this.canvas.render.drawParticles(this.#delta);
+
+      if (!this.alive()) {
+        this.destroy();
+
+        return;
+      }
+
+      if (this.animationStatus) {
+        this.draw(false);
+      }
+    } catch (e) {
+      this.engine.getLogger().error("error in animation loop", e);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+
+ NX   453 tasks: 453 succeeded, 186 cached
+
+
+Re-run with --output-style=static to inline logs.
+
+View logs and investigate cache misses at https://cloud.nx.app/runs/rqrIMcaLuf
+
+  Run duration:      4m 42s
+  Cache:             186/453 hit (41%)
+  Critical path:     1m 28s (11 tasks)
+  Recoverable time:  3m 14s (69% of the run)
+
+  Recommendation: Increase parallelism to recover up to 2m 31s → https://nx.dev/docs/concepts/ci-concepts/parallelization-distribution?utm_source=nx-cli&utm_medium=cli&utm_campaign=performance-report&utm_content=parallelization.

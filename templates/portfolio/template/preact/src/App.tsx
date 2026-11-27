@@ -1,18 +1,19 @@
+import type { ISourceOptions } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
+import { engine } from "../particlesEngine";
 import { h } from "preact";
 import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadSlim } from "@tsparticles/slim";
-import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
 
 const keys = Object.keys(configs);
-const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+const randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs;
 const options: ISourceOptions = {
   ...configs[randomKey],
   fullScreen: { enable: true, zIndex: -1 },
 } as ISourceOptions;
 
-void initParticlesEngine(async (engine) => {
+void initParticlesEngine(engine, async engine => {
   await loadSlim(engine);
 });
 
@@ -40,30 +41,37 @@ export default function App() {
 
   return (
     <div>
-      <Particles id="tsparticles" options={options} />
+      <Particles engine={engine} id="tsparticles" options={options} />
       <nav id="navbar">
-        {navItems.map((item) => (
-          <a href={`#${item.toLowerCase()}`} class="nav-link">{item}</a>
+        {navItems.map(item => (
+          <a key={item} href={`#${item.toLowerCase()}`} class="nav-link">
+            {item}
+          </a>
         ))}
       </nav>
       <section id="hero" class="section">
         <div class="hero-content">
-          <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+          <h1>
+            Hello, I'm <span class="highlight">Your Name</span>
+          </h1>
           <p class="subtitle">Full-Stack Developer &amp; Designer</p>
         </div>
       </section>
       <section id="about" class="section content-section">
         <div class="container">
           <h2>About Me</h2>
-          <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+          <p>
+            A passionate developer who loves building beautiful and performant web applications. Experienced in modern
+            JavaScript frameworks, cloud infrastructure, and UI/UX design.
+          </p>
         </div>
       </section>
       <section id="projects" class="section content-section">
         <div class="container">
           <h2>Projects</h2>
           <div class="project-grid">
-            {projects.map((p) => (
-              <div class="project-card">
+            {projects.map(p => (
+              <div key={p.title} class="project-card">
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
               </div>
@@ -74,10 +82,12 @@ export default function App() {
       <section id="skills" class="section content-section">
         <div class="container">
           <h2>Skills</h2>
-          {skills.map((s) => (
-            <div class="skill-bar">
+          {skills.map(s => (
+            <div key={s.name} class="skill-bar">
               <span class="skill-name">{s.name}</span>
-              <div class="bar"><div class="fill" style={{ width: `${s.pct}%` }}></div></div>
+              <div class="bar">
+                <div class="fill" style={{ width: `${s.pct}%` }}></div>
+              </div>
             </div>
           ))}
         </div>

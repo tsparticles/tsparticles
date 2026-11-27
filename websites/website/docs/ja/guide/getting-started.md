@@ -38,7 +38,8 @@ pnpm add @tsparticles/engine @tsparticles/slim
 Then in your code:
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
@@ -128,7 +129,7 @@ Some bundles have their own simplified API, no need to use `tsParticles.load()`:
   </head>
   <body>
     <script>
-      confetti({ particleCount: 100, spread: 70 });
+      confetti({ count: 100, spread: 70 });
     </script>
   </body>
 </html>
@@ -160,7 +161,8 @@ pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
 ```
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 import "@tsparticles/configs";
 

@@ -63,11 +63,14 @@ import Particles from "@tsparticles/astro";
     </div>
 
     <script>
+import { engine } from "../../particlesEngine";
+
       import { initParticlesEngine } from "@tsparticles/astro";
       import { loadSlim } from "@tsparticles/slim";
-      import { confetti } from "@tsparticles/confetti";
+      import {  createConfetti  } from "@tsparticles/confetti";
+const confetti = createConfetti(engine);
 
-      await initParticlesEngine(async (engine) => {
+      await initParticlesEngine(engine, async (engine) => {
         await loadSlim(engine);
       });
 
@@ -159,6 +162,9 @@ import Particles from "@tsparticles/astro";
       });
 
       render();
-    </script>
+    for (const element of document.querySelectorAll("astro-particles")) {
+    (element as HTMLElement & { engine: typeof engine }).engine = engine;
+  }
+</script>
   </body>
 </html>

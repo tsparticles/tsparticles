@@ -61,7 +61,8 @@ $ yarn add @tsparticles/interaction-external-parallax
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalParallaxInteraction } = require("@tsparticles/interaction-external-parallax");
 
@@ -74,7 +75,8 @@ const { loadExternalParallaxInteraction } = require("@tsparticles/interaction-ex
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalParallaxInteraction } from "@tsparticles/interaction-external-parallax";
 

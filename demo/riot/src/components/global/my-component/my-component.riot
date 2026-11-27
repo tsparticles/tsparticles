@@ -7,10 +7,12 @@
         </button>
     </div>
 
-    <riot-particles id="tsparticles" options='{particlesConfig}'
+    <riot-particles engine={engine} id="tsparticles" options='{particlesConfig}'
                     particlesLoaded='{particlesLoaded}'/>
 
     <script>
+import { engine } from "../../../../particlesEngine.js";
+
         import { initParticlesEngine } from "@tsparticles/riot";
         import { loadFull } from "tsparticles";
         import configs from "@tsparticles/configs";
@@ -18,12 +20,13 @@
         let toggle = false;
 
         export default {
+            engine,
             particlesConfig: configs.basic,
             particlesLoaded: (container) => console.log(container),
             onBeforeMount() {
                 // Riot can be used server-side; guard initialization to client only.
                 if (typeof window !== "undefined") {
-                    initParticlesEngine(async (engine) => {
+                    initParticlesEngine(engine, async (engine) => {
                         await loadFull(engine);
 
                         console.log("particles initialized");

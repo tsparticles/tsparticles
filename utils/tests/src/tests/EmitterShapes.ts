@@ -1,15 +1,17 @@
 /* eslint-disable */
-import { describe, expect, it, beforeAll } from "vitest";
-import { tsParticles, type Container } from "@tsparticles/engine";
-import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
-import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
-import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
-import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
-import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
-import { loadEmittersShapeCanvas } from "@tsparticles/plugin-emitters-shape-canvas";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { type Container, createEngine } from "@tsparticles/engine";
+import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmittersShapeCanvas } from "@tsparticles/plugin-emitters-shape-canvas";
+import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
+import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
+import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+
+const tsParticles = createEngine();
 
 interface Coords {
   x: number;
@@ -188,7 +190,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "square");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "square",
+      );
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -221,7 +226,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "circle");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "circle",
+      );
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -271,7 +279,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "polygon");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "polygon",
+      );
     }, 30000);
 
     it("[exact] resize updates position, size and rebuilds the polygon", async () => {
@@ -320,7 +331,7 @@ describe("Emitter shapes", async () => {
       await shape.init();
       shape.checkContext.isPointInPath = () => false;
 
-      expect(shape.randomPosition()).to.be.null;
+      expect(shape.randomPosition(() => 0.5)).to.be.null;
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -353,7 +364,7 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      expect(shape.randomPosition()).to.be.null;
+      expect(shape.randomPosition(() => 0.5)).to.be.null;
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {

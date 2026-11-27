@@ -1,0 +1,234 @@
+{
+  "measuredAt": "2026-11-21T23:11:12.558Z",
+  "node": "v26.13.0",
+  "runtime": "Node + jsdom + @napi-rs/canvas; not comparable to Chrome/CDP measurements",
+  "scenario": "M3 minimal moving circle, all workspace extensions registered",
+  "repetitions": 5,
+  "forcedGc": true,
+  "counts": [
+    0,
+    100,
+    500,
+    1000,
+    2000
+  ],
+  "summary": [
+    {
+      "count": 0,
+      "heapDeltaMedianBytes": 34632,
+      "samplesBytes": [
+        27504,
+        27816,
+        34632,
+        40040,
+        123688
+      ],
+      "estimatedBytesPerParticle": null
+    },
+    {
+      "count": 100,
+      "heapDeltaMedianBytes": 1197336,
+      "samplesBytes": [
+        1194984,
+        1196088,
+        1197336,
+        1207592,
+        1783288
+      ],
+      "estimatedBytesPerParticle": 11973
+    },
+    {
+      "count": 500,
+      "heapDeltaMedianBytes": 5788600,
+      "samplesBytes": [
+        5778328,
+        5779320,
+        5788600,
+        5790928,
+        6743816
+      ],
+      "estimatedBytesPerParticle": 11577
+    },
+    {
+      "count": 1000,
+      "heapDeltaMedianBytes": 11542976,
+      "samplesBytes": [
+        11519720,
+        11532640,
+        11542976,
+        11546592,
+        11603480
+      ],
+      "estimatedBytesPerParticle": 11543
+    },
+    {
+      "count": 2000,
+      "heapDeltaMedianBytes": 23009048,
+      "samplesBytes": [
+        22994408,
+        23006408,
+        23009048,
+        23054296,
+        23210184
+      ],
+      "estimatedBytesPerParticle": 11505
+    }
+  ],
+  "samples": [
+    {
+      "count": 0,
+      "emptyHeapBytes": 37418600,
+      "retainedHeapBytes": 37542288,
+      "deltaBytes": 123688
+    },
+    {
+      "count": 100,
+      "emptyHeapBytes": 37649352,
+      "retainedHeapBytes": 39432640,
+      "deltaBytes": 1783288
+    },
+    {
+      "count": 500,
+      "emptyHeapBytes": 38520008,
+      "retainedHeapBytes": 45263824,
+      "deltaBytes": 6743816
+    },
+    {
+      "count": 1000,
+      "emptyHeapBytes": 39428952,
+      "retainedHeapBytes": 51032432,
+      "deltaBytes": 11603480
+    },
+    {
+      "count": 2000,
+      "emptyHeapBytes": 39605768,
+      "retainedHeapBytes": 62660064,
+      "deltaBytes": 23054296
+    },
+    {
+      "count": 0,
+      "emptyHeapBytes": 39693952,
+      "retainedHeapBytes": 39728584,
+      "deltaBytes": 34632
+    },
+    {
+      "count": 100,
+      "emptyHeapBytes": 39701488,
+      "retainedHeapBytes": 40896472,
+      "deltaBytes": 1194984
+    },
+    {
+      "count": 500,
+      "emptyHeapBytes": 39700688,
+      "retainedHeapBytes": 45491616,
+      "deltaBytes": 5790928
+    },
+    {
+      "count": 1000,
+      "emptyHeapBytes": 40053152,
+      "retainedHeapBytes": 51596128,
+      "deltaBytes": 11542976
+    },
+    {
+      "count": 2000,
+      "emptyHeapBytes": 40101312,
+      "retainedHeapBytes": 63095720,
+      "deltaBytes": 22994408
+    },
+    {
+      "count": 0,
+      "emptyHeapBytes": 40147200,
+      "retainedHeapBytes": 40187240,
+      "deltaBytes": 40040
+    },
+    {
+      "count": 100,
+      "emptyHeapBytes": 40163248,
+      "retainedHeapBytes": 41370840,
+      "deltaBytes": 1207592
+    },
+    {
+      "count": 500,
+      "emptyHeapBytes": 40179376,
+      "retainedHeapBytes": 45967976,
+      "deltaBytes": 5788600
+    },
+    {
+      "count": 1000,
+      "emptyHeapBytes": 40195288,
+      "retainedHeapBytes": 51741880,
+      "deltaBytes": 11546592
+    },
+    {
+      "count": 2000,
+      "emptyHeapBytes": 40215304,
+      "retainedHeapBytes": 63224352,
+      "deltaBytes": 23009048
+    },
+    {
+      "count": 0,
+      "emptyHeapBytes": 40239512,
+      "retainedHeapBytes": 40267328,
+      "deltaBytes": 27816
+    },
+    {
+      "count": 100,
+      "emptyHeapBytes": 40239528,
+      "retainedHeapBytes": 41435616,
+      "deltaBytes": 1196088
+    },
+    {
+      "count": 500,
+      "emptyHeapBytes": 40245768,
+      "retainedHeapBytes": 46025088,
+      "deltaBytes": 5779320
+    },
+    {
+      "count": 1000,
+      "emptyHeapBytes": 40263872,
+      "retainedHeapBytes": 51783592,
+      "deltaBytes": 11519720
+    },
+    {
+      "count": 2000,
+      "emptyHeapBytes": 40279616,
+      "retainedHeapBytes": 63286024,
+      "deltaBytes": 23006408
+    },
+    {
+      "count": 0,
+      "emptyHeapBytes": 40326296,
+      "retainedHeapBytes": 40353800,
+      "deltaBytes": 27504
+    },
+    {
+      "count": 100,
+      "emptyHeapBytes": 40339344,
+      "retainedHeapBytes": 41536680,
+      "deltaBytes": 1197336
+    },
+    {
+      "count": 500,
+      "emptyHeapBytes": 40357288,
+      "retainedHeapBytes": 46135616,
+      "deltaBytes": 5778328
+    },
+    {
+      "count": 1000,
+      "emptyHeapBytes": 40386128,
+      "retainedHeapBytes": 51918768,
+      "deltaBytes": 11532640
+    },
+    {
+      "count": 2000,
+      "emptyHeapBytes": 40394808,
+      "retainedHeapBytes": 63604992,
+      "deltaBytes": 23210184
+    }
+  ],
+  "limitations": [
+    "Heap deltas include per-container and renderer objects; the empty-container baseline reduces but does not eliminate that overhead.",
+    "This estimates retained JavaScript heap, not allocation volume, native canvas memory, or browser-engine overhead.",
+    "Use as a same-runtime per-particle estimate only; do not compare directly with Chrome or E0 browser values."
+  ]
+}

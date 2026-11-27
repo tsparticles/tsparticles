@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-lch-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadLchColorPlugin } = require("@tsparticles/plugin-lch-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadLchColorPlugin } = require("@tsparticles/plugin-lch-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLchColorPlugin } from "@tsparticles/plugin-lch-color";
 
 (async () => {

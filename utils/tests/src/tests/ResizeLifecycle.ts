@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { Container } from "../../../../engine/src/Core/Container.js";
-import { EventListeners } from "../../../../engine/src/Core/Utils/EventListeners.js";
+import type { Container } from "../../../../engine/src/Core/Container/Container.js";
+import { EventListeners } from "../../../../engine/src/Core/Container/EventListeners.js";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 
 afterEach(() => {
   vi.useRealTimers();

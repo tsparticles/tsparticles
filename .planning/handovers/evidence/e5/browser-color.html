@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E5 color output check</title>
+    <style>
+      body {
+        background: #202124;
+        color: #f1f3f4;
+        font:
+          14px ui-monospace,
+          monospace;
+        margin: 1rem;
+      }
+
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <pre id="result">Running…</pre>
+    <script type="module">
+      const resultNode = document.querySelector("#result");
+
+      addEventListener("error", event => {
+        resultNode.textContent = `Error: ${event.message} at ${event.filename}:${event.lineno}`;
+      });
+
+      addEventListener("unhandledrejection", event => {
+        resultNode.textContent = `Unhandled rejection: ${event.reason}`;
+      });
+
+      import { getStyleFromOklch } from "/engine/dist/esm/Utils/ColorUtils.js";
+      import { HdrMode } from "/engine/dist/esm/Enums/Modes/HdrMode.js";
+
+      const displayP3ToLinear = channel =>
+        Math.abs(channel) <= 0.04045
+          ? channel / 12.92
+          : Math.sign(channel) * Math.pow((Math.abs(channel) + 0.055) / 1.055, 2.4);
+
+      const sharedSource = { a: 0.5, c: 0.27, h: 60, l: 76 };
+      const cases = [
+          {
+            expected: [58.7928, 80.9115, 210.7014],
+            label: "sRGB CSS Color 4 / WPT blue",
+            oklch: { c: 0.2, h: 270, l: 50 },
+            target: "srgb",
+            tolerance: 2,
+          },
+          {
+            expected: [191, 227, 255],
+            label: "Display-P3 WPT gamut-mapped OKLCH highlight",
+            oklch: { c: 0.3, h: 240, l: 90 },
+            target: "display-p3",
+            tolerance: 9,
+          },
+          {
+            expected: [255, 139.23, 0],
+            label: "Display-P3 CSS Color 4 §14.2 high-chroma example",
+            oklch: { c: 0.27, h: 60, l: 76 },
+            target: "display-p3",
+            tolerance: 9,
+          },
+          {
+            colorType: "float16",
+            expected: [1.062335846380718, 0.495412992470279, -0.3113956814861343],
+            expectedAlpha: 1,
+            hdr: true,
+            label: "Extended Display-P3 HDR style through float16 canvas",
+            oklch: { c: 0.27, h: 60, l: 76 },
+            target: "display-p3",
+            tolerance: 0.001,
+          },
+          ...["srgb", "display-p3"].map(target => ({
+            expected: target === "srgb" ? [255, 145, 20] : [250, 144, 0],
+            expectedAlpha: 51,
+            label: `Mapped ${target} alpha and unchanged shared source`,
+            oklch: sharedSource,
+            opacity: 0.4,
+            target,
+            tolerance: 2,
+          })),
+          ...[400, 1000].map(peakNits => ({
+            colorType: "float16",
+            hdr: true,
+            expectedAlpha: sharedSource.a,
+            label: `Natural HDR tone mapping at ${peakNits} nits`,
+            peakNits,
+            target: "display-p3",
+            toneMapped: true,
+            tolerance: 0.001,
+          })),
+        ],
+        results = [];
+
+      for (const testCase of cases) {
+        const canvas = document.createElement("canvas"),
+          context = canvas.getContext("2d", {
+            colorSpace: testCase.target,
+            colorType: testCase.colorType ?? "unorm8",
+          });
+
+        if (!context) {
+          results.push({ label: testCase.label, status: "unsupported-context" });
+          continue;
+        }
+
+        const sourceBefore = JSON.stringify(testCase.oklch ?? sharedSource);
+        const style = testCase.toneMapped
+            ? getStyleFromOklch(sharedSource, true, 1, testCase.peakNits, HdrMode.natural)
+            : getStyleFromOklch(
+                testCase.oklch,
+                testCase.hdr ?? false,
+                testCase.opacity ?? 1,
+                400,
+                undefined,
+                testCase.target,
+              ),
+          styleChannels = testCase.toneMapped
+            ? /^color\(display-p3 ([\d.e+-]+) ([\d.e+-]+) ([\d.e+-]+) \/ ([\d.]+)\)$/u
+                .exec(style)
+                ?.slice(1, 4)
+                .map(Number)
+            : undefined,
+          expected = testCase.toneMapped ? styleChannels : testCase.expected;
+
+        if (!CSS.supports("color", style)) {
+          throw new Error(`Browser rejected output: ${style}`);
+        }
+
+        context.fillStyle = style;
+        context.fillRect(0, 0, 1, 1);
+
+        let imageData,
+          readbackMode = "context-default";
+
+        try {
+          imageData = context.getImageData(0, 0, 1, 1, {
+            colorSpace: testCase.target,
+            pixelFormat: testCase.colorType === "float16" ? "rgba-float16" : "rgba-unorm8",
+          });
+          readbackMode = "explicit-colorSpace";
+        } catch {
+          imageData = context.getImageData(0, 0, 1, 1);
+        }
+
+        const pixel = [...imageData.data.slice(0, 3)],
+          difference = pixel.map((channel, index) => Math.abs(channel - expected[index])),
+          sourceUnchanged = JSON.stringify(testCase.oklch ?? sharedSource) === sourceBefore,
+          alpha = imageData.data[3],
+          alphaPassed =
+            testCase.expectedAlpha === undefined ||
+            Math.abs(alpha - testCase.expectedAlpha) <= (testCase.colorType === "float16" ? 0.001 : 1),
+          passed = difference.every(channel => channel <= testCase.tolerance) && alphaPassed && sourceUnchanged;
+
+        const luminanceNits = testCase.toneMapped
+          ? 203 *
+            (0.2289745641 * displayP3ToLinear(pixel[0]) +
+              0.6917385218 * displayP3ToLinear(pixel[1]) +
+              0.0792869141 * displayP3ToLinear(pixel[2]))
+          : undefined;
+
+        results.push({
+          alpha,
+          sourceUnchanged,
+          context: context.getContextAttributes?.(),
+          difference,
+          expected,
+          label: testCase.label,
+          luminanceNits,
+          pixel,
+          readbackColorSpace: imageData.colorSpace,
+          readbackMode,
+          status: passed ? "pass" : "fail",
+          style,
+          target: testCase.target,
+          tolerance: testCase.tolerance,
+        });
+      }
+
+      const hdr400 = results.find(testCase => testCase.label === "Natural HDR tone mapping at 400 nits"),
+        hdr1000 = results.find(testCase => testCase.label === "Natural HDR tone mapping at 1000 nits");
+      const hdrLuminanceComparison =
+        hdr400?.luminanceNits !== undefined && hdr1000?.luminanceNits !== undefined
+          ? hdr1000.luminanceNits > hdr400.luminanceNits
+            ? "pass"
+            : "fail"
+          : "unsupported";
+
+      resultNode.textContent = JSON.stringify(
+        {
+          browser: navigator.userAgent,
+          date: new Date().toISOString(),
+          hdrLuminanceComparison,
+          results,
+        },
+        null,
+        2,
+      );
+    </script>
+  </body>
+</html>

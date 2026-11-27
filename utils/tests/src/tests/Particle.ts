@@ -6,13 +6,14 @@ import {
   OutMode,
   OutModeDirection,
   calcExactPositionOrRandomFromSize,
-  tsParticles,
+  createEngine,
 } from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
-const width = 1920,
+const tsParticles = createEngine(),
+  width = 1920,
   height = 1080;
 
 describe("Particle", async () => {
@@ -74,12 +75,12 @@ describe("Particle", async () => {
     rightDirectionEffectInputs: string[] = [],
     rightDirectionShapeInputs: string[] = [],
     effectDrawerOutModeAware: IEffectDrawer = {
-      isInsideCanvas: data => {
+      isInsideCanvas: (data) => {
         return data.outMode !== OutMode.destroy;
       },
     },
     rightDirectionEffectDrawer: IEffectDrawer = {
-      isInsideCanvas: data => {
+      isInsideCanvas: (data) => {
         rightDirectionEffectInputs.push(`${data.outMode}:${data.direction}`);
 
         return data.direction === OutModeDirection.right;
@@ -89,7 +90,7 @@ describe("Particle", async () => {
       draw: () => {
         // no-op
       },
-      isInsideCanvas: data => {
+      isInsideCanvas: (data) => {
         return data.outMode !== OutMode.destroy;
       },
     },
@@ -97,22 +98,40 @@ describe("Particle", async () => {
       draw: () => {
         // no-op
       },
-      isInsideCanvas: data => {
+      isInsideCanvas: (data) => {
         rightDirectionShapeInputs.push(`${data.outMode}:${data.direction}`);
 
         return data.direction === OutModeDirection.right;
       },
     };
 
-  pluginManager.addShape(["bounds-default-shape"], () => Promise.resolve(shapeDrawerDefault));
-  pluginManager.addShape(["bounds-shape-inside"], () => Promise.resolve(shapeDrawerInside));
-  pluginManager.addShape(["bounds-shape-outside"], () => Promise.resolve(shapeDrawerOutside));
-  pluginManager.addShape(["bounds-shape-out-mode-aware"], () => Promise.resolve(shapeDrawerOutModeAware));
-  pluginManager.addShape(["bounds-shape-right-direction"], () => Promise.resolve(rightDirectionShapeDrawer));
-  pluginManager.addEffect("bounds-effect-inside", () => Promise.resolve(effectDrawerInside));
-  pluginManager.addEffect("bounds-effect-outside", () => Promise.resolve(effectDrawerOutside));
-  pluginManager.addEffect("bounds-effect-out-mode-aware", () => Promise.resolve(effectDrawerOutModeAware));
-  pluginManager.addEffect("bounds-effect-right-direction", () => Promise.resolve(rightDirectionEffectDrawer));
+  pluginManager.addShape(["bounds-default-shape"], () =>
+    Promise.resolve(shapeDrawerDefault),
+  );
+  pluginManager.addShape(["bounds-shape-inside"], () =>
+    Promise.resolve(shapeDrawerInside),
+  );
+  pluginManager.addShape(["bounds-shape-outside"], () =>
+    Promise.resolve(shapeDrawerOutside),
+  );
+  pluginManager.addShape(["bounds-shape-out-mode-aware"], () =>
+    Promise.resolve(shapeDrawerOutModeAware),
+  );
+  pluginManager.addShape(["bounds-shape-right-direction"], () =>
+    Promise.resolve(rightDirectionShapeDrawer),
+  );
+  pluginManager.addEffect("bounds-effect-inside", () =>
+    Promise.resolve(effectDrawerInside),
+  );
+  pluginManager.addEffect("bounds-effect-outside", () =>
+    Promise.resolve(effectDrawerOutside),
+  );
+  pluginManager.addEffect("bounds-effect-out-mode-aware", () =>
+    Promise.resolve(effectDrawerOutModeAware),
+  );
+  pluginManager.addEffect("bounds-effect-right-direction", () =>
+    Promise.resolve(rightDirectionEffectDrawer),
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
   const canvas = createCustomCanvas(width, height) as any,
@@ -197,8 +216,12 @@ describe("Particle", async () => {
 
         const particle = container.particles.addParticle();
 
-        expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
-        expect(particle?.shapeClose).to.eql(squareShapeOptions.particles.shape.options.square.close);
+        expect(particle?.shapeData).to.eql(
+          squareShapeOptions.particles.shape.options.square,
+        );
+        expect(particle?.shapeClose).to.eql(
+          squareShapeOptions.particles.shape.options.square.close,
+        );
       });
 
       it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", async () => {
@@ -212,16 +235,20 @@ describe("Particle", async () => {
 
         switch (particle?.shape) {
           case "char":
-            expectedShapeData = multipleShapeTypeOptions.particles.shape.options.char;
+            expectedShapeData =
+              multipleShapeTypeOptions.particles.shape.options.char;
             break;
           case "edge":
-            expectedShapeData = multipleShapeTypeOptions.particles.shape.options.edge;
+            expectedShapeData =
+              multipleShapeTypeOptions.particles.shape.options.edge;
             break;
           case "image":
-            expectedShapeData = multipleShapeTypeOptions.particles.shape.options.image;
+            expectedShapeData =
+              multipleShapeTypeOptions.particles.shape.options.image;
             break;
           case "polygon":
-            expectedShapeData = multipleShapeTypeOptions.particles.shape.options.polygon;
+            expectedShapeData =
+              multipleShapeTypeOptions.particles.shape.options.polygon;
             break;
           default:
             throw new Error(`Unexpected shape type "${particle?.shape ?? ""}"`);
@@ -242,9 +269,12 @@ describe("Particle", async () => {
     });
 
     it("should always return the position when specified", () => {
-      const position: ICoordinates = calcExactPositionOrRandomFromSize({
-          size: { width, height },
-        }),
+      const position: ICoordinates = calcExactPositionOrRandomFromSize(
+          {
+            size: { width, height },
+          },
+          container.engine.getRandomFn(),
+        ),
         particle = container.particles.addParticle(position);
 
       expect(particle).to.be.not.undefined;
@@ -410,9 +440,16 @@ describe("Particle", async () => {
       expect(particle.isInsideCanvas()).to.be.false;
       expect(particle.isInsideCanvas(OutModeDirection.top)).to.be.false;
       expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.destroy,
+          OutModeDirection.right,
+        ),
+      ).to.be.true;
       expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right),
+      ).to.be.true;
     });
 
     it("should report destroy and out as outside when both bounds callbacks return outside", async () => {
@@ -468,9 +505,16 @@ describe("Particle", async () => {
       }
 
       expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.destroy,
+          OutModeDirection.right,
+        ),
+      ).to.be.true;
       expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right),
+      ).to.be.true;
       expect(particle.isInsideCanvasForOutMode(OutMode.bounce)).to.be.false;
       expect(particle.isInsideCanvasForOutMode(OutMode.split)).to.be.false;
     });
@@ -502,8 +546,15 @@ describe("Particle", async () => {
         return;
       }
 
-      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.right)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.destroy,
+          OutModeDirection.right,
+        ),
+      ).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right),
+      ).to.be.true;
       expect(rightDirectionEffectInputs).toEqual([
         `${OutMode.destroy}:${OutModeDirection.right}`,
         `${OutMode.out}:${OutModeDirection.right}`,
@@ -536,8 +587,15 @@ describe("Particle", async () => {
       }
 
       expect(particle.isInsideCanvas()).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.left)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.left)).to.be.false;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.left),
+      ).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.destroy,
+          OutModeDirection.left,
+        ),
+      ).to.be.false;
     });
 
     it("should pass out mode to shape callbacks for strategy-aware bounds", async () => {
@@ -562,8 +620,15 @@ describe("Particle", async () => {
       }
 
       expect(particle.isInsideCanvas()).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.top)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.top)).to.be.false;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.top),
+      ).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.destroy,
+          OutModeDirection.top,
+        ),
+      ).to.be.false;
     });
 
     it("should use bounce edge-contact bounds for the split out mode", async () => {
@@ -584,13 +649,33 @@ describe("Particle", async () => {
 
       particle.position.x = canvasWidth;
 
-      expect(particle.isInsideCanvasForOutMode(OutMode.bounce, OutModeDirection.right)).to.be.false;
-      expect(particle.isInsideCanvasForOutMode(OutMode.split, OutModeDirection.right)).to.be.false;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.bounce,
+          OutModeDirection.right,
+        ),
+      ).to.be.false;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.split,
+          OutModeDirection.right,
+        ),
+      ).to.be.false;
 
       particle.position.x = canvasWidth - particle.getRadius() * 2;
 
-      expect(particle.isInsideCanvasForOutMode(OutMode.bounce, OutModeDirection.right)).to.be.true;
-      expect(particle.isInsideCanvasForOutMode(OutMode.split, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.bounce,
+          OutModeDirection.right,
+        ),
+      ).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.split,
+          OutModeDirection.right,
+        ),
+      ).to.be.true;
     });
 
     it("should use the rendered position for bounce bounds", async () => {
@@ -613,8 +698,15 @@ describe("Particle", async () => {
       particle.position.x = canvasWidth - radius - 1;
       particle.offset.x = 2;
 
-      expect(particle.isInsideCanvasForOutMode(OutMode.bounce, OutModeDirection.right)).to.be.false;
-      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+      expect(
+        particle.isInsideCanvasForOutMode(
+          OutMode.bounce,
+          OutModeDirection.right,
+        ),
+      ).to.be.false;
+      expect(
+        particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right),
+      ).to.be.true;
     });
 
     afterAll(async () => {

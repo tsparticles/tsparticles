@@ -1,0 +1,65 @@
+{
+  "measuredAt": "2026-11-22T11:28:11.841Z",
+  "runtime": "Node v26.13.0 + @napi-rs/canvas",
+  "sourceOklch": {
+    "a": 0.5,
+    "c": 0.27,
+    "h": 60,
+    "l": 76
+  },
+  "opacity": 0.4,
+  "hueUnitCompatibility": "The formatter emits a CSS unitless hue; its output is passed to Skia unchanged.",
+  "results": [
+    {
+      "name": "sRGB",
+      "colorSpace": "srgb",
+      "style": "oklch(76% 0.17427317261695863 60 / 0.2)",
+      "actualRgba": [
+        255,
+        145,
+        20,
+        51
+      ],
+      "expectedRgba": [
+        255,
+        146,
+        20,
+        51
+      ],
+      "mappedColor": {
+        "a": 0.5,
+        "c": 0.17427317261695863,
+        "h": 60,
+        "l": 76
+      }
+    },
+    {
+      "name": "Display-P3",
+      "colorSpace": "display-p3",
+      "style": "oklch(76% 0.20370948851108547 60 / 0.2)",
+      "actualRgba": [
+        250,
+        145,
+        0,
+        51
+      ],
+      "expectedRgba": [
+        250,
+        144,
+        0,
+        51
+      ],
+      "mappedColor": {
+        "a": 0.5,
+        "c": 0.20370948851108547,
+        "h": 60,
+        "l": 76
+      }
+    }
+  ],
+  "limitations": [
+    "This verifies native Skia canvas pixel readback, not browser CSS parsing or browser rendering.",
+    "The expected pixel is computed by the engine's gamut mapper; independent WPT/Color.js vectors remain covered by unit tests.",
+    "HDR output, float16 headroom, and physical-display appearance are not covered by this SDR check."
+  ]
+}

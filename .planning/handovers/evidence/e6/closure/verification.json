@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-23",
+  "revision": "204172a4587e15aad3e5591f2fcb2826187dc14d",
+  "workingTree": true,
+  "stage": "E6",
+  "technicalGateComplete": true,
+  "releaseReady": false,
+  "newBudgetWaivers": false,
+  "review": "../../../V5-E6-REVIEW.md",
+  "bundleSha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d",
+  "archive": "../draw-all.bundle.min.js.gz",
+  "sourceHashes": {
+    "engine/src/Core/Particles/ParticlesManager.ts": "4def12b433c0ae7111e726385443dd7168742d735933b661a9fb61f8e13bfe1c",
+    "engine/src/Core/Particles/SpatialHashGrid.ts": "a54b1170a1e22dac142519579f8373a395fc567c7aac6bae356858f33e63187e",
+    "engine/src/Core/Particles/Ranges.ts": "ed496d98ef543e219bd00191cbd1c6bc56a036bb20b0796a5792e163ae26ba20",
+    "plugins/interactivity/src/InteractionManager.ts": "234d9facf2b8a4c6765b92e2a992fbe906c0448c068ead25d08dbbf87753c901"
+  },
+  "primaryTests": {
+    "files": 59,
+    "passed": 926
+  },
+  "regressions": {
+    "newDrawCases": 6,
+    "newPhaseMembershipCase": 1,
+    "before": "Five draw regressions fail on the previous engine; nested exception fixture already passes.",
+    "afterFocusedTests": 44
+  },
+  "downstreamBuild": {
+    "requestedProjects": 235,
+    "dependencies": 218,
+    "tasks": 453,
+    "passed": 453,
+    "cached": 349,
+    "log": "../logs/draw-final-build.log.gz"
+  },
+  "workspaceTests": {
+    "targets": 85,
+    "passed": 85,
+    "groups": {
+      "primary": 1,
+      "otherTargets": 82,
+      "angularIonic": 2
+    },
+    "reporter": "Angular/Ionic progress; no assertions skipped"
+  },
+  "recovery": {
+    "initialBuildFailed": [
+      "@tsparticles/ember",
+      "@tsparticles/inferno-demo",
+      "@tsparticles/riot-demo",
+      "@tsparticles/preact-demo",
+      "@tsparticles/tests"
+    ],
+    "dependencyIssue": "Incomplete local Lodash 4.18.1 files; restored using pnpm install --force --frozen-lockfile --offline. Lockfile unchanged.",
+    "concurrentMerge": "v4 merged during validation; adapted its RangeIntersections test to the v5 Ranges path and reran the full build on the resulting revision."
+  },
+  "browser": {
+    "version": "Chrome/157.0.8103.79",
+    "matrixSamplesPerArtifact": 45,
+    "matchingMatrixSnapshots": 135,
+    "relativeTimingScreensPassed": 45,
+    "relativeTimingScreensTotal": 45,
+    "initialAbsoluteE0Checks": "26/30; four update flags retained in draw-budget-screen.json",
+    "confirmationRepetitionsPerCase": 9,
+    "confirmationCases": [
+      "M3/1000",
+      "M5/100",
+      "M5/500",
+      "M5/1000"
+    ],
+    "matchingConfirmationSnapshots": 108,
+    "candidateConfirmedUpdateMs": [
+      1.4,
+      0.3,
+      4.6,
+      17.6
+    ],
+    "allFlaggedE0ChecksPassConfirmation": true,
+    "allConfirmationRelativeScreensPass": true,
+    "reports": [
+      "../draw-browser-comparison.json",
+      "../draw-m3-comparison.json",
+      "../draw-m5-comparison.json"
+    ]
+  },
+  "extended": {
+    "samplesPerArtifact": 18,
+    "retentionCycles": 30,
+    "rngAndFinalCountsMatch": true,
+    "validations": {
+      "pageErrors": true,
+      "allContainersRemoved": true,
+      "domStable": true,
+      "retentionDomStable": true,
+      "rngStable": {
+        "M6-extensions:100": true,
+        "M6-extensions:500": true,
+        "M6-extensions:1000": true,
+        "M8-hdr-layers-resize:100": true,
+        "M8-hdr-layers-resize:500": true,
+        "M8-hdr-layers-resize:1000": true
+      }
+    },
+    "postPeakHeapDriftBytes": 114908
+  },
+  "payload": {
+    "deltaVsAcceptedE5": {
+      "raw": 3257,
+      "gzip": 1144,
+      "brotli": 956
+    },
+    "deltaVsPreviousE6": {
+      "raw": 331,
+      "gzip": 109,
+      "brotli": 84
+    }
+  },
+  "alternatives": "P1-P4/S1-S4 decisions in IMP-03/04; no Particle representation or extension scheduler change.",
+  "drawTraversalQuiet": {
+    "sourceHashes": {
+      "live": "99906a804a1eab1f4811a6adff5dd0661c966c335a2a568a6f27722270b7f2e8",
+      "snapshot": "4def12b433c0ae7111e726385443dd7168742d735933b661a9fb61f8e13bfe1c"
+    },
+    "report": "../draw-traversal-quiet.json",
+    "retainedParticleReferences": 0
+  },
+  "carryover": "Existing user-approved E5 M4/500/bundle and inherited M6 release follow-ups remain E10; no new waiver or release authorization.",
+  "commitOrPublicationByAgent": false,
+  "readOnlyChecks": {
+    "sourceLint": "passed",
+    "testPackageLintCi": "passed",
+    "testPackagePrettifyCi": "passed",
+    "changedFilePrettier": "passed",
+    "diffCheck": "passed",
+    "artifactAndSourceHashes": "verified"
+  }
+}

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-sounds
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadSoundsPlugin } = require("@tsparticles/plugin-sounds");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadSoundsPlugin } = require("@tsparticles/plugin-sounds");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 
 (async () => {

@@ -1,19 +1,22 @@
+const engine = tsParticles.createEngine();
+const confetti = tsParticles.createConfetti(engine);
+
 const end = Date.now() + 15 * 1000,
   colors = ["#bb0000", "#ffffff"];
 
 function frame() {
   confetti({
-    particleCount: 2,
+    count: 2,
     angle: 60,
     spread: 55,
-    origin: { x: 0 },
+    position: { x: 0, y: 50 },
     colors: colors,
   });
   confetti({
-    particleCount: 2,
+    count: 2,
     angle: 120,
     spread: 55,
-    origin: { x: 1 },
+    position: { x: 100, y: 50 },
     colors: colors,
   });
 

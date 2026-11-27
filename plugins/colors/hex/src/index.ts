@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadHexColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("hex", new HexColorManager());
+  await engine.pluginManager.register((e) => {
+    e.addColorManager("hex", new HexColorManager());
   });
 }

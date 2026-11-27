@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, Vector, getRandom } from "@tsparticles/engine";
+import { type Container, Vector } from "@tsparticles/engine";
 import type { ILevyPathOptions } from "./ILevyPathOptions.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { LevyPathParticle } from "./LevyPathParticle.js";
@@ -38,7 +38,7 @@ export class LevyPathGenerator implements IMovePathGenerator {
    */
   generate(p: LevyPathParticle): Vector {
     p.levy ??= {
-      angle: getRandom() * Math.PI * 2,
+      angle: this.#container.engine.getRandom() * Math.PI * 2,
       baseSpeed: p.velocity.length,
     };
 
@@ -46,10 +46,10 @@ export class LevyPathGenerator implements IMovePathGenerator {
       l = p.levy;
 
     // Direction: uniform
-    l.angle += (getRandom() - 0.5) * 0.2;
+    l.angle += (this.#container.engine.getRandom() - 0.5) * 0.2;
 
     // Lévy step length
-    const u = Math.max(getRandom(), 1e-6),
+    const u = Math.max(this.#container.engine.getRandom(), 1e-6),
       scale = opts.scale ?? defaultScale,
       levyAlpha = opts.alpha ?? defaultLevyAlpha;
     let step = scale / Math.pow(u, 1 / levyAlpha);
@@ -73,9 +73,12 @@ export class LevyPathGenerator implements IMovePathGenerator {
   init(): void {
     const source = this.#container.actualOptions.particles.move.path.options;
 
-    this.options.alpha = (source["alpha"] as number | undefined) ?? this.options.alpha;
-    this.options.scale = (source["scale"] as number | undefined) ?? this.options.scale;
-    this.options.maxStep = (source["maxStep"] as number | undefined) ?? this.options.maxStep;
+    this.options.alpha =
+      (source["alpha"] as number | undefined) ?? this.options.alpha;
+    this.options.scale =
+      (source["scale"] as number | undefined) ?? this.options.scale;
+    this.options.maxStep =
+      (source["maxStep"] as number | undefined) ?? this.options.maxStep;
   }
 
   /**

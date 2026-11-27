@@ -3,13 +3,19 @@ import {
   type IDelta,
   type IParticleUpdater,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
-import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
-import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
+import type {
+  ISizeParticlesOptions,
+  SizeParticle,
+  SizeParticlesOptions,
+} from "./Types.js";
+import {
+  initParticleNumericAnimationValue,
+  updateAnimation,
+} from "@tsparticles/animation-utils";
 import { Size } from "./Options/Classes/Size.js";
 
 const minLoops = 0;
@@ -45,13 +51,15 @@ export class SizeUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.size.velocity = (particle.retina.sizeAnimationSpeed / percentDenominator) * container.retina.reduceFactor;
+    particle.size.velocity =
+      (particle.retina.sizeAnimationSpeed / percentDenominator) *
+      container.retina.reduceFactor;
 
     if (sizeAnimation.sync) {
       return;
     }
 
-    particle.size.velocity *= getRandom();
+    particle.size.velocity *= this.#container.engine.getRandom();
   }
 
   /**
@@ -66,7 +74,8 @@ export class SizeUpdater implements IParticleUpdater {
       particle.size.enable &&
       ((particle.size.maxLoops ?? minLoops) <= minLoops ||
         ((particle.size.maxLoops ?? minLoops) > minLoops &&
-          (particle.size.loops ?? minLoops) < (particle.size.maxLoops ?? minLoops)))
+          (particle.size.loops ?? minLoops) <
+            (particle.size.maxLoops ?? minLoops)))
     );
   }
 
@@ -96,9 +105,17 @@ export class SizeUpdater implements IParticleUpdater {
     }
 
     /* size */
-    particle.size = initParticleNumericAnimationValue(sizeOptions, pxRatio);
+    particle.size = initParticleNumericAnimationValue(
+      sizeOptions,
+      pxRatio,
+      this.#container.engine.getRandomFn(),
+    );
 
-    particle.retina.sizeAnimationSpeed = getRangeValue(sizeOptions.animation.speed) * pxRatio;
+    particle.retina.sizeAnimationSpeed =
+      getRangeValue(
+        sizeOptions.animation.speed,
+        this.#container.engine.getRandomFn(),
+      ) * pxRatio;
   }
 
   /**
@@ -120,6 +137,12 @@ export class SizeUpdater implements IParticleUpdater {
       return;
     }
 
-    updateAnimation(particle, particle.size, true, particle.options.size.animation.destroy, delta);
+    updateAnimation(
+      particle,
+      particle.size,
+      true,
+      particle.options.size.animation.destroy,
+      delta,
+    );
   }
 }

@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { type Container, tsParticles } from "@tsparticles/engine";
 import {
   Absorber,
   AbsorberLife,
@@ -8,6 +7,11 @@ import {
   AbsorberSplit,
   loadAbsorbersPlugin,
 } from "@tsparticles/plugin-absorbers";
+import { type Container, createEngine } from "@tsparticles/engine";
+import { Zoom, loadZoomPlugin } from "@tsparticles/plugin-zoom";
+import { beforeAll, describe, expect, it, vi } from "vitest";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
@@ -23,10 +27,8 @@ import { loadResponsivePlugin } from "@tsparticles/plugin-responsive";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadThemesPlugin } from "@tsparticles/plugin-themes";
 import { loadTrailPlugin } from "@tsparticles/plugin-trail";
-import { Zoom, loadZoomPlugin } from "@tsparticles/plugin-zoom";
-import { beforeAll, describe, expect, it, vi } from "vitest";
-import { TestWindow } from "../Fixture/Window.js";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 type AnyOptions = Record<string, any>;
 
@@ -637,6 +639,38 @@ describe("Plugin options tests", async () => {
       expect(options.infection.infections).to.equal(3);
       expect(options.infection.cure).to.be.false;
       expect(options.infection.delay).to.equal(0);
+    } finally {
+      container.destroy(false);
+    }
+  });
+
+  it("clears infection state when reusing a pooled particle", async () => {
+    const container = await loadContainer({
+      autoPlay: false,
+      infection: { enable: true, infections: 0 },
+      particles: { number: { value: 0 } },
+    });
+
+    try {
+      const particle = container.particles.addParticle();
+
+      expect(particle).to.not.be.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      const infectable = particle as typeof particle & {
+        infection?: { delay?: number; delayStage?: number; stage?: number; time?: number };
+      };
+
+      infectable.infection = { delay: 2, delayStage: 1, stage: 1, time: 5 };
+      container.particles.remove(particle);
+
+      const reused = container.particles.addParticle();
+
+      expect(reused).to.equal(particle);
+      expect((reused as typeof infectable | undefined)?.infection).to.be.undefined;
     } finally {
       container.destroy(false);
     }

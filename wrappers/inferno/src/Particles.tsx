@@ -1,6 +1,6 @@
+import type { Container } from "@tsparticles/engine";
 import { Component } from "inferno";
 import type { IParticlesProps } from "./IParticlesProps";
-import { type Container, tsParticles, getLogger } from "@tsparticles/engine";
 import { waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 // Class-based Particles component to avoid relying on Inferno hooks at
@@ -12,6 +12,7 @@ export default class Particles extends Component<IParticlesProps> {
 	_cancelled = false;
 	_loadId = 0;
 	_themeLoadId = 0;
+	_themeLoads = new WeakMap<Container, Promise<void>>();
 	_themePlaybackStates = new WeakMap<Container, { activeRequests: number; wasPlaying: boolean }>();
 
 	componentDidMount() {
@@ -31,7 +32,7 @@ export default class Particles extends Component<IParticlesProps> {
 				isCurrentRequest = () => themeLoadId === this._themeLoadId && !this._cancelled && this._container === container;
 
 			void themeLoad.catch(error => {
-				getLogger().error("Particles: error during theme recovery", error);
+				container.engine.getLogger().error("Particles: error during theme recovery", error);
 
 				if (isCurrentRequest() && !container.destroyed) {
 					void this.reloadContainer();
@@ -41,6 +42,7 @@ export default class Particles extends Component<IParticlesProps> {
 
 		// Reload the container if relevant props changed
 		if (
+			prevProps.engine !== this.props.engine ||
 			prevProps.id !== this.props.id ||
 			prevProps.url !== this.props.url ||
 			prevProps.options !== this.props.options
@@ -61,9 +63,10 @@ export default class Particles extends Component<IParticlesProps> {
 
 	async loadContainer() {
 		const loadId = ++this._loadId;
+		const engine = this.props.engine;
 
 		try {
-			await waitForParticlesEngineInitialization();
+			await waitForParticlesEngineInitialization(engine);
 
 			if (this._cancelled || loadId !== this._loadId) {
 				return;
@@ -71,7 +74,7 @@ export default class Particles extends Component<IParticlesProps> {
 
 			const { id, url, options, loaded, particlesLoaded, container } = this.props;
 
-			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+			const newContainer = await engine.load({ id: id ?? "tsparticles", url, options });
 
 			if (this._cancelled || loadId !== this._loadId) {
 				newContainer?.destroy();
@@ -85,6 +88,20 @@ export default class Particles extends Component<IParticlesProps> {
 
 			if (newContainer && theme) {
 				await this.loadTheme(newContainer, theme, () => !this._cancelled && loadId === this._loadId);
+			}
+
+			if (newContainer) {
+				let pending = this._themeLoads.get(newContainer);
+
+				while (pending) {
+					await pending;
+					const latest = this._themeLoads.get(newContainer);
+
+					if (latest === pending) {
+						break;
+					}
+					pending = latest;
+				}
 			}
 
 			if (this._cancelled || loadId !== this._loadId) {
@@ -102,11 +119,19 @@ export default class Particles extends Component<IParticlesProps> {
 				await particlesLoaded?.(newContainer);
 			}
 		} catch (e) {
-			getLogger().error("Particles: error during load", e);
+			engine.getLogger().error("Particles: error during load", e);
 		}
 	}
 
-	async loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
+	loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
+		const pending = this.refreshTheme(container, theme, isCurrent);
+
+		this._themeLoads.set(container, pending);
+
+		return pending;
+	}
+
+	async refreshTheme(container: Container, theme: string, isCurrent: () => boolean): Promise<void> {
 		const themeLoadId = ++this._themeLoadId,
 			isCurrentRequest = () => themeLoadId === this._themeLoadId && isCurrent();
 		let playbackState = this._themePlaybackStates.get(container);
@@ -121,7 +146,7 @@ export default class Particles extends Component<IParticlesProps> {
 		try {
 			await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
 		} catch (e) {
-			getLogger().error("Particles: error during theme load", e);
+			container.engine.getLogger().error("Particles: error during theme load", e);
 
 			if (playbackState.wasPlaying && isCurrentRequest() && !container.destroyed) {
 				await container.refresh();

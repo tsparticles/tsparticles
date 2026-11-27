@@ -4,7 +4,6 @@ import {
   type RecursivePartial,
   type SingleOrMultiple,
   safeDocument,
-  tsParticles,
 } from "@tsparticles/engine";
 
 /** Responsive options for Marc Bruederlin's particles */
@@ -52,7 +51,7 @@ export class MBParticles {
    * @param options - The options to handle
    * @returns The result
    */
-  static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
+  static init(engine: Engine, options: RecursivePartial<ParticlesOptions>): MBParticles {
     const particles = new MBParticles(),
       selector = options.selector;
 
@@ -124,7 +123,7 @@ export class MBParticles {
         .then(container => {
           particles.#container = container;
         });
-    })(tsParticles);
+    })(engine);
 
     return particles;
   }

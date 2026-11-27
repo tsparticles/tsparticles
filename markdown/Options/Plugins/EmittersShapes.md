@@ -20,3 +20,9 @@ Every shape implements the `draw` contract used by the emitter `draw` option: wh
 `size.height` and centered on the emitter position, not the drawn shape; this size-based drag area
 does not apply when `emitters.domId` is set, since emitters linked to a DOM element are never
 draggable. Both options default to `false`.
+
+The canvas shape's filter callback receives the sampled RGBA pixel and an
+optional second `colorSpace` argument (`"srgb"` or `"display-p3"`). Readback
+uses RGBA-unorm8, so sampled pixels do not retain HDR headroom. If the sampled
+color is used for particle fill, it is converted to OKLCH using that source
+space.

@@ -7,14 +7,16 @@ import {
   type IMouseData,
   type IRandomPositionData,
   type ISourceOptions,
-  tsParticles,
+  createEngine,
 } from "@tsparticles/engine";
 import { type EmitterContainer, EmitterShapeBase, loadEmittersPlugin } from "@tsparticles/plugin-emitters";
-import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+
+const tsParticles = createEngine();
 
 /**
  * Minimally overrides the abstract {@link EmitterShapeBase} members.

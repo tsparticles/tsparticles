@@ -1,16 +1,16 @@
 /* eslint-disable */
-import { type Container, type Engine, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type Engine, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadAmbientPreset } from "@tsparticles/preset-ambient";
 import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
 import { loadBubblesPreset } from "@tsparticles/preset-bubbles";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import { loadConfettiCannonPreset } from "@tsparticles/preset-confetti-cannon";
 import { loadConfettiExplosionsPreset } from "@tsparticles/preset-confetti-explosions";
 import { loadConfettiFallingPreset } from "@tsparticles/preset-confetti-falling";
 import { loadConfettiParadePreset } from "@tsparticles/preset-confetti-parade";
+import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 import { loadFireflyPreset } from "@tsparticles/preset-firefly";
 import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
@@ -25,6 +25,8 @@ import { loadSnowPreset } from "@tsparticles/preset-snow";
 import { loadSquaresPreset } from "@tsparticles/preset-squares";
 import { loadStarsPreset } from "@tsparticles/preset-stars";
 import { loadTrianglesPreset } from "@tsparticles/preset-triangles";
+
+const tsParticles = createEngine();
 
 const presets: { key: string; load: (engine: Engine) => Promise<void> }[] = [
   { key: "ambient", load: loadAmbientPreset },

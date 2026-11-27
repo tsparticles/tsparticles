@@ -1,8 +1,12 @@
 import { ParticlesProvider } from "@tsparticles/react";
-import { ribbons } from "@tsparticles/ribbons";
+import { createRibbons } from "@tsparticles/ribbons";
+import { engine } from "../particlesEngine";
 import "./App.css";
 
+const ribbons = createRibbons(engine);
+
 async function init(): Promise<void> {
+  await ribbons.init();
 }
 
 export default function App() {
@@ -11,7 +15,7 @@ export default function App() {
   }
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <div id="app">
         <h1>Ribbons</h1>
         <div className="controls">

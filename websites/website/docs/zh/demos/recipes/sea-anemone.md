@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ## 随时可用（手动启动/停止）
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSeaAnemonePreset } from "@tsparticles/preset-sea-anemone";
 import type { Container } from "@tsparticles/engine";
 

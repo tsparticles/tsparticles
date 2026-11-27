@@ -1,0 +1,15 @@
+{
+  "mode": "inline-radius",
+  "originalSha256": "90fd9dd0a318ecb55ba072a54a94bcaf4f1154881991fb64dfcec78ca85667d9",
+  "patchedSha256": "0c842ccaa46d1401e9c11f6939d8b0ef3a6a0d8741f18fa630642b828e830e4f",
+  "minifiedSha256": "04c63bfdab9623970b0dbc579d72fbfcab2903e9a6eba18094030883d1d53de3",
+  "patches": [
+    [
+      "return this.#applyModifiers(this.size.value, m => m.radius);",
+      "let value = this.size.value; for (const mod of this.#modifiers) { if (mod.enabled) { const override = mod.radius; if (override !== undefined) value = override; } } return value;"
+    ]
+  ],
+  "limitations": [
+    "In-memory getter prototype, no production source changed; default Terser settings differ from the release bundle configuration."
+  ]
+}

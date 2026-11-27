@@ -11,7 +11,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-fireworks
 ## Betriebsbereit (manueller Start/Stopp)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
 import type { Container } from "@tsparticles/engine";
 

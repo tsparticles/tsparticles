@@ -25,31 +25,32 @@ Install the Ember addon and the tsParticles engine via ember-cli:
 ember install @tsparticles/ember
 ```
 
-This will install the addon and its peer dependency `tsparticles`. You can optionally add preset packages:
+Install the engine and Full bundle used in these examples:
 
 ```bash
-npm install @tsparticles/slim
+npm install @tsparticles/engine tsparticles
 ```
 
 ---
 
 ## Engine Initialization
 
-The addon exports an `initParticlesEngine` utility that you call once at the application level. It receives an async callback where you load the features, presets, or shapes your app needs.
+Create an engine in a shared application module and register the features it needs through the addon initializer.
 
 ```typescript
+// app/utils/particles-engine.ts
+import { createEngine } from "@tsparticles/engine";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadFull } from "tsparticles";
 
-// Call this during application bootstrap
-if (typeof window !== "undefined") {
-  void initParticlesEngine(async (engine) => {
-    await loadFull(engine);
-  });
+export const engine = createEngine();
+
+export function initializeParticles() {
+  return initParticlesEngine(engine, loadFull);
 }
 ```
 
-Typical locations for this call are the application route's `beforeModel` hook, an application controller's constructor, or an instance initializer. The engine singleton is initialized once and shared across all `<Particles>` components in your app.
+Call the initializer from the browser and pass the same engine to each component that should share its registrations.
 
 ---
 
@@ -60,15 +61,25 @@ After initializing the engine, use the `<Particles>` component in any template. 
 ```hbs
 {{! app/templates/application.hbs }}
 
-<Particles @options={{this.options}} />
+<Particles @engine={{this.engine}} @options={{this.options}} />
 ```
 
 ```typescript
 // app/controllers/application.ts
 import Controller from "@ember/controller";
+import { engine, initializeParticles } from "../utils/particles-engine";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 export default class ApplicationController extends Controller {
+  readonly engine = engine;
+
+  constructor(...args: ConstructorParameters<typeof Controller>) {
+    super(...args);
+    if (typeof window !== "undefined") {
+      void initializeParticles();
+    }
+  }
+
   options: ISourceOptions = {
     fpsLimit: 60,
     particles: {
@@ -105,16 +116,26 @@ Build a richer configuration with interactivity, multiple shapes, and responsive
 
 ```typescript
 import Controller from "@ember/controller";
+import { engine, initializeParticles } from "../utils/particles-engine";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 export default class IndexController extends Controller {
+  readonly engine = engine;
+
+  constructor(...args: ConstructorParameters<typeof Controller>) {
+    super(...args);
+    if (typeof window !== "undefined") {
+      void initializeParticles();
+    }
+  }
+
   options: ISourceOptions = {
     fullScreen: { enable: true, zIndex: -1 },
     fpsLimit: 60,
     particles: {
       number: {
         value: 60,
-        density: { enable: true, width: 800, height: 800 },
+        density: { enable: true },
       },
       color: {
         value: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
@@ -159,21 +180,31 @@ export default class IndexController extends Controller {
 ```
 
 ```hbs
-<Particles @options={{this.options}} />
+<Particles @engine={{this.engine}} @options={{this.options}} />
 ```
 
 ---
 
 ## Event Handling
 
-The `<Particles>` component fires a `@particlesLoaded` action when the container has finished initializing and the first frame is rendered. Use this to access the `Container` instance for programmatic control.
+The `<Particles>` component fires a `@particlesLoaded` action when the engine returns the loaded container. Use this to access the `Container` instance for programmatic control.
 
 ```typescript
 import Controller from "@ember/controller";
+import { engine, initializeParticles } from "../utils/particles-engine";
 import { action } from "@ember/object";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export default class ApplicationController extends Controller {
+  readonly engine = engine;
+
+  constructor(...args: ConstructorParameters<typeof Controller>) {
+    super(...args);
+    if (typeof window !== "undefined") {
+      void initializeParticles();
+    }
+  }
+
   options: ISourceOptions = {/* ... */};
 
   @action
@@ -182,7 +213,7 @@ export default class ApplicationController extends Controller {
 
     // Programmatic control example:
     setTimeout(() => {
-      container.pause();
+      container?.pause();
       console.log("Particles paused after 5 seconds");
     }, 5000);
   }
@@ -190,7 +221,7 @@ export default class ApplicationController extends Controller {
 ```
 
 ```hbs
-<Particles @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
+<Particles @engine={{this.engine}} @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
 ```
 
 You can also use the callback pattern inline with a template helper if you prefer not to define a separate action.
@@ -203,13 +234,13 @@ Use Ember's `{{if}}` helper together with a `@tracked` property to control when 
 
 ```typescript
 import Controller from "@ember/controller";
+import { engine, initializeParticles } from "../utils/particles-engine";
 import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
-import { loadSlim } from "@tsparticles/slim";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export default class ApplicationController extends Controller {
+  readonly engine = engine;
+
   @tracked engineReady = false;
 
   options: ISourceOptions = {
@@ -224,12 +255,10 @@ export default class ApplicationController extends Controller {
     background: { color: "#1a1a2e" },
   };
 
-  constructor(...args: any[]) {
+  constructor(...args: ConstructorParameters<typeof Controller>) {
     super(...args);
     if (typeof window !== "undefined") {
-      void initParticlesEngine(async (engine: Engine) => {
-        await loadSlim(engine);
-      }).then(() => {
+      void initializeParticles().then(() => {
         this.engineReady = true;
       });
     }
@@ -239,7 +268,7 @@ export default class ApplicationController extends Controller {
 
 ```hbs
 {{#if this.engineReady}}
-  <Particles @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
+  <Particles @engine={{this.engine}} @options={{this.options}} />
 {{else}}
   <p>Loading particles...</p>
 {{/if}}
@@ -256,18 +285,19 @@ Below is a complete, typed Ember application controller demonstrating the full i
 ```typescript
 // app/controllers/application.ts
 import Controller from "@ember/controller";
+import { engine, initializeParticles } from "../utils/particles-engine";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
-import { loadSlim } from "@tsparticles/slim";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export default class ApplicationController extends Controller {
-  @tracked private engineReady = false;
+  readonly engine = engine;
+
+  @tracked engineReady = false;
 
   private container?: Container;
 
-  private readonly options: ISourceOptions = {
+  readonly options: ISourceOptions = {
     fullScreen: { enable: true, zIndex: -1 },
     fpsLimit: 60,
     particles: {
@@ -305,21 +335,19 @@ export default class ApplicationController extends Controller {
     background: { color: "#0a0a1a" },
   };
 
-  constructor(...args: any[]) {
+  constructor(...args: ConstructorParameters<typeof Controller>) {
     super(...args);
     if (typeof window !== "undefined") {
-      void initParticlesEngine(async (engine: Engine) => {
-        await loadSlim(engine);
-      }).then(() => {
+      void initializeParticles().then(() => {
         this.engineReady = true;
       });
     }
   }
 
   @action
-  private handleParticlesLoaded(container: Container): void {
+  handleParticlesLoaded(container?: Container): void {
     this.container = container;
-    console.log("Particles loaded in container:", container.id);
+    console.log("Particles loaded in container:", container?.id);
   }
 }
 ```
@@ -330,7 +358,7 @@ export default class ApplicationController extends Controller {
 {{#if this.engineReady}}
   <div class="app-container">
     <h1>tsParticles + Ember</h1>
-    <Particles @options={{this.options}} @particlesLoaded={{this.handleParticlesLoaded}} />
+    <Particles @engine={{this.engine}} @options={{this.options}} @particlesLoaded={{this.handleParticlesLoaded}} />
   </div>
 {{else}}
   <div class="loading">

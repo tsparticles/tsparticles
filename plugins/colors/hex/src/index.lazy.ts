@@ -9,9 +9,9 @@ declare const __VERSION__: string;
 export async function loadHexColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(async e => {
+  await engine.pluginManager.register(async (e) => {
     const { HexColorManager } = await import("./HexColorManager.js");
 
-    e.pluginManager.addColorManager("hex", new HexColorManager());
+    e.addColorManager("hex", new HexColorManager());
   });
 }

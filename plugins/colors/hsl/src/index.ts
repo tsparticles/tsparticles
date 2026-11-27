@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadHslColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("hsl", new HslColorManager());
+  await engine.pluginManager.register((e) => {
+    e.addColorManager("hsl", new HslColorManager(e.getRandomFn()));
   });
 }

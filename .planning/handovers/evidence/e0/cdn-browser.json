@@ -1,0 +1,110 @@
+{
+  "browser": "Chrome/157.0.8103.52",
+  "runs": [
+    {
+      "cache": "cold",
+      "count": 100,
+      "remainingContainers": 0
+    },
+    {
+      "cache": "warm",
+      "count": 100,
+      "remainingContainers": 0
+    }
+  ],
+  "requests": [
+    {
+      "url": "/engine/dist/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "status": 200,
+      "fromCache": false
+    },
+    {
+      "url": "/engine/dist/tsparticles.engine.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/utils/animationUtils/dist/tsparticles.animation.utils.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/shapes/circle/dist/tsparticles.shape.circle.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/plugins/move/dist/tsparticles.plugin.move.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/plugins/colors/hex/dist/tsparticles.plugin.hexColor.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/updaters/paint/dist/tsparticles.updater.paint.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/updaters/size/dist/tsparticles.updater.size.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/updaters/opacity/dist/tsparticles.updater.opacity.min.js",
+      "status": 200,
+      "fromCache": true
+    },
+    {
+      "url": "/updaters/outModes/dist/tsparticles.updater.out-modes.min.js",
+      "status": 200,
+      "fromCache": true
+    }
+  ],
+  "errors": [],
+  "compression": "See cdn-candidate.json; HTTP test serves uncompressed bytes",
+  "limits": "No lazy/CDN dynamic chunks or module-script variant in this smoke test"
+}

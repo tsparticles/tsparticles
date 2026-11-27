@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-brownian
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadBrownianPath } = require("@tsparticles/path-brownian");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadBrownianPath } = require("@tsparticles/path-brownian");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBrownianPath } from "@tsparticles/path-brownian";
 
 (async () => {

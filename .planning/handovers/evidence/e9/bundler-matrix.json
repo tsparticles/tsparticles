@@ -1,0 +1,134 @@
+{
+  "measuredAt": "2026-11-24",
+  "consumer": "@tsparticles/basic",
+  "version": "4.6.0",
+  "scene": "Basic 100-particle scene used for Rollup, Rolldown, Webpack standalone minified/unminified, and Webpack external page composition. Chrome verifies the supported standalone variants and external composition.",
+  "compression": {
+    "gzipLevel": 9,
+    "brotliQuality": 11
+  },
+  "rollup": {
+    "version": "4.67.4",
+    "minified": {
+      "file": "tsparticles.basic.bundle.min.js",
+      "raw": 121216,
+      "gzip": 37277,
+      "brotli": 32496
+    },
+    "unminified": {
+      "file": "tsparticles.basic.bundle.js",
+      "raw": 331043,
+      "gzip": 57473,
+      "brotli": 47859
+    }
+  },
+  "rolldown": {
+    "version": "1.2.8",
+    "minified": {
+      "file": "tsparticles.basic.bundle.min.js",
+      "raw": 122777,
+      "gzip": 38774,
+      "brotli": 33743,
+      "newlines": 0
+    },
+    "unminified": {
+      "file": "tsparticles.basic.bundle.js",
+      "raw": 277520,
+      "gzip": 57770,
+      "brotli": 47967
+    },
+    "initialMinifiedBeforeFix": {
+      "raw": 170185,
+      "gzip": 43865,
+      "brotli": 37198,
+      "issue": "Terser Rollup plugin did not minify the Rolldown output. Replaced it with Rolldown native output minification."
+    },
+    "deltaVsRollupMinified": {
+      "raw": 1561,
+      "gzip": 1497,
+      "brotli": 1247,
+      "percentRaw": 1.288
+    }
+  },
+  "webpack": {
+    "version": "5.112.2",
+    "minified": {
+      "entry": {
+        "file": "bundles/basic/dist/tsparticles.tsparticles.basic.bundle.min.js",
+        "raw": 86145,
+        "gzip": 29501,
+        "brotli": 24726
+      },
+      "chunks": [
+        {
+          "file": "bundles/basic/dist/117.min.js",
+          "raw": 43734,
+          "gzip": 14096,
+          "brotli": 12666
+        },
+        {
+          "file": "bundles/basic/dist/717.min.js",
+          "raw": 5048,
+          "gzip": 1983,
+          "brotli": 1831
+        },
+        {
+          "file": "bundles/basic/dist/79.min.js",
+          "raw": 784,
+          "gzip": 394,
+          "brotli": 342
+        }
+      ],
+      "entryAndChunksTotal": {
+        "raw": 135711,
+        "gzip": 45974,
+        "brotli": 39565
+      },
+      "browser": "Minified Basic page loaded the entry and all three chunks; scene passed in Chrome over local HTTP."
+    },
+    "unminified": {
+      "entry": {
+        "file": "bundles/basic/dist/tsparticles.tsparticles.basic.bundle.js",
+        "raw": 448112,
+        "gzip": 55652,
+        "brotli": 42662
+      },
+      "chunks": [
+        {
+          "file": "bundles/basic/dist/engine_dist_esm_Core_Container_Container_js.js",
+          "raw": 148587,
+          "gzip": 22937,
+          "brotli": 19707
+        },
+        {
+          "file": "bundles/basic/dist/plugins_blend_dist_esm_BlendPluginInstance_js.js",
+          "raw": 3158,
+          "gzip": 1104,
+          "brotli": 898
+        },
+        {
+          "file": "bundles/basic/dist/plugins_move_dist_esm_MovePluginInstance_js.js",
+          "raw": 17642,
+          "gzip": 3658,
+          "brotli": 3236
+        }
+      ],
+      "entryAndChunksTotal": {
+        "raw": 617499,
+        "gzip": 83351,
+        "brotli": 66503
+      },
+      "browser": "Unminified Basic page loaded the entry and all three chunks; scene passed in Chrome over local HTTP.",
+      "warnings": [
+        "webpack-bundle-analyzer: No bundles were parsed for some chunks"
+      ]
+    },
+    "externalEntry": {
+      "file": "bundles/basic/dist/tsparticles.tsparticles.basic.min.js",
+      "raw": 2686,
+      "gzip": 923,
+      "brotli": 800
+    },
+    "limits": "Webpack standalone outputs are multi-file; totals sum entry and every emitted chunk. External composition costs are listed in composition-comparison.json."
+  }
+}

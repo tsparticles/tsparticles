@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-emoji
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEmojiShape } = require("@tsparticles/shape-emoji");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadEmojiShape } = require("@tsparticles/shape-emoji");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEmojiShape } from "@tsparticles/shape-emoji";
 
 (async () => {

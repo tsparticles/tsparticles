@@ -7,8 +7,14 @@ import {
   percentDenominator,
   safeDocument,
 } from "@tsparticles/engine";
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  generateRandomPointOnPathPerimeter,
+  generateRandomPointWithinPath,
+} from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 import { ErrorCodes } from "./ErrorCodes.js";
 
@@ -26,7 +32,9 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
   ) {
     super(position, size, fill, options);
 
-    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.render.settings);
+    const ctx = safeDocument()
+      .createElement("canvas")
+      .getContext("2d", container.canvas.render.settings);
 
     if (!ctx) {
       throw new Error(getErrorMessage(ErrorCodes.emittersPathNo2dContext));
@@ -102,15 +110,15 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     // nothing to do
   }
 
-  randomPosition(): IRandomPositionData | null {
+  randomPosition(random: () => number): IRandomPositionData | null {
     const ctx = this.checkContext,
       position = this.position,
       size = this.size,
       fill = this.fill,
       path = this.path,
       res = fill
-        ? generateRandomPointWithinPath(ctx, path, position, size)
-        : generateRandomPointOnPathPerimeter(ctx, path, position, size);
+        ? generateRandomPointWithinPath(ctx, path, position, size, random)
+        : generateRandomPointOnPathPerimeter(ctx, path, position, size, random);
 
     return res ? { position: res } : null;
   }

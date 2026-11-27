@@ -1,0 +1,52 @@
+{
+  "scope": "Self-contained all-bundle only; gzip level 9 and Brotli quality 11 on identical Node toolchain.",
+  "node": "v26.13.0",
+  "artifacts": [
+    {
+      "version": "e4",
+      "file": "e4-all.bundle.min.js.gz",
+      "sha256": "fe02ad0285f011b08eabc2ac3a28d74d5ec6f4d61f667997c4d2ab332e1abeed",
+      "raw": 435531,
+      "gzip": 118216,
+      "brotli": 96340
+    },
+    {
+      "version": "e5-before",
+      "file": "e5-before-all.bundle.min.js.gz",
+      "sha256": "9ea1122f7ffeeb8df6f9814435978bf30d23609c185a1d0349a1346a8fbd1934",
+      "raw": 459478,
+      "gzip": 126075,
+      "brotli": 102042
+    },
+    {
+      "version": "e5-cache-stage",
+      "file": "e5-after-all.bundle.min.js.gz",
+      "sha256": "35e83cff8ab844c65512d90d357fce1694a023d9be27fd25ebd2efb7846ab1a5",
+      "raw": 459838,
+      "gzip": 126250,
+      "brotli": 102065
+    },
+    {
+      "version": "e5-final",
+      "file": "e5-final-all.bundle.min.js.gz",
+      "sha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+      "raw": 459896,
+      "gzip": 126256,
+      "brotli": 102119
+    }
+  ],
+  "cacheIncrementDelta": {
+    "raw": 360,
+    "gzip": 175,
+    "brotli": 23
+  },
+  "finalDeltaFromBefore": {
+    "raw": 418,
+    "gzip": 181,
+    "brotli": 77
+  },
+  "notes": [
+    "Factory/minimal-consumer payload deltas were not regenerated for this increment. Earlier payload reports remain historical.",
+    "Bundle-growth budget remains user-waived; no performance budget is waived."
+  ]
+}

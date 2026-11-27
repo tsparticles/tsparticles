@@ -58,7 +58,8 @@ $ yarn add @tsparticles/updater-rotate
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadRotateUpdater } = require("@tsparticles/updater-rotate");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadRotateUpdater } = require("@tsparticles/updater-rotate");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 
 (async () => {

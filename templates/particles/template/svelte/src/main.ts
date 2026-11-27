@@ -1,9 +1,12 @@
-import { mount } from "svelte";
-import { initParticlesEngine } from "@tsparticles/svelte";
-import { particles } from "@tsparticles/particles";
 import App from "./App.svelte";
+import { createParticles } from "@tsparticles/particles";
+import { engine } from "../particlesEngine";
+import { initParticlesEngine } from "@tsparticles/svelte";
+import { mount } from "svelte";
 
-void initParticlesEngine(async () => {
+const particles = createParticles(engine);
+
+void initParticlesEngine(engine, async () => {
   await particles.init();
 });
 

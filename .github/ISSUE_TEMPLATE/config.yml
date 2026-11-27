@@ -51,9 +51,6 @@ contact_links:
   - name: Svelte (svelte-particles)
     url: https://github.com/tsparticles/svelte
     about: The official tsParticles Svelte component repository
-  - name: Vue.js 2.x (vue2-particles)
-    url: https://github.com/tsparticles/vue2
-    about: The official tsParticles Vue.js 2.x component repository
   - name: Vue.js 3.x (vue3-particles)
     url: https://github.com/tsparticles/vue3
     about: The official tsParticles Vue.js 3.x component repository

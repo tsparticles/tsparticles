@@ -1,5 +1,10 @@
 import type { ConfigParams, IifeBuildKind, IifePolicyData } from "../types";
-import type { GlobalsOption, Plugin, RenderedChunk, RollupOptions } from "rollup";
+import type {
+  GlobalsOption,
+  Plugin,
+  RenderedChunk,
+  RollupOptions,
+} from "rollup";
 import { getExternal, getGlobals } from "./externals";
 import fs from "node:fs";
 import { getEntry } from "./entry";
@@ -21,35 +26,49 @@ const EMPTY_SIZE = 0,
   lazyWrapperVirtualPrefix = "\0tsparticles-lazy-wrapper:",
   // Public export predicate per kind
   getPublicExports = (exports: string[], kind: IifeBuildKind): string[] => {
-    const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
-      confetti: "confetti",
-      engine: "tsParticles",
-      fireworks: "fireworks",
+    const fixedPublicMap: Record<
+      Exclude<IifeBuildKind, "bundle" | "package">,
+      string
+    > = {
+      confetti: "createConfetti",
+      engine: "createEngine",
+      fireworks: "createFireworks",
       pjs: "initPjs",
     };
 
     if (kind === "bundle") {
-      // Bundles expose load* functions AND the tsParticles instance (needed for bundle users)
-      return exports.filter(t => /^load[A-Z]/.test(t) || t === "tsParticles");
+      // Bundles expose loader and factory definitions without creating an engine.
+      return exports.filter(
+        (t) => /^load[A-Z]/.test(t) || /^create[A-Z]/.test(t),
+      );
     }
 
     if (kind === "package") {
-      return exports.filter(t => /^load[A-Z]/.test(t));
+      return exports.filter((t) => /^load[A-Z]/.test(t));
     }
 
     const requiredExport = fixedPublicMap[kind];
 
     if (!exports.includes(requiredExport)) {
-      throw new Error(`UMD public export policy violated: missing ${requiredExport}`);
+      throw new Error(
+        `UMD public export policy violated: missing ${requiredExport}`,
+      );
     }
 
     return [requiredExport];
   },
-  validatePublicExports = (publicExports: string[], allExports: string[], kind: IifeBuildKind): void => {
-    const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
-      confetti: "confetti",
-      engine: "tsParticles",
-      fireworks: "fireworks",
+  validatePublicExports = (
+    publicExports: string[],
+    allExports: string[],
+    kind: IifeBuildKind,
+  ): void => {
+    const fixedPublicMap: Record<
+      Exclude<IifeBuildKind, "bundle" | "package">,
+      string
+    > = {
+      confetti: "createConfetti",
+      engine: "createEngine",
+      fireworks: "createFireworks",
       pjs: "initPjs",
     };
 
@@ -57,18 +76,27 @@ const EMPTY_SIZE = 0,
       const required = fixedPublicMap[kind];
 
       if (!allExports.includes(required)) {
-        throw new Error(`UMD public export policy violated: missing ${required}`);
+        throw new Error(
+          `UMD public export policy violated: missing ${required}`,
+        );
       }
 
-      if (publicExports.length !== EXPECTED_COUNT || publicExports[FIRST_INDEX] !== required) {
-        throw new Error(`UMD public export policy violated: ${kind} can expose only ${required}`);
+      if (
+        publicExports.length !== EXPECTED_COUNT ||
+        publicExports[FIRST_INDEX] !== required
+      ) {
+        throw new Error(
+          `UMD public export policy violated: ${kind} can expose only ${required}`,
+        );
       }
 
       return;
     }
 
     // For bundle/package: only load* (and tsParticles for bundle) are allowed on window
-    const invalid = publicExports.filter(t => !/^load[A-Z]/.test(t) && t !== "tsParticles");
+    const invalid = publicExports.filter(
+      (t) => !/^load[A-Z]/.test(t) && !/^create[A-Z]/.test(t),
+    );
 
     if (invalid.length > EMPTY_SIZE) {
       throw new Error(
@@ -91,7 +119,10 @@ const EMPTY_SIZE = 0,
    * @returns The string value
    */
   redirectIifeToGlobalScope = (code: string): string => {
-    const body = code.replaceAll("this.__tsParticlesInternals", "g.__tsParticlesInternals");
+    const body = code.replaceAll(
+      "this.__tsParticlesInternals",
+      "g.__tsParticlesInternals",
+    );
 
     return `(function (g) {\n${body}\n})(${globalScopeExpression});\n`;
   },
@@ -102,26 +133,55 @@ const EMPTY_SIZE = 0,
    * @param publicExports - The publicExports
    * @returns The string value
    */
-  buildWindowExposureCode = (scope: string, publicExports: string[]): string => {
+  buildWindowExposureCode = (
+    scope: string,
+    publicExports: string[],
+  ): string => {
     if (publicExports.length === EMPTY_SIZE) {
       return "";
     }
 
-    const assignments = publicExports.map(exp => `${exp}: (globalThis.${scope} || {}).${exp}`).join(", ");
+    const assignments = publicExports
+      .map((exp) => `${exp}: (globalThis.${scope} || {}).${exp}`)
+      .join(", ");
 
-    return `Object.assign(globalThis.window || globalThis, { ${assignments} });\n`;
+    return `Object.assign(globalThis.tsParticles = globalThis.tsParticles || {}, { ${assignments} });\n`;
   },
   buildBundleEngineAliasCode = (iifePolicy: IifePolicyData): string => {
-    if (iifePolicy.kind !== "bundle") {
+    if (iifePolicy.kind === "engine" || iifePolicy.kind === "package") {
       return "";
     }
 
     // Keep backward compatibility for packages that still resolve engine externals from internals.engine.
     return (
       `globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};\n` +
-      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.tsParticles) {\n` +
+      `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.createEngine) {\n` +
       `  globalThis.__tsParticlesInternals.engine = globalThis.${iifePolicy.scope} || {};\n` +
       `}\n`
+    );
+  },
+  buildVersionGuardedIifeCode = (
+    code: string,
+    scope: string,
+    version: string,
+  ): string => {
+    const marker = JSON.stringify(`@tsparticles/iife:${scope}`),
+      fixedVersion = JSON.stringify(version),
+      message = JSON.stringify(
+        `A different version of ${scope} is already loaded`,
+      );
+
+    return (
+      `(() => {\n` +
+      `  const namespace = globalThis.${scope};\n` +
+      `  const marker = Symbol.for(${marker});\n` +
+      `  if (marker in namespace) {\n` +
+      `    if (namespace[marker] !== ${fixedVersion}) throw new Error(${message});\n` +
+      `    return;\n` +
+      `  }\n` +
+      `${redirectIifeToGlobalScope(code)}\n` +
+      `  Object.defineProperty(namespace, marker, { value: ${fixedVersion} });\n` +
+      `})();\n`
     );
   },
   buildLazyRuntimePath = (name: string): string => {
@@ -141,9 +201,9 @@ const EMPTY_SIZE = 0,
 
     for (const match of content.matchAll(/export\s*{([^}]+)}(?!\s*from)/g)) {
       const values = match[FIRST_CAPTURE_GROUP].split(",")
-        .map(value => value.trim())
+        .map((value) => value.trim())
         .filter(Boolean)
-        .map(value =>
+        .map((value) =>
           value
             .split(/\s+as\s+/)
             .pop()
@@ -158,7 +218,10 @@ const EMPTY_SIZE = 0,
 
     return [...exports];
   },
-  resolveLazyEntryExports = (filePath: string, visited = new Set<string>()): string[] => {
+  resolveLazyEntryExports = (
+    filePath: string,
+    visited = new Set<string>(),
+  ): string[] => {
     if (visited.has(filePath) || !fs.existsSync(filePath)) {
       return [];
     }
@@ -168,7 +231,9 @@ const EMPTY_SIZE = 0,
     const content = fs.readFileSync(filePath, "utf8"),
       exports = new Set(parseNamedExports(content));
 
-    for (const match of content.matchAll(/export\s+(?:\*|{[^}]+})\s+from\s+["'](.+?)["']/g)) {
+    for (const match of content.matchAll(
+      /export\s+(?:\*|{[^}]+})\s+from\s+["'](.+?)["']/g,
+    )) {
       const specifier = match[FIRST_CAPTURE_GROUP];
 
       if (!specifier.startsWith(".")) {
@@ -176,7 +241,9 @@ const EMPTY_SIZE = 0,
       }
 
       const resolvedPath = path.resolve(path.dirname(filePath), specifier),
-        normalizedPath = path.extname(resolvedPath) ? resolvedPath : `${resolvedPath}.js`;
+        normalizedPath = path.extname(resolvedPath)
+          ? resolvedPath
+          : `${resolvedPath}.js`;
 
       for (const value of resolveLazyEntryExports(normalizedPath, visited)) {
         exports.add(value);
@@ -185,25 +252,37 @@ const EMPTY_SIZE = 0,
 
     return [...exports];
   },
-  createLazyWrapperEntryPlugin = (params: ConfigParams, min: boolean): Plugin => {
+  createLazyWrapperEntryPlugin = (
+    params: ConfigParams,
+    min: boolean,
+  ): Plugin => {
     const { dir, iifePolicy } = params,
       { name } = getEntry({ ...params.entry, dir, min, lazy: true }),
       runtimePath = buildLazyRuntimePath(name),
       runtimeInputPath = getLazyRuntimeInputPath(dir),
       lazyExports = resolveLazyEntryExports(runtimeInputPath),
       publicExports = getPublicExports(
-        [...new Set(iifePolicy.kind === "bundle" ? [...lazyExports, "tsParticles"] : lazyExports)],
+        [
+          ...new Set(
+            iifePolicy.kind === "bundle"
+              ? [...lazyExports, "tsParticles"]
+              : lazyExports,
+          ),
+        ],
         iifePolicy.kind,
       ),
-      needsEngineExports = publicExports.includes("tsParticles") || iifePolicy.kind === "bundle",
+      needsEngineExports =
+        publicExports.includes("tsParticles") || iifePolicy.kind === "bundle",
       exportedDeclarations = publicExports
-        .filter(exp => exp !== "tsParticles")
+        .filter((exp) => exp !== "tsParticles")
         .map(
-          exp =>
+          (exp) =>
             `const ${exp} = async (...args) => { const module = await getLazyModule(); return module.${exp}(...args); };`,
         )
         .join("\n"),
-      tsParticlesExport = publicExports.includes("tsParticles") ? "const tsParticles = engineExports.tsParticles;" : "",
+      tsParticlesExport = publicExports.includes("tsParticles")
+        ? "const tsParticles = engineExports.tsParticles;"
+        : "",
       namedExports = publicExports.join(", "),
       engineBootstrap = needsEngineExports
         ? [
@@ -211,7 +290,9 @@ const EMPTY_SIZE = 0,
             "globalThis.__tsParticlesInternals.engine = globalThis.__tsParticlesInternals.engine || engineExports;",
           ].join("\n")
         : "",
-      imports = needsEngineExports ? 'import * as engineExports from "@tsparticles/engine";\n' : "",
+      imports = needsEngineExports
+        ? 'import * as engineExports from "@tsparticles/engine";\n'
+        : "",
       source = `${imports}
 const currentScript = typeof document !== "undefined" ? document.currentScript : undefined;
 const runtimeUrl = new URL("${runtimePath}", currentScript?.src ?? globalThis.location?.href ?? "/").href;
@@ -238,15 +319,22 @@ export { ${namedExports} };
       },
     };
   },
-  exposeEntryExports = (enabled: boolean, iifePolicy?: IifePolicyData): Plugin => {
+  exposeEntryExports = (
+    enabled: boolean,
+    iifePolicy?: IifePolicyData,
+    version = "0.0.0",
+  ): Plugin => {
     return {
       name: "expose-entry-exports",
-      renderChunk(code: string, chunk: RenderedChunk): { code: string; map: null } | null {
+      renderChunk(
+        code: string,
+        chunk: RenderedChunk,
+      ): { code: string; map: null } | null {
         if (!enabled || !chunk.isEntry) {
           return null;
         }
 
-        const exports = chunk.exports.filter(t => t !== "default");
+        const exports = chunk.exports.filter((t) => t !== "default");
 
         // No exports at all - keep the (possibly side-effecting) IIFE body but only bootstrap namespaces
         if (exports.length === EMPTY_SIZE) {
@@ -255,17 +343,17 @@ export { ${namedExports} };
           }
 
           return {
-            code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}`,
+            code: `${getIifeGlobalsBootstrap()}${buildVersionGuardedIifeCode(code, iifePolicy.scope, version)}`,
             map: null,
           };
         }
 
         // No namespace policy (e.g. ESM lazy split bundles) - expose all to window (old behavior)
         if (!iifePolicy) {
-          const assignments = exports.map(t => `${t}: ${t}`).join(", ");
+          const assignments = exports.map((t) => `${t}: ${t}`).join(", ");
 
           return {
-            code: `${code}\nObject.assign(globalThis.window || globalThis, { ${assignments} });\n`,
+            code: `${code}\nObject.assign(globalThis.tsParticles = globalThis.tsParticles || {}, { ${assignments} });\n`,
             map: null,
           };
         }
@@ -280,11 +368,14 @@ export { ${namedExports} };
 
         validatePublicExports(publicExports, exports, iifePolicy.kind);
 
-        const windowCode = buildWindowExposureCode(iifePolicy.scope, publicExports),
+        const windowCode = buildWindowExposureCode(
+            iifePolicy.scope,
+            publicExports,
+          ),
           engineAliasCode = buildBundleEngineAliasCode(iifePolicy);
 
         return {
-          code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}\n${windowCode}${engineAliasCode}`,
+          code: `${getIifeGlobalsBootstrap()}${buildVersionGuardedIifeCode(code, iifePolicy.scope, version)}\n${windowCode}${engineAliasCode}`,
           map: null,
         };
       },
@@ -325,14 +416,32 @@ export { ${namedExports} };
     async generateBundle(outputOptions, outputBundle): Promise<void> {
       const { visualizer } = await import("rollup-plugin-visualizer");
 
-      return visualizer({ filename }).generateBundle.call(this, outputOptions, outputBundle);
+      return visualizer({ filename }).generateBundle.call(
+        this,
+        outputOptions,
+        outputBundle,
+      );
     },
   });
 
-export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RollupOptions => {
-  const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
+export const createSingleConfig = (
+  params: ConfigParams,
+  min: boolean,
+  lazy: boolean,
+): RollupOptions => {
+  const {
+      additionalExternals,
+      banner,
+      bundle,
+      dir,
+      entry,
+      minBanner,
+      version,
+    } = params,
     { name, input } = getEntry({ ...entry, dir, min, lazy }),
-    wrapperEntryPlugin = lazy ? createLazyWrapperEntryPlugin(params, min) : undefined;
+    wrapperEntryPlugin = lazy
+      ? createLazyWrapperEntryPlugin(params, min)
+      : undefined;
 
   if (lazy) {
     return {
@@ -344,7 +453,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
           browser: true,
         }),
         replace(getReplacements(min, version)),
-        exposeEntryExports(true, params.iifePolicy),
+        exposeEntryExports(true, params.iifePolicy, params.version),
         min && terser(),
       ].filter(Boolean),
       output: {
@@ -370,7 +479,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         browser: true,
       }),
       replace(getReplacements(min, version)),
-      exposeEntryExports(true, params.iifePolicy),
+      exposeEntryExports(true, params.iifePolicy, params.version),
       !min && createLazyVisualizer(path.resolve(dir, "dist/report.html")),
       min && terser(),
     ].filter(Boolean),
@@ -386,8 +495,19 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
   };
 };
 
-export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): RollupOptions => {
-  const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
+export const createLazyRuntimeConfig = (
+  params: ConfigParams,
+  min: boolean,
+): RollupOptions => {
+  const {
+      additionalExternals,
+      banner,
+      bundle,
+      dir,
+      entry,
+      minBanner,
+      version,
+    } = params,
     { name } = getEntry({ ...entry, dir, min, lazy: true });
 
   return {
@@ -404,7 +524,9 @@ export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): Rol
       dir: path.resolve(dir, "dist"),
       format: "es",
       entryFileNames: buildLazyRuntimePath(name),
-      chunkFileNames: min ? "chunks/[name]-[hash].min.js" : "chunks/[name]-[hash].js",
+      chunkFileNames: min
+        ? "chunks/[name]-[hash].min.js"
+        : "chunks/[name]-[hash].js",
       banner: toJsBanner(min ? minBanner : banner),
     },
   };

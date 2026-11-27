@@ -8,7 +8,6 @@ import {
   type RangedAnimationValueWithRandom,
   StartValueType,
   clamp,
-  getRandom,
   getRangeMax,
   getRangeMin,
   getRangeValue,
@@ -16,6 +15,16 @@ import {
   millisecondsToSeconds,
   randomInRangeValue,
 } from "@tsparticles/engine";
+
+function requireRandom(random: (() => number) | undefined): () => number {
+  if (!random) {
+    throw new Error(
+      "A random provider is required for this animation operation.",
+    );
+  }
+
+  return random;
+}
 
 /**
  * @param particle - The particle to process
@@ -57,23 +66,25 @@ function checkDestroy(
 export function initParticleNumericAnimationValue(
   options: RangedAnimationValueWithRandom,
   pxRatio: number,
+  random?: () => number,
 ): IParticleNumericValueAnimation {
   const valueRange = options.value,
     animationOptions = options.animation,
     res: IParticleNumericValueAnimation = {
-      delayTime: getRangeValue(animationOptions.delay) * millisecondsToSeconds,
+      delayTime:
+        getRangeValue(animationOptions.delay, random) * millisecondsToSeconds,
       enable: animationOptions.enable,
-      value: getRangeValue(options.value) * pxRatio,
+      value: getRangeValue(options.value, random) * pxRatio,
       max: getRangeMax(valueRange) * pxRatio,
       min: getRangeMin(valueRange) * pxRatio,
       loops: 0,
-      maxLoops: getRangeValue(animationOptions.count),
+      maxLoops: getRangeValue(animationOptions.count, random),
       time: 0,
     },
     decayOffset = 1;
 
   if (animationOptions.enable) {
-    res.decay = decayOffset - getRangeValue(animationOptions.decay);
+    res.decay = decayOffset - getRangeValue(animationOptions.decay, random);
 
     switch (animationOptions.mode) {
       case AnimationMode.increase:
@@ -86,7 +97,10 @@ export function initParticleNumericAnimationValue(
         break;
 
       case AnimationMode.random:
-        res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+        res.status =
+          requireRandom(random)() >= half
+            ? AnimationStatus.increasing
+            : AnimationStatus.decreasing;
 
         break;
       default:
@@ -116,10 +130,13 @@ export function initParticleNumericAnimationValue(
 
       case StartValueType.random:
       default:
-        res.value = randomInRangeValue(res);
+        res.value = randomInRangeValue(res, requireRandom(random));
 
         if (autoStatus) {
-          res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+          res.status =
+            requireRandom(random)() >= half
+              ? AnimationStatus.increasing
+              : AnimationStatus.decreasing;
         }
 
         break;
@@ -155,7 +172,8 @@ export function updateAnimation(
   if (
     particle.destroyed ||
     !data.enable ||
-    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    ((data.maxLoops ?? minLoops) > minLoops &&
+      (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
   ) {
     return;
   }

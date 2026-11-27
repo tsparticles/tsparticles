@@ -2,8 +2,8 @@
  * Fixed ordinal layer positions for the RenderManager layer-based rendering pipeline.
  *
  * Each layer has a fixed position that determines drawing order (0 = back, 7 = front).
- * Plugins declare their layer via {@link IContainerPlugin.layer} or get assigned to all
- * applicable layers based on which hook methods they implement.
+ * Plugins are assigned to all applicable layers based on their implemented hook methods.
+ * {@link IContainerPlugin.layer} documents the primary rendering role.
  *
  * The pipeline in {@link RenderManager.drawParticles} iterates these layers in order:
  * 0 BackgroundElement → 1 BackgroundDraw → 2 BackgroundMask → 3 CanvasSetup →

@@ -1,5 +1,13 @@
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, degToRad, half } from "@tsparticles/engine";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  type ICoordinates,
+  type IDimension,
+  degToRad,
+  half,
+} from "@tsparticles/engine";
 import {
   generateRandomPointOnPolygonPerimeter,
   generateRandomPointWithinPolygon,
@@ -12,12 +20,22 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
   polygon: ICoordinates[];
   sides: number;
 
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersPolygonShapeOptions) {
+  constructor(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: EmittersPolygonShapeOptions,
+  ) {
     super(position, size, fill, options);
 
     this.sides = options.sides;
     this.angle = degToRad(options.angle);
-    this.polygon = generateRandomPolygon(position, this.sides, size.width * half, this.angle);
+    this.polygon = generateRandomPolygon(
+      position,
+      this.sides,
+      size.width * half,
+      this.angle,
+    );
   }
 
   override draw(context: OffscreenCanvasRenderingContext2D): void {
@@ -38,10 +56,12 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
     // nothing to do
   }
 
-  randomPosition(): IRandomPositionData | null {
+  randomPosition(random: () => number): IRandomPositionData | null {
     const fill = this.fill,
       polygon = this.polygon,
-      res = fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
+      res = fill
+        ? generateRandomPointWithinPolygon(polygon, random)
+        : generateRandomPointOnPolygonPerimeter(polygon, random);
 
     return res ? { position: res } : null;
   }
@@ -49,6 +69,11 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
   override resize(position: ICoordinates, size: IDimension): void {
     super.resize(position, size);
 
-    this.polygon = generateRandomPolygon(position, this.sides, size.width * half, this.angle);
+    this.polygon = generateRandomPolygon(
+      position,
+      this.sides,
+      size.width * half,
+      this.angle,
+    );
   }
 }

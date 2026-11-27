@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { getRandom } from "@tsparticles/engine";
-
 /**
  * @param rndFunc - The rndFunc
  * @param period - The period
@@ -12,7 +10,7 @@ import { getRandom } from "@tsparticles/engine";
  * @returns the generated value
  */
 export function CurvesPathGen(
-  rndFunc: (() => number) | null | undefined,
+  randomFunc: () => number,
   period: number,
   nbHarmonics: number,
   attenHarmonics: number,
@@ -23,8 +21,7 @@ export function CurvesPathGen(
     arP1: number[] = [], // 'succeeding value'
     amplitudes: number[] = [], // amplitudes oh harmonics
     increments: number[] = [], // n / period, which will be added to phases for every point
-    phases: number[] = [],
-    randomFunc = rndFunc ?? getRandom;
+    phases: number[] = [];
 
   let globAmplitude = 0;
 
@@ -42,7 +39,10 @@ export function CurvesPathGen(
   } // for kh
 
   /* normalize amplitudes */
-  amplitudes.forEach((value, kh) => (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)));
+  amplitudes.forEach(
+    (value, kh) =>
+      (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)),
+  );
 
   /* returned function here */
   return () => {

@@ -1,12 +1,13 @@
-import { beforeAll, describe, expect, it } from "vitest";
+import { type IMovePathGenerator, type MoveEngine, loadMovePlugin } from "@tsparticles/plugin-move";
+import { type ISourceOptions, Vector, createEngine, defaultFps, millisecondsToSeconds } from "@tsparticles/engine";
 // Keep workspace imports grouped after external packages per repository convention.
-// eslint-disable-next-line sort-imports
-import { type ISourceOptions, defaultFps, millisecondsToSeconds, tsParticles } from "@tsparticles/engine";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-// eslint-disable-next-line sort-imports
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
-// eslint-disable-next-line sort-imports
+
+import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 type MoveOptions = NonNullable<NonNullable<ISourceOptions["particles"]>["move"]>;
 
@@ -28,7 +29,14 @@ const canvasHeight = 600,
   initialPositionY = 300,
   initialVelocityY = -1,
   maximumSpeed = 2,
-  moveSpeed = 20;
+  moveSpeed = 20,
+  generatorName = "particle-pool-state",
+  pathGenerator: IMovePathGenerator = {
+    generate: () => Vector.create(0, 0),
+    init: () => undefined,
+    reset: () => undefined,
+    update: () => undefined,
+  };
 
 async function simulateMove(
   fps: number,
@@ -40,7 +48,10 @@ async function simulateMove(
     element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
     options: {
       fpsLimit: fps,
-      particles: { move: { enable: true, speed: moveSpeed, ...move }, number: { value: 1 } },
+      particles: {
+        move: { enable: true, speed: moveSpeed, ...move },
+        number: { value: 1 },
+      },
     },
   });
 
@@ -50,13 +61,19 @@ async function simulateMove(
     particle.position.y = initialPositionY;
     particle.velocity.setTo({ x: 0, y: initialVelocityY });
 
-    const delta = { value: millisecondsToSeconds / fps, factor: defaultFps / fps };
+    const delta = {
+      value: millisecondsToSeconds / fps,
+      factor: defaultFps / fps,
+    };
 
     for (let frame = 0; frame < frames; frame++) {
       container.particles.update(delta);
     }
 
-    return { distance: initialPositionY - particle.position.y, velocity: particle.velocity.y };
+    return {
+      distance: initialPositionY - particle.position.y,
+      velocity: particle.velocity.y,
+    };
   } finally {
     container.destroy(false);
   }
@@ -67,6 +84,17 @@ describe("Move timing", () => {
 
   beforeAll(async () => {
     await loadMovePlugin(tsParticles);
+
+    await tsParticles.pluginManager.register(current => {
+      const moveEngine = current as MoveEngine,
+        addPathGenerator = moveEngine.pluginManager.addPathGenerator;
+
+      if (!addPathGenerator) {
+        throw new Error("move path generator registration is unavailable");
+      }
+
+      addPathGenerator(generatorName, () => Promise.resolve(pathGenerator));
+    });
   });
 
   it("applies the same decay over equal elapsed time at 30, 60 and 120 FPS", async () => {
@@ -97,7 +125,9 @@ describe("Move timing", () => {
   });
 
   it("applies the same gravity acceleration over equal elapsed time", async () => {
-    const move = { gravity: { enable: true, acceleration: gravityAcceleration } },
+    const move = {
+        gravity: { enable: true, acceleration: gravityAcceleration },
+      },
       at60 = await simulateMove(fps60, framesAt60Fps, move),
       at30 = await simulateMove(fps30, framesAt30Fps, move);
 
@@ -106,7 +136,10 @@ describe("Move timing", () => {
   });
 
   it("applies gravity and decay consistently over equal elapsed time", async () => {
-    const move = { decay: decayAmount, gravity: { enable: true, acceleration: gravityAcceleration } },
+    const move = {
+        decay: decayAmount,
+        gravity: { enable: true, acceleration: gravityAcceleration },
+      },
       at60 = await simulateMove(fps60, framesAt60Fps, move),
       at30 = await simulateMove(fps30, framesAt30Fps, move),
       at120 = await simulateMove(fps120, framesAt120Fps, move);
@@ -119,7 +152,12 @@ describe("Move timing", () => {
 
   it("scales displacement by elapsed time at the gravity speed limit", async () => {
     const move = {
-        gravity: { enable: true, acceleration: gravityAcceleration, inverse: true, maxSpeed: maximumSpeed },
+        gravity: {
+          enable: true,
+          acceleration: gravityAcceleration,
+          inverse: true,
+          maxSpeed: maximumSpeed,
+        },
       },
       at60 = await simulateMove(fps60, framesAt60Fps, move),
       at30 = await simulateMove(fps30, framesAt30Fps, move);
@@ -127,5 +165,50 @@ describe("Move timing", () => {
     expect(at60.distance).toBeGreaterThan(0);
     expect(at30.distance).toBeCloseTo(at60.distance, comparisonPrecision);
     expect(at30.velocity).toBeCloseTo(at60.velocity, comparisonPrecision);
+  });
+
+  it("clears move extension state when a pooled particle is reinitialized", async () => {
+    const container = await tsParticles.load({
+      autoPlay: false,
+      element: createCustomCanvas(canvasWidth, canvasHeight) as unknown as HTMLCanvasElement,
+      options: { particles: { move: { enable: true }, number: { value: 0 } } },
+    });
+
+    if (!container) {
+      throw new Error("move state test container not initialized");
+    }
+
+    try {
+      const particle = container.particles.addParticle(undefined, {
+        move: {
+          path: { enable: true, generator: generatorName },
+          spin: { enable: true },
+        },
+      });
+
+      if (!particle) {
+        throw new Error("move state test particle not initialized");
+      }
+
+      expect(particle.pathGenerator).to.equal(pathGenerator);
+      expect(particle.spin).toBeDefined();
+      expect(particle.retina.spinAcceleration).toBeDefined();
+
+      container.particles.remove(particle);
+
+      const reused = container.particles.addParticle(undefined, {
+        move: {
+          path: { enable: false },
+          spin: { enable: false },
+        },
+      });
+
+      expect(reused).to.equal(particle);
+      expect(reused?.pathGenerator).toBeUndefined();
+      expect(reused?.spin).toBeUndefined();
+      expect(reused?.retina.spinAcceleration).toBeUndefined();
+    } finally {
+      container.destroy(false);
+    }
   });
 });

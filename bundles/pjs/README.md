@@ -8,8 +8,8 @@
 
 > [!WARNING]
 > This package is legacy compatibility glue for particles.js-style APIs.
-> It is considered obsolete, and it may be removed in v5.
-> Prefer direct `tsParticles` APIs for new code.
+> Its compatibility APIs are deprecated. Use the engine APIs directly in new
+> applications.
 
 **Included Packages**
 
@@ -48,14 +48,9 @@ The package exports only one API from its main entrypoint:
 import { initPjs } from "@tsparticles/pjs";
 ```
 
-Signature:
-
-```ts
-initPjs(engine: Engine): Promise<void>
-```
-
-`initPjs` does not return compatibility objects directly.
-It initializes compatibility and populates global objects.
+`initPjs(engine)` takes an `Engine` and resolves to an object containing
+`particlesJS`, `pJSDom`, and `Particles`. It registers the compatibility plugins
+on the supplied engine and does not publish these APIs on `globalThis`.
 
 ## Installation
 
@@ -69,24 +64,24 @@ Calling `initPjs(engine)` performs these steps:
 
 1. Checks runtime version compatibility.
 2. Registers required plugins (`tsparticles` full bundle + responsive plugin).
-3. Creates and exposes legacy globals:
-   - `globalThis.particlesJS`
-   - `globalThis.pJSDom`
-   - `globalThis.Particles`
+3. Returns `particlesJS`, `pJSDom`, and `Particles` references bound to that
+   engine.
 
-After initialization, you can use particles.js-compatible APIs.
+Keep the returned references in application scope and use them after
+initialization resolves.
 
 ## How to use it
 
 ### ESM / TypeScript
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
 import { initPjs } from "@tsparticles/pjs";
+import { createEngine } from "@tsparticles/engine";
 
-await initPjs(tsParticles);
+const engine = createEngine();
+const { particlesJS } = await initPjs(engine);
 
-await globalThis.particlesJS("tsparticles", {/* particles.js-style options */});
+await particlesJS("tsparticles", {/* particles.js-style options */});
 ```
 
 ### CDN / Vanilla JS / jQuery
@@ -96,7 +91,8 @@ The CDN/Vanilla JS version has two files:
 - One is a bundle file with all the scripts included in a single file
 - One includes only `initPjs`, where dependencies must be loaded manually
 
-After loading the bundle, call `initPjs(tsParticles)` once, then use legacy globals.
+The bundle exposes `tsParticles.createEngine` and `initPjs`. Create the engine,
+await `initPjs(engine)`, and keep the returned compatibility references.
 
 #### Bundle
 
@@ -113,36 +109,34 @@ Using `particlesJS` compatibility:
 
 ```javascript
 (async engine => {
-  await initPjs(engine);
+  const { particlesJS } = await initPjs(engine);
 
-  particlesJS("tsparticles", {/* options */});
-})(tsParticles);
+  await particlesJS("tsparticles", {/* options */});
+})(tsParticles.createEngine());
 ```
 
 Using `Particles` compatibility:
 
 ```javascript
 (async engine => {
-  await initPjs(engine);
+  const { Particles } = await initPjs(engine);
 
   Particles.init({/* options */});
-})(tsParticles);
+})(tsParticles.createEngine());
 ```
 
-## Compatibility globals (after `initPjs`)
+## Compatibility APIs returned by `initPjs`
 
-| Global        | Description                                                                                          | Modern equivalent                                                           |
-| ------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `particlesJS` | particles.js-compatible loader function (plus `.load` and `.setOnClickHandler`)                      | `tsParticles.load`, `tsParticles.loadJSON`, `tsParticles.setOnClickHandler` |
-| `pJSDom`      | array of loaded containers                                                                           | `tsParticles.dom`                                                           |
-| `Particles`   | `marcbruederlin/particles.js` style wrapper (`init`, `pauseAnimation`, `resumeAnimation`, `destroy`) | direct `tsParticles.load` + container methods                               |
+| Returned API  | Description                                                                                          | Modern equivalent                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `particlesJS` | particles.js-compatible loader (including `.load` and `.setOnClickHandler`)                          | `engine.load`, `engine.loadJSON`, and the returned container methods |
+| `pJSDom`      | array of containers created by the compatibility loader                                              | application-owned container references                               |
+| `Particles`   | `marcbruederlin/particles.js` style wrapper (`init`, `pauseAnimation`, `resumeAnimation`, `destroy`) | `engine.load` plus the returned container methods                    |
 
-If you need explicit references in TS/JS code:
+Use explicit references in TS/JS code:
 
 ```ts
-const particlesJSCompat = globalThis.particlesJS;
-const pJSDomCompat = globalThis.pJSDom;
-const particlesCompat = globalThis.Particles;
+const { particlesJS, pJSDom, Particles } = await initPjs(engine);
 ```
 
 #### Particles Options (only for Particles.init)
@@ -173,18 +167,19 @@ const particlesCompat = globalThis.Particles;
 | `resumeAnimation` | Continues the particle animation    |
 | `destroy`         | Destroys the plugin                 |
 
-## Deprecation status
+## Compatibility status
 
 - `particlesJS`, `pJSDom`, and `Particles` are deprecated compatibility APIs.
-- This package is obsolete and maintained for legacy integration only.
-- It may be removed in v5, so migration to direct `tsParticles` APIs is strongly recommended.
+- This package is retained for particles.js integrations. New code should use
+  the direct engine APIs.
 
 See migration guide: [`markdown/pjsMigration.md`](../../markdown/pjsMigration.md)
 
 ## Common pitfalls
 
-- Calling legacy globals before awaiting `initPjs(...)`
+- Using the returned compatibility APIs before awaiting `initPjs(...)`
 - Expecting `initPjs` to return `particlesJS`/`Particles` directly
+- Expecting compatibility APIs on `globalThis`
 - Mixing new `tsParticles` and legacy particles.js options in one config object
 
 ## Related docs

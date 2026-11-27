@@ -1,5 +1,14 @@
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, double, getRandom, half, toEnumValue } from "@tsparticles/engine";
+import {
+  EmitterShapeBase,
+  type IRandomPositionData,
+} from "@tsparticles/plugin-emitters";
+import {
+  type ICoordinates,
+  type IDimension,
+  double,
+  half,
+  toEnumValue,
+} from "@tsparticles/engine";
 
 const sides = 4;
 
@@ -15,21 +24,30 @@ enum Sides {
  * @param offset - The offset
  * @returns the offset
  */
-function randomSquareCoordinate(position: number, offset: number): number {
-  return position + offset * (getRandom() - half);
+function randomSquareCoordinate(
+  position: number,
+  offset: number,
+  random: () => number,
+): number {
+  return position + offset * (random() - half);
 }
 
 /**
  * @param sides - The sides
  * @returns the number of sides
  */
-function getRandomSize(sides: number): Sides {
-  return toEnumValue(Sides, Math.floor(getRandom() * sides), Sides.BottomLeft);
+function getRandomSize(sides: number, random: () => number): Sides {
+  return toEnumValue(Sides, Math.floor(random() * sides), Sides.BottomLeft);
 }
 
 export class EmittersSquareShape extends EmitterShapeBase {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
+  constructor(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: unknown,
+  ) {
     super(position, size, fill, options);
   }
 
@@ -39,14 +57,19 @@ export class EmittersSquareShape extends EmitterShapeBase {
       halfW = size.width * half,
       halfH = size.height * half;
 
-    context.rect(position.x - halfW, position.y - halfH, size.width, size.height);
+    context.rect(
+      position.x - halfW,
+      position.y - halfH,
+      size.width,
+      size.height,
+    );
   }
 
   async init(): Promise<void> {
     // nothing to do
   }
 
-  randomPosition(): IRandomPositionData {
+  randomPosition(random: () => number): IRandomPositionData {
     const fill = this.fill,
       position = this.position,
       size = this.size;
@@ -54,15 +77,15 @@ export class EmittersSquareShape extends EmitterShapeBase {
     if (fill) {
       return {
         position: {
-          x: randomSquareCoordinate(position.x, size.width),
-          y: randomSquareCoordinate(position.y, size.height),
+          x: randomSquareCoordinate(position.x, size.width, random),
+          y: randomSquareCoordinate(position.y, size.height, random),
         },
       };
     } else {
       const halfW = size.width * half,
         halfH = size.height * half,
-        side = getRandomSize(sides),
-        v = (getRandom() - half) * double;
+        side = getRandomSize(sides, random),
+        v = (random() - half) * double;
 
       switch (side) {
         case Sides.TopLeft:

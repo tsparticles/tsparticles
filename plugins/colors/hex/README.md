@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-hex-color
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadHexColorPlugin } = require("@tsparticles/plugin-hex-color");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadHexColorPlugin } = require("@tsparticles/plugin-hex-color");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 
 (async () => {

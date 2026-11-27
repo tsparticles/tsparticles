@@ -10,12 +10,14 @@ const { containerMock, errorMock } = vi.hoisted(() => ({
 }));
 
 vi.mock("@tsparticles/engine", () => ({
-  getLogger: () => ({ error: errorMock }),
-  tsParticles: {
+  createEngine: () => ({
+    init: vi.fn(async () => undefined),
     load: vi.fn(async () => containerMock),
-  },
+    getLogger: () => ({ error: errorMock }),
+  }),
 }));
 
 const { initParticlesEngine } = await import("../src/initParticlesEngine");
 
-await initParticlesEngine();
+export const engine = (await import("@tsparticles/engine")).createEngine();
+await initParticlesEngine(engine);

@@ -26,7 +26,12 @@ const instances = new Map<string, FireworksInstance | Promise<FireworksInstance 
  * @internal
  */
 export function deleteFireworksInstance(id: string, instance: FireworksInstance): void {
-  if (instances.get(id) === instance) {
+  const cached = instances.get(id);
+
+  if (
+    cached === instance ||
+    (cached && !(cached instanceof Promise) && cached.destroyed && cached.hasSameContainer(instance))
+  ) {
     instances.delete(id);
   }
 }
@@ -74,7 +79,10 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
       rate: {
         delay: isNumber(options.rate)
           ? identity / options.rate
-          : { min: identity / getRangeMin(options.rate), max: identity / getRangeMax(options.rate) },
+          : {
+              min: identity / getRangeMin(options.rate),
+              max: identity / getRangeMax(options.rate),
+            },
         quantity: 1,
       },
       size: {
@@ -115,7 +123,7 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
             value: options.splitCount,
           },
           strokeColorOffset: {
-            s: options.saturation,
+            c: options.chroma,
             l: options.brightness,
           },
           particles: {
@@ -253,7 +261,11 @@ export async function getFireworksInstance(
 
       const particlesOptions = getOptions(options, canvas),
         // Load the container
-        container = await engine.load({ id, element: canvas, options: particlesOptions });
+        container = await engine.load({
+          id,
+          element: canvas,
+          options: particlesOptions,
+        });
 
       if (!container) {
         instances.delete(id); // Clean up on failure

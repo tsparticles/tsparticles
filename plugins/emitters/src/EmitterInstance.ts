@@ -6,10 +6,9 @@ import {
   type IDelta,
   type IDimension,
   type IDimensionWithMode,
-  type IHsl,
+  type IOklcha,
   type IPaint,
   type IParticlesOptions,
-  type IRgb,
   Paint,
   PixelMode,
   type RecursivePartial,
@@ -18,18 +17,16 @@ import {
   deepExtend,
   defaultOpacity,
   getRangeValue,
-  getStyleFromHsl,
-  getStyleFromRgb,
+  getStyleFromOklch,
   hMax,
   half,
+  identity,
   isPointInside,
   itemFromSingleOrMultiple,
-  lMax,
   millisecondsToSeconds,
   percentDenominator,
   randomInRangeValue,
-  rangeColorToHsl,
-  sMax,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
@@ -38,6 +35,7 @@ import type { EmittersPluginManager } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
+import { sampledPixelToOklcha } from "./PixelColorUtils.js";
 
 const defaultLifeDelay = 0,
   minLifeCount = 0,
@@ -57,7 +55,7 @@ const defaultLifeDelay = 0,
  */
 function setParticlesOptionsFillColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IHsl | IRgb,
+  color: IOklcha,
   opacity: number,
   enable: boolean,
 ): void {
@@ -79,7 +77,7 @@ function setParticlesOptionsFillColor(
  */
 function setParticlesOptionsStrokeColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
-  color: IHsl | IRgb,
+  color: IOklcha,
   opacity: number,
   width: number,
 ): void {
@@ -120,7 +118,7 @@ export class EmitterInstance {
   /**
    * The emitter spawn fill color
    */
-  spawnFillColor?: IHsl;
+  spawnFillColor?: IOklcha;
   /**
    * The emitter spawn fill enabled flag
    */
@@ -132,7 +130,7 @@ export class EmitterInstance {
   /**
    * The emitter spawn stroke color
    */
-  spawnStrokeColor?: IHsl;
+  spawnStrokeColor?: IOklcha;
   /**
    * The emitter spawn stroke opacity
    */
@@ -187,7 +185,8 @@ export class EmitterInstance {
     }
 
     this.#spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+          millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
     this.position = this.#initialPosition ?? this.#calcPosition();
@@ -204,11 +203,11 @@ export class EmitterInstance {
     particlesOptions.move.direction ??= this.options.direction;
 
     if (this.options.spawn.fill?.color) {
-      this.spawnFillColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.fill.color);
+      this.spawnFillColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.fill.color);
     }
 
     if (this.options.spawn.stroke?.color) {
-      this.spawnStrokeColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.stroke.color);
+      this.spawnStrokeColor = rangeColorToOklch(this.#pluginManager, this.options.spawn.stroke.color);
     }
 
     const spawnFill = this.options.spawn.fill,
@@ -216,9 +215,18 @@ export class EmitterInstance {
 
     /* initialize the draw styles now, without waiting for particle emission, so a paused emitter
      * with draw: true still renders fillOpacity, strokeOpacity and strokeWidth */
-    this.spawnFillOpacity = spawnFill?.opacity === undefined ? defaultOpacity : getRangeValue(spawnFill.opacity);
-    this.spawnStrokeOpacity = spawnStroke?.opacity === undefined ? defaultOpacity : getRangeValue(spawnStroke.opacity);
-    this.spawnStrokeWidth = spawnStroke?.width === undefined ? defaultStrokeWidth : getRangeValue(spawnStroke.width);
+    this.spawnFillOpacity =
+      spawnFill?.opacity === undefined
+        ? defaultOpacity
+        : getRangeValue(spawnFill.opacity, this.#container.engine.getRandomFn());
+    this.spawnStrokeOpacity =
+      spawnStroke?.opacity === undefined
+        ? defaultOpacity
+        : getRangeValue(spawnStroke.opacity, this.#container.engine.getRandomFn());
+    this.spawnStrokeWidth =
+      spawnStroke?.width === undefined
+        ? defaultStrokeWidth
+        : getRangeValue(spawnStroke.width, this.#container.engine.getRandomFn());
 
     this.#paused = !this.options.autoPlay;
     this.#particlesOptions = particlesOptions;
@@ -272,6 +280,15 @@ export class EmitterInstance {
    * emitter spawn colors
    * @param context - the canvas 2d context used for drawing
    */
+  /** Releases observers owned by this emitter when its container stops. */
+  dispose(): void {
+    this.#mutationObserver?.disconnect();
+    this.#mutationObserver = undefined;
+
+    this.#resizeObserver?.disconnect();
+    this.#resizeObserver = undefined;
+  }
+
   draw(context: OffscreenCanvasRenderingContext2D): void {
     if (!this.options.draw || !this.#shape) {
       return;
@@ -285,23 +302,32 @@ export class EmitterInstance {
 
     if (fillEnabled) {
       context.fillStyle = this.spawnFillColor
-        ? getStyleFromHsl(
+        ? getStyleFromOklch(
             this.spawnFillColor,
             container.hdr,
             this.spawnFillOpacity ?? defaultOpacity,
             container.peakNits,
             container.hdrMode,
+            container.outputColorSpace,
           )
-        : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+        : getStyleFromOklch(
+            { c: 0, h: 0, l: 0 },
+            container.hdr,
+            defaultOpacity,
+            container.peakNits,
+            container.hdrMode,
+            container.outputColorSpace,
+          );
     }
 
     if (this.spawnStrokeColor) {
-      context.strokeStyle = getStyleFromHsl(
+      context.strokeStyle = getStyleFromOklch(
         this.spawnStrokeColor,
         container.hdr,
         this.spawnStrokeOpacity ?? defaultOpacity,
         container.peakNits,
         container.hdrMode,
+        container.outputColorSpace,
       );
       context.lineWidth = this.spawnStrokeWidth ?? defaultStrokeWidth;
     }
@@ -373,7 +399,7 @@ export class EmitterInstance {
     const container = this.#container;
 
     if (this.#emitDelay === undefined) {
-      const delay = getRangeValue(this.options.rate.delay);
+      const delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn());
 
       this.#emitDelay = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
@@ -469,7 +495,8 @@ export class EmitterInstance {
           }
 
           this.#spawnDelay = container.retina.reduceFactor
-            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay, this.#container.engine.getRandomFn()) *
+                millisecondsToSeconds) /
               container.retina.reduceFactor
             : Infinity;
         } else {
@@ -523,10 +550,13 @@ export class EmitterInstance {
       }
     }
 
-    return calcPositionOrRandomFromSizeRanged({
-      size: container.canvas.size,
-      position: this.options.position,
-    });
+    return calcPositionOrRandomFromSizeRanged(
+      {
+        size: container.canvas.size,
+        position: this.options.position,
+      },
+      container.engine.getRandomFn(),
+    );
   }
 
   #calcSize(): IDimensionWithMode {
@@ -563,11 +593,7 @@ export class EmitterInstance {
   }
 
   #destroy(): void {
-    this.#mutationObserver?.disconnect();
-    this.#mutationObserver = undefined;
-
-    this.#resizeObserver?.disconnect();
-    this.#resizeObserver = undefined;
+    this.dispose();
 
     this.#removeCallback(this);
 
@@ -581,36 +607,40 @@ export class EmitterInstance {
       return;
     }
 
-    const quantity = getRangeValue(this.options.rate.quantity);
+    const quantity = getRangeValue(this.options.rate.quantity, this.#container.engine.getRandomFn());
 
     this.#emitParticles(quantity);
   }
 
   #emitParticles(quantity: number): void {
-    const singleParticlesOptions = (itemFromSingleOrMultiple(this.#particlesOptions) ??
-        {}) as RecursivePartial<IParticlesOptions>,
-      fillHslAnimation = this.options.spawn.fill?.color?.animation,
+    const singleParticlesOptions = (itemFromSingleOrMultiple(
+        this.#particlesOptions,
+        undefined,
+        undefined,
+        this.#container.engine.getRandomFn(),
+      ) ?? {}) as RecursivePartial<IParticlesOptions>,
+      fillOklchAnimation = this.options.spawn.fill?.color?.animation,
       fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
       fillOpacity =
         this.options.spawn.fill?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.fill.opacity),
-      strokeHslAnimation = this.options.spawn.stroke?.color?.animation,
+          : getRangeValue(this.options.spawn.fill.opacity, this.#container.engine.getRandomFn()),
+      strokeOklchAnimation = this.options.spawn.stroke?.color?.animation,
       strokeOpacity =
         this.options.spawn.stroke?.opacity === undefined
           ? defaultOpacity
-          : getRangeValue(this.options.spawn.stroke.opacity),
+          : getRangeValue(this.options.spawn.stroke.opacity, this.#container.engine.getRandomFn()),
       strokeWidth =
         this.options.spawn.stroke?.width === undefined
           ? defaultStrokeWidth
-          : getRangeValue(this.options.spawn.stroke.width),
+          : getRangeValue(this.options.spawn.stroke.width, this.#container.engine.getRandomFn()),
       reduceFactor = this.#container.retina.reduceFactor,
-      needsFillColorAnimation = !!fillHslAnimation,
-      needsStrokeColorAnimation = !!strokeHslAnimation,
+      needsFillColorAnimation = !!fillOklchAnimation,
+      needsStrokeColorAnimation = !!strokeOklchAnimation,
       needsShapeData = !!this.#shape,
       needsColorAnimation = needsFillColorAnimation || needsStrokeColorAnimation,
       needsCopy = needsColorAnimation || needsShapeData,
-      maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
+      maxValues = needsColorAnimation ? { c: 0.4, h: hMax, l: identity } : null,
       shapeOptions = this.options.shape;
 
     for (let i = 0; i < quantity * reduceFactor; i++) {
@@ -624,15 +654,15 @@ export class EmitterInstance {
       this.spawnStrokeWidth = strokeWidth;
 
       if (this.spawnFillColor) {
-        if (fillHslAnimation && maxValues) {
+        if (fillOklchAnimation && maxValues) {
           this.spawnFillColor.h = this.#setColorAnimation(
-            fillHslAnimation.h,
+            fillOklchAnimation.h,
             this.spawnFillColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnFillColor.s = this.#setColorAnimation(fillHslAnimation.s, this.spawnFillColor.s, maxValues.s);
-          this.spawnFillColor.l = this.#setColorAnimation(fillHslAnimation.l, this.spawnFillColor.l, maxValues.l);
+          this.spawnFillColor.c = this.#setColorAnimation(fillOklchAnimation.c, this.spawnFillColor.c, maxValues.c);
+          this.spawnFillColor.l = this.#setColorAnimation(fillOklchAnimation.l, this.spawnFillColor.l, maxValues.l);
         }
 
         setParticlesOptionsFillColor(
@@ -644,15 +674,23 @@ export class EmitterInstance {
       }
 
       if (this.spawnStrokeColor) {
-        if (strokeHslAnimation && maxValues) {
+        if (strokeOklchAnimation && maxValues) {
           this.spawnStrokeColor.h = this.#setColorAnimation(
-            strokeHslAnimation.h,
+            strokeOklchAnimation.h,
             this.spawnStrokeColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnStrokeColor.s = this.#setColorAnimation(strokeHslAnimation.s, this.spawnStrokeColor.s, maxValues.s);
-          this.spawnStrokeColor.l = this.#setColorAnimation(strokeHslAnimation.l, this.spawnStrokeColor.l, maxValues.l);
+          this.spawnStrokeColor.c = this.#setColorAnimation(
+            strokeOklchAnimation.c,
+            this.spawnStrokeColor.c,
+            maxValues.c,
+          );
+          this.spawnStrokeColor.l = this.#setColorAnimation(
+            strokeOklchAnimation.l,
+            this.spawnStrokeColor.l,
+            maxValues.l,
+          );
         }
 
         setParticlesOptionsStrokeColor(
@@ -666,7 +704,7 @@ export class EmitterInstance {
       let position: ICoordinates | null = this.position;
 
       if (this.#shape) {
-        const shapePosData = this.#shape.randomPosition();
+        const shapePosData = this.#shape.randomPosition(this.#container.engine.getRandomFn());
 
         if (shapePosData) {
           position = shapePosData.position;
@@ -676,7 +714,7 @@ export class EmitterInstance {
           if (replaceData.color && shapePosData.color) {
             setParticlesOptionsFillColor(
               particlesOptions,
-              shapePosData.color,
+              sampledPixelToOklcha(shapePosData.color, shapePosData.colorSpace),
               replaceData.opacity ? (shapePosData.opacity ?? defaultOpacity) : defaultOpacity,
               true,
             );
@@ -697,7 +735,10 @@ export class EmitterInstance {
       return;
     }
 
-    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+    const duration =
+        this.options.life.duration !== undefined
+          ? getRangeValue(this.options.life.duration, this.#container.engine.getRandomFn())
+          : undefined,
       minDuration = 0,
       minLifeCount = 0;
 
@@ -718,12 +759,12 @@ export class EmitterInstance {
       return initValue;
     }
 
-    const colorOffset = randomInRangeValue(animation.offset),
-      delay = getRangeValue(this.options.rate.delay),
+    const colorOffset = randomInRangeValue(animation.offset, this.#container.engine.getRandomFn()),
+      delay = getRangeValue(this.options.rate.delay, this.#container.engine.getRandomFn()),
       emitFactor = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
         : Infinity,
-      colorSpeed = getRangeValue(animation.speed);
+      colorSpeed = getRangeValue(animation.speed, this.#container.engine.getRandomFn());
 
     return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
   }

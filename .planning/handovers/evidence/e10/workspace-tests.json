@@ -1,0 +1,18 @@
+{
+  "command": "NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx run-many -t test --skipNxCache --output-style=static",
+  "status": "passed",
+  "projects": 85,
+  "cache": "skipped",
+  "duration": "1m 20s",
+  "primarySuite": {
+    "files": 61,
+    "tests": 959,
+    "status": "passed"
+  },
+  "mcpSuite": {
+    "files": 11,
+    "tests": 270,
+    "status": "passed"
+  },
+  "environment": "Unsandboxed run; the first sandboxed run had four listen EPERM failures."
+}

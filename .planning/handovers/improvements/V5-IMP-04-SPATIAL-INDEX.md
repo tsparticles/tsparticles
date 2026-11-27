@@ -1,6 +1,6 @@
 # V5-IMP-04 — SpatialHashGrid and query cost
 
-Status pending analysis. High priority. Handover 06 owns this plan, with
+Status complete for E6; [completion evidence](../evidence/e6/closure/README.md) and [method review](../V5-E6-REVIEW.md); see the [E6 checkpoint](../V5-E6-STATUS.md) for validation, insertion and live sparse-query work. High priority. Handover 06 owns this plan, with
 consumer verification in 08. Requires [IMP-01](V5-IMP-01-MEASUREMENT.md).
 
 ## Evidence and goal
@@ -57,3 +57,31 @@ Provide an S1–S4 table with profiles, alternatives, bundle/heap/query time del
 and consumer tests. Include negative and distant coordinates, boundaries,
 nested queries, resize/cellSize, and collisions/fluid/links. Validate a full
 M3/M4/M5 scene alongside synthetic benchmarks before changing the default algorithm.
+
+## Current-source additions
+
+The 2026-11-13 checkout already optimizes sparse queries without predicates by
+sorting occupied coordinates in scan order. Preserve that path and its tests.
+[G5](../V5-CODE-REVIEW.md) adds predicate-driven sparse workloads and explicit
+cell/position snapshots after updater and fluid movement. Candidate-count limits
+do not necessarily bound traversal. Review geometry independently before using
+it to prune cells; see G4 for input/cell-size validation.
+
+## E6 continuation decisions — 2026-11-23
+
+Evidence: `evidence/e6/storage-evaluation.json`, `collections-sparse.json` and
+regressions in SpatialHashGrid, SpatialRanges, InteractionGrid and LinksWarp.
+
+| Item | Decision and measured reason                                                                                                                                                                                                                                                                                                                                   |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| S1   | Keep single-lookup string keys. Numeric encoding with a string fallback and nested maps improve isolated insertion/clear timings (1,000 uniform: 0.087/0.032/0.032 ms). The prototype checks bounded coordinate encoding and cell membership; it does not implement the full live-query contract. This is insufficient evidence to replace the tested default. |
+| S2   | Keep fresh cell arrays. Bounded reuse with caps 32/256 has no consistent improvement: 1,000 uniform cells take 0.089/0.091/0.093 ms; moving cells 0.099/0.102/0.104 ms. Reuse also needs active-query bookkeeping and explicit retention bounds.                                                                                                               |
+| S3   | Preserve caller-owned append-only output arrays and reentrant range pooling. Do not share result buffers across callbacks that can nest or retain results. Explicit removal tombstones active cells before object reuse; selected output references remain live objects, not immutable snapshots.                                                              |
+| S4   | Retain distance-derived cell size and scan order. Validate finite positive cell sizes and scaled interactor distances. Sparse predicates use ordered occupied-cell traversal with a dense fallback when callbacks grow the grid. No adaptive policy or geometry pruning is introduced.                                                                         |
+
+A raw grid clear preserves the existing live callback behavior. Manager clear
+retires the old cohort, invalidates remaining query traversal and empties active
+cells. Explicit removal also unlinks cells retained by a nested raw clear.
+Tombstones avoid shifting the next entry past an active cursor. Predicate and
+position callbacks are checked before committing a result; destroyed particles
+are excluded unless the predicate revives them.

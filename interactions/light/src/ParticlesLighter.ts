@@ -1,6 +1,6 @@
 import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { LightContainer, LightParticle } from "./Types.js";
-import { type PluginManager, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import { type PluginManager, isInArray, rangeColorToOklch } from "@tsparticles/engine";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 /** Particles lighter interactor */
@@ -57,13 +57,13 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     if (res && interactivity.modes.light) {
       const shadowOptions = interactivity.modes.light.shadow;
 
-      particle.lightShadow = rangeColorToRgb(this.#pluginManager, shadowOptions.color);
+      particle.lightShadow = rangeColorToOklch(this.#pluginManager, shadowOptions.color);
     }
 
     return res;
   }
 
-  reset(): void {
-    // do nothing
+  override reset(): void {
+    // Keep the reset-phase isEnabled call that samples the particle shadow.
   }
 }

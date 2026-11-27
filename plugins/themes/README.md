@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-themes
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadThemesPlugin } = require("@tsparticles/plugin-themes");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadThemesPlugin } = require("@tsparticles/plugin-themes");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadThemesPlugin } from "@tsparticles/plugin-themes";
 
 (async () => {

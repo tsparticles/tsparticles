@@ -4,7 +4,6 @@ import {
   double,
   doublePI,
   getDistanceSq,
-  getRandom,
   minCount,
 } from "@tsparticles/engine";
 import type { IPoissonPoint } from "./Interfaces/IPoissonPoint.js";
@@ -64,6 +63,8 @@ export class PoissonDisc {
    */
   size: IDimension;
 
+  readonly #random: () => number;
+
   /**
    * Create a new disc sampler
    * @param size - Size of the display in pixels
@@ -72,7 +73,15 @@ export class PoissonDisc {
    * @param dimensions - n-dimensional grid
    * @param firstPoint - The first point position (optional)
    */
-  constructor(size: IDimension, radius: number, retries: number, dimensions: number, firstPoint?: ICoordinates) {
+  constructor(
+    size: IDimension,
+    radius: number,
+    retries: number,
+    dimensions: number,
+    firstPoint: ICoordinates | undefined,
+    random: () => number,
+  ) {
+    this.#random = random;
     this.size = { ...size };
     this.radius = radius;
     this.retries = retries;
@@ -121,7 +130,7 @@ export class PoissonDisc {
    * @returns Random number from min to max
    */
   getRandom(min: number, max: number): number {
-    return Math.floor(getRandom() * (max - min)) + min;
+    return Math.floor(this.#random() * (max - min)) + min;
   }
 
   /**
@@ -181,7 +190,7 @@ export class PoissonDisc {
       this.steps(step);
 
       if (++iterations % yieldEvery === yieldStepModule) {
-        await new Promise<void>(resolve => setTimeout(resolve));
+        await new Promise<void>((resolve) => setTimeout(resolve));
       }
     }
   }
@@ -202,7 +211,10 @@ export class PoissonDisc {
     } // n loop
   }
 
-  #getNewPoint(currentPoint: IPoissonPoint, tries: number): ICoordinates | undefined {
+  #getNewPoint(
+    currentPoint: IPoissonPoint,
+    tries: number,
+  ): ICoordinates | undefined {
     const minCoordinate = 0,
       gridMinValue = 0,
       maxNeighbourIndex = 1,
@@ -269,9 +281,13 @@ export class PoissonDisc {
           continue;
         }
 
-        const neighbourCellValue = this.grid[neighbourGrid.y]?.[neighbourGrid.x];
+        const neighbourCellValue =
+          this.grid[neighbourGrid.y]?.[neighbourGrid.x];
 
-        if (neighbourCellValue === undefined || neighbourCellValue < gridMinValue) {
+        if (
+          neighbourCellValue === undefined ||
+          neighbourCellValue < gridMinValue
+        ) {
           continue;
         }
 

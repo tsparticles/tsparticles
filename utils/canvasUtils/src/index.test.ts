@@ -46,4 +46,25 @@ describe("canvas-utils", () => {
     expect(res.pixels[0]?.[0]).to.deep.equal({ r: 255, g: 255, b: 255, a: 1 });
     expect(context.calls.some(call => call[0] === "clearRect")).to.be.true;
   });
+
+  it("requests unorm8 readback and normalizes legacy float16 pixel data", () => {
+    const data = Object.assign([0.5, -0.2, 1.2, 0.5], { BYTES_PER_ELEMENT: 2 }),
+      context = {
+        clearRect: () => undefined,
+        getContextAttributes: () => ({ colorSpace: "srgb" }),
+        getImageData: (_x: number, _y: number, _width: number, _height: number, settings?: unknown) => {
+          expect(settings).to.deep.equal({ pixelFormat: "rgba-unorm8" });
+
+          return {
+            colorSpace: "display-p3",
+            data,
+            pixelFormat: "rgba-float16",
+          };
+        },
+      },
+      result = getCanvasImageData(context as never, { width: 1, height: 1 }, 4, false);
+
+    expect(result.colorSpace).to.equal("display-p3");
+    expect(result.pixels[0]?.[0]).to.deep.equal({ r: 128, g: 0, b: 255, a: 128 / 255 });
+  });
 });

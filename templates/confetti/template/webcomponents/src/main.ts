@@ -1,16 +1,16 @@
-import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
-import { confetti } from "@tsparticles/confetti";
+import "./style.css";
 
-globalThis.tsParticles = tsParticles;
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+const confetti = createConfetti(engine);
 
-void initParticlesEngine(() => Promise.resolve());
+void initParticlesEngine(engine, () => Promise.resolve());
 
 defineParticlesElement();
 
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 const fireBtn = document.getElementById("fireBtn") as HTMLButtonElement;
@@ -49,3 +49,7 @@ fireBtn.addEventListener("click", () => {
       break;
   }
 });
+
+for (const element of document.querySelectorAll("web-particles")) {
+  (element as import("@tsparticles/webcomponents").Particles).engine = engine;
+}

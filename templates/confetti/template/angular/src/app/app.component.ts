@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../particlesEngine";
+const confetti = createConfetti(engine);
 
 @Component({
   standalone: false,
@@ -11,7 +13,7 @@ export class AppComponent {
   mode = "cannon";
 
   randomInRange(min: number, max: number): number {
-    return Math.random() * (max - min) + min;
+    return engine.getRandom() * (max - min) + min;
   }
 
   fireConfetti(): void {

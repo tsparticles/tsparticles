@@ -1,6 +1,12 @@
-import { Component, h, type JSX } from "@stencil/core";
-import { loadSlim } from "@tsparticles/slim";
+import { Component, type JSX, h } from "@stencil/core";
 import type { Engine } from "@tsparticles/engine";
+import { defineCustomElements } from "@tsparticles/stencil/loader";
+import { engine } from "../../../particlesEngine";
+import { loadSlim } from "@tsparticles/slim";
+
+if (typeof window !== "undefined") {
+  defineCustomElements(window);
+}
 
 @Component({
   tag: "app-home",
@@ -17,6 +23,7 @@ export class AppHome {
       <div id="app">
         <h1>Hello, tsParticles!</h1>
         <stencil-particles
+          engine={engine}
           container-id="tsparticles"
           init={this.particlesInit.bind(this)}
           options={{

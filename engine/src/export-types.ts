@@ -1,4 +1,5 @@
 export type * from "./Core/Interfaces/Colors.js";
+export type * from "./Utils/LogUtils.js";
 export type * from "./Core/Interfaces/IBounds.js";
 
 export type * from "./Core/Interfaces/ICircleBouncer.js";
@@ -14,7 +15,7 @@ export type * from "./Core/Interfaces/ILoadParams.js";
 export type * from "./Core/Interfaces/IPalette.js";
 export type * from "./Core/Interfaces/IParticleCanvasBounds.js";
 export type * from "./Core/Interfaces/IParticleColorStyle.js";
-export type * from "./Core/Interfaces/IParticleHslAnimation.js";
+export type * from "./Core/Interfaces/IParticleOklchAnimation.js";
 export type * from "./Core/Interfaces/IParticleLife.js";
 export type * from "./Core/Interfaces/IParticleModifier.js";
 export type * from "./Core/Interfaces/IParticleRetinaProps.js";
@@ -39,7 +40,7 @@ export type * from "./Options/Interfaces/IAnimatable.js";
 export type * from "./Options/Interfaces/IAnimatableColor.js";
 export type * from "./Options/Interfaces/IAnimation.js";
 export type * from "./Options/Interfaces/IColorAnimation.js";
-export type * from "./Options/Interfaces/IHslAnimation.js";
+export type * from "./Options/Interfaces/IOklchAnimation.js";
 export type * from "./Options/Interfaces/IOptionLoader.js";
 export type * from "./Options/Interfaces/IOptions.js";
 export type * from "./Options/Interfaces/IOptionsColor.js";
@@ -86,12 +87,8 @@ export type * from "./Types/SingleOrMultiple.js";
 
 export type { ErrorCode } from "./Utils/ErrorCodes.js";
 
-export type { EventListeners } from "./Core/Utils/EventListeners.js";
-export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
-export type { CanvasManager } from "./Core/CanvasManager.js";
-export type { Container } from "./Core/Container.js";
-export type { Particle } from "./Core/Particle.js";
-export type { ParticlesManager } from "./Core/ParticlesManager.js";
-export type { Retina } from "./Core/Retina.js";
-export type { Engine } from "./Core/Engine.js";
-export type { PluginManager } from "./Core/Utils/PluginManager.js";
+export type * from "./Core/Canvas/index.js";
+export type * from "./Core/Container/index.js";
+export type * from "./Core/Engine/index.js";
+export type * from "./Core/Particles/index.js";
+export type * from "./Core/Rendering/index.js";

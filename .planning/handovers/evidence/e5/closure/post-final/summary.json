@@ -1,0 +1,136 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "bundleSha256": "cb72bb160ee23c70d4b2b88aee09f62672c6e0345b0c9add0f73655b55a9e7dd",
+  "validations": {
+    "pageErrors": true,
+    "allContainersRemoved": true,
+    "domStable": true,
+    "retentionDomStable": true,
+    "rngStable": {
+      "M6-extensions:100": true,
+      "M6-extensions:500": true,
+      "M6-extensions:1000": true,
+      "M8-hdr-layers-resize:100": true,
+      "M8-hdr-layers-resize:500": true,
+      "M8-hdr-layers-resize:1000": true
+    }
+  },
+  "samples": 18,
+  "retentionCycles": 30,
+  "postWarmupHeapDriftBytes": 113380,
+  "longFrames": 0,
+  "retentionDomNodes": [
+    9,
+    9,
+    9
+  ],
+  "retentionMediaListeners": [
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "initMs": 6,
+      "rngCalls": [
+        1952,
+        1952,
+        1952
+      ],
+      "updateMs": 0.19999998807907104,
+      "renderMs": 0.10000002384185791,
+      "frameP95Ms": 0.5,
+      "frameP95CeilingMs": 0.7,
+      "frameBudgetPass": true
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "initMs": 14,
+      "rngCalls": [
+        5592,
+        5592,
+        5592
+      ],
+      "updateMs": 0.9000000357627869,
+      "renderMs": 0.6000000238418579,
+      "frameP95Ms": 2.100000023841858,
+      "frameP95CeilingMs": 1.87,
+      "frameBudgetPass": false
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "initMs": 23,
+      "rngCalls": [
+        10143,
+        10143,
+        10143
+      ],
+      "updateMs": 1.600000023841858,
+      "renderMs": 1.100000023841858,
+      "frameP95Ms": 3.300000011920929,
+      "frameP95CeilingMs": 4.07,
+      "frameBudgetPass": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "initMs": 5,
+      "rngCalls": [
+        908,
+        908,
+        908
+      ],
+      "updateMs": 0.19999998807907104,
+      "renderMs": 0.10000002384185791,
+      "frameP95Ms": 0.40000003576278687,
+      "frameP95CeilingMs": 0.5,
+      "frameBudgetPass": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "initMs": 12.700000047683716,
+      "rngCalls": [
+        4535,
+        4535,
+        4535
+      ],
+      "updateMs": 0.6000000238418579,
+      "renderMs": 0.5,
+      "frameP95Ms": 1.4000000357627869,
+      "frameP95CeilingMs": 1.65,
+      "frameBudgetPass": true
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "initMs": 22.19999998807907,
+      "rngCalls": [
+        9072,
+        9072,
+        9072
+      ],
+      "updateMs": 1.300000011920929,
+      "renderMs": 1.0999999642372131,
+      "frameP95Ms": 2.899999976158142,
+      "frameP95CeilingMs": 3.3,
+      "frameBudgetPass": true
+    }
+  ]
+}

@@ -3,10 +3,9 @@ import {
   type IDelta,
   type PluginManager,
   doublePI,
-  getRandom,
   getRangeValue,
   half,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { RollMode } from "./RollMode.js";
 import type { RollParticle } from "./Types.js";
@@ -17,8 +16,13 @@ const maxAngle = 360;
  * @param pluginManager - The plugin manager
  * @param particle - The particle to process
  */
-export function initParticle(pluginManager: PluginManager, particle: RollParticle): void {
+export function initParticle(
+  pluginManager: PluginManager,
+  particle: RollParticle,
+): void {
   const rollOpt = particle.options.roll;
+
+  particle.backColor = undefined;
 
   if (!rollOpt?.enable) {
     particle.roll = {
@@ -34,30 +38,48 @@ export function initParticle(pluginManager: PluginManager, particle: RollParticl
 
   particle.roll = {
     enable: rollOpt.enable,
-    horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
-    vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
-    angle: getRandom() * doublePI,
-    speed: getRangeValue(rollOpt.speed) / maxAngle,
+    horizontal:
+      rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
+    vertical:
+      rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
+    angle: particle.container.engine.getRandom() * doublePI,
+    speed:
+      getRangeValue(rollOpt.speed, particle.container.engine.getRandomFn()) /
+      maxAngle,
   };
 
   if (rollOpt.backColor) {
-    particle.backColor = rangeColorToHsl(pluginManager, rollOpt.backColor);
+    particle.backColor = rangeColorToOklch(pluginManager, rollOpt.backColor);
   } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-    const alterType = getRandom() >= half ? AlterType.darken : AlterType.enlighten;
+    const alterType =
+      particle.container.engine.getRandom() >= half
+        ? AlterType.darken
+        : AlterType.enlighten;
 
     particle.roll.alter = {
       type: alterType,
-      value: getRangeValue(alterType === AlterType.darken ? rollOpt.darken.value : rollOpt.enlighten.value),
+      value: getRangeValue(
+        alterType === AlterType.darken
+          ? rollOpt.darken.value
+          : rollOpt.enlighten.value,
+        particle.container.engine.getRandomFn(),
+      ),
     };
   } else if (rollOpt.darken.enable) {
     particle.roll.alter = {
       type: AlterType.darken,
-      value: getRangeValue(rollOpt.darken.value),
+      value: getRangeValue(
+        rollOpt.darken.value,
+        particle.container.engine.getRandomFn(),
+      ),
     };
   } else if (rollOpt.enlighten.enable) {
     particle.roll.alter = {
       type: AlterType.enlighten,
-      value: getRangeValue(rollOpt.enlighten.value),
+      value: getRangeValue(
+        rollOpt.enlighten.value,
+        particle.container.engine.getRandomFn(),
+      ),
     };
   }
 }

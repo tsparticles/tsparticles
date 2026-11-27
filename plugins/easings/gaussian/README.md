@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-easing-gaussian
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEasingGaussianPlugin } = require("@tsparticles/plugin-easing-gaussian");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadEasingGaussianPlugin } = require("@tsparticles/plugin-easing-gaussia
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingGaussianPlugin } from "@tsparticles/plugin-easing-gaussian";
 
 (async () => {

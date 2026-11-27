@@ -1,5 +1,6 @@
+import { engine } from "../particlesEngine";
 import "./style.css";
-import { tsParticles } from "@tsparticles/engine";
+
 import { loadSlim } from "@tsparticles/slim";
 
 let isLogin = true;
@@ -83,12 +84,12 @@ function toggleMode(): void {
   confirmError.textContent = "";
 }
 
-toggleAuth.addEventListener("click", (e) => {
+toggleAuth.addEventListener("click", e => {
   e.preventDefault();
   toggleMode();
 });
 
-authForm.addEventListener("submit", (e) => {
+authForm.addEventListener("submit", e => {
   e.preventDefault();
 
   if (!validate()) {
@@ -106,9 +107,9 @@ authForm.addEventListener("submit", (e) => {
 });
 
 (async () => {
-  await loadSlim(tsParticles);
+  await loadSlim(engine);
 
-  await tsParticles.load({
+  await engine.load({
     id: "tsparticles",
     options: {
       background: { color: { value: "transparent" } },

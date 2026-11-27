@@ -1,0 +1,23 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "report": {
+    "trail": {
+      "enable": true,
+      "fill": {
+        "color": {
+          "value": "#102030"
+        }
+      },
+      "length": 10
+    },
+    "hooks": [
+      {
+        "name": "TrailPluginInstance",
+        "handled": true
+      }
+    ],
+    "clearHandled": true,
+    "remaining": 0
+  },
+  "logs": []
+}

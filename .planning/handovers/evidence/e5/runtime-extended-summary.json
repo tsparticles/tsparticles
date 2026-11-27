@@ -1,0 +1,333 @@
+{
+  "measuredAt": "2026-11-20T19:26:38.612Z",
+  "revision": "2c9d5ec0c6a82a7f109d1c5aa3e0817f2ba9d25f",
+  "workingTree": true,
+  "browser": "Chrome/157.0.8103.79",
+  "mode": "headless",
+  "comparison": "E4 headless-2026-11-17; same Chrome version and machine; three samples per count",
+  "sampleCount": 18,
+  "retentionCycles": 30,
+  "validations": {
+    "pageErrors": true,
+    "allContainersRemoved": true,
+    "domStable": true,
+    "retentionDomStable": true,
+    "rngStable": {
+      "M6-extensions:100": true,
+      "M6-extensions:500": true,
+      "M6-extensions:1000": true,
+      "M8-hdr-layers-resize:100": true,
+      "M8-hdr-layers-resize:500": true,
+      "M8-hdr-layers-resize:1000": true
+    }
+  },
+  "heap": {
+    "beforeBytes": 3208236,
+    "afterScenariosBytes": 4309432,
+    "retentionBatchBytes": [
+      4302224,
+      4364580,
+      4391076
+    ],
+    "retentionDriftBytes": 88852,
+    "limitBytes": 1048576
+  },
+  "dom": {
+    "beforeNodes": 9,
+    "afterEachSample": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ],
+    "retentionNodes": [
+      9,
+      9,
+      9
+    ]
+  },
+  "mediaListeners": [
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "e4": {
+        "initMedianMs": 5.8,
+        "updateMedianMs": 0.2,
+        "renderMedianMs": 0.2,
+        "frameP95MedianMs": 0.6,
+        "frameP95SamplesMs": [
+          0.6,
+          0.5,
+          0.6
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          1952
+        ]
+      },
+      "e5": {
+        "initMedianMs": 5.6,
+        "updateMedianMs": 0.2,
+        "renderMedianMs": 0.2,
+        "frameP95MedianMs": 0.5,
+        "frameP95SamplesMs": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          1952
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 0.3,
+        "renderMedianCeilingMs": 0.3,
+        "frameP95CeilingMs": 0.7
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "e4": {
+        "initMedianMs": 12.9,
+        "updateMedianMs": 0.8,
+        "renderMedianMs": 0.7,
+        "frameP95MedianMs": 2,
+        "frameP95SamplesMs": [
+          2.1,
+          2,
+          1.8
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          5580
+        ]
+      },
+      "e5": {
+        "initMedianMs": 13.8,
+        "updateMedianMs": 0.8,
+        "renderMedianMs": 0.7,
+        "frameP95MedianMs": 2,
+        "frameP95SamplesMs": [
+          2,
+          1.9,
+          2.1
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          5580
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 0.9,
+        "renderMedianCeilingMs": 0.8,
+        "frameP95CeilingMs": 1.87
+      }
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "e4": {
+        "initMedianMs": 21.1,
+        "updateMedianMs": 1.7,
+        "renderMedianMs": 1.5,
+        "frameP95MedianMs": 3.6,
+        "frameP95SamplesMs": [
+          3.6,
+          3.6,
+          3.6
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          10113
+        ]
+      },
+      "e5": {
+        "initMedianMs": 22.6,
+        "updateMedianMs": 1.6,
+        "renderMedianMs": 1.4,
+        "frameP95MedianMs": 3.7,
+        "frameP95SamplesMs": [
+          3.7,
+          3.8,
+          3.5
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          10113
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 1.87,
+        "renderMedianCeilingMs": 1.65,
+        "frameP95CeilingMs": 4.07
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "e4": {
+        "initMedianMs": 4.9,
+        "updateMedianMs": 0.2,
+        "renderMedianMs": 0.2,
+        "frameP95MedianMs": 0.4,
+        "frameP95SamplesMs": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          908
+        ]
+      },
+      "e5": {
+        "initMedianMs": 5.1,
+        "updateMedianMs": 0.2,
+        "renderMedianMs": 0.1,
+        "frameP95MedianMs": 0.4,
+        "frameP95SamplesMs": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          908
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 0.2,
+        "renderMedianCeilingMs": 0.2,
+        "frameP95CeilingMs": 0.5
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "e4": {
+        "initMedianMs": 12.2,
+        "updateMedianMs": 0.7,
+        "renderMedianMs": 0.7,
+        "frameP95MedianMs": 1.7,
+        "frameP95SamplesMs": [
+          1.7,
+          1.6,
+          1.7
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          4535
+        ]
+      },
+      "e5": {
+        "initMedianMs": 12.4,
+        "updateMedianMs": 0.6,
+        "renderMedianMs": 0.7,
+        "frameP95MedianMs": 1.6,
+        "frameP95SamplesMs": [
+          1.6,
+          1.6,
+          1.6
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          4535
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 0.7,
+        "renderMedianCeilingMs": 0.8,
+        "frameP95CeilingMs": 1.65
+      }
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "e4": {
+        "initMedianMs": 20.7,
+        "updateMedianMs": 1.3,
+        "renderMedianMs": 1.4,
+        "frameP95MedianMs": 3.3,
+        "frameP95SamplesMs": [
+          3.3,
+          3.3,
+          3.3
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          9072
+        ]
+      },
+      "e5": {
+        "initMedianMs": 21.9,
+        "updateMedianMs": 1.3,
+        "renderMedianMs": 1.4,
+        "frameP95MedianMs": 3.2,
+        "frameP95SamplesMs": [
+          3.2,
+          3.3,
+          3.2
+        ],
+        "longFrames": 0,
+        "rngCalls": [
+          9072
+        ]
+      },
+      "ceilings": {
+        "updateMedianCeilingMs": 1.43,
+        "renderMedianCeilingMs": 1.43,
+        "frameP95CeilingMs": 3.3
+      }
+    }
+  ],
+  "limitations": [
+    "CPU submission times; physical HDR luminance is not observable headlessly",
+    "Forced-GC retained heap is not allocation volume or proof of absence of leaks",
+    "Retention runs use one warmed page; DOM/heap drift must be compared to repeated same-toolchain runs",
+    "Frame budget counts use explicit synchronous ticks, not presented frames",
+    "Initialization medians are reported for comparison, but E0 defines no initialization-time ceiling."
+  ]
+}

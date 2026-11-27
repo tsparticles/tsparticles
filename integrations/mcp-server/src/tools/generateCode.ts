@@ -1,4 +1,10 @@
-import type { BundleMatch, Framework, GenerateCodeInput, GenerateCodeOutput, PackageImport } from "../types.js";
+import type {
+  BundleMatch,
+  Framework,
+  GenerateCodeInput,
+  GenerateCodeOutput,
+  PackageImport,
+} from "../types.js";
 import { bundles } from "../registry/bundles.js";
 import { packageCatalog } from "../registry/packages.js";
 import { suggestPlugins } from "./suggestPlugins.js";
@@ -14,7 +20,15 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     count: 120,
     spread: 100,
     origin: { y: 0.7 },
-    colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+    colors: [
+      "#26ccff",
+      "#a25afd",
+      "#ff5e7e",
+      "#88ff5a",
+      "#fcff42",
+      "#ffa62d",
+      "#ff36ff",
+    ],
     gravity: 1.2,
     ticks: 200,
   },
@@ -27,7 +41,15 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   RIBBONS_TEMPLATE: Record<string, unknown> = {
     count: 60,
     positionX: 50,
-    colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+    colors: [
+      "#26ccff",
+      "#a25afd",
+      "#ff5e7e",
+      "#88ff5a",
+      "#fcff42",
+      "#ffa62d",
+      "#ff36ff",
+    ],
   },
   MAX_FIREWORKS_SPLIT_COUNT = 500,
   FIREWORKS_YEAR_LENGTH = 4,
@@ -36,7 +58,9 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
   // Bounded suffix covering the longest year/count context phrase and its word boundary.
   YEAR_CONTEXT_SUFFIX_LENGTH = 32,
   GROUPED_INTEGER_PATTERN = String.raw`(?:\d{1,3}(?:,\d{3})+|\d+)`,
-  GROUPED_INTEGER_COUNT_PATTERN = new RegExp(String.raw`^(${GROUPED_INTEGER_PATTERN})\b`),
+  GROUPED_INTEGER_COUNT_PATTERN = new RegExp(
+    String.raw`^(${GROUPED_INTEGER_PATTERN})\b`,
+  ),
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -370,13 +394,25 @@ const SPECIALIZED_RULES: SpecializedRule[] = [
   {
     bundleName: "@tsparticles/confetti",
     loadFunction: "confetti",
-    keywords: ["confetti", "coriandoli", "celebration", "party", "festa", "feste"],
+    keywords: [
+      "confetti",
+      "coriandoli",
+      "celebration",
+      "party",
+      "festa",
+      "feste",
+    ],
     isAutoInitialized: true,
   },
   {
     bundleName: "@tsparticles/fireworks",
     loadFunction: "fireworks",
-    keywords: ["fireworks", "fuochi d'artificio", "fuochi artificiali", "spettacolo pirotecnico"],
+    keywords: [
+      "fireworks",
+      "fuochi d'artificio",
+      "fuochi artificiali",
+      "spettacolo pirotecnico",
+    ],
     isAutoInitialized: true,
   },
   {
@@ -388,7 +424,14 @@ const SPECIALIZED_RULES: SpecializedRule[] = [
   {
     bundleName: "@tsparticles/basic",
     loadFunction: "loadBasic",
-    keywords: ["snow", "snowfall", "neve", "nevicata", "fiocchi di neve", "fiocchi"],
+    keywords: [
+      "snow",
+      "snowfall",
+      "neve",
+      "nevicata",
+      "fiocchi di neve",
+      "fiocchi",
+    ],
     presetName: "snow",
     presetPackage: "@tsparticles/preset-snow",
     isPreset: true,
@@ -396,7 +439,15 @@ const SPECIALIZED_RULES: SpecializedRule[] = [
   {
     bundleName: "@tsparticles/basic",
     loadFunction: "loadBasic",
-    keywords: ["fire", "flame", "flames", "fuoco", "fiamme", "fiamma", "incendio"],
+    keywords: [
+      "fire",
+      "flame",
+      "flames",
+      "fuoco",
+      "fiamme",
+      "fiamma",
+      "incendio",
+    ],
     presetName: "fire",
     presetPackage: "@tsparticles/preset-fire",
     isPreset: true,
@@ -404,7 +455,13 @@ const SPECIALIZED_RULES: SpecializedRule[] = [
   {
     bundleName: "@tsparticles/basic",
     loadFunction: "loadBasic",
-    keywords: ["matrix", "hacker", "codice", "digital rain", "pioggia di codice"],
+    keywords: [
+      "matrix",
+      "hacker",
+      "codice",
+      "digital rain",
+      "pioggia di codice",
+    ],
     presetName: "matrix",
     presetPackage: "@tsparticles/preset-matrix",
     isPreset: true,
@@ -436,12 +493,14 @@ function escapeRegExp(value: string): string {
  */
 function matchesKeyword(text: string, keyword: string): boolean {
   const k = keyword.trim().toLowerCase();
+
   if (!k) {
     return false;
   }
   if (!k.includes(" ") && /^[a-z0-9]+$/i.test(k)) {
     return new RegExp(`\\b${escapeRegExp(k)}\\b`).test(text);
   }
+
   return text.includes(k);
 }
 
@@ -451,7 +510,7 @@ function matchesKeyword(text: string, keyword: string): boolean {
  * @param keywords
  */
 function matchesAny(text: string, keywords: string[]): boolean {
-  return keywords.some(keyword => matchesKeyword(text, keyword));
+  return keywords.some((keyword) => matchesKeyword(text, keyword));
 }
 
 /**
@@ -461,7 +520,9 @@ function matchesAny(text: string, keywords: string[]): boolean {
  * @param terms
  */
 function mentions(keywords: string[], text: string, terms: string[]): boolean {
-  return terms.some(term => matchesKeyword(text, term) || keywords.includes(term));
+  return terms.some(
+    (term) => matchesKeyword(text, term) || keywords.includes(term),
+  );
 }
 
 /**
@@ -469,7 +530,6 @@ function mentions(keywords: string[], text: string, terms: string[]): boolean {
  * @param value
  */
 function capitalize(value: string): string {
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
@@ -484,7 +544,8 @@ export function extractKeywords(description: string): string[] {
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter(Boolean);
-  return [...new Set(tokens)].filter(token => !STOPWORDS.has(token));
+
+  return [...new Set(tokens)].filter((token) => !STOPWORDS.has(token));
 }
 
 // ── Bundle matching ───────────────────────────────────────────────
@@ -495,8 +556,13 @@ export function extractKeywords(description: string): string[] {
  * @param loadFunction
  * @param opts
  */
-function makeBundleMatch(bundleName: string, loadFunction: string, opts?: Partial<BundleMatch>): BundleMatch {
-  const bundle = bundles.find(b => b.name === bundleName);
+function makeBundleMatch(
+  bundleName: string,
+  loadFunction: string,
+  opts?: Partial<BundleMatch>,
+): BundleMatch {
+  const bundle = bundles.find((b) => b.name === bundleName);
+
   return {
     bundleName,
     loadFunction,
@@ -531,7 +597,8 @@ function isSimpleRequest(keywords: string[], text: string): boolean {
   if (hasAdvancedFeatures(keywords, text)) {
     return false;
   }
-  return MOVEMENT_WORDS.some(word => matchesKeyword(text, word));
+
+  return MOVEMENT_WORDS.some((word) => matchesKeyword(text, word));
 }
 
 /**
@@ -539,7 +606,10 @@ function isSimpleRequest(keywords: string[], text: string): boolean {
  * @param keywords
  * @param description
  */
-export function matchBundle(keywords: string[], description: string): BundleMatch {
+export function matchBundle(
+  keywords: string[],
+  description: string,
+): BundleMatch {
   const text = description.toLowerCase();
 
   for (const rule of SPECIALIZED_RULES) {
@@ -549,6 +619,7 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
     if (rule.isPreset && hasAdvancedFeatures(keywords, text)) {
       continue;
     }
+
     return makeBundleMatch(rule.bundleName, rule.loadFunction, {
       presetName: rule.presetName,
       presetPackage: rule.presetPackage,
@@ -571,6 +642,7 @@ export function matchBundle(keywords: string[], description: string): BundleMatc
   if (isSimpleRequest(keywords, text)) {
     return makeBundleMatch("@tsparticles/basic", "loadBasic");
   }
+
   return makeBundleMatch("@tsparticles/slim", "loadSlim");
 }
 
@@ -588,9 +660,15 @@ function extractCount(text: string): number | undefined {
     return parseSafeCount(labeledCount);
   }
 
-  const numberPattern = new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`, "g");
+  const numberPattern = new RegExp(
+    String.raw`\b(${GROUPED_INTEGER_PATTERN})\b`,
+    "g",
+  );
 
-  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, numberPattern)) {
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(
+    text,
+    numberPattern,
+  )) {
     if (!isAmbiguousYearReference(precedingText, match[1])) {
       return parseSafeCount(match[1]);
     }
@@ -647,14 +725,24 @@ function* getMatchesWithNormalizedPrefix(
  * @param precedingText - The normalized text before the numeric candidate.
  * @param count - The numeric candidate to inspect.
  */
-function isAmbiguousYearReference(precedingText: string, count: string): boolean {
+function isAmbiguousYearReference(
+  precedingText: string,
+  count: string,
+): boolean {
   if (count.length !== FIREWORKS_YEAR_LENGTH) {
     return false;
   }
 
-  const normalizedPrecedingText = precedingText.trimEnd().replace(/[:=]$/, "").trimEnd(),
-    hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(normalizedPrecedingText),
-    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(normalizedPrecedingText);
+  const normalizedPrecedingText = precedingText
+      .trimEnd()
+      .replace(/[:=]$/, "")
+      .trimEnd(),
+    hasYearContext = /(?:^|\s)(?:new year|year(?: of)?|for|in)(?: the)?$/i.test(
+      normalizedPrecedingText,
+    ),
+    isExplicitCount = /(?:^|\s)(?:count|number)(?: of)?$/i.test(
+      normalizedPrecedingText,
+    );
 
   return hasYearContext && !isExplicitCount;
 }
@@ -665,7 +753,10 @@ function isAmbiguousYearReference(precedingText: string, count: string): boolean
  * @param text - The normalized particle description.
  */
 function extractAmbiguousYearCount(text: string): string | undefined {
-  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(text, /\b(\d{4})\b/g)) {
+  for (const { match, precedingText } of getMatchesWithNormalizedPrefix(
+    text,
+    /\b(\d{4})\b/g,
+  )) {
     if (isAmbiguousYearReference(precedingText, match[1])) {
       return match[1];
     }
@@ -681,16 +772,18 @@ function extractAmbiguousYearCount(text: string): string | undefined {
  */
 function getYearContextCountIndexes(text: string): Set<number> {
   const indexes = new Set<number>(),
-    yearContextPattern = /(?:^|\s)(new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
+    yearContextPattern =
+      /(?:^|\s)(new\s+year|year(?:\s+of)?|for|in)(?:\s+the)?(?:\s*[:=]\s*|\s+)(\d{4})\b/gi;
 
   for (const match of text.matchAll(yearContextPattern)) {
     const count = match[2],
       value = Number(count),
       hasExplicitYearLabel = /year/i.test(match[1]),
-      isPlausibleImplicitYear = value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR;
+      isPlausibleImplicitYear =
+        value >= MIN_IMPLICIT_YEAR && value <= MAX_IMPLICIT_YEAR;
 
     if (hasExplicitYearLabel || isPlausibleImplicitYear) {
-      indexes.add((match.index ?? 0) + match[0].length - count.length);
+      indexes.add(match.index + match[0].length - count.length);
     }
   }
 
@@ -702,7 +795,10 @@ function getYearContextCountIndexes(text: string): Set<number> {
  *
  * @param text - The normalized fireworks description.
  */
-function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<number>): Set<number> {
+function getEventYearCountIndexes(
+  text: string,
+  explicitSparkCountIndexes: Set<number>,
+): Set<number> {
   const indexes = new Set<number>(),
     eventYearPattern =
       /\b(?:christmas|easter|halloween|thanksgiving|new year(?:'s)?(?: (?:day|eve))?|valentine(?:'s)?(?: day)?|independence day|memorial day|labor day|canada day|diwali|hanukkah|ramadan|eid(?: al-(?:fitr|adha))?)(?:\s*[:=]\s*|\s+(?:of\s+)?)(\d{4})\b/gi;
@@ -710,13 +806,16 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
   for (const match of text.matchAll(eventYearPattern)) {
     const count = match[1];
 
-    indexes.add((match.index ?? 0) + match[0].length - count.length);
+    indexes.add(match.index + match[0].length - count.length);
   }
 
   const eventContextWords = ["for", "in", "during", "at", "on"],
-    isWhitespace = (char: string | undefined): boolean => char !== undefined && /\s/.test(char),
-    isWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9_]/i.test(char),
-    isPhraseWordCharacter = (char: string | undefined): boolean => char !== undefined && /[a-z0-9'-]/i.test(char);
+    isWhitespace = (char: string | undefined): boolean =>
+      char !== undefined && /\s/.test(char),
+    isWordCharacter = (char: string | undefined): boolean =>
+      char !== undefined && /[a-z0-9_]/i.test(char),
+    isPhraseWordCharacter = (char: string | undefined): boolean =>
+      char !== undefined && /[a-z0-9'-]/i.test(char);
 
   // Consume each context phrase once so repeated prefixes cannot rescan the remaining text.
   for (let index = 0; index < text.length;) {
@@ -726,7 +825,9 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
     }
 
     const contextWord = eventContextWords.find(
-      word => text.slice(index, index + word.length).toLowerCase() === word && isWhitespace(text[index + word.length]),
+      (word) =>
+        text.slice(index, index + word.length).toLowerCase() === word &&
+        isWhitespace(text[index + word.length]),
     );
 
     if (!contextWord) {
@@ -749,32 +850,47 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
       previousPhraseWordEnd = -1;
 
     const isFourDigitYearAt = (yearIndex: number): boolean =>
-        /^\d{4}$/.test(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH)) &&
-        !isWordCharacter(text[yearIndex + FIREWORKS_YEAR_LENGTH]),
-      addPhraseWord = (phraseWordStart: number, phraseWordEnd: number): void => {
-        const phraseWord = text.slice(phraseWordStart, phraseWordEnd).toLowerCase();
+        /^\d{4}$/.test(
+          text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH),
+        ) && !isWordCharacter(text[yearIndex + FIREWORKS_YEAR_LENGTH]),
+      addPhraseWord = (
+        phraseWordStart: number,
+        phraseWordEnd: number,
+      ): void => {
+        const phraseWord = text
+          .slice(phraseWordStart, phraseWordEnd)
+          .toLowerCase();
 
         if (phraseWordCount === 0) {
           firstPhraseWord = phraseWord;
         } else if (phraseWordCount === 1) {
           secondPhraseWord = phraseWord;
           firstPhraseGapIsSingleSpace =
-            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+            phraseWordStart - previousPhraseWordEnd === 1 &&
+            text[previousPhraseWordEnd] === " ";
         } else if (phraseWordCount === 2) {
           thirdPhraseWord = phraseWord;
           secondPhraseGapIsSingleSpace =
-            phraseWordStart - previousPhraseWordEnd === 1 && text[previousPhraseWordEnd] === " ";
+            phraseWordStart - previousPhraseWordEnd === 1 &&
+            text[previousPhraseWordEnd] === " ";
         }
 
         phraseWordCount++;
         previousPhraseWordEnd = phraseWordEnd;
       },
       addEventYearCandidate = (yearIndex: number): void => {
-        const skipsArticle = phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
+        const skipsArticle =
+            phraseWordCount > 1 && /^(?:the|a|an)$/i.test(firstPhraseWord),
           eventContextWordCount = phraseWordCount - (skipsArticle ? 1 : 0),
-          firstEventContextWord = skipsArticle ? secondPhraseWord : firstPhraseWord,
-          secondEventContextWord = skipsArticle ? thirdPhraseWord : secondPhraseWord,
-          eventContextGapIsSingleSpace = skipsArticle ? secondPhraseGapIsSingleSpace : firstPhraseGapIsSingleSpace,
+          firstEventContextWord = skipsArticle
+            ? secondPhraseWord
+            : firstPhraseWord,
+          secondEventContextWord = skipsArticle
+            ? thirdPhraseWord
+            : secondPhraseWord,
+          eventContextGapIsSingleSpace = skipsArticle
+            ? secondPhraseGapIsSingleSpace
+            : firstPhraseGapIsSingleSpace,
           isYearContext =
             eventContextWordCount === 1
               ? firstEventContextWord === "year"
@@ -782,7 +898,9 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
                 firstEventContextWord === "year" &&
                 secondEventContextWord === "of" &&
                 eventContextGapIsSingleSpace,
-          value = Number(text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH));
+          value = Number(
+            text.slice(yearIndex, yearIndex + FIREWORKS_YEAR_LENGTH),
+          );
 
         if (
           !isYearContext &&
@@ -821,7 +939,11 @@ function getEventYearCountIndexes(text: string, explicitSparkCountIndexes: Set<n
 
       let yearIndex = position;
 
-      while (yearIndex < text.length && !isWhitespace(text[yearIndex]) && !isWordCharacter(text[yearIndex])) {
+      while (
+        yearIndex < text.length &&
+        !isWhitespace(text[yearIndex]) &&
+        !isWordCharacter(text[yearIndex])
+      ) {
         yearIndex++;
       }
 
@@ -877,13 +999,16 @@ function getExplicitSparkCountIndexes(text: string): Set<number> {
       "gi",
     ),
   )) {
-    indexes.add(match.index ?? 0);
+    indexes.add(match.index);
   }
 
   for (const match of text.matchAll(
-    new RegExp(String.raw`\b(?:exactly|precisely)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi"),
+    new RegExp(
+      String.raw`\b(?:exactly|precisely)\s+(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`,
+      "gi",
+    ),
   )) {
-    indexes.add((match.index ?? 0) + match[0].indexOf(match[1]));
+    indexes.add(match.index + match[0].indexOf(match[1]));
   }
 
   return indexes;
@@ -903,14 +1028,24 @@ function extractLabeledCount(
   skipSplitCount: boolean,
   countPattern: RegExp = GROUPED_INTEGER_COUNT_PATTERN,
 ): string | undefined {
+  const splitCountIndexes = new Set<number>();
+
+  if (skipSplitCount) {
+    for (const match of text.matchAll(/\bsplit\s*count\b/gi)) {
+      splitCountIndexes.add(match.index + match[0].length - "count".length);
+    }
+  }
+
   for (const labelMatch of text.matchAll(labelPattern)) {
     const labelIndex = labelMatch.index;
 
-    if (skipSplitCount && /\bsplit\s*$/i.test(text.slice(0, labelIndex))) {
+    if (splitCountIndexes.has(labelIndex)) {
       continue;
     }
 
-    let suffix = text.slice(labelIndex + labelMatch[0].length).replace(/^\s+/, "");
+    let suffix = text
+      .slice(labelIndex + labelMatch[0].length)
+      .replace(/^\s+/, "");
 
     if (/^of\b/i.test(suffix)) {
       suffix = suffix.slice(2).replace(/^\s+/, "");
@@ -943,13 +1078,17 @@ function isAmbiguousFireworksYear(count: string): boolean {
  *
  * @param text - The normalized fireworks description.
  */
-function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
+function extractFireworksSplitCount(
+  text: string,
+): { ambiguous: boolean; raw: string; value: number } | undefined {
   const splitCount = extractLabeledCount(text, /\bsplit\s*count\b/gi, false);
 
   if (splitCount !== undefined) {
-    const raw = normalizeCountString(splitCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return {
+      ambiguous: false,
+      raw: splitCount,
+      value: Number(normalizeCountString(splitCount)),
+    };
   }
 
   const explicitSparkCount = new RegExp(
@@ -966,9 +1105,11 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
   const labeledCount = extractLabeledCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
-    const raw = normalizeCountString(labeledCount);
-
-    return { ambiguous: false, raw, value: Number(raw) };
+    return {
+      ambiguous: false,
+      raw: labeledCount,
+      value: Number(normalizeCountString(labeledCount)),
+    };
   }
 
   const sparkCountAfterHeading = extractSparkCountAfterHeading(text);
@@ -981,8 +1122,11 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
 
   const explicitSparkCountIndexes = getExplicitSparkCountIndexes(text),
     yearContextCountIndexes = getYearContextCountIndexes(text),
-    eventYearCountIndexes = getEventYearCountIndexes(text, explicitSparkCountIndexes);
-  const withCounts = [
+    eventYearCountIndexes = getEventYearCountIndexes(
+      text,
+      explicitSparkCountIndexes,
+    ),
+    withCounts = [
       ...text.matchAll(
         new RegExp(
           String.raw`\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(${GROUPED_INTEGER_PATTERN})\b`,
@@ -991,25 +1135,39 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
       ),
     ],
     bareSparkCounts = [
-      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`, "gi")),
+      ...text.matchAll(
+        new RegExp(
+          String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+(?:sparks|particles)\b`,
+          "gi",
+        ),
+      ),
     ],
     bareFireworksCounts = [
-      ...text.matchAll(new RegExp(String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+fireworks\b`, "gi")),
+      ...text.matchAll(
+        new RegExp(
+          String.raw`\b(${GROUPED_INTEGER_PATTERN})\s+fireworks\b`,
+          "gi",
+        ),
+      ),
     ],
-    unambiguousFireworksCount = bareFireworksCounts.find(match => !isAmbiguousFireworksYear(match[1]))?.[1],
+    unambiguousFireworksCount = bareFireworksCounts.find(
+      (match) => !isAmbiguousFireworksYear(match[1]),
+    )?.[1],
     standaloneWithCount = withCounts.find(
-      match =>
+      (match) =>
         !isAmbiguousFireworksYear(match[1]) &&
-        /^\s*(?:[,.;!?]|$)/.test(text.slice((match.index ?? 0) + match[0].length)),
+        /^\s*(?:[,.;!?]|$)/.test(text.slice(match.index + match[0].length)),
     ),
-    isYearLabeledSparkCount = (match: RegExpMatchArray): boolean =>
-      yearContextCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
-  const isEventYearSparkCount = (match: RegExpMatchArray): boolean =>
-    eventYearCountIndexes.has(match.index ?? 0) && !explicitSparkCountIndexes.has(match.index ?? 0);
-
-  const bareSparkCount = bareSparkCounts.find(
-    match => !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match),
-  );
+    isYearLabeledSparkCount = (match: RegExpExecArray): boolean =>
+      yearContextCountIndexes.has(match.index) &&
+      !explicitSparkCountIndexes.has(match.index),
+    isEventYearSparkCount = (match: RegExpExecArray): boolean =>
+      eventYearCountIndexes.has(match.index) &&
+      !explicitSparkCountIndexes.has(match.index),
+    bareSparkCount = bareSparkCounts.find(
+      (match) =>
+        !isYearLabeledSparkCount(match) && !isEventYearSparkCount(match),
+    );
 
   if (bareSparkCount) {
     const raw = normalizeCountString(bareSparkCount[1]);
@@ -1037,7 +1195,7 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: true, raw, value: Number(raw) };
   }
 
-  const ambiguousFireworksCount = bareFireworksCounts[0]?.[1];
+  const ambiguousFireworksCount = bareFireworksCounts.at(0)?.[1];
 
   if (ambiguousFireworksCount !== undefined) {
     const raw = normalizeCountString(ambiguousFireworksCount);
@@ -1045,7 +1203,9 @@ function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: st
     return { ambiguous: true, raw, value: Number(raw) };
   }
 
-  const ambiguousWithCount = withCounts.find(match => isAmbiguousFireworksYear(match[1]));
+  const ambiguousWithCount = withCounts.find((match) =>
+    isAmbiguousFireworksYear(match[1]),
+  );
 
   if (ambiguousWithCount) {
     const raw = normalizeCountString(ambiguousWithCount[1]);
@@ -1066,6 +1226,7 @@ function findNamedColor(text: string): string | undefined {
       return hex;
     }
   }
+
   return undefined;
 }
 
@@ -1079,6 +1240,7 @@ function findShape(text: string): string | undefined {
       return type;
     }
   }
+
   return undefined;
 }
 
@@ -1087,10 +1249,18 @@ function findShape(text: string): string | undefined {
  * @param text
  */
 function findDirection(text: string): string | undefined {
-  if (matchesKeyword(text, "up") || matchesKeyword(text, "top") || matchesKeyword(text, "sopra")) {
+  if (
+    matchesKeyword(text, "up") ||
+    matchesKeyword(text, "top") ||
+    matchesKeyword(text, "sopra")
+  ) {
     return "top";
   }
-  if (matchesKeyword(text, "down") || matchesKeyword(text, "bottom") || matchesKeyword(text, "sotto")) {
+  if (
+    matchesKeyword(text, "down") ||
+    matchesKeyword(text, "bottom") ||
+    matchesKeyword(text, "sotto")
+  ) {
     return "bottom";
   }
   if (matchesKeyword(text, "left") || matchesKeyword(text, "sinistra")) {
@@ -1099,6 +1269,7 @@ function findDirection(text: string): string | undefined {
   if (matchesKeyword(text, "right") || matchesKeyword(text, "destra")) {
     return "right";
   }
+
   return undefined;
 }
 
@@ -1116,7 +1287,8 @@ function applySpecializedOverrides(
   const result = structuredClone(template);
 
   if (count !== undefined) {
-    result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
+    result[countProperty] =
+      maxCount === undefined ? count : Math.min(count, maxCount);
   }
 
   return result;
@@ -1127,11 +1299,15 @@ function applySpecializedOverrides(
  * @param keywords
  * @param lower
  */
-function generateGenericOptions(keywords: string[], lower: string): Record<string, unknown> {
+function generateGenericOptions(
+  keywords: string[],
+  lower: string,
+): Record<string, unknown> {
   const options = structuredClone(GENERIC_TEMPLATE),
     particles = options.particles as Record<string, unknown>,
     move = particles.move as Record<string, unknown>,
     count = extractCount(lower);
+
   if (count !== undefined) {
     (particles.number as Record<string, unknown>).value = count;
   }
@@ -1139,21 +1315,33 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
   if (mentions(keywords, lower, ["slow", "lento", "lenta", "lentamente"])) {
     move.speed = 1;
   }
-  if (mentions(keywords, lower, ["fast", "veloce", "veloci", "rapido", "rapida", "rapidamente"])) {
+  if (
+    mentions(keywords, lower, [
+      "fast",
+      "veloce",
+      "veloci",
+      "rapido",
+      "rapida",
+      "rapidamente",
+    ])
+  ) {
     move.speed = 10;
   }
 
   const color = findNamedColor(lower);
+
   if (color !== undefined) {
     (particles.paint as Record<string, unknown>).color = { value: color };
   }
 
   const shape = findShape(lower);
+
   if (shape !== undefined) {
     (particles.shape as Record<string, unknown>).type = shape;
   }
 
   const direction = findDirection(lower);
+
   if (direction !== undefined) {
     move.direction = direction;
   }
@@ -1163,11 +1351,13 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
   }
 
   const hasLinks = mentions(keywords, lower, LINK_WORDS);
+
   if (hasLinks) {
     particles.links = { enable: true, distance: 150, opacity: 0.5 };
   }
 
   const hasInteractivity = mentions(keywords, lower, INTERACTIVITY_WORDS);
+
   if (hasInteractivity) {
     options.interactivity = {
       events: {
@@ -1178,7 +1368,10 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
     move.speed = 2;
   }
 
-  if (color !== undefined && mentions(keywords, lower, ["background", "sfondo"])) {
+  if (
+    color !== undefined &&
+    mentions(keywords, lower, ["background", "sfondo"])
+  ) {
     (options.background as Record<string, unknown>).color = color;
   }
 
@@ -1191,7 +1384,11 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
  * @param keywords
  * @param lower
  */
-export function generateOptions(bundle: BundleMatch, keywords: string[], lower: string): Record<string, unknown> {
+export function generateOptions(
+  bundle: BundleMatch,
+  keywords: string[],
+  lower: string,
+): Record<string, unknown> {
   if (bundle.isPreset && bundle.presetName) {
     return { preset: bundle.presetName };
   }
@@ -1208,7 +1405,10 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
  * @param bundle - The matched bundle configuration.
  * @param lower - The normalized description.
  */
-function generateAutoInitializedOptions(bundle: BundleMatch, lower: string): Record<string, unknown> {
+function generateAutoInitializedOptions(
+  bundle: BundleMatch,
+  lower: string,
+): Record<string, unknown> {
   let template: Record<string, unknown>;
 
   if (bundle.bundleName === "@tsparticles/fireworks") {
@@ -1220,7 +1420,9 @@ function generateAutoInitializedOptions(bundle: BundleMatch, lower: string): Rec
   }
 
   const isFireworks = bundle.bundleName === "@tsparticles/fireworks",
-    fireworksSplitCount = isFireworks ? extractFireworksSplitCount(lower) : undefined;
+    fireworksSplitCount = isFireworks
+      ? extractFireworksSplitCount(lower)
+      : undefined;
 
   let requestedCount: number | undefined;
 
@@ -1256,11 +1458,19 @@ function serializeOptions(options: Record<string, unknown>): string {
  */
 function buildLoadImports(bundle: BundleMatch): string[] {
   const mainLoad = `import { ${bundle.loadFunction} } from "${bundle.bundleName}";`;
+
   if (bundle.isPreset && bundle.presetPackage) {
     const presetInfo = packageCatalog.byName[bundle.presetPackage],
-      presetLoad = presetInfo.loadFunction ?? `load${capitalize(bundle.presetName ?? "")}Preset`;
-    return [mainLoad, `import { ${presetLoad} } from "${bundle.presetPackage}";`];
+      presetLoad =
+        presetInfo.loadFunction ??
+        `load${capitalize(bundle.presetName ?? "")}Preset`;
+
+    return [
+      mainLoad,
+      `import { ${presetLoad} } from "${bundle.presetPackage}";`,
+    ];
   }
+
   return [mainLoad];
 }
 
@@ -1270,13 +1480,22 @@ function buildLoadImports(bundle: BundleMatch): string[] {
  * @param indent
  * @param engineVar
  */
-function buildLoadCalls(bundle: BundleMatch, indent: string, engineVar: string): string {
+function buildLoadCalls(
+  bundle: BundleMatch,
+  indent: string,
+  engineVar: string,
+): string {
   const calls = [`${indent}await ${bundle.loadFunction}(${engineVar});`];
+
   if (bundle.isPreset && bundle.presetPackage) {
     const presetInfo = packageCatalog.byName[bundle.presetPackage],
-      presetLoad = presetInfo.loadFunction ?? `load${capitalize(bundle.presetName ?? "")}Preset`;
+      presetLoad =
+        presetInfo.loadFunction ??
+        `load${capitalize(bundle.presetName ?? "")}Preset`;
+
     calls.push(`${indent}await ${presetLoad}(${engineVar});`);
   }
+
   return calls.join("\n");
 }
 
@@ -1285,7 +1504,10 @@ function buildLoadCalls(bundle: BundleMatch, indent: string, engineVar: string):
  * @param loaders
  */
 function buildLoaderImports(loaders: PackageImport[]): string[] {
-  return loaders.map(({ function: loadFunction, from }) => `import { ${loadFunction} } from "${from}";`);
+  return loaders.map(
+    ({ function: loadFunction, from }) =>
+      `import { ${loadFunction} } from "${from}";`,
+  );
 }
 
 /**
@@ -1294,8 +1516,17 @@ function buildLoaderImports(loaders: PackageImport[]): string[] {
  * @param indent
  * @param engineVar
  */
-function buildLoaderCalls(loaders: PackageImport[], indent: string, engineVar: string): string {
-  return loaders.map(({ function: loadFunction }) => `${indent}await ${loadFunction}(${engineVar});`).join("\n");
+function buildLoaderCalls(
+  loaders: PackageImport[],
+  indent: string,
+  engineVar: string,
+): string {
+  return loaders
+    .map(
+      ({ function: loadFunction }) =>
+        `${indent}await ${loadFunction}(${engineVar});`,
+    )
+    .join("\n");
 }
 
 /**
@@ -1303,9 +1534,17 @@ function buildLoaderCalls(loaders: PackageImport[], indent: string, engineVar: s
  * @param bundle
  * @param options
  */
-function autoInitCode(bundle: BundleMatch, options: Record<string, unknown>): string {
-  return `import { ${bundle.loadFunction} } from "${bundle.bundleName}";
+function autoInitCode(
+  bundle: BundleMatch,
+  options: Record<string, unknown>,
+): string {
+  const factory = `create${bundle.loadFunction.charAt(0).toUpperCase()}${bundle.loadFunction.slice(1)}`;
 
+  return `import { createEngine } from "@tsparticles/engine";
+import { ${factory} } from "${bundle.bundleName}";
+
+const engine = createEngine();
+const ${bundle.loadFunction} = ${factory}(engine);
 await ${bundle.loadFunction}(${serializeOptions(options)});
 `;
 }
@@ -1323,15 +1562,23 @@ function vanillaCode(
   typescript: boolean,
   extraLoaders: PackageImport[],
 ): string {
-  const imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
-    calls = [buildLoadCalls(bundle, "  ", "tsParticles"), buildLoaderCalls(extraLoaders, "  ", "tsParticles")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .filter(call => call.length > 0)
+  const imports = [
+      ...buildLoadImports(bundle),
+      ...buildLoaderImports(extraLoaders),
+    ],
+    calls = [
+      buildLoadCalls(bundle, "  ", "tsParticles"),
+      buildLoaderCalls(extraLoaders, "  ", "tsParticles"),
+    ]
+
+      .filter((call) => call.length > 0)
       .join("\n");
 
   if (typescript) {
     return `${imports.join("\n")}
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = ${serializeOptions(options)};
@@ -1350,7 +1597,9 @@ void init();
   }
 
   return `${imports.join("\n")}
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+
+const tsParticles = createEngine();
 
 async function init() {
 ${calls}
@@ -1378,25 +1627,35 @@ function reactCode(
   typescript: boolean,
   extraLoaders: PackageImport[],
 ): string {
-  const engineTypeImport = typescript ? 'import type { Engine } from "@tsparticles/engine";\n' : "",
+  const engineTypeImport = typescript
+      ? 'import type { Engine } from "@tsparticles/engine";\n'
+      : "",
     initParam = typescript ? "(engine: Engine)" : "(engine)",
-    imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
-    calls = [buildLoadCalls(bundle, "    ", "engine"), buildLoaderCalls(extraLoaders, "    ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .filter(call => call.length > 0)
+    imports = [
+      ...buildLoadImports(bundle),
+      ...buildLoaderImports(extraLoaders),
+    ],
+    calls = [
+      buildLoadCalls(bundle, "    ", "engine"),
+      buildLoaderCalls(extraLoaders, "    ", "engine"),
+    ]
+
+      .filter((call) => call.length > 0)
       .join("\n");
 
-  return `import { useCallback } from "react";
+  return `import { useCallback, useState } from "react";
+import { createEngine } from "@tsparticles/engine";
 ${engineTypeImport}import Particles, { ParticlesProvider } from "@tsparticles/react";
 ${imports.join("\n")}
 
 export function ParticlesBackground() {
+  const [engine] = useState(createEngine);
   const init = useCallback(async ${initParam} => {
 ${calls}
   }, []);
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <Particles
         id="tsparticles"
         options={${serializeOptions(options)}}
@@ -1420,20 +1679,29 @@ function vueCode(
   typescript: boolean,
   extraLoaders: PackageImport[],
 ): string {
-  const engineTypeImport = typescript ? 'import type { Engine } from "@tsparticles/engine";\n' : "",
+  const engineTypeImport = typescript
+      ? 'import type { Engine } from "@tsparticles/engine";\n'
+      : "",
     registerSignature = typescript
       ? "async function registerParticles(engine: Engine): Promise<void> {"
       : "async function registerParticles(engine) {",
     scriptSetup = typescript ? '<script setup lang="ts">' : "<script setup>",
     optionsType = typescript ? ": ISourceOptions" : "",
-    imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
-    calls = [buildLoadCalls(bundle, "  ", "engine"), buildLoaderCalls(extraLoaders, "  ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .filter(call => call.length > 0)
+    imports = [
+      ...buildLoadImports(bundle),
+      ...buildLoaderImports(extraLoaders),
+    ],
+    calls = [
+      buildLoadCalls(bundle, "  ", "engine"),
+      buildLoaderCalls(extraLoaders, "  ", "engine"),
+    ]
+
+      .filter((call) => call.length > 0)
       .join("\n");
 
   return `// main.ts
 import { createApp } from "vue";
+import { createEngine } from "@tsparticles/engine";
 ${engineTypeImport}import Particles from "@tsparticles/vue3";
 ${imports.join("\n")}
 
@@ -1446,6 +1714,7 @@ ${calls}
 const app = createApp(App);
 
 app.use(Particles, {
+  engine: createEngine(),
   init: registerParticles,
 });
 
@@ -1483,15 +1752,23 @@ function svelteCode(
   typescript: boolean,
   extraLoaders: PackageImport[],
 ): string {
-  const svelteImports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
-    calls = [buildLoadCalls(bundle, "    ", "engine"), buildLoaderCalls(extraLoaders, "    ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .filter(call => call.length > 0)
+  const svelteImports = [
+      ...buildLoadImports(bundle),
+      ...buildLoaderImports(extraLoaders),
+    ],
+    calls = [
+      buildLoadCalls(bundle, "    ", "engine"),
+      buildLoaderCalls(extraLoaders, "    ", "engine"),
+    ]
+
+      .filter((call) => call.length > 0)
       .join("\n");
 
   if (typescript) {
     return `<script lang="ts">
   import Particles, { initParticlesEngine } from "@tsparticles/svelte";
+  import { createEngine } from "@tsparticles/engine";
+  const engine = createEngine();
   import type { Engine, ISourceOptions } from "@tsparticles/engine";
   ${svelteImports.join("\n  ")}
 
@@ -1500,12 +1777,13 @@ function svelteCode(
     console.log(event.detail.particles);
   };
 
-  void initParticlesEngine(async (engine: Engine) => {
+  void initParticlesEngine(engine, async (engine: Engine) => {
 ${calls}
   });
 </script>
 
 <Particles
+  {engine}
   id="tsparticles"
   options={options}
   on:particlesLoaded={onParticlesLoaded}
@@ -1515,6 +1793,8 @@ ${calls}
 
   return `<script>
   import Particles, { initParticlesEngine } from "@tsparticles/svelte";
+  import { createEngine } from "@tsparticles/engine";
+  const engine = createEngine();
   ${svelteImports.join("\n  ")}
 
   const options = ${serializeOptions(options)};
@@ -1522,12 +1802,13 @@ ${calls}
     console.log(event.detail.particles);
   };
 
-  void initParticlesEngine(async (engine) => {
+  void initParticlesEngine(engine, async (engine) => {
 ${calls}
   });
 </script>
 
 <Particles
+  {engine}
   id="tsparticles"
   options={options}
   on:particlesLoaded={onParticlesLoaded}
@@ -1548,16 +1829,23 @@ function angularCode(
   typescript: boolean,
   extraLoaders: PackageImport[],
 ): string {
-  const imports = [...buildLoadImports(bundle), ...buildLoaderImports(extraLoaders)],
-    calls = [buildLoadCalls(bundle, "      ", "engine"), buildLoaderCalls(extraLoaders, "      ", "engine")]
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .filter(call => call.length > 0)
+  const imports = [
+      ...buildLoadImports(bundle),
+      ...buildLoaderImports(extraLoaders),
+    ],
+    calls = [
+      buildLoadCalls(bundle, "      ", "engine"),
+      buildLoaderCalls(extraLoaders, "      ", "engine"),
+    ]
+
+      .filter((call) => call.length > 0)
       .join("\n");
 
   if (typescript) {
     return `import { Component, OnInit } from "@angular/core";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
+import { createEngine } from "@tsparticles/engine";
 ${imports.join("\n")}
 
 @Component({
@@ -1573,7 +1861,7 @@ export class ParticlesComponent implements OnInit {
   constructor(private readonly ngParticlesService: NgParticlesService) {}
 
   public ngOnInit(): void {
-    void this.ngParticlesService.init(async engine => {
+    void this.ngParticlesService.init(createEngine(), async engine => {
 ${calls}
     });
   }
@@ -1587,6 +1875,7 @@ ${calls}
 
   return `import { Component, inject } from "@angular/core";
 import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
+import { createEngine } from "@tsparticles/engine";
 ${imports.join("\n")}
 
 @Component({
@@ -1602,7 +1891,7 @@ export class ParticlesComponent {
   ngParticlesService = inject(NgParticlesService);
 
   ngOnInit() {
-    void this.ngParticlesService.init(async engine => {
+    void this.ngParticlesService.init(createEngine(), async engine => {
 ${calls}
     });
   }
@@ -1653,10 +1942,14 @@ function generateFrameworkCode(
  * @param framework
  * @param bundle
  */
-export function generateHtml(framework: Framework, _bundle: BundleMatch): string {
+export function generateHtml(
+  framework: Framework,
+  _bundle: BundleMatch,
+): string {
   if (framework === "vanilla") {
     return '<div id="tsparticles"></div>';
   }
+
   return "";
 }
 
@@ -1690,7 +1983,9 @@ function buildNotes(
   const notes: string[] = [];
 
   if (bundle.isAutoInitialized) {
-    notes.push(`${bundle.bundleName} auto-initializes all plugins — no manual load() needed.`);
+    notes.push(
+      `${bundle.bundleName} initializes its plugins on the explicitly supplied engine — no manual plugin load() needed.`,
+    );
   }
 
   if (bundle.isPreset) {
@@ -1701,6 +1996,7 @@ function buildNotes(
 
   if (framework !== "vanilla" && !bundle.isAutoInitialized) {
     const label = FRAMEWORK_LABELS[framework];
+
     notes.push(
       `Generated for ${label} — ensure ${FRAMEWORK_PACKAGES[framework]} is compatible with your ${label} version.`,
     );
@@ -1712,7 +2008,10 @@ function buildNotes(
 
   const hasInteractivity = mentions(keywords, lower, INTERACTIVITY_WORDS),
     hasLinks = mentions(keywords, lower, LINK_WORDS),
-    isAmbiguousFallback = bundle.bundleName === "@tsparticles/slim" && !(hasInteractivity && hasLinks);
+    isAmbiguousFallback =
+      bundle.bundleName === "@tsparticles/slim" &&
+      !(hasInteractivity && hasLinks);
+
   if (isAmbiguousFallback) {
     notes.push(
       "Generated generic particles — try being more specific (e.g. 'confetti', 'snow', 'stars') for specialized bundles.",
@@ -1725,9 +2024,10 @@ function buildNotes(
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   if (extraPackages.length > 0) {
-    notes.push(`Additional packages beyond the selected bundle: ${extraPackages.join(", ")}.`);
+    notes.push(
+      `Additional packages beyond the selected bundle: ${extraPackages.join(", ")}.`,
+    );
   }
 
   return notes;
@@ -1747,7 +2047,8 @@ function collectBundlePackages(bundleName: string): Set<string> {
         return;
       }
       seen.add(name);
-      const bundle = bundles.find(b => b.name === name);
+      const bundle = bundles.find((b) => b.name === name);
+
       if (!bundle) {
         return;
       }
@@ -1758,7 +2059,9 @@ function collectBundlePackages(bundleName: string): Set<string> {
         walk(bundle.extends);
       }
     };
+
   walk(bundleName);
+
   return packages;
 }
 
@@ -1776,11 +2079,12 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     options = generateOptions(bundleMatch, keywords, lower),
     suggestion = suggestPlugins(options),
     covered = collectBundlePackages(bundleMatch.bundleName),
-    extraPackages = suggestion.npmPackages.filter(p => !covered.has(p)),
+    extraPackages = suggestion.npmPackages.filter((p) => !covered.has(p)),
     extraLoaders = suggestion.imports.filter(({ from }) => !covered.has(from)),
     installPackages: string[] = [];
+
   if (bundleMatch.isAutoInitialized) {
-    installPackages.push(bundleMatch.bundleName);
+    installPackages.push(bundleMatch.bundleName, "@tsparticles/engine");
   } else {
     installPackages.push(bundleMatch.bundleName);
     installPackages.push("@tsparticles/engine");
@@ -1788,6 +2092,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
       installPackages.push(bundleMatch.presetPackage);
     }
     const frameworkPackage = FRAMEWORK_PACKAGES[framework];
+
     if (frameworkPackage) {
       installPackages.push(frameworkPackage);
     }
@@ -1799,10 +2104,25 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
   }
 
   const installCommand = generateInstallCommand(installPackages),
-    code = generateFrameworkCode(framework, options, bundleMatch, typescript, extraLoaders),
+    code = generateFrameworkCode(
+      framework,
+      options,
+      bundleMatch,
+      typescript,
+      extraLoaders,
+    ),
     html = generateHtml(framework, bundleMatch),
-    matchedRuleCount = SPECIALIZED_RULES.filter(rule => matchesAny(lower, rule.keywords)).length,
-    notes = buildNotes(bundleMatch, framework, lower, keywords, extraPackages, matchedRuleCount > CONFLICT_THRESHOLD);
+    matchedRuleCount = SPECIALIZED_RULES.filter((rule) =>
+      matchesAny(lower, rule.keywords),
+    ).length,
+    notes = buildNotes(
+      bundleMatch,
+      framework,
+      lower,
+      keywords,
+      extraPackages,
+      matchedRuleCount > CONFLICT_THRESHOLD,
+    );
 
   if (bundleMatch.bundleName === "@tsparticles/fireworks") {
     const requestedSplitCount = extractFireworksSplitCount(lower);
@@ -1811,7 +2131,10 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
       notes.push(
         `The fireworks value "${requestedSplitCount.raw}" could be a year or a requested splitCount. Please clarify with a labeled count, such as "split count: ${requestedSplitCount.raw}".`,
       );
-    } else if (requestedSplitCount && requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT) {
+    } else if (
+      requestedSplitCount &&
+      requestedSplitCount.value > MAX_FIREWORKS_SPLIT_COUNT
+    ) {
       notes.push(
         `Requested fireworks splitCount of ${requestedSplitCount.raw} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
       );

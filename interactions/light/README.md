@@ -59,7 +59,8 @@ $ yarn add @tsparticles/interaction-light
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadLightInteraction } = require("@tsparticles/interaction-light");
 
@@ -72,7 +73,8 @@ const { loadLightInteraction } = require("@tsparticles/interaction-light");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 

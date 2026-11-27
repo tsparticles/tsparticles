@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
-import { type Container, type ICoordinates3d, type ISourceOptions, LimitMode, tsParticles } from "@tsparticles/engine";
+import {
+  type Container,
+  type ICoordinates3d,
+  type ISourceOptions,
+  LimitMode,
+  createEngine,
+} from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
-const width = 1920,
+const tsParticles = createEngine(),
+  width = 1920,
   height = 1080;
 
 /**
@@ -15,7 +22,10 @@ const width = 1920,
  * @param options - The options to load
  * @returns the loaded container
  */
-async function loadContainer(id: string, options: ISourceOptions): Promise<Container> {
+async function loadContainer(
+  id: string,
+  options: ISourceOptions,
+): Promise<Container> {
   const container = await tsParticles.load({
     id,
     options,
@@ -37,7 +47,10 @@ async function loadContainer(id: string, options: ISourceOptions): Promise<Conta
  * @param options - The options to load
  * @returns the loaded container
  */
-async function loadSharedContainer(id: string, options: ISourceOptions): Promise<Container> {
+async function loadSharedContainer(
+  id: string,
+  options: ISourceOptions,
+): Promise<Container> {
   const container = await loadContainer(id, options);
 
   afterAll(() => {
@@ -74,12 +87,109 @@ describe("ParticleGroups", async () => {
     };
 
   describe("group assignment and initialization", () => {
+    it("checks the final group when an initializer changes membership before insertion", async () => {
+      const fresh = await loadContainer("e6-initializer-group-limit", {
+        autoPlay: false,
+        particles: {
+          number: { value: 0 },
+          groups: {
+            limited: { number: { limit: { value: 1, mode: LimitMode.wait } } },
+          },
+        },
+      });
+
+      try {
+        const first = fresh.particles.addParticle(
+          undefined,
+          undefined,
+          "limited",
+        );
+
+        expect(first).toBeDefined();
+        expect(
+          fresh.particles.addParticle(
+            undefined,
+            undefined,
+            undefined,
+            (particle) => {
+              particle.group = "limited";
+
+              return true;
+            },
+          ),
+        ).toBeUndefined();
+        expect(fresh.particles.filter(() => true)).toEqual([first]);
+      } finally {
+        fresh.destroy(false);
+      }
+    });
+
+    it("uses live group membership for wait limits after public group mutation", async () => {
+      const fresh = await loadContainer("e6-mutable-groups", {
+        autoPlay: false,
+        particles: {
+          number: { value: 0 },
+          groups: {
+            limited: { number: { limit: { value: 1, mode: LimitMode.wait } } },
+          },
+        },
+      });
+
+      try {
+        const first = fresh.particles.addParticle(
+          undefined,
+          undefined,
+          "limited",
+        );
+
+        if (!first) {
+          throw new Error("First grouped particle missing");
+        }
+
+        expect(
+          fresh.particles.addParticle(undefined, undefined, "limited"),
+        ).toBeUndefined();
+        first.group = "other";
+
+        const second = fresh.particles.addParticle(
+          undefined,
+          undefined,
+          "limited",
+        );
+
+        expect(second).toBeDefined();
+        first.group = "limited";
+        expect(
+          fresh.particles.addParticle(undefined, undefined, "limited"),
+        ).toBeUndefined();
+        fresh.particles.remove(first, "limited");
+        expect(
+          fresh.particles.addParticle(undefined, undefined, "limited"),
+        ).toBeUndefined();
+
+        if (!second) {
+          throw new Error("Second grouped particle missing");
+        }
+
+        second.group = "other";
+        expect(
+          fresh.particles.addParticle(undefined, undefined, "limited"),
+        ).toBeDefined();
+      } finally {
+        fresh.destroy(false);
+      }
+    });
+
     beforeEach(async () => {
       await container.reset();
     });
 
     it("T8 - should assign the requested group to the added particle", async () => {
-      const particle = container.particles.addParticle(undefined, undefined, "g1");
+      const particle = container.particles.addParticle(
+        undefined,
+        undefined,
+        "g1",
+      );
 
       expect(particle).to.be.not.undefined;
 
@@ -89,7 +199,9 @@ describe("ParticleGroups", async () => {
 
       expect(particle.group).to.equal("g1");
       expect(container.particles.count).to.equal(1);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(1);
     });
 
     it("T9 - should initialize the configured mix of grouped and ungrouped particles", async () => {
@@ -114,9 +226,15 @@ describe("ParticleGroups", async () => {
       });
 
       expect(container.particles.count).to.equal(8);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(3);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length(2);
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(3);
     });
 
     it("T10 - should apply per-group options overrides to the grouped particles", async () => {
@@ -142,8 +260,8 @@ describe("ParticleGroups", async () => {
 
       expect(arr).to.have.length(3);
 
-      const grouped = arr.filter(t => t.group === "g1"),
-        ungrouped = arr.filter(t => t.group === undefined);
+      const grouped = arr.filter((t) => t.group === "g1"),
+        ungrouped = arr.filter((t) => t.group === undefined);
 
       expect(grouped).to.have.length(2);
       expect(ungrouped).to.have.length(1);
@@ -185,12 +303,16 @@ describe("ParticleGroups", async () => {
 
       expect(first).to.be.not.undefined;
       expect(second).to.be.undefined;
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(1);
 
       const ungrouped = container.particles.addParticle();
 
       expect(ungrouped).to.be.not.undefined;
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(1);
       expect(container.particles.count).to.equal(2);
     });
   });
@@ -206,8 +328,12 @@ describe("ParticleGroups", async () => {
       container.particles.removeAt(0, 2, "g1");
 
       expect(container.particles.count).to.equal(4);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(1);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length(3);
     });
 
     it("T13 - should remove only particles of the requested group when using removeQuantity", async () => {
@@ -216,8 +342,12 @@ describe("ParticleGroups", async () => {
       container.particles.removeQuantity(2, "g2");
 
       expect(container.particles.count).to.equal(4);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(3);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length(1);
     });
 
     it("T14 - should be a no-op when removing a particle with a mismatched group", async () => {
@@ -236,12 +366,12 @@ describe("ParticleGroups", async () => {
       container.particles.remove(target, "g1");
 
       expect(container.particles.count).to.equal(3);
-      expect(container.particles.find(t => t === target)).to.be.not.undefined;
+      expect(container.particles.find((t) => t === target)).to.be.not.undefined;
 
       container.particles.remove(target);
 
       expect(container.particles.count).to.equal(2);
-      expect(container.particles.find(t => t === target)).to.be.undefined;
+      expect(container.particles.find((t) => t === target)).to.be.undefined;
     });
   });
 
@@ -284,8 +414,12 @@ describe("ParticleGroups", async () => {
       expect(first).to.be.not.undefined;
       expect(second).to.be.not.undefined;
       expect(third).to.be.undefined;
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(1);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(1);
       expect(container.particles.count).to.equal(3);
     });
 
@@ -293,7 +427,11 @@ describe("ParticleGroups", async () => {
       await container.reset({
         particles: {
           number: { value: 0 },
-          groups: { g1: { number: { value: 0, limit: { value: 1, mode: LimitMode.wait } } } },
+          groups: {
+            g1: {
+              number: { value: 0, limit: { value: 1, mode: LimitMode.wait } },
+            },
+          },
         },
       });
 
@@ -303,7 +441,8 @@ describe("ParticleGroups", async () => {
         throw new Error("Expected a particle in g1");
       }
 
-      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be.undefined;
+      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be
+        .undefined;
       first.group = "g2";
 
       const next = container.particles.addParticle(undefined, undefined, "g1");
@@ -311,7 +450,8 @@ describe("ParticleGroups", async () => {
       expect(next).to.be.not.undefined;
       expect(container.particles.get(0)).to.equal(first);
       expect(container.particles.get(1)).to.equal(next);
-      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be.undefined;
+      expect(container.particles.addParticle(undefined, undefined, "g1")).to.be
+        .undefined;
     });
 
     it("T16 - should trim the oldest group particle over a group limit in delete mode, leaving other groups alone", async () => {
@@ -339,24 +479,44 @@ describe("ParticleGroups", async () => {
         },
       });
 
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length(2);
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(2);
 
-      const initialG1Ids = container.particles.filter(t => t.group === "g1").map(t => t.id);
+      const initialG1Ids = container.particles
+        .filter((t) => t.group === "g1")
+        .map((t) => t.id);
 
       for (let i = 0; i < 5; i++) {
-        const particle = container.particles.addParticle(undefined, undefined, "g1");
+        const particle = container.particles.addParticle(
+          undefined,
+          undefined,
+          "g1",
+        );
 
         expect(particle).to.be.not.undefined;
-        expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+        expect(
+          container.particles.filter((t) => t.group === "g1"),
+        ).to.have.length(2);
       }
 
-      const finalG1Ids = container.particles.filter(t => t.group === "g1").map(t => t.id);
+      const finalG1Ids = container.particles
+        .filter((t) => t.group === "g1")
+        .map((t) => t.id);
 
       expect(finalG1Ids).to.not.include(initialG1Ids[0]);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length(2);
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(2);
       expect(container.particles.count).to.equal(6);
     });
 
@@ -391,7 +551,9 @@ describe("ParticleGroups", async () => {
       }
 
       expect(container.particles.count).to.be.at.most(3);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length.at.most(5);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length.at.most(5);
     });
 
     it("T28 - should not blow through the global limit during group initialization", async () => {
@@ -420,8 +582,12 @@ describe("ParticleGroups", async () => {
       });
 
       expect(container.particles.count).to.be.at.most(100);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length.at.most(100);
-      expect(container.particles.filter(t => t.group === "g2")).to.have.length.at.most(100);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length.at.most(100);
+      expect(
+        container.particles.filter((t) => t.group === "g2"),
+      ).to.have.length.at.most(100);
     });
 
     it("T29 - should enforce a per-group limit in both wait and delete modes", async () => {
@@ -456,11 +622,15 @@ describe("ParticleGroups", async () => {
       }
 
       expect(accepted).to.equal(2);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
 
       container.particles.push(3);
 
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(3);
 
       await container.reset({
         particles: {
@@ -484,22 +654,32 @@ describe("ParticleGroups", async () => {
         },
       });
 
-      const initialG1Ids = container.particles.filter(t => t.group === "g1").map(t => t.id);
+      const initialG1Ids = container.particles
+        .filter((t) => t.group === "g1")
+        .map((t) => t.id);
 
       expect(initialG1Ids).to.have.length(0);
 
       for (let i = 0; i < 5; i++) {
         container.particles.addParticle(undefined, undefined, "g1");
 
-        expect(container.particles.filter(t => t.group === "g1")).to.have.length.at.most(2);
+        expect(
+          container.particles.filter((t) => t.group === "g1"),
+        ).to.have.length.at.most(2);
       }
 
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
 
       container.particles.push(3);
 
-      expect(container.particles.filter(t => t.group === undefined)).to.have.length(3);
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === undefined),
+      ).to.have.length(3);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
     });
 
     it("T31 - should apply a group delete limit even when the global limit waits", async () => {
@@ -531,7 +711,9 @@ describe("ParticleGroups", async () => {
       }
 
       // the group keeps its own delete mode and trims g1 to its own limit
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
       expect(container.particles.count).to.equal(2);
 
       // the global wait mode still caps the total count
@@ -574,7 +756,9 @@ describe("ParticleGroups", async () => {
       expect(first).to.be.not.undefined;
       expect(second).to.be.not.undefined;
       expect(third).to.be.undefined;
-      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(
+        container.particles.filter((t) => t.group === "g1"),
+      ).to.have.length(2);
 
       // the global delete mode still trims the total when it would be exceeded
       for (let i = 0; i < 3; i++) {
@@ -689,14 +873,18 @@ describe("ParticleGroups", async () => {
         fresh.canvas.size = { width, height };
         fresh.particles.setDensity();
 
-        expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(30);
+        expect(fresh.particles.filter((t) => t.group === "g1")).to.have.length(
+          30,
+        );
         expect(fresh.particles.count).to.equal(30);
 
         // resize to half the height -> group count = min(20, 15) * 1 = 15 -> only g1 trimmed
         fresh.canvas.size = { width, height: height / 2 };
         fresh.particles.setDensity();
 
-        expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(15);
+        expect(fresh.particles.filter((t) => t.group === "g1")).to.have.length(
+          15,
+        );
         expect(fresh.particles.count).to.equal(15);
       } finally {
         fresh.destroy(false);
@@ -852,7 +1040,8 @@ describe("ParticleGroups", async () => {
         });
 
         expect(container.particles.count).to.equal(1);
-        expect(container.particles.find(t => t === particle)).to.be.not.undefined;
+        expect(container.particles.find((t) => t === particle)).to.be.not
+          .undefined;
       }
     });
   });

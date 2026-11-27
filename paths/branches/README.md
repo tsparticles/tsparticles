@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-branches
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadBranchesPath } = require("@tsparticles/path-branches");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadBranchesPath } = require("@tsparticles/path-branches");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadBranchesPath } from "@tsparticles/path-branches";
 
 (async () => {

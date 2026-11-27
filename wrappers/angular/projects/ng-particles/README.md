@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular compo
 ## Installation
 
 ```shell
-npm install @tsparticles/angular @tsparticles/engine
+npm install @tsparticles/angular @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/angular @tsparticles/engine
+yarn add @tsparticles/angular @tsparticles/engine @tsparticles/slim
 ```
 
 ## How to use
@@ -143,9 +143,9 @@ export class AppModule {}
 | `url`     | `string`         | —               | A URL to a JSON particle config. Change triggers reload.                  |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`). Safe no-op otherwise. |
 
-| Output            | Type                                   | Description                                                   |
-| ----------------- | -------------------------------------- | ------------------------------------------------------------- |
-| `particlesLoaded` | `EventEmitter<Container \| undefined>` | Emitted after `tsParticles.load` resolves with the container. |
+| Output            | Type                                   | Description                                                                         |
+| ----------------- | -------------------------------------- | ----------------------------------------------------------------------------------- |
+| `particlesLoaded` | `EventEmitter<Container \| undefined>` | Emitted after the service engine's `load` resolves; the container may be undefined. |
 
 ### Cleanup
 

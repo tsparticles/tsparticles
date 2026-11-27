@@ -227,7 +227,7 @@ export function rectBounce(particle: Particle, divBounds: IBounds): void {
         max: divBounds.bottom,
       },
       velocity: particle.velocity.x,
-      factor: getRangeValue(bounceOptions.horizontal.value),
+      factor: getRangeValue(bounceOptions.horizontal.value, particle.container.engine.getRandomFn()),
     });
 
   if (resH.bounced) {
@@ -258,7 +258,7 @@ export function rectBounce(particle: Particle, divBounds: IBounds): void {
       max: divBounds.right,
     },
     velocity: particle.velocity.y,
-    factor: getRangeValue(bounceOptions.vertical.value),
+    factor: getRangeValue(bounceOptions.vertical.value, particle.container.engine.getRandomFn()),
   });
 
   if (resV.bounced) {

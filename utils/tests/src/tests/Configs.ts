@@ -1,9 +1,11 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import configs from "@tsparticles/configs";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 const configKeys = Object.keys(configs as Record<string, ISourceOptions>);
 
@@ -32,6 +34,39 @@ describe("Configs sweep", async () => {
       expect(config, `preset ${key} missing`).to.not.be.undefined;
       expect(typeof config, `preset ${key} not an object`).to.equal("object");
     }
+  });
+
+  it("keeps animated background state local to each drawing context", () => {
+    const config = (configs as Record<string, ISourceOptions>).backgroundCanvas,
+      draw = config?.background?.draw;
+
+    expect(draw).to.be.a("function");
+
+    const context = () => {
+      const colors: string[] = [];
+
+      return {
+        colors,
+        context: {
+          canvas: { width: 100, height: 100 },
+          createLinearGradient: () => ({
+            addColorStop: (_offset: number, color: string) => colors.push(color),
+          }),
+          fillRect: () => undefined,
+        },
+      };
+    };
+
+    const a = context(),
+      b = context(),
+      delta = { value: 16.67, factor: 1 };
+
+    draw?.(a.context as never, delta);
+    draw?.(b.context as never, delta);
+    draw?.(a.context as never, delta);
+
+    expect(a.colors[0]).to.equal(b.colors[0]);
+    expect(a.colors[1]).not.to.equal(a.colors[0]);
   });
 
   it("every preset loads through the engine without throwing", async () => {

@@ -1,0 +1,215 @@
+{
+  "policy": "Same browser and machine, 3 repetitions; baseline * 1.10 or +0.1 ms; investigate dispersion",
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "updateMedianCeilingMs": 0.3,
+      "renderMedianCeilingMs": 0.3,
+      "frameP95CeilingMs": 0.7
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "updateMedianCeilingMs": 0.9,
+      "renderMedianCeilingMs": 0.8,
+      "frameP95CeilingMs": 1.87
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.87,
+      "renderMedianCeilingMs": 1.65,
+      "frameP95CeilingMs": 4.07
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.2,
+      "frameP95CeilingMs": 0.5
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "updateMedianCeilingMs": 0.7,
+      "renderMedianCeilingMs": 0.8,
+      "frameP95CeilingMs": 1.65
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.43,
+      "renderMedianCeilingMs": 1.43,
+      "frameP95CeilingMs": 3.3
+    },
+    {
+      "scenario": "M3",
+      "count": 100,
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.3
+    },
+    {
+      "scenario": "M3",
+      "count": 500,
+      "updateMedianCeilingMs": 0.7,
+      "renderMedianCeilingMs": 0.7
+    },
+    {
+      "scenario": "M3",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.43,
+      "renderMedianCeilingMs": 1.32
+    },
+    {
+      "scenario": "M4",
+      "count": 100,
+      "updateMedianCeilingMs": 0.4,
+      "renderMedianCeilingMs": 0.3
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "updateMedianCeilingMs": 3.52,
+      "renderMedianCeilingMs": 2.53
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "updateMedianCeilingMs": 13.97,
+      "renderMedianCeilingMs": 9.02
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "updateMedianCeilingMs": 0.3,
+      "renderMedianCeilingMs": 0.2
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "updateMedianCeilingMs": 4.62,
+      "renderMedianCeilingMs": 0.8
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "updateMedianCeilingMs": 17.82,
+      "renderMedianCeilingMs": 1.65
+    },
+    {
+      "scenario": "M6",
+      "count": 100,
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.2
+    },
+    {
+      "scenario": "M6",
+      "count": 500,
+      "updateMedianCeilingMs": 0.7,
+      "renderMedianCeilingMs": 0.7
+    },
+    {
+      "scenario": "M6",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.32,
+      "renderMedianCeilingMs": 1.43
+    },
+    {
+      "scenario": "M7",
+      "count": 100,
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.3
+    },
+    {
+      "scenario": "M7",
+      "count": 500,
+      "updateMedianCeilingMs": 0.8,
+      "renderMedianCeilingMs": 0.9
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.65,
+      "renderMedianCeilingMs": 1.76
+    },
+    {
+      "scenario": "M8",
+      "count": 100,
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.2
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "updateMedianCeilingMs": 0.8,
+      "renderMedianCeilingMs": 0.8
+    },
+    {
+      "scenario": "M8",
+      "count": 1000,
+      "updateMedianCeilingMs": 1.43,
+      "renderMedianCeilingMs": 1.43
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 0.3,
+      "renderMedianCeilingMs": 0.3,
+      "frameP95CeilingMs": 0.6
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 0.9,
+      "renderMedianCeilingMs": 0.8,
+      "frameP95CeilingMs": 1.87
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 1.65,
+      "renderMedianCeilingMs": 1.54,
+      "frameP95CeilingMs": 3.52
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 0.2,
+      "renderMedianCeilingMs": 0.2,
+      "frameP95CeilingMs": 0.5
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 0.7,
+      "renderMedianCeilingMs": 0.7,
+      "frameP95CeilingMs": 1.54
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "forceHdr": true,
+      "source": "runtime-extended-hdr.json",
+      "updateMedianCeilingMs": 1.54,
+      "renderMedianCeilingMs": 1.43,
+      "frameP95CeilingMs": 3.19
+    }
+  ],
+  "postE4Retention": {
+    "cycles": 30,
+    "liveMediaListenerGrowth": 0,
+    "detachedSceneNodeGrowth": 0,
+    "postWarmupHeapDriftBytes": 1048576
+  }
+}

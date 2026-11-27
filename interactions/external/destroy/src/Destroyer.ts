@@ -8,7 +8,11 @@ import {
   isDivModeEnabled,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
+import {
+  type RecursivePartial,
+  isInArray,
+  loadOptionProperty,
+} from "@tsparticles/engine";
 import { divDestroy, mouseDestroy } from "./Utils.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
 
@@ -28,10 +32,6 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     return this.#maxDistance;
   }
 
-  clear(): void {
-    // do nothing
-  }
-
   init(): void {
     const container = this.container,
       destroy = container.actualOptions.interactivity?.modes.destroy;
@@ -42,7 +42,8 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
 
     this.#maxDistance = destroy.distance;
 
-    container.retina.destroyModeDistance = destroy.distance * container.retina.pixelRatio;
+    container.retina.destroyModeDistance =
+      destroy.distance * container.retina.pixelRatio;
   }
 
   interact(interactivityData: IInteractivityData): void {
@@ -66,7 +67,10 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     }
   }
 
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -79,7 +83,9 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     const divs = events.onDiv;
 
     return (
-      (!!mouse.position && events.onHover.enable && isInArray(destroyMode, events.onHover.mode)) ||
+      (!!mouse.position &&
+        events.onHover.enable &&
+        isInArray(destroyMode, events.onHover.mode)) ||
       isDivModeEnabled(destroyMode, divs)
     );
   }
@@ -89,9 +95,5 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     ...sources: RecursivePartial<(IModes & IDestroyMode) | undefined>[]
   ): void {
     loadOptionProperty(options, "destroy", Destroy, ...sources);
-  }
-
-  reset(): void {
-    // do nothing
   }
 }

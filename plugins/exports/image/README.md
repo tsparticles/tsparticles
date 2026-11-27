@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-export-image
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadExportImagePlugin } = require("@tsparticles/plugin-export-image");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadExportImagePlugin } = require("@tsparticles/plugin-export-image");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 
 (async () => {

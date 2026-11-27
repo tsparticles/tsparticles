@@ -1,4 +1,4 @@
-import type { Container } from "../Container.js";
+import type { Container } from "../Container/Container.js";
 import type { IContainerPlugin } from "./IContainerPlugin.js";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";

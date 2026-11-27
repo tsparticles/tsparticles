@@ -17,7 +17,7 @@ const energyCorrectionMinRatio = 1e-6,
       return;
     }
 
-    p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
+    p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed, p.container.engine.getRandomFn());
 
     const maxSpeed = p.collisionMaxSpeed;
 

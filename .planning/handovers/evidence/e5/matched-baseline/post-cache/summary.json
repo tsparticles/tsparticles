@@ -1,0 +1,124 @@
+{
+  "browser": "Chrome/157.0.8103.79",
+  "bundleSha256": "3e6c72f241ea89c1fc807eca1c9c75341ae477d0afc9e279a5ade8e884ce3245",
+  "sourceArchive": "../e5-final-all.bundle.min.js.gz",
+  "validations": {
+    "pageErrors": true,
+    "allContainersRemoved": true,
+    "domStable": true,
+    "retentionDomStable": true,
+    "rngStable": {
+      "M6-extensions:100": true,
+      "M6-extensions:500": true,
+      "M6-extensions:1000": true,
+      "M8-hdr-layers-resize:100": true,
+      "M8-hdr-layers-resize:500": true,
+      "M8-hdr-layers-resize:1000": true
+    }
+  },
+  "postWarmupHeapDriftBytes": 114876,
+  "longFrames": 0,
+  "retentionDomNodes": [
+    9,
+    9,
+    9
+  ],
+  "retentionMediaListeners": [
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "M6-extensions",
+      "count": 100,
+      "rngCalls": [
+        1952,
+        1952,
+        1952
+      ],
+      "updateMedianMs": 0.19999998807907104,
+      "drawMedianMs": 0.10000002384185791,
+      "frameP95Ms": 0.40000003576278687,
+      "e0FrameCeilingMs": 0.7
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 500,
+      "rngCalls": [
+        5592,
+        5592,
+        5592
+      ],
+      "updateMedianMs": 0.800000011920929,
+      "drawMedianMs": 0.6000000238418579,
+      "frameP95Ms": 1.899999976158142,
+      "e0FrameCeilingMs": 1.87
+    },
+    {
+      "scenario": "M6-extensions",
+      "count": 1000,
+      "rngCalls": [
+        10143,
+        10143,
+        10143
+      ],
+      "updateMedianMs": 1.5,
+      "drawMedianMs": 1.100000023841858,
+      "frameP95Ms": 3.100000023841858,
+      "e0FrameCeilingMs": 4.07
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 100,
+      "rngCalls": [
+        908,
+        908,
+        908
+      ],
+      "updateMedianMs": 0.19999998807907104,
+      "drawMedianMs": 0.10000002384185791,
+      "frameP95Ms": 0.3999999761581421,
+      "e0FrameCeilingMs": 0.5
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 500,
+      "rngCalls": [
+        4535,
+        4535,
+        4535
+      ],
+      "updateMedianMs": 0.699999988079071,
+      "drawMedianMs": 0.5999999642372131,
+      "frameP95Ms": 1.5,
+      "e0FrameCeilingMs": 1.65
+    },
+    {
+      "scenario": "M8-hdr-layers-resize",
+      "count": 1000,
+      "rngCalls": [
+        9072,
+        9072,
+        9072
+      ],
+      "updateMedianMs": 1.399999976158142,
+      "drawMedianMs": 1.199999988079071,
+      "frameP95Ms": 2.899999976158142,
+      "e0FrameCeilingMs": 3.3
+    }
+  ],
+  "interpretation": "Fresh deterministic M6/M8 evidence after fixing ambient RNG in absorbers. Do not infer a causal M6 timing delta from the older unseeded E4/E5 observations."
+}

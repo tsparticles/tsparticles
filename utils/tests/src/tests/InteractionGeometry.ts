@@ -1,5 +1,10 @@
 /* eslint-disable */
-import { type Container, type IDelta, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type IDelta, type ISourceOptions, createEngine } from "@tsparticles/engine";
+import { InteractorType, loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { beforeAll, describe, expect, it } from "vitest";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadCircleShape } from "@tsparticles/shape-circle";
 import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
 import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
@@ -19,19 +24,16 @@ import { loadExternalRemoveInteraction } from "@tsparticles/interaction-external
 import { loadExternalRepulseInteraction } from "@tsparticles/interaction-external-repulse";
 import { loadExternalSlowInteraction } from "@tsparticles/interaction-external-slow";
 import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
+import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
+import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
 import { loadParticlesAttractInteraction } from "@tsparticles/interaction-particles-attract";
 import { loadParticlesLinksInteraction } from "@tsparticles/interaction-particles-links";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
-import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
-import { InteractorType, loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
-import { loadCircleShape } from "@tsparticles/shape-circle";
 import { loadSizeUpdater } from "@tsparticles/updater-size";
-import { beforeAll, describe, expect, it } from "vitest";
-import { TestWindow } from "../Fixture/Window.js";
-import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 globalThis.window = TestWindow;
 

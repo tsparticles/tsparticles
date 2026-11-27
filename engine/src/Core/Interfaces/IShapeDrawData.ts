@@ -1,6 +1,6 @@
 import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /**
  * Data passed to shape and effect draw callbacks.

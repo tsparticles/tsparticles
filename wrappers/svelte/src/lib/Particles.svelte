@@ -2,8 +2,7 @@
 
 <script lang="ts">
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-	import type { Container, ISourceOptions } from '@tsparticles/engine';
-	import { getLogger, tsParticles } from '@tsparticles/engine';
+	import type { Engine, Container, ISourceOptions } from '@tsparticles/engine';
 	import * as particlesEngineInitialization from './utils.js';
 
 	let cssClass = '';
@@ -12,6 +11,7 @@
 
 	let style = '';
 	export { style };
+	export let engine: Engine;
 	export let options: ISourceOptions = {};
 	export let url = '';
 	export let id = 'tsparticles';
@@ -25,7 +25,7 @@
 	let currentContainer: Container | undefined;
 	let loadGeneration = 0;
 
-	$: if (mounted && (id || url || options)) {
+	$: if (mounted && engine && (id || url || options)) {
 		void loadParticles();
 	}
 
@@ -59,9 +59,9 @@
 				return;
 			}
 
-			await particlesEngineInitialization.waitForParticlesEngineInitialization();
+			await particlesEngineInitialization.waitForParticlesEngineInitialization(engine);
 
-			if (!particlesEngineInitialization.isParticlesEngineInitialized()) {
+			if (!particlesEngineInitialization.isParticlesEngineInitialized(engine)) {
 				throw new Error(
 					'initParticlesEngine(...) must be called once before rendering <Particles /> components.'
 				);
@@ -83,7 +83,7 @@
 					});
 				};
 
-				const container = await tsParticles.load({
+				const container = await engine.load({
 					id,
 					options,
 					url
@@ -104,7 +104,7 @@
 			}
 		} catch (error) {
 			if (mounted && generation === loadGeneration) {
-				getLogger().error('Particles: error loading particles', error);
+				engine.getLogger().error('Particles: error loading particles', error);
 			}
 		}
 	}

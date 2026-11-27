@@ -1,8 +1,11 @@
 /* eslint-disable */
-import { tsParticles, type Container } from "@tsparticles/engine";
+import { type Container, createEngine } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+
+const tsParticles = createEngine();
+const confetti = createConfetti(tsParticles);
 
 describe("confetti bundle", async () => {
   globalThis.window = TestWindow;

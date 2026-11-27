@@ -1,12 +1,5 @@
 import type { ConnectContainer, LinkParticle } from "./Types.js";
-import {
-  type ICoordinates,
-  type Particle,
-  clamp,
-  colorMix,
-  getStyleFromHsl,
-  getStyleFromRgb,
-} from "@tsparticles/engine";
+import { type ICoordinates, type Particle, clamp, getStyleFromOklch, mixOklch } from "@tsparticles/engine";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const gradientMin = 0,
@@ -39,20 +32,41 @@ export function gradient(
 
   const sourcePos = p1.getPosition(),
     destPos = p2.getPosition(),
-    midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius(), container.hdr),
+    midColor = mixOklch(color1, color2, p1.getRadius(), p2.getRadius()),
     grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
   grad.addColorStop(
     gradientMin,
-    getStyleFromHsl(color1, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      color1,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
   grad.addColorStop(
     clamp(gradStop, gradientMin, gradientMax),
-    getStyleFromRgb(midRgb, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      midColor,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
   grad.addColorStop(
     gradientMax,
-    getStyleFromHsl(color2, container.hdr, opacity, container.peakNits, container.hdrMode),
+    getStyleFromOklch(
+      color2,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    ),
   );
 
   return grad;

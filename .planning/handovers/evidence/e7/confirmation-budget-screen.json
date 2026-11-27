@@ -1,0 +1,160 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "policy": "Original E0 ceilings are frozen on Chrome 157. Same-artifact E6 controls on Chrome 158 expose environment shifts. No new waiver; retain absolute exceedances for E10.",
+  "checks": [
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "baseline": 3.900000035762787,
+      "candidate": 3.899999976158142,
+      "ceiling": 3.52,
+      "baselinePass": false,
+      "candidatePass": false,
+      "relativePass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "baseline": 2.599999964237213,
+      "candidate": 2.5,
+      "ceiling": 2.53,
+      "baselinePass": false,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "baseline": 14.5,
+      "candidate": 14.399999976158142,
+      "ceiling": 13.97,
+      "baselinePass": false,
+      "candidatePass": false,
+      "relativePass": true
+    },
+    {
+      "scenario": "M4",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "baseline": 8.5,
+      "candidate": 8.500000059604645,
+      "ceiling": 9.02,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "updateMedianMs",
+      "baseline": 0.3999999761581421,
+      "candidate": 0.3999999761581421,
+      "ceiling": 0.3,
+      "baselinePass": false,
+      "candidatePass": false,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 100,
+      "metric": "drawMedianMs",
+      "baseline": 0.10000002384185791,
+      "candidate": 0.10000002384185791,
+      "ceiling": 0.2,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "baseline": 4.799999952316284,
+      "candidate": 4.700000047683716,
+      "ceiling": 4.62,
+      "baselinePass": false,
+      "candidatePass": false,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "baseline": 0.6000000238418579,
+      "candidate": 0.6000000238418579,
+      "ceiling": 0.8,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "baseline": 17.80000001192093,
+      "candidate": 17.899999976158142,
+      "ceiling": 17.82,
+      "baselinePass": true,
+      "candidatePass": false,
+      "relativePass": true
+    },
+    {
+      "scenario": "M5",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "baseline": 1.3999999165534973,
+      "candidate": 1.300000011920929,
+      "ceiling": 1.65,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "updateMedianMs",
+      "baseline": 1.5999999642372131,
+      "candidate": 1.600000023841858,
+      "ceiling": 1.65,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M7",
+      "count": 1000,
+      "metric": "drawMedianMs",
+      "baseline": 1.5,
+      "candidate": 1.5,
+      "ceiling": 1.76,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "updateMedianMs",
+      "baseline": 0.699999988079071,
+      "candidate": 0.699999988079071,
+      "ceiling": 0.8,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    },
+    {
+      "scenario": "M8",
+      "count": 500,
+      "metric": "drawMedianMs",
+      "baseline": 0.5999999642372131,
+      "candidate": 0.5999999642372131,
+      "ceiling": 0.8,
+      "baselinePass": true,
+      "candidatePass": true,
+      "relativePass": true
+    }
+  ]
+}

@@ -5,7 +5,8 @@ Diese Rezepte verwenden die offiziellen Voreinstellungen, die im Arbeitsbereich 
 ## Start/Stopp der Musterbasis (keine automatische Wiedergabe)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 let container: Container | undefined;
@@ -60,4 +61,4 @@ Um sie sofort in der Benutzeroberfläche zu testen, verwenden Sie [`Playground`]
 Das Monorepo enthält auch ausführbare Integrationsdemos:
 
 - Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Zu den verfügbaren Demos gehören: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- Zu den verfügbaren Demos gehören: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue3`, `webcomponents`.

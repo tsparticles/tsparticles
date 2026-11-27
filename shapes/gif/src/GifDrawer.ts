@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getLogger } from "@tsparticles/engine";
+import type { Container, IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 import { decodeGIF, drawGif, getGIFLoopAmount } from "./GifUtils/Utils.js";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { GifParticle } from "./types.js";
@@ -62,7 +62,7 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       .catch((error: unknown) => {
         this.#failedGifs.add(src);
 
-        getLogger().error(`Error decoding GIF "${src}"`, error);
+        this.#container.engine.getLogger().error(`Error decoding GIF "${src}"`, error);
       })
       .finally(() => {
         this.#loadingGifs.delete(src);

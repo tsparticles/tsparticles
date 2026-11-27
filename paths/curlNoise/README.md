@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-curl-noise
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadCurlNoisePath } = require("@tsparticles/path-curl-noise");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadCurlNoisePath } = require("@tsparticles/path-curl-noise");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadCurlNoisePath } from "@tsparticles/path-curl-noise";
 
 (async () => {

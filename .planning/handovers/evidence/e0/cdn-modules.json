@@ -1,0 +1,172 @@
+{
+  "note": "Rendered module identities from standard Rollup visualizer reports; representative unminified graphs. Byte-level copied logic is not detected. External-only metadata excluded.",
+  "reports": [
+    {
+      "root": "engine",
+      "modules": [
+        "engine/dist/browser/Core/CanvasManager.js",
+        "engine/dist/browser/Core/Container.js",
+        "engine/dist/browser/Core/Engine.js",
+        "engine/dist/browser/Core/Particle.js",
+        "engine/dist/browser/Core/ParticlesManager.js",
+        "engine/dist/browser/Core/RenderManager.js",
+        "engine/dist/browser/Core/Retina.js",
+        "engine/dist/browser/Core/Utils/Constants.js",
+        "engine/dist/browser/Core/Utils/EventListeners.js",
+        "engine/dist/browser/Core/Utils/PluginManager.js",
+        "engine/dist/browser/Core/Utils/Ranges.js",
+        "engine/dist/browser/Core/Utils/SpatialHashGrid.js",
+        "engine/dist/browser/Core/Utils/Vectors.js",
+        "engine/dist/browser/Enums/AnimationStatus.js",
+        "engine/dist/browser/Enums/Directions/MoveDirection.js",
+        "engine/dist/browser/Enums/Directions/OutModeDirection.js",
+        "engine/dist/browser/Enums/Directions/RotateDirection.js",
+        "engine/dist/browser/Enums/DrawLayer.js",
+        "engine/dist/browser/Enums/Modes/AnimationMode.js",
+        "engine/dist/browser/Enums/Modes/HdrMode.js",
+        "engine/dist/browser/Enums/Modes/LimitMode.js",
+        "engine/dist/browser/Enums/Modes/OutMode.js",
+        "engine/dist/browser/Enums/Modes/PixelMode.js",
+        "engine/dist/browser/Enums/RangeType.js",
+        "engine/dist/browser/Enums/Types/AlterType.js",
+        "engine/dist/browser/Enums/Types/DestroyType.js",
+        "engine/dist/browser/Enums/Types/EventType.js",
+        "engine/dist/browser/Enums/Types/GradientType.js",
+        "engine/dist/browser/Enums/Types/ParticleOutType.js",
+        "engine/dist/browser/Enums/Types/StartValueType.js",
+        "engine/dist/browser/Options/Classes/AnimatableColor.js",
+        "engine/dist/browser/Options/Classes/AnimationOptions.js",
+        "engine/dist/browser/Options/Classes/Background/Background.js",
+        "engine/dist/browser/Options/Classes/ColorAnimation.js",
+        "engine/dist/browser/Options/Classes/FullScreen/FullScreen.js",
+        "engine/dist/browser/Options/Classes/HDROptions.js",
+        "engine/dist/browser/Options/Classes/HslAnimation.js",
+        "engine/dist/browser/Options/Classes/Options.js",
+        "engine/dist/browser/Options/Classes/OptionsColor.js",
+        "engine/dist/browser/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+        "engine/dist/browser/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+        "engine/dist/browser/Options/Classes/Particles/Effect/Effect.js",
+        "engine/dist/browser/Options/Classes/Particles/Fill.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/Move.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/MoveAngle.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/MoveCenter.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/MoveGravity.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/OutModes.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/Path/MovePath.js",
+        "engine/dist/browser/Options/Classes/Particles/Move/Spin.js",
+        "engine/dist/browser/Options/Classes/Particles/Number/ParticlesDensity.js",
+        "engine/dist/browser/Options/Classes/Particles/Number/ParticlesNumber.js",
+        "engine/dist/browser/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+        "engine/dist/browser/Options/Classes/Particles/Paint.js",
+        "engine/dist/browser/Options/Classes/Particles/ParticlesOptions.js",
+        "engine/dist/browser/Options/Classes/Particles/Shape/Shape.js",
+        "engine/dist/browser/Options/Classes/Particles/Stroke.js",
+        "engine/dist/browser/Options/Classes/Particles/ZIndex/ZIndex.js",
+        "engine/dist/browser/Options/Classes/ResizeEvent.js",
+        "engine/dist/browser/Options/Classes/ValueWithRandom.js",
+        "engine/dist/browser/Utils/ColorUtils.js",
+        "engine/dist/browser/Utils/ErrorCodes.js",
+        "engine/dist/browser/Utils/ErrorMessages.js",
+        "engine/dist/browser/Utils/ErrorUtils.js",
+        "engine/dist/browser/Utils/EventDispatcher.js",
+        "engine/dist/browser/Utils/LogUtils.js",
+        "engine/dist/browser/Utils/MathUtils.js",
+        "engine/dist/browser/Utils/OptionLoader.js",
+        "engine/dist/browser/Utils/OptionsUtils.js",
+        "engine/dist/browser/Utils/ParticlesOptionsLoader.js",
+        "engine/dist/browser/Utils/TypeUtils.js",
+        "engine/dist/browser/Utils/Utils.js",
+        "engine/dist/browser/browser.js",
+        "engine/dist/browser/index.js",
+        "engine/dist/browser/initEngine.js"
+      ],
+      "source": "engine/dist/report.html"
+    },
+    {
+      "root": "utils/animationUtils",
+      "modules": [
+        "utils/animationUtils/dist/browser/Utils.js",
+        "utils/animationUtils/dist/browser/browser.js"
+      ],
+      "source": "utils/animationUtils/dist/report.html"
+    },
+    {
+      "root": "shapes/circle",
+      "modules": [
+        "shapes/circle/dist/browser/CircleDrawer.js",
+        "shapes/circle/dist/browser/Utils.js",
+        "shapes/circle/dist/browser/browser.js",
+        "shapes/circle/dist/browser/index.js"
+      ],
+      "source": "shapes/circle/dist/report.html"
+    },
+    {
+      "root": "plugins/move",
+      "modules": [
+        "plugins/move/dist/browser/ErrorCodes.js",
+        "plugins/move/dist/browser/ErrorMessages.js",
+        "plugins/move/dist/browser/MovePlugin.js",
+        "plugins/move/dist/browser/MovePluginInstance.js",
+        "plugins/move/dist/browser/Utils.js",
+        "plugins/move/dist/browser/browser.js",
+        "plugins/move/dist/browser/index.js"
+      ],
+      "source": "plugins/move/dist/report.html"
+    },
+    {
+      "root": "plugins/colors/hex",
+      "modules": [
+        "plugins/colors/hex/dist/browser/HexColorManager.js",
+        "plugins/colors/hex/dist/browser/browser.js",
+        "plugins/colors/hex/dist/browser/index.js"
+      ],
+      "source": "plugins/colors/hex/dist/report.html"
+    },
+    {
+      "root": "updaters/paint",
+      "modules": [
+        "updaters/paint/dist/browser/PaintUpdater.js",
+        "updaters/paint/dist/browser/browser.js",
+        "updaters/paint/dist/browser/index.js"
+      ],
+      "source": "updaters/paint/dist/report.html"
+    },
+    {
+      "root": "updaters/size",
+      "modules": [
+        "updaters/size/dist/browser/Options/Classes/Size.js",
+        "updaters/size/dist/browser/Options/Classes/SizeAnimation.js",
+        "updaters/size/dist/browser/SizeUpdater.js",
+        "updaters/size/dist/browser/browser.js",
+        "updaters/size/dist/browser/index.js"
+      ],
+      "source": "updaters/size/dist/report.html"
+    },
+    {
+      "root": "updaters/opacity",
+      "modules": [
+        "updaters/opacity/dist/browser/OpacityUpdater.js",
+        "updaters/opacity/dist/browser/Options/Classes/Opacity.js",
+        "updaters/opacity/dist/browser/Options/Classes/OpacityAnimation.js",
+        "updaters/opacity/dist/browser/browser.js",
+        "updaters/opacity/dist/browser/index.js"
+      ],
+      "source": "updaters/opacity/dist/report.html"
+    },
+    {
+      "root": "updaters/outModes",
+      "modules": [
+        "updaters/outModes/dist/browser/BounceOutMode.js",
+        "updaters/outModes/dist/browser/DestroyOutMode.js",
+        "updaters/outModes/dist/browser/NoneOutMode.js",
+        "updaters/outModes/dist/browser/OutOfCanvasUpdater.js",
+        "updaters/outModes/dist/browser/OutOutMode.js",
+        "updaters/outModes/dist/browser/Utils.js",
+        "updaters/outModes/dist/browser/browser.js",
+        "updaters/outModes/dist/browser/index.js"
+      ],
+      "source": "updaters/outModes/dist/report.html"
+    }
+  ],
+  "duplicateModuleIdentities": {}
+}

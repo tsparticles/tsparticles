@@ -13,7 +13,8 @@ pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadConfettiCannonPreset } from "@tsparticles/preset-confetti-cannon";
 import type { Container } from "@tsparticles/engine";
 

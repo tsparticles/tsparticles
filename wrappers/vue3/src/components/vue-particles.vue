@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useParticlesProvider } from "./particles-provider";
 
@@ -22,14 +22,15 @@ const props = defineProps<{
   provider = useParticlesProvider(),
   isMounted = ref(false),
   loadParticles = async (): Promise<void> => {
-    const currentLoadId = ++loadId;
+    const currentLoadId = ++loadId,
+      engine = provider.engine;
 
     /* every requested load starts immediately, the load id discards the results of the outdated ones */
     container?.destroy();
     container = undefined;
 
     try {
-      const newContainer = await tsParticles.load({
+      const newContainer = await engine.load({
         id: props.id,
         url: props.url,
         options: props.options,
@@ -51,7 +52,7 @@ const props = defineProps<{
     } catch (error: unknown) {
       /* a failure must not block the next load, and only the latest one is worth reporting */
       if (currentLoadId === loadId) {
-        getLogger().error("Particles: error during load", error);
+        engine.getLogger().error("Particles: error during load", error);
       }
     }
   };

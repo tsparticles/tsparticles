@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, EventType, tsParticles } from "@tsparticles/engine";
+import { type Container, EventType, createEngine } from "@tsparticles/engine";
 import { describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 let id = 0;
 

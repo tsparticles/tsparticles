@@ -8,7 +8,7 @@ import {
   getRangeValue,
   half,
   loadOptionProperty,
-  rangeColorToHsl,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types.js";
 import { Orbit } from "./Options/Classes/Orbit.js";
@@ -113,20 +113,29 @@ export class OrbitUpdater implements IParticleUpdater {
       particlesOptions = particle.options,
       orbitOptions = particlesOptions.orbit;
 
+    particle.orbitAnimationSpeed = undefined;
+    particle.orbitColor = undefined;
+    particle.orbitOpacity = undefined;
+    particle.orbitRotation = undefined;
+    particle.orbitWidth = undefined;
+    particle.retina.orbitRadius = undefined;
+
     if (!orbitOptions?.enable) {
       return;
     }
 
-    particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-    particle.orbitColor = rangeColorToHsl(this.#pluginManager, orbitOptions.color);
+    particle.orbitRotation = getRangeValue(orbitOptions.rotation.value, this.#container.engine.getRandomFn());
+    particle.orbitColor = rangeColorToOklch(this.#pluginManager, orbitOptions.color);
     particle.retina.orbitRadius =
-      orbitOptions.radius !== undefined ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio : undefined;
+      orbitOptions.radius !== undefined
+        ? getRangeValue(orbitOptions.radius, this.#container.engine.getRandomFn()) * container.retina.pixelRatio
+        : undefined;
     container.retina.orbitRadius = particle.retina.orbitRadius;
     particle.orbitAnimationSpeed = orbitOptions.animation.enable
-      ? getRangeValue(orbitOptions.animation.speed)
+      ? getRangeValue(orbitOptions.animation.speed, this.#container.engine.getRandomFn())
       : defaultOrbitSpeed;
-    particle.orbitWidth = getRangeValue(orbitOptions.width);
-    particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
+    particle.orbitWidth = getRangeValue(orbitOptions.width, this.#container.engine.getRandomFn());
+    particle.orbitOpacity = getRangeValue(orbitOptions.opacity, this.#container.engine.getRandomFn());
   }
 
   /**

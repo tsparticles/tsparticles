@@ -18,9 +18,11 @@ export class RandomPathGenerator implements IMovePathGenerator {
    * Generates a random movement vector
    * @returns The result
    */
-  generate(): Vector {
-    this.#res.x = getRandomInRange(minRandom, maxRandom);
-    this.#res.y = getRandomInRange(minRandom, maxRandom);
+  generate(particle: Parameters<IMovePathGenerator["generate"]>[0]): Vector {
+    const random = particle.container.engine.getRandomFn();
+
+    this.#res.x = getRandomInRange(minRandom, maxRandom, random);
+    this.#res.y = getRandomInRange(minRandom, maxRandom, random);
 
     return this.#res;
   }

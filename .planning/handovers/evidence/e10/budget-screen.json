@@ -1,0 +1,1892 @@
+{
+  "measuredAt": "2026-11-24T10:54:13.576Z",
+  "candidateRevision": "586bbd179db178d7fadf9cfce6f7d754f8032773",
+  "originalBudgetRevision": "1944fa0f5c202b8af82841b5de9b2315f758a258",
+  "browsers": {
+    "original": "Chrome/157.0.8103.52",
+    "candidate": "Chrome/158.0.8127.38"
+  },
+  "matchedControl": {
+    "status": "complete",
+    "browser": "Chrome/158.0.8127.38",
+    "controlRevision": "354e1a5e5d5d4791cd85f0e8fb22d81426dfa08b",
+    "artifact": {
+      "bundlePath": ".planning/handovers/evidence/e6/draw-all.bundle.min.js.gz",
+      "bundleSha256": "7a42806dadc97b23887aca7b98fd992b1c3b5d90952c28df132100f22de4a30d"
+    },
+    "comparison": "runtime-control-comparison.json",
+    "note": "E6 preserved pre-E7 artifact, rerun in Chrome 158 with the same E10 harness; it is a matched same-browser control, not the E0 source revision."
+  },
+  "bundles": {
+    "rows": [
+      {
+        "scenario": "helper",
+        "condition": "import",
+        "source": "consumer:import/helper",
+        "status": "pass",
+        "metrics": {
+          "gzip": {
+            "original": 189,
+            "candidate": 189,
+            "deltaBytes": 0,
+            "deltaPercent": 0,
+            "ceiling": 189,
+            "pass": true
+          },
+          "brotli": {
+            "original": 166,
+            "candidate": 166,
+            "deltaBytes": 0,
+            "deltaPercent": 0,
+            "ceiling": 166,
+            "pass": true
+          }
+        }
+      },
+      {
+        "scenario": "singleton",
+        "condition": "import",
+        "source": "consumer:import/factory",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22665,
+            "candidate": 26894,
+            "deltaBytes": 4229,
+            "deltaPercent": 18.65872490624311,
+            "ceiling": 23118,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20052,
+            "candidate": 23743,
+            "deltaBytes": 3691,
+            "deltaPercent": 18.407141432276084,
+            "ceiling": 20453,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "initialization",
+        "condition": "import",
+        "source": "consumer:import/initialization",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22665,
+            "candidate": 26905,
+            "deltaBytes": 4240,
+            "deltaPercent": 18.70725788660931,
+            "ceiling": 23118,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20072,
+            "candidate": 23716,
+            "deltaBytes": 3644,
+            "deltaPercent": 18.154643284176963,
+            "ceiling": 20473,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "minimal",
+        "condition": "import",
+        "source": "consumer:import/minimal",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 28451,
+            "candidate": 33169,
+            "deltaBytes": 4718,
+            "deltaPercent": 16.58289691047766,
+            "ceiling": 27028,
+            "pass": false
+          },
+          "brotli": {
+            "original": 25355,
+            "candidate": 29524,
+            "deltaBytes": 4169,
+            "deltaPercent": 16.442516268980476,
+            "ceiling": 24087,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "singleton-lazy",
+        "condition": "import",
+        "source": "consumer:import/factory-lazy",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22680,
+            "candidate": 26903,
+            "deltaBytes": 4223,
+            "deltaPercent": 18.619929453262788,
+            "ceiling": 23133,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20069,
+            "candidate": 23733,
+            "deltaBytes": 3664,
+            "deltaPercent": 18.25701330410085,
+            "ceiling": 20470,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "helper",
+        "condition": "browser",
+        "source": "consumer:browser/helper",
+        "status": "pass",
+        "metrics": {
+          "gzip": {
+            "original": 189,
+            "candidate": 189,
+            "deltaBytes": 0,
+            "deltaPercent": 0,
+            "ceiling": 189,
+            "pass": true
+          },
+          "brotli": {
+            "original": 166,
+            "candidate": 166,
+            "deltaBytes": 0,
+            "deltaPercent": 0,
+            "ceiling": 166,
+            "pass": true
+          }
+        }
+      },
+      {
+        "scenario": "singleton",
+        "condition": "browser",
+        "source": "consumer:browser/factory",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22676,
+            "candidate": 26894,
+            "deltaBytes": 4218,
+            "deltaPercent": 18.601164226494973,
+            "ceiling": 23129,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20083,
+            "candidate": 23743,
+            "deltaBytes": 3660,
+            "deltaPercent": 18.22436886919285,
+            "ceiling": 20484,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "initialization",
+        "condition": "browser",
+        "source": "consumer:browser/initialization",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22672,
+            "candidate": 26905,
+            "deltaBytes": 4233,
+            "deltaPercent": 18.67060691601976,
+            "ceiling": 23125,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20083,
+            "candidate": 23716,
+            "deltaBytes": 3633,
+            "deltaPercent": 18.089926803764378,
+            "ceiling": 20484,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "minimal",
+        "condition": "browser",
+        "source": "consumer:browser/minimal",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 28467,
+            "candidate": 33169,
+            "deltaBytes": 4702,
+            "deltaPercent": 16.517370990972,
+            "ceiling": 27043,
+            "pass": false
+          },
+          "brotli": {
+            "original": 25375,
+            "candidate": 29524,
+            "deltaBytes": 4149,
+            "deltaPercent": 16.35073891625616,
+            "ceiling": 24106,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "singleton-lazy",
+        "condition": "browser",
+        "source": "consumer:browser/factory-lazy",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 22686,
+            "candidate": 26903,
+            "deltaBytes": 4217,
+            "deltaPercent": 18.588556819183637,
+            "ceiling": 23139,
+            "pass": false
+          },
+          "brotli": {
+            "original": 20095,
+            "candidate": 23733,
+            "deltaBytes": 3638,
+            "deltaPercent": 18.104005971634734,
+            "ceiling": 20496,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "engine/dist/tsparticles.engine.min.js",
+        "source": "distribution:engine/dist/tsparticles.engine.min.js",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 24671,
+            "candidate": 32175,
+            "deltaBytes": 7504,
+            "deltaPercent": 30.41627822139354,
+            "ceiling": 25164,
+            "pass": false
+          },
+          "brotli": {
+            "original": 21953,
+            "candidate": 27504,
+            "deltaBytes": 5551,
+            "deltaPercent": 25.2858379264793,
+            "ceiling": 22392,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+        "source": "distribution:bundles/basic/dist/tsparticles.basic.bundle.min.js",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 30268,
+            "candidate": 36895,
+            "deltaBytes": 6627,
+            "deltaPercent": 21.8944099378882,
+            "ceiling": 30873,
+            "pass": false
+          },
+          "brotli": {
+            "original": 26749,
+            "candidate": 32212,
+            "deltaBytes": 5463,
+            "deltaPercent": 20.423193390407118,
+            "ceiling": 27283,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+        "source": "distribution:bundles/slim/dist/tsparticles.slim.bundle.min.js",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 47524,
+            "candidate": 54797,
+            "deltaBytes": 7273,
+            "deltaPercent": 15.303846477569227,
+            "ceiling": 45147,
+            "pass": false
+          },
+          "brotli": {
+            "original": 41231,
+            "candidate": 47091,
+            "deltaBytes": 5860,
+            "deltaPercent": 14.212607018990564,
+            "ceiling": 39169,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "bundles/full/dist/tsparticles.bundle.min.js",
+        "source": "distribution:bundles/full/dist/tsparticles.bundle.min.js",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 58954,
+            "candidate": 66987,
+            "deltaBytes": 8033,
+            "deltaPercent": 13.625877803032873,
+            "ceiling": 60133,
+            "pass": false
+          },
+          "brotli": {
+            "original": 50720,
+            "candidate": 57102,
+            "deltaBytes": 6382,
+            "deltaPercent": 12.58280757097792,
+            "ceiling": 51734,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "bundles/all/dist/tsparticles.all.bundle.min.js",
+        "source": "distribution:bundles/all/dist/tsparticles.all.bundle.min.js",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 115948,
+            "candidate": 127908,
+            "deltaBytes": 11960,
+            "deltaPercent": 10.314968779107875,
+            "ceiling": 118266,
+            "pass": false
+          },
+          "brotli": {
+            "original": 94544,
+            "candidate": 103548,
+            "deltaBytes": 9004,
+            "deltaPercent": 9.523608055508546,
+            "ceiling": 96434,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "cjs-root-acquisition",
+        "source": "installed-package.json:cjs-root-acquisition",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 29995,
+            "candidate": 34782,
+            "deltaBytes": 4787,
+            "deltaPercent": 15.959326554425738,
+            "ceiling": 30594,
+            "pass": false
+          },
+          "brotli": {
+            "original": 25958,
+            "candidate": 30298,
+            "deltaBytes": 4340,
+            "deltaPercent": 16.71931581785962,
+            "ceiling": 26477,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "cjs-lazy-acquisition",
+        "source": "installed-package.json:cjs-lazy-acquisition",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 30006,
+            "candidate": 34782,
+            "deltaBytes": 4776,
+            "deltaPercent": 15.916816636672666,
+            "ceiling": 30606,
+            "pass": false
+          },
+          "brotli": {
+            "original": 25964,
+            "candidate": 30298,
+            "deltaBytes": 4334,
+            "deltaPercent": 16.692343244492374,
+            "ceiling": 26483,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "cjs-full-shipped",
+        "source": "installed-package.json:cjs-full-shipped",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 53150,
+            "candidate": 60424,
+            "deltaBytes": 7274,
+            "deltaPercent": 13.68579492003763,
+            "ceiling": 54213,
+            "pass": false
+          },
+          "brotli": {
+            "original": 45546,
+            "candidate": 52054,
+            "deltaBytes": 6508,
+            "deltaPercent": 14.288850832125762,
+            "ceiling": 46456,
+            "pass": false
+          }
+        }
+      },
+      {
+        "scenario": "cdn-minimal-page",
+        "source": "cdn-candidate.json",
+        "status": "fail",
+        "metrics": {
+          "gzip": {
+            "original": 35441,
+            "candidate": 44518,
+            "deltaBytes": 9077,
+            "deltaPercent": 25.611579808696145,
+            "ceiling": 36149,
+            "pass": false
+          },
+          "brotli": {
+            "original": 31633,
+            "candidate": 38536,
+            "deltaBytes": 6903,
+            "deltaPercent": 21.822147757089116,
+            "ceiling": 32265,
+            "pass": false
+          }
+        }
+      }
+    ],
+    "passing": 2,
+    "failing": 17,
+    "pending": 0
+  },
+  "runtime": {
+    "rows": [
+      {
+        "scenario": "M6-extensions",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.19999998807907104,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.19999998807907104,
+              0.10000002384185791,
+              0.19999998807907104,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "frameP95": {
+            "value": 0.40000003576278687,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.5,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.5,
+              0.40000003576278687
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "fail",
+        "checks": {
+          "update": {
+            "value": 0.8999999761581421,
+            "ceiling": 0.9,
+            "pass": true,
+            "samples": [
+              1,
+              0.8999999761581421,
+              0.8999999761581421,
+              0.8999999761581421,
+              0.8999999761581421,
+              0.800000011920929,
+              0.800000011920929,
+              0.8999999761581421,
+              0.800000011920929
+            ]
+          },
+          "render": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579
+            ]
+          },
+          "frameP95": {
+            "value": 1.9000000357627869,
+            "ceiling": 1.87,
+            "pass": false,
+            "samples": [
+              2.199999988079071,
+              2,
+              2,
+              1.9000000357627869,
+              1.800000011920929,
+              1.800000011920929,
+              1.899999976158142,
+              2.099999964237213,
+              1.800000011920929
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.5,
+            "ceiling": 1.87,
+            "pass": true,
+            "samples": [
+              1.5,
+              1.5,
+              1.5,
+              1.600000023841858,
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.5
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.65,
+            "pass": true,
+            "samples": [
+              1,
+              1.100000023841858,
+              1,
+              1.100000023841858,
+              1,
+              1.0000000596046448,
+              1,
+              1.0999999642372131,
+              1
+            ]
+          },
+          "frameP95": {
+            "value": 3,
+            "ceiling": 4.07,
+            "pass": true,
+            "samples": [
+              3,
+              3.100000023841858,
+              2.900000035762787,
+              3.100000023841858,
+              3,
+              3,
+              3,
+              2.800000011920929,
+              2.800000011920929
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "frameP95": {
+            "value": 0.30000001192092896,
+            "ceiling": 0.5,
+            "pass": true,
+            "samples": [
+              0.30000001192092896,
+              0.3999999761581421,
+              0.3999999761581421,
+              0.30000001192092896,
+              0.3999999761581421,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.3999999761581421
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.699999988079071,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579
+            ]
+          },
+          "render": {
+            "value": 0.5,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.5999999642372131,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "frameP95": {
+            "value": 1.399999976158142,
+            "ceiling": 1.65,
+            "pass": true,
+            "samples": [
+              1.399999976158142,
+              1.399999976158142,
+              1.300000011920929,
+              1.399999976158142,
+              1.399999976158142,
+              1.4000000357627869,
+              1.399999976158142,
+              1.300000011920929,
+              1.399999976158142
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.300000011920929,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1.300000011920929,
+              1.2999999523162842,
+              1.300000011920929,
+              1.699999988079071,
+              1.4000000357627869,
+              1.300000011920929,
+              1.2999999523162842,
+              1.2000000476837158,
+              1.300000011920929
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1,
+              1,
+              1,
+              1.2999999523162842,
+              1.100000023841858,
+              1.0999999642372131,
+              1,
+              1,
+              1
+            ]
+          },
+          "frameP95": {
+            "value": 2.699999988079071,
+            "ceiling": 3.3,
+            "pass": true,
+            "samples": [
+              2.699999988079071,
+              2.699999988079071,
+              2.699999988079071,
+              3.199999988079071,
+              2.800000011920929,
+              2.800000011920929,
+              2.5,
+              2.699999988079071,
+              2.699999988079071
+            ]
+          },
+          "source": "runtime-extended.json"
+        }
+      },
+      {
+        "scenario": "M3",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.19999998807907104,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.19999998807907104,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M3",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.7000000476837158,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.699999988079071,
+              0.7000000476837158,
+              0.7000000476837158
+            ]
+          },
+          "render": {
+            "value": 0.5,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.5,
+              0.5999999642372131,
+              0.5
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M3",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.300000011920929,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1.399999976158142,
+              1.300000011920929,
+              1.300000011920929,
+              1.300000011920929,
+              1.300000011920929,
+              1.4000000357627869,
+              1.300000011920929,
+              1.2999999523162842,
+              1.2999999523162842
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.32,
+            "pass": true,
+            "samples": [
+              1.100000023841858,
+              1.0000000596046448,
+              1,
+              1,
+              1,
+              1.0999999642372131,
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M4",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.30000001192092896,
+            "ceiling": 0.4,
+            "pass": true,
+            "samples": [
+              0.30000001192092896,
+              0.30000001192092896,
+              0.20000004768371582
+            ]
+          },
+          "render": {
+            "value": 0.20000004768371582,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.30000001192092896,
+              0.20000004768371582,
+              0.19999998807907104
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M4",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 3.399999976158142,
+            "ceiling": 3.52,
+            "pass": true,
+            "samples": [
+              3.399999976158142,
+              3.300000011920929,
+              3.5,
+              3.400000035762787,
+              3.399999976158142,
+              3.399999976158142,
+              3.300000011920929,
+              3.300000011920929,
+              3.400000035762787
+            ]
+          },
+          "render": {
+            "value": 2.399999976158142,
+            "ceiling": 2.53,
+            "pass": true,
+            "samples": [
+              2.400000035762787,
+              2.399999976158142,
+              2.400000035762787,
+              2.399999976158142,
+              2.4999999403953552,
+              2.300000011920929,
+              2.399999976158142,
+              2.399999976158142,
+              2.3999999165534973
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M4",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 13.100000023841858,
+            "ceiling": 13.97,
+            "pass": true,
+            "samples": [
+              13.699999988079071,
+              12.700000047683716,
+              13,
+              13.100000023841858,
+              12.800000011920929,
+              13.399999976158142,
+              12.800000011920929,
+              13.5,
+              13.299999952316284
+            ]
+          },
+          "render": {
+            "value": 8.399999976158142,
+            "ceiling": 9.02,
+            "pass": true,
+            "samples": [
+              8.399999976158142,
+              8.300000011920929,
+              8.300000011920929,
+              8.300000071525574,
+              8.399999976158142,
+              8.699999988079071,
+              8.300000011920929,
+              8.5,
+              8.499999940395355
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M5",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.2999999523162842,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.30000001192092896,
+              0.2999999523162842,
+              0.2999999523162842
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M5",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 4.599999964237213,
+            "ceiling": 4.62,
+            "pass": true,
+            "samples": [
+              4.599999964237213,
+              4.5,
+              4.899999976158142
+            ]
+          },
+          "render": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M5",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 15.5,
+            "ceiling": 17.82,
+            "pass": true,
+            "samples": [
+              16.19999998807907,
+              15.600000023841858,
+              15.5,
+              15.5,
+              15.600000023841858,
+              15.300000011920929,
+              16.200000047683716,
+              15.300000011920929,
+              15.099999964237213
+            ]
+          },
+          "render": {
+            "value": 1.300000011920929,
+            "ceiling": 1.65,
+            "pass": true,
+            "samples": [
+              1.399999976158142,
+              1.300000011920929,
+              1.399999976158142,
+              1.2999999523162842,
+              1.300000011920929,
+              1.300000011920929,
+              1.199999988079071,
+              1.5000000596046448,
+              1.4000000357627869
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M6",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M6",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.699999988079071,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579
+            ]
+          },
+          "render": {
+            "value": 0.5,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M6",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.300000011920929,
+            "ceiling": 1.32,
+            "pass": true,
+            "samples": [
+              1.5,
+              1.300000011920929,
+              1.5,
+              1.300000011920929,
+              1.4000000357627869,
+              1.300000011920929,
+              1.300000011920929,
+              1.399999976158142,
+              1.300000011920929
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1.100000023841858,
+              1,
+              1.100000023841858,
+              1,
+              1.100000023841858,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M7",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.19999998807907104,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M7",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.699999988079071,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.699999988079071,
+              0.699999988079071,
+              0.800000011920929
+            ]
+          },
+          "render": {
+            "value": 0.7000000476837158,
+            "ceiling": 0.9,
+            "pass": true,
+            "samples": [
+              0.800000011920929,
+              0.699999988079071,
+              0.7000000476837158
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M7",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.5,
+            "ceiling": 1.65,
+            "pass": true,
+            "samples": [
+              1.5,
+              1.699999988079071,
+              1.5
+            ]
+          },
+          "render": {
+            "value": 1.4000000357627869,
+            "ceiling": 1.76,
+            "pass": true,
+            "samples": [
+              1.4000000357627869,
+              1.4999999403953552,
+              1.4000000357627869
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M8",
+        "count": 100,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.09999996423721313,
+              0.10000002384185791
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M8",
+        "count": 500,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 3,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.699999988079071,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.699999988079071,
+              0.699999988079071,
+              0.699999988079071
+            ]
+          },
+          "render": {
+            "value": 0.5,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.5,
+              0.5,
+              0.5999999642372131
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M8",
+        "count": 1000,
+        "forceHdr": false,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.300000011920929,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1.399999976158142,
+              1.300000011920929,
+              1.399999976158142,
+              1.300000011920929,
+              1.300000011920929,
+              1.300000011920929,
+              1.399999976158142,
+              1.300000011920929,
+              1.300000011920929
+            ]
+          },
+          "render": {
+            "value": 1.0999999642372131,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1.100000023841858,
+              1.0999999642372131,
+              1.0999999642372131,
+              1.100000023841858,
+              1,
+              1.100000023841858,
+              1.0999999642372131,
+              1.0999999642372131,
+              1.0999999642372131
+            ]
+          }
+        }
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 100,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.19999998807907104,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104,
+              0.19999998807907104
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.3,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.19999998807907104,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "frameP95": {
+            "value": 0.40000003576278687,
+            "ceiling": 0.6,
+            "pass": true,
+            "samples": [
+              0.40000003576278687,
+              0.40000003576278687,
+              0.5,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.40000003576278687,
+              0.5,
+              0.40000003576278687
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 500,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "fail",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "fail",
+        "checks": {
+          "update": {
+            "value": 0.800000011920929,
+            "ceiling": 0.9,
+            "pass": true,
+            "samples": [
+              0.800000011920929,
+              0.8999999761581421,
+              0.8999999761581421,
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              0.8999999761581421,
+              0.8999999761581421
+            ]
+          },
+          "render": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.8,
+            "pass": true,
+            "samples": [
+              0.5999999642372131,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.5999999642372131
+            ]
+          },
+          "frameP95": {
+            "value": 2.199999988079071,
+            "ceiling": 1.87,
+            "pass": false,
+            "samples": [
+              1.699999988079071,
+              2.300000011920929,
+              2.100000023841858,
+              2.299999952316284,
+              2.199999988079071,
+              2.299999952316284,
+              2.100000023841858,
+              2.200000047683716,
+              2.199999988079071
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      },
+      {
+        "scenario": "M6-extensions",
+        "count": 1000,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.5,
+            "ceiling": 1.65,
+            "pass": true,
+            "samples": [
+              1.5,
+              1.600000023841858,
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.699999988079071
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.54,
+            "pass": true,
+            "samples": [
+              1.0999999642372131,
+              1.100000023841858,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1.100000023841858
+            ]
+          },
+          "frameP95": {
+            "value": 3,
+            "ceiling": 3.52,
+            "pass": true,
+            "samples": [
+              3,
+              3.099999964237213,
+              3.099999964237213,
+              2.899999976158142,
+              3,
+              2.900000035762787,
+              2.900000035762787,
+              2.899999976158142,
+              3.100000023841858
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 100,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.19999998807907104,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "render": {
+            "value": 0.10000002384185791,
+            "ceiling": 0.2,
+            "pass": true,
+            "samples": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791,
+              0.10000002384185791
+            ]
+          },
+          "frameP95": {
+            "value": 0.30000001192092896,
+            "ceiling": 0.5,
+            "pass": true,
+            "samples": [
+              0.3999999761581421,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.3999999761581421,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.30000001192092896,
+              0.30000001192092896
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 500,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 0.6000000238418579,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.699999988079071,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579,
+              0.6000000238418579
+            ]
+          },
+          "render": {
+            "value": 0.5,
+            "ceiling": 0.7,
+            "pass": true,
+            "samples": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "frameP95": {
+            "value": 1.399999976158142,
+            "ceiling": 1.54,
+            "pass": true,
+            "samples": [
+              1.4000000357627869,
+              1.300000011920929,
+              1.399999976158142,
+              1.300000011920929,
+              1.5,
+              1.399999976158142,
+              1.399999976158142,
+              1.4000000357627869,
+              1.300000011920929
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      },
+      {
+        "scenario": "M8-hdr-layers-resize",
+        "count": 1000,
+        "forceHdr": true,
+        "browser": "Chrome/158.0.8127.38",
+        "sampleCount": 9,
+        "initialSampleCount": 3,
+        "initialStatus": "pass",
+        "confirmation": "runtime-extended-confirmation-comparison.json",
+        "status": "pass",
+        "checks": {
+          "update": {
+            "value": 1.2000000476837158,
+            "ceiling": 1.54,
+            "pass": true,
+            "samples": [
+              1.2999999523162842,
+              1.399999976158142,
+              1.300000011920929,
+              1.2000000476837158,
+              1.2000000476837158,
+              1.2999999523162842,
+              1.2000000476837158,
+              1.2000000476837158,
+              1.2000000476837158
+            ]
+          },
+          "render": {
+            "value": 1,
+            "ceiling": 1.43,
+            "pass": true,
+            "samples": [
+              1,
+              1.100000023841858,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "frameP95": {
+            "value": 2.600000023841858,
+            "ceiling": 3.19,
+            "pass": true,
+            "samples": [
+              2.600000023841858,
+              2.799999952316284,
+              2.600000023841858,
+              2.699999988079071,
+              2.699999988079071,
+              2.600000023841858,
+              2.599999964237213,
+              2.5,
+              2.600000023841858
+            ]
+          },
+          "source": "runtime-extended-hdr.json"
+        }
+      }
+    ],
+    "passing": 28,
+    "failing": 2,
+    "pending": 0
+  }
+}

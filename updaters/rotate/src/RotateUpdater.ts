@@ -13,7 +13,6 @@ import {
   degToRad,
   double,
   doublePI,
-  getRandom,
   getRangeValue,
   identity,
   loadOptionProperty,
@@ -76,7 +75,12 @@ export class RotateUpdater implements IParticleUpdater {
 
     particle.rotate = {
       enable: rotateOptions.animation.enable,
-      value: degToRad(getRangeValue(rotateOptions.value)),
+      value: degToRad(
+        getRangeValue(
+          rotateOptions.value,
+          this.#container.engine.getRandomFn(),
+        ),
+      ),
       min: 0,
       max: doublePI,
     };
@@ -86,9 +90,12 @@ export class RotateUpdater implements IParticleUpdater {
     let rotateDirection = rotateOptions.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      const index = Math.floor(getRandom() * double);
+      const index = Math.floor(this.#container.engine.getRandom() * double);
 
-      rotateDirection = index > minIndex ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+      rotateDirection =
+        index > minIndex
+          ? RotateDirection.counterClockwise
+          : RotateDirection.clockwise;
     }
 
     switch (rotateDirection) {
@@ -107,12 +114,22 @@ export class RotateUpdater implements IParticleUpdater {
     const rotateAnimation = rotateOptions.animation;
 
     if (rotateAnimation.enable) {
-      particle.rotate.decay = identity - getRangeValue(rotateAnimation.decay);
+      particle.rotate.decay =
+        identity -
+        getRangeValue(
+          rotateAnimation.decay,
+          this.#container.engine.getRandomFn(),
+        );
       particle.rotate.velocity =
-        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this.#container.retina.reduceFactor;
+        (getRangeValue(
+          rotateAnimation.speed,
+          this.#container.engine.getRandomFn(),
+        ) /
+          doublePIDeg) *
+        this.#container.retina.reduceFactor;
 
       if (!rotateAnimation.sync) {
-        particle.rotate.velocity *= getRandom();
+        particle.rotate.velocity *= this.#container.engine.getRandom();
       }
     }
 
@@ -131,7 +148,11 @@ export class RotateUpdater implements IParticleUpdater {
       return false;
     }
 
-    return !particle.destroyed && !particle.spawning && (!!rotate.value || rotate.animation.enable || rotate.path);
+    return (
+      !particle.destroyed &&
+      !particle.spawning &&
+      (!!rotate.value || rotate.animation.enable || rotate.path)
+    );
   }
 
   /**

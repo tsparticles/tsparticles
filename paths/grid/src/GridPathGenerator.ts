@@ -6,7 +6,6 @@ import {
   type ICoordinates,
   type IDimension,
   Vector,
-  getRandom,
   identity,
   originPoint,
 } from "@tsparticles/engine";
@@ -57,7 +56,7 @@ export class GridPathGenerator implements IMovePathGenerator {
     const size = this.options.cellSize;
 
     p.grid ??= {
-      direction: Math.trunc(getRandom() * dirs.length),
+      direction: Math.trunc(this.#container.engine.getRandom() * dirs.length),
       speed: p.velocity.length,
       cellPosition: {
         x: Math.floor(p.position.x / size),
@@ -79,10 +78,13 @@ export class GridPathGenerator implements IMovePathGenerator {
         allowed = this.options.graph?.[key];
 
       if (allowed && allowed.length > minLength) {
-        grid.direction = allowed[Math.trunc(getRandom() * allowed.length)]!;
+        grid.direction =
+          allowed[
+            Math.trunc(this.#container.engine.getRandom() * allowed.length)
+          ]!;
       } else if (!this.options.graph) {
         // free grid fallback
-        const turn = Math.trunc(getRandom() * 3) - 1;
+        const turn = Math.trunc(this.#container.engine.getRandom() * 3) - 1;
 
         grid.direction = (grid.direction + turn + 4) % dirs.length;
       }
@@ -105,9 +107,12 @@ export class GridPathGenerator implements IMovePathGenerator {
   init(): void {
     const source = this.#container.actualOptions.particles.move.path.options;
 
-    this.options.cellSize = (source["cellSize"] as number | undefined) ?? this.options.cellSize;
-    this.options.autoMaze = (source["autoMaze"] as boolean | undefined) ?? this.options.autoMaze;
-    this.options.graph = source["graph"] as Record<string, number[]> | undefined;
+    this.options.cellSize =
+      (source["cellSize"] as number | undefined) ?? this.options.cellSize;
+    this.options.autoMaze =
+      (source["autoMaze"] as boolean | undefined) ?? this.options.autoMaze;
+    this.options.graph = source["graph"] as
+      Record<string, number[]> | undefined;
 
     // AUTO MAZE = FULL CANVAS
     if (this.options.autoMaze) {
@@ -153,7 +158,18 @@ export class GridPathGenerator implements IMovePathGenerator {
         visited[y]![x] = true;
       }
 
-      const dirsOrder = [0, 1, 2, 3].sort(() => getRandom() - 0.5);
+      const dirsOrder = [0, 1, 2, 3];
+
+      for (let index = dirsOrder.length - 1; index > minLength; index--) {
+        const randomIndex = Math.trunc(
+            this.#container.engine.getRandom() * (index + 1),
+          ),
+          current = dirsOrder[index]!;
+
+        dirsOrder[index] = dirsOrder[randomIndex]!;
+        dirsOrder[randomIndex] = current;
+      }
+
       let moved = false;
 
       for (const d of dirsOrder) {

@@ -1,0 +1,513 @@
+{
+  "browser": "Chrome/158.0.8127.38",
+  "rows": [
+    {
+      "mode": "natural",
+      "repetition": 0,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "natural",
+      "repetition": 1,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "natural",
+      "repetition": 2,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "forced-hdr",
+      "repetition": 0,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "forced-hdr",
+      "repetition": 1,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "forced-hdr",
+      "repetition": 2,
+      "pixelSha256": "0a9a5ae352c8efa5867994beec5fdc3057da1bd69d0eb088f4f5b3c95988d4e9",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "display-p3",
+        "colorType": "float16",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "fallback",
+      "repetition": 0,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "fallback",
+      "repetition": 1,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "fallback",
+      "repetition": 2,
+      "pixelSha256": "25ace5c04d9b3ea08f165c2af0324e32d5c3a928f59ac1bc5664a0504ae9ce38",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "trail",
+      "repetition": 0,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "trail",
+      "repetition": 1,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    },
+    {
+      "mode": "trail",
+      "repetition": 2,
+      "pixelSha256": "d800c9b8f217fa156fb1f17f524fbb0c3e69e936b6147078fd4bf691fb973f7e",
+      "fullSurfacePixelsMatch": true,
+      "attributes": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": true,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      }
+    }
+  ],
+  "allParityChecksPass": true,
+  "baselineWorkerError": "ReferenceError: document is not defined",
+  "candidateWorker": {
+    "count": 5,
+    "remaining": 0
+  },
+  "phaseSummary": [
+    {
+      "mode": "natural",
+      "phaseMs": {
+        "factoryAndLoadersMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.30000001192092896
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.20000004768371582
+          }
+        },
+        "pairInitializationMs": {
+          "baseline": {
+            "median": 22.19999998807907,
+            "min": 21.900000035762787,
+            "max": 24.600000023841858
+          },
+          "candidate": {
+            "median": 23,
+            "min": 22,
+            "max": 24
+          }
+        },
+        "resizeMs": {
+          "baseline": {
+            "median": 0.10000002384185791,
+            "min": 0.10000002384185791,
+            "max": 0.19999998807907104
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.10000002384185791,
+            "max": 0.20000004768371582
+          }
+        },
+        "redrawMs": {
+          "baseline": {
+            "median": 3.300000011920929,
+            "min": 3.199999988079071,
+            "max": 3.399999976158142
+          },
+          "candidate": {
+            "median": 3.300000011920929,
+            "min": 3.300000011920929,
+            "max": 3.599999964237213
+          }
+        },
+        "refreshMs": {
+          "baseline": {
+            "median": 3.699999988079071,
+            "min": 3.300000011920929,
+            "max": 3.699999988079071
+          },
+          "candidate": {
+            "median": 3.600000023841858,
+            "min": 3.300000011920929,
+            "max": 4.099999964237213
+          }
+        },
+        "teardownMs": {
+          "baseline": {
+            "median": 0.30000001192092896,
+            "min": 0.19999998807907104,
+            "max": 0.40000003576278687
+          },
+          "candidate": {
+            "median": 0.30000001192092896,
+            "min": 0.30000001192092896,
+            "max": 0.3999999761581421
+          }
+        }
+      }
+    },
+    {
+      "mode": "forced-hdr",
+      "phaseMs": {
+        "factoryAndLoadersMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.09999996423721313,
+            "max": 0.20000004768371582
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.19999998807907104
+          }
+        },
+        "pairInitializationMs": {
+          "baseline": {
+            "median": 22.299999952316284,
+            "min": 21.30000001192093,
+            "max": 22.399999976158142
+          },
+          "candidate": {
+            "median": 22.80000001192093,
+            "min": 22.400000035762787,
+            "max": 23.30000001192093
+          }
+        },
+        "resizeMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.2999999523162842
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.09999996423721313,
+            "max": 0.30000001192092896
+          }
+        },
+        "redrawMs": {
+          "baseline": {
+            "median": 3.699999988079071,
+            "min": 3.5,
+            "max": 3.800000011920929
+          },
+          "candidate": {
+            "median": 3.600000023841858,
+            "min": 3.300000011920929,
+            "max": 3.600000023841858
+          }
+        },
+        "refreshMs": {
+          "baseline": {
+            "median": 3.699999988079071,
+            "min": 3.5,
+            "max": 4
+          },
+          "candidate": {
+            "median": 3.399999976158142,
+            "min": 3.399999976158142,
+            "max": 3.699999988079071
+          }
+        },
+        "teardownMs": {
+          "baseline": {
+            "median": 0.30000001192092896,
+            "min": 0.2999999523162842,
+            "max": 0.40000003576278687
+          },
+          "candidate": {
+            "median": 0.30000001192092896,
+            "min": 0.2999999523162842,
+            "max": 0.30000001192092896
+          }
+        }
+      }
+    },
+    {
+      "mode": "fallback",
+      "phaseMs": {
+        "factoryAndLoadersMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.19999998807907104
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.2999999523162842
+          }
+        },
+        "pairInitializationMs": {
+          "baseline": {
+            "median": 21.69999998807907,
+            "min": 21.5,
+            "max": 22.80000001192093
+          },
+          "candidate": {
+            "median": 22.099999964237213,
+            "min": 22,
+            "max": 22.100000023841858
+          }
+        },
+        "resizeMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.10000002384185791,
+            "max": 0.19999998807907104
+          },
+          "candidate": {
+            "median": 0.19999998807907104,
+            "min": 0.10000002384185791,
+            "max": 0.19999998807907104
+          }
+        },
+        "redrawMs": {
+          "baseline": {
+            "median": 3.300000011920929,
+            "min": 3.199999988079071,
+            "max": 3.300000011920929
+          },
+          "candidate": {
+            "median": 3.199999988079071,
+            "min": 3.199999988079071,
+            "max": 3.200000047683716
+          }
+        },
+        "refreshMs": {
+          "baseline": {
+            "median": 3.199999988079071,
+            "min": 3.099999964237213,
+            "max": 3.199999988079071
+          },
+          "candidate": {
+            "median": 3.199999988079071,
+            "min": 2.899999976158142,
+            "max": 3.599999964237213
+          }
+        },
+        "teardownMs": {
+          "baseline": {
+            "median": 0.2999999523162842,
+            "min": 0.19999998807907104,
+            "max": 0.40000003576278687
+          },
+          "candidate": {
+            "median": 0.30000001192092896,
+            "min": 0.19999998807907104,
+            "max": 0.30000001192092896
+          }
+        }
+      }
+    },
+    {
+      "mode": "trail",
+      "phaseMs": {
+        "factoryAndLoadersMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.19999998807907104,
+            "max": 0.20000004768371582
+          },
+          "candidate": {
+            "median": 0.20000004768371582,
+            "min": 0.19999998807907104,
+            "max": 0.30000001192092896
+          }
+        },
+        "pairInitializationMs": {
+          "baseline": {
+            "median": 22.399999976158142,
+            "min": 22.399999976158142,
+            "max": 23.30000001192093
+          },
+          "candidate": {
+            "median": 22.099999964237213,
+            "min": 21.100000023841858,
+            "max": 22.600000023841858
+          }
+        },
+        "resizeMs": {
+          "baseline": {
+            "median": 0.19999998807907104,
+            "min": 0.09999996423721313,
+            "max": 0.19999998807907104
+          },
+          "candidate": {
+            "median": 0.10000002384185791,
+            "min": 0.09999996423721313,
+            "max": 0.19999998807907104
+          }
+        },
+        "redrawMs": {
+          "baseline": {
+            "median": 3.200000047683716,
+            "min": 3.100000023841858,
+            "max": 3.5
+          },
+          "candidate": {
+            "median": 3.199999988079071,
+            "min": 3.199999988079071,
+            "max": 3.400000035762787
+          }
+        },
+        "refreshMs": {
+          "baseline": {
+            "median": 3.5,
+            "min": 3.5,
+            "max": 3.699999988079071
+          },
+          "candidate": {
+            "median": 3.600000023841858,
+            "min": 3.400000035762787,
+            "max": 3.699999988079071
+          }
+        },
+        "teardownMs": {
+          "baseline": {
+            "median": 0.30000001192092896,
+            "min": 0.2999999523162842,
+            "max": 0.40000003576278687
+          },
+          "candidate": {
+            "median": 0.30000001192092896,
+            "min": 0.30000001192092896,
+            "max": 0.30000001192092896
+          }
+        }
+      }
+    }
+  ]
+}

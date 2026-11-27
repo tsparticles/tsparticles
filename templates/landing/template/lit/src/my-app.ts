@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { engine } from "./particlesEngine";
 import "@tsparticles/lit";
 
 @customElement("my-app")
@@ -17,7 +18,14 @@ export class MyApp extends LitElement {
       opacity: { value: 0.4, random: true },
       size: { value: { min: 1, max: 4 }, random: true },
       links: { enable: true, distance: 150, color: "#6c5ce7", opacity: 0.15, width: 1 },
-      move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
     },
     interactivity: {
       events: { onHover: { enable: true, mode: "grab" } },
@@ -32,7 +40,7 @@ export class MyApp extends LitElement {
 
   render() {
     return html`
-      <lit-particles id="tsparticles" .options=${this.options}></lit-particles>
+      <lit-particles .engine=${engine} id="tsparticles" .options=${this.options}></lit-particles>
       <section id="hero" class="section">
         <div class="hero-content">
           <h1>Build Faster.<br /><span class="gradient-text">Go Further.</span></h1>

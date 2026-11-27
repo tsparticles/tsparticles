@@ -1,8 +1,8 @@
 import { isArray, isString } from "../../Utils/TypeUtils.js";
-import { HslAnimation } from "./HslAnimation.js";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor.js";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";
-import type { IHslAnimation } from "../Interfaces/IHslAnimation.js";
+import type { IOklchAnimation } from "../Interfaces/IOklchAnimation.js";
+import { OklchAnimation } from "./OklchAnimation.js";
 import { OptionsColor } from "./OptionsColor.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -11,7 +11,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
  * [[include:Options/Particles/Color.md]]
  */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor {
-  readonly animation = new HslAnimation();
+  readonly animation = new OklchAnimation();
 
   /**
    * Creates an animatable color from optional source and input data.
@@ -44,8 +44,14 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
     const colorAnimation = data.animation as RecursivePartial<IColorAnimation | undefined>;
 
     if (colorAnimation !== undefined) {
+      if ("s" in colorAnimation) {
+        throw new Error(
+          "HSL color animation is not supported in v5; migrate animation.s to an explicit OKLCH animation.c value.",
+        );
+      }
+
       if (colorAnimation.enable === undefined) {
-        this.animation.load(data.animation as IHslAnimation);
+        this.animation.load(data.animation as IOklchAnimation);
       } else {
         this.animation.h.load(colorAnimation);
       }

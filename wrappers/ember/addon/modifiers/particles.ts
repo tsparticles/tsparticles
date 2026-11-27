@@ -1,11 +1,10 @@
-import Modifier from 'ember-modifier';
+import type { Container, Engine, Options } from '@tsparticles/engine';
 import type { NamedArgs, PositionalArgs } from 'ember-modifier';
-import type { Container, Options } from '@tsparticles/engine';
-import { tsParticles } from '@tsparticles/engine';
 import {
   isParticlesEngineInitialized,
   waitForParticlesEngineInitialization,
 } from '../utils/init-particles-engine';
+import Modifier from 'ember-modifier';
 
 import { registerDestructor } from '@ember/destroyable';
 
@@ -13,6 +12,7 @@ interface ParticlesModifierSignature {
   Args: {
     Positional: [];
     Named: {
+      engine: Engine;
       options: Options;
       url: string;
       particlesLoaded: (container?: Container) => void;
@@ -30,6 +30,7 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
     element: Element,
     _: PositionalArgs<ParticlesModifierSignature>,
     {
+      engine,
       options,
       url,
       particlesLoaded,
@@ -40,9 +41,9 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
       throw new Error('The specified element must have an id attribute.');
     }
 
-    await waitForParticlesEngineInitialization();
+    await waitForParticlesEngineInitialization(engine);
 
-    if (!isParticlesEngineInitialized()) {
+    if (!isParticlesEngineInitialized(engine)) {
       throw new Error(
         'initParticlesEngine(...) must be called once before rendering <Particles /> components.',
       );
@@ -54,7 +55,7 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
     this.#container?.destroy();
     this.#container = undefined;
 
-    const container = await tsParticles.load({
+    const container = await engine.load({
       id: element.id,
       options: options ?? {},
       url,

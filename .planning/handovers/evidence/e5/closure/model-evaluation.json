@@ -1,0 +1,1292 @@
+{
+  "measuredAt": "2026-11-23T13:55:53.612Z",
+  "browser": "Chrome/157.0.8103.79",
+  "bundleSha256": "17bb07732ee6b66e968bd58cbcede03c7b05ac72e1429e604cbb343cd0cb1cbb",
+  "results": [
+    {
+      "lazy": false,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 37.90000003576279,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 7224.668,
+      "warmBytesPerParticle": 7750,
+      "frameMedianMs": 2.599999964237213,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 82.096,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.899999976158142,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.899999976158142,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 6,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 23.30000001192093,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6091.944,
+      "warmBytesPerParticle": 6305.136,
+      "frameMedianMs": 2.399999976158142,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 87.336,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.699999988079071,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5999999642372131,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 21.80000001192093,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6042.124,
+      "warmBytesPerParticle": 6249.124,
+      "frameMedianMs": 2.600000023841858,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 77.904,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.5,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.900000035762787,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.699999988079071,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 23,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6057.576,
+      "warmBytesPerParticle": 6307.052,
+      "frameMedianMs": 2.400000035762787,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 76.984,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.599999964237213,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.600000023841858,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.40000003576278687,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 22.299999952316284,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6078.648,
+      "warmBytesPerParticle": 6300.024,
+      "frameMedianMs": 2.399999976158142,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 82.056,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.400000035762787,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.699999988079071,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.700000047683716,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.3999999761581421,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 21.5,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6044.4,
+      "warmBytesPerParticle": 6263.32,
+      "frameMedianMs": 2.5,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 78.528,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.09999996423721313,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.300000011920929,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.900000035762787,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5999999642372131,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 22,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 6012.568,
+      "warmBytesPerParticle": 6305.856,
+      "frameMedianMs": 3,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 74.964,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.699999988079071,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 5,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.599999964237213,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 21.399999976158142,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5983.532,
+      "warmBytesPerParticle": 6197.428,
+      "frameMedianMs": 2.699999988079071,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 81.372,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.300000011920929,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.799999952316284,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.699999988079071,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": false,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 20.19999998807907,
+      "loadedScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5998.932,
+      "warmBytesPerParticle": 6220.212,
+      "frameMedianMs": 2.699999988079071,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 76.568,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.100000023841858,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.600000023841858,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.3999999761581421,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 40,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 7035.928,
+      "warmBytesPerParticle": 7752.944,
+      "frameMedianMs": 2.5,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 81.896,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 6.100000023841858,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.899999976158142,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.3999999761581421,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 21.900000035762787,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5978.332,
+      "warmBytesPerParticle": 6306.384,
+      "frameMedianMs": 2.5,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 84.172,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.30000001192092896,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.6000000238418579,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M3",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 21.80000001192093,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5928.7,
+      "warmBytesPerParticle": 6249,
+      "frameMedianMs": 2.5,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 77.408,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.20000004768371582,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.900000035762787,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 5,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 6,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5999999642372131,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 21.5,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5943.4,
+      "warmBytesPerParticle": 6307.452,
+      "frameMedianMs": 2.400000035762787,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 76.54,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.600000023841858,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.3999999761581421,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 21.69999998807907,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5965.16,
+      "warmBytesPerParticle": 6302.748,
+      "frameMedianMs": 2.5,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 81.496,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.5,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 5,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.40000003576278687,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M8",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 20.80000001192093,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5929.948,
+      "warmBytesPerParticle": 6262.792,
+      "frameMedianMs": 2.400000035762787,
+      "getterCalls": {
+        "getPosition": 270000,
+        "getRadius": 450110,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "880145264849f431e9fd8fbad0aa71ef3fbcc3952b48d28a4e2664c7f0885151",
+      "snapshotAdditionalBytesPerParticle": 80.948,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.09999996423721313,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.599999964237213,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.900000035762787,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 0,
+      "initMs": 21.5,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5898.732,
+      "warmBytesPerParticle": 6308.132,
+      "frameMedianMs": 2.800000011920929,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 74.508,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.10000002384185791,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 4.899999976158142,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.700000047683716,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5999999642372131,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 1,
+      "initMs": 21,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5869.808,
+      "warmBytesPerParticle": 6199.084,
+      "frameMedianMs": 2.700000047683716,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 80.864,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.20000004768371582,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.399999976158142,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 5.100000023841858,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.800000011920929,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.40000003576278687,
+        "snapshotCloneMatches": true
+      }
+    },
+    {
+      "lazy": true,
+      "scenario": "M6-options",
+      "count": 1000,
+      "repetition": 2,
+      "initMs": 21.19999998807907,
+      "loadedScratchObjects": {
+        "cachedPosition": 0,
+        "cachedOpacityData": 0,
+        "cachedRotateData": 0,
+        "cachedTransform": 0
+      },
+      "warmScratchObjects": {
+        "cachedPosition": 1000,
+        "cachedOpacityData": 1000,
+        "cachedRotateData": 1000,
+        "cachedTransform": 1000
+      },
+      "loadedBytesPerParticle": 5885.66,
+      "warmBytesPerParticle": 6226.84,
+      "frameMedianMs": 2.800000011920929,
+      "getterCalls": {
+        "getPosition": 450000,
+        "getRadius": 540103,
+        "getOpacity": 90000,
+        "getRotateData": 90000,
+        "getTransformData": 90000,
+        "getFillColor": 90000,
+        "getStrokeColor": 90000
+      },
+      "geometrySha256": "e848f03a51fe54155a4e5bc94825ab42dc1c6f70e8cf93af4ef14025fbbec30f",
+      "snapshotAdditionalBytesPerParticle": 75.984,
+      "probes": {
+        "templateStaleAfterMutation": true,
+        "phaseSnapshotStale": true,
+        "normalizationMs": 0.19999998807907104,
+        "optionCandidates": [
+          {
+            "name": "ownedLoad",
+            "median500CopiesMs": 5.300000011920929,
+            "layeredSpeed": 4,
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "normalizedPrototypeCopy",
+            "median500CopiesMs": 5.100000023841858,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: Cannot read private member #container from an object whose class did not declare it",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          },
+          {
+            "name": "plainStateCopy",
+            "median500CopiesMs": 5.899999976158142,
+            "layeredSpeed": 4,
+            "loadError": "TypeError: candidate.load is not a function",
+            "aliases": false,
+            "sourceSpeedAfterMutation": 1
+          }
+        ],
+        "plainParticle": {
+          "sharesOptions": true,
+          "sharesVelocity": true,
+          "hasGetRadius": false,
+          "privateBrandError": "TypeError: Cannot read private member #cachedPosition from an object whose class did not declare it"
+        },
+        "snapshotMs": 0.5,
+        "snapshotCloneMatches": true
+      }
+    }
+  ],
+  "limitations": [
+    "Diagnostic unminified bundle and getter counters perturb timing; compare variants only within this experiment.",
+    "Lazy scratch-cache variant is patched in memory only and never shipped.",
+    "Prototype/plain options copies cannot preserve arbitrary plugin private brands or loader hooks; their timing is not an admissible production speedup.",
+    "Snapshots are inspection-only numeric data, not save/resume, options serialization or a full Particle codec.",
+    "Snapshot heap delta includes probe/JIT/diagnostic overhead; it is not an exact object-size measurement."
+  ]
+}

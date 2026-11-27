@@ -1,0 +1,196 @@
+{
+  "workingTree": true,
+  "recordedAt": "2026-11-14T00:09:44.507915+00:00",
+  "files": [
+    {
+      "path": "engine/dist/tsparticles.engine.js",
+      "bytes": 217709,
+      "sha256": "55d481efaaa90ed2b6b2aef48c1dbf8a8a71dfe80eec499f55a160d12925770c"
+    },
+    {
+      "path": "engine/dist/tsparticles.engine.min.js",
+      "bytes": 79111,
+      "sha256": "8b4f74d658347ebe3e5a3c2f06ed782c0cf3f653b09d3ac96246c9165b6640a4"
+    },
+    {
+      "path": "bundles/all/dist/tsparticles.all.bundle.js",
+      "bytes": 1170333,
+      "sha256": "768ebd31335c62f1569cdc4e83221bb413ba4023bcf3c12f6b4750899d0e9392"
+    },
+    {
+      "path": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "bytes": 423740,
+      "sha256": "63cd48a20096033946284f5d1f84219cefcd3522225fab230e653f79fd315788"
+    },
+    {
+      "path": "bundles/all/dist/tsparticles.all.min.js",
+      "bytes": 9002,
+      "sha256": "64286160bd9ce30d2f9f8ab33fece3006ecb4194b6ca53d9220284bbf034b1e7"
+    },
+    {
+      "path": "bundles/all/dist/tsparticles.all.js",
+      "bytes": 13381,
+      "sha256": "c344ae8abacd1c4cbccc8132c9d19b282177f403e10cf832b0ab25a3257d5330"
+    },
+    {
+      "path": "bundles/basic/dist/tsparticles.basic.bundle.js",
+      "bytes": 274657,
+      "sha256": "559e3973716ace8998658ee49d1c3dd6f8febfd5c650a701ef737884d5486cf1"
+    },
+    {
+      "path": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "bytes": 101014,
+      "sha256": "7544f455610cf942bb6b7d16d4e42dbd20b3d3a4ffc70ddabab7b39fd5b9423c"
+    },
+    {
+      "path": "bundles/basic/dist/tsparticles.basic.min.js",
+      "bytes": 4168,
+      "sha256": "6bac204ab4818e776fd09882e5742c0a0fbb11e48edc6530a6002ce5938ab2ee"
+    },
+    {
+      "path": "bundles/basic/dist/tsparticles.basic.js",
+      "bytes": 5155,
+      "sha256": "2ddb55168ae836be28221ef87ad3a59da3639cc2fda4a1856caf44de41972a4f"
+    },
+    {
+      "path": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+      "bytes": 166315,
+      "sha256": "262cc8e8778b3210379fa07f46e8226634dcfdf0bde0b0e6dcd438bae74d74a0"
+    },
+    {
+      "path": "bundles/slim/dist/tsparticles.slim.min.js",
+      "bytes": 5673,
+      "sha256": "50aeb6fa27e743dc3cecaa1e40fe622094402241fa62350234076017f21159a2"
+    },
+    {
+      "path": "bundles/slim/dist/tsparticles.slim.js",
+      "bytes": 7929,
+      "sha256": "bcb1a183d12795c7276e11605cbd15bb26206da6e2c63ef965cc01a3e38334be"
+    },
+    {
+      "path": "bundles/slim/dist/tsparticles.slim.bundle.js",
+      "bytes": 461303,
+      "sha256": "a95eda02e19943c467ea903d0d8aeca6632401d6037d3d7ac8b2c559d3709da1"
+    },
+    {
+      "path": "bundles/full/dist/tsparticles.min.js",
+      "bytes": 4524,
+      "sha256": "d74254cdddf2cf55c5272e9df8a2f88fd2bc2d20603cb30ebc8c7daa5e269534"
+    },
+    {
+      "path": "bundles/full/dist/tsparticles.bundle.min.js",
+      "bytes": 211199,
+      "sha256": "919d7c2ae0f16f9556ebf7c2047e2f11bde2676fbe04df8237646f0684e3e2b3"
+    },
+    {
+      "path": "bundles/full/dist/tsparticles.bundle.js",
+      "bytes": 589154,
+      "sha256": "17e8a1ba5faad95856830cfb363b0cb62407d8143f7cf9b1a94dc6a2949f7190"
+    },
+    {
+      "path": "bundles/full/dist/tsparticles.js",
+      "bytes": 5987,
+      "sha256": "b5b59c615896286269f237a3632d7bf965acc2e9947e84d65d1ba6d7977bc1c3"
+    },
+    {
+      "path": "bundles/confetti/dist/tsparticles.confetti.bundle.js",
+      "bytes": 382942,
+      "sha256": "eddad98bda84ec947b85502d4a246bf14bf71f24e940044193e257fad9f8dd2b"
+    },
+    {
+      "path": "bundles/confetti/dist/tsparticles.confetti.bundle.min.js",
+      "bytes": 138074,
+      "sha256": "747a3e9c99392caa87824d7b8cd9f80a5460ee8e84d6a95ab1511200e3227313"
+    },
+    {
+      "path": "bundles/confetti/dist/tsparticles.confetti.js",
+      "bytes": 21559,
+      "sha256": "bd4b890f2476577ec2545b7dfaf39c42427f8355ca5921574ec994186029e52f"
+    },
+    {
+      "path": "bundles/confetti/dist/tsparticles.confetti.min.js",
+      "bytes": 9470,
+      "sha256": "a758ee41d9162fed0a3594d81e7ddabe82992366cb61ea989204a5dfc0cd3e97"
+    },
+    {
+      "path": "bundles/fireworks/dist/tsparticles.fireworks.js",
+      "bytes": 17789,
+      "sha256": "d0c8cc25958c1b59a812ef40010e5f58a75a68b416745f3e97971d4b1f758611"
+    },
+    {
+      "path": "bundles/fireworks/dist/tsparticles.fireworks.min.js",
+      "bytes": 8314,
+      "sha256": "f42e9438cc8c3cc923e5cb608e444537992b2d594f0df62c1f1e7225200a80bc"
+    },
+    {
+      "path": "bundles/fireworks/dist/tsparticles.fireworks.bundle.js",
+      "bytes": 379405,
+      "sha256": "2506a91c98716d9aff1a6af1beb94cd0aaca0bdf605c8c185125c082ae69d733"
+    },
+    {
+      "path": "bundles/fireworks/dist/tsparticles.fireworks.bundle.min.js",
+      "bytes": 140612,
+      "sha256": "3575ae15ad7d8ced52cea92948e3ab4e6bed36297f186503f0649aec09ef4643"
+    },
+    {
+      "path": "bundles/particles/dist/tsparticles.particles.js",
+      "bytes": 9711,
+      "sha256": "1d5d4942231bea19c77ca24161afa2ebc34789c8634c382cf666b72ae8120799"
+    },
+    {
+      "path": "bundles/particles/dist/tsparticles.particles.bundle.min.js",
+      "bytes": 126059,
+      "sha256": "10710d634542297694c9f278ebe422eaa59c92e107d28cf92a84c01a3f987711"
+    },
+    {
+      "path": "bundles/particles/dist/tsparticles.particles.min.js",
+      "bytes": 5438,
+      "sha256": "cde88fc58256196b7f787d355cd159ecad2c284c8eed52fbed29a84f49f24ed2"
+    },
+    {
+      "path": "bundles/particles/dist/tsparticles.particles.bundle.js",
+      "bytes": 348943,
+      "sha256": "8d39becd21bb84f96a057ff600680954a671343a288e49caf898010b8597da9b"
+    },
+    {
+      "path": "bundles/ribbons/dist/tsparticles.ribbons.js",
+      "bytes": 17241,
+      "sha256": "9f04f6a525bbb75950bf4712e2d176c5786b037c7de85857019f31518411efca"
+    },
+    {
+      "path": "bundles/ribbons/dist/tsparticles.ribbons.bundle.js",
+      "bytes": 355308,
+      "sha256": "1750ed325a8d91c1776fce37c04543a42c350ec38cea28c906a45431cfec8b28"
+    },
+    {
+      "path": "bundles/ribbons/dist/tsparticles.ribbons.bundle.min.js",
+      "bytes": 129353,
+      "sha256": "21fcf446b3db3b544d6b5768b97df47e3c68107e411550350d182abebebaa307"
+    },
+    {
+      "path": "bundles/ribbons/dist/tsparticles.ribbons.min.js",
+      "bytes": 7901,
+      "sha256": "e795b4a475056489ecefea950a3ccc36f5356b64946c4db358cd18bc1bfa7327"
+    },
+    {
+      "path": "bundles/pjs/dist/tsparticles.pjs.min.js",
+      "bytes": 8486,
+      "sha256": "1a57fe61774fa1fdfc642f0fc4b961e152fa9d64ba3e675fd9d7c6b203c13618"
+    },
+    {
+      "path": "bundles/pjs/dist/tsparticles.pjs.bundle.js",
+      "bytes": 607756,
+      "sha256": "f0d06d1edecf2fc60f778a44928b57a33c5721872df7ba13dd443147f58b0a2e"
+    },
+    {
+      "path": "bundles/pjs/dist/tsparticles.pjs.bundle.min.js",
+      "bytes": 216827,
+      "sha256": "75aefb8e16cff291f78fbe95d478ade962bbcd7725ef55839a8704a77c0ed5e4"
+    },
+    {
+      "path": "bundles/pjs/dist/tsparticles.pjs.js",
+      "bytes": 19286,
+      "sha256": "4ffea2f59f93c35143bf01bf3406cd3ef68e73caab1efed2d69290dfdcb87ac6"
+    }
+  ]
+}

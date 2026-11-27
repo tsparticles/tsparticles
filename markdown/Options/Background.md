@@ -97,8 +97,12 @@ const drawBackground = (ctx: BackgroundDrawContext, delta: IDelta): void => {
 When `element` is set, the element's current visual content is drawn onto the main canvas each frame. The element is **not managed** by the engine — external code handles its rendering.
 
 ```ts
+import { createEngine } from "@tsparticles/engine";
+
+const engine = createEngine();
+
 // Auto-draw an external <video> element as background
-tsParticles.load({
+engine.load({
   id: "tsparticles",
   options: {
     background: {
@@ -120,9 +124,11 @@ Supported element types:
 Both layers run independently every frame. Element is drawn first, then the draw callback:
 
 ```ts
-import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
+import { createEngine, type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
 
-tsParticles.load({
+const engine = createEngine();
+
+engine.load({
   id: "tsparticles",
   options: {
     background: {

@@ -1,0 +1,4279 @@
+{
+  "revision": "f17e24921281aa3ec7d34b02e963ea97615ca587",
+  "archive": "tsparticles-engine-4.6.0.tgz",
+  "sha256": "8869986bdf9e7b80a4269f78a9ea85660582af03befca0d2e9f7b8738de4b62d",
+  "pack": {
+    "name": "@tsparticles/engine",
+    "version": "4.6.0",
+    "filename": "/var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-ogSfwa/tsparticles-engine-4.6.0.tgz",
+    "integrity": "sha512-aYUDQI+C5S7dklhf+UVOliCMxWfY+NcTJzFAHQOwuLKO/Nhlxj+6AITjx6xZiPHA4A0q2h4davKUNwVTxse8xw==",
+    "size": 212352,
+    "files": [
+      {
+        "path": "browser/browser.js"
+      },
+      {
+        "path": "browser/Core/CanvasManager.js"
+      },
+      {
+        "path": "browser/Core/Container.js"
+      },
+      {
+        "path": "browser/Core/Engine.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/Colors.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/DataFromUrlParams.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IBounds.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/ICircleBouncer.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IColorManager.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IContainerPlugin.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/ICoordinates.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IDelta.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IDimension.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IDistance.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IDrawParticleParams.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IEffectDrawer.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/ILoadParams.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IPalette.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleCanvasBounds.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleColorStyle.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleHslAnimation.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleLife.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleModifier.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleOpacityData.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleRetinaProps.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleRoll.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleRotateData.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleTransformValues.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleUpdater.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IParticleValueAnimation.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IPlugin.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IPositionFromSizeParams.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IRangeValue.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IShapeDrawData.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IShapeDrawer.js"
+      },
+      {
+        "path": "browser/Core/Interfaces/IShapeValues.js"
+      },
+      {
+        "path": "browser/Core/Particle.js"
+      },
+      {
+        "path": "browser/Core/ParticlesManager.js"
+      },
+      {
+        "path": "browser/Core/RenderManager.js"
+      },
+      {
+        "path": "browser/Core/Retina.js"
+      },
+      {
+        "path": "browser/Core/Utils/CanvasOwnership.js"
+      },
+      {
+        "path": "browser/Core/Utils/Constants.js"
+      },
+      {
+        "path": "browser/Core/Utils/EventListeners.js"
+      },
+      {
+        "path": "browser/Core/Utils/PluginManager.js"
+      },
+      {
+        "path": "browser/Core/Utils/Ranges.js"
+      },
+      {
+        "path": "browser/Core/Utils/SpatialHashGrid.js"
+      },
+      {
+        "path": "browser/Core/Utils/Vectors.js"
+      },
+      {
+        "path": "browser/createEngine.js"
+      },
+      {
+        "path": "browser/Enums/AnimationStatus.js"
+      },
+      {
+        "path": "browser/Enums/Directions/MoveDirection.js"
+      },
+      {
+        "path": "browser/Enums/Directions/OutModeDirection.js"
+      },
+      {
+        "path": "browser/Enums/Directions/RotateDirection.js"
+      },
+      {
+        "path": "browser/Enums/DrawLayer.js"
+      },
+      {
+        "path": "browser/Enums/Modes/AnimationMode.js"
+      },
+      {
+        "path": "browser/Enums/Modes/HdrMode.js"
+      },
+      {
+        "path": "browser/Enums/Modes/LimitMode.js"
+      },
+      {
+        "path": "browser/Enums/Modes/OutMode.js"
+      },
+      {
+        "path": "browser/Enums/Modes/PixelMode.js"
+      },
+      {
+        "path": "browser/Enums/RangeType.js"
+      },
+      {
+        "path": "browser/Enums/Types/AlterType.js"
+      },
+      {
+        "path": "browser/Enums/Types/DestroyType.js"
+      },
+      {
+        "path": "browser/Enums/Types/EventType.js"
+      },
+      {
+        "path": "browser/Enums/Types/GradientType.js"
+      },
+      {
+        "path": "browser/Enums/Types/ParticleOutType.js"
+      },
+      {
+        "path": "browser/Enums/Types/StartValueType.js"
+      },
+      {
+        "path": "browser/export-types.js"
+      },
+      {
+        "path": "browser/exports.js"
+      },
+      {
+        "path": "browser/index.js"
+      },
+      {
+        "path": "browser/index.lazy.js"
+      },
+      {
+        "path": "browser/Options/Classes/AnimatableColor.js"
+      },
+      {
+        "path": "browser/Options/Classes/AnimationOptions.js"
+      },
+      {
+        "path": "browser/Options/Classes/Background/Background.js"
+      },
+      {
+        "path": "browser/Options/Classes/ColorAnimation.js"
+      },
+      {
+        "path": "browser/Options/Classes/FullScreen/FullScreen.js"
+      },
+      {
+        "path": "browser/Options/Classes/HDROptions.js"
+      },
+      {
+        "path": "browser/Options/Classes/HslAnimation.js"
+      },
+      {
+        "path": "browser/Options/Classes/Options.js"
+      },
+      {
+        "path": "browser/Options/Classes/OptionsColor.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Bounce/ParticlesBounce.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Effect/Effect.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Fill.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/Move.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/MoveAngle.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/MoveCenter.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/MoveGravity.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/OutModes.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/Path/MovePath.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Move/Spin.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Number/ParticlesDensity.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Number/ParticlesNumber.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Number/ParticlesNumberLimit.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Paint.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/ParticlesOptions.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Shape/Shape.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/Stroke.js"
+      },
+      {
+        "path": "browser/Options/Classes/Particles/ZIndex/ZIndex.js"
+      },
+      {
+        "path": "browser/Options/Classes/ResizeEvent.js"
+      },
+      {
+        "path": "browser/Options/Classes/ValueWithRandom.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Background/IBackground.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/FullScreen/IFullScreen.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IAnimatable.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IAnimatableColor.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IAnimation.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IColorAnimation.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IHDROptions.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IHslAnimation.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IOptionLoader.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IOptions.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IOptionsColor.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IResizeEvent.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/IValueWithRandom.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Bounce/IParticlesBounce.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Effect/IEffect.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/IFill.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/IPaint.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/IParticlesOptions.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/IStroke.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/IMove.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/IMoveAngle.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/IMoveCenter.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/IMoveGravity.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/IOutModes.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/ISpin.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Move/Path/IMovePath.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Number/IParticlesDensity.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Number/IParticlesNumber.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Number/IParticlesNumberLimit.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/Shape/IShape.js"
+      },
+      {
+        "path": "browser/Options/Interfaces/Particles/ZIndex/IZIndex.js"
+      },
+      {
+        "path": "browser/package.json"
+      },
+      {
+        "path": "browser/Types/CustomEventArgs.js"
+      },
+      {
+        "path": "browser/Types/CustomEventListener.js"
+      },
+      {
+        "path": "browser/Types/EasingFunction.js"
+      },
+      {
+        "path": "browser/Types/EngineInitializers.js"
+      },
+      {
+        "path": "browser/Types/ExportResult.js"
+      },
+      {
+        "path": "browser/Types/ISourceOptions.js"
+      },
+      {
+        "path": "browser/Types/ParticlesGroups.js"
+      },
+      {
+        "path": "browser/Types/PathOptions.js"
+      },
+      {
+        "path": "browser/Types/RangeValue.js"
+      },
+      {
+        "path": "browser/Types/RecursivePartial.js"
+      },
+      {
+        "path": "browser/Types/ShapeData.js"
+      },
+      {
+        "path": "browser/Types/SingleOrMultiple.js"
+      },
+      {
+        "path": "browser/Utils/ColorUtils.js"
+      },
+      {
+        "path": "browser/Utils/ErrorCodes.js"
+      },
+      {
+        "path": "browser/Utils/ErrorMessages.js"
+      },
+      {
+        "path": "browser/Utils/ErrorUtils.js"
+      },
+      {
+        "path": "browser/Utils/EventDispatcher.js"
+      },
+      {
+        "path": "browser/Utils/LogUtils.js"
+      },
+      {
+        "path": "browser/Utils/MathUtils.js"
+      },
+      {
+        "path": "browser/Utils/OptionLoader.js"
+      },
+      {
+        "path": "browser/Utils/OptionsUtils.js"
+      },
+      {
+        "path": "browser/Utils/ParticlesOptionsLoader.js"
+      },
+      {
+        "path": "browser/Utils/TypeUtils.js"
+      },
+      {
+        "path": "browser/Utils/Utils.js"
+      },
+      {
+        "path": "cjs/browser.js"
+      },
+      {
+        "path": "cjs/Core/CanvasManager.js"
+      },
+      {
+        "path": "cjs/Core/Container.js"
+      },
+      {
+        "path": "cjs/Core/Engine.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/Colors.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/DataFromUrlParams.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IBounds.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/ICircleBouncer.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IColorManager.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IContainerPlugin.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/ICoordinates.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IDelta.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IDimension.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IDistance.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IDrawParticleParams.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IEffectDrawer.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/ILoadParams.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IPalette.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleCanvasBounds.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleColorStyle.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleHslAnimation.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleLife.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleModifier.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleOpacityData.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleRetinaProps.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleRoll.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleRotateData.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleTransformValues.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleUpdater.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IParticleValueAnimation.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IPlugin.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IPositionFromSizeParams.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IRangeValue.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IShapeDrawData.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IShapeDrawer.js"
+      },
+      {
+        "path": "cjs/Core/Interfaces/IShapeValues.js"
+      },
+      {
+        "path": "cjs/Core/Particle.js"
+      },
+      {
+        "path": "cjs/Core/ParticlesManager.js"
+      },
+      {
+        "path": "cjs/Core/RenderManager.js"
+      },
+      {
+        "path": "cjs/Core/Retina.js"
+      },
+      {
+        "path": "cjs/Core/Utils/CanvasOwnership.js"
+      },
+      {
+        "path": "cjs/Core/Utils/Constants.js"
+      },
+      {
+        "path": "cjs/Core/Utils/EventListeners.js"
+      },
+      {
+        "path": "cjs/Core/Utils/PluginManager.js"
+      },
+      {
+        "path": "cjs/Core/Utils/Ranges.js"
+      },
+      {
+        "path": "cjs/Core/Utils/SpatialHashGrid.js"
+      },
+      {
+        "path": "cjs/Core/Utils/Vectors.js"
+      },
+      {
+        "path": "cjs/createEngine.js"
+      },
+      {
+        "path": "cjs/Enums/AnimationStatus.js"
+      },
+      {
+        "path": "cjs/Enums/Directions/MoveDirection.js"
+      },
+      {
+        "path": "cjs/Enums/Directions/OutModeDirection.js"
+      },
+      {
+        "path": "cjs/Enums/Directions/RotateDirection.js"
+      },
+      {
+        "path": "cjs/Enums/DrawLayer.js"
+      },
+      {
+        "path": "cjs/Enums/Modes/AnimationMode.js"
+      },
+      {
+        "path": "cjs/Enums/Modes/HdrMode.js"
+      },
+      {
+        "path": "cjs/Enums/Modes/LimitMode.js"
+      },
+      {
+        "path": "cjs/Enums/Modes/OutMode.js"
+      },
+      {
+        "path": "cjs/Enums/Modes/PixelMode.js"
+      },
+      {
+        "path": "cjs/Enums/RangeType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/AlterType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/DestroyType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/EventType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/GradientType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/ParticleOutType.js"
+      },
+      {
+        "path": "cjs/Enums/Types/StartValueType.js"
+      },
+      {
+        "path": "cjs/export-types.js"
+      },
+      {
+        "path": "cjs/exports.js"
+      },
+      {
+        "path": "cjs/index.js"
+      },
+      {
+        "path": "cjs/index.lazy.js"
+      },
+      {
+        "path": "cjs/Options/Classes/AnimatableColor.js"
+      },
+      {
+        "path": "cjs/Options/Classes/AnimationOptions.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Background/Background.js"
+      },
+      {
+        "path": "cjs/Options/Classes/ColorAnimation.js"
+      },
+      {
+        "path": "cjs/Options/Classes/FullScreen/FullScreen.js"
+      },
+      {
+        "path": "cjs/Options/Classes/HDROptions.js"
+      },
+      {
+        "path": "cjs/Options/Classes/HslAnimation.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Options.js"
+      },
+      {
+        "path": "cjs/Options/Classes/OptionsColor.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Effect/Effect.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Fill.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/Move.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/MoveAngle.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/MoveCenter.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/MoveGravity.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/OutModes.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/Path/MovePath.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Move/Spin.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Number/ParticlesDensity.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Number/ParticlesNumber.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Paint.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/ParticlesOptions.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Shape/Shape.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/Stroke.js"
+      },
+      {
+        "path": "cjs/Options/Classes/Particles/ZIndex/ZIndex.js"
+      },
+      {
+        "path": "cjs/Options/Classes/ResizeEvent.js"
+      },
+      {
+        "path": "cjs/Options/Classes/ValueWithRandom.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Background/IBackground.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/FullScreen/IFullScreen.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IAnimatable.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IAnimatableColor.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IAnimation.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IColorAnimation.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IHDROptions.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IHslAnimation.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IOptionLoader.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IOptions.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IOptionsColor.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IResizeEvent.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/IValueWithRandom.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Bounce/IParticlesBounce.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Effect/IEffect.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/IFill.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/IPaint.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/IParticlesOptions.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/IStroke.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/IMove.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/IMoveAngle.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/IMoveCenter.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/IMoveGravity.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/IOutModes.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/ISpin.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Move/Path/IMovePath.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Number/IParticlesDensity.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Number/IParticlesNumber.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Number/IParticlesNumberLimit.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/Shape/IShape.js"
+      },
+      {
+        "path": "cjs/Options/Interfaces/Particles/ZIndex/IZIndex.js"
+      },
+      {
+        "path": "cjs/package.json"
+      },
+      {
+        "path": "cjs/Types/CustomEventArgs.js"
+      },
+      {
+        "path": "cjs/Types/CustomEventListener.js"
+      },
+      {
+        "path": "cjs/Types/EasingFunction.js"
+      },
+      {
+        "path": "cjs/Types/EngineInitializers.js"
+      },
+      {
+        "path": "cjs/Types/ExportResult.js"
+      },
+      {
+        "path": "cjs/Types/ISourceOptions.js"
+      },
+      {
+        "path": "cjs/Types/ParticlesGroups.js"
+      },
+      {
+        "path": "cjs/Types/PathOptions.js"
+      },
+      {
+        "path": "cjs/Types/RangeValue.js"
+      },
+      {
+        "path": "cjs/Types/RecursivePartial.js"
+      },
+      {
+        "path": "cjs/Types/ShapeData.js"
+      },
+      {
+        "path": "cjs/Types/SingleOrMultiple.js"
+      },
+      {
+        "path": "cjs/Utils/ColorUtils.js"
+      },
+      {
+        "path": "cjs/Utils/ErrorCodes.js"
+      },
+      {
+        "path": "cjs/Utils/ErrorMessages.js"
+      },
+      {
+        "path": "cjs/Utils/ErrorUtils.js"
+      },
+      {
+        "path": "cjs/Utils/EventDispatcher.js"
+      },
+      {
+        "path": "cjs/Utils/LogUtils.js"
+      },
+      {
+        "path": "cjs/Utils/MathUtils.js"
+      },
+      {
+        "path": "cjs/Utils/OptionLoader.js"
+      },
+      {
+        "path": "cjs/Utils/OptionsUtils.js"
+      },
+      {
+        "path": "cjs/Utils/ParticlesOptionsLoader.js"
+      },
+      {
+        "path": "cjs/Utils/TypeUtils.js"
+      },
+      {
+        "path": "cjs/Utils/Utils.js"
+      },
+      {
+        "path": "esm/browser.js"
+      },
+      {
+        "path": "esm/Core/CanvasManager.js"
+      },
+      {
+        "path": "esm/Core/Container.js"
+      },
+      {
+        "path": "esm/Core/Engine.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/Colors.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/DataFromUrlParams.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IBounds.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/ICircleBouncer.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IColorManager.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IContainerPlugin.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/ICoordinates.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IDelta.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IDimension.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IDistance.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IDrawParticleParams.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IEffectDrawer.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/ILoadParams.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IPalette.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleCanvasBounds.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleColorStyle.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleHslAnimation.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleLife.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleModifier.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleOpacityData.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleRetinaProps.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleRoll.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleRotateData.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleTransformValues.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleUpdater.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IParticleValueAnimation.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IPlugin.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IPositionFromSizeParams.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IRangeValue.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IShapeDrawData.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IShapeDrawer.js"
+      },
+      {
+        "path": "esm/Core/Interfaces/IShapeValues.js"
+      },
+      {
+        "path": "esm/Core/Particle.js"
+      },
+      {
+        "path": "esm/Core/ParticlesManager.js"
+      },
+      {
+        "path": "esm/Core/RenderManager.js"
+      },
+      {
+        "path": "esm/Core/Retina.js"
+      },
+      {
+        "path": "esm/Core/Utils/CanvasOwnership.js"
+      },
+      {
+        "path": "esm/Core/Utils/Constants.js"
+      },
+      {
+        "path": "esm/Core/Utils/EventListeners.js"
+      },
+      {
+        "path": "esm/Core/Utils/PluginManager.js"
+      },
+      {
+        "path": "esm/Core/Utils/Ranges.js"
+      },
+      {
+        "path": "esm/Core/Utils/SpatialHashGrid.js"
+      },
+      {
+        "path": "esm/Core/Utils/Vectors.js"
+      },
+      {
+        "path": "esm/createEngine.js"
+      },
+      {
+        "path": "esm/Enums/AnimationStatus.js"
+      },
+      {
+        "path": "esm/Enums/Directions/MoveDirection.js"
+      },
+      {
+        "path": "esm/Enums/Directions/OutModeDirection.js"
+      },
+      {
+        "path": "esm/Enums/Directions/RotateDirection.js"
+      },
+      {
+        "path": "esm/Enums/DrawLayer.js"
+      },
+      {
+        "path": "esm/Enums/Modes/AnimationMode.js"
+      },
+      {
+        "path": "esm/Enums/Modes/HdrMode.js"
+      },
+      {
+        "path": "esm/Enums/Modes/LimitMode.js"
+      },
+      {
+        "path": "esm/Enums/Modes/OutMode.js"
+      },
+      {
+        "path": "esm/Enums/Modes/PixelMode.js"
+      },
+      {
+        "path": "esm/Enums/RangeType.js"
+      },
+      {
+        "path": "esm/Enums/Types/AlterType.js"
+      },
+      {
+        "path": "esm/Enums/Types/DestroyType.js"
+      },
+      {
+        "path": "esm/Enums/Types/EventType.js"
+      },
+      {
+        "path": "esm/Enums/Types/GradientType.js"
+      },
+      {
+        "path": "esm/Enums/Types/ParticleOutType.js"
+      },
+      {
+        "path": "esm/Enums/Types/StartValueType.js"
+      },
+      {
+        "path": "esm/export-types.js"
+      },
+      {
+        "path": "esm/exports.js"
+      },
+      {
+        "path": "esm/index.js"
+      },
+      {
+        "path": "esm/index.lazy.js"
+      },
+      {
+        "path": "esm/Options/Classes/AnimatableColor.js"
+      },
+      {
+        "path": "esm/Options/Classes/AnimationOptions.js"
+      },
+      {
+        "path": "esm/Options/Classes/Background/Background.js"
+      },
+      {
+        "path": "esm/Options/Classes/ColorAnimation.js"
+      },
+      {
+        "path": "esm/Options/Classes/FullScreen/FullScreen.js"
+      },
+      {
+        "path": "esm/Options/Classes/HDROptions.js"
+      },
+      {
+        "path": "esm/Options/Classes/HslAnimation.js"
+      },
+      {
+        "path": "esm/Options/Classes/Options.js"
+      },
+      {
+        "path": "esm/Options/Classes/OptionsColor.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Bounce/ParticlesBounce.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Effect/Effect.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Fill.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/Move.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/MoveAngle.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/MoveCenter.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/MoveGravity.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/OutModes.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/Path/MovePath.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Move/Spin.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Number/ParticlesDensity.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Number/ParticlesNumber.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Number/ParticlesNumberLimit.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Paint.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/ParticlesOptions.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Shape/Shape.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/Stroke.js"
+      },
+      {
+        "path": "esm/Options/Classes/Particles/ZIndex/ZIndex.js"
+      },
+      {
+        "path": "esm/Options/Classes/ResizeEvent.js"
+      },
+      {
+        "path": "esm/Options/Classes/ValueWithRandom.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Background/IBackground.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/FullScreen/IFullScreen.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IAnimatable.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IAnimatableColor.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IAnimation.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IColorAnimation.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IHDROptions.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IHslAnimation.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IOptionLoader.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IOptions.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IOptionsColor.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IResizeEvent.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/IValueWithRandom.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Bounce/IParticlesBounce.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Effect/IEffect.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/IFill.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/IPaint.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/IParticlesOptions.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/IStroke.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/IMove.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/IMoveAngle.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/IMoveCenter.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/IMoveGravity.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/IOutModes.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/ISpin.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Move/Path/IMovePath.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Number/IParticlesDensity.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Number/IParticlesNumber.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Number/IParticlesNumberLimit.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/Shape/IShape.js"
+      },
+      {
+        "path": "esm/Options/Interfaces/Particles/ZIndex/IZIndex.js"
+      },
+      {
+        "path": "esm/package.json"
+      },
+      {
+        "path": "esm/Types/CustomEventArgs.js"
+      },
+      {
+        "path": "esm/Types/CustomEventListener.js"
+      },
+      {
+        "path": "esm/Types/EasingFunction.js"
+      },
+      {
+        "path": "esm/Types/EngineInitializers.js"
+      },
+      {
+        "path": "esm/Types/ExportResult.js"
+      },
+      {
+        "path": "esm/Types/ISourceOptions.js"
+      },
+      {
+        "path": "esm/Types/ParticlesGroups.js"
+      },
+      {
+        "path": "esm/Types/PathOptions.js"
+      },
+      {
+        "path": "esm/Types/RangeValue.js"
+      },
+      {
+        "path": "esm/Types/RecursivePartial.js"
+      },
+      {
+        "path": "esm/Types/ShapeData.js"
+      },
+      {
+        "path": "esm/Types/SingleOrMultiple.js"
+      },
+      {
+        "path": "esm/Utils/ColorUtils.js"
+      },
+      {
+        "path": "esm/Utils/ErrorCodes.js"
+      },
+      {
+        "path": "esm/Utils/ErrorMessages.js"
+      },
+      {
+        "path": "esm/Utils/ErrorUtils.js"
+      },
+      {
+        "path": "esm/Utils/EventDispatcher.js"
+      },
+      {
+        "path": "esm/Utils/LogUtils.js"
+      },
+      {
+        "path": "esm/Utils/MathUtils.js"
+      },
+      {
+        "path": "esm/Utils/OptionLoader.js"
+      },
+      {
+        "path": "esm/Utils/OptionsUtils.js"
+      },
+      {
+        "path": "esm/Utils/ParticlesOptionsLoader.js"
+      },
+      {
+        "path": "esm/Utils/TypeUtils.js"
+      },
+      {
+        "path": "esm/Utils/Utils.js"
+      },
+      {
+        "path": "LICENSE"
+      },
+      {
+        "path": "package.json"
+      },
+      {
+        "path": "README.md"
+      },
+      {
+        "path": "report.html"
+      },
+      {
+        "path": "scripts/install.js"
+      },
+      {
+        "path": "tsparticles.engine.js"
+      },
+      {
+        "path": "tsparticles.engine.min.js"
+      },
+      {
+        "path": "types/browser.d.ts"
+      },
+      {
+        "path": "types/Core/CanvasManager.d.ts"
+      },
+      {
+        "path": "types/Core/Container.d.ts"
+      },
+      {
+        "path": "types/Core/Engine.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/Colors.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/DataFromUrlParams.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IBounds.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/ICircleBouncer.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IColorManager.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IContainerPlugin.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/ICoordinates.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IDelta.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IDimension.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IDistance.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IDrawParticleParams.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IEffectDrawer.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/ILoadParams.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IPalette.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleCanvasBounds.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleColorStyle.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleHslAnimation.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleLife.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleModifier.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleOpacityData.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleRetinaProps.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleRoll.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleRotateData.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleTransformValues.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleUpdater.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IParticleValueAnimation.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IPlugin.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IPositionFromSizeParams.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IRangeValue.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IShapeDrawData.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IShapeDrawer.d.ts"
+      },
+      {
+        "path": "types/Core/Interfaces/IShapeValues.d.ts"
+      },
+      {
+        "path": "types/Core/Particle.d.ts"
+      },
+      {
+        "path": "types/Core/ParticlesManager.d.ts"
+      },
+      {
+        "path": "types/Core/RenderManager.d.ts"
+      },
+      {
+        "path": "types/Core/Retina.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/CanvasOwnership.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/Constants.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/EventListeners.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/PluginManager.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/Ranges.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/SpatialHashGrid.d.ts"
+      },
+      {
+        "path": "types/Core/Utils/Vectors.d.ts"
+      },
+      {
+        "path": "types/createEngine.d.ts"
+      },
+      {
+        "path": "types/Enums/AnimationStatus.d.ts"
+      },
+      {
+        "path": "types/Enums/Directions/MoveDirection.d.ts"
+      },
+      {
+        "path": "types/Enums/Directions/OutModeDirection.d.ts"
+      },
+      {
+        "path": "types/Enums/Directions/RotateDirection.d.ts"
+      },
+      {
+        "path": "types/Enums/DrawLayer.d.ts"
+      },
+      {
+        "path": "types/Enums/Modes/AnimationMode.d.ts"
+      },
+      {
+        "path": "types/Enums/Modes/HdrMode.d.ts"
+      },
+      {
+        "path": "types/Enums/Modes/LimitMode.d.ts"
+      },
+      {
+        "path": "types/Enums/Modes/OutMode.d.ts"
+      },
+      {
+        "path": "types/Enums/Modes/PixelMode.d.ts"
+      },
+      {
+        "path": "types/Enums/RangeType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/AlterType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/DestroyType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/EventType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/GradientType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/ParticleOutType.d.ts"
+      },
+      {
+        "path": "types/Enums/Types/StartValueType.d.ts"
+      },
+      {
+        "path": "types/export-types.d.ts"
+      },
+      {
+        "path": "types/exports.d.ts"
+      },
+      {
+        "path": "types/index.d.ts"
+      },
+      {
+        "path": "types/index.lazy.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/AnimatableColor.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/AnimationOptions.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Background/Background.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/ColorAnimation.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/FullScreen/FullScreen.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/HDROptions.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/HslAnimation.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Options.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/OptionsColor.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Bounce/ParticlesBounce.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Bounce/ParticlesBounceFactor.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Effect/Effect.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Fill.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/Move.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/MoveAngle.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/MoveCenter.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/MoveGravity.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/OutModes.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/Path/MovePath.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Move/Spin.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Number/ParticlesDensity.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Number/ParticlesNumber.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Number/ParticlesNumberLimit.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Paint.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/ParticlesOptions.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Shape/Shape.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/Stroke.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/Particles/ZIndex/ZIndex.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/ResizeEvent.d.ts"
+      },
+      {
+        "path": "types/Options/Classes/ValueWithRandom.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Background/IBackground.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/FullScreen/IFullScreen.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IAnimatable.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IAnimatableColor.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IAnimation.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IColorAnimation.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IHDROptions.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IHslAnimation.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IOptionLoader.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IOptions.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IOptionsColor.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IResizeEvent.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/IValueWithRandom.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Bounce/IParticlesBounce.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Effect/IEffect.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/IFill.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/IPaint.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/IParticlesOptions.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/IStroke.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/IMove.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/IMoveAngle.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/IMoveCenter.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/IMoveGravity.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/IOutModes.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/ISpin.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Move/Path/IMovePath.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Number/IParticlesDensity.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Number/IParticlesNumber.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Number/IParticlesNumberLimit.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/Shape/IShape.d.ts"
+      },
+      {
+        "path": "types/Options/Interfaces/Particles/ZIndex/IZIndex.d.ts"
+      },
+      {
+        "path": "types/Types/CustomEventArgs.d.ts"
+      },
+      {
+        "path": "types/Types/CustomEventListener.d.ts"
+      },
+      {
+        "path": "types/Types/EasingFunction.d.ts"
+      },
+      {
+        "path": "types/Types/EngineInitializers.d.ts"
+      },
+      {
+        "path": "types/Types/ExportResult.d.ts"
+      },
+      {
+        "path": "types/Types/ISourceOptions.d.ts"
+      },
+      {
+        "path": "types/Types/ParticlesGroups.d.ts"
+      },
+      {
+        "path": "types/Types/PathOptions.d.ts"
+      },
+      {
+        "path": "types/Types/RangeValue.d.ts"
+      },
+      {
+        "path": "types/Types/RecursivePartial.d.ts"
+      },
+      {
+        "path": "types/Types/ShapeData.d.ts"
+      },
+      {
+        "path": "types/Types/SingleOrMultiple.d.ts"
+      },
+      {
+        "path": "types/Utils/ColorUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/ErrorCodes.d.ts"
+      },
+      {
+        "path": "types/Utils/ErrorMessages.d.ts"
+      },
+      {
+        "path": "types/Utils/ErrorUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/EventDispatcher.d.ts"
+      },
+      {
+        "path": "types/Utils/LogUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/MathUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/OptionLoader.d.ts"
+      },
+      {
+        "path": "types/Utils/OptionsUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/ParticlesOptionsLoader.d.ts"
+      },
+      {
+        "path": "types/Utils/TypeUtils.d.ts"
+      },
+      {
+        "path": "types/Utils/Utils.d.ts"
+      }
+    ]
+  },
+  "install": "Progress: resolved 1, reused 0, downloaded 0, added 0\nPackages are cloned from the content-addressable store to the virtual store.\n  Content-addressable store is at: /var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/v5-installed-ogSfwa/store/v11\n  Virtual store is at:             node_modules/.pnpm\nPackages: +1\n+\nProgress: resolved 1, reused 0, downloaded 1, added 1, done\n\ndependencies:\n+ @tsparticles/engine 4.6.0\n\nDone in 169ms using pnpm v12.20.0\n",
+  "conditions": [
+    {
+      "mode": "import",
+      "subpath": "",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/esm/index.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": []
+    },
+    {
+      "mode": "import",
+      "subpath": "/lazy",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/esm/index.lazy.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": []
+    },
+    {
+      "mode": "require",
+      "subpath": "",
+      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/cjs/index.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": [
+        "cjs/index.js",
+        "cjs/createEngine.js",
+        "cjs/Core/Engine.js",
+        "cjs/Utils/ErrorUtils.js",
+        "cjs/Utils/ErrorMessages.js",
+        "cjs/Utils/ErrorCodes.js",
+        "cjs/Core/Utils/CanvasOwnership.js",
+        "cjs/Utils/Utils.js",
+        "cjs/Core/Utils/Constants.js",
+        "cjs/Utils/MathUtils.js",
+        "cjs/Enums/Directions/MoveDirection.js",
+        "cjs/Core/Utils/Vectors.js",
+        "cjs/Utils/TypeUtils.js",
+        "cjs/Enums/Directions/OutModeDirection.js",
+        "cjs/Enums/Modes/PixelMode.js",
+        "cjs/Utils/LogUtils.js",
+        "cjs/Utils/EventDispatcher.js",
+        "cjs/Core/Utils/PluginManager.js",
+        "cjs/Enums/Types/EventType.js",
+        "cjs/exports.js",
+        "cjs/Core/Utils/Ranges.js",
+        "cjs/Enums/RangeType.js",
+        "cjs/Enums/Directions/RotateDirection.js",
+        "cjs/Enums/Modes/AnimationMode.js",
+        "cjs/Enums/Modes/HdrMode.js",
+        "cjs/Enums/Modes/LimitMode.js",
+        "cjs/Enums/Modes/OutMode.js",
+        "cjs/Enums/Types/AlterType.js",
+        "cjs/Enums/Types/DestroyType.js",
+        "cjs/Enums/Types/GradientType.js",
+        "cjs/Enums/Types/ParticleOutType.js",
+        "cjs/Enums/Types/StartValueType.js",
+        "cjs/Enums/AnimationStatus.js",
+        "cjs/Enums/DrawLayer.js",
+        "cjs/Options/Classes/AnimatableColor.js",
+        "cjs/Options/Classes/HslAnimation.js",
+        "cjs/Options/Classes/ColorAnimation.js",
+        "cjs/Utils/OptionsUtils.js",
+        "cjs/Options/Classes/AnimationOptions.js",
+        "cjs/Utils/OptionLoader.js",
+        "cjs/Options/Classes/OptionsColor.js",
+        "cjs/Options/Classes/Background/Background.js",
+        "cjs/Options/Classes/FullScreen/FullScreen.js",
+        "cjs/Options/Classes/HDROptions.js",
+        "cjs/Options/Classes/Options.js",
+        "cjs/Options/Classes/ResizeEvent.js",
+        "cjs/Utils/ParticlesOptionsLoader.js",
+        "cjs/Options/Classes/Particles/ParticlesOptions.js",
+        "cjs/Options/Classes/Particles/Effect/Effect.js",
+        "cjs/Options/Classes/Particles/Fill.js",
+        "cjs/Options/Classes/Particles/Move/Move.js",
+        "cjs/Options/Classes/Particles/Move/MoveAngle.js",
+        "cjs/Options/Classes/Particles/Move/MoveCenter.js",
+        "cjs/Options/Classes/Particles/Move/MoveGravity.js",
+        "cjs/Options/Classes/Particles/Move/Path/MovePath.js",
+        "cjs/Options/Classes/ValueWithRandom.js",
+        "cjs/Options/Classes/Particles/Move/OutModes.js",
+        "cjs/Options/Classes/Particles/Move/Spin.js",
+        "cjs/Options/Classes/Particles/Paint.js",
+        "cjs/Options/Classes/Particles/Stroke.js",
+        "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+        "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesNumber.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesDensity.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+        "cjs/Options/Classes/Particles/Shape/Shape.js",
+        "cjs/Options/Classes/Particles/ZIndex/ZIndex.js",
+        "cjs/Utils/ColorUtils.js"
+      ]
+    },
+    {
+      "mode": "require",
+      "subpath": "/lazy",
+      "resolved": "/private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/cjs/index.lazy.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": [
+        "cjs/index.lazy.js",
+        "cjs/createEngine.js",
+        "cjs/Core/Engine.js",
+        "cjs/Utils/ErrorUtils.js",
+        "cjs/Utils/ErrorMessages.js",
+        "cjs/Utils/ErrorCodes.js",
+        "cjs/Core/Utils/CanvasOwnership.js",
+        "cjs/Utils/Utils.js",
+        "cjs/Core/Utils/Constants.js",
+        "cjs/Utils/MathUtils.js",
+        "cjs/Enums/Directions/MoveDirection.js",
+        "cjs/Core/Utils/Vectors.js",
+        "cjs/Utils/TypeUtils.js",
+        "cjs/Enums/Directions/OutModeDirection.js",
+        "cjs/Enums/Modes/PixelMode.js",
+        "cjs/Utils/LogUtils.js",
+        "cjs/Utils/EventDispatcher.js",
+        "cjs/Core/Utils/PluginManager.js",
+        "cjs/Enums/Types/EventType.js",
+        "cjs/exports.js",
+        "cjs/Core/Utils/Ranges.js",
+        "cjs/Enums/RangeType.js",
+        "cjs/Enums/Directions/RotateDirection.js",
+        "cjs/Enums/Modes/AnimationMode.js",
+        "cjs/Enums/Modes/HdrMode.js",
+        "cjs/Enums/Modes/LimitMode.js",
+        "cjs/Enums/Modes/OutMode.js",
+        "cjs/Enums/Types/AlterType.js",
+        "cjs/Enums/Types/DestroyType.js",
+        "cjs/Enums/Types/GradientType.js",
+        "cjs/Enums/Types/ParticleOutType.js",
+        "cjs/Enums/Types/StartValueType.js",
+        "cjs/Enums/AnimationStatus.js",
+        "cjs/Enums/DrawLayer.js",
+        "cjs/Options/Classes/AnimatableColor.js",
+        "cjs/Options/Classes/HslAnimation.js",
+        "cjs/Options/Classes/ColorAnimation.js",
+        "cjs/Utils/OptionsUtils.js",
+        "cjs/Options/Classes/AnimationOptions.js",
+        "cjs/Utils/OptionLoader.js",
+        "cjs/Options/Classes/OptionsColor.js",
+        "cjs/Options/Classes/Background/Background.js",
+        "cjs/Options/Classes/FullScreen/FullScreen.js",
+        "cjs/Options/Classes/HDROptions.js",
+        "cjs/Options/Classes/Options.js",
+        "cjs/Options/Classes/ResizeEvent.js",
+        "cjs/Utils/ParticlesOptionsLoader.js",
+        "cjs/Options/Classes/Particles/ParticlesOptions.js",
+        "cjs/Options/Classes/Particles/Effect/Effect.js",
+        "cjs/Options/Classes/Particles/Fill.js",
+        "cjs/Options/Classes/Particles/Move/Move.js",
+        "cjs/Options/Classes/Particles/Move/MoveAngle.js",
+        "cjs/Options/Classes/Particles/Move/MoveCenter.js",
+        "cjs/Options/Classes/Particles/Move/MoveGravity.js",
+        "cjs/Options/Classes/Particles/Move/Path/MovePath.js",
+        "cjs/Options/Classes/ValueWithRandom.js",
+        "cjs/Options/Classes/Particles/Move/OutModes.js",
+        "cjs/Options/Classes/Particles/Move/Spin.js",
+        "cjs/Options/Classes/Particles/Paint.js",
+        "cjs/Options/Classes/Particles/Stroke.js",
+        "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+        "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesNumber.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesDensity.js",
+        "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+        "cjs/Options/Classes/Particles/Shape/Shape.js",
+        "cjs/Options/Classes/Particles/ZIndex/ZIndex.js",
+        "cjs/Utils/ColorUtils.js"
+      ]
+    },
+    {
+      "mode": "browser",
+      "subpath": "",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/esm/index.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": []
+    },
+    {
+      "mode": "browser",
+      "subpath": "/lazy",
+      "resolved": "file:///private<temporary>/node_modules/.pnpm/@tsparticles+engine@file+..+..+..+..+..+..+..+var+folders+zw+sylb54y14d1bjbhmhfcbscf000_b99610b8908800aa6cab3964d3dc7756/node_modules/@tsparticles/engine/esm/index.lazy.js",
+      "singleton": false,
+      "factory": "function",
+      "globals": [],
+      "loaded": []
+    }
+  ],
+  "cjs": {
+    "kind": "Per-file minification; unbundled CJS require/init and complete shipped CJS graph, not a browser tree-shaken consumer",
+    "compression": {
+      "gzip": 9,
+      "brotli": 11
+    },
+    "acquisitions": [
+      {
+        "subpath": "",
+        "modules": [
+          "cjs/index.js",
+          "cjs/createEngine.js",
+          "cjs/Core/Engine.js",
+          "cjs/Utils/ErrorUtils.js",
+          "cjs/Utils/ErrorMessages.js",
+          "cjs/Utils/ErrorCodes.js",
+          "cjs/Core/Utils/CanvasOwnership.js",
+          "cjs/Utils/Utils.js",
+          "cjs/Core/Utils/Constants.js",
+          "cjs/Utils/MathUtils.js",
+          "cjs/Enums/Directions/MoveDirection.js",
+          "cjs/Core/Utils/Vectors.js",
+          "cjs/Utils/TypeUtils.js",
+          "cjs/Enums/Directions/OutModeDirection.js",
+          "cjs/Enums/Modes/PixelMode.js",
+          "cjs/Utils/LogUtils.js",
+          "cjs/Utils/EventDispatcher.js",
+          "cjs/Core/Utils/PluginManager.js",
+          "cjs/Enums/Types/EventType.js",
+          "cjs/exports.js",
+          "cjs/Core/Utils/Ranges.js",
+          "cjs/Enums/RangeType.js",
+          "cjs/Enums/Directions/RotateDirection.js",
+          "cjs/Enums/Modes/AnimationMode.js",
+          "cjs/Enums/Modes/HdrMode.js",
+          "cjs/Enums/Modes/LimitMode.js",
+          "cjs/Enums/Modes/OutMode.js",
+          "cjs/Enums/Types/AlterType.js",
+          "cjs/Enums/Types/DestroyType.js",
+          "cjs/Enums/Types/GradientType.js",
+          "cjs/Enums/Types/ParticleOutType.js",
+          "cjs/Enums/Types/StartValueType.js",
+          "cjs/Enums/AnimationStatus.js",
+          "cjs/Enums/DrawLayer.js",
+          "cjs/Options/Classes/AnimatableColor.js",
+          "cjs/Options/Classes/HslAnimation.js",
+          "cjs/Options/Classes/ColorAnimation.js",
+          "cjs/Utils/OptionsUtils.js",
+          "cjs/Options/Classes/AnimationOptions.js",
+          "cjs/Utils/OptionLoader.js",
+          "cjs/Options/Classes/OptionsColor.js",
+          "cjs/Options/Classes/Background/Background.js",
+          "cjs/Options/Classes/FullScreen/FullScreen.js",
+          "cjs/Options/Classes/HDROptions.js",
+          "cjs/Options/Classes/Options.js",
+          "cjs/Options/Classes/ResizeEvent.js",
+          "cjs/Utils/ParticlesOptionsLoader.js",
+          "cjs/Options/Classes/Particles/ParticlesOptions.js",
+          "cjs/Options/Classes/Particles/Effect/Effect.js",
+          "cjs/Options/Classes/Particles/Fill.js",
+          "cjs/Options/Classes/Particles/Move/Move.js",
+          "cjs/Options/Classes/Particles/Move/MoveAngle.js",
+          "cjs/Options/Classes/Particles/Move/MoveCenter.js",
+          "cjs/Options/Classes/Particles/Move/MoveGravity.js",
+          "cjs/Options/Classes/Particles/Move/Path/MovePath.js",
+          "cjs/Options/Classes/ValueWithRandom.js",
+          "cjs/Options/Classes/Particles/Move/OutModes.js",
+          "cjs/Options/Classes/Particles/Move/Spin.js",
+          "cjs/Options/Classes/Particles/Paint.js",
+          "cjs/Options/Classes/Particles/Stroke.js",
+          "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+          "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesNumber.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesDensity.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+          "cjs/Options/Classes/Particles/Shape/Shape.js",
+          "cjs/Options/Classes/Particles/ZIndex/ZIndex.js",
+          "cjs/Utils/ColorUtils.js"
+        ],
+        "raw": {
+          "bytes": 126776,
+          "gzip": 36959,
+          "brotli": 32098
+        },
+        "min": {
+          "bytes": 82745,
+          "gzip": 30285,
+          "brotli": 26218
+        }
+      },
+      {
+        "subpath": "/lazy",
+        "modules": [
+          "cjs/index.lazy.js",
+          "cjs/createEngine.js",
+          "cjs/Core/Engine.js",
+          "cjs/Utils/ErrorUtils.js",
+          "cjs/Utils/ErrorMessages.js",
+          "cjs/Utils/ErrorCodes.js",
+          "cjs/Core/Utils/CanvasOwnership.js",
+          "cjs/Utils/Utils.js",
+          "cjs/Core/Utils/Constants.js",
+          "cjs/Utils/MathUtils.js",
+          "cjs/Enums/Directions/MoveDirection.js",
+          "cjs/Core/Utils/Vectors.js",
+          "cjs/Utils/TypeUtils.js",
+          "cjs/Enums/Directions/OutModeDirection.js",
+          "cjs/Enums/Modes/PixelMode.js",
+          "cjs/Utils/LogUtils.js",
+          "cjs/Utils/EventDispatcher.js",
+          "cjs/Core/Utils/PluginManager.js",
+          "cjs/Enums/Types/EventType.js",
+          "cjs/exports.js",
+          "cjs/Core/Utils/Ranges.js",
+          "cjs/Enums/RangeType.js",
+          "cjs/Enums/Directions/RotateDirection.js",
+          "cjs/Enums/Modes/AnimationMode.js",
+          "cjs/Enums/Modes/HdrMode.js",
+          "cjs/Enums/Modes/LimitMode.js",
+          "cjs/Enums/Modes/OutMode.js",
+          "cjs/Enums/Types/AlterType.js",
+          "cjs/Enums/Types/DestroyType.js",
+          "cjs/Enums/Types/GradientType.js",
+          "cjs/Enums/Types/ParticleOutType.js",
+          "cjs/Enums/Types/StartValueType.js",
+          "cjs/Enums/AnimationStatus.js",
+          "cjs/Enums/DrawLayer.js",
+          "cjs/Options/Classes/AnimatableColor.js",
+          "cjs/Options/Classes/HslAnimation.js",
+          "cjs/Options/Classes/ColorAnimation.js",
+          "cjs/Utils/OptionsUtils.js",
+          "cjs/Options/Classes/AnimationOptions.js",
+          "cjs/Utils/OptionLoader.js",
+          "cjs/Options/Classes/OptionsColor.js",
+          "cjs/Options/Classes/Background/Background.js",
+          "cjs/Options/Classes/FullScreen/FullScreen.js",
+          "cjs/Options/Classes/HDROptions.js",
+          "cjs/Options/Classes/Options.js",
+          "cjs/Options/Classes/ResizeEvent.js",
+          "cjs/Utils/ParticlesOptionsLoader.js",
+          "cjs/Options/Classes/Particles/ParticlesOptions.js",
+          "cjs/Options/Classes/Particles/Effect/Effect.js",
+          "cjs/Options/Classes/Particles/Fill.js",
+          "cjs/Options/Classes/Particles/Move/Move.js",
+          "cjs/Options/Classes/Particles/Move/MoveAngle.js",
+          "cjs/Options/Classes/Particles/Move/MoveCenter.js",
+          "cjs/Options/Classes/Particles/Move/MoveGravity.js",
+          "cjs/Options/Classes/Particles/Move/Path/MovePath.js",
+          "cjs/Options/Classes/ValueWithRandom.js",
+          "cjs/Options/Classes/Particles/Move/OutModes.js",
+          "cjs/Options/Classes/Particles/Move/Spin.js",
+          "cjs/Options/Classes/Particles/Paint.js",
+          "cjs/Options/Classes/Particles/Stroke.js",
+          "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+          "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesNumber.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesDensity.js",
+          "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+          "cjs/Options/Classes/Particles/Shape/Shape.js",
+          "cjs/Options/Classes/Particles/ZIndex/ZIndex.js",
+          "cjs/Utils/ColorUtils.js"
+        ],
+        "raw": {
+          "bytes": 126776,
+          "gzip": 36959,
+          "brotli": 32098
+        },
+        "min": {
+          "bytes": 82745,
+          "gzip": 30285,
+          "brotli": 26218
+        }
+      }
+    ],
+    "full": {
+      "modules": 154,
+      "raw": {
+        "bytes": 240393,
+        "gzip": 66274,
+        "brotli": 57042
+      },
+      "min": {
+        "bytes": 137807,
+        "gzip": 53350,
+        "brotli": 45722
+      }
+    },
+    "modules": [
+      {
+        "file": "cjs/Core/CanvasManager.js",
+        "raw": {
+          "bytes": 14755,
+          "gzip": 3119,
+          "brotli": 2772
+        },
+        "min": {
+          "bytes": 6652,
+          "gzip": 2276,
+          "brotli": 2016
+        }
+      },
+      {
+        "file": "cjs/Core/Container.js",
+        "raw": {
+          "bytes": 17254,
+          "gzip": 3075,
+          "brotli": 2737
+        },
+        "min": {
+          "bytes": 8294,
+          "gzip": 2416,
+          "brotli": 2188
+        }
+      },
+      {
+        "file": "cjs/Core/Engine.js",
+        "raw": {
+          "bytes": 6844,
+          "gzip": 1733,
+          "brotli": 1504
+        },
+        "min": {
+          "bytes": 3449,
+          "gzip": 1309,
+          "brotli": 1137
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/Colors.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/DataFromUrlParams.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IBounds.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/ICircleBouncer.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IColorManager.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IContainerPlugin.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/ICoordinates.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IDelta.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IDimension.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IDistance.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IDrawParticleParams.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IEffectDrawer.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/ILoadParams.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IPalette.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleCanvasBounds.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleColorStyle.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleHslAnimation.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleLife.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleModifier.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleOpacityData.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleRetinaProps.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleRoll.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleRotateData.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleTransformValues.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleUpdater.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IParticleValueAnimation.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IPlugin.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IPositionFromSizeParams.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IRangeValue.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IShapeDrawData.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IShapeDrawer.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Interfaces/IShapeValues.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Core/Particle.js",
+        "raw": {
+          "bytes": 23906,
+          "gzip": 4784,
+          "brotli": 4315
+        },
+        "min": {
+          "bytes": 12304,
+          "gzip": 3588,
+          "brotli": 3289
+        }
+      },
+      {
+        "file": "cjs/Core/ParticlesManager.js",
+        "raw": {
+          "bytes": 20446,
+          "gzip": 3666,
+          "brotli": 3308
+        },
+        "min": {
+          "bytes": 8455,
+          "gzip": 2582,
+          "brotli": 2358
+        }
+      },
+      {
+        "file": "cjs/Core/RenderManager.js",
+        "raw": {
+          "bytes": 19075,
+          "gzip": 3539,
+          "brotli": 3150
+        },
+        "min": {
+          "bytes": 8001,
+          "gzip": 2632,
+          "brotli": 2364
+        }
+      },
+      {
+        "file": "cjs/Core/Retina.js",
+        "raw": {
+          "bytes": 1751,
+          "gzip": 565,
+          "brotli": 478
+        },
+        "min": {
+          "bytes": 1054,
+          "gzip": 468,
+          "brotli": 402
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/CanvasOwnership.js",
+        "raw": {
+          "bytes": 279,
+          "gzip": 181,
+          "brotli": 168
+        },
+        "min": {
+          "bytes": 259,
+          "gzip": 168,
+          "brotli": 144
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/Constants.js",
+        "raw": {
+          "bytes": 4062,
+          "gzip": 1046,
+          "brotli": 889
+        },
+        "min": {
+          "bytes": 3611,
+          "gzip": 1012,
+          "brotli": 871
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/EventListeners.js",
+        "raw": {
+          "bytes": 3303,
+          "gzip": 866,
+          "brotli": 740
+        },
+        "min": {
+          "bytes": 1423,
+          "gzip": 655,
+          "brotli": 548
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/PluginManager.js",
+        "raw": {
+          "bytes": 6555,
+          "gzip": 1607,
+          "brotli": 1415
+        },
+        "min": {
+          "bytes": 2731,
+          "gzip": 1114,
+          "brotli": 1001
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/Ranges.js",
+        "raw": {
+          "bytes": 2924,
+          "gzip": 872,
+          "brotli": 781
+        },
+        "min": {
+          "bytes": 1709,
+          "gzip": 662,
+          "brotli": 599
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/SpatialHashGrid.js",
+        "raw": {
+          "bytes": 5256,
+          "gzip": 1386,
+          "brotli": 1243
+        },
+        "min": {
+          "bytes": 2164,
+          "gzip": 974,
+          "brotli": 880
+        }
+      },
+      {
+        "file": "cjs/Core/Utils/Vectors.js",
+        "raw": {
+          "bytes": 3281,
+          "gzip": 825,
+          "brotli": 726
+        },
+        "min": {
+          "bytes": 2155,
+          "gzip": 670,
+          "brotli": 587
+        }
+      },
+      {
+        "file": "cjs/Enums/AnimationStatus.js",
+        "raw": {
+          "bytes": 335,
+          "gzip": 185,
+          "brotli": 145
+        },
+        "min": {
+          "bytes": 247,
+          "gzip": 163,
+          "brotli": 141
+        }
+      },
+      {
+        "file": "cjs/Enums/Directions/MoveDirection.js",
+        "raw": {
+          "bytes": 677,
+          "gzip": 253,
+          "brotli": 223
+        },
+        "min": {
+          "bytes": 397,
+          "gzip": 223,
+          "brotli": 185
+        }
+      },
+      {
+        "file": "cjs/Enums/Directions/OutModeDirection.js",
+        "raw": {
+          "bytes": 401,
+          "gzip": 198,
+          "brotli": 165
+        },
+        "min": {
+          "bytes": 260,
+          "gzip": 175,
+          "brotli": 140
+        }
+      },
+      {
+        "file": "cjs/Enums/Directions/RotateDirection.js",
+        "raw": {
+          "bytes": 388,
+          "gzip": 202,
+          "brotli": 166
+        },
+        "min": {
+          "bytes": 276,
+          "gzip": 178,
+          "brotli": 142
+        }
+      },
+      {
+        "file": "cjs/Enums/DrawLayer.js",
+        "raw": {
+          "bytes": 713,
+          "gzip": 289,
+          "brotli": 236
+        },
+        "min": {
+          "bytes": 455,
+          "gzip": 257,
+          "brotli": 203
+        }
+      },
+      {
+        "file": "cjs/Enums/Modes/AnimationMode.js",
+        "raw": {
+          "bytes": 387,
+          "gzip": 198,
+          "brotli": 166
+        },
+        "min": {
+          "bytes": 261,
+          "gzip": 176,
+          "brotli": 140
+        }
+      },
+      {
+        "file": "cjs/Enums/Modes/HdrMode.js",
+        "raw": {
+          "bytes": 369,
+          "gzip": 208,
+          "brotli": 183
+        },
+        "min": {
+          "bytes": 257,
+          "gzip": 183,
+          "brotli": 147
+        }
+      },
+      {
+        "file": "cjs/Enums/Modes/LimitMode.js",
+        "raw": {
+          "bytes": 267,
+          "gzip": 178,
+          "brotli": 161
+        },
+        "min": {
+          "bytes": 197,
+          "gzip": 156,
+          "brotli": 123
+        }
+      },
+      {
+        "file": "cjs/Enums/Modes/OutMode.js",
+        "raw": {
+          "bytes": 347,
+          "gzip": 198,
+          "brotli": 167
+        },
+        "min": {
+          "bytes": 235,
+          "gzip": 175,
+          "brotli": 140
+        }
+      },
+      {
+        "file": "cjs/Enums/Modes/PixelMode.js",
+        "raw": {
+          "bytes": 275,
+          "gzip": 177,
+          "brotli": 150
+        },
+        "min": {
+          "bytes": 205,
+          "gzip": 155,
+          "brotli": 121
+        }
+      },
+      {
+        "file": "cjs/Enums/RangeType.js",
+        "raw": {
+          "bytes": 277,
+          "gzip": 180,
+          "brotli": 151
+        },
+        "min": {
+          "bytes": 207,
+          "gzip": 159,
+          "brotli": 123
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/AlterType.js",
+        "raw": {
+          "bytes": 277,
+          "gzip": 182,
+          "brotli": 162
+        },
+        "min": {
+          "bytes": 207,
+          "gzip": 160,
+          "brotli": 125
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/DestroyType.js",
+        "raw": {
+          "bytes": 309,
+          "gzip": 186,
+          "brotli": 172
+        },
+        "min": {
+          "bytes": 213,
+          "gzip": 164,
+          "brotli": 127
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/EventType.js",
+        "raw": {
+          "bytes": 837,
+          "gzip": 281,
+          "brotli": 229
+        },
+        "min": {
+          "bytes": 587,
+          "gzip": 256,
+          "brotli": 192
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/GradientType.js",
+        "raw": {
+          "bytes": 334,
+          "gzip": 191,
+          "brotli": 163
+        },
+        "min": {
+          "bytes": 234,
+          "gzip": 167,
+          "brotli": 134
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/ParticleOutType.js",
+        "raw": {
+          "bytes": 363,
+          "gzip": 193,
+          "brotli": 151
+        },
+        "min": {
+          "bytes": 251,
+          "gzip": 169,
+          "brotli": 127
+        }
+      },
+      {
+        "file": "cjs/Enums/Types/StartValueType.js",
+        "raw": {
+          "bytes": 340,
+          "gzip": 190,
+          "brotli": 156
+        },
+        "min": {
+          "bytes": 232,
+          "gzip": 169,
+          "brotli": 128
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/AnimatableColor.js",
+        "raw": {
+          "bytes": 1205,
+          "gzip": 418,
+          "brotli": 349
+        },
+        "min": {
+          "bytes": 703,
+          "gzip": 338,
+          "brotli": 286
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/AnimationOptions.js",
+        "raw": {
+          "bytes": 1543,
+          "gzip": 449,
+          "brotli": 394
+        },
+        "min": {
+          "bytes": 1263,
+          "gzip": 410,
+          "brotli": 360
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Background/Background.js",
+        "raw": {
+          "bytes": 1324,
+          "gzip": 417,
+          "brotli": 350
+        },
+        "min": {
+          "bytes": 1021,
+          "gzip": 372,
+          "brotli": 307
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/ColorAnimation.js",
+        "raw": {
+          "bytes": 771,
+          "gzip": 332,
+          "brotli": 288
+        },
+        "min": {
+          "bytes": 591,
+          "gzip": 288,
+          "brotli": 241
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/FullScreen/FullScreen.js",
+        "raw": {
+          "bytes": 545,
+          "gzip": 268,
+          "brotli": 217
+        },
+        "min": {
+          "bytes": 454,
+          "gzip": 240,
+          "brotli": 193
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/HDROptions.js",
+        "raw": {
+          "bytes": 1795,
+          "gzip": 567,
+          "brotli": 495
+        },
+        "min": {
+          "bytes": 1418,
+          "gzip": 506,
+          "brotli": 447
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/HslAnimation.js",
+        "raw": {
+          "bytes": 780,
+          "gzip": 298,
+          "brotli": 254
+        },
+        "min": {
+          "bytes": 666,
+          "gzip": 275,
+          "brotli": 234
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Options.js",
+        "raw": {
+          "bytes": 4467,
+          "gzip": 1118,
+          "brotli": 991
+        },
+        "min": {
+          "bytes": 2852,
+          "gzip": 935,
+          "brotli": 831
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/OptionsColor.js",
+        "raw": {
+          "bytes": 869,
+          "gzip": 361,
+          "brotli": 309
+        },
+        "min": {
+          "bytes": 546,
+          "gzip": 292,
+          "brotli": 241
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Bounce/ParticlesBounce.js",
+        "raw": {
+          "bytes": 624,
+          "gzip": 267,
+          "brotli": 230
+        },
+        "min": {
+          "bytes": 537,
+          "gzip": 245,
+          "brotli": 197
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Bounce/ParticlesBounceFactor.js",
+        "raw": {
+          "bytes": 330,
+          "gzip": 202,
+          "brotli": 168
+        },
+        "min": {
+          "bytes": 301,
+          "gzip": 184,
+          "brotli": 142
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Effect/Effect.js",
+        "raw": {
+          "bytes": 943,
+          "gzip": 373,
+          "brotli": 324
+        },
+        "min": {
+          "bytes": 629,
+          "gzip": 305,
+          "brotli": 260
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Fill.js",
+        "raw": {
+          "bytes": 747,
+          "gzip": 334,
+          "brotli": 296
+        },
+        "min": {
+          "bytes": 593,
+          "gzip": 293,
+          "brotli": 254
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/Move.js",
+        "raw": {
+          "bytes": 2927,
+          "gzip": 766,
+          "brotli": 669
+        },
+        "min": {
+          "bytes": 2062,
+          "gzip": 666,
+          "brotli": 596
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/MoveAngle.js",
+        "raw": {
+          "bytes": 552,
+          "gzip": 268,
+          "brotli": 227
+        },
+        "min": {
+          "bytes": 463,
+          "gzip": 240,
+          "brotli": 201
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/MoveCenter.js",
+        "raw": {
+          "bytes": 797,
+          "gzip": 316,
+          "brotli": 280
+        },
+        "min": {
+          "bytes": 655,
+          "gzip": 286,
+          "brotli": 243
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/MoveGravity.js",
+        "raw": {
+          "bytes": 781,
+          "gzip": 319,
+          "brotli": 259
+        },
+        "min": {
+          "bytes": 642,
+          "gzip": 289,
+          "brotli": 230
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/OutModes.js",
+        "raw": {
+          "bytes": 723,
+          "gzip": 313,
+          "brotli": 299
+        },
+        "min": {
+          "bytes": 527,
+          "gzip": 277,
+          "brotli": 235
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/Path/MovePath.js",
+        "raw": {
+          "bytes": 968,
+          "gzip": 380,
+          "brotli": 328
+        },
+        "min": {
+          "bytes": 764,
+          "gzip": 332,
+          "brotli": 283
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Move/Spin.js",
+        "raw": {
+          "bytes": 737,
+          "gzip": 317,
+          "brotli": 280
+        },
+        "min": {
+          "bytes": 586,
+          "gzip": 282,
+          "brotli": 227
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Number/ParticlesDensity.js",
+        "raw": {
+          "bytes": 669,
+          "gzip": 293,
+          "brotli": 242
+        },
+        "min": {
+          "bytes": 555,
+          "gzip": 265,
+          "brotli": 210
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Number/ParticlesNumber.js",
+        "raw": {
+          "bytes": 815,
+          "gzip": 323,
+          "brotli": 271
+        },
+        "min": {
+          "bytes": 688,
+          "gzip": 291,
+          "brotli": 260
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Number/ParticlesNumberLimit.js",
+        "raw": {
+          "bytes": 681,
+          "gzip": 297,
+          "brotli": 248
+        },
+        "min": {
+          "bytes": 583,
+          "gzip": 268,
+          "brotli": 236
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Paint.js",
+        "raw": {
+          "bytes": 878,
+          "gzip": 363,
+          "brotli": 313
+        },
+        "min": {
+          "bytes": 702,
+          "gzip": 320,
+          "brotli": 274
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/ParticlesOptions.js",
+        "raw": {
+          "bytes": 5552,
+          "gzip": 1353,
+          "brotli": 1190
+        },
+        "min": {
+          "bytes": 2588,
+          "gzip": 961,
+          "brotli": 864
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Shape/Shape.js",
+        "raw": {
+          "bytes": 941,
+          "gzip": 377,
+          "brotli": 321
+        },
+        "min": {
+          "bytes": 631,
+          "gzip": 309,
+          "brotli": 263
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/Stroke.js",
+        "raw": {
+          "bytes": 750,
+          "gzip": 328,
+          "brotli": 286
+        },
+        "min": {
+          "bytes": 600,
+          "gzip": 287,
+          "brotli": 267
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/Particles/ZIndex/ZIndex.js",
+        "raw": {
+          "bytes": 689,
+          "gzip": 295,
+          "brotli": 250
+        },
+        "min": {
+          "bytes": 566,
+          "gzip": 266,
+          "brotli": 239
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/ResizeEvent.js",
+        "raw": {
+          "bytes": 542,
+          "gzip": 268,
+          "brotli": 221
+        },
+        "min": {
+          "bytes": 450,
+          "gzip": 240,
+          "brotli": 195
+        }
+      },
+      {
+        "file": "cjs/Options/Classes/ValueWithRandom.js",
+        "raw": {
+          "bytes": 1324,
+          "gzip": 409,
+          "brotli": 364
+        },
+        "min": {
+          "bytes": 1122,
+          "gzip": 361,
+          "brotli": 323
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Background/IBackground.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/FullScreen/IFullScreen.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IAnimatable.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IAnimatableColor.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IAnimation.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IColorAnimation.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IHDROptions.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IHslAnimation.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IOptionLoader.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IOptions.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IOptionsColor.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IResizeEvent.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/IValueWithRandom.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Bounce/IParticlesBounce.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Effect/IEffect.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/IFill.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/IPaint.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/IParticlesOptions.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/IStroke.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/IMove.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/IMoveAngle.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/IMoveCenter.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/IMoveGravity.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/IOutModes.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/ISpin.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Move/Path/IMovePath.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Number/IParticlesDensity.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Number/IParticlesNumber.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Number/IParticlesNumberLimit.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/Shape/IShape.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Options/Interfaces/Particles/ZIndex/IZIndex.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/CustomEventArgs.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/CustomEventListener.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/EasingFunction.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/EngineInitializers.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/ExportResult.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/ISourceOptions.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/ParticlesGroups.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/PathOptions.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/RangeValue.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/RecursivePartial.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/ShapeData.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Types/SingleOrMultiple.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/Utils/ColorUtils.js",
+        "raw": {
+          "bytes": 23209,
+          "gzip": 4502,
+          "brotli": 4028
+        },
+        "min": {
+          "bytes": 13246,
+          "gzip": 3315,
+          "brotli": 3043
+        }
+      },
+      {
+        "file": "cjs/Utils/ErrorCodes.js",
+        "raw": {
+          "bytes": 447,
+          "gzip": 267,
+          "brotli": 213
+        },
+        "min": {
+          "bytes": 382,
+          "gzip": 251,
+          "brotli": 195
+        }
+      },
+      {
+        "file": "cjs/Utils/ErrorMessages.js",
+        "raw": {
+          "bytes": 1226,
+          "gzip": 519,
+          "brotli": 400
+        },
+        "min": {
+          "bytes": 1149,
+          "gzip": 507,
+          "brotli": 391
+        }
+      },
+      {
+        "file": "cjs/Utils/ErrorUtils.js",
+        "raw": {
+          "bytes": 1561,
+          "gzip": 629,
+          "brotli": 524
+        },
+        "min": {
+          "bytes": 1130,
+          "gzip": 518,
+          "brotli": 441
+        }
+      },
+      {
+        "file": "cjs/Utils/EventDispatcher.js",
+        "raw": {
+          "bytes": 1514,
+          "gzip": 495,
+          "brotli": 428
+        },
+        "min": {
+          "bytes": 796,
+          "gzip": 381,
+          "brotli": 326
+        }
+      },
+      {
+        "file": "cjs/Utils/LogUtils.js",
+        "raw": {
+          "bytes": 1580,
+          "gzip": 563,
+          "brotli": 484
+        },
+        "min": {
+          "bytes": 981,
+          "gzip": 466,
+          "brotli": 399
+        }
+      },
+      {
+        "file": "cjs/Utils/MathUtils.js",
+        "raw": {
+          "bytes": 7246,
+          "gzip": 1740,
+          "brotli": 1575
+        },
+        "min": {
+          "bytes": 5196,
+          "gzip": 1375,
+          "brotli": 1255
+        }
+      },
+      {
+        "file": "cjs/Utils/OptionLoader.js",
+        "raw": {
+          "bytes": 531,
+          "gzip": 275,
+          "brotli": 238
+        },
+        "min": {
+          "bytes": 338,
+          "gzip": 222,
+          "brotli": 184
+        }
+      },
+      {
+        "file": "cjs/Utils/OptionsUtils.js",
+        "raw": {
+          "bytes": 1678,
+          "gzip": 518,
+          "brotli": 453
+        },
+        "min": {
+          "bytes": 996,
+          "gzip": 404,
+          "brotli": 365
+        }
+      },
+      {
+        "file": "cjs/Utils/ParticlesOptionsLoader.js",
+        "raw": {
+          "bytes": 538,
+          "gzip": 261,
+          "brotli": 209
+        },
+        "min": {
+          "bytes": 399,
+          "gzip": 212,
+          "brotli": 168
+        }
+      },
+      {
+        "file": "cjs/Utils/TypeUtils.js",
+        "raw": {
+          "bytes": 1050,
+          "gzip": 359,
+          "brotli": 319
+        },
+        "min": {
+          "bytes": 759,
+          "gzip": 298,
+          "brotli": 276
+        }
+      },
+      {
+        "file": "cjs/Utils/Utils.js",
+        "raw": {
+          "bytes": 13033,
+          "gzip": 3206,
+          "brotli": 2812
+        },
+        "min": {
+          "bytes": 7520,
+          "gzip": 2378,
+          "brotli": 2122
+        }
+      },
+      {
+        "file": "cjs/browser.js",
+        "raw": {
+          "bytes": 998,
+          "gzip": 479,
+          "brotli": 411
+        },
+        "min": {
+          "bytes": 763,
+          "gzip": 403,
+          "brotli": 344
+        }
+      },
+      {
+        "file": "cjs/createEngine.js",
+        "raw": {
+          "bytes": 228,
+          "gzip": 172,
+          "brotli": 137
+        },
+        "min": {
+          "bytes": 202,
+          "gzip": 160,
+          "brotli": 125
+        }
+      },
+      {
+        "file": "cjs/export-types.js",
+        "raw": {
+          "bytes": 77,
+          "gzip": 97,
+          "brotli": 71
+        },
+        "min": {
+          "bytes": 68,
+          "gzip": 88,
+          "brotli": 63
+        }
+      },
+      {
+        "file": "cjs/exports.js",
+        "raw": {
+          "bytes": 4804,
+          "gzip": 847,
+          "brotli": 742
+        },
+        "min": {
+          "bytes": 4474,
+          "gzip": 772,
+          "brotli": 685
+        }
+      },
+      {
+        "file": "cjs/index.js",
+        "raw": {
+          "bytes": 1021,
+          "gzip": 464,
+          "brotli": 394
+        },
+        "min": {
+          "bytes": 784,
+          "gzip": 383,
+          "brotli": 327
+        }
+      },
+      {
+        "file": "cjs/index.lazy.js",
+        "raw": {
+          "bytes": 1021,
+          "gzip": 464,
+          "brotli": 394
+        },
+        "min": {
+          "bytes": 784,
+          "gzip": 383,
+          "brotli": 327
+        }
+      }
+    ]
+  }
+}

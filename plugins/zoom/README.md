@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-zoom
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadZoomPlugin } = require("@tsparticles/plugin-zoom");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadZoomPlugin } = require("@tsparticles/plugin-zoom");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadZoomPlugin } from "@tsparticles/plugin-zoom";
 
 (async () => {

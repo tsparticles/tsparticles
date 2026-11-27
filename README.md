@@ -3,7 +3,7 @@
 # tsParticles - TypeScript Particles
 
 **A lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with
-React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components**
+React.js, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components**
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni?style=for-the-badge)](https://github.com/sponsors/matteobruni)
 [![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/tsparticles?style=for-the-badge)](https://www.jsdelivr.com/package/npm/tsparticles)
@@ -65,11 +65,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
       - [`@tsparticles/solid`](#tsparticlessolid)
     - [Svelte](#svelte)
       - [`@tsparticles/svelte`](#tsparticlessvelte)
-    - [VueJS 2.x](#vuejs-2x)
-      - [`@tsparticles/nuxt2`](#tsparticlesnuxt2)
-      - [`@tsparticles/vue2`](#tsparticlesvue2)
     - [VueJS 3.x](#vuejs-3x)
-      - [`@tsparticles/nuxt3`](#tsparticlesnuxt3)
       - [`@tsparticles/nuxt4`](#tsparticlesnuxt4)
       - [`@tsparticles/vue3`](#tsparticlesvue3)
     - [Web Components](#web-components)
@@ -146,7 +142,8 @@ If you are new to tsParticles, this path is usually the fastest:
 3. Start with a small config and iterate
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);
@@ -179,7 +176,7 @@ Useful docs for the next step:
 ## Quick checklist
 
 - Install `@tsparticles/engine` and one bundle (`@tsparticles/slim` is the common default)
-- Load the bundle before calling `tsParticles.load(...)`
+- Load the bundle before calling `engine.load(...)`
 - Start from a small config, then extend incrementally
 
 ## Choose your quick-start path
@@ -280,14 +277,16 @@ pnpm install @tsparticles/engine
 #### Import and require
 
 ```javascript
-const tsParticles = require("@tsparticles/engine");
-
-// or
-
-import { tsParticles } from "@tsparticles/engine";
+const { createEngine } = require("@tsparticles/engine");
+const engine = createEngine();
 ```
 
-The imported `tsParticles` is the same instance you have when including the script in the page using the `<script>` tag.
+```javascript
+import { createEngine } from "@tsparticles/engine";
+const engine = createEngine();
+```
+
+Every call to `createEngine()` returns an independent engine. Classic browser bundles expose a `tsParticles.createEngine()` factory; create and keep an engine explicitly in each application.
 
 ---
 
@@ -303,69 +302,66 @@ Load tsParticles and configure the particles:
 ```html
 <div id="tsparticles"></div>
 
-<script src="tsparticles.engine.min.js"></script>
+<script src="tsparticles.basic.bundle.min.js"></script>
 ```
 
 **app.js**
 
 ```javascript
-// @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
-/* tsParticles.load(@params); */
+(async () => {
+  const engine = tsParticles.createEngine();
+  await loadBasic(engine);
 
-tsParticles
-  .load({
+  // @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
+  const container = await engine.load({
     id: "tsparticles",
     url: "presets/default.json",
-  })
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
+  });
+  console.log("callback - tsparticles config loaded");
+
+  //or
+
+  engine.load({
+    id: "tsparticles",
+    options: {/* options here */},
   });
 
-//or
+  //or
 
-tsParticles.load({
-  id: "tsparticles",
-  options: {/* options here */},
-});
+  engine.load({
+    id: "tsparticles",
+    options: [{/* options here */}, {/* other options here */}],
+  });
+  //random object
 
-//or
+  engine.load({
+    id: "tsparticles",
+    options: [{/* options here */}, {/* other options here */}],
+    index: 1,
+  }); //the second one
+  // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
-tsParticles.load({
-  id: "tsparticles",
-  options: [{/* options here */}, {/* other options here */}],
-});
-//random object
+  // after initialization this can be used.
 
-tsParticles.load({
-  id: "tsparticles",
-  options: [{/* options here */}, {/* other options here */}],
-  index: 1,
-}); //the second one
-// Important! If the index is not in range 0...<array.length, the index will be ignored.
+  /* engine.setOnClickHandler(@callback); */
 
-// after initialization this can be used.
+  /* this will be fired from all particles loaded */
 
-/* tsParticles.setOnClickHandler(@callback); */
+  engine.setOnClickHandler((event, particles) => {
+    /* custom on click handler */
+  });
 
-/* this will be fired from all particles loaded */
+  // now you can control the animations too, it's possible to pause and resume the animations
+  // these methods don't change the config so you're safe with all your configurations
+  // engine.item(0) returns the first container loaded by this engine
+  const particles = engine.item(0);
 
-tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
-});
+  // play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
+  particles.play();
 
-// now you can control the animations too, it's possible to pause and resume the animations
-// these methods don't change the config so you're safe with all your configurations
-// domItem(0) returns the first tsParticles instance loaded in the dom
-const particles = tsParticles.item(0);
-
-// play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
-particles.play();
-
-// pause will stop the animations
-particles.pause();
+  // pause will stop the animations
+  particles.pause();
+})();
 ```
 
 ---
@@ -466,27 +462,7 @@ Instructions available [here](https://github.com/tsparticles/tsparticles/tree/ma
 
 Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme)
 
-### VueJS 2.x
-
-#### `@tsparticles/nuxt2`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme)
-
-#### `@tsparticles/vue2`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme)
-
 ### VueJS 3.x
-
-#### `@tsparticles/nuxt3`
-
-[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3)
-
-Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme)
 
 #### `@tsparticles/nuxt4`
 

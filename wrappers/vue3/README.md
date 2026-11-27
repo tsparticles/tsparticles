@@ -10,7 +10,7 @@ Official Vue 3 component wrapper for [tsParticles](https://github.com/matteobrun
 ## Installation
 
 ```bash
-pnpm add @tsparticles/vue3 @tsparticles/engine
+pnpm add @tsparticles/vue3 @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage
@@ -98,7 +98,7 @@ When the plugin is loaded, changing `theme` applies the new theme on the fly wit
 
 ## Loaded callback
 
-The `@particles-loaded` event fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+The `@particles-loaded` event fires with `Container | undefined` after the provider's engine `load()` resolves. Always guard for `undefined`:
 
 ```ts
 function particlesLoaded(container?: Container): void {
@@ -116,4 +116,4 @@ function particlesLoaded(container?: Container): void {
 
 ## Nuxt support
 
-For Nuxt projects use [`@tsparticles/nuxt3`](../nuxt3/README.md) or [`@tsparticles/nuxt4`](../nuxt4/README.md), which wrap this package in a Nuxt module.
+For Nuxt projects use [`@tsparticles/nuxt4`](../nuxt4/README.md), which wraps this package in a Nuxt module.

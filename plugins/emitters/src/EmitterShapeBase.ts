@@ -5,7 +5,9 @@ import type { IRandomPositionData } from "./IRandomPositionData.js";
 /**
  * Base class for emitter shapes, providing common position, size, and fill handling
  */
-export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterShape {
+export abstract class EmitterShapeBase<
+  TOptions = unknown,
+> implements IEmitterShape {
   /**
    * Sets if the particles will spawn at the shape perimeter or inside the area
    */
@@ -32,7 +34,12 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
    * @param fill - whether to fill the shape or spawn on the perimeter
    * @param options - the shape options
    */
-  protected constructor(position: ICoordinates, size: IDimension, fill: boolean, options: TOptions) {
+  protected constructor(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: TOptions,
+  ) {
     this.position = position;
     this.size = size;
     this.fill = fill;
@@ -66,5 +73,5 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
    * Gets a random position within or on the perimeter of the shape
    * @returns the random position data, or null if unavailable
    */
-  abstract randomPosition(): IRandomPositionData | null;
+  abstract randomPosition(random: () => number): IRandomPositionData | null;
 }

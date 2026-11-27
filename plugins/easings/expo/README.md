@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-easing-expo
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEasingExpoPlugin } = require("@tsparticles/plugin-easing-expo");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadEasingExpoPlugin } = require("@tsparticles/plugin-easing-expo");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEasingExpoPlugin } from "@tsparticles/plugin-easing-expo";
 
 (async () => {

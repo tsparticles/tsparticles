@@ -99,6 +99,14 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
   }
 
+  /** Clears spawner-specific state before a particle enters the pool. */
+  particleDestroy(particle: ParticlesParticle): void {
+    delete particle.particlesData;
+    delete particle.particlesNextSpawn;
+    delete particle.particlesSpawnQuantity;
+    delete particle.particlesSpawnRate;
+  }
+
   /**
    * Initializes the particle spawner properties
    * @param _container - The container to handle
@@ -106,9 +114,15 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
    */
   particleInit(_container: Container, particle: ParticlesParticle): void {
     const effectData = particle.effectData,
-      spawnRate = getRangeValue(effectData?.spawn?.rate?.delay ?? defaultSpawnRate);
+      spawnRate = getRangeValue(
+        effectData?.spawn?.rate?.delay ?? defaultSpawnRate,
+        this.#container.engine.getRandomFn(),
+      );
 
-    particle.particlesSpawnQuantity = getRangeValue(effectData?.spawn?.rate?.quantity ?? defaultSpawnQuantity);
+    particle.particlesSpawnQuantity = getRangeValue(
+      effectData?.spawn?.rate?.quantity ?? defaultSpawnQuantity,
+      this.#container.engine.getRandomFn(),
+    );
     particle.particlesSpawnRate = (spawnRate > minSpawnRate ? spawnRate : defaultSpawnRate) * millisecondsToSeconds;
     particle.particlesNextSpawn = performance.now() + particle.particlesSpawnRate;
     particle.particlesData = effectData;

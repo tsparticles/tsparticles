@@ -1,0 +1,224 @@
+{
+  "revision": "bdd3737cc4faea44ecc2d1b6ee9e03bdbf5bce01",
+  "install": "Offline install of local tarballs outside the workspace; no workspace links or lifecycle scripts.",
+  "packages": [
+    {
+      "packageDir": "bundles/basic"
+    },
+    {
+      "packageDir": "engine"
+    },
+    {
+      "packageDir": "plugins/blend"
+    },
+    {
+      "packageDir": "plugins/colors/hex"
+    },
+    {
+      "packageDir": "plugins/colors/hsl"
+    },
+    {
+      "packageDir": "plugins/colors/rgb"
+    },
+    {
+      "packageDir": "plugins/move"
+    },
+    {
+      "packageDir": "shapes/circle"
+    },
+    {
+      "packageDir": "updaters/opacity"
+    },
+    {
+      "packageDir": "updaters/outModes"
+    },
+    {
+      "packageDir": "updaters/paint"
+    },
+    {
+      "packageDir": "updaters/size"
+    },
+    {
+      "packageDir": "utils/animationUtils"
+    }
+  ],
+  "hashes": [
+    {
+      "file": "tsparticles-animation-utils-4.6.0.tgz",
+      "sha256": "93ee9ed71e9c1fa2923ccce5321a6bb3c1da4d38958fd830a915bff45d8dcf40"
+    },
+    {
+      "file": "tsparticles-basic-4.6.0.tgz",
+      "sha256": "a6f73a463bd46fa0d170c5672ede1dddd334fcb4b6dd73d305fa9f71291d3719"
+    },
+    {
+      "file": "tsparticles-engine-4.6.0.tgz",
+      "sha256": "30f32d86517222b6f56cdd5853e9b150fc15805bf486bd17830bcf64ecf9ecd5"
+    },
+    {
+      "file": "tsparticles-plugin-blend-4.6.0.tgz",
+      "sha256": "aa1c0bec9ac68f932371d098b3b1cf7190ca6cbc3bf2fc129507dd83dd7a0d38"
+    },
+    {
+      "file": "tsparticles-plugin-hex-color-4.6.0.tgz",
+      "sha256": "4a3b0f66c484a4d536fbc3242cde80bddd161b3bed347e2964a8d001d00ec20a"
+    },
+    {
+      "file": "tsparticles-plugin-hsl-color-4.6.0.tgz",
+      "sha256": "175601f7ee3ce7a947f5cfc17119d24d7c1af6bc1b55de0ac1492e2033dca104"
+    },
+    {
+      "file": "tsparticles-plugin-move-4.6.0.tgz",
+      "sha256": "5a98f92614c47ca7cf3f714c7c1a47e0a0f36785c210da9a98683095dcc61d04"
+    },
+    {
+      "file": "tsparticles-plugin-rgb-color-4.6.0.tgz",
+      "sha256": "4c1b1a7dbfc825e40d212d1ad16e1403d39c71f3c9d6085d4dfefe23d0242bce"
+    },
+    {
+      "file": "tsparticles-shape-circle-4.6.0.tgz",
+      "sha256": "ae59334534268b27be1d5e3cecdef9cd634d45d5a8fa86f77a571868628623cd"
+    },
+    {
+      "file": "tsparticles-updater-opacity-4.6.0.tgz",
+      "sha256": "f0a7794fe6cd24a204af7f5632bd190816fab871179d66156986c7f773d70833"
+    },
+    {
+      "file": "tsparticles-updater-out-modes-4.6.0.tgz",
+      "sha256": "256ec13a337a380608e51631d96404dc7e49ed4719e946342725e002b587d5d7"
+    },
+    {
+      "file": "tsparticles-updater-paint-4.6.0.tgz",
+      "sha256": "50136b79fb17197a62d90c6d43c6fcba7b3d8e4fcfff4db94473e93fb4d9259f"
+    },
+    {
+      "file": "tsparticles-updater-size-4.6.0.tgz",
+      "sha256": "e1f76d02f1bc50046c6bafb0d197e0dd9dea3fa55eb8240a458f47e2493e95fb"
+    }
+  ],
+  "conditions": [
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "import",
+      "subpath": "",
+      "resolved": "@tsparticles/engine/esm/index.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "import",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/engine/esm/index.lazy.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "require",
+      "subpath": "",
+      "resolved": "@tsparticles/engine/cjs/index.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "require",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/engine/cjs/index.lazy.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "import",
+      "subpath": "",
+      "resolved": "@tsparticles/engine/esm/index.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/engine",
+      "mode": "import",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/engine/esm/index.lazy.js",
+      "globals": [],
+      "factory": "function",
+      "independentEngines": true,
+      "customPlugin": true,
+      "versionMismatch": "The tsParticles version is different from the loaded plugins version. Engine version: 4.6.0. Plugin version: 0.0.0-e9-probe"
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "import",
+      "subpath": "",
+      "resolved": "@tsparticles/basic/esm/index.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "import",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/basic/esm/index.lazy.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "require",
+      "subpath": "",
+      "resolved": "@tsparticles/basic/cjs/index.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "require",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/basic/cjs/index.lazy.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "import",
+      "subpath": "",
+      "resolved": "@tsparticles/basic/esm/index.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    },
+    {
+      "packageName": "@tsparticles/basic",
+      "mode": "import",
+      "subpath": "/lazy",
+      "resolved": "@tsparticles/basic/esm/index.lazy.js",
+      "globals": [],
+      "loader": "function",
+      "engineInitialized": true
+    }
+  ],
+  "types": "Strict TypeScript consumer compiles Engine, IPlugin, the Basic loader, and a module augmentation against installed declarations.",
+  "customPlugin": "Runtime and TypeScript registration through the installed engine package.",
+  "installLog": "Progress: resolved 1, reused 0, downloaded 0, added 0\nPackages are cloned from the content-addressable store to the virtual store.\n  Content-addressable store is at: /var/folders/zw/sylb54y14d1bjbhmhfcbscf00000gn/T/tsparticles-e9-consumer-SOhM7G/store/v11\n  Virtual store is at:             node_modules/.pnpm\nPackages: +13\n+++++++++++++\nProgress: resolved 13, reused 0, downloaded 13, added 13, done\n\ndependencies:\n+ @tsparticles/animation-utils 4.6.0\n+ @tsparticles/basic 4.6.0\n+ @tsparticles/engine 4.6.0\n+ @tsparticles/plugin-blend 4.6.0\n+ @tsparticles/plugin-hex-color 4.6.0\n+ @tsparticles/plugin-hsl-color 4.6.0\n+ @tsparticles/plugin-move 4.6.0\n+ @tsparticles/plugin-rgb-color 4.6.0\n+ @tsparticles/shape-circle 4.6.0\n+ @tsparticles/updater-opacity 4.6.0\n+ @tsparticles/updater-out-modes 4.6.0\n+ @tsparticles/updater-paint 4.6.0\n+ @tsparticles/updater-size 4.6.0\n\nDone in 266ms using pnpm v12.23.0"
+}

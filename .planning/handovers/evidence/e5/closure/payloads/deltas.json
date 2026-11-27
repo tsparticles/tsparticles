@@ -1,0 +1,1056 @@
+{
+  "bundleGrowthWaivedForE5": true,
+  "policy": "Report minified consumer graphs including all chunks; gzip level 9, Brotli quality 11. These are measurements, not distribution/runtime acceptance.",
+  "vsE4": [
+    {
+      "name": "helper",
+      "condition": "import",
+      "current": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "baseline": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "chunks": 1
+    },
+    {
+      "name": "factory",
+      "condition": "import",
+      "current": {
+        "raw": 76034,
+        "gzip": 25613,
+        "brotli": 22617
+      },
+      "baseline": {
+        "raw": 70122,
+        "gzip": 23146,
+        "brotli": 20572
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2467,
+        "brotli": 2045
+      },
+      "chunks": 3
+    },
+    {
+      "name": "initialization",
+      "condition": "import",
+      "current": {
+        "raw": 76062,
+        "gzip": 25623,
+        "brotli": 22616
+      },
+      "baseline": {
+        "raw": 70150,
+        "gzip": 23154,
+        "brotli": 20553
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2469,
+        "brotli": 2063
+      },
+      "chunks": 3
+    },
+    {
+      "name": "minimal",
+      "condition": "import",
+      "current": {
+        "raw": 96905,
+        "gzip": 31899,
+        "brotli": 28418
+      },
+      "baseline": {
+        "raw": 90185,
+        "gzip": 29210,
+        "brotli": 26143
+      },
+      "delta": {
+        "raw": 6720,
+        "gzip": 2689,
+        "brotli": 2275
+      },
+      "chunks": 4
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "import",
+      "current": {
+        "raw": 76044,
+        "gzip": 25621,
+        "brotli": 22630
+      },
+      "baseline": {
+        "raw": 70132,
+        "gzip": 23153,
+        "brotli": 20597
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2468,
+        "brotli": 2033
+      },
+      "chunks": 3
+    },
+    {
+      "name": "helper",
+      "condition": "browser",
+      "current": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "baseline": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "chunks": 1
+    },
+    {
+      "name": "factory",
+      "condition": "browser",
+      "current": {
+        "raw": 76034,
+        "gzip": 25613,
+        "brotli": 22617
+      },
+      "baseline": {
+        "raw": 70122,
+        "gzip": 23146,
+        "brotli": 20572
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2467,
+        "brotli": 2045
+      },
+      "chunks": 3
+    },
+    {
+      "name": "initialization",
+      "condition": "browser",
+      "current": {
+        "raw": 76062,
+        "gzip": 25623,
+        "brotli": 22616
+      },
+      "baseline": {
+        "raw": 70150,
+        "gzip": 23154,
+        "brotli": 20553
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2469,
+        "brotli": 2063
+      },
+      "chunks": 3
+    },
+    {
+      "name": "minimal",
+      "condition": "browser",
+      "current": {
+        "raw": 96905,
+        "gzip": 31899,
+        "brotli": 28418
+      },
+      "baseline": {
+        "raw": 90185,
+        "gzip": 29210,
+        "brotli": 26143
+      },
+      "delta": {
+        "raw": 6720,
+        "gzip": 2689,
+        "brotli": 2275
+      },
+      "chunks": 4
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "browser",
+      "current": {
+        "raw": 76044,
+        "gzip": 25621,
+        "brotli": 22630
+      },
+      "baseline": {
+        "raw": 70132,
+        "gzip": 23153,
+        "brotli": 20597
+      },
+      "delta": {
+        "raw": 5912,
+        "gzip": 2468,
+        "brotli": 2033
+      },
+      "chunks": 3
+    },
+    {
+      "file": "engine/dist/tsparticles.engine.js",
+      "current": {
+        "raw": 261645,
+        "gzip": 47556,
+        "brotli": 39854
+      },
+      "baseline": {
+        "raw": 229802,
+        "gzip": 41200,
+        "brotli": 34581
+      },
+      "delta": {
+        "raw": 31843,
+        "gzip": 6356,
+        "brotli": 5273
+      }
+    },
+    {
+      "file": "engine/dist/tsparticles.engine.min.js",
+      "current": {
+        "raw": 96173,
+        "gzip": 31190,
+        "brotli": 26655
+      },
+      "baseline": {
+        "raw": 84828,
+        "gzip": 26714,
+        "brotli": 23066
+      },
+      "delta": {
+        "raw": 11345,
+        "gzip": 4476,
+        "brotli": 3589
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
+      "current": {
+        "raw": 317402,
+        "gzip": 55369,
+        "brotli": 46082
+      },
+      "baseline": {
+        "raw": 280298,
+        "gzip": 48289,
+        "brotli": 40343
+      },
+      "delta": {
+        "raw": 37104,
+        "gzip": 7080,
+        "brotli": 5739
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "current": {
+        "raw": 117115,
+        "gzip": 35896,
+        "brotli": 31362
+      },
+      "baseline": {
+        "raw": 103907,
+        "gzip": 30990,
+        "brotli": 27362
+      },
+      "delta": {
+        "raw": 13208,
+        "gzip": 4906,
+        "brotli": 4000
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.js",
+      "current": {
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "baseline": {
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.min.js",
+      "current": {
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "baseline": {
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
+      "current": {
+        "raw": 509404,
+        "gzip": 84400,
+        "brotli": 67765
+      },
+      "baseline": {
+        "raw": 468579,
+        "gzip": 76767,
+        "brotli": 61759
+      },
+      "delta": {
+        "raw": 40825,
+        "gzip": 7633,
+        "brotli": 6006
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+      "current": {
+        "raw": 184562,
+        "gzip": 53704,
+        "brotli": 46210
+      },
+      "baseline": {
+        "raw": 170314,
+        "gzip": 48405,
+        "brotli": 41884
+      },
+      "delta": {
+        "raw": 14248,
+        "gzip": 5299,
+        "brotli": 4326
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.js",
+      "current": {
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "baseline": {
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.min.js",
+      "current": {
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "baseline": {
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.js",
+      "current": {
+        "raw": 641810,
+        "gzip": 103807,
+        "brotli": 82434
+      },
+      "baseline": {
+        "raw": 599327,
+        "gzip": 95588,
+        "brotli": 76187
+      },
+      "delta": {
+        "raw": 42483,
+        "gzip": 8219,
+        "brotli": 6247
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.min.js",
+      "current": {
+        "raw": 231848,
+        "gzip": 65715,
+        "brotli": 56103
+      },
+      "baseline": {
+        "raw": 216864,
+        "gzip": 59948,
+        "brotli": 51523
+      },
+      "delta": {
+        "raw": 14984,
+        "gzip": 5767,
+        "brotli": 4580
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.js",
+      "current": {
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "baseline": {
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.min.js",
+      "current": {
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "baseline": {
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.js",
+      "current": {
+        "raw": 1262783,
+        "gzip": 195127,
+        "brotli": 146496
+      },
+      "baseline": {
+        "raw": 1193110,
+        "gzip": 182818,
+        "brotli": 138169
+      },
+      "delta": {
+        "raw": 69673,
+        "gzip": 12309,
+        "brotli": 8327
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "current": {
+        "raw": 460687,
+        "gzip": 126610,
+        "brotli": 102353
+      },
+      "baseline": {
+        "raw": 435531,
+        "gzip": 118216,
+        "brotli": 96340
+      },
+      "delta": {
+        "raw": 25156,
+        "gzip": 8394,
+        "brotli": 6013
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.js",
+      "current": {
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "baseline": {
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.min.js",
+      "current": {
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "baseline": {
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    }
+  ],
+  "vsPriorE5": [
+    {
+      "name": "helper",
+      "condition": "import",
+      "current": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "baseline": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "chunks": 1
+    },
+    {
+      "name": "factory",
+      "condition": "import",
+      "current": {
+        "raw": 76034,
+        "gzip": 25613,
+        "brotli": 22617
+      },
+      "baseline": {
+        "raw": 74660,
+        "gzip": 25121,
+        "brotli": 22206
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 492,
+        "brotli": 411
+      },
+      "chunks": 3
+    },
+    {
+      "name": "initialization",
+      "condition": "import",
+      "current": {
+        "raw": 76062,
+        "gzip": 25623,
+        "brotli": 22616
+      },
+      "baseline": {
+        "raw": 74688,
+        "gzip": 25132,
+        "brotli": 22186
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 491,
+        "brotli": 430
+      },
+      "chunks": 3
+    },
+    {
+      "name": "minimal",
+      "condition": "import",
+      "current": {
+        "raw": 96905,
+        "gzip": 31899,
+        "brotli": 28418
+      },
+      "baseline": {
+        "raw": 95531,
+        "gzip": 31396,
+        "brotli": 27926
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 503,
+        "brotli": 492
+      },
+      "chunks": 4
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "import",
+      "current": {
+        "raw": 76044,
+        "gzip": 25621,
+        "brotli": 22630
+      },
+      "baseline": {
+        "raw": 74670,
+        "gzip": 25132,
+        "brotli": 22198
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 489,
+        "brotli": 432
+      },
+      "chunks": 3
+    },
+    {
+      "name": "helper",
+      "condition": "browser",
+      "current": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "baseline": {
+        "raw": 314,
+        "gzip": 189,
+        "brotli": 166
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "chunks": 1
+    },
+    {
+      "name": "factory",
+      "condition": "browser",
+      "current": {
+        "raw": 76034,
+        "gzip": 25613,
+        "brotli": 22617
+      },
+      "baseline": {
+        "raw": 74660,
+        "gzip": 25121,
+        "brotli": 22206
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 492,
+        "brotli": 411
+      },
+      "chunks": 3
+    },
+    {
+      "name": "initialization",
+      "condition": "browser",
+      "current": {
+        "raw": 76062,
+        "gzip": 25623,
+        "brotli": 22616
+      },
+      "baseline": {
+        "raw": 74688,
+        "gzip": 25132,
+        "brotli": 22186
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 491,
+        "brotli": 430
+      },
+      "chunks": 3
+    },
+    {
+      "name": "minimal",
+      "condition": "browser",
+      "current": {
+        "raw": 96905,
+        "gzip": 31899,
+        "brotli": 28418
+      },
+      "baseline": {
+        "raw": 95531,
+        "gzip": 31396,
+        "brotli": 27926
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 503,
+        "brotli": 492
+      },
+      "chunks": 4
+    },
+    {
+      "name": "factory-lazy",
+      "condition": "browser",
+      "current": {
+        "raw": 76044,
+        "gzip": 25621,
+        "brotli": 22630
+      },
+      "baseline": {
+        "raw": 74670,
+        "gzip": 25132,
+        "brotli": 22198
+      },
+      "delta": {
+        "raw": 1374,
+        "gzip": 489,
+        "brotli": 432
+      },
+      "chunks": 3
+    },
+    {
+      "file": "engine/dist/tsparticles.engine.js",
+      "current": {
+        "raw": 261645,
+        "gzip": 47556,
+        "brotli": 39854
+      },
+      "baseline": {
+        "raw": 256977,
+        "gzip": 46785,
+        "brotli": 39259
+      },
+      "delta": {
+        "raw": 4668,
+        "gzip": 771,
+        "brotli": 595
+      }
+    },
+    {
+      "file": "engine/dist/tsparticles.engine.min.js",
+      "current": {
+        "raw": 96173,
+        "gzip": 31190,
+        "brotli": 26655
+      },
+      "baseline": {
+        "raw": 94797,
+        "gzip": 30684,
+        "brotli": 26246
+      },
+      "delta": {
+        "raw": 1376,
+        "gzip": 506,
+        "brotli": 409
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.js",
+      "current": {
+        "raw": 317402,
+        "gzip": 55369,
+        "brotli": 46082
+      },
+      "baseline": {
+        "raw": 312734,
+        "gzip": 54599,
+        "brotli": 45408
+      },
+      "delta": {
+        "raw": 4668,
+        "gzip": 770,
+        "brotli": 674
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.bundle.min.js",
+      "current": {
+        "raw": 117115,
+        "gzip": 35896,
+        "brotli": 31362
+      },
+      "baseline": {
+        "raw": 115735,
+        "gzip": 35382,
+        "brotli": 30943
+      },
+      "delta": {
+        "raw": 1380,
+        "gzip": 514,
+        "brotli": 419
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.js",
+      "current": {
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "baseline": {
+        "raw": 5155,
+        "gzip": 978,
+        "brotli": 878
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/basic/dist/tsparticles.basic.min.js",
+      "current": {
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "baseline": {
+        "raw": 4168,
+        "gzip": 768,
+        "brotli": 676
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.js",
+      "current": {
+        "raw": 509404,
+        "gzip": 84400,
+        "brotli": 67765
+      },
+      "baseline": {
+        "raw": 502296,
+        "gzip": 83249,
+        "brotli": 66868
+      },
+      "delta": {
+        "raw": 7108,
+        "gzip": 1151,
+        "brotli": 897
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.bundle.min.js",
+      "current": {
+        "raw": 184562,
+        "gzip": 53704,
+        "brotli": 46210
+      },
+      "baseline": {
+        "raw": 182599,
+        "gzip": 52957,
+        "brotli": 45580
+      },
+      "delta": {
+        "raw": 1963,
+        "gzip": 747,
+        "brotli": 630
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.js",
+      "current": {
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "baseline": {
+        "raw": 7929,
+        "gzip": 1365,
+        "brotli": 1221
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/slim/dist/tsparticles.slim.min.js",
+      "current": {
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "baseline": {
+        "raw": 5673,
+        "gzip": 1034,
+        "brotli": 934
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.js",
+      "current": {
+        "raw": 641810,
+        "gzip": 103807,
+        "brotli": 82434
+      },
+      "baseline": {
+        "raw": 634626,
+        "gzip": 102630,
+        "brotli": 81513
+      },
+      "delta": {
+        "raw": 7184,
+        "gzip": 1177,
+        "brotli": 921
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.bundle.min.js",
+      "current": {
+        "raw": 231848,
+        "gzip": 65715,
+        "brotli": 56103
+      },
+      "baseline": {
+        "raw": 229826,
+        "gzip": 64940,
+        "brotli": 55361
+      },
+      "delta": {
+        "raw": 2022,
+        "gzip": 775,
+        "brotli": 742
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.js",
+      "current": {
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "baseline": {
+        "raw": 5987,
+        "gzip": 1119,
+        "brotli": 1001
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/full/dist/tsparticles.min.js",
+      "current": {
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "baseline": {
+        "raw": 4524,
+        "gzip": 844,
+        "brotli": 758
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.js",
+      "current": {
+        "raw": 1262783,
+        "gzip": 195127,
+        "brotli": 146496
+      },
+      "baseline": {
+        "raw": 1255599,
+        "gzip": 193974,
+        "brotli": 145527
+      },
+      "delta": {
+        "raw": 7184,
+        "gzip": 1153,
+        "brotli": 969
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.bundle.min.js",
+      "current": {
+        "raw": 460687,
+        "gzip": 126610,
+        "brotli": 102353
+      },
+      "baseline": {
+        "raw": 458664,
+        "gzip": 125767,
+        "brotli": 101763
+      },
+      "delta": {
+        "raw": 2023,
+        "gzip": 843,
+        "brotli": 590
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.js",
+      "current": {
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "baseline": {
+        "raw": 13381,
+        "gzip": 2336,
+        "brotli": 2093
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    },
+    {
+      "file": "bundles/all/dist/tsparticles.all.min.js",
+      "current": {
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "baseline": {
+        "raw": 9002,
+        "gzip": 1789,
+        "brotli": 1620
+      },
+      "delta": {
+        "raw": 0,
+        "gzip": 0,
+        "brotli": 0
+      }
+    }
+  ]
+}

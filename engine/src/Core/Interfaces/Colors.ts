@@ -21,7 +21,18 @@ export interface IColor {
    * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
    */
   value: SingleOrMultiple<
-    IValueColor | IRgb | IHsl | IHsv | IHwb | ILab | ILch | IOklab | IOklch | SingleOrMultiple<string>
+    | IValueColor
+    | IRgb
+    | ISpacedRgb
+    | IHsl
+    | IHsv
+    | IHwb
+    | ILab
+    | ILch
+    | IOklab
+    | IOklch
+    | IOklcha
+    | SingleOrMultiple<string>
   >;
 }
 
@@ -36,12 +47,14 @@ export interface IRangeColor {
   value: SingleOrMultiple<
     | IRangeValueColor
     | IRangeRgb
+    | IRangeSpacedRgb
     | IRangeHsl
     | IRangeHsv
     | IRangeHwb
     | IRangeLab
     | IRangeLch
     | IRangeOklab
+    | IRangeOklch
     | SingleOrMultiple<string>
   >;
 }
@@ -163,6 +176,16 @@ export interface IRgb {
   r: number;
 }
 
+/** RGB input channels. Channels are encoded 0–255 values; absent metadata means sRGB. */
+export interface ISpacedRgb extends IRgb {
+  /** Optional input alpha. */
+  a?: number;
+  /** Source primaries used to interpret these encoded channels. */
+  colorSpace?: "srgb" | "display-p3";
+  /** Input-only shorthand: true means Display-P3; false means sRGB. */
+  p3?: boolean;
+}
+
 /**
  * Range RGB Color
  * [[include:Color.md]]
@@ -182,6 +205,16 @@ export interface IRangeRgb {
    * Red
    */
   r: RangeValue;
+}
+
+/** Ranged RGB input channels. Absent source metadata means sRGB. */
+export interface IRangeSpacedRgb extends IRangeRgb {
+  /** Optional ranged input alpha. */
+  a?: RangeValue;
+  /** Source primaries used to interpret the sampled encoded channels. */
+  colorSpace?: "srgb" | "display-p3";
+  /** Input-only shorthand: true means Display-P3; false means sRGB. */
+  p3?: boolean;
 }
 
 /**
@@ -206,7 +239,7 @@ export interface IOklch {
   h: number;
 
   /**
-   * Lightness
+   * OKLab lightness in the 0–100 range
    */
   l: number;
 }
@@ -302,7 +335,7 @@ export interface IOklab {
   bAxis: number;
 
   /**
-   * Lightness
+   * Lightness in the 0–100 range
    */
   l: number;
 }
@@ -456,12 +489,12 @@ export interface IValueColor {
   /**
    * Oklch Value
    */
-  oklch?: IOklch;
+  oklch?: IOklcha;
 
   /**
    * Rgb Value
    */
-  rgb?: IRgb;
+  rgb?: ISpacedRgb;
 }
 
 /**
@@ -507,5 +540,5 @@ export interface IRangeValueColor {
   /**
    * Rgb Value
    */
-  rgb?: IRangeRgb;
+  rgb?: IRangeSpacedRgb;
 }

@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-line
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadLineShape } = require("@tsparticles/shape-line");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadLineShape } = require("@tsparticles/shape-line");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadLineShape } from "@tsparticles/shape-line";
 
 (async () => {

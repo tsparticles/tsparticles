@@ -2,10 +2,9 @@ import {
   DrawLayer,
   type IContainerPlugin,
   type PluginManager,
-  getLogger,
-  getStyleFromRgb,
+  getStyleFromOklch,
   originPoint,
-  rangeColorToRgb,
+  rangeColorToOklch,
   safeDocument,
 } from "@tsparticles/engine";
 import type { BackgroundMaskContainer } from "./types.js";
@@ -18,6 +17,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
   #coverImage?: { image: HTMLImageElement; opacity: number };
   #defaultCompositeValue?: GlobalCompositeOperation;
   #maskElement?: HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement | null;
+
   readonly #maskWarnings = new Set<string>();
   readonly #pluginManager;
 
@@ -131,20 +131,16 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       color = cover?.color;
 
     if (color) {
-      const coverRgb = rangeColorToRgb(this.#pluginManager, color);
+      const coverOklch = rangeColorToOklch(this.#pluginManager, color);
 
-      if (coverRgb) {
-        const coverColor = {
-          ...coverRgb,
-          a: cover.opacity,
-        };
-
-        this.#coverColorStyle = getStyleFromRgb(
-          coverColor,
+      if (coverOklch) {
+        this.#coverColorStyle = getStyleFromOklch(
+          coverOklch,
           this.#container.hdr,
-          coverColor.a,
+          cover.opacity,
           this.#container.peakNits,
           this.#container.hdrMode,
+          this.#container.outputColorSpace,
         );
       }
     } else if (cover?.image) {
@@ -185,7 +181,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     }
 
     this.#maskWarnings.add(key);
-    getLogger().warning(`[tsParticles BackgroundMask] ${message}`);
+    this.#container.engine.getLogger().warning(`[tsParticles BackgroundMask] ${message}`);
   };
 
   readonly #resolveMaskElement = (): void => {

@@ -1,7 +1,7 @@
 import type { IDimension } from "./IDimension.js";
 import type { OutMode } from "../../Enums/Modes/OutMode.js";
 import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection.js";
-import type { Particle } from "../Particle.js";
+import type { Particle } from "../Particles/Particle.js";
 
 /** Canvas bounds callback payload for particle-owned bounds checks */
 export interface IParticleCanvasBoundsData<TParticle extends Particle = Particle> {

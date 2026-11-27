@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-polygon-mask
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadPolygonMaskPlugin } = require("@tsparticles/plugin-polygon-mask");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadPolygonMaskPlugin } = require("@tsparticles/plugin-polygon-mask");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 
 (async () => {

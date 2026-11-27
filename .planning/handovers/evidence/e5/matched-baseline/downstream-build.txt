@@ -1,0 +1,12 @@
+
+ NX   453 tasks: 453 succeeded, 427 cached
+
+
+Re-run with --output-style=static to inline logs.
+
+View logs and investigate cache misses at https://cloud.nx.app/runs/bKUUtcmyT7
+
+  Run duration:      1m 13s
+  Cache:             427/453 hit (94%)
+  Critical path:     1m 11s (15 tasks)
+  Recoverable time:  2.1s (3% of the run)

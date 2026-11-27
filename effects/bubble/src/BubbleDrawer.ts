@@ -1,6 +1,23 @@
-import { type IEffectDrawer, type IShapeDrawData, defaultAngle, doublePI } from "@tsparticles/engine";
+import {
+  type IEffectDrawer,
+  type IOklcha,
+  type IShapeDrawData,
+  defaultAngle,
+  doublePI,
+  getStyleFromOklch,
+  percentDenominator,
+} from "@tsparticles/engine";
 
-const bubbleFactor = 3;
+const bubbleFactor = 3,
+  // Alpha from the previous #RGBA highlight style, retained exactly.
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  bubbleHighlightAlpha = 0x99 / 0xff,
+  bubbleHighlightColor: IOklcha = {
+    a: bubbleHighlightAlpha,
+    c: 0,
+    h: 0,
+    l: percentDenominator,
+  };
 
 /** Bubble effect drawer plugin */
 export class BubbleDrawer implements IEffectDrawer {
@@ -10,12 +27,20 @@ export class BubbleDrawer implements IEffectDrawer {
    */
   drawAfter(data: IShapeDrawData): void {
     const { context, radius } = data,
+      { container } = data.particle,
       bubbleRadius = radius / bubbleFactor;
 
     context.beginPath();
     context.arc(bubbleRadius, -bubbleRadius, bubbleRadius, defaultAngle, doublePI, false);
     context.closePath();
-    context.fillStyle = "#fff9";
+    context.fillStyle = getStyleFromOklch(
+      bubbleHighlightColor,
+      container.hdr,
+      1,
+      container.peakNits,
+      container.hdrMode,
+      container.outputColorSpace,
+    );
     context.fill();
   }
 }

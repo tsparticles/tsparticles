@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-rounded-rect
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadRoundedRectShape } = require("@tsparticles/shape-rounded-rect");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadRoundedRectShape } = require("@tsparticles/shape-rounded-rect");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
 
 (async () => {

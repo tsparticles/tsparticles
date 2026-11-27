@@ -1,13 +1,17 @@
-import { useState } from "react";
 import { ParticlesProvider } from "@tsparticles/react";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
+import { useState } from "react";
 import "./App.css";
 
+const confetti = createConfetti(engine);
+
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 async function init(): Promise<void> {
+  await confetti.init();
 }
 
 export default function App() {
@@ -43,12 +47,12 @@ export default function App() {
   }
 
   return (
-    <ParticlesProvider init={init}>
+    <ParticlesProvider engine={engine} init={init}>
       <div id="app">
         <h1>Confetti!</h1>
         <div className="controls">
           <button onClick={fireConfetti}>Fire Confetti</button>
-          <select value={mode} onChange={(e) => setMode(e.target.value)}>
+          <select value={mode} onChange={e => setMode(e.target.value)}>
             <option value="cannon">Cannon</option>
             <option value="waterfall">Waterfall</option>
             <option value="random">Random</option>

@@ -1,55 +1,40 @@
-import { tsParticles } from "@tsparticles/engine";
-
-// Minimal JS runtime copy of the TypeScript initParticlesEngine implementation.
-// Kept in src as a .js file so consumers (Vite/dev server/browser) can import it
-// directly from node_modules without requiring TS/.astro compilation.
-
-let initialized = false;
-let initPromise = undefined;
-let initCallback = undefined;
-
-export async function initParticlesEngine(init) {
-  if (initialized) {
-    return;
+const states = new WeakMap();
+function getInitializationState(engine) {
+  const existing = states.get(engine);
+  if (existing) {
+    return existing;
   }
-
-  if (initPromise) {
-    if (initCallback !== init) {
-      throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-    }
-
-    await initPromise;
-
-    return;
-  }
-
-  initCallback = init;
-  initPromise = (async () => {
-    if (init) {
-      await init(tsParticles);
-    }
-
-    // Some engine builds require an explicit init call to register plugins.
-    if (typeof tsParticles.init === "function") {
-      await tsParticles.init();
-    }
-
-    initialized = true;
-  })().catch(error => {
-    initPromise = undefined;
-    initCallback = undefined;
-    initialized = false;
-
-    throw error;
+  let resolve = () => {},
+    reject = _error => {};
+  const promise = new Promise((onResolve, onReject) => {
+    resolve = onResolve;
+    reject = onReject;
   });
-
-  await initPromise;
+  const state = { loaded: false, started: false, promise, resolve, reject };
+  states.set(engine, state);
+  return state;
 }
-
-export function isParticlesEngineInitialized() {
-  return initialized;
+export async function initParticlesEngine(engine, init) {
+  const state = getInitializationState(engine);
+  if (!state.started) {
+    state.started = true;
+    void Promise.resolve()
+      .then(async () => {
+        await init?.(engine);
+        await engine.init();
+        state.loaded = true;
+        state.resolve();
+      })
+      .catch(error => {
+        states.delete(engine);
+        state.reject(error);
+      });
+  }
+  return state.promise;
 }
-
-export async function waitForParticlesEngineInitialization() {
-  await (initPromise ?? Promise.resolve());
+export function isParticlesEngineInitialized(engine) {
+  return states.get(engine)?.loaded ?? false;
+}
+export async function waitForParticlesEngineInitialization(engine) {
+  await getInitializationState(engine).promise;
 }

@@ -61,7 +61,8 @@ $ yarn add @tsparticles/interaction-external-trail
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalTrailInteraction } = require("@tsparticles/interaction-external-trail");
 
@@ -74,7 +75,8 @@ const { loadExternalTrailInteraction } = require("@tsparticles/interaction-exter
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
 

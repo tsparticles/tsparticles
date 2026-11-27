@@ -61,7 +61,8 @@ $ yarn add @tsparticles/effect-shadow
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadShadowEffect } = require("@tsparticles/effect-shadow");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadShadowEffect } = require("@tsparticles/effect-shadow");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadShadowEffect } from "@tsparticles/effect-shadow";
 
 (async () => {

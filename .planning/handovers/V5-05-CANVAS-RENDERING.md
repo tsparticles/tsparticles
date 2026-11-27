@@ -1,6 +1,10 @@
 # V5-05 — CanvasManager, rendering, and other core costs
 
-Status pending. Requires completion of 04.
+Status: E5 color/output migration is accepted. E7 implementation, full review
+and matched incremental verification are complete and user-accepted on 2026-11-24.
+Final absolute-budget checks remain in E10, with original ceilings unchanged. See [E7 status](V5-E7-STATUS.md),
+[method review](V5-E7-REVIEW.md) and [evidence](evidence/e7/closure/README.md).
+See the [execution sequence](V5-EXECUTION.md); this handover has two checkpoints.
 
 ## Ownership
 
@@ -48,7 +52,7 @@ preserve other agents' changes.
 
 Include a custom updater with private state in parity tests. Init, update, and
 draw must use the same instance within each cycle, including after redraw and
-refresh, as described in [V4-B05](../v4-review/CORRECTNESS.md#v4-b05--p1--particle-initialization-and-drawing-use-different-updater-instances).
+refresh (V4-B05).
 
 ## Deliverables
 
@@ -60,3 +64,22 @@ Update ARCHITECTURE/STRUCTURE, the changelog as needed, and the index.
 
 See [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md) and [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Required color migration
+
+For E5 implementation, start with the [agent entry checklist](V5-E5-STATUS.md#agent-entry-checklist)
+and [output rules](V5-COLORS-OKLCH.md#output-rule-for-implementers). Default to
+CSS `oklch(...)` on supported destinations, including P3 canvases. P3 alone does
+not justify manual RGB serialization; document and test fallback/API/HDR needs.
+
+Follow [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md). In E5, coordinate C1–C4
+with 07/08, including complete canonical runtime and affected-consumer integration. Cover conversion without early clipping, OKLCH/P3 output and
+fallbacks, separate gamut/precision/HDR capabilities, intermediate surfaces,
+and numerical and browser tests. The full Particle review belongs to 07 in the same E5 stage; optimization follows in E7.
+
+## Source-review acceptance additions
+
+Apply G3/G4 from the [source review](V5-CODE-REVIEW.md) to resource/setup failures,
+zero-size canvases, effective capabilities, media export and late asset completion.
+Verify resource ownership during E5 output migration and E7 canvas review. Optional
+asset/drawing tuning in optional E13 does not defer these lifecycle checks.

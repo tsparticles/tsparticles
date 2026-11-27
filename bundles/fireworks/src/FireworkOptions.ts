@@ -16,6 +16,8 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
   background: string;
   /** Brightness offset for stroke colors */
   brightness: RangeValue;
+  /** OKLCH chroma offset for split stroke colors */
+  chroma: RangeValue;
   /** Firework colors */
   colors: SingleOrMultiple<string>;
   /** Gravity acceleration */
@@ -24,8 +26,6 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
   minHeight: RangeValue;
   /** Firework launch rate */
   rate: RangeValue;
-  /** Saturation offset for stroke colors */
-  saturation: RangeValue;
   /** Enables explosion sounds */
   sounds;
   /** Rocket speed */
@@ -84,9 +84,9 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
       max: 30,
     };
     this.rate = 10;
-    this.saturation = {
-      min: -30,
-      max: 30,
+    this.chroma = {
+      min: -0.03,
+      max: 0.03,
     };
     this.sounds = true;
     this.speed = { min: 20, max: 40 };
@@ -115,7 +115,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
     loadRangeProperty(this, "gravity", data.gravity);
     loadRangeProperty(this, "minHeight", data.minHeight);
     loadRangeProperty(this, "rate", data.rate);
-    loadRangeProperty(this, "saturation", data.saturation);
+    loadRangeProperty(this, "chroma", data.chroma);
     loadProperty(this, "sounds", data.sounds);
     loadRangeProperty(this, "speed", data.speed);
     loadRangeProperty(this, "splitCount", data.splitCount);

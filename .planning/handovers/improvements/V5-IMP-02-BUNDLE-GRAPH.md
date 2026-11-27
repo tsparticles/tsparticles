@@ -40,6 +40,10 @@ Acceptance requires fewer bytes in the minimal consumer, comparable total M8
 size, a documented path to re-enable the feature, and tests of standard and
 custom bundles.
 
+Carry forward the deferred V4-S03 experiment for the GIF decoder and
+polygon-mask polyfill. Compare bytes transferred and
+cold first activation, including the standalone All CDN bundle.
+
 ### B3 — Package entry conditions
 
 Verify that package conditions select their documented entries. Measure the

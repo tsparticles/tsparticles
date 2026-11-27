@@ -1,7 +1,11 @@
 # tsParticles v5 execution plan
 
-Dated 2026-11-03. Use the dedicated branch `v5` and source baseline `4.5.1`.
-Status **planned, with runtime implementation pending**.
+Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
+`201b8e8d33` incorporates the `4.6.0` release through `main`. Status
+**E0–E11 accepted for progression on 2026-11-27**. Physical HDR verification and human-language sign-off for the nine migration drafts are queued for final plan validation at the user's direction; this records a deferral, not completed results, and does not authorize release. See [E8 ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24) and the [E9 distribution evidence](evidence/e9/README.md). E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
+[the evidence report](V5-BUNDLE-REPORT.md) and [E1 retirement checkpoint](V5-E1-RETIREMENT.md)
+for measurements and limitations. The original `4.5.1` reconnaissance and later `4.5.2` architecture
+and color review are historical.
 
 ## Goals and sequence
 
@@ -14,27 +18,56 @@ Every area requires review. Measurements and contracts should justify any rewrit
 Explicitly audit all plugins and browser/CDN distribution without the singleton.
 Document intentional breaking changes and provide migration paths for this major release.
 
-| Order | Handover                                                          | Dependency                                  | Outcome                                                     |
-| ----- | ----------------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
-| 1     | [Explicit engines](V5-01-ENGINE-INSTANCES.md)                     | Preliminary baseline                        | Explicit instances and working consumers and browser builds |
-| 2     | [Random and logger](V5-02-ENGINE-SERVICES.md)                     | 01                                          | Services isolated per engine                                |
-| 3     | [Core boundaries and full engine audit](V5-03-CORE-BOUNDARIES.md) | 02                                          | Complete inventory, entrypoints, and responsibilities       |
-| 4     | [Container](V5-04-CONTAINER.md)                                   | 03                                          | Lifecycle review                                            |
-| 5     | [Canvas and rendering](V5-05-CANVAS-RENDERING.md)                 | 04                                          | Canvas and rendering review                                 |
-| 6     | [ParticlesManager](V5-06-PARTICLES-MANAGER.md)                    | 05                                          | Collection, pool, update, and grid review                   |
-| 7     | [Particle](V5-07-PARTICLE.md)                                     | 06                                          | Particle state, initialization, and Retina review           |
-| 8     | [Plugin impact](V5-08-PLUGIN-IMPACT.md)                           | Initial audit in 01/02, completion after 07 | Verified compatibility for each package                     |
-| 9     | [Browser and CDN bundles](V5-09-BROWSER-BUNDLES.md)               | Initial contract in 01, completion after 08 | Bootstrap and composition without a singleton               |
-| 10    | [v5 release gates](V5-10-SIZE-MIGRATION-RELEASE.md)               | 01–09                                       | Budgets, integration, and migration                         |
+The authoritative order is [E0–E12 and optional E13 in the execution plan](V5-EXECUTION.md),
+which records dependencies, difficulty, impact, subdivisions and exit gates.
+Handover IDs are stable topic identifiers, not execution order.
 
-Follow the sequence because the first three handovers change shared contracts and
-imports. Each handover defines ownership, tests, and evidence. Complete each later
-step independently before marking it done. Agents must read `AGENTS.md`, this index,
-and their handover before editing source. Preserve other contributors' changes and
-record files, decisions, commands, and results. Commits, publishing, and releases
-require separate authorization.
+| Stage | Scope                                              | Handover ownership                                                    |
+| ----- | -------------------------------------------------- | --------------------------------------------------------------------- |
+| E0    | Baseline, inventories and support scope            | 01/03/08/09                                                           |
+| E1    | Explicit engines and supported consumers           | [01](V5-01-ENGINE-INSTANCES.md)                                       |
+| E2    | Per-engine services and shared-state isolation     | [02](V5-02-ENGINE-SERVICES.md)                                        |
+| E3    | Shared contracts and internal boundaries           | [03](V5-03-CORE-BOUNDARIES.md), [verification](V5-E3-VERIFICATION.md) |
+| E4    | Container lifecycle and extension integration      | [04](V5-04-CONTAINER.md)                                              |
+| E5    | Particle/options and complete OKLCH migration      | [07](V5-07-PARTICLE.md), color work in 05/08                          |
+| E6    | Collections, pooling and spatial index             | [06](V5-06-PARTICLES-MANAGER.md)                                      |
+| E7    | Rendering optimization and remaining canvas review | [05](V5-05-CANVAS-RENDERING.md)                                       |
+| E8    | Ecosystem audit closure                            | [08](V5-08-PLUGIN-IMPACT.md)                                          |
+| E9    | Final distribution and support cleanup             | [09](V5-09-BROWSER-BUNDLES.md)                                        |
+| E10   | Budgets, integration and migration gates           | [10](V5-10-SIZE-MIGRATION-RELEASE.md)                                 |
 
-## Checkout evidence
+### Work after E10 — planned follow-ups
+
+E10 is accepted for progression. These plans extend the sequence. E11 is
+complete; E12 remains planned with its own evidence and acceptance status; E13
+is an optional backlog.
+
+| Order | Plan                                                                        | Status           | Scope                                                                                                                                                                             |
+| ----- | --------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E11   | [Engine-owned utilities and configuration](V5-11-ENGINE-OWNED-UTILITIES.md) | Complete         | Put random, logger and color-manager configuration/lookup on the owning engine; remove ambient fallbacks and the legacy color-manager adapter; classify shared mutable state.     |
+| E12   | [Engine-independent extensions](V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md)     | Planned          | Create `@tsparticles/core` for extension-facing contracts and utilities; migrate extension packages off direct engine dependencies while bundles, wrappers and demos retain them. |
+| E13   | [Optional plugin improvements](V5-13-OPTIONAL-PLUGINS.md)                   | Optional backlog | Profile and implement only measured plugin improvements; coordinate with separately planned pre-release verification.                                                             |
+
+E11 follows up residual ownership findings from E2. E12 is the broader
+engine-to-extension dependency decoupling. E13 remains optional and
+measurement-led. Additional pre-release verification still needs to be scoped
+and agreed after E10; no single gate authorizes a release.
+
+The first runtime change remains singleton removal, followed immediately by
+service isolation. Particle and color contracts now precede collection and
+rendering optimizations. Plugin/browser migration accompanies each breaking
+change; E8/E9 verify the completed work. Define retirement scope in E0 to avoid
+migrating integrations that v5 will remove.
+
+Agents must read `AGENTS.md`, this index, the execution plan and relevant technical
+handovers before editing source. Preserve other contributors' changes and record
+files, decisions, commands and results. E0–E13 contain no release or publication
+step. E10 is not overall v5 validation: continue E12 and agree a separate
+plan for any additional pre-release checks before considering a release. E11 is complete. The
+user-run HDR and translation checks remain in that final validation queue. Commits,
+publishing and releases require separate authorization.
+
+## Original checkout evidence (E0, before implementation)
 
 - `engine/src/index.ts` and `index.lazy.ts` call `initEngine()` at import time.
 - `initEngine.ts` reuses `globalThis.tsParticles` if it finds `pluginManager`.
@@ -103,26 +136,38 @@ document the reason and migration before propagating a different signature.
 
 ## Required baseline before the first runtime change
 
-Capture the baseline at the start of 01, before refactoring. In
+Capture the baseline in E0, before any runtime change or retirement. In
 `V5-BUNDLE-REPORT.md`, record the starting commit, working-tree diff, Node and pnpm
 versions, build commands, formats, and measurements. Build fresh artifacts for
 the verified baseline. Use the same toolchain, minifier, and compression settings.
 
-| Scenario                  | Include                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                   |
-| Acquire an engine         | Consumer bundle that uses the exported `tsParticles` singleton in 4.5.1 and calls `createEngine()` in v5 |
-| Minimal scene             | Engine and only the required loaders, using identical options                                            |
-| Basic / slim / full / all | Supported minified distribution bundles                                                                  |
-| Lazy/CDN                  | Entry and every chunk needed to start the same scene                                                     |
+Complete the standard Rollup baseline and CDN engine-plus-feature measurements
+carried forward from V4-S01. Record compressed bytes, request counts, and
+duplicate modules for the entry, the first scene, and the full output graph.
 
-For engine acquisition, build an entry that exports the acquired engine so the
-bundler retains it. In 4.5.1, import and re-export `tsParticles` from
-`@tsparticles/engine`. The import creates or reuses the shared instance. In v5,
-import `createEngine` and export the result of one call, which creates a new
-instance. Measure explicit initialization and scene loading in separate
-consumer entries using `engine.init()` and `engine.load({ id, options })` on
-the acquired engine. Use the same ID, options, and required loaders for both versions.
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:48e33223d4af4463d81ff82bbe13ab8dd138c879ac57b98059f9152826f890f6 -->
+
+| Scenario                  | Include                                                                                                                                         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Import a pure helper      | Consumer bundle for one function without engine or DOM                                                                                          |
+| Acquire the singleton     | Existing consumer measurement importing and re-exporting `tsParticles` from `@tsparticles/engine`; record separately with its measured revision |
+| Acquire a factory engine  | E1 consumer importing `createEngine()` and exporting one created engine; compare separately against E0 singleton acquisition                    |
+| Minimal scene             | Engine and only the required loaders, using identical options                                                                                   |
+| Basic / slim / full / all | Supported minified distribution bundles                                                                                                         |
+| ESM/CJS lazy and CDN      | Separate package `/lazy` and documented CDN consumers; record entry and every chunk needed to start the same scene                              |
+
+For singleton acquisition, import and re-export `tsParticles` so the bundler
+retains the acquired engine. Record this existing measurement separately from
+factory acquisition. E0 has no factory scenario; E1 exports `createEngine()`.
+Build a separate E1 entry that imports `createEngine`
+and exports the result of one call. Measure explicit initialization and scene
+loading in separate consumer entries using `engine.init()` and
+`engine.load({ id, options })` on the acquired engine. Use the same ID, options,
+and required loaders for both versions.
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 Record raw and minified bytes, gzip, Brotli, chunk count, and retained dependencies.
 For ESM, also compare browser consumer bundles using actual `exports` resolution.
@@ -159,12 +204,52 @@ indexing, per-particle state, and rendering/lifecycle. Each defines ownership,
 options, constraints, scenarios, and acceptance criteria. The main handovers
 link to the relevant plans. Gate 10 also verifies the decision log and outcomes.
 
+## Architecture evaluations
+
+The [architecture plan](V5-ARCHITECTURE.md), added on 2026-11-06, requires
+four evaluations: Particle state and serialization, engine package boundaries,
+options resolution, and common extension architecture. It records starting
+recommendations, alternatives, and evidence requirements. Implement rewrites
+only where evidence supports them.
+
+Draft contracts in E3, integrate lifecycle in E4, and implement Particle/options
+and color in E5 before E6/E7 optimizations. Verify extension coverage in E8,
+packaging in E9 and decision closure in E10. Share measurements with the IMP plans.
+
+## Required OKLCH migration
+
+The [V5-COLOR plan](V5-COLORS-OKLCH.md), added on 2026-11-06, adopts
+canonical OKLCH and h/c/l animation while preserving color manager inputs.
+It defines floating-point conversion, alpha, interpolation, gamut mapping,
+P3/HDR separation, and explicit HSL animation migration. Complete C0 in E3, C1–C4 in E5, distribution checks in E9 and C5 closure
+in E10. Handovers 03/05/07/08 retain technical ownership; E5 coordinates
+model, output and consumer migration before performance tuning.
+
+## Legacy support and v4 carryover
+
+[V5-LEG](../REQUIREMENTS.md) covers Vue 2, Nuxt 2, and Nuxt 3 integrations,
+deprecated APIs with documented replacements, and browser support under the
+agreed age and usage policy. Define scope and browser policy in E0, retire obsolete integrations before
+adapting supported consumers in E1, and verify cleanup in E9/E10. Preserve fallbacks needed by supported browsers.
+
+## Source review and optional follow-up
+
+The [2026-11-13 code review](V5-CODE-REVIEW.md) identifies G1–G7 acceptance gaps
+and maps them into E1–E8, with final verification in E10. Read it with the owning
+handover before implementation. It preserves existing regression coverage and
+adds explicit resource, numeric, clock, spatial and sampling contracts.
+
+The [optional E13](V5-13-OPTIONAL-PLUGINS.md) backlog evaluates existing plugin
+performance beyond the mandatory migration. Its timing will be coordinated with
+the additional verification plan after E10. Candidates need profiling; there are
+no claimed savings or mandatory new visual plugins.
+
 ## Plan status
 
 - [x] Review the critical areas and update planning documentation.
 - [x] Prepare handovers 01–10.
-- [ ] Capture the bundle baseline and numeric budgets.
-- [ ] Implement and verify 01–10, covering the full engine and the plugin and browser audits.
+- [x] Complete the baseline and numeric budgets — Rollup, installed consumers, CDN, runtime, retention and color evidence recorded in [V5-BUNDLE-REPORT.md](V5-BUNDLE-REPORT.md).
+- [ ] Implement and verify E0–E12, covering the full engine and the plugin and browser audits; consider optional E13 separately.
 
 Historical test counts in `STATE.md` refer to 4.x sessions. Treat analyses in
 `codebase/` and `research/` that have yet to be fully rechecked as historical

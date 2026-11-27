@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-23",
+  "baseRevision": "c42a53b2e1acd7fe884e22b9788d8d65896fda38",
+  "workingTree": true,
+  "e6Accepted": false,
+  "productionIncrementVerified": true,
+  "bundleSha256": "68ea12ed89e4022b7735317cd9e391ddf64a895595b3d2d1931af8ab60e5fbeb",
+  "sourceHashes": {
+    "engine/src/Core/Particles/ParticlesManager.ts": "350e1fd74c96b6d2f1cb9a742ad7c51b4a665a3162a848a7408bad6b69181f4e",
+    "engine/src/Core/Particles/SpatialHashGrid.ts": "a5ffd576921b50576fb80f33cf18c82b66f3aed9ab7a35c761512d1ca7746a45",
+    "engine/src/Core/Particles/Ranges.ts": "ed496d98ef543e219bd00191cbd1c6bc56a036bb20b0796a5792e163ae26ba20",
+    "plugins/interactivity/src/InteractionManager.ts": "234d9facf2b8a4c6765b92e2a992fbe906c0448c068ead25d08dbbf87753c901"
+  },
+  "primaryTests": {
+    "files": 58,
+    "passed": 872
+  },
+  "downstreamBuild": {
+    "requestedProjects": 235,
+    "dependencyTasks": 218,
+    "totalTasks": 453,
+    "finalSandboxSuccesses": 451,
+    "environmentFailures": [
+      "@tsparticles/angular-demo",
+      "@tsparticles/electron-demo"
+    ],
+    "failedOnlyRechecksOutsideSandboxPassed": true,
+    "command": "NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true pnpm nx show projects --json | jq -r '.[]' | rg -v 'cli|website|palette' | NX_DAEMON=false NX_ISOLATE_PLUGINS=false NX_NO_CLOUD=true xargs pnpm nx run-many -t build --configuration=ci --parallel=8 --output-style=static --projects"
+  },
+  "workspaceTests": {
+    "targets": 85,
+    "sandboxSuccesses": 81,
+    "failedOnlyRechecksPassed": 4,
+    "rechecks": "MCP/Ember outside sandbox; Angular/Ionic outside sandbox with --reporters=progress; no assertions skipped"
+  },
+  "lintAndFormat": "Source/test lint and formatting pass in final builds; changed-file checks recorded separately.",
+  "browser": {
+    "version": "Chrome/157.0.8103.79",
+    "samplesPerArtifact": 45,
+    "matchingSnapshots": 135,
+    "initialTimingFlags": [
+      {
+        "scenario": "M8",
+        "count": 1000,
+        "frameP95Ms": 3.2,
+        "screenMs": 3.19,
+        "updateMedianMs": 1.5,
+        "e0UpdateCeilingMs": 1.43
+      }
+    ],
+    "confirmationRepetitions": 9,
+    "matchingConfirmationSnapshots": 27,
+    "confirmationOverAllowance": false,
+    "confirmation": {
+      "baselineAndCandidateUpdateMedianMs": 1.4,
+      "baselineAndCandidateDrawMedianMs": 1.1,
+      "baselineAndCandidateFrameP95Ms": 3.0
+    }
+  },
+  "currentExtensions": {
+    "samples": 18,
+    "retentionCycles": 30,
+    "validations": {
+      "pageErrors": true,
+      "allContainersRemoved": true,
+      "domStable": true,
+      "retentionDomStable": true,
+      "rngStable": {
+        "M6-extensions:100": true,
+        "M6-extensions:500": true,
+        "M6-extensions:1000": true,
+        "M8-hdr-layers-resize:100": true,
+        "M8-hdr-layers-resize:500": true,
+        "M8-hdr-layers-resize:1000": true
+      }
+    },
+    "postPeakHeapDriftBytes": 103104
+  },
+  "allStandaloneDelta": {
+    "raw": 854,
+    "gzip": 349,
+    "brotli": 433
+  },
+  "remaining": [
+    "Collection hook mutation/identity review",
+    "Group/bulk-count alternatives",
+    "Bucket sort frequency and alternatives",
+    "Live pool peak/trough retention and policy",
+    "Remaining S1-S4 alternatives and consumer audit"
+  ],
+  "notes": [
+    "E5/E10 runtime and bundle exceptions are carried forward; no E6 acceptance inferred.",
+    "Original failed runs and timing flags are retained alongside successful targeted confirmations.",
+    "The Set creation diagnostic does not count every internal backing-store allocation.",
+    "No commit or publication performed by this agent."
+  ]
+}

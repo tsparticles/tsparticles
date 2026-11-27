@@ -20,9 +20,9 @@ const options: ISourceOptions = {
               speed: { min: 30, max: 60 },
               sync: true,
             },
-            s: {
+            c: {
               enable: true,
-              speed: { min: 5, max: 10 },
+              speed: { min: 0.05, max: 0.1 },
               sync: true,
             },
             l: {
@@ -44,9 +44,9 @@ const options: ISourceOptions = {
               speed: { min: 30, max: 60 },
               sync: true,
             },
-            s: {
+            c: {
               enable: true,
-              speed: { min: 5, max: 10 },
+              speed: { min: 0.05, max: 0.1 },
               sync: true,
             },
             l: {

@@ -1,0 +1,1 @@
+wrappers/stencil/loader/index.d.ts:13: * @deprecated

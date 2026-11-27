@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { engine } from "../particlesEngine";
+
   import Particles from "@tsparticles/svelte";
-  import { confetti } from "@tsparticles/confetti";
+  import { createConfetti } from "@tsparticles/confetti";
+  const confetti = createConfetti(engine);
   import type { ISourceOptions } from "@tsparticles/engine";
 
   type Player = "X" | "O";
@@ -50,7 +53,7 @@
       }
     }
 
-    if (b.every((cell) => cell !== null)) {
+    if (b.every(cell => cell !== null)) {
       return { winner: "draw", winLine: [] };
     }
 
@@ -151,7 +154,7 @@
 
 <button class="reset-btn" onclick={reset}>Reset</button>
 
-<Particles id="tsparticles" options={options} />
+<Particles {engine} id="tsparticles" {options} />
 
 <style>
   :global(*) {

@@ -1,11 +1,11 @@
 ---
 title: Nuxt Integration
-description: Step-by-step guide to integrating tsParticles into a Nuxt 3 / Nuxt 4 application.
+description: Step-by-step guide to integrating tsParticles into a Nuxt 4 application.
 ---
 
 # Nuxt Integration
 
-This guide covers integrating tsParticles into a **Nuxt 3** (and Nuxt 4) project using the official `@tsparticles/vue3` wrapper. Nuxt runs both server-side and client-side, so you must guard particle components against SSR.
+This guide covers integrating tsParticles into a **Nuxt 4** project using the official `@tsparticles/vue3` wrapper. Nuxt runs both server-side and client-side, so you must guard particle components against SSR.
 
 ## Installation
 
@@ -153,7 +153,8 @@ npm install @tsparticles/preset-snow
 
 <script setup lang="ts">
 import { loadSnowPreset } from "@tsparticles/preset-snow";
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import type { Container } from "@tsparticles/engine";
 
 // Load the preset before the component mounts
@@ -392,7 +393,7 @@ If you want particles on **every** page, add the component to `layouts/default.v
 
 ## Nuxt 4 Notes
 
-Nuxt 4 maintains backward compatibility with Nuxt 3's `<client-only>` and `<script setup>` patterns. All of the examples above work without changes in Nuxt 4.
+Nuxt 4 supports the `<client-only>` and `<script setup>` patterns used in these examples.
 
 Key considerations for Nuxt 4:
 
@@ -401,7 +402,7 @@ Key considerations for Nuxt 4:
 - **Stricter SSR checks**: If you see hydration warnings, ensure `<vue-particles>` is always inside `<client-only>` and never rendered on the server.
 - **Hybrid rendering**: If using route rules with `ssr: false` for certain pages, you can omit `<client-only>` on those pages, but it is safer to always include it.
 
-If you upgrade from Nuxt 2 with the `@tsparticles/vue` package (vue 2), you must migrate to `@tsparticles/vue3` for Nuxt 3 / 4 — the APIs are not compatible.
+If you upgrade from Nuxt 2 with the `@tsparticles/vue` package (vue 2), you must migrate to `@tsparticles/vue3` for Nuxt 4 — the APIs are not compatible.
 
 ## Preset Gallery
 
@@ -425,7 +426,8 @@ Combine the pattern above with any of these official presets:
 
 <script setup lang="ts">
 import { loadStarsPreset } from "@tsparticles/preset-stars";
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 
 await loadStarsPreset(tsParticles);
 </script>

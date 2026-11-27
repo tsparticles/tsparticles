@@ -26,16 +26,6 @@ export interface IConfettiOptions {
   /** Confetti gravity */
   gravity: number;
 
-  /**
-   * @deprecated use position instead
-   */
-  origin: ICoordinates;
-
-  /**
-   * @deprecated use count instead
-   */
-  particleCount: number;
-
   /** Confetti position in percent */
   position: ICoordinates;
 

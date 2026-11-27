@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-infinity
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInfinityShape } = require("@tsparticles/shape-infinity");
 
 (async () => {
@@ -72,7 +73,8 @@ const { loadInfinityShape } = require("@tsparticles/shape-infinity");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 
 (async () => {

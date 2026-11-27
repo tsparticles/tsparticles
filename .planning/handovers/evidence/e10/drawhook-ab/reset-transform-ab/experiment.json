@@ -1,0 +1,8 @@
+{
+  "sourceBundle": "bundles/all/dist/tsparticles.all.bundle.js",
+  "sourceSha256": "ba134cd8979b8b17a4b506560098592ee98a3d64f42d9e40e23cfdd992dbf615",
+  "variantBundle": ".planning/handovers/evidence/e10/drawhook-ab/reset-transform-ab/reset-transform-settransform.bundle.js.gz",
+  "variantSha256": "ccc9c099996503c42766744f1d5d12d43986feaff181602851353ab588d384dc",
+  "patch": "RenderManager context.resetTransform() -> context.setTransform(1, 0, 0, 1, 0, 0)",
+  "status": "not adopted; 21-repetition forced-HDR medians did not establish a stable improvement or clear the fixed 1.87 ms ceiling"
+}

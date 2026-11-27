@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-random
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadRandomPath } = require("@tsparticles/path-random");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadRandomPath } = require("@tsparticles/path-random");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadRandomPath } from "@tsparticles/path-random";
 
 (async () => {

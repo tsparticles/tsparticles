@@ -21,6 +21,30 @@ const defaultWidth = 0,
   alphaMax = 255,
   alphaFactor = identity / alphaMax;
 
+function getImageDataColorSpace(
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  imageData: ImageData,
+): "display-p3" | "srgb" {
+  // Prefer ImageData's own metadata; older implementations can fall back to the effective context setting.
+  const imageColorSpace = (imageData as unknown as { colorSpace?: string }).colorSpace;
+
+  if (imageColorSpace === "display-p3" || imageColorSpace === "srgb") {
+    return imageColorSpace;
+  }
+
+  try {
+    const contextColorSpace = (
+      context as unknown as {
+        getContextAttributes?: () => { colorSpace?: string };
+      }
+    ).getContextAttributes?.().colorSpace;
+
+    return contextColorSpace === "display-p3" ? "display-p3" : "srgb";
+  } catch {
+    return "srgb";
+  }
+}
+
 /**
  * Draws a line between two points using canvas API in the given context.
  * @param context - The canvas context to draw on.
@@ -47,7 +71,24 @@ export function getCanvasImageData(
   offset: number,
   clear = true,
 ): CanvasPixelData {
-  const imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height).data;
+  const pixelReadContext = ctx;
+
+  let imageData: ImageData;
+
+  try {
+    imageData = pixelReadContext.getImageData(originPoint.x, originPoint.y, size.width, size.height, {
+      pixelFormat: "rgba-unorm8",
+    });
+  } catch {
+    // Older browsers may not support pixelFormat readback settings.
+    imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height);
+  }
+
+  const isFloat16 =
+      (imageData as ImageData & { pixelFormat?: string }).pixelFormat === "rgba-float16" ||
+      imageData.data.BYTES_PER_ELEMENT === 2,
+    colorSpace = getImageDataColorSpace(ctx, imageData),
+    pixelsData = imageData.data;
 
   if (clear) {
     ctx.clearRect(originPoint.x, originPoint.y, size.width, size.height);
@@ -55,7 +96,7 @@ export function getCanvasImageData(
 
   const pixels: IRgba[][] = [];
 
-  for (let i = 0; i < imageData.length; i += offset) {
+  for (let i = 0; i < pixelsData.length; i += offset) {
     const idx = i / offset,
       pos = {
         x: idx % size.width,
@@ -71,18 +112,33 @@ export function getCanvasImageData(
     }
 
     row[pos.x] = {
-      r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
-      g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
-      b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) * alphaFactor,
+      r: normalizePixelChannel(pixelsData[i + indexesOffset.r] ?? defaultRgbMin, isFloat16),
+      g: normalizePixelChannel(pixelsData[i + indexesOffset.g] ?? defaultRgbMin, isFloat16),
+      b: normalizePixelChannel(pixelsData[i + indexesOffset.b] ?? defaultRgbMin, isFloat16),
+      a: normalizePixelAlpha(pixelsData[i + indexesOffset.a] ?? defaultAlpha, isFloat16),
     };
   }
 
   return {
+    colorSpace,
     pixels,
     width: Math.min(...pixels.map(row => row.length)),
     height: pixels.length,
   };
+}
+
+function normalizePixelChannel(value: number, isFloat16: boolean): number {
+  if (!isFloat16) {
+    return value;
+  }
+
+  return Math.round(Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax);
+}
+
+function normalizePixelAlpha(value: number, isFloat16: boolean): number {
+  return isFloat16
+    ? Math.round(Math.max(defaultRgbMin, Math.min(identity, value)) * alphaMax) * alphaFactor
+    : value * alphaFactor;
 }
 
 /**

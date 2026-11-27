@@ -15,28 +15,18 @@ If you are using Next.js, prefer [@tsparticles/nextjs](https://www.npmjs.com/pac
 ## Installation
 
 ```shell
-npm install @tsparticles/react
+npm install @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
 or
 
 ```shell
-yarn add @tsparticles/react
+yarn add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-### TypeScript Installation
-
-```shell
-npm install @tsparticles/react @tsparticles/engine
-```
-
-or
-
-```shell
-yarn add @tsparticles/react @tsparticles/engine
-```
-
-[@tsparticles/engine](https://npmjs.com/package/@tsparticles/engine) is the core package for [tsParticles](https://particles.js.org), it contains useful types like `ISourceOptions`, `Engine` or `Container`.
+The examples use `@tsparticles/slim` as the feature loader. The engine package
+is also required at runtime to create the explicit engine and provides types
+such as `ISourceOptions`, `Engine` and `Container`.
 
 ### React templates
 
@@ -75,6 +65,8 @@ Examples:
 ##### JavaScript support - object
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
@@ -163,7 +155,7 @@ const App = () => {
   );
 
   return (
-    <ParticlesProvider init={particlesInit}>
+    <ParticlesProvider engine={particlesEngine} init={particlesInit}>
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
     </ParticlesProvider>
   );
@@ -173,6 +165,8 @@ const App = () => {
 ##### TypeScript support - object
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import { useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { type Container, type Engine, type ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
@@ -262,7 +256,7 @@ const App = () => {
   );
 
   return (
-    <ParticlesProvider init={particlesInit}>
+    <ParticlesProvider engine={particlesEngine} init={particlesInit}>
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
     </ParticlesProvider>
   );
@@ -274,6 +268,8 @@ const App = () => {
 ##### JavaScript support - url
 
 ```jsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
 // import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
@@ -290,7 +286,7 @@ const App = () => {
   };
 
   return (
-    <ParticlesProvider init={particlesInit}>
+    <ParticlesProvider engine={particlesEngine} init={particlesInit}>
       <Particles id="tsparticles" url="http://foo.bar/particles.json" particlesLoaded={particlesLoaded} />
     </ParticlesProvider>
   );
@@ -300,6 +296,8 @@ const App = () => {
 ##### TypeScript support - url
 
 ```tsx
+import { createEngine } from "@tsparticles/engine";
+const particlesEngine = createEngine();
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import type { Container, Engine } from "@tsparticles/engine";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
@@ -317,7 +315,7 @@ const App = () => {
   };
 
   return (
-    <ParticlesProvider init={particlesInit}>
+    <ParticlesProvider engine={particlesEngine} init={particlesInit}>
       <Particles id="tsparticles" url="http://foo.bar/particles.json" particlesLoaded={particlesLoaded} />
     </ParticlesProvider>
   );

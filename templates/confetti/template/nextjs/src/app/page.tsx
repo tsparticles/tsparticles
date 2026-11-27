@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { NextParticles } from "@tsparticles/nextjs";
-import { confetti } from "@tsparticles/confetti";
+import { createConfetti } from "@tsparticles/confetti";
+import { engine } from "../../particlesEngine";
+import { useState } from "react";
+const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 export default function Home() {
@@ -46,7 +48,7 @@ export default function Home() {
         <h1>Confetti!</h1>
         <div className="controls">
           <button onClick={fireConfetti}>Fire Confetti</button>
-          <select value={mode} onChange={(e) => setMode(e.target.value)}>
+          <select value={mode} onChange={e => setMode(e.target.value)}>
             <option value="cannon">Cannon</option>
             <option value="waterfall">Waterfall</option>
             <option value="random">Random</option>

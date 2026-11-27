@@ -59,7 +59,8 @@ $ yarn add @tsparticles/plugin-emitters-shape-path
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadEmittersPlugin } = require("@tsparticles/plugin-emitters");
 const { loadEmittersShapePathPlugin } = require("@tsparticles/plugin-emitters-shape-path");
 
@@ -72,7 +73,8 @@ const { loadEmittersShapePathPlugin } = require("@tsparticles/plugin-emitters-sh
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapePathPlugin } from "@tsparticles/plugin-emitters-shape-path";
 

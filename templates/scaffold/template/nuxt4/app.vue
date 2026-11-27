@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <h1>Hello, tsParticles!</h1>
-    <Particles id="tsparticles" :options="options" />
+    <ClientOnly>
+      <VueParticles id="tsparticles" :options="options" />
+    </ClientOnly>
   </div>
 </template>
 
@@ -30,7 +32,23 @@ const options = {
 </script>
 
 <style>
-body { margin: 0; overflow: hidden; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
-#app { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; color: #fff; pointer-events: none; }
-h1 { font-size: 3.2em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+#app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  pointer-events: none;
+}
+h1 {
+  font-size: 3.2em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
 </style>

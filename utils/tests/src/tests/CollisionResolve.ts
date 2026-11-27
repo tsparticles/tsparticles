@@ -1,20 +1,22 @@
 /* eslint-disable */
 import {
-  tsParticles,
   type Container,
   type IDelta,
   type ISourceOptions,
   type Particle,
+  createEngine,
   getRangeValue,
 } from "@tsparticles/engine";
-import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
-import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-import { loadCircleShape } from "@tsparticles/shape-circle";
-import { loadSizeUpdater } from "@tsparticles/updater-size";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
+import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
+
+const tsParticles = createEngine();
 
 const testDelta: IDelta = { value: 16, factor: 0.5 },
   canvasWidth = 800,

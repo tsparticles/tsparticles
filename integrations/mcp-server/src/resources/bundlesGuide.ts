@@ -67,10 +67,21 @@ export function getBundlesGuideResource(): string {
 
     lines.push("**Import:**", `  \`${imp}\``);
 
-    lines.push("**Usage:**", "  ```typescript", `  import { tsParticles } from "@tsparticles/engine";`, `  ${imp}`, "");
+    lines.push(
+      "**Usage:**",
+      "  ```typescript",
+      `  import { createEngine } from "@tsparticles/engine";`,
+      `  const tsParticles = createEngine();`,
+      `  ${imp}`,
+      "",
+    );
 
     if (bundle.loadFunction) {
-      lines.push(`  await ${bundle.loadFunction}(tsParticles);`);
+      if (bundle.loadFunction.startsWith("create")) {
+        lines.push(`  const effect = ${bundle.loadFunction}(tsParticles);`, "  await effect({});");
+      } else {
+        lines.push(`  await ${bundle.loadFunction}(tsParticles);`);
+      }
     }
 
     lines.push("  ```", "");

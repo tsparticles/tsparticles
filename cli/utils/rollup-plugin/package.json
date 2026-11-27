@@ -54,7 +54,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-tsdoc": "^0.5.4",
     "prettier": "^3.10.1",

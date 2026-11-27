@@ -4,9 +4,15 @@ import { loadPolygonShape } from "../../../../shapes/polygon/src/index.js";
 import { loadSquareShape } from "../../../../shapes/square/src/index.js";
 import { suggestPlugins } from "./suggestPlugins.js";
 
-vi.mock("../../../../shapes/polygon/src/PolygonDrawer.js", () => ({ PolygonDrawer: vi.fn() }));
-vi.mock("../../../../shapes/polygon/src/TriangleDrawer.js", () => ({ TriangleDrawer: vi.fn() }));
-vi.mock("../../../../shapes/square/src/SquareDrawer.js", () => ({ SquareDrawer: vi.fn() }));
+vi.mock("../../../../shapes/polygon/src/PolygonDrawer.js", () => ({
+  PolygonDrawer: vi.fn(),
+}));
+vi.mock("../../../../shapes/polygon/src/TriangleDrawer.js", () => ({
+  TriangleDrawer: vi.fn(),
+}));
+vi.mock("../../../../shapes/square/src/SquareDrawer.js", () => ({
+  SquareDrawer: vi.fn(),
+}));
 
 const MIN_ABSORBER_IMPORTS = 1,
   MIN_RICH_MATCHES = 3;
@@ -15,15 +21,21 @@ const MIN_ABSORBER_IMPORTS = 1,
  *
  * @param loader - Shape loader to run against the registration fixture.
  */
-async function getRegisteredShapeNames(loader: (engine: never) => Promise<void>): Promise<string[]> {
+async function getRegisteredShapeNames(
+  loader: (engine: never) => Promise<void>,
+): Promise<string[]> {
   vi.stubGlobal("__VERSION__", "test");
 
   const registeredNames: string[] = [],
     engine = {
       checkVersion: vi.fn(),
       pluginManager: {
-        addShape: (names: string[]): void => registeredNames.push(...names),
-        register: async (loader: (engine: typeof engine) => Promise<void> | void): Promise<void> => {
+        addShape: (names: string[]): void => {
+          registeredNames.push(...names);
+        },
+        register: async (
+          loader: (engine: typeof engine) => Promise<void> | void,
+        ): Promise<void> => {
           await loader(engine);
         },
       },
@@ -39,8 +51,39 @@ async function getRegisteredShapeNames(loader: (engine: never) => Promise<void>)
 }
 
 describe("suggestPlugins", () => {
+  it.each([
+    { r: 255, g: 0, b: 0 },
+    { rgb: { r: { min: 0, max: 255 }, g: 0, b: 0 } },
+    { h: 120, s: 50, l: 50 },
+    { hsl: { h: 120, s: 50, l: 50 } },
+  ])("detects structured paint %j", (value) => {
+    const result = suggestPlugins({
+      particles: { paint: { fill: { color: { value } } } },
+    });
+
+    expect(result.npmPackages).toContain(
+      "r" in value || "rgb" in value
+        ? "@tsparticles/plugin-rgb-color"
+        : "@tsparticles/plugin-hsl-color",
+    );
+  });
+
+  it.each(["#000", { value: "#000" }])(
+    "detects background color %j alongside RGB paint",
+    (color) => {
+      const result = suggestPlugins({
+        background: { color },
+        particles: { paint: { fill: { color: { value: "rgb(1,2,3)" } } } },
+      });
+
+      expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
+      expect(result.npmPackages).toContain("@tsparticles/plugin-rgb-color");
+    },
+  );
+
   it("should return empty result for empty options", () => {
     const result = suggestPlugins({});
+
     expect(result.npmPackages).toEqual([]);
     expect(result.imports).toEqual([]);
     expect(result.suggestedBundle).toBeUndefined();
@@ -52,7 +95,10 @@ describe("suggestPlugins", () => {
         links: { enable: true },
       },
     });
-    expect(result.npmPackages).toContain("@tsparticles/interaction-particles-links");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-particles-links",
+    );
   });
 
   it("should detect collision interaction", () => {
@@ -61,7 +107,10 @@ describe("suggestPlugins", () => {
         collisions: { enable: true },
       },
     });
-    expect(result.npmPackages).toContain("@tsparticles/interaction-particles-collisions");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-particles-collisions",
+    );
   });
 
   it("should load interactivity before particle interaction loaders", () => {
@@ -75,16 +124,30 @@ describe("suggestPlugins", () => {
           },
         },
       }),
-      interactivityIndex = result.imports.findIndex(item => item.from === "@tsparticles/plugin-interactivity"),
+      interactivityIndex = result.imports.findIndex(
+        (item) => item.from === "@tsparticles/plugin-interactivity",
+      ),
       particleInteractionIndexes = result.imports
-        .map((item, index) => (item.from.startsWith("@tsparticles/interaction-particles-") ? index : -1))
-        .filter(index => index >= 0);
+        .map((item, index) =>
+          item.from.startsWith("@tsparticles/interaction-particles-")
+            ? index
+            : -1,
+        )
+        .filter((index) => index >= 0);
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
-    expect(result.npmPackages).toContain("@tsparticles/interaction-particles-repulse");
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-particles-repulse",
+    );
     expect(interactivityIndex).toBeGreaterThanOrEqual(0);
-    expect(particleInteractionIndexes.every(index => interactivityIndex < index)).toBe(true);
-    expect(result.imports.some(item => item.function === "loadParticlesRepulseInteraction")).toBe(true);
+    expect(
+      particleInteractionIndexes.every((index) => interactivityIndex < index),
+    ).toBe(true);
+    expect(
+      result.imports.some(
+        (item) => item.function === "loadParticlesRepulseInteraction",
+      ),
+    ).toBe(true);
   });
 
   it("should detect core movement and paint loaders", () => {
@@ -102,9 +165,15 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/shape-circle");
     expect(result.npmPackages).toContain("@tsparticles/updater-size");
     expect(result.npmPackages).toContain("@tsparticles/plugin-hex-color");
-    expect(result.imports.some(item => item.function === "loadMovePlugin")).toBe(true);
-    expect(result.imports.some(item => item.function === "loadPaintUpdater")).toBe(true);
-    expect(result.imports.some(item => item.function === "loadHexColorPlugin")).toBe(true);
+    expect(
+      result.imports.some((item) => item.function === "loadMovePlugin"),
+    ).toBe(true);
+    expect(
+      result.imports.some((item) => item.function === "loadPaintUpdater"),
+    ).toBe(true);
+    expect(
+      result.imports.some((item) => item.function === "loadHexColorPlugin"),
+    ).toBe(true);
   });
 
   it("should detect multiple effect types", () => {
@@ -124,6 +193,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       absorbers: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-absorbers");
   });
 
@@ -131,29 +201,52 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       emitters: [{ position: { x: 50, y: 50 } }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
   });
 
   it.each([
     { emitters: { size: { width: 50, height: 50 } }, hasCircle: false },
-    { emitters: [{ shape: { type: "circle" } }, { shape: {} }], hasCircle: true },
-  ])("should resolve the default square shape for each emitter ($emitters)", ({ emitters, hasCircle }) => {
-    const result = suggestPlugins({ emitters });
+    {
+      emitters: [{ shape: { type: "circle" } }, { shape: {} }],
+      hasCircle: true,
+    },
+  ])(
+    "should resolve the default square shape for each emitter ($emitters)",
+    ({ emitters, hasCircle }) => {
+      const result = suggestPlugins({ emitters });
 
-    expect(result.npmPackages).toContain("@tsparticles/plugin-emitters-shape-square");
-    expect(result.npmPackages.includes("@tsparticles/plugin-emitters-shape-circle")).toBe(hasCircle);
-  });
+      expect(result.npmPackages).toContain(
+        "@tsparticles/plugin-emitters-shape-square",
+      );
+      expect(
+        result.npmPackages.includes(
+          "@tsparticles/plugin-emitters-shape-circle",
+        ),
+      ).toBe(hasCircle);
+    },
+  );
 
   it("should load interactivity before emitter and absorber loaders", () => {
     const cases = [
-      { options: { emitters: {} }, packageName: "@tsparticles/plugin-emitters" },
-      { options: { absorbers: {} }, packageName: "@tsparticles/plugin-absorbers" },
+      {
+        options: { emitters: {} },
+        packageName: "@tsparticles/plugin-emitters",
+      },
+      {
+        options: { absorbers: {} },
+        packageName: "@tsparticles/plugin-absorbers",
+      },
     ];
 
     for (const { options, packageName } of cases) {
       const result = suggestPlugins(options),
-        interactivityIndex = result.imports.findIndex(item => item.from === "@tsparticles/plugin-interactivity"),
-        pluginIndex = result.imports.findIndex(item => item.from === packageName);
+        interactivityIndex = result.imports.findIndex(
+          (item) => item.from === "@tsparticles/plugin-interactivity",
+        ),
+        pluginIndex = result.imports.findIndex(
+          (item) => item.from === packageName,
+        );
 
       expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
       expect(interactivityIndex).toBeGreaterThanOrEqual(0);
@@ -178,22 +271,30 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).not.toContain("@tsparticles/shape-triangle");
 
     const polygonLoader = result.imports.find(
-        item => item.from === "@tsparticles/shape-polygon" && item.function === "loadPolygonShape",
+        (item) =>
+          item.from === "@tsparticles/shape-polygon" &&
+          item.function === "loadPolygonShape",
       ),
       squareLoader = result.imports.find(
-        item => item.from === "@tsparticles/shape-square" && item.function === "loadSquareShape",
+        (item) =>
+          item.from === "@tsparticles/shape-square" &&
+          item.function === "loadSquareShape",
       );
 
     expect(polygonLoader).toBeDefined();
     expect(squareLoader).toBeDefined();
-    expect(await getRegisteredShapeNames(loadPolygonShape)).toContain("triangle");
+    expect(await getRegisteredShapeNames(loadPolygonShape)).toContain(
+      "triangle",
+    );
     expect(await getRegisteredShapeNames(loadSquareShape)).toContain("edge");
   });
 
   it("should ignore inherited shape alias names", () => {
     const result = suggestPlugins({
       emitters: [{ shape: { type: ["constructor", "__proto__"] } }],
-      interactivity: { events: { onHover: { enable: true, mode: "constructor" } } },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "constructor" } },
+      },
       particles: {
         move: { enable: true },
         effect: { type: "constructor" },
@@ -205,8 +306,13 @@ describe("suggestPlugins", () => {
     });
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-move");
+    expect(
+      result.npmPackages.some((pkg) => pkg.startsWith("@tsparticles/shape-")),
+    ).toBe(false);
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
-    expect(result.npmPackages.every(pkg => typeof pkg === "string")).toBe(true);
+    expect(result.npmPackages.every((pkg) => typeof pkg === "string")).toBe(
+      true,
+    );
   });
 
   it("should detect loaders required by emitter particle overrides", () => {
@@ -260,7 +366,9 @@ describe("suggestPlugins", () => {
     });
 
     expect(result.npmPackages).toContain("@tsparticles/shape-heart");
-    expect(result.imports.some(item => item.from === "@tsparticles/shape-heart")).toBe(true);
+    expect(
+      result.imports.some((item) => item.from === "@tsparticles/shape-heart"),
+    ).toBe(true);
   });
 
   it("should detect loaders required by emitter split particles", () => {
@@ -269,7 +377,10 @@ describe("suggestPlugins", () => {
         {
           destroy: {
             split: {
-              particles: [{ shape: { type: "heart" } }, { effect: { type: "trail" } }],
+              particles: [
+                { shape: { type: "heart" } },
+                { effect: { type: "trail" } },
+              ],
             },
           },
         },
@@ -278,8 +389,12 @@ describe("suggestPlugins", () => {
 
     expect(result.npmPackages).toContain("@tsparticles/shape-heart");
     expect(result.npmPackages).toContain("@tsparticles/effect-trail");
-    expect(result.imports.some(item => item.from === "@tsparticles/shape-heart")).toBe(true);
-    expect(result.imports.some(item => item.from === "@tsparticles/effect-trail")).toBe(true);
+    expect(
+      result.imports.some((item) => item.from === "@tsparticles/shape-heart"),
+    ).toBe(true);
+    expect(
+      result.imports.some((item) => item.from === "@tsparticles/effect-trail"),
+    ).toBe(true);
   });
 
   it("should detect loaders required by particle split overrides in object and array forms", () => {
@@ -287,7 +402,10 @@ describe("suggestPlugins", () => {
         particles: {
           destroy: {
             split: {
-              particles: { effect: { type: "trail" }, shape: { type: "heart" } },
+              particles: {
+                effect: { type: "trail" },
+                shape: { type: "heart" },
+              },
             },
           },
         },
@@ -296,7 +414,10 @@ describe("suggestPlugins", () => {
         particles: {
           destroy: {
             split: {
-              particles: [{ shape: { type: "heart" } }, { effect: { type: "trail" } }],
+              particles: [
+                { shape: { type: "heart" } },
+                { effect: { type: "trail" } },
+              ],
             },
           },
         },
@@ -305,8 +426,14 @@ describe("suggestPlugins", () => {
     for (const result of [objectResult, arrayResult]) {
       expect(result.npmPackages).toContain("@tsparticles/shape-heart");
       expect(result.npmPackages).toContain("@tsparticles/effect-trail");
-      expect(result.imports.some(item => item.from === "@tsparticles/shape-heart")).toBe(true);
-      expect(result.imports.some(item => item.from === "@tsparticles/effect-trail")).toBe(true);
+      expect(
+        result.imports.some((item) => item.from === "@tsparticles/shape-heart"),
+      ).toBe(true);
+      expect(
+        result.imports.some(
+          (item) => item.from === "@tsparticles/effect-trail",
+        ),
+      ).toBe(true);
     }
   });
 
@@ -315,7 +442,11 @@ describe("suggestPlugins", () => {
       particles: {
         groups: {
           stars: { number: { value: 10 }, shape: { type: "star" } },
-          hearts: { number: { value: 10 }, shape: { type: "heart" }, effect: { type: "trail" } },
+          hearts: {
+            number: { value: 10 },
+            shape: { type: "heart" },
+            effect: { type: "trail" },
+          },
         },
         shape: { type: "circle" },
       },
@@ -331,6 +462,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       backgroundMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-background-mask");
   });
 
@@ -338,6 +470,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       canvasMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-canvas-mask");
   });
 
@@ -345,6 +478,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       sounds: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-sounds");
   });
 
@@ -352,6 +486,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       polygon: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-polygon-mask");
   });
 
@@ -359,6 +494,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       infection: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-infection");
   });
 
@@ -366,6 +502,7 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       poisson: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-poisson-disc");
   });
 
@@ -373,20 +510,26 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       manualParticles: [{ position: { x: 50, y: 50 } }],
     });
-    expect(result.npmPackages).toContain("@tsparticles/plugin-manual-particles");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/plugin-manual-particles",
+    );
   });
 
   it("should detect responsive", () => {
     const result = suggestPlugins({
       responsive: [{ maxWidth: 800, options: {} }],
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-responsive");
   });
 
   it("should detect shapes from responsive particle overrides", () => {
     const result = suggestPlugins({
       particles: { shape: { type: "circle" } },
-      responsive: [{ maxWidth: 800, options: { particles: { shape: { type: "star" } } } }],
+      responsive: [
+        { maxWidth: 800, options: { particles: { shape: { type: "star" } } } },
+      ],
     });
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-responsive");
@@ -422,7 +565,9 @@ describe("suggestPlugins", () => {
           maxWidth: 800,
           options: {
             emitters: [{ shape: { type: "circle" } }],
-            interactivity: { events: { onHover: { enable: true, mode: "repulse" } } },
+            interactivity: {
+              events: { onHover: { enable: true, mode: "repulse" } },
+            },
           },
         },
       ],
@@ -430,9 +575,19 @@ describe("suggestPlugins", () => {
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-emitters");
     expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
-    expect(result.npmPackages).toContain("@tsparticles/interaction-external-repulse");
-    expect(result.imports.some(item => item.from === "@tsparticles/plugin-emitters")).toBe(true);
-    expect(result.imports.some(item => item.from === "@tsparticles/interaction-external-repulse")).toBe(true);
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-external-repulse",
+    );
+    expect(
+      result.imports.some(
+        (item) => item.from === "@tsparticles/plugin-emitters",
+      ),
+    ).toBe(true);
+    expect(
+      result.imports.some(
+        (item) => item.from === "@tsparticles/interaction-external-repulse",
+      ),
+    ).toBe(true);
   });
 
   it("should detect shape types", () => {
@@ -441,6 +596,7 @@ describe("suggestPlugins", () => {
         shape: { type: "star" },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/shape-star");
   });
 
@@ -450,6 +606,7 @@ describe("suggestPlugins", () => {
         shape: { type: ["circle", "star", "heart"] },
       },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/shape-star");
     expect(result.npmPackages).toContain("@tsparticles/shape-heart");
   });
@@ -463,8 +620,13 @@ describe("suggestPlugins", () => {
         },
       },
     });
-    expect(result.npmPackages).toContain("@tsparticles/interaction-external-grab");
-    expect(result.npmPackages).toContain("@tsparticles/interaction-external-bubble");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-external-grab",
+    );
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-external-bubble",
+    );
   });
 
   it("should detect interactivity mode from events.onClick.mode", () => {
@@ -479,7 +641,9 @@ describe("suggestPlugins", () => {
     });
 
     expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
-    expect(result.npmPackages).toContain("@tsparticles/interaction-external-push");
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-external-push",
+    );
   });
 
   it("should detect interactivity modes from single and array events.onDiv entries", () => {
@@ -500,7 +664,9 @@ describe("suggestPlugins", () => {
 
     for (const result of [singleEntryResult, arrayEntryResult]) {
       expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
-      expect(result.npmPackages).toContain("@tsparticles/interaction-external-repulse");
+      expect(result.npmPackages).toContain(
+        "@tsparticles/interaction-external-repulse",
+      );
     }
   });
 
@@ -510,7 +676,10 @@ describe("suggestPlugins", () => {
         shape: { type: "square" },
       },
     });
-    expect(result.npmPackages).toContain("@tsparticles/plugin-emitters-shape-square");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/plugin-emitters-shape-square",
+    );
   });
 
   it("should detect particle attract", () => {
@@ -519,14 +688,20 @@ describe("suggestPlugins", () => {
         move: { attract: { enable: true } },
       },
     });
-    expect(result.npmPackages).toContain("@tsparticles/interaction-particles-attract");
+
+    expect(result.npmPackages).toContain(
+      "@tsparticles/interaction-particles-attract",
+    );
   });
 
   it("should return imports with function names", () => {
     const result = suggestPlugins({
         absorbers: [{ position: { x: 50, y: 50 } }],
       }),
-      absImports = result.imports.filter(i => i.from === "@tsparticles/plugin-absorbers");
+      absImports = result.imports.filter(
+        (i) => i.from === "@tsparticles/plugin-absorbers",
+      );
+
     expect(absImports.length).toBeGreaterThanOrEqual(MIN_ABSORBER_IMPORTS);
   });
 
@@ -534,6 +709,7 @@ describe("suggestPlugins", () => {
     const rootResult = suggestPlugins({
       blend: { enable: true },
     });
+
     expect(rootResult.npmPackages).toContain("@tsparticles/plugin-blend");
   });
 
@@ -550,6 +726,7 @@ describe("suggestPlugins", () => {
         },
       },
     });
+
     expect(result.npmPackages.length).toBeGreaterThan(MIN_RICH_MATCHES);
     expect(result.imports.length).toBeGreaterThan(MIN_RICH_MATCHES);
   });
@@ -558,8 +735,12 @@ describe("suggestPlugins", () => {
     const result = suggestPlugins({
       backgroundMask: { enable: true },
     });
+
     expect(result.npmPackages).toContain("@tsparticles/plugin-background-mask");
     const suggestedBundle: unknown = result.suggestedBundle;
-    expect(typeof suggestedBundle === "string" || suggestedBundle === undefined).toBe(true);
+
+    expect(
+      typeof suggestedBundle === "string" || suggestedBundle === undefined,
+    ).toBe(true);
   });
 });

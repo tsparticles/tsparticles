@@ -5,8 +5,13 @@ const { loadMock, loggerError } = vi.hoisted(() => ({
 	loggerError: vi.fn(),
 }));
 
-vi.mock("@tsparticles/engine", () => ({
+const engine = {
+	load: loadMock,
+	init: vi.fn(async () => undefined),
 	getLogger: () => ({ error: loggerError }),
+} as unknown as import("@tsparticles/engine").Engine;
+
+vi.mock("@tsparticles/engine", () => ({
 	tsParticles: { load: loadMock },
 }));
 
@@ -20,6 +25,43 @@ describe("Inferno Particles component", () => {
 	beforeEach(() => {
 		loadMock.mockReset();
 		loggerError.mockReset();
+	});
+
+	it("waits for the newest theme before publishing the container", async () => {
+		let finishFirst!: () => void, finishSecond!: () => void;
+		const container = {
+			destroy: vi.fn(),
+			loadTheme: vi
+				.fn()
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>(resolve => {
+							finishFirst = resolve;
+						}),
+				)
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>(resolve => {
+							finishSecond = resolve;
+						}),
+				),
+		};
+		const loaded = vi.fn(),
+			ref = { current: undefined };
+		loadMock.mockResolvedValueOnce(container);
+		const component = new Particles({ engine, theme: "first", loaded, container: ref });
+		const loading = component.loadContainer();
+		await vi.waitFor(() => expect(container.loadTheme).toHaveBeenCalledTimes(1));
+		component.props = { engine, ...component.props, theme: "second" };
+		component.componentDidUpdate({ engine, theme: "first" });
+		finishFirst();
+		await new Promise(resolve => setTimeout(resolve, 0));
+		expect(loaded).not.toHaveBeenCalled();
+		expect(ref.current).toBeUndefined();
+		finishSecond();
+		await loading;
+		expect(loaded).toHaveBeenCalledWith(container);
+		expect(ref.current).toBe(container);
 	});
 
 	it("applies the latest theme when a pending container load completes", async () => {
@@ -43,15 +85,15 @@ describe("Inferno Particles component", () => {
 				}),
 		);
 
-		const component = new Particles({ theme: "light", loaded }),
+		const component = new Particles({ engine, theme: "light", loaded }),
 			loadPromise = component.loadContainer();
 
 		await vi.waitFor(() => {
 			expect(loadMock).toHaveBeenCalledTimes(1);
 		});
 
-		component.props = { ...component.props, theme: "dark" };
-		component.componentDidUpdate({ theme: "light" });
+		component.props = { engine, ...component.props, theme: "dark" };
+		component.componentDidUpdate({ engine, theme: "light" });
 
 		expect(loadedContainer.loadTheme).not.toHaveBeenCalled();
 
@@ -92,15 +134,15 @@ describe("Inferno Particles component", () => {
 			)
 			.mockResolvedValueOnce(latestContainer);
 
-		const component = new Particles({ options: oldOptions, theme: "dark", loaded }),
+		const component = new Particles({ engine, options: oldOptions, theme: "dark", loaded }),
 			staleLoad = component.loadContainer();
 
 		await vi.waitFor(() => {
 			expect(loadMock).toHaveBeenCalledTimes(1);
 		});
 
-		component.props = { ...component.props, options: newOptions };
-		component.componentDidUpdate({ ...component.props, options: oldOptions });
+		component.props = { engine, ...component.props, options: newOptions };
+		component.componentDidUpdate({ engine, ...component.props, options: oldOptions });
 
 		await vi.waitFor(() => {
 			expect(loaded).toHaveBeenCalledTimes(1);
@@ -120,6 +162,7 @@ describe("Inferno Particles component", () => {
 		const error = new Error("theme refresh failed"),
 			loaded = vi.fn(),
 			container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed: false,
 				animationStatus: true,
@@ -129,7 +172,7 @@ describe("Inferno Particles component", () => {
 
 		loadMock.mockResolvedValueOnce(container);
 
-		await new Particles({ theme: "dark", loaded }).loadContainer();
+		await new Particles({ engine, theme: "dark", loaded }).loadContainer();
 
 		expect(loggerError).toHaveBeenCalledWith("Particles: error during theme load", error);
 		expect(container.refresh).toHaveBeenCalledOnce();
@@ -142,6 +185,7 @@ describe("Inferno Particles component", () => {
 			rejectSecondTheme: ((error: Error) => void) | undefined,
 			isPlaying = true;
 		const container = {
+			engine,
 			destroy: vi.fn(),
 			destroyed: false,
 			get animationStatus() {
@@ -169,15 +213,15 @@ describe("Inferno Particles component", () => {
 
 		loadMock.mockResolvedValueOnce(container);
 
-		const component = new Particles({ theme: "dark" }),
+		const component = new Particles({ engine, theme: "dark" }),
 			loadPromise = component.loadContainer();
 
 		await vi.waitFor(() => {
 			expect(container.loadTheme).toHaveBeenCalledTimes(1);
 		});
 
-		component.props = { ...component.props, theme: "light" };
-		component.componentDidUpdate({ theme: "dark" });
+		component.props = { engine, ...component.props, theme: "light" };
+		component.componentDidUpdate({ engine, theme: "dark" });
 
 		await vi.waitFor(() => {
 			expect(container.loadTheme).toHaveBeenCalledTimes(2);
@@ -199,13 +243,14 @@ describe("Inferno Particles component", () => {
 		{ animationStatus: true, destroyed: true, name: "destroyed" },
 	])("does not recover a $name container after its theme load rejects", async ({ animationStatus, destroyed }) => {
 		const container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed,
 				animationStatus,
 				loadTheme: vi.fn().mockRejectedValue(new Error("theme refresh failed")),
 				refresh: vi.fn(),
 			},
-			component = new Particles();
+			component = new Particles({ engine });
 
 		await component.loadTheme(container, "dark");
 
@@ -216,6 +261,7 @@ describe("Inferno Particles component", () => {
 		const themeError = new Error("theme refresh failed"),
 			recoveryError = new Error("container refresh failed"),
 			container = {
+				engine,
 				destroy: vi.fn(),
 				destroyed: false,
 				animationStatus: true,
@@ -229,11 +275,11 @@ describe("Inferno Particles component", () => {
 
 		loadMock.mockResolvedValueOnce(container).mockResolvedValueOnce(recreatedContainer);
 
-		const component = new Particles({ theme: "dark" });
+		const component = new Particles({ engine, theme: "dark" });
 
 		await component.loadContainer();
-		component.props = { ...component.props, theme: "light" };
-		component.componentDidUpdate({ theme: "dark" });
+		component.props = { engine, ...component.props, theme: "light" };
+		component.componentDidUpdate({ engine, theme: "dark" });
 
 		await vi.waitFor(() => {
 			expect(loadMock).toHaveBeenCalledTimes(2);
@@ -249,6 +295,7 @@ describe("Inferno Particles component", () => {
 		const error = new Error("theme refresh failed");
 		let rejectFirstTheme: ((error: Error) => void) | undefined, resolveSecondTheme: (() => void) | undefined;
 		const container = {
+			engine,
 			destroy: vi.fn(),
 			destroyed: false,
 			animationStatus: true,
@@ -271,15 +318,15 @@ describe("Inferno Particles component", () => {
 
 		loadMock.mockResolvedValueOnce(container);
 
-		const component = new Particles({ theme: "dark" }),
+		const component = new Particles({ engine, theme: "dark" }),
 			loadPromise = component.loadContainer();
 
 		await vi.waitFor(() => {
 			expect(container.loadTheme).toHaveBeenCalledTimes(1);
 		});
 
-		component.props = { ...component.props, theme: "light" };
-		component.componentDidUpdate({ theme: "dark" });
+		component.props = { engine, ...component.props, theme: "light" };
+		component.componentDidUpdate({ engine, theme: "dark" });
 
 		await vi.waitFor(() => {
 			expect(container.loadTheme).toHaveBeenCalledTimes(2);

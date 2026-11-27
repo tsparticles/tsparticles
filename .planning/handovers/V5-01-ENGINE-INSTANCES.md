@@ -1,7 +1,7 @@
 # V5-01 — Remove the singleton and make engines explicit
 
-Status pending. Read `README.md` and capture its bundle baseline first.
-**First v5 runtime change.**
+Status pending. Execute in E1 after the E0 baseline and scope gate.
+**First v5 runtime change.** Read the [execution sequence](V5-EXECUTION.md).
 
 ## Ownership
 
@@ -14,7 +14,7 @@ Preserve other agents' changes and leave core restructuring to later handovers.
 
 ## Work
 
-1. Capture the baseline and consumer/entrypoint matrix. Search for `tsParticles`,
+1. Verify the baseline and consumer/entrypoint matrix captured in E0. Search for `tsParticles`,
    `initEngine`, `__tsParticlesInternals`, and engine imports in templates and
    code generation strings as well as source.
 2. Expose `createEngine(): Engine`. Always return a new instance without global
@@ -82,3 +82,10 @@ until 02 is complete. The checkout must build and consumers must work.
 
 See [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md) and [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Record assigned outcomes as specified in the [improvement plan](V5-IMPROVEMENTS.md).
+
+## Source-review acceptance additions
+
+Apply G1/G3/G7 from the [source review](V5-CODE-REVIEW.md). Cover emitter-shape
+registration isolation, same-ID loads across engines, failures during canvas
+acquisition/setup before start, and engine lifetime/pending-load ownership.
+Reuse LoadOrdering tests; define cleanup and public items/listener behavior.

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-motion
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadMotionPlugin } = require("@tsparticles/plugin-motion");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadMotionPlugin } = require("@tsparticles/plugin-motion");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 
 (async () => {

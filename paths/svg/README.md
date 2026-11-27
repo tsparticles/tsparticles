@@ -58,7 +58,8 @@ $ yarn add @tsparticles/path-svg
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadSVGPath } = require("@tsparticles/path-svg");
 
 (async () => {
@@ -69,7 +70,8 @@ const { loadSVGPath } = require("@tsparticles/path-svg");
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadSVGPath } from "@tsparticles/path-svg";
 
 (async () => {

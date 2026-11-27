@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-23",
+  "baseRevision": "c42a53b2e1acd7fe884e22b9788d8d65896fda38",
+  "workingTree": true,
+  "implementationVerified": true,
+  "e6Accepted": false,
+  "acceptanceStatus": "Source and measurement continuation verified; explicit E6 acceptance remains open. Existing E5/E10 exceptions are unchanged.",
+  "bundleSha256": "4254165a851ee7559f70e91843702a82020ebcef2dfe521490173cebf414f52c",
+  "archive": "collections-all.bundle.min.js.gz",
+  "sourceHashes": {
+    "engine/src/Core/Particles/ParticlesManager.ts": "814362f8b3a8a40cc9f5ff27958d228578ba3842d527624ad882261c7141b5c1",
+    "engine/src/Core/Particles/SpatialHashGrid.ts": "a54b1170a1e22dac142519579f8373a395fc567c7aac6bae356858f33e63187e",
+    "engine/src/Core/Particles/Ranges.ts": "ed496d98ef543e219bd00191cbd1c6bc56a036bb20b0796a5792e163ae26ba20",
+    "plugins/interactivity/src/InteractionManager.ts": "234d9facf2b8a4c6765b92e2a992fbe906c0448c068ead25d08dbbf87753c901"
+  },
+  "primaryTests": {
+    "files": 58,
+    "passed": 910
+  },
+  "downstreamBuild": {
+    "requestedProjects": 235,
+    "dependencyTasks": 218,
+    "totalTasks": 453,
+    "passed": 453,
+    "cache": "disabled",
+    "configuration": "ci",
+    "outsideSandbox": true
+  },
+  "workspaceTests": {
+    "targets": 85,
+    "primary": 1,
+    "otherTargets": 82,
+    "angularAndIonic": 2,
+    "passed": 85,
+    "reporterNote": "Angular/Ionic use progress to avoid documented Jasmine 7 HTML reporter problem; no assertions skipped."
+  },
+  "lintAndFormat": "Pass in fresh CI build; final changed-file checks recorded separately.",
+  "browser": {
+    "version": "Chrome/157.0.8103.79",
+    "matrixSamplesPerArtifact": 45,
+    "matchingSnapshots": 135,
+    "mismatches": [],
+    "initialRelativeFlags": [
+      "M7/1000 frame p95: 3.6 vs 3.1 ms, screen 3.41 ms"
+    ],
+    "initialE0BudgetPasses": "28/30; M3/M8 update 1.5 vs 1.43 ms",
+    "confirmation": {
+      "M7": {
+        "repetitions": 9,
+        "matchingSnapshots": 27,
+        "baselineCandidateUpdateMs": [
+          1.5,
+          1.6
+        ],
+        "baselineCandidateDrawMs": [
+          1.4,
+          1.5
+        ],
+        "baselineCandidateP95Ms": [
+          3.5,
+          3.6
+        ],
+        "allRelativeScreensPass": true
+      },
+      "M3_M8": {
+        "repetitionsPerScene": 9,
+        "matchingSnapshots": 54,
+        "updateMsBothArtifacts": 1.4,
+        "drawMsBothArtifacts": 1.1,
+        "baselineCandidateP95Ms": [
+          3.0,
+          3.1
+        ],
+        "allRelativeScreensPass": true,
+        "confirmedE0UpdateBudgetsPass": true
+      }
+    },
+    "reports": [
+      "collections-browser-comparison.json",
+      "collections-m7-comparison.json",
+      "collections-e0-comparison.json",
+      "collections-budget-screen.json"
+    ],
+    "caution": "Initial flags are preserved. Confirmation does not erase them or waive budgets."
+  },
+  "extended": {
+    "samples": 18,
+    "retentionCycles": 30,
+    "rngAndFinalCountsMatchBaseline": true,
+    "validations": {
+      "pageErrors": true,
+      "allContainersRemoved": true,
+      "domStable": true,
+      "retentionDomStable": true,
+      "rngStable": {
+        "M6-extensions:100": true,
+        "M6-extensions:500": true,
+        "M6-extensions:1000": true,
+        "M8-hdr-layers-resize:100": true,
+        "M8-hdr-layers-resize:500": true,
+        "M8-hdr-layers-resize:1000": true
+      }
+    },
+    "postPeakHeapDriftBytes": 116744,
+    "pageErrors": []
+  },
+  "payloadDeltaVsAcceptedE5": {
+    "raw": 2926,
+    "gzip": 1035,
+    "brotli": 872
+  },
+  "alternatives": [
+    "collection-order.json",
+    "collection-order-final.json",
+    "storage-evaluation.json",
+    "live-pool.json",
+    "live-pool-final.json",
+    "collections-sparse.json"
+  ],
+  "limitations": [
+    "Synthetic storage/key prototypes do not prove full live-query compatibility.",
+    "Live pool retention is measured separately from teardown cycles; no cap is adopted.",
+    "Full plugin lifecycle review remains E8; arbitrary owner teardown during every hook is not claimed.",
+    "User-accepted E5 M4/500 and inherited M6 release/bundle exceptions remain E10 items."
+  ],
+  "commitOrPublication": false
+}

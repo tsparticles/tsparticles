@@ -1,9 +1,12 @@
+import { createConfetti } from "@tsparticles/confetti";
 import "@tsparticles/jquery";
-import { confetti } from "@tsparticles/confetti";
+import { engine } from "../particlesEngine";
 import "./style.css";
 
+const confetti = createConfetti(engine);
+
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 (async () => {

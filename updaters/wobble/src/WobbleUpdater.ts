@@ -4,11 +4,14 @@ import {
   type IParticleUpdater,
   type RecursivePartial,
   doublePI,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
 } from "@tsparticles/engine";
-import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types.js";
+import type {
+  IWobbleParticlesOptions,
+  WobbleParticle,
+  WobbleParticlesOptions,
+} from "./Types.js";
 import { Wobble } from "./Options/Classes/Wobble.js";
 import { updateWobble } from "./Utils.js";
 
@@ -39,9 +42,17 @@ export class WobbleUpdater implements IParticleUpdater {
 
     if (wobbleOpt?.enable) {
       particle.wobble = {
-        angle: getRandom() * doublePI,
-        angleSpeed: getRangeValue(wobbleOpt.speed.angle) / maxAngle,
-        moveSpeed: getRangeValue(wobbleOpt.speed.move) / moveSpeedFactor,
+        angle: this.#container.engine.getRandom() * doublePI,
+        angleSpeed:
+          getRangeValue(
+            wobbleOpt.speed.angle,
+            this.#container.engine.getRandomFn(),
+          ) / maxAngle,
+        moveSpeed:
+          getRangeValue(
+            wobbleOpt.speed.move,
+            this.#container.engine.getRandomFn(),
+          ) / moveSpeedFactor,
       };
     } else {
       particle.wobble = {
@@ -52,7 +63,10 @@ export class WobbleUpdater implements IParticleUpdater {
     }
 
     particle.retina.wobbleDistance =
-      getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.#container.retina.pixelRatio;
+      getRangeValue(
+        wobbleOpt?.distance ?? defaultDistance,
+        this.#container.engine.getRandomFn(),
+      ) * this.#container.retina.pixelRatio;
   }
 
   /**
@@ -61,7 +75,11 @@ export class WobbleUpdater implements IParticleUpdater {
    * @returns true if the particle needs the wobble animation, false otherwise
    */
   isEnabled(particle: WobbleParticle): boolean {
-    return !particle.destroyed && !particle.spawning && !!particle.options.wobble?.enable;
+    return (
+      !particle.destroyed &&
+      !particle.spawning &&
+      !!particle.options.wobble?.enable
+    );
   }
 
   loadOptions(

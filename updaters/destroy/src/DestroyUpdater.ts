@@ -42,39 +42,40 @@ export class DestroyUpdater implements IParticleUpdater {
    */
   init(particle: DestroyParticle): void {
     const container = this.#container,
-      particlesOptions = particle.options,
-      destroyOptions = particlesOptions.destroy;
+      destroyOptions = particle.options.destroy,
+      destroyBounds: NonNullable<DestroyParticle["destroyBounds"]> = {};
+
+    particle.exploding = undefined;
+    particle.splitCount = 0;
+    particle.unbreakableUntil = undefined;
+    particle.destroyBounds = destroyBounds;
 
     if (!destroyOptions) {
       return;
     }
 
-    particle.exploding = undefined;
-
-    particle.splitCount = 0;
-
-    const destroyBoundsOptions = destroyOptions.bounds;
-
-    particle.destroyBounds ??= {};
-
-    const { bottom, left, right, top } = destroyBoundsOptions,
-      { destroyBounds } = particle,
+    const destroyBoundsOptions = destroyOptions.bounds,
+      { bottom, left, right, top } = destroyBoundsOptions,
       canvasSize = container.canvas.size;
 
     if (bottom) {
-      destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / percentDenominator;
+      destroyBounds.bottom =
+        (getRangeValue(bottom, this.#container.engine.getRandomFn()) * canvasSize.height) / percentDenominator;
     }
 
     if (left) {
-      destroyBounds.left = (getRangeValue(left) * canvasSize.width) / percentDenominator;
+      destroyBounds.left =
+        (getRangeValue(left, this.#container.engine.getRandomFn()) * canvasSize.width) / percentDenominator;
     }
 
     if (right) {
-      destroyBounds.right = (getRangeValue(right) * canvasSize.width) / percentDenominator;
+      destroyBounds.right =
+        (getRangeValue(right, this.#container.engine.getRandomFn()) * canvasSize.width) / percentDenominator;
     }
 
     if (top) {
-      destroyBounds.top = (getRangeValue(top) * canvasSize.height) / percentDenominator;
+      destroyBounds.top =
+        (getRangeValue(top, this.#container.engine.getRandomFn()) * canvasSize.height) / percentDenominator;
     }
   }
 

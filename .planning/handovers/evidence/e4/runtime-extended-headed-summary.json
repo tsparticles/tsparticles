@@ -1,0 +1,50 @@
+{
+  "workingTree": true,
+  "browser": "Chrome/157.0.0.0",
+  "mode": "headed Chrome, manual browser harness, 800x600 CSS scene",
+  "repetitions": 3,
+  "timingMeasuredAt": "2026-11-17T07:16:59.374Z",
+  "metrics": {
+    "columns": [
+      "median initMs",
+      "median per-run update p95 ms",
+      "median per-run render p95 ms",
+      "median per-run frame p95 ms",
+      "median resizeMs (M8 only)",
+      "long frames across three repetitions",
+      "remaining containers after destroy for each repetition"
+    ],
+    "M6-extensions": {
+      "100": [6.7, 0.3, 0.2, 0.5, null, 0, "0/0/0"],
+      "500": [14, 1.1, 0.9, 1.9, null, 0, "0/0/0"],
+      "1000": [21.2, 1.9, 1.7, 3.5, null, 0, "0/0/0"]
+    },
+    "M8-hdr-layers-resize": {
+      "100": [8.7, 0.2, 0.2, 0.3, 0.5, 0, "0/0/0"],
+      "500": [13.2, 0.8, 0.8, 1.5, 1.6, 0, "0/0/0"],
+      "1000": [19.4, 1.6, 1.6, 3.1, 2.9, 0, "0/0/0"]
+    }
+  },
+  "retention": {
+    "measuredAt": "2026-11-17T07:36:28.984Z",
+    "warmups": 2,
+    "cycles": 30,
+    "batches": 3,
+    "sampleCount": 18,
+    "all30ContainersRemoved": true,
+    "mediaListeners": {
+      "(color-gamut: p3)": 0,
+      "(dynamic-range: high)": 0,
+      "(prefers-reduced-motion: reduce)": 0
+    },
+    "domNodes": [11, 11, 11, 11, 11],
+    "usedHeapBytes": [11200000, 11200000, 11200000, 11200000, 11200000],
+    "forcedGarbageCollection": false
+  },
+  "limitations": [
+    "The harness ran in headed Chrome. E0 used headless Chrome 157.0.8103.52, so timings are indicative and not an apples-to-apples performance gate.",
+    "Heap values are non-forced snapshots and do not establish retained-heap growth.",
+    "This compact summary combines the first run's timing aggregates and the second run's verified cleanup cycles; the full timing report is in the user's Downloads folder.",
+    "The Puppeteer headless launch still exits before scenario execution in this environment."
+  ]
+}

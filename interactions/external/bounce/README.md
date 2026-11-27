@@ -61,7 +61,8 @@ $ yarn add @tsparticles/interaction-external-bounce
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalBounceInteraction } = require("@tsparticles/interaction-external-bounce");
 
@@ -74,7 +75,8 @@ const { loadExternalBounceInteraction } = require("@tsparticles/interaction-exte
 or
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createEngine } from "@tsparticles/engine";
+const tsParticles = createEngine();
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalBounceInteraction } from "@tsparticles/interaction-external-bounce";
 

@@ -29,7 +29,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   /**
    * Handles the click mode for adding absorbers
    */
-  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (
+    mode: string,
+    interactivityData: IInteractivityData,
+  ) => void;
+
   /**
    * The maximum distance for the interactor
    */
@@ -39,7 +43,10 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   #draggingAbsorber: AbsorberInstance | undefined;
   readonly #instancesManager;
 
-  constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
+  constructor(
+    container: AbsorberContainer,
+    instancesManager: AbsorbersInstancesManager,
+  ) {
     super(container);
 
     this.maxDistance = 0;
@@ -64,7 +71,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         for (const absorber of instancesManager.getArray(container)) {
           const distanceSq = getDistanceSq(absorber.position, clickPosition);
 
-          if (absorber.size > 0 && distanceSq < absorber.size * absorber.size && distanceSq < nearestDistanceSq) {
+          if (
+            absorber.size > 0 &&
+            distanceSq < absorber.size * absorber.size &&
+            distanceSq < nearestDistanceSq
+          ) {
             target = absorber;
             nearestDistanceSq = distanceSq;
           }
@@ -84,23 +95,37 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       if (clickPosition) {
         const existingAbsorber = instancesManager
           .getArray(container)
-          .some(t => t.size > 0 && getDistanceSq(t.position, clickPosition) < t.size * t.size);
+          .some(
+            (t) =>
+              t.size > 0 &&
+              getDistanceSq(t.position, clickPosition) < t.size * t.size,
+          );
 
         if (existingAbsorber) {
           return;
         }
       }
 
-      const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber();
+      const absorbersModeOptions =
+        itemFromArray(
+          absorbers,
+          undefined,
+          true,
+          container.engine.getRandomFn(),
+        ) ?? new Absorber();
 
-      void this.#instancesManager.addAbsorber(container, absorbersModeOptions, clickPosition);
+      void this.#instancesManager.addAbsorber(
+        container,
+        absorbersModeOptions,
+        clickPosition,
+      );
     };
   }
 
   /**
    * Clears the interactor state
    */
-  clear(): void {
+  override clear(): void {
     // no-op
   }
 
@@ -131,7 +156,8 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         if (!this.#dragging) {
           if (
             absorber.size >= 0 &&
-            getDistanceSq(absorber.position, mouse.downPosition) <= absorber.size * absorber.size
+            getDistanceSq(absorber.position, mouse.downPosition) <=
+              absorber.size * absorber.size
           ) {
             this.#dragging = true;
             this.#draggingAbsorber = absorber;
@@ -142,7 +168,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         this.#draggingAbsorber = undefined;
       }
 
-      if (this.#dragging && this.#draggingAbsorber === absorber && mouse.position) {
+      if (
+        this.#dragging &&
+        this.#draggingAbsorber === absorber &&
+        mouse.position
+      ) {
         absorber.position.x = mouse.position.x;
         absorber.position.y = mouse.position.y;
       }
@@ -155,7 +185,10 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
    * @param particle - the optional particle
    * @returns true if the interactor is enabled
    */
-  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+  isEnabled(
+    interactivityData: IInteractivityData,
+    particle?: InteractivityParticle,
+  ): boolean {
     const container = this.container,
       options = container.actualOptions,
       mouse = interactivityData.mouse,
@@ -169,7 +202,9 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     if (
       !particle &&
       mouse.clicking &&
-      this.#instancesManager.getArray(container).some(absorber => absorber.options.draggable)
+      this.#instancesManager
+        .getArray(container)
+        .some((absorber) => absorber.options.draggable)
     ) {
       return true;
     }
@@ -178,7 +213,10 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       return false;
     }
 
-    return isInArray(absorbersMode, events.onClick.mode) || isInArray(absorberSplitMode, events.onClick.mode);
+    return (
+      isInArray(absorbersMode, events.onClick.mode) ||
+      isInArray(absorberSplitMode, events.onClick.mode)
+    );
   }
 
   /**
@@ -218,7 +256,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   /**
    * Resets the interactor state
    */
-  reset(): void {
+  override reset(): void {
     // no-op
   }
 }

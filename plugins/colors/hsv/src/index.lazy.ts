@@ -9,9 +9,9 @@ declare const __VERSION__: string;
 export async function loadHsvColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.pluginManager.register(async e => {
+  await engine.pluginManager.register(async (e) => {
     const { HsvColorManager } = await import("./HsvColorManager.js");
 
-    e.pluginManager.addColorManager("hsv", new HsvColorManager());
+    e.addColorManager("hsv", new HsvColorManager(e.getRandomFn()));
   });
 }

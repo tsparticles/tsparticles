@@ -85,10 +85,11 @@ tsparticles/
 - Contains: Vite TS app, Express + Pug demo app, Electron demo, static demo site.
 - Key files: `demo/vite/src/main.ts`, `demo/vanilla/app.ts`, `demo/electron/app/index.js`, `demo/electron/client/client.js`, `demo/vanilla_new/js/404.js`.
 
-## v5 planning overlay — verified 2026-11-03
+## v5 implementation overlay — verified 2026-11-17
 
-The layout below largely reflects the April audit. [v5 handovers](../handovers/README.md)
-define the proposed domain folders; these have not been created in the runtime.
+The 2026-04-10 analysis below is historical. E3 has created logical Core domains;
+[the v5 handovers](../handovers/README.md) track contract and audit closure. The
+engine remains one package and keeps its root and `/lazy` public entrypoints.
 
 - Additional migration surfaces: `wrappers/`, `templates/`,
   `cli/commands/create-utils/`, CLI bundled templates and `integrations/mcp-server/`.
@@ -100,6 +101,16 @@ define the proposed domain folders; these have not been created in the runtime.
   different boundaries and both need validation.
 - Generated `dist/` and `docs/` are ignored build outputs; their presence on disk
   does not mean they are tracked or current.
+
+### E7 rendering overlay — 2026-11-24
+
+CanvasManager retains DOM/offscreen surface ownership, CSS, size/Retina and
+context capability setup; RenderManager retains the specialized layer/draw
+pipeline. Module-local numeric layers do not add a package or subpath. Retired
+observers/media callbacks cannot repair a replacement scene; destroyed renderers
+release their context. Nested particle draws isolate scratch and canvas state.
+Interactivity DOM guards allow the All composition to start/stop in a worker.
+See [the method and ownership inventory](../handovers/V5-E7-REVIEW.md).
 
 ## Key File Locations
 
@@ -121,13 +132,30 @@ define the proposed domain folders; these have not been created in the runtime.
 - `package.json`: Root build orchestration scripts.
 - `tsconfig.json`: Root TypeScript baseline.
 
-**Core Logic:**
+**Current Core domain tree:**
 
-- `engine/src/Core/Engine.ts`: Engine lifecycle and container management.
-- `engine/src/Core/Container.ts`: Container lifecycle, animation loop, plugin wiring.
-- `engine/src/Core/ParticlesManager.ts`: Particle creation/update/density/spatial indexing.
-- `engine/src/Core/RenderManager.ts`: Per-frame draw orchestration and plugin render hooks.
-- `engine/src/Core/Utils/PluginManager.ts`: Per-engine registries for plugins/updaters/shapes/effects.
+```text
+engine/src/Core/
+├── Canvas/       CanvasManager, CanvasOwnership
+├── Container/    Container, EventListeners, Retina
+├── Engine/       Engine, PluginManager
+├── Particles/    Particle, ParticlesManager, Ranges, SpatialHashGrid, Vectors
+├── Rendering/    RenderManager
+└── Interfaces/   Shared extension contracts (currently cross-domain)
+```
+
+Each domain has a selective type barrel. Root exports remain explicit. The folder
+moves preserve algorithms; E3 audit and consumer verification are still in progress.
+
+**Core Logic (historical paths in the analysis below may be stale):**
+
+- `engine/src/Core/Engine/Engine.ts`: Engine lifecycle, loading, and per-engine registration.
+- `engine/src/Core/Engine/PluginManager.ts`: Per-engine registries for plugins/updaters/shapes/effects.
+- `engine/src/Core/Container/Container.ts`: Container lifecycle, animation loop, and plugin wiring.
+- `engine/src/Core/Canvas/CanvasManager.ts`: Canvas acquisition, sizing, and drawing context ownership.
+- `engine/src/Core/Rendering/RenderManager.ts`: Per-frame draw orchestration and plugin render hooks.
+- `engine/src/Core/Particles/ParticlesManager.ts`: Particle creation/update/density/spatial indexing.
+- `engine/src/Core/Particles/Particle.ts`: Particle runtime facade and state.
 
 **Testing:**
 

@@ -4,9 +4,7 @@ import {
   type IParticlesOptions,
   type IRgba,
   type RecursivePartial,
-  getRandom,
   half,
-  lengthOffset,
   minIndex,
   percentDenominator,
 } from "@tsparticles/engine";
@@ -27,19 +25,26 @@ export function addParticlesFromCanvasPixels(
   position: ICoordinates,
   scale: number,
   override: ICanvasMaskOverride,
-  filter: (pixel: IRgba) => boolean,
+  filter: (pixel: IRgba, colorSpace?: "display-p3" | "srgb") => boolean,
 ): void {
   const { height, width } = data,
     numPixels = height * width,
-    indexArray = shuffle(range(numPixels)),
-    maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value),
+    indexArray = shuffle(range(numPixels), container.engine.getRandomFn()),
+    maxParticles = Math.min(
+      numPixels,
+      container.actualOptions.particles.number.value,
+    ),
     canvasSize = container.canvas.size;
 
   let selectedPixels = 0;
 
   const positionOffset = {
-    x: (canvasSize.width * position.x) / percentDenominator - width * scale * half,
-    y: (canvasSize.height * position.y) / percentDenominator - height * scale * half,
+    x:
+      (canvasSize.width * position.x) / percentDenominator -
+      width * scale * half,
+    y:
+      (canvasSize.height * position.y) / percentDenominator -
+      height * scale * half,
   };
 
   while (selectedPixels < maxParticles && indexArray.length) {
@@ -61,7 +66,8 @@ export function addParticlesFromCanvasPixels(
       continue;
     }
 
-    const shouldCreateParticle = filter(pixel);
+    const colorSpace = data.colorSpace ?? "srgb",
+      shouldCreateParticle = filter(pixel, colorSpace);
 
     if (!shouldCreateParticle) {
       continue;
@@ -77,7 +83,7 @@ export function addParticlesFromCanvasPixels(
       pOptions.paint = {
         fill: {
           color: {
-            value: pixel,
+            value: { ...pixel, a: override.opacity ? 1 : pixel.a, colorSpace },
           },
           enable: true,
         },
@@ -100,15 +106,15 @@ export function addParticlesFromCanvasPixels(
  * @param array - The array
  * @returns the shuffled array
  */
-function shuffle<T>(array: T[]): T[] {
-  for (let currentIndex = array.length - lengthOffset; currentIndex >= minIndex; currentIndex--) {
-    const randomIndex = Math.floor(getRandom() * currentIndex),
+function shuffle<T>(array: T[], random: () => number): T[] {
+  for (
+    let currentIndex = array.length - 1;
+    currentIndex > minIndex;
+    currentIndex--
+  ) {
+    const randomIndex = Math.floor(random() * (currentIndex + 1)),
       currentItem = array[currentIndex],
       randomItem = array[randomIndex];
-
-    if (randomItem === currentItem) {
-      continue;
-    }
 
     if (randomItem === undefined || currentItem === undefined) {
       continue;

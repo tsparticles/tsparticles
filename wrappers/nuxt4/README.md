@@ -9,7 +9,7 @@ This package does not enforce `slim`/`full` presets. The app controls what to lo
 ## Installation
 
 ```bash
-pnpm add @tsparticles/nuxt4 @tsparticles/vue3 @tsparticles/engine
+pnpm add @tsparticles/nuxt4 @tsparticles/vue3 @tsparticles/engine @tsparticles/slim
 ```
 
 ## Usage

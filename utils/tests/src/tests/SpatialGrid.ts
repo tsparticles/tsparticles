@@ -1,8 +1,15 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { Circle, type Particle, Rectangle, tsParticles } from "@tsparticles/engine";
+import {
+  Circle,
+  type Particle,
+  Rectangle,
+  createEngine,
+} from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
+
+const tsParticles = createEngine();
 
 describe("SpatialGrid tests", () => {
   describe("Rectangle (0, 0, 50, 50) tests", () => {
@@ -51,8 +58,16 @@ describe("SpatialGrid tests", () => {
   describe("Circle (776, 352, 200)", () => {
     const circle1 = new Circle(776, 352, 200);
 
-    it("should intersect with a (-634, -190, 1143, 3807) rectangle", () => {
+    it("should not intersect a (-634, -190, 1143, 3807) rectangle ending before its left edge", () => {
       const rect2 = new Rectangle(-634, -190, 1143, 3807);
+
+      // The rectangle ends at x=509; the circle starts at x=576.
+      expect(circle1.intersects(rect2)).to.be.false;
+      expect(rect2.intersects(circle1)).to.be.false;
+    });
+
+    it("should intersect when the rectangle extends into its radius", () => {
+      const rect2 = new Rectangle(-634, -190, 1243, 3807);
 
       expect(circle1.intersects(rect2)).to.be.true;
       expect(rect2.intersects(circle1)).to.be.true;
@@ -76,7 +91,9 @@ describe("SpatialGrid nested queries", () => {
 
       try {
         const grid = container.particles.grid,
-          particles = [0, 1, 2].map(x => ({ getPosition: () => ({ x, y: 0 }) }) as Particle);
+          particles = [0, 1, 2].map(
+            (x) => ({ getPosition: () => ({ x, y: 0 }) }) as Particle,
+          );
 
         for (const particle of particles) {
           grid.insert(particle);
@@ -88,11 +105,18 @@ describe("SpatialGrid nested queries", () => {
 
               return true;
             });
-            grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, () => {
-              grid.queryRectangle({ x: 1000, y: 1000 }, { width: 1, height: 1 });
+            grid.queryRectangle(
+              { x: 0, y: 0 },
+              { width: 10, height: 10 },
+              () => {
+                grid.queryRectangle(
+                  { x: 1000, y: 1000 },
+                  { width: 1, height: 1 },
+                );
 
-              return true;
-            });
+                return true;
+              },
+            );
 
             return true;
           },
@@ -105,14 +129,28 @@ describe("SpatialGrid nested queries", () => {
           const result =
             shape === "circle"
               ? grid.queryCircle({ x: 0, y: 0 }, 10, nested)
-              : grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, nested);
+              : grid.queryRectangle(
+                  { x: 0, y: 0 },
+                  { width: 10, height: 10 },
+                  nested,
+                );
 
           expect(result).to.eql(particles);
         }
-        expect(() => grid.queryCircle({ x: 0, y: 0 }, 10, throwFromFilter)).to.throw(failure);
-        expect(() => grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, throwFromFilter)).to.throw(failure);
+        expect(() =>
+          grid.queryCircle({ x: 0, y: 0 }, 10, throwFromFilter),
+        ).to.throw(failure);
+        expect(() =>
+          grid.queryRectangle(
+            { x: 0, y: 0 },
+            { width: 10, height: 10 },
+            throwFromFilter,
+          ),
+        ).to.throw(failure);
         expect(grid.queryCircle({ x: 0, y: 0 }, 10)).to.eql(particles);
-        expect(grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 })).to.eql(particles);
+        expect(
+          grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }),
+        ).to.eql(particles);
       } finally {
         container.destroy(false);
       }

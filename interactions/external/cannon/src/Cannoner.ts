@@ -9,6 +9,7 @@ import {
 import {
   type ICoordinates,
   type IDelta,
+  type IOklcha,
   type RecursivePartial,
   Vector,
   degToRad,
@@ -16,10 +17,13 @@ import {
   doublePI,
   getDistance,
   getRandomInRange,
+  getStyleFromOklch,
   identity,
   loadOptionProperty,
   none,
+  percentDenominator,
   quarter,
+  rangeColorToOklch,
 } from "@tsparticles/engine";
 import { Cannon } from "./Options/Classes/Cannon.js";
 
@@ -36,7 +40,16 @@ const cannonMode = "cannon",
   powerRadiusMaxFactor = identity / powerRadiusMaxDenominator,
   minTapsLength = 2,
   piDeg = 180,
-  minDistance = 0;
+  minDistance = 0,
+  // Alpha from the previous #ffffff80 input fallback, retained exactly.
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  cannonFallbackAlpha = 0x80 / 0xff,
+  cannonFallbackColor: IOklcha = {
+    a: cannonFallbackAlpha,
+    c: 0,
+    h: 0,
+    l: percentDenominator,
+  };
 
 /**
  * Computes the angle in radians between two points.
@@ -70,8 +83,8 @@ interface CannonData {
   /** Spread half-angle in radians */
   spread: number;
 
-  /** CSS color for the aiming line */
-  vectorColor: string;
+  /** Canonical aiming-line color */
+  vectorColor: IOklcha;
 
   /** Velocity multiplier from drag distance */
   velocityFactor: number;
@@ -102,7 +115,7 @@ interface CannonGesture {
  * - `minParticles` — minimum burst size regardless of drag length (default 5)
  * - `maxParticles` — cap for burst size (default 200)
  * - `drawVector` — whether to render the aiming line while dragging (default true)
- * - `vectorColor` — CSS color for the aiming line (default "#ffffff80")
+ * - `vectorColor` — registered-engine color input for the aiming line (default "#ffffff80")
  */
 export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   readonly maxDistance = 0;
@@ -130,12 +143,13 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * @param _particle - The particle to process
    * @param _delta - The delta time
    */
-  clear(_particle: InteractivityParticle, _delta: IDelta): void {
+  override clear(_particle: InteractivityParticle, _delta: IDelta): void {
     // nothing to clear per-particle
   }
 
   init(): void {
-    const options = this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
+    const options =
+      this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
 
     this.#data = {
       spread: degToRad(options.spread),
@@ -145,7 +159,11 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       minParticles: options.minParticles,
       maxParticles: options.maxParticles,
       drawVector: options.drawVector,
-      vectorColor: options.vectorColor,
+      vectorColor:
+        rangeColorToOklch(
+          this.container.engine.pluginManager,
+          options.vectorColor,
+        ) ?? cannonFallbackColor,
     };
   }
 
@@ -160,7 +178,12 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       downPos = mouse.downPosition;
 
     // ── DOWN transition: new downPosition that we haven't processed yet
-    if (clicking && downPos && downPos !== this.#lastDownPosition && this.#state === CannonState.idle) {
+    if (
+      clicking &&
+      downPos &&
+      downPos !== this.#lastDownPosition &&
+      this.#state === CannonState.idle
+    ) {
       this.#lastDownPosition = downPos;
       this.#gesture = {
         origin: { x: downPos.x, y: downPos.y },
@@ -197,7 +220,9 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     }
 
     const modes = events.onClick.mode,
-      modeEnabled = Array.isArray(modes) ? modes.includes(cannonMode) : modes === cannonMode;
+      modeEnabled = Array.isArray(modes)
+        ? modes.includes(cannonMode)
+        : modes === cannonMode;
 
     if (!modeEnabled) {
       return false;
@@ -223,9 +248,6 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * @param _interactivityData - The interactivity data
    * @param _particle - The particle to process
    */
-  reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
-    // nothing to reset
-  }
 
   // ── Private helpers ────────────────────────────────────────────────────────
   /**
@@ -233,7 +255,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * Rendered directly on the container canvas context.
    */
   #drawVector(): void {
-    this.container.canvas.render.draw(ctx => {
+    this.container.canvas.render.draw((ctx) => {
       const opts = this.#data;
 
       if (!opts) {
@@ -241,16 +263,28 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       }
 
       const { origin, current } = this.#gesture,
+        vectorStyle = getStyleFromOklch(
+          opts.vectorColor,
+          this.container.hdr,
+          1,
+          this.container.peakNits,
+          this.container.hdrMode,
+          this.container.outputColorSpace,
+        ),
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
-        clampedDist = opts.maxDragDistance > none ? Math.min(dragDist, opts.maxDragDistance * pxRatio) : dragDist,
-        clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
+        clampedDist =
+          opts.maxDragDistance > none
+            ? Math.min(dragDist, opts.maxDragDistance * pxRatio)
+            : dragDist,
+        clampRatio =
+          dragDist > minDistance ? clampedDist / dragDist : minDistance,
         clampedX = origin.x + (current.x - origin.x) * clampRatio,
         clampedY = origin.y + (current.y - origin.y) * clampRatio;
 
       ctx.save();
-      ctx.strokeStyle = opts.vectorColor;
+      ctx.strokeStyle = vectorStyle;
       ctx.lineWidth = double * pxRatio;
       ctx.beginPath();
       ctx.moveTo(origin.x, origin.y);
@@ -258,11 +292,12 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       ctx.stroke();
 
       // Power circle at origin — radius reflects clamped force
-      const radius = Math.max(powerRadiusMin, clampedDist * powerRadiusMaxFactor) * pxRatio;
+      const radius =
+        Math.max(powerRadiusMin, clampedDist * powerRadiusMaxFactor) * pxRatio;
 
       ctx.beginPath();
       ctx.arc(origin.x, origin.y, radius, minAngle, doublePI);
-      ctx.strokeStyle = opts.vectorColor;
+      ctx.strokeStyle = vectorStyle;
       ctx.lineWidth = double * pxRatio;
       ctx.stroke();
       ctx.restore();
@@ -282,7 +317,10 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     const { origin, current } = this.#gesture,
       pxRatio = this.container.retina.pixelRatio,
       dist = getDistance(origin, current),
-      dragLength = opts.maxDragDistance > none ? Math.min(dist, opts.maxDragDistance * pxRatio) : dist;
+      dragLength =
+        opts.maxDragDistance > none
+          ? Math.min(dist, opts.maxDragDistance * pxRatio)
+          : dist;
 
     if (dragLength < minTapsLength) {
       // Ignore accidental taps
@@ -293,12 +331,20 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       // Reverse the drag vector to get launch angle (already in radians)
       launchAngle = angleRad(current.x, current.y, origin.x, origin.y),
       velocity = dragLength * pxRatioFactor * opts.velocityFactor,
-      count = Math.min(opts.maxParticles, Math.max(opts.minParticles, Math.round(dragLength * opts.particleFactor))),
+      count = Math.min(
+        opts.maxParticles,
+        Math.max(
+          opts.minParticles,
+          Math.round(dragLength * opts.particleFactor),
+        ),
+      ),
       toDeg = piDeg / Math.PI;
 
     for (let i = 0; i < count; i++) {
-      const spreadAngle = launchAngle + getRandomInRange(-opts.spread, opts.spread),
-        speed = getRandomInRange(velocity * quarter, velocity);
+      const random = this.container.engine.getRandomFn(),
+        spreadAngle =
+          launchAngle + getRandomInRange(-opts.spread, opts.spread, random),
+        speed = getRandomInRange(velocity * quarter, velocity, random);
 
       // addParticle expects logical (non-retina) coords
       // direction is in degrees, convert once per particle from the cached radian value

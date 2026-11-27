@@ -1,0 +1,1955 @@
+{
+  "measuredAt": "2026-11-23T14:52:44.257Z",
+  "revision": "6e8ca78dfe76515af222c666d85809f225544ac5",
+  "workingTree": true,
+  "bundlePath": ".planning/handovers/evidence/e5/matched-baseline/e4-all.bundle.min.js.gz",
+  "bundleSha256": "fe02ad0285f011b08eabc2ac3a28d74d5ec6f4d61f667997c4d2ab332e1abeed",
+  "browser": "Chrome/157.0.8103.79",
+  "seed": 123456789,
+  "repetitions": 9,
+  "warmupTicks": 30,
+  "measuredTicks": 60,
+  "samplingIntervalBytes": 512,
+  "errors": [],
+  "samples": [
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 0,
+      "initializationMs": 23.19999998807907,
+      "retainedHeapDeltaBytes": 4620404,
+      "retainedBytesPerParticle": 9240.808,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.800000011920929,
+        "p95": 4.900000035762787,
+        "max": 6.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.4999999403953552,
+        "p95": 2.899999976158142,
+        "max": 3.400000035762787
+      },
+      "frameMs": {
+        "median": 6.299999952316284,
+        "p95": 7.5,
+        "max": 9.399999976158142
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4401639.4,
+          "sampleRecords": 509598,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152006552
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68299272
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22596136
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5789704
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2117676
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1946368
+            },
+            {
+              "functionName": "#_n",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 306120,
+              "sampledBytes": 1798520
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1471296
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1434816
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1431072
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6124943,
+          "sampleRecords": 706559,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 150087916
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67184404
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 49337124
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 28321360
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22582916
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7215476
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7213380
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5775924
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3953920
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3200900
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 1,
+      "initializationMs": 17.399999976158142,
+      "retainedHeapDeltaBytes": 3632444,
+      "retainedBytesPerParticle": 7264.888,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.700000047683716,
+        "p95": 4.199999988079071,
+        "max": 4.799999952316284
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.5,
+        "p95": 2.899999976158142,
+        "max": 3.5000000596046448
+      },
+      "frameMs": {
+        "median": 6.199999988079071,
+        "p95": 6.800000011920929,
+        "max": 8.300000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4395103.866666666,
+          "sampleRecords": 508852,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 151917452
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68098440
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22670892
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5702728
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2092812
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1915632
+            },
+            {
+              "functionName": "#_n",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 306120,
+              "sampledBytes": 1813660
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1464288
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1442304
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1432656
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6115015.133333334,
+          "sampleRecords": 705453,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149846264
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77718664
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67535592
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22428868
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7186220
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7176464
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5632680
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 4101932
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3197356
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2225952
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 2,
+      "initializationMs": 10.900000035762787,
+      "retainedHeapDeltaBytes": 3233244,
+      "retainedBytesPerParticle": 6466.488,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 4.100000023841858,
+        "max": 5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.399999976158142,
+        "p95": 2.800000011920929,
+        "max": 3.199999988079071
+      },
+      "frameMs": {
+        "median": 5.800000011920929,
+        "p95": 6.600000023841858,
+        "max": 7.800000011920929
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4400320.266666667,
+          "sampleRecords": 509462,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152269136
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67955988
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22560792
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5709504
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2160672
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1920188
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 155670,
+              "sampledBytes": 1465920
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1444464
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1441776
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1437504
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6108444,
+          "sampleRecords": 704645,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149819680
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77143724
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67535120
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22481360
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7177568
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7155940
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5856284
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3977744
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3220016
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2145396
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 3,
+      "initializationMs": 11.400000035762787,
+      "retainedHeapDeltaBytes": 3198448,
+      "retainedBytesPerParticle": 6396.896,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 3.900000035762787,
+        "max": 4.600000023841858
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.399999976158142,
+        "p95": 2.600000023841858,
+        "max": 3.599999964237213
+      },
+      "frameMs": {
+        "median": 5.900000035762787,
+        "p95": 6.399999976158142,
+        "max": 8.199999988079071
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4402343.066666666,
+          "sampleRecords": 509690,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152143168
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68206680
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22504556
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5717912
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2190204
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1880076
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 148077,
+              "sampledBytes": 1472880
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1461600
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1458384
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 155670,
+              "sampledBytes": 1457856
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6111177.6,
+          "sampleRecords": 704971,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 150131564
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77400420
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67122892
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22579204
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7257220
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7222968
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5725276
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 4033728
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3220988
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2142804
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 4,
+      "initializationMs": 11.100000023841858,
+      "retainedHeapDeltaBytes": 3217660,
+      "retainedBytesPerParticle": 6435.32,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 4,
+        "max": 6
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.300000011920929,
+        "p95": 2.699999988079071,
+        "max": 3.700000047683716
+      },
+      "frameMs": {
+        "median": 5.899999976158142,
+        "p95": 6.5,
+        "max": 9.700000047683716
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4397984.533333333,
+          "sampleRecords": 509183,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152018044
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68248348
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22383748
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5781772
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2207292
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1952868
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1468608
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 155670,
+              "sampledBytes": 1449264
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1422480
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1421376
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6101096.933333334,
+          "sampleRecords": 703852,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149791440
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77399356
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67159760
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22514112
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7228580
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7195100
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5764564
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3927936
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3113400
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2168448
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 5,
+      "initializationMs": 10.600000023841858,
+      "retainedHeapDeltaBytes": 3204348,
+      "retainedBytesPerParticle": 6408.696,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 3.900000035762787,
+        "max": 7.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.399999976158142,
+        "p95": 2.699999988079071,
+        "max": 2.800000011920929
+      },
+      "frameMs": {
+        "median": 6,
+        "p95": 6.400000035762787,
+        "max": 10
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4398924.8,
+          "sampleRecords": 509302,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152225768
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68174364
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22360816
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5754628
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2120784
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1961908
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1477200
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1469136
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1435872
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1434816
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6107119.133333334,
+          "sampleRecords": 704528,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149804448
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77392724
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67416112
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22631124
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7288020
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7217824
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5677128
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3930068
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3137420
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2163780
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 6,
+      "initializationMs": 11.199999988079071,
+      "retainedHeapDeltaBytes": 3201448,
+      "retainedBytesPerParticle": 6402.896,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 4,
+        "max": 5.699999988079071
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.300000011920929,
+        "p95": 2.799999952316284,
+        "max": 3
+      },
+      "frameMs": {
+        "median": 5.899999976158142,
+        "p95": 6.5,
+        "max": 8.400000035762787
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4405522.333333333,
+          "sampleRecords": 510051,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152114624
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68227140
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22696848
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5759100
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2244072
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1956416
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1503456
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1469664
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 155670,
+              "sampledBytes": 1453056
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1435344
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6101222.066666666,
+          "sampleRecords": 703822,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149978440
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77051040
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67036388
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22508540
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7277060
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7218688
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5669256
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3960944
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3201756
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2132700
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 7,
+      "initializationMs": 10.900000035762787,
+      "retainedHeapDeltaBytes": 3197732,
+      "retainedBytesPerParticle": 6395.464,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.5,
+        "p95": 3.900000035762787,
+        "max": 6
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.399999976158142,
+        "p95": 2.700000047683716,
+        "max": 3.199999988079071
+      },
+      "frameMs": {
+        "median": 5.899999976158142,
+        "p95": 6.5,
+        "max": 8.600000023841858
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4398551.866666666,
+          "sampleRecords": 509250,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 152133900
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68184248
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22450532
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5648016
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2169480
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1930980
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 166970,
+              "sampledBytes": 1484160
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 148077,
+              "sampledBytes": 1465920
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1454640
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 145886,
+              "sampledBytes": 1437504
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6115714.333333333,
+          "sampleRecords": 705524,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149917608
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77614252
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67550384
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22511508
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7213380
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7189300
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5706672
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3969788
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3226440
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2229576
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "M4",
+      "count": 500,
+      "repetition": 8,
+      "initializationMs": 11.800000011920929,
+      "retainedHeapDeltaBytes": 3221880,
+      "retainedBytesPerParticle": 6443.76,
+      "randomCalls": 4587,
+      "initialScene": {
+        "sha256": "42298dc8ccd2f37fa500ed65d9848c843251880bf84d7b8229cfdaf2cd0947d3",
+        "randomCalls": 4500,
+        "links": 0
+      },
+      "warmScene": {
+        "sha256": "43b6111a3750d98e9706d7b94dcf856b0fc2e47537935738240f9d8e8ac1064e",
+        "randomCalls": 4514,
+        "links": 4554
+      },
+      "measuredScene": {
+        "sha256": "045241204287e823b747c59d24978d99d600782ff1dfe5b82c1c08e4e0fe2cf9",
+        "randomCalls": 4536,
+        "links": 4573
+      },
+      "updateMs": {
+        "median": 3.600000023841858,
+        "p95": 4.099999964237213,
+        "max": 6.5
+      },
+      "drawExcludingUpdateMs": {
+        "median": 2.399999976158142,
+        "p95": 2.600000023841858,
+        "max": 3.300000011920929
+      },
+      "frameMs": {
+        "median": 6,
+        "p95": 6.699999988079071,
+        "max": 9
+      },
+      "allocations": {
+        "update": {
+          "sampledBytesPerTick": 4386650.4,
+          "sampleRecords": 507890,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 151585156
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 68082412
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22413584
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5687188
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2209884
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 180549,
+              "sampledBytes": 1919400
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 148077,
+              "sampledBytes": 1468608
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 163440,
+              "sampledBytes": 1464288
+            },
+            {
+              "functionName": "clear",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 147366,
+              "sampledBytes": 1445520
+            },
+            {
+              "functionName": "isEnabled",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 155670,
+              "sampledBytes": 1424064
+            }
+          ]
+        },
+        "frame": {
+          "sampledBytesPerTick": 6107413,
+          "sampleRecords": 704547,
+          "largestSites": [
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 149566644
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 348908,
+              "sampledBytes": 77403032
+            },
+            {
+              "functionName": "query",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 308659,
+              "sampledBytes": 67393016
+            },
+            {
+              "functionName": "interact",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 184040,
+              "sampledBytes": 22511484
+            },
+            {
+              "functionName": "yi",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 35275,
+              "sampledBytes": 7365432
+            },
+            {
+              "functionName": "next",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1,
+              "sampledBytes": 7249920
+            },
+            {
+              "functionName": "#ls",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 316420,
+              "sampledBytes": 5697392
+            },
+            {
+              "functionName": "#Ri",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 289965,
+              "sampledBytes": 3969612
+            },
+            {
+              "functionName": "drawParticle",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 286917,
+              "sampledBytes": 3155560
+            },
+            {
+              "functionName": "_m",
+              "scriptId": "5",
+              "url": "",
+              "lineNumber": 0,
+              "columnNumber": 327440,
+              "sampledBytes": 2191752
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "summary": [
+    {
+      "scenario": "M4",
+      "count": 500,
+      "initializationMs": 11.199999988079071,
+      "retainedBytesPerParticle": 6435.32,
+      "updateMedianMs": 3.5,
+      "drawMedianMs": 2.399999976158142,
+      "frameP95Ms": 6.5,
+      "updateSampledBytesPerTick": 4398924.8,
+      "frameSampledBytesPerTick": 6108444
+    }
+  ],
+  "limitations": [
+    "Headless CPU submission timings exclude GPU completion and physical display appearance.",
+    "Allocation sampling includes collected objects but estimates JS bytes; native canvas/GPU memory is excluded.",
+    "Frame allocation includes update; it must not be described as isolated draw allocation.",
+    "Retained heap subtracts an empty container in the same scenario after forced GC; realm caches and renderer overhead remain included.",
+    "Compare versions only when browser, workload parameters and scene snapshots agree. The original E0 matrix used an older Chrome patch.",
+    "Profiling phase order advances state; timings are captured before allocation sampling.",
+    "M8 here covers background mask only; HDR/layers/resize use the separate extended harness."
+  ]
+}

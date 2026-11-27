@@ -17,6 +17,10 @@ export class InfectionPluginInstance implements IContainerPlugin {
     this.#container.infecter = new Infecter(this.#container);
   }
 
+  particleCreated(particle: InfectableParticle): void {
+    particle.infection = undefined;
+  }
+
   particleFillColor(particle: InfectableParticle): string | IOptionsColor | undefined {
     const options = this.#container.actualOptions;
 
@@ -46,7 +50,7 @@ export class InfectionPluginInstance implements IContainerPlugin {
 
           return infP.infection.stage === undefined;
         }),
-        infected = itemFromArray(notInfected);
+        infected = itemFromArray(notInfected, undefined, true, this.#container.engine.getRandomFn());
 
       if (!infected) {
         continue;
