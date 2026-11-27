@@ -4,7 +4,6 @@ import {
   type IParticleUpdater,
   type RecursivePartial,
   doublePI,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
 } from "@tsparticles/engine";
@@ -39,7 +38,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
     if (wobbleOpt?.enable) {
       particle.wobble = {
-        angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
+        angle: this.#container.engine.getRandom() * doublePI,
         angleSpeed: getRangeValue(wobbleOpt.speed.angle, this.#container.engine.getRandomFn()) / maxAngle,
         moveSpeed: getRangeValue(wobbleOpt.speed.move, this.#container.engine.getRandomFn()) / moveSpeedFactor,
       };

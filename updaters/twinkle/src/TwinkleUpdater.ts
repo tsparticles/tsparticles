@@ -5,7 +5,6 @@ import {
   type Particle,
   type PluginManager,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   getStyleFromOklch,
   loadOptionProperty,
@@ -54,7 +53,7 @@ export class TwinkleUpdater implements IParticleUpdater {
     }
 
     const twinkle = twinkleOptions.particles,
-      twinkling = twinkle.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency,
+      twinkling = twinkle.enable && this.#container.engine.getRandom() < twinkle.frequency,
       zIndexOptions = particle.options.zIndex,
       zOffset = 1,
       zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,

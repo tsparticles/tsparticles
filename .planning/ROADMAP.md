@@ -18,21 +18,22 @@ V4-S03 remains deferred pending cold first-use and standalone All measurements.
 
 ## Current execution — v5 major
 
-Status on 2026-11-24: E0–E9 complete; E10 remains open. See [E7 acceptance](handovers/evidence/e7/closure/README.md), with user-approved final absolute-budget checks in E10. E5 includes the user-approved
+Status on 2026-11-27: E0–E11 accepted for progression; physical HDR and translation sign-off are queued for final plan validation at the user's direction. See [E7 acceptance](handovers/evidence/e7/closure/README.md), with user-approved final absolute-budget checks in E10. E5 includes the user-approved
 M4/500 runtime exception with final E10 verification, alongside the earlier
 bundle-growth exception. See [E5 acceptance](handovers/evidence/e5/closure/README.md).
 
-**Status.** E0–E9 complete on branch `v5`, with package version `4.6.0`.
-E10 remains open. The size review is complete under the user's updated
+**Status.** E0–E11 accepted on branch `v5`, with package version `4.6.0`.
+The size review is complete under the user's updated
 criterion. Runtime verification retains priority. See the
 [E10 acceptance update](handovers/V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
 
 Use the [dependency-driven E0–E12 sequence and optional E13 backlog](handovers/V5-EXECUTION.md).
 These are the currently scoped gates, not full v5 release readiness. E10 does
-not authorize a release. Additional pre-release verification still needs its own
-scope and plan. The planned E11/E12 follow-ups and optional E13 backlog below
-extend the roadmap after E10. Handover filenames retain their topic IDs; they are
-not chronological.
+not authorize a release. The user will run physical HDR and language reviews at
+the end of the full plan; these are tracked as final validations, not blockers to
+E11/E12. Additional pre-release verification still needs its own scope and plan.
+The planned E11/E12 follow-ups and optional E13 backlog below extend the roadmap
+after E10. Handover filenames retain their topic IDs; they are not chronological.
 
 1. **E0:** capture baseline/budgets, inventory consumers, define retirement and browser scope.
 2. **E1:** remove singleton, migrate supported consumers and working browser bootstrap.
@@ -62,16 +63,16 @@ G1–G7 checks to the relevant E1–E8 stages, closed in E8. It covers resource
 ownership, async failures, timing/numeric domains, spatial snapshots and sampling.
 
 After E10, additional pre-release verification must first be scoped and planned.
-### Planned follow-ups after E10
+
+### Follow-up work after E10
 
 These are named work plans, not completed gates or permission to release. Keep
 them on the v5 roadmap after E10 and define acceptance/status evidence as work is
-scheduled. E11 and E12 are planned follow-up gates; E13 remains optional.
+scheduled. E11 is complete, E12 is planned, and E13 remains optional.
 
-1. **E11 — Engine-owned utilities and configuration** — planned; target
-   contract agreed. Close the remaining E2 ownership work: random, logger and
-   color-manager configuration/lookup belong to each engine; remove ambient
-   fallbacks and the legacy color-manager adapter. See
+1. **E11 — Engine-owned utilities and configuration** — complete. Random,
+   logger and color-manager configuration/lookup belong to each engine;
+   ambient fallbacks and the legacy color-manager adapter are removed. See
    [E11 plan](handovers/V5-11-ENGINE-OWNED-UTILITIES.md).
 2. **E12 — Engine-independent extensions** — planned. Introduce
    `@tsparticles/core` for extension-facing contracts and shared utilities;

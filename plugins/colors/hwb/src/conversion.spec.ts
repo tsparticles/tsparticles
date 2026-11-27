@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { HwbColorManager } from "./HwbColorManager.js";
 
 describe("HwbColorManager", () => {
-  const manager = new HwbColorManager(),
+  const manager = new HwbColorManager(() => 0.5),
     testCases: {
       expected: IRgb;
       input: IHwb;

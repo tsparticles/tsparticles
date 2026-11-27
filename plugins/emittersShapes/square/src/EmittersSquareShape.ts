@@ -1,5 +1,5 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, double, getRandom, half, toEnumValue } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, double, half, toEnumValue } from "@tsparticles/engine";
 
 const sides = 4;
 
@@ -16,7 +16,7 @@ enum Sides {
  * @returns the offset
  */
 function randomSquareCoordinate(position: number, offset: number, random: () => number): number {
-  return position + offset * (getRandom(random) - half);
+  return position + offset * (random() - half);
 }
 
 /**
@@ -24,7 +24,7 @@ function randomSquareCoordinate(position: number, offset: number, random: () => 
  * @returns the number of sides
  */
 function getRandomSize(sides: number, random: () => number): Sides {
-  return toEnumValue(Sides, Math.floor(getRandom(random) * sides), Sides.BottomLeft);
+  return toEnumValue(Sides, Math.floor(random() * sides), Sides.BottomLeft);
 }
 
 export class EmittersSquareShape extends EmitterShapeBase {
@@ -46,7 +46,7 @@ export class EmittersSquareShape extends EmitterShapeBase {
     // nothing to do
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData {
+  randomPosition(random: () => number): IRandomPositionData {
     const fill = this.fill,
       position = this.position,
       size = this.size;
@@ -62,7 +62,7 @@ export class EmittersSquareShape extends EmitterShapeBase {
       const halfW = size.width * half,
         halfH = size.height * half,
         side = getRandomSize(sides, random),
-        v = (getRandom(random) - half) * double;
+        v = (random() - half) * double;
 
       switch (side) {
         case Sides.TopLeft:

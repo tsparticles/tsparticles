@@ -1,5 +1,4 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
-import { type ILogger, createLogger } from "../../Utils/LogUtils.js";
 import { canvasOwner, transferredCanvasKey } from "../Canvas/CanvasOwnership.js";
 import {
   getCanvasFromContainer,
@@ -12,9 +11,11 @@ import type { Container } from "../Container/Container.js";
 import type { CustomEventArgs } from "../../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../../Types/CustomEventListener.js";
 import { EventDispatcher } from "../../Utils/EventDispatcher.js";
+import type { IColorManager } from "../Interfaces/IColorManager.js";
 import type { ILoadParams } from "../Interfaces/ILoadParams.js";
+import type { ILogger } from "../../Utils/LogUtils.js";
 import { PluginManager } from "./PluginManager.js";
-import { getRandom } from "../../Utils/MathUtils.js";
+import { getRandomValue } from "../../Utils/RandomUtils.js";
 
 interface CanvasOwnership {
   [canvasOwner]?: Container;
@@ -38,6 +39,8 @@ export class Engine {
   #anonymousElementId = 0;
   readonly #anonymousElementIds = new WeakMap<HTMLElement, string>();
 
+  readonly #colorManagers = new Map<string, IColorManager>();
+
   /**
    * Contains all the {@link Container} instances of the current engine instance
    */
@@ -56,7 +59,7 @@ export class Engine {
 
   readonly #loadAbortControllers = new Map<string, AbortController>();
 
-  readonly #logger: ILogger = createLogger();
+  readonly #logger: ILogger = this.#makeLogger();
 
   #random: () => number = Math.random;
 
@@ -166,9 +169,28 @@ export class Engine {
     return this.#logger;
   }
 
+  /** Registers a color manager owned by this engine. */
+  addColorManager(name: string, manager: IColorManager): void {
+    if (this.pluginManager.initialized) {
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
+    }
+
+    this.#colorManagers.set(name, manager);
+  }
+
+  /** Resolves a color manager registered with this engine. */
+  getColorManager(name: string): IColorManager | undefined {
+    return this.#colorManagers.get(name);
+  }
+
+  /** Iterates color managers registered with this engine. */
+  getColorManagers(): IterableIterator<IColorManager> {
+    return this.#colorManagers.values();
+  }
+
   /** Returns a random value in [0, 1); non-finite source values map to 0. */
   getRandom(): number {
-    return getRandom(this.#random);
+    return getRandomValue(this.#random);
   }
 
   /** Returns a stable provider that always uses this engine's current random source. */
@@ -430,7 +452,7 @@ export class Engine {
 
   /** Applies logger overrides to this engine, leaving the supplied object untouched. */
   setLogger(logger: Partial<ILogger>): void {
-    Object.assign(this.#logger, createLogger({ ...this.#logger, ...logger }));
+    Object.assign(this.#logger, this.#makeLogger({ ...this.#logger, ...logger }));
   }
 
   /**
@@ -439,4 +461,48 @@ export class Engine {
   setRandom(rnd: () => number = Math.random): void {
     this.#random = rnd;
   }
+
+  /* eslint-disable no-console */
+  #makeLogger(logger: Partial<ILogger> = {}): ILogger {
+    const codedErrorPattern = /^\[tsParticles Error (TSP-\d+)\]\s*/,
+      wrap =
+        // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+        <T extends unknown[]>(fn: (this: void, ...args: T) => void) =>
+          (...args: T): void => {
+            fn(...args);
+          },
+      defaults: ILogger = {
+        debug: wrap(console.debug),
+        error: (message?: unknown, ...optionalParams: unknown[]) => {
+          if (typeof message === "string") {
+            const match = codedErrorPattern.exec(message);
+
+            if (match?.[1]) {
+              console.error(`tsParticles - ${match[1]} - ${message.slice(match[0].length)}`, ...optionalParams);
+
+              return;
+            }
+          }
+
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          console.error(`tsParticles - Error - ${message}`, ...optionalParams);
+        },
+        info: wrap(console.info),
+        log: wrap(console.log),
+        trace: wrap(console.trace),
+        verbose: wrap(console.log),
+        warning: wrap(console.warn),
+      };
+
+    return {
+      debug: logger.debug ? wrap(logger.debug) : defaults.debug,
+      error: logger.error ? wrap(logger.error) : defaults.error,
+      info: logger.info ? wrap(logger.info) : defaults.info,
+      log: logger.log ? wrap(logger.log) : defaults.log,
+      trace: logger.trace ? wrap(logger.trace) : defaults.trace,
+      verbose: logger.verbose ? wrap(logger.verbose) : defaults.verbose,
+      warning: logger.warning ? wrap(logger.warning) : defaults.warning,
+    };
+  }
+  /* eslint-enable no-console */
 }

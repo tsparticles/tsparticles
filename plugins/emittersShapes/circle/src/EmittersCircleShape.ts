@@ -1,14 +1,5 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import {
-  type ICoordinates,
-  type IDimension,
-  double,
-  doublePI,
-  getRandom,
-  half,
-  quarter,
-  squareExp,
-} from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, double, doublePI, half, quarter, squareExp } from "@tsparticles/engine";
 
 export class EmittersCircleShape extends EmitterShapeBase {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -30,14 +21,14 @@ export class EmittersCircleShape extends EmitterShapeBase {
     // nothing to do
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData {
+  randomPosition(random: () => number): IRandomPositionData {
     const size = this.size,
       fill = this.fill,
       position = this.position,
       generateTheta = (x: number, y: number): number => {
-        const u = getRandom(random) * quarter,
+        const u = random() * quarter,
           theta = Math.atan((y / x) * Math.tan(doublePI * u)),
-          v = getRandom(random);
+          v = random();
 
         if (v < quarter) {
           return theta;
@@ -54,7 +45,7 @@ export class EmittersCircleShape extends EmitterShapeBase {
       [a, b] = [size.width * half, size.height * half],
       randomTheta = generateTheta(a, b),
       maxRadius = radius(a, b, randomTheta),
-      randomRadius = fill ? maxRadius * Math.sqrt(getRandom(random)) : maxRadius;
+      randomRadius = fill ? maxRadius * Math.sqrt(random()) : maxRadius;
 
     return {
       position: {

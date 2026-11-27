@@ -21,12 +21,13 @@ If this is your first time with tsParticles:
 
 ```ts
 import { createEngine } from "@tsparticles/engine";
-const tsParticles = createEngine();
 import { loadSlim } from "@tsparticles/slim";
 
-await loadSlim(tsParticles);
+const engine = createEngine();
 
-await tsParticles.load({
+await loadSlim(engine);
+
+await engine.load({
   id: "tsparticles",
   options: {
     background: {
@@ -126,7 +127,7 @@ Use palettes when you already have the behavior you want and only need a reusabl
 
 ## Common pitfalls
 
-- Calling `tsParticles.load(...)` before loading bundle or preset features
+- Calling `engine.load(...)` before loading bundle or preset features
 - Using an `id` that does not exist in the DOM
 - Assuming configs or presets also load the runtime plugins they depend on
 - Mixing too many presets/options in the first iteration instead of starting from one stable base

@@ -12,6 +12,6 @@ export async function loadHexColorPlugin(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { HexColorManager } = await import("./HexColorManager.js");
 
-    e.pluginManager.addColorManager("hex", new HexColorManager());
+    e.addColorManager("hex", new HexColorManager());
   });
 }

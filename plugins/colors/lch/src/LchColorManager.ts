@@ -45,7 +45,7 @@ function parseLchHue(input: string): number {
 export class LchColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

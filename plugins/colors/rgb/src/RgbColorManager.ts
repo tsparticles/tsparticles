@@ -42,7 +42,7 @@ const rgbRegex =
 export class RgbColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/updater-twinkle
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadTwinkleUpdater } = require("@tsparticles/updater-twinkle");
 
 (async () => {

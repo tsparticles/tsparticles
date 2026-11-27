@@ -29,7 +29,7 @@ const oklabRegex =
 export class OklabColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

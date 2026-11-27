@@ -1,6 +1,6 @@
 # E11 — Engine-owned utilities and configuration
 
-Status: **planned; target contract agreed**. This is a follow-up to E2, not a
+Status: **complete — 2026-11-27**. This is a follow-up to E2, not a
 reopening of the completed E2 acceptance gate. The v5 major release accepts the
 breaking API changes required by this plan.
 
@@ -121,3 +121,61 @@ This is an ecosystem-wide API and ownership change. Implement it as one
 coordinated v5 follow-up so engine services, color plugins, consumers, and
 documentation move to the agreed contract together. Use the repository's normal
 v5 cross-package verification requirements during implementation.
+
+## Progress — 2026-11-27
+
+- Moved color-manager registration, lookup and iteration onto the owning
+  `Engine`; its registry is private and no longer exposed by `PluginManager`.
+  Migrated built-in color plugins, CLI plugin generation, and migration examples
+  to `engine.addColorManager()`.
+- Removed the legacy sRGB manager contract and adapter from source and public
+  exports, and removed its migration example and adapter-specific test.
+- Moved logger default construction and override wrapping into `Engine`; the
+  logger utility module now exports only the `ILogger` type.
+- Routed the random path generator and cannon interaction through their owning
+  container engine, and made `PoissonDisc` require an explicit random provider.
+- Removed ambient RNG defaults from runtime math, animation, color, emitter,
+  path and plugin helpers. Randomized helper branches now require a provider;
+  deterministic branches remain usable without one. The engine's own default
+  and `setRandom()` reset remain `Math.random`, as the engine-owned default.
+- Removed the `MathUtils.getRandom()` helper from the public export barrel.
+  Random-source normalization is internal; `Engine.getRandom()` is the public
+  random service, while engine-owned helpers receive its stable provider.
+- Migrated randomized portfolio/confetti scaffold examples to the owning
+  template engine's `getRandom()` method. Migrated the Angular and vanilla
+  demos and both standalone confetti/ribbons sites to their local engine's
+  `getRandom()` method, including the ribbons blog example. Remaining runtime
+  `Math.random()` use is limited to the engine's own default/reset and Ember's
+  unique-ID polyfill, which runs before an engine exists and generates a
+  framework component identifier rather than particle/runtime behavior. The
+  localized guide examples intentionally demonstrate user-supplied random
+  providers.
+- Audited shared mutable state. Engine, PluginManager, container, particle,
+  scheduler, color-manager, emitter/absorber, shape-generator and plugin-instance
+  registries are instance- or owner-keyed. `ColorUtils` style/HDR caches and
+  polygon unit geometry cache deterministic code-derived values. Card/GIF/image
+  caches retain browser resources; full-screen style caching retains
+  document-derived CSS. Easing maps, named colors, note tables and error-message
+  templates are fixed package definitions, not engine configuration. The
+  Sounds `muted` latch is browser user-activation state shared only within a
+  JavaScript realm. Browser entrypoints expose factory/loader definitions on
+  `globalThis.tsParticles`, not mutable engine configuration.
+- Updated the E2 API map and migration guide; removed the stale legacy-adapter
+  note from the root changelog. Color managers register and resolve through the
+  owning engine.
+- Verification: the primary suite passed (61 files, 945 tests). The engine,
+  38 affected runtime/consumer projects plus 22 dependencies, portfolio and
+  confetti template packages, three CLI generator packages, both standalone
+  sites, the Vite demo and the Vanilla demo built successfully with their
+  applicable lint, TypeScript, formatting, and circular-dependency checks. The
+  broader cross-package build passed for 232 projects and 218 dependencies
+  after removal of the public `MathUtils.getRandom()` export. The initial full
+  demo sweep found and fixed a no-argument `getRandom()` call in Vite. Three
+  unrelated environment failures remain: Electron packaging and Next.js Google
+  Fonts could not fetch network resources, and Angular's build process aborted
+  in both the full and targeted sweeps. Those three demos were excluded from
+  the passing rerun. ESM and CommonJS package entrypoints confirm that
+  `getRandom`, `createLogger`, and `adaptLegacyColorManager` are absent from
+  public exports.
+  Nx Cloud remote caching was unavailable (`ENOTFOUND`); local task execution
+  completed.

@@ -26,7 +26,7 @@ const hsvRegex =
 export class HsvColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

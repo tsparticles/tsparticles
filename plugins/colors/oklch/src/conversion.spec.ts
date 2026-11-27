@@ -4,7 +4,7 @@ import { OklchColorManager } from "./OklchColorManager.js";
 import { oklchToRgb } from "./utils.js";
 
 describe("OKLCH conversion", () => {
-  const manager = new OklchColorManager();
+  const manager = new OklchColorManager(() => 0.5);
 
   describe("oklchToRgb (programmatic API)", () => {
     const testCases: {

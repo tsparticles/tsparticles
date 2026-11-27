@@ -410,7 +410,7 @@ const modes = [
             particleCount: 8,
             angle: 90,
             spread: 70,
-            origin: { x: Math.random(), y: 0 },
+            origin: { x: engine.getRandom(), y: 0 },
             gravity: 1.2,
             ticks: 0,
             colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],

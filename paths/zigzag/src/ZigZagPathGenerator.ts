@@ -5,7 +5,6 @@ import {
   type RangeValue,
   Vector,
   deepExtend,
-  getRandom,
   getRangeValue,
   half,
 } from "@tsparticles/engine";
@@ -79,7 +78,7 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     const options = this.options;
 
     particle.zigzag ??= {
-      counter: getRandom(this.#container.engine.getRandomFn()),
+      counter: this.#container.engine.getRandom(),
       waveHeight: getRangeValue(options.waveHeight, this.#container.engine.getRandomFn()),
       waveLength: getRangeValue(options.waveLength, this.#container.engine.getRandomFn()),
     };

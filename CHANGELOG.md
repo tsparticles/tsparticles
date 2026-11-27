@@ -10,7 +10,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - Reject zero, negative and nonfinite `zLayers` with `RangeError` before allocating render layers; positive fractional depth ranges remain supported.
 
 - Reject nonfinite or nonpositive `SpatialHashGrid` cell sizes with `RangeError`, including deferred size assignments.
-- Make `IColorManager` resolve canonical OKLCH; wrap legacy sRGB managers with `adaptLegacyColorManager`. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
+- Make `IColorManager` resolve canonical OKLCH; color plugins register their native managers on the owning engine. Ordinary CSS/Canvas output now serializes `oklch(...)` directly.
 - Add input-only `p3` metadata for RGB channel objects and reject ambiguous `hdr`-tagged source channels; HDR options continue to control output rendering.
 - Replace the RGB-returning `colorMix()` helper with `colorMixOklch()` for rectangular-OKLab mixing. Convert RGB inputs with `rgbToOklch()` before mixing.
 - Remove deprecated `getStyleFromRgb()` and `getStyleFromHsl()` output helpers. Convert inputs to OKLCH and use `getStyleFromOklch()` for destination-aware formatting.

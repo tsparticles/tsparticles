@@ -66,5 +66,5 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
    * Gets a random position within or on the perimeter of the shape
    * @returns the random position data, or null if unavailable
    */
-  abstract randomPosition(random?: () => number): IRandomPositionData | null;
+  abstract randomPosition(random: () => number): IRandomPositionData | null;
 }

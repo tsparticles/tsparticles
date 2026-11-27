@@ -5,7 +5,6 @@ import {
   Vector,
   deepExtend,
   doublePI,
-  getRandom,
   getRangeValue,
   minRadius,
 } from "@tsparticles/engine";
@@ -50,7 +49,7 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     const options = this.options;
 
     particle.spiral ??= {
-      angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
+      angle: this.#container.engine.getRandom() * doublePI,
       radius: minRadius,
       direction: SpiralDirection.positive,
       maxRadius: getRangeValue(options.maxRadius, this.#container.engine.getRandomFn()),

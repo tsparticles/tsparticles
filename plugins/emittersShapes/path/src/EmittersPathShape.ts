@@ -102,7 +102,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     // nothing to do
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData | null {
+  randomPosition(random: () => number): IRandomPositionData | null {
     const ctx = this.checkContext,
       position = this.position,
       size = this.size,

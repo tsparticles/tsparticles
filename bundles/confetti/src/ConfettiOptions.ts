@@ -13,9 +13,7 @@ import {
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 
 /** Confetti options class */
-export class ConfettiOptions
-  implements IConfettiOptions, IOptionLoader<IConfettiOptions>
-{
+export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
   /** Confetti angle */
   angle: number;
 
@@ -143,10 +141,7 @@ export class ConfettiOptions
         const item = options[shape];
 
         if (item) {
-          this.shapeOptions[shape] = deepExtend(
-            this.shapeOptions[shape] ?? {},
-            item,
-          ) as IShapeValues[];
+          this.shapeOptions[shape] = deepExtend(this.shapeOptions[shape] ?? {}, item) as IShapeValues[];
         }
       }
     }

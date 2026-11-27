@@ -5,7 +5,6 @@ import {
   Vector,
   alterOklch,
   getOklchFromAnimation,
-  getRandom,
   getRangeValue,
   getStyleFromOklch,
   half,
@@ -172,7 +171,7 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonVelocityInherit = velocityInherit;
   particle.ribbonOscillationSpeed = oscillationSpeed;
   particle.ribbonOscillationDistance = oscillationDistance;
-  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
+  particle.ribbonTime = particle.container.engine.getRandom() * randomTimeFactor;
   particle.ribbonOffsets = Vector.create(Math.cos(angleRad), Math.sin(angleRad));
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
@@ -185,7 +184,7 @@ export function createRibbonState(particle: RibbonParticle): void {
 
   for (let i = noPoint; i < count; i++) {
     const offset = i * particleDist,
-      perpNoise = (getRandom(particle.container.engine.getRandomFn()) - half) * noiseScale,
+      perpNoise = (particle.container.engine.getRandom() - half) * noiseScale,
       perpAngle = trailAngle + Math.PI * half;
 
     particle.ribbonPoints[i] = {
@@ -209,8 +208,8 @@ function resetRibbonState(particle: RibbonParticle): void {
     width = bounds?.x ?? noDistance,
     height = bounds?.y ?? noDistance,
     position = Vector.create(
-      getRandom(particle.container.engine.getRandomFn()) * width,
-      -getRandom(particle.container.engine.getRandomFn()) * height,
+      particle.container.engine.getRandom() * width,
+      -particle.container.engine.getRandom() * height,
     );
 
   if (!bounds) {
@@ -228,7 +227,7 @@ function resetRibbonState(particle: RibbonParticle): void {
   particle.ribbonHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousHead = Vector.create(position.x, position.y);
   particle.ribbonPreviousPosition = Vector.create(position.x, position.y);
-  particle.ribbonTime = getRandom(particle.container.engine.getRandomFn()) * randomTimeFactor;
+  particle.ribbonTime = particle.container.engine.getRandom() * randomTimeFactor;
 
   for (let i = noPoint; i < points.length; i++) {
     const point = points[i];

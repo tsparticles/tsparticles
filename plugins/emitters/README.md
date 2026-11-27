@@ -59,7 +59,8 @@ $ yarn add @tsparticles/plugin-emitters
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadEmittersPlugin } = require("@tsparticles/plugin-emitters");
 

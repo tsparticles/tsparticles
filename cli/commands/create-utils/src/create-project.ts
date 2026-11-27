@@ -918,7 +918,7 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("${nameData.camelName}", new ${managerClass}());
+    e.addColorManager("${nameData.camelName}", new ${managerClass}());
   });
 }
 `,

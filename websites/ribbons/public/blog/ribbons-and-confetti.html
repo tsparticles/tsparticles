@@ -84,8 +84,13 @@
         The simplest way to combine ribbons and confetti is to call both functions in a staggered
         loop:
       </p>
-      <pre><code>import { ribbons } from '@tsparticles/ribbons';
-import { confetti } from '@tsparticles/confetti';
+      <pre><code>import { createEngine } from '@tsparticles/engine';
+import { createRibbons } from '@tsparticles/ribbons';
+import { createConfetti } from '@tsparticles/confetti';
+
+const engine = createEngine();
+const ribbons = createRibbons(engine);
+const confetti = createConfetti(engine);
 
 await ribbons.init();
 await confetti.init();
@@ -103,7 +108,7 @@ const interval = setInterval(() => {
     particleCount: 5,
     angle: 90,
     spread: 70,
-    origin: { x: Math.random(), y: 0 },
+    origin: { x: engine.getRandom(), y: 0 },
     gravity: 1.2,
     colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
   });

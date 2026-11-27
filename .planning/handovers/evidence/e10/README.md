@@ -1,11 +1,32 @@
-# E10 checkpoint — 2026-11-24, updated 2026-11-25
+# E10 checkpoint — 2026-11-24, accepted for progression 2026-11-27
 
-E10 remains open and does not authorize a release. The latest callback-free
-renderer follow-up passes all 30 runtime rows against unchanged E0 ceilings.
-The remaining closure gates are physical HDR verification, native-language
-review of the migration drafts, and broader consumer-documentation review. All
-20 CLI scaffold templates now pass isolated consumer checks. Frozen E0 budgets
-remain unchanged.
+The user accepted E10 for progression through the v5 plan and deferred physical
+HDR display verification and native-language sign-off for the migration drafts
+to final plan validation. This records a deferral, not completed measurements or
+reviews, and does not authorize release. The callback-free renderer follow-up
+passes all 30 runtime rows against unchanged E0 ceilings. All 20 CLI scaffold
+templates pass isolated consumer checks. The broad package README and core
+Markdown consumer audit is recorded below. Frozen E0 budgets remain unchanged.
+
+## Latest documentation pass — 2026-11-27
+
+- Updated 133 CommonJS package README examples that imported the removed engine
+  singleton. They now create an explicit engine with `createEngine()`; their
+  existing local `tsParticles` variable is an engine instance, not a global.
+- Reviewed the core Markdown quick start, plugin/shape/preset registration,
+  container, background, theme, and particle-shape examples. They now use the
+  explicit engine and engine-owned plugin manager APIs.
+- Rechecked package README references to `tsParticles.load(...)`: remaining
+  examples either use a local `createEngine()` instance or belong to CDN snippets
+  pinned to the currently published v4 artifacts. Those published v4 examples
+  remain clearly separate from the internal v5 migration draft.
+- Corrected all nine migration draft status summaries to match the 20/20 CLI
+  scaffold results and the callback-free runtime follow-up. Structural alignment
+  passes; human-language sign-off is queued for the final plan validation.
+- The E10 consumer-documentation review is complete for workspace package
+  READMEs and core Markdown. Current published website guides remain v4 docs and
+  are intentionally not presented as v5 consumer validation. Physical HDR and
+  native-language sign-off remain the outstanding migration-review gates.
 
 ## Reproduction
 
@@ -282,9 +303,10 @@ corrected and rechecked in its target build.
   their unrelated workspace packages were not built; the earlier full E10 Nx
   matrix remains recorded above. Ribbons' generated minified bundle decreased
   by 916 bytes from the previous build; Confetti's clean build had no previous
-  artifact available for a like-for-like size comparison. V5-LEG remains open for the retained deprecated PJS compatibility API and
-  the Stencil v4 loader declaration; the Stencil wrapper must move to v5 before
-  `applyPolyfills()` can be removed from generated output.
+  artifact available for a like-for-like size comparison. The E10 retirement
+  disposition accepts the opt-in PJS compatibility API and Stencil v4 loader
+  declaration with migration guidance; `applyPolyfills()` is removed when the
+  wrapper adopts Stencil v5, a separately versioned dependency upgrade.
 - Migrated the Confetti website examples from deprecated `particleCount` and
   normalized `origin` to `count` and percent-based `position`, preserving their
   coordinates with a conversion helper. The Confetti website Nx CI build passed
@@ -619,10 +641,11 @@ containers.
 
 The fresh quiet M4/500 comparison also passes E0 update (3.30 ms / 3.52 ms)
 and render (2.40 ms / 2.53 ms) ceilings. Its frame p95 is 7.20 ms, 0.05 ms
-above the historical E5 reference of 7.15 ms. E10 remains open for physical
-HDR verification, native-language migration-guide review and broader consumer
-documentation review. All generated CLI scaffold consumers pass. Size
-references remain diagnostic under the accepted E10 criterion; no budget
-threshold was changed.
+above the historical E5 reference of 7.15 ms. At the user's direction, physical
+HDR verification and native-language migration-guide review are queued for
+final plan validation. E10 is accepted for progression; the workspace
+consumer-documentation audit is recorded at the top of this checkpoint. All
+generated CLI scaffold consumers pass. Size references remain diagnostic under
+the accepted E10 criterion; no budget threshold was changed.
 
 No version bump, commit, publication, deployment or release was performed.

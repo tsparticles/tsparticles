@@ -84,34 +84,19 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     // nothing to do
   }
 
-  isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
-      events = (
-        particle?.interactivity ?? container.actualOptions.interactivity
-      )?.events;
+      events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-    return (
-      !!events?.onHover.enable &&
-      !!mouse.position &&
-      isInArray(slowMode, events.onHover.mode)
-    );
+    return !!events?.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
   }
 
-  loadModeOptions(
-    options: Modes & SlowMode,
-    ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]
-  ): void {
+  loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {
     loadOptionProperty(options, "slow", Slow, ...sources);
   }
 
-  override reset(
-    interactivityData: IInteractivityData,
-    particle: Particle,
-  ): void {
+  override reset(interactivityData: IInteractivityData, particle: Particle): void {
     const mod = this.#modifiers.get(particle);
 
     if (mod) {

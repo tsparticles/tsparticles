@@ -62,7 +62,7 @@ describe("LCH conversion", () => {
 
 describe("CSS LCH to OKLCH conversion", () => {
   it("converts the D50 CSS LCH red reference directly to D65 OKLCH", () => {
-    const result = new LchColorManager().parseStringOklch("lch(54.2943% 106.8519 40.855 / 25%)");
+    const result = new LchColorManager(() => 0.5).parseStringOklch("lch(54.2943% 106.8519 40.855 / 25%)");
 
     expect(result?.l).toBeCloseTo(62.8, 1);
     expect(result?.c).toBeCloseTo(0.2577, 3);
@@ -71,7 +71,7 @@ describe("CSS LCH to OKLCH conversion", () => {
   });
 
   it("accepts signed hue and rejects incomplete or invalid CSS input", () => {
-    const manager = new LchColorManager(),
+    const manager = new LchColorManager(() => 0.5),
       resolved = manager.parseStringOklch("LCH(50% 20 -30 / 25%)");
 
     expect(resolved?.a).toBe(0.25);
@@ -82,7 +82,7 @@ describe("CSS LCH to OKLCH conversion", () => {
   });
 
   it("parses CSS hue units and rejects an unsupported missing hue", () => {
-    const manager = new LchColorManager(),
+    const manager = new LchColorManager(() => 0.5),
       expectedHue = manager.parseStringOklch("lch(50% 20 180)")?.h;
 
     for (const hue of ["180deg", "200grad", "3.141592653589793rad", ".5turn"]) {
@@ -93,7 +93,7 @@ describe("CSS LCH to OKLCH conversion", () => {
   });
 
   it("accepts unitless lightness and percentage chroma using CSS reference scales", () => {
-    const manager = new LchColorManager(),
+    const manager = new LchColorManager(() => 0.5),
       numeric = "lch(52.2345 72.2 56.2 / 25%)",
       percentChroma = "lch(52.2345% 48.13333333333333% 56.2 / 25%)",
       percentage = "lch(52.2345% 72.2 56.2 / 25%)";
@@ -105,7 +105,7 @@ describe("CSS LCH to OKLCH conversion", () => {
   });
 
   it("rejects calc() and exponent notation", () => {
-    const manager = new LchColorManager();
+    const manager = new LchColorManager(() => 0.5);
 
     expect(manager.parseString("lch(calc(50) 20 30)")).toBeUndefined();
     expect(manager.parseString("lch(5e1 20 30)")).toBeUndefined();

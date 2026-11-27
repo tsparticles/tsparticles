@@ -38,7 +38,7 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
     // nothing to do
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData | null {
+  randomPosition(random: () => number): IRandomPositionData | null {
     const fill = this.fill,
       polygon = this.polygon,
       res = fill

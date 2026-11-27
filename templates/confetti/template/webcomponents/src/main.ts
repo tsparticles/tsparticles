@@ -10,7 +10,7 @@ void initParticlesEngine(engine, () => Promise.resolve());
 defineParticlesElement();
 
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 const fireBtn = document.getElementById("fireBtn") as HTMLButtonElement;

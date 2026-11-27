@@ -3,7 +3,6 @@ import {
   type IOklcha,
   type PluginManager,
   getLinkColor as engineGetLinkColor,
-  getRandom,
   getRangeValue,
   getStyleFromOklch,
   half,
@@ -109,7 +108,7 @@ export class LinkInstance implements IContainerPlugin {
           colorLine = link.color;
 
         const twinkleRgb =
-          twinkle?.enable && getRandom(this.#container.engine.getRandomFn()) < twinkle.frequency
+          twinkle?.enable && this.#container.engine.getRandom() < twinkle.frequency
             ? rangeColorToOklch(this.#pluginManager, twinkle.color)
             : undefined;
 

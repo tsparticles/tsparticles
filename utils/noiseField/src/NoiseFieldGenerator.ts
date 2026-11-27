@@ -1,4 +1,4 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
+import { type Container, type Particle, Vector, deepExtend, doublePI, identity } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -247,7 +247,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     options.factor.length = factor?.length ?? defaultOptions.factor.length;
     options.seed = sourceOptions["seed"] as number | undefined;
 
-    this.noiseGen.seed(options.seed ?? getRandom(container.engine.getRandomFn()));
+    this.noiseGen.seed(options.seed ?? container.engine.getRandom());
 
     options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
     options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;

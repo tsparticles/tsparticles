@@ -8,7 +8,6 @@ import {
   type RangedAnimationValueWithRandom,
   StartValueType,
   clamp,
-  getRandom,
   getRangeMax,
   getRangeMin,
   getRangeValue,
@@ -16,6 +15,14 @@ import {
   millisecondsToSeconds,
   randomInRangeValue,
 } from "@tsparticles/engine";
+
+function requireRandom(random: (() => number) | undefined): () => number {
+  if (!random) {
+    throw new Error("A random provider is required for this animation operation.");
+  }
+
+  return random;
+}
 
 /**
  * @param particle - The particle to process
@@ -87,7 +94,7 @@ export function initParticleNumericAnimationValue(
         break;
 
       case AnimationMode.random:
-        res.status = getRandom(random) >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+        res.status = requireRandom(random)() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
         break;
       default:
@@ -117,10 +124,10 @@ export function initParticleNumericAnimationValue(
 
       case StartValueType.random:
       default:
-        res.value = randomInRangeValue(res, random);
+        res.value = randomInRangeValue(res, requireRandom(random));
 
         if (autoStatus) {
-          res.status = getRandom(random) >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
+          res.status = requireRandom(random)() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
         }
 
         break;

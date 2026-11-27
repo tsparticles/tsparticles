@@ -1,3 +1,47 @@
+## Session status — 2026-11-27 — E11 complete
+
+- Moved color-manager registration and read APIs to `Engine`, backed by a
+  private registry; migrated built-in color plugins and the CLI plugin template.
+- Removed `ILegacyColorManager` and `adaptLegacyColorManager` from source,
+  exports, migration docs and the adapter-specific test.
+- Moved logger construction and partial-override wrapping into `Engine`; the
+  logger utility module now contains only its public type.
+- Routed the random path generator and cannon interaction through the owning
+  engine provider; `PoissonDisc` now requires a provider instead of defaulting
+  to `Math.random`.
+- Removed no-provider RNG fallbacks from runtime helpers and migrated randomized
+  scaffold examples. Remaining mutable state is classified in the E11 handover;
+  mutable configuration is engine-owned, while retained browser resources and
+  the Sounds activation latch follow documented platform ownership.
+- Verification: 61 test files / 945 tests passed. The engine, affected
+  emitter/color packages, CLI generators, portfolio/confetti template
+  packages, Vite demo, both standalone sites, Vanilla demo, and a broad build of
+  232 projects plus 218 dependencies passed. Electron and Next.js demo builds
+  were excluded after network fetch failures; Angular's build process aborted
+  in both the full and targeted sweeps.
+- E11 is complete. E12 is next; physical HDR and translation sign-off remain
+  queued for final plan validation. No commit, version bump, release,
+  publication, or deployment.
+
+## Session status — 2026-11-27 — E10 accepted for progression
+
+- Corrected stale E10 migration-draft summaries: all 20 CLI framework scaffolds
+  pass; the callback-free renderer follow-up passes all 30 runtime rows. The
+  quiet M4/500 update and render meet their E0 ceilings; frame p95 is 7.20 ms,
+  0.05 ms above the historical E5 reference.
+- Updated 133 CommonJS package README examples that used the removed engine
+  singleton to create explicit engines. Reviewed the active core Markdown
+  examples for engine ownership and registration API usage. Remaining package
+  README singleton spellings refer to local `createEngine()` aliases or the
+  published v4 CDN snippets; current website docs remain intentionally v4.
+- The workspace consumer-documentation audit is complete. Structural alignment
+  passes for all nine migration drafts. By the user's direction, physical HDR
+  display verification and human-language sign-off for all nine drafts are
+  queued for final validation after E11/E12; they do not block further plan work.
+- E10 is accepted for progression. E11 is complete and E12 is the next planned gate;
+  this acceptance does not establish release readiness or authorize publication.
+- No commit, version bump, release, publication, or deployment.
+
 ## Session status — 2026-11-25 — E10 in progress
 
 - A focused renderer optimization caches only plugins that implement

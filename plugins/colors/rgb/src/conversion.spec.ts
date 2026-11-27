@@ -3,7 +3,7 @@ import type { IRgb } from "@tsparticles/engine";
 import { RgbColorManager } from "./RgbColorManager.js";
 
 describe("RgbColorManager", () => {
-  const manager = new RgbColorManager(),
+  const manager = new RgbColorManager(() => 0.5),
     testCases: {
       expected: IRgb;
       input: IRgb;

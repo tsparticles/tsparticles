@@ -8,7 +8,6 @@ import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import type { EasingFunction } from "../../Types/EasingFunction.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../../Enums/Types/EventType.js";
-import type { IColorManager } from "../Interfaces/IColorManager.js";
 import type { IPalette } from "../Interfaces/IPalette.js";
 import type { IPlugin } from "../Interfaces/IPlugin.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
@@ -29,9 +28,6 @@ export type LoadPluginFunction =
  * Stores and resolves plugins, shapes, effects, palettes and updaters.
  */
 export class PluginManager {
-  /** The color managers map */
-  readonly colorManagers = new Map<string, IColorManager>();
-
   /** The easing functions map */
   readonly easingFunctions = new Map<string, EasingFunction>();
 
@@ -136,17 +132,6 @@ export class PluginManager {
    */
   get plugins(): readonly IPlugin[] {
     return (this.#pluginsView ??= Object.freeze([...this.#plugins]));
-  }
-
-  /**
-   * Registers a color manager.
-   * @param name - Color manager identifier.
-   * @param manager - Color manager implementation.
-   */
-  addColorManager(name: string, manager: IColorManager): void {
-    this.#checkRegistrationOpen();
-
-    this.colorManagers.set(name, manager);
   }
 
   /**

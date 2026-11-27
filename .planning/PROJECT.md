@@ -20,20 +20,22 @@ Provide a small, high-performance, and extensible particle engine that developer
 
 Execution order: [E0–E12, then optional E13](handovers/V5-EXECUTION.md), with detailed scope in the
 [v5 handovers](handovers/README.md). Topic IDs are not chronological. Dedicated branch: `v5`.
-The branch carries package version `4.6.0` after merging `main`. Major runtime
-implementation and the clean bundle baseline are pending.
+The branch carries package version `4.6.0` after merging `main`; the v5 runtime
+implementation and E0–E10 verification are complete for progression. E11/E12
+remain planned follow-up gates. Physical HDR and native translation reviews are
+queued for final plan validation at the user's direction; no release is authorized.
 
-- [ ] V5-ENG: Replace the exported singleton with explicit independent engine creation; migrate consumers.
-- [ ] V5-SVC: Scope custom random and logging to each engine, including transitive utility/plugin calls.
-- [ ] V5-MOD: Establish domain folders with selective public facades and enforced internal import boundaries.
-- [ ] V5-SIZE: Review all engine sources and reduce shipped bytes, including Container, CanvasManager/RenderManager, ParticlesManager and Particle; compare consistent min/gzip/Brotli consumer scenarios.
-- [ ] V5-PLG: Audit all extension packages for singleton removal, per-engine services, registration and core API compatibility.
-- [ ] V5-BRW: Refine browser/CDN bundles, globals, externals, lazy chunks and multi-engine composition without a default engine.
-- [ ] V5-LEG: Retire Vue 2, Nuxt 2, and Nuxt 3 integrations, deprecated APIs with documented replacements, and obsolete browser support under the agreed usage policy.
-- [ ] V5-COLOR: Adopt OKLCH as the canonical particle/animation model, preserve color-manager inputs and wide-gamut fidelity, and separate gamut/HDR capabilities; follow the [color migration plan](handovers/V5-COLORS-OKLCH.md).
-- [ ] V5-MIG: Validate downstream packages, browser rendering and v4 → v5 migration/documentation.
+- [x] V5-ENG: Replace the exported singleton with explicit independent engine creation; migrate consumers.
+- [x] V5-SVC: Scope custom random and logging to each engine, including transitive utility/plugin calls.
+- [x] V5-MOD: Establish domain folders with selective public facades and enforced internal import boundaries.
+- [x] V5-SIZE: Review engine sources and consumer size scenarios; explain justified growth and remove demonstrated waste.
+- [x] V5-PLG: Audit all extension packages for singleton removal, per-engine services, registration and core API compatibility.
+- [x] V5-BRW: Refine browser/CDN bundles, globals, externals, lazy chunks and multi-engine composition without a default engine.
+- [x] V5-LEG: Retire Vue 2, Nuxt 2, and Nuxt 3 integrations and deprecated APIs with supported replacements; document the intentionally retained PJS and Stencil v4 compatibility surfaces.
+- [x] V5-COLOR: Adopt OKLCH as the canonical particle/animation model, preserve color-manager inputs and wide-gamut fidelity, and separate gamut/HDR capabilities; see the [color report](handovers/V5-COLOR-REPORT.md). Physical HDR display validation is in the final-plan queue.
+- [x] V5-MIG: Validate downstream packages, browser rendering and v4 → v5 migration/documentation. Human review of the nine translations is in the final-plan queue.
 
-- [ ] V5-ARCH: Evaluate Particle state/serialization, engine package boundaries,
+- [x] V5-ARCH: Evaluate Particle state/serialization, engine package boundaries,
       options resolution and a common capability architecture for extensions;
       record decisions and evidence in the [architecture plan](handovers/V5-ARCHITECTURE.md).
 
@@ -76,4 +78,4 @@ is an optional plugin performance backlog, with no required new packages.
 
 ---
 
-_Last updated 2026-11-13 after execution reordering. Major implementation and measurements are pending._
+_Last updated 2026-11-27 after E10 acceptance for progression. Physical HDR and native-language reviews are queued for final plan validation._

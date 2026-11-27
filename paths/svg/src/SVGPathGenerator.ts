@@ -9,7 +9,6 @@ import {
   PixelMode,
   Vector,
   getPosition,
-  getRandom,
   half,
   minIndex,
   randomInRangeValue,
@@ -116,8 +115,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
       pxRatio = container.retina.pixelRatio;
 
     particle.svgDirection ??=
-      getRandom(this.#container.engine.getRandomFn()) > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
-    particle.svgPathIndex ??= Math.floor(getRandom(this.#container.engine.getRandomFn()) * this.#paths.length);
+      this.#container.engine.getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
+    particle.svgPathIndex ??= Math.floor(this.#container.engine.getRandom() * this.#paths.length);
     particle.svgSpeed ??= particle.velocity.mult(particle.retina.moveSpeed * half).length;
     particle.svgStep ??=
       randomInRangeValue(

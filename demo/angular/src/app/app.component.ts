@@ -49,7 +49,7 @@ export class AppComponent {
   toggleConfettiClick(): void {
     console.log("confetti clicked");
 
-    this.fire = Math.random() + 1;
+    this.fire = engine.getRandom() + 1;
   }
 
   switchConfig(): void {

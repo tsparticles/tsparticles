@@ -3,7 +3,6 @@ import {
   type IDelta,
   type IParticleUpdater,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
   percentDenominator,
@@ -51,7 +50,7 @@ export class SizeUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.size.velocity *= getRandom(this.#container.engine.getRandomFn());
+    particle.size.velocity *= this.#container.engine.getRandom();
   }
 
   /**

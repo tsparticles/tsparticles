@@ -13,7 +13,7 @@ export class AppComponent {
   mode = "cannon";
 
   randomInRange(min: number, max: number): number {
-    return Math.random() * (max - min) + min;
+    return engine.getRandom() * (max - min) + min;
   }
 
   fireConfetti(): void {

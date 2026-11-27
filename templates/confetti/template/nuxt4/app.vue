@@ -21,7 +21,7 @@ import { createConfetti } from "@tsparticles/confetti";
 const confetti = createConfetti(engine);
 
 function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 const mode = ref("cannon");

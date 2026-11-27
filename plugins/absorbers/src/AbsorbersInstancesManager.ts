@@ -1,11 +1,4 @@
-import {
-  type ICoordinates,
-  type PluginManager,
-  type RecursivePartial,
-  doublePI,
-  getRandom,
-  isNumber,
-} from "@tsparticles/engine";
+import { type ICoordinates, type PluginManager, type RecursivePartial, doublePI, isNumber } from "@tsparticles/engine";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -148,7 +141,7 @@ export class AbsorbersInstancesManager {
     const particleSize = (size * splitMassRatio) / quantity / container.retina.pixelRatio;
 
     for (let i = defaultIndex; i < quantity; i++) {
-      const angle = getRandom(this.#pluginManager.engine.getRandomFn()) * doublePI;
+      const angle = this.#pluginManager.engine.getRandom() * doublePI;
 
       // the particles are released on the rim the absorber was covering, which is the shape a
       // split is expected to have

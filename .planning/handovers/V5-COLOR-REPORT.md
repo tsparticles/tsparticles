@@ -1,7 +1,19 @@
 # V5 color report — E10 checkpoint
 
-Recorded 2026-11-24. This report gathers the current color evidence for E10;
-it does not close C5 or certify physical HDR output.
+Recorded 2026-11-24; reconciled 2026-11-27. This report gathers color evidence
+for E10. The user accepted physical HDR output verification as a final-plan
+check; no physical display result is claimed here.
+
+## E10 acceptance reconciliation — 2026-11-27
+
+The callback-free renderer follow-up passes all 30 E0 runtime rows, including
+forced-HDR context rows. The latest extended bundle matrix and the quiet M4/500
+results are summarized in the [E10 evidence](evidence/e10/README.md). E10 is
+accepted for progression through the v5 plan. Physical HDR display/GPU
+verification remains explicitly queued for the final plan validation by user
+decision. The Firefox and Safari context fallbacks and browser support-policy
+limitations below remain part of the final evidence; no original performance
+ceiling has been changed or waived.
 
 ## Contract and migration
 
@@ -58,8 +70,8 @@ comparisons are available, but they do not replace the E0 acceptance ceilings. S
 [`runtime-confirmation-comparison.json`](evidence/e10/runtime-confirmation-comparison.json),
 and [`runtime-extended-confirmation-comparison.json`](evidence/e10/runtime-extended-confirmation-comparison.json).
 
-The two confirmed runtime ceiling exceedances and the outstanding broader
-browser/hardware checks keep C5 open. The 17 size rows over their unchanged E0
+At the 2026-11-24 checkpoint, two runtime ceiling exceedances and broader
+browser/hardware checks were still open. The 17 size rows over their unchanged E0
 ceilings remain visible in the report, but E10 now evaluates size by explaining
 retained code and removing demonstrated avoidable growth; those raw deltas alone
 do not decide acceptance. The aggregate runtime flags are not attributed solely
@@ -69,17 +81,17 @@ to color. No original runtime ceiling is waived or changed.
 
 - C0–C4: implementation and acceptance evidence recorded in E3/E5.
 - C5 pixel formatting check: current Chrome 158 run passes 8/8 cases.
-- C5 final performance/distribution gate: open because two extended runtime
-  rows still exceed their E0 ceilings and broader browser/hardware coverage is
-  outstanding. Bundle ceilings remain diagnostic references under E10's updated
-  size criterion; see the [size disposition](V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
-- An additive 21-repetition candidate confirmation reproduced M6/500 frame p95
-  medians of 1.90 ms SDR and 2.20 ms HDR against 1.87 ms. HDR used a
-  Display-P3/float16 context. Both runtime rows remain open; raw samples and
-  lifecycle checks are recorded in the [E10 checkpoint](evidence/e10/README.md#budget-status).
-- Physical HDR display validation: open; no suitable hardware result is
-  recorded in this checkpoint.
+- C5 current code/performance evidence: accepted for E10 progression. The
+  callback-free renderer follow-up supersedes the earlier 28/30 runtime screen
+  and passes all 30 rows. Bundle ceilings remain diagnostic references under
+  E10's updated size criterion; see the [size disposition](V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
+- Historical 21-repetition M6/500 results of 1.90 ms SDR and 2.20 ms HDR remain
+  in the archive. The later callback-free confirmation measures 1.5/1.8 ms
+  against the unchanged 1.87 ms E0 ceiling; details are in the
+  [E10 checkpoint](evidence/e10/README.md#callback-free-per-particle-drawing-follow-up).
+- Physical HDR display validation is queued for the final plan validation at
+  the user's direction; no physical luminance result is claimed in this report.
 
-E10 remains open. Reconcile this report with the remaining source-review,
-translation, generated-consumer and final package gates before closing the
-release handover.
+The remaining user-run checks (physical HDR and human language sign-off for the
+nine translation drafts) are tracked for final plan validation. E10 does not
+authorize a release or package publication.

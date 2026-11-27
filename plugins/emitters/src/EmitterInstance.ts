@@ -550,10 +550,13 @@ export class EmitterInstance {
       }
     }
 
-    return calcPositionOrRandomFromSizeRanged({
-      size: container.canvas.size,
-      position: this.options.position,
-    });
+    return calcPositionOrRandomFromSizeRanged(
+      {
+        size: container.canvas.size,
+        position: this.options.position,
+      },
+      container.engine.getRandomFn(),
+    );
   }
 
   #calcSize(): IDimensionWithMode {

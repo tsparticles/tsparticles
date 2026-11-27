@@ -6,7 +6,7 @@ tsParticles is compatible with particles.js, and migration can be done in a few 
 
 1. Replace `particles.min.js` with `tsparticles.min.js`
 2. Update canvas CSS class names (`particles-js` -> `tsparticles`)
-3. Replace `particlesJS(...)` APIs with `tsParticles.load(...)`
+3. Replace `particlesJS(...)` APIs with calls on an explicit engine instance
 4. Gradually migrate deprecated options (`snake_case` -> `camelCase`)
 
 ## 1) Migrate script and CSS
@@ -41,10 +41,10 @@ becomes:
 
 ### Quick mapping
 
-| particles.js                               | tsParticles                                    |
-| ------------------------------------------ | ---------------------------------------------- |
-| `particlesJS("id", options)`               | `tsParticles.load({ id: "id", options })`      |
-| `particlesJS.load("id", "path", callback)` | `tsParticles.loadJSON("id", "path").then(...)` |
+| particles.js                               | tsParticles                               |
+| ------------------------------------------ | ----------------------------------------- |
+| `particlesJS("id", options)`               | `engine.load({ id: "id", options })`      |
+| `particlesJS.load("id", "path", callback)` | `engine.loadJSON("id", "path").then(...)` |
 
 ### Practical example
 
@@ -59,7 +59,13 @@ particlesJS.load("particles-js", "assets/particles.json", () => {
 After:
 
 ```js
-tsParticles.loadJSON("tsparticles", "assets/particles.json").then((container) => {
+import { createEngine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const engine = createEngine();
+await loadSlim(engine);
+
+engine.loadJSON("tsparticles", "assets/particles.json").then(container => {
   console.log("callback - tsParticles config loaded", container);
 });
 ```
@@ -67,7 +73,13 @@ tsParticles.loadJSON("tsparticles", "assets/particles.json").then((container) =>
 Or with inline options:
 
 ```js
-tsParticles.load({
+import { createEngine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const engine = createEngine();
+await loadSlim(engine);
+
+engine.load({
   id: "tsparticles",
   options: {/* options */},
 });

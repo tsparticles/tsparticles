@@ -63,7 +63,7 @@ describe("lab conversion", () => {
 
 describe("CSS Lab to OKLCH conversion", () => {
   it("converts the D50 CSS Lab red reference directly to D65 OKLCH", () => {
-    const result = new LabColorManager().parseStringOklch("lab(54.2943% 80.8192 69.8969 / 25%)");
+    const result = new LabColorManager(() => 0.5).parseStringOklch("lab(54.2943% 80.8192 69.8969 / 25%)");
 
     expect(result?.l).toBeCloseTo(62.8, 1);
     expect(result?.c).toBeCloseTo(0.2577, 3);
@@ -72,7 +72,7 @@ describe("CSS Lab to OKLCH conversion", () => {
   });
 
   it("accepts signed Lab axes and rejects incomplete or invalid CSS input", () => {
-    const manager = new LabColorManager(),
+    const manager = new LabColorManager(() => 0.5),
       resolved = manager.parseStringOklch("LAB(50% -12.5 +8 / 25%)");
 
     expect(resolved?.a).toBe(0.25);
@@ -83,7 +83,7 @@ describe("CSS Lab to OKLCH conversion", () => {
   });
 
   it("accepts unitless lightness and percentage a/b axes using CSS reference scales", () => {
-    const manager = new LabColorManager(),
+    const manager = new LabColorManager(() => 0.5),
       numeric = "lab(52.2345 40.1645 59.9971 / 25%)",
       percentAxes = "lab(52.2345% 32.1316% 47.99768% / 25%)",
       percentage = "lab(52.2345% 40.1645 59.9971 / 25%)";
@@ -95,7 +95,7 @@ describe("CSS Lab to OKLCH conversion", () => {
   });
 
   it("rejects calc() and exponent notation", () => {
-    const manager = new LabColorManager();
+    const manager = new LabColorManager(() => 0.5);
 
     expect(manager.parseString("lab(calc(50) 0 0)")).toBeUndefined();
     expect(manager.parseString("lab(5e1 0 0)")).toBeUndefined();

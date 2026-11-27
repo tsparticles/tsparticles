@@ -4,7 +4,6 @@ import {
   type IParticlesOptions,
   type IRgba,
   type RecursivePartial,
-  getRandom,
   half,
   minIndex,
   percentDenominator,
@@ -31,21 +30,14 @@ export function addParticlesFromCanvasPixels(
   const { height, width } = data,
     numPixels = height * width,
     indexArray = shuffle(range(numPixels), container.engine.getRandomFn()),
-    maxParticles = Math.min(
-      numPixels,
-      container.actualOptions.particles.number.value,
-    ),
+    maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value),
     canvasSize = container.canvas.size;
 
   let selectedPixels = 0;
 
   const positionOffset = {
-    x:
-      (canvasSize.width * position.x) / percentDenominator -
-      width * scale * half,
-    y:
-      (canvasSize.height * position.y) / percentDenominator -
-      height * scale * half,
+    x: (canvasSize.width * position.x) / percentDenominator - width * scale * half,
+    y: (canvasSize.height * position.y) / percentDenominator - height * scale * half,
   };
 
   while (selectedPixels < maxParticles && indexArray.length) {
@@ -108,12 +100,8 @@ export function addParticlesFromCanvasPixels(
  * @returns the shuffled array
  */
 function shuffle<T>(array: T[], random: () => number): T[] {
-  for (
-    let currentIndex = array.length - 1;
-    currentIndex > minIndex;
-    currentIndex--
-  ) {
-    const randomIndex = Math.floor(getRandom(random) * (currentIndex + 1)),
+  for (let currentIndex = array.length - 1; currentIndex > minIndex; currentIndex--) {
+    const randomIndex = Math.floor(random() * (currentIndex + 1)),
       currentItem = array[currentIndex],
       randomItem = array[randomIndex];
 

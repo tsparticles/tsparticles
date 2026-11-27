@@ -1,21 +1,22 @@
 # Guía de migración a v5 — borrador E10
 
-Estado: E10 en curso (2026-11-25). Las comprobaciones E9 de paquetes instalados
-y navegador han pasado para el candidato actual. Esta guía describe los
-contratos v5 implementados para el engine, los wrappers, los bundles y los
-colores. Los límites de tamaño E0 siguen visibles como referencias de
-diagnóstico según el criterio E10 actualizado; no se presentan como superados.
-Los criterios de runtime, asignaciones y retención siguen activos: el p95 del
-frame M6/500 en HDR forzado continúa por encima del límite E0 fijo.
+Estado: borrador E10 actualizado el 2026-11-27. Las comprobaciones E9 de
+paquetes instalados y navegador han pasado para el candidato actual. Esta guía
+describe los contratos v5 implementados para el engine, los wrappers, los
+bundles y los colores. Los límites de tamaño E0 siguen visibles como referencias
+de diagnóstico según el criterio E10 actualizado; no se presentan como
+superados. El seguimiento del renderer sin callback supera las 30 comprobaciones
+de runtime E0, incluidas las filas con HDR forzado. En M4/500, update y render
+están dentro de los límites E0; el p95 del frame es 7,20 ms, 0,05 ms por encima
+de la referencia histórica E5. Siguen pendientes la comprobación de HDR en
+hardware y las revisiones documentales requeridas.
 
-El ejemplo TypeScript generado por MCP y el scaffold CLI Vanilla superan la
-comprobación de tipos y se inicializan en Chrome con los paquetes candidatos
-reconstruidos; el scaffold CLI también supera la compilación de producción.
-Las nueve familias de templates empaquetadas excluyen las variantes retiradas
-de Vue 2, Nuxt 2 y Nuxt 3. Siguen pendientes las combinaciones generadas aparte
-de Vanilla, React, Vue 3, Solid y Lit, las guías traducidas, la revisión más
-amplia de consumidores y la comprobación de HDR/navegador en hardware. Este es
-un borrador interno, no la guía de migración definitiva para el lanzamiento.
+El ejemplo TypeScript generado por MCP y los 20 scaffolds CLI (Vanilla y 19
+frameworks) superan la comprobación de tipos, la compilación de producción y el
+inicio en Chrome sin errores de página ni de consola. Las nueve familias de
+templates empaquetadas excluyen las variantes retiradas de Vue 2, Nuxt 2 y Nuxt 3. Siguen pendientes la revisión lingüística de los nueve borradores y la comprobación de
+HDR/navegador en hardware. Este es un borrador interno, no la guía de migración
+definitiva para el lanzamiento.
 
 Las guías Vanilla predeterminadas y localizadas del sitio actual son copias
 idénticas y apuntan a los paquetes CDN v4 publicados. Los ejemplos con singleton

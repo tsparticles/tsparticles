@@ -11,6 +11,6 @@ export async function loadLabColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("lab", new LabColorManager(e.getRandomFn()));
+    e.addColorManager("lab", new LabColorManager(e.getRandomFn()));
   });
 }

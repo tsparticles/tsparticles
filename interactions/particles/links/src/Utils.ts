@@ -1,5 +1,4 @@
 import type { LinkParticle } from "./Types.js";
-import { getRandom } from "@tsparticles/engine";
 
 /**
  * @param ids - The ids
@@ -24,7 +23,7 @@ export function setLinkFrequency(
   let res = dictionary.get(key);
 
   if (res === undefined) {
-    res = getRandom(random);
+    res = random();
 
     dictionary.set(key, res);
   }

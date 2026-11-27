@@ -2,7 +2,7 @@
 
 Initial plan dated 2026-11-03. Use the dedicated branch `v5`. Merge
 `201b8e8d33` incorporates the `4.6.0` release through `main`. Status
-**E0–E9 complete; E10 open**. See [E8 ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24) and the [E9 distribution evidence](evidence/e9/README.md). E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
+**E0–E11 accepted for progression on 2026-11-27**. Physical HDR verification and human-language sign-off for the nine migration drafts are queued for final plan validation at the user's direction; this records a deferral, not completed results, and does not authorize release. See [E8 ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24) and the [E9 distribution evidence](evidence/e9/README.md). E7 is user-accepted with final absolute-budget checks in E10; see [acceptance](evidence/e7/closure/README.md) and [checkpoint](V5-E7-STATUS.md). See [E6 completion](evidence/e6/closure/README.md), [E5 acceptance and explicit E10 follow-up](evidence/e5/closure/README.md). See [E1 acceptance](V5-E1-ENGINE.md),
 [the evidence report](V5-BUNDLE-REPORT.md) and [E1 retirement checkpoint](V5-E1-RETIREMENT.md)
 for measurements and limitations. The original `4.5.1` reconnaissance and later `4.5.2` architecture
 and color review are historical.
@@ -38,15 +38,15 @@ Handover IDs are stable topic identifiers, not execution order.
 
 ### Work after E10 — planned follow-ups
 
-E10 is the next active gate. These plans extend the sequence and are **not
-complete**. E11 and E12 are planned gates with their own evidence and acceptance
-status; E13 is an optional backlog.
+E10 is accepted for progression. These plans extend the sequence. E11 is
+complete; E12 remains planned with its own evidence and acceptance status; E13
+is an optional backlog.
 
-| Order | Plan | Status | Scope |
-| ----- | ---- | ------ | ----- |
-| E11 | [Engine-owned utilities and configuration](V5-11-ENGINE-OWNED-UTILITIES.md) | Planned; target contract agreed | Put random, logger and color-manager configuration/lookup on the owning engine; remove ambient fallbacks and the legacy color-manager adapter; classify shared mutable state. |
-| E12 | [Engine-independent extensions](V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md) | Planned | Create `@tsparticles/core` for extension-facing contracts and utilities; migrate extension packages off direct engine dependencies while bundles, wrappers and demos retain them. |
-| E13 | [Optional plugin improvements](V5-13-OPTIONAL-PLUGINS.md) | Optional backlog | Profile and implement only measured plugin improvements; coordinate with separately planned pre-release verification. |
+| Order | Plan                                                                        | Status           | Scope                                                                                                                                                                             |
+| ----- | --------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E11   | [Engine-owned utilities and configuration](V5-11-ENGINE-OWNED-UTILITIES.md) | Complete         | Put random, logger and color-manager configuration/lookup on the owning engine; remove ambient fallbacks and the legacy color-manager adapter; classify shared mutable state.     |
+| E12   | [Engine-independent extensions](V5-12-ENGINE-INDEPENDENT-EXTENSIONS.md)     | Planned          | Create `@tsparticles/core` for extension-facing contracts and utilities; migrate extension packages off direct engine dependencies while bundles, wrappers and demos retain them. |
+| E13   | [Optional plugin improvements](V5-13-OPTIONAL-PLUGINS.md)                   | Optional backlog | Profile and implement only measured plugin improvements; coordinate with separately planned pre-release verification.                                                             |
 
 E11 follows up residual ownership findings from E2. E12 is the broader
 engine-to-extension dependency decoupling. E13 remains optional and
@@ -62,8 +62,9 @@ migrating integrations that v5 will remove.
 Agents must read `AGENTS.md`, this index, the execution plan and relevant technical
 handovers before editing source. Preserve other contributors' changes and record
 files, decisions, commands and results. E0–E13 contain no release or publication
-step. E10 is not overall v5 validation: after E10, agree a separate plan for the
-additional pre-release checks required before considering any release. Commits,
+step. E10 is not overall v5 validation: continue E12 and agree a separate
+plan for any additional pre-release checks before considering a release. E11 is complete. The
+user-run HDR and translation checks remain in that final validation queue. Commits,
 publishing and releases require separate authorization.
 
 ## Original checkout evidence (E0, before implementation)

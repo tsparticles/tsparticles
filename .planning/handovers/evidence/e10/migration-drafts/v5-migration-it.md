@@ -1,20 +1,21 @@
 # Guida alla migrazione a v5 — bozza E10
 
-Stato: E10 in corso (2026-11-25). Le verifiche E9 su pacchetti installati e
-browser sono passate per il candidato corrente. Questa guida descrive i
-contratti v5 implementati per engine, wrapper, bundle e colori. I limiti di
-dimensione E0 restano riferimenti diagnostici secondo il criterio E10
-aggiornato; non vengono indicati come superati. I criteri di runtime,
-allocazioni e ritenzione restano attivi: il p95 del frame M6/500 in HDR forzato
-è ancora oltre il limite E0 fissato.
+Stato: bozza E10 aggiornata al 2026-11-27. Le verifiche E9 su pacchetti
+installati e browser sono passate per il candidato corrente. Questa guida
+descrive i contratti v5 implementati per engine, wrapper, bundle e colori. I
+limiti di dimensione E0 restano riferimenti diagnostici secondo il criterio
+E10 aggiornato; non vengono indicati come superati. Il follow-up senza callback
+del renderer supera tutte le 30 righe runtime E0, incluse quelle HDR forzate.
+Nel confronto M4/500, update e render rientrano nei limiti E0; il p95 del frame
+è 7,20 ms, 0,05 ms oltre il riferimento storico E5. La verifica HDR su hardware
+e le revisioni documentali richieste restano aperte.
 
-L'esempio TypeScript generato da MCP e lo scaffold CLI Vanilla passano il
-controllo dei tipi e l'avvio in Chrome usando i pacchetti candidati ricostruiti;
-lo scaffold CLI supera anche la build di produzione. Tutte le nove famiglie di
-template impacchettate escludono le varianti ritirate di Vue 2, Nuxt 2 e Nuxt 3.
-Restano aperte le combinazioni generate oltre a Vanilla, React, Vue 3, Solid e
-Lit, le guide tradotte, la revisione più ampia dei consumer e il gate HDR/browser
-su hardware. Questa è una bozza interna, non la guida definitiva di rilascio.
+L'esempio TypeScript generato da MCP e tutti i 20 scaffold CLI (Vanilla e 19
+framework) superano i controlli di tipo, la build di produzione e l'avvio in
+Chrome senza errori di pagina o console. Tutte le nove famiglie di template
+impacchettate escludono le varianti ritirate di Vue 2, Nuxt 2 e Nuxt 3. Restano
+aperte la revisione linguistica delle nove bozze e la verifica HDR/browser su hardware. Questa è una bozza
+interna, non la guida definitiva di rilascio.
 
 Le guide Vanilla predefinite e localizzate del sito attuale sono copie identiche
 e puntano ai pacchetti CDN v4 pubblicati. Gli esempi singleton vengono mantenuti

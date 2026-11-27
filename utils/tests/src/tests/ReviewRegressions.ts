@@ -96,7 +96,7 @@ describe("review regressions", () => {
           {
             actualOptions: { particles: { move: { path: { options: {} } } } },
             canvas: { size: { width: 100, height: 100 } },
-            engine: { getRandomFn: () => () => testRandomValue },
+            engine: { getRandom: () => testRandomValue },
             zLayers: 100,
           } as never,
           noiseGenerator,
@@ -267,7 +267,7 @@ describe("review regressions", () => {
       for (const sample of [testFirstEngineRandom, testSecondEngineRandom]) {
         const container = {
             canvas: { size: { width: testCanvasSize, height: testCanvasSize } },
-            engine: { getRandomFn: () => () => sample },
+            engine: { getRandom: () => sample, getRandomFn: () => () => sample },
           },
           instancesManager = {
             initContainer: () => undefined,

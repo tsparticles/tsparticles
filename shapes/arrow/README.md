@@ -61,7 +61,8 @@ $ yarn add @tsparticles/shape-arrow
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadArrowShape } = require("@tsparticles/shape-arrow");
 
 (async () => {

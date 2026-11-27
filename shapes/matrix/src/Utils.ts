@@ -1,12 +1,4 @@
-import {
-  type IShapeDrawData,
-  type Particle,
-  double,
-  getRandom,
-  getRangeMax,
-  getRangeMin,
-  originPoint,
-} from "@tsparticles/engine";
+import { type IShapeDrawData, type Particle, double, getRangeMax, getRangeMin, originPoint } from "@tsparticles/engine";
 import type { MatrixParticle } from "./MatrixParticle.js";
 
 /**
@@ -215,7 +207,7 @@ const defaultMinInterval = 100, // ms
  * @returns a random character from the pool
  */
 function randomChar(random: () => number): string {
-  return matrixChars[Math.floor(getRandom(random) * matrixChars.length)] ?? " ";
+  return matrixChars[Math.floor(random() * matrixChars.length)] ?? " ";
 }
 
 /**
@@ -224,7 +216,7 @@ function randomChar(random: () => number): string {
  * @returns a random interval between MIN_INTERVAL and MAX_INTERVAL
  */
 function randomInterval(minInterval: number, maxInterval: number, random: () => number): number {
-  return minInterval + getRandom(random) * (maxInterval - minInterval);
+  return minInterval + random() * (maxInterval - minInterval);
 }
 
 /**

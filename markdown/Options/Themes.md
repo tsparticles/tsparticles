@@ -61,7 +61,14 @@ A partial {@link Options} object. Only the properties you specify will override 
 ## Switching themes at runtime
 
 ```javascript
-const container = await tsParticles.load({
+import { createEngine } from "@tsparticles/engine";
+import { loadThemesPlugin } from "@tsparticles/plugin-themes";
+
+const engine = createEngine();
+
+await loadThemesPlugin(engine);
+
+const container = await engine.load({
   id: "tsparticles",
   options: {/* ... */},
 });

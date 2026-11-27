@@ -7,7 +7,7 @@ import "./App.css";
 const confetti = createConfetti(engine);
 
 function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return engine.getRandom() * (max - min) + min;
 }
 
 async function init(): Promise<void> {

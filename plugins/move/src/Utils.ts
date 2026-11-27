@@ -7,7 +7,6 @@ import {
   clamp,
   doublePI,
   getDistance,
-  getRandom,
   getRangeValue,
   half,
   identity,
@@ -61,14 +60,14 @@ export function applyDistance(particle: MoveParticle): void {
       hDistance &&
       ((pos.x < initialPosition.x && vel.x < minVelocity) || (pos.x > initialPosition.x && vel.x > minVelocity))
     ) {
-      vel.x *= -getRandom(particle.container.engine.getRandomFn());
+      vel.x *= -particle.container.engine.getRandom();
     }
 
     if (
       vDistance &&
       ((pos.y < initialPosition.y && vel.y < minVelocity) || (pos.y > initialPosition.y && vel.y > minVelocity))
     ) {
-      vel.y *= -getRandom(particle.container.engine.getRandomFn());
+      vel.y *= -particle.container.engine.getRandom();
     }
   }
 }
@@ -286,7 +285,7 @@ export function initSpin(container: Container, particle: MoveParticle): void {
   particle.spin = {
     center: spinCenter,
     direction: particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-    angle: getRandom(container.engine.getRandomFn()) * doublePI,
+    angle: container.engine.getRandom() * doublePI,
     radius: distance,
     acceleration: particle.retina.spinAcceleration,
   };

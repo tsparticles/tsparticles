@@ -12,7 +12,7 @@ export interface IEmitterShape {
 
   init(): Promise<void>;
 
-  randomPosition(random?: () => number): IRandomPositionData | null;
+  randomPosition(random: () => number): IRandomPositionData | null;
 
   resize(position: ICoordinates, size: IDimension): void;
 }

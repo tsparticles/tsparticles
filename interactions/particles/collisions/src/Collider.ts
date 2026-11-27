@@ -1,8 +1,4 @@
-import type {
-  CollisionParticle,
-  IParticlesCollisionOptions,
-  ParticlesCollisionOptions,
-} from "./Types.js";
+import type { CollisionParticle, IParticlesCollisionOptions, ParticlesCollisionOptions } from "./Types.js";
 import {
   type Container,
   type IDelta,
@@ -12,10 +8,7 @@ import {
   getRangeValue,
   loadOptionProperty,
 } from "@tsparticles/engine";
-import {
-  type IInteractivityData,
-  ParticlesInteractorBase,
-} from "@tsparticles/plugin-interactivity";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import { CollisionMode } from "./CollisionMode.js";
 import { Collisions } from "./Options/Classes/Collisions.js";
 import { FluidSolver } from "./Fluid.js";
@@ -25,10 +18,7 @@ import { resolveCollision } from "./ResolveCollision.js";
  * Particle collision interactor
  * Handles collision detection and resolution between particles
  */
-export class Collider extends ParticlesInteractorBase<
-  Container,
-  CollisionParticle
-> {
+export class Collider extends ParticlesInteractorBase<Container, CollisionParticle> {
   readonly #fluidSolver: FluidSolver;
   #maxDistance;
 
@@ -51,11 +41,7 @@ export class Collider extends ParticlesInteractorBase<
     // do nothing
   }
 
-  interact(
-    p1: CollisionParticle,
-    _interactivityData: IInteractivityData,
-    delta: IDelta,
-  ): void {
+  interact(p1: CollisionParticle, _interactivityData: IInteractivityData, delta: IDelta): void {
     if (p1.destroyed || p1.spawning) {
       return;
     }
@@ -68,10 +54,7 @@ export class Collider extends ParticlesInteractorBase<
 
     /* the fluid mode is a neighborhood solver, it's mutually exclusive with the pair modes */
     if (collisions.mode === CollisionMode.fluid) {
-      const fluidRadius = getRangeValue(
-        collisions.fluid.radius,
-        this.container.engine.getRandomFn(),
-      );
+      const fluidRadius = getRangeValue(collisions.fluid.radius, this.container.engine.getRandomFn());
 
       if (fluidRadius > this.#maxDistance) {
         this.#maxDistance = fluidRadius;
@@ -85,10 +68,7 @@ export class Collider extends ParticlesInteractorBase<
     const container = this.container,
       pos1 = p1.getPosition(),
       radius1 = p1.getRadius(),
-      query = container.particles.grid.queryCircle(
-        pos1,
-        radius1 * double,
-      ) as CollisionParticle[];
+      query = container.particles.grid.queryCircle(pos1, radius1 * double) as CollisionParticle[];
 
     for (const p2 of query) {
       if (
@@ -111,10 +91,7 @@ export class Collider extends ParticlesInteractorBase<
 
       const contactDistance = radius1 + radius2;
 
-      if (
-        contactDistance < 0 ||
-        Math.abs(Math.round(pos1.z) - Math.round(pos2.z)) > contactDistance
-      ) {
+      if (contactDistance < 0 || Math.abs(Math.round(pos1.z) - Math.round(pos2.z)) > contactDistance) {
         continue;
       }
 

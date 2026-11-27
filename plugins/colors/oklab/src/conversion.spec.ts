@@ -60,7 +60,7 @@ describe("OKLab conversion", () => {
   }
 
   describe("canonical OKLCH manager output", () => {
-    const manager = new OklabColorManager();
+    const manager = new OklabColorManager(() => 0.5);
 
     it("converts programmatic OKLab directly to normalized OKLCH", () => {
       const result = manager.handleColorOklch({
@@ -91,7 +91,7 @@ describe("OKLab conversion", () => {
     });
 
     it("accepts signed and leading-decimal channels, and rejects trailing text or invalid alpha", () => {
-      const manager = new OklabColorManager();
+      const manager = new OklabColorManager(() => 0.5);
 
       expect(manager.parseStringOklch("OKLAB(+.6 +.1 -.2 / 25%)")).toMatchObject({
         a: 0.25,
@@ -110,7 +110,7 @@ describe("OKLab conversion", () => {
     });
 
     it("rejects calc() and exponent notation", () => {
-      const manager = new OklabColorManager();
+      const manager = new OklabColorManager(() => 0.5);
 
       expect(manager.parseString("oklab(calc(.5) 0 0)")).toBeUndefined();
       expect(manager.parseString("oklab(5e-1 0 0)")).toBeUndefined();

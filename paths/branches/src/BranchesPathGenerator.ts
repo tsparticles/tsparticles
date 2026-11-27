@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, Vector, doublePI, getRandom } from "@tsparticles/engine";
+import { type Container, Vector, doublePI } from "@tsparticles/engine";
 import type { IBranchesInertiaOptions, IBranchesPathOptions } from "./IBranchesPathOptions.js";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
@@ -47,7 +47,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const opts = this.options;
 
     p.branching ??= {
-      angle: getRandom(this.#container.engine.getRandomFn()) * doublePI,
+      angle: this.#container.engine.getRandom() * doublePI,
       remaining: opts.segmentLength,
       baseSpeed: p.velocity.length,
       speed: p.velocity.length,
@@ -56,14 +56,14 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const b = p.branching;
 
     if (b.remaining <= 0) {
-      const branch = getRandom(this.#container.engine.getRandomFn()) < (opts.branchChance ?? 0),
+      const branch = this.#container.engine.getRandom() < (opts.branchChance ?? 0),
         maxAngle = opts.maxAngle ?? defaultOptions.maxAngle,
-        delta = (getRandom(this.#container.engine.getRandomFn()) * 2 - 1) * (branch ? maxAngle : maxAngle * 0.3);
+        delta = (this.#container.engine.getRandom() * 2 - 1) * (branch ? maxAngle : maxAngle * 0.3);
 
       b.angle += delta;
       b.remaining = opts.segmentLength;
 
-      const speedFactor = 1 + (getRandom(this.#container.engine.getRandomFn()) * 2 - 1) * (opts.speedVariation ?? 0);
+      const speedFactor = 1 + (this.#container.engine.getRandom() * 2 - 1) * (opts.speedVariation ?? 0);
 
       b.speed = b.baseSpeed * speedFactor;
     }

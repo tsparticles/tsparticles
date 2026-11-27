@@ -1,4 +1,4 @@
-import type { IColor, IOklcha, IRangeColor, IRgb, IRgba } from "./Colors.js";
+import type { IColor, IOklcha, IRangeColor } from "./Colors.js";
 
 /** Native color manager contract. Resolved values are always canonical OKLCH. */
 export interface IColorManager {
@@ -13,12 +13,4 @@ export interface IColorManager {
 
   /** Parses a string directly to canonical OKLCH and alpha. */
   parseStringOklch(input: string): IOklcha | undefined;
-}
-
-/** Previous sRGB-based manager contract, supported only through an explicit adapter. */
-export interface ILegacyColorManager {
-  accepts(input: string): boolean;
-  handleColor(color: IColor): IRgb | undefined;
-  handleRangeColor(color: IRangeColor): IRgb | undefined;
-  parseString(input: string): IRgba | undefined;
 }

@@ -386,7 +386,11 @@ describe("PathGenerators", async () => {
     const container = await loadPathContainer(randomPathName, {}),
       gen = generator(container, randomPathName);
 
-    const res = gen.generate();
+    const particle = container.particles.addParticle();
+
+    expect(particle).toBeDefined();
+
+    const res = gen.generate(particle!);
 
     expect(res.x).to.be.within(-1, 1);
     expect(res.y).to.be.within(-1, 1);

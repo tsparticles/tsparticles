@@ -3,7 +3,6 @@ import {
   type IDelta,
   type PluginManager,
   doublePI,
-  getRandom,
   getRangeValue,
   half,
   rangeColorToOklch,
@@ -38,15 +37,14 @@ export function initParticle(pluginManager: PluginManager, particle: RollParticl
     enable: rollOpt.enable,
     horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
     vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
-    angle: getRandom(particle.container.engine.getRandomFn()) * doublePI,
+    angle: particle.container.engine.getRandom() * doublePI,
     speed: getRangeValue(rollOpt.speed, particle.container.engine.getRandomFn()) / maxAngle,
   };
 
   if (rollOpt.backColor) {
     particle.backColor = rangeColorToOklch(pluginManager, rollOpt.backColor);
   } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-    const alterType =
-      getRandom(particle.container.engine.getRandomFn()) >= half ? AlterType.darken : AlterType.enlighten;
+    const alterType = particle.container.engine.getRandom() >= half ? AlterType.darken : AlterType.enlighten;
 
     particle.roll.alter = {
       type: alterType,

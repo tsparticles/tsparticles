@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { HsvColorManager } from "./HsvColorManager.js";
 
 describe("HsvColorManager", () => {
-  const manager = new HsvColorManager(),
+  const manager = new HsvColorManager(() => 0.5),
     testCases: {
       expected: IRgb;
       input: IHsv;

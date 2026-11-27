@@ -318,7 +318,7 @@ describe("Particles", async () => {
 
     const arr = container.particles.filter(() => true);
 
-    let ts = getRandom() * 16.66667;
+    let ts = container.engine.getRandom() * 16.66667;
 
     const logP = arr[0];
 
@@ -329,28 +329,28 @@ describe("Particles", async () => {
       factor: (60 * ts) / 1000,
     });
 
-    ts = getRandom() * 16.66667;
+    ts = container.engine.getRandom() * 16.66667;
 
     container.particles.update({
       value: ts,
       factor: (60 * ts) / 1000,
     });
 
-    ts = getRandom() * 16.66667;
+    ts = container.engine.getRandom() * 16.66667;
 
     container.particles.update({
       value: ts,
       factor: (60 * ts) / 1000,
     });
 
-    ts = getRandom() * 16.66667;
+    ts = container.engine.getRandom() * 16.66667;
 
     container.particles.update({
       value: ts,
       factor: (60 * ts) / 1000,
     });
 
-    ts = getRandom() * 16.66667;
+    ts = container.engine.getRandom() * 16.66667;
 
     container.particles.update({
       value: ts,

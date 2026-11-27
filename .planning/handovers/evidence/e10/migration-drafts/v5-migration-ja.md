@@ -1,8 +1,8 @@
 # v5 移行ガイド — E10 作業草案
 
-状態: E10 は進行中 (2026-11-25)。現行候補では、インストール済みパッケージとブラウザーの E9 検証に合格しました。本書は engine、wrapper、bundle、カラーに実装された v5 の契約を説明します。更新された E10 サイズ基準に従い、E0 サイズ上限は診断用の基準として残しており、合格とは扱いません。runtime、割り当て、保持の基準は未完了です。HDR 強制時の M6/500 フレーム p95 は、固定された E0 上限をまだ超えています。
+状態: E10 作業草稿、2026-11-27 更新。現行候補に対する E9 のインストール済みパッケージとブラウザーの検証は完了しました。このガイドでは engine、wrapper、bundle、color に実装された v5 の仕様を説明します。更新後の E10 サイズ基準に基づき、E0 のサイズ上限は診断用の参考値として記載し、合格とは扱いません。callback を使わない renderer の追加検証では、強制 HDR を含む E0 runtime 30 項目すべてに合格しています。M4/500 の update と render は E0 上限内です。frame p95 は 7.20 ms で、過去の E5 参考値を 0.05 ms 上回ります。実機 HDR 検証と必要なドキュメントレビューは未完了です。
 
-MCP 生成 TypeScript 例と CLI Vanilla scaffold は、再ビルドした候補パッケージを使った型検査と Chrome 初期化に合格し、CLI scaffold は本番 build にも合格しました。9 種類すべての packed template family に、削除済みの Vue 2、Nuxt 2、Nuxt 3 variant はありません。Vanilla、React、Vue 3、Solid、Lit 以外の生成組み合わせ、イタリア語・スペイン語・フランス語・ドイツ語の初稿以外の翻訳、より広い consumer review、実機での HDR/browser 検証は未完了です。草案と言語状況は [`migration-drafts/`](README.md) に記録しています。内部作業用であり、公開用の完成ガイドではありません。
+MCP で生成した TypeScript の例と 20 種類すべての CLI scaffold（Vanilla と 19 framework）は、型検査、本番ビルド、Chrome での起動に合格し、ページまたは console のエラーはありません。9 種類すべてのテンプレートファミリーから、削除済みの Vue 2、Nuxt 2、Nuxt 3 の構成が除かれています。9 件すべての草稿の言語レビュー、実機での HDR/browser 検証は未完了です。この文書は社内向け草稿であり、公開用の完成ガイドではありません。
 
 現行サイトの標準および各言語の Vanilla ガイドは byte 単位で同一で、公開済み v4 CDN package を参照します。singleton の例は v5 移行ページの公開準備が整うまで v4 ドキュメントとして維持し、v5 consumer 検証には数えません。
 

@@ -12,42 +12,54 @@ This page provides a practical flow to build extensions that users can reuse eas
 
 ## Before you start
 
-- Register extensions before calling `tsParticles.init()` or `tsParticles.load(...)`.
+- Create an explicit engine and register extensions on that engine before loading a scene.
 - Use a unique name (for example, with a project prefix)
 - Always document a minimal configuration example
 - If you are starting from an existing demo object, keep that config as a fixture while developing your extension
 
+```ts
+import { createEngine } from "@tsparticles/engine";
+
+const engine = createEngine();
+```
+
 ## Register a plugin
 
-Queue custom plugins through `pluginManager.register` before initializing the engine or loading the first scene. The engine executes the registered loaders during initialization.
+Queue custom plugins through `engine.pluginManager.register` before loading the first scene. The engine executes the registered loaders during initialization.
 
 ```ts
-await tsParticles.pluginManager.register((engine) => {
+await engine.pluginManager.register(engine => {
   engine.pluginManager.addPlugin(myPlugin);
 });
 
-await tsParticles.load({ id: "tsparticles", options });
+await engine.load({ id: "tsparticles", options });
 ```
 
 Calls to `register` after initialization and calls to `addPlugin` outside the loader phase report `TSP-1003`. The engine and container expose read-only plugin lists.
 
 ## Create a custom shape
 
-Register a shape with `tsParticles.addShape(name, drawer)`.
+Register a shape with `engine.pluginManager.addShape(names, drawer)` in a plugin loader.
 
 ### Function example
 
 ```ts
-tsParticles.addShape("spiral", (context, particle, radius) => {
-  const data = particle.shapeData as { innerRadius: number; lineSpacing: number };
-  const realWidth = (radius - data.innerRadius) / data.lineSpacing;
+await engine.pluginManager.register(engine => {
+  engine.pluginManager.addShape(["spiral"], () =>
+    Promise.resolve({
+      draw(context, particle, radius) {
+        const data = particle.shapeData as { innerRadius: number; lineSpacing: number };
+        const realWidth = (radius - data.innerRadius) / data.lineSpacing;
 
-  for (let i = 0; i < realWidth * 10; i++) {
-    const angle = 0.1 * i;
-    const factor = data.innerRadius + data.lineSpacing * angle;
+        for (let i = 0; i < realWidth * 10; i++) {
+          const angle = 0.1 * i;
+          const factor = data.innerRadius + data.lineSpacing * angle;
 
-    context.lineTo(factor * Math.cos(angle), factor * Math.sin(angle));
-  }
+          context.lineTo(factor * Math.cos(angle), factor * Math.sin(angle));
+        }
+      },
+    }),
+  );
 });
 ```
 
@@ -68,7 +80,9 @@ class SpiralDrawer {
   }
 }
 
-tsParticles.addShape("spiral", new SpiralDrawer());
+await engine.pluginManager.register(engine => {
+  engine.pluginManager.addShape(["spiral"], () => Promise.resolve(new SpiralDrawer()));
+});
 ```
 
 Useful interface: {@link IShapeDrawer}
@@ -95,10 +109,10 @@ Useful interface: {@link IShapeDrawer}
 
 ## Create a custom preset
 
-Register a preset with `tsParticles.addPreset(name, options)` and then use it in config with `preset`.
+Register a preset with `engine.pluginManager.addPreset(name, options)` and then use it in config with `preset`.
 
 ```ts
-tsParticles.addPreset("my-fire", {
+engine.pluginManager.addPreset("my-fire", {
   fpsLimit: 40,
   particles: {
     number: {

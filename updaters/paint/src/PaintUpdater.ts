@@ -119,6 +119,7 @@ export class PaintUpdater implements IParticleUpdater {
       fillOklchColor,
       particle.fillAnimation,
       container.retina.reduceFactor,
+      this.#container.engine.getRandomFn(),
     );
   }
 
@@ -156,6 +157,7 @@ export class PaintUpdater implements IParticleUpdater {
       strokeOklchColor,
       particle.strokeAnimation,
       container.retina.reduceFactor,
+      this.#container.engine.getRandomFn(),
     );
   }
 }

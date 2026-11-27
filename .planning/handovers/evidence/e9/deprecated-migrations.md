@@ -29,3 +29,14 @@ Remaining source annotations are in
 longer expose the deprecated APIs listed above. The Stencil wrapper still uses
 Stencil v4, so `applyPolyfills()` remains in its published loader until the
 wrapper upgrades to Stencil v5.
+
+## E10 retirement disposition — 2026-11-27
+
+The required deprecated Confetti, Ribbons, and color-formatting APIs have been
+removed. The PJS API remains an opt-in compatibility adapter with a documented
+path to explicit engine calls, and the Stencil loader declaration is generated
+from the supported Stencil v4 dependency. These two retained compatibility
+surfaces are accepted in E10 and are not treated as unfinished removal work.
+The Vue 2, Nuxt 2, and Nuxt 3 integrations and their active templates remain
+retired; packed-template and built-artifact evidence is linked from the E10
+checkpoint.

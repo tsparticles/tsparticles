@@ -7,7 +7,6 @@ import {
   ParticleOutType,
   Vector,
   calculateBounds,
-  getRandom,
   minDistance,
   minVelocity,
   originPoint,
@@ -122,7 +121,7 @@ export class OutOutMode implements IOutModeManager {
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = getRandom(this.#container.engine.getRandomFn()) * canvasSize.height;
+        particle.position.y = this.#container.engine.getRandom() * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
@@ -132,7 +131,7 @@ export class OutOutMode implements IOutModeManager {
       particle.initialPosition.x = particle.position.x;
 
       if (!warp) {
-        particle.position.y = getRandom(this.#container.engine.getRandomFn()) * canvasSize.height;
+        particle.position.y = this.#container.engine.getRandom() * canvasSize.height;
         particle.initialPosition.y = particle.position.y;
       }
 
@@ -141,7 +140,7 @@ export class OutOutMode implements IOutModeManager {
 
     if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height + particle.offset.y) {
       if (!warp) {
-        particle.position.x = getRandom(this.#container.engine.getRandomFn()) * canvasSize.width;
+        particle.position.x = this.#container.engine.getRandom() * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 
@@ -151,7 +150,7 @@ export class OutOutMode implements IOutModeManager {
       particle.justWarped = true;
     } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
       if (!warp) {
-        particle.position.x = getRandom(this.#container.engine.getRandomFn()) * canvasSize.width;
+        particle.position.x = this.#container.engine.getRandom() * canvasSize.width;
         particle.initialPosition.x = particle.position.x;
       }
 

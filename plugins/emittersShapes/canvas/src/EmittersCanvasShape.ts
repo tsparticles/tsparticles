@@ -3,7 +3,6 @@ import {
   type ICoordinates,
   type IDimension,
   type IRgba,
-  getRandom,
   half,
   isFunction,
   isNull,
@@ -112,7 +111,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     this.pixelData = pixelData;
   }
 
-  randomPosition(random: () => number = Math.random): IRandomPositionData | null {
+  randomPosition(random: () => number): IRandomPositionData | null {
     const { height, width } = this.pixelData,
       data = this.pixelData,
       position = this.position,
@@ -123,7 +122,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
       };
 
     for (let i = 0; i < maxRetries; i++) {
-      const nextIndex = Math.floor(getRandom(random) * width * height),
+      const nextIndex = Math.floor(random() * width * height),
         pixelPos = {
           x: nextIndex % width,
           y: Math.floor(nextIndex / width),

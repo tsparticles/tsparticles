@@ -315,8 +315,9 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       toDeg = piDeg / Math.PI;
 
     for (let i = 0; i < count; i++) {
-      const spreadAngle = launchAngle + getRandomInRange(-opts.spread, opts.spread),
-        speed = getRandomInRange(velocity * quarter, velocity);
+      const random = this.container.engine.getRandomFn(),
+        spreadAngle = launchAngle + getRandomInRange(-opts.spread, opts.spread, random),
+        speed = getRandomInRange(velocity * quarter, velocity, random);
 
       // addParticle expects logical (non-retina) coords
       // direction is in degrees, convert once per particle from the cached radian value

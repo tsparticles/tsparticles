@@ -12,10 +12,7 @@ const pauseMode = "pause";
  * Particle attract manager
  */
 export class Pauser extends ExternalInteractorBase {
-  handleClickMode: (
-    mode: string,
-    interactivityData: IInteractivityData,
-  ) => void;
+  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly maxDistance = 0;
 
@@ -45,10 +42,7 @@ export class Pauser extends ExternalInteractorBase {
     // do nothing
   }
 
-  isEnabled(
-    _interactivityData: IInteractivityData,
-    particle?: InteractivityParticle,
-  ): boolean {
+  isEnabled(_interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
       events = (particle?.interactivity ?? options.interactivity)?.events;

@@ -1,12 +1,4 @@
-import {
-  type ICoordinates,
-  type IDimension,
-  double,
-  doublePI,
-  getDistanceSq,
-  getRandom,
-  minCount,
-} from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, double, doublePI, getDistanceSq, minCount } from "@tsparticles/engine";
 import type { IPoissonPoint } from "./Interfaces/IPoissonPoint.js";
 
 /**
@@ -79,8 +71,8 @@ export class PoissonDisc {
     radius: number,
     retries: number,
     dimensions: number,
-    firstPoint?: ICoordinates,
-    random: () => number = Math.random,
+    firstPoint: ICoordinates | undefined,
+    random: () => number,
   ) {
     this.#random = random;
     this.size = { ...size };
@@ -131,7 +123,7 @@ export class PoissonDisc {
    * @returns Random number from min to max
    */
   getRandom(min: number, max: number): number {
-    return Math.floor(getRandom(this.#random) * (max - min)) + min;
+    return Math.floor(this.#random() * (max - min)) + min;
   }
 
   /**

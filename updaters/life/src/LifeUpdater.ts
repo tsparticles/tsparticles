@@ -4,7 +4,6 @@ import {
   type IParticleUpdater,
   type Particle,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
   millisecondsToSeconds,
@@ -43,8 +42,8 @@ export class LifeUpdater implements IParticleUpdater {
       return;
     }
 
-    const delayFactor = lifeOptions.delay.sync ? identity : getRandom(this.#container.engine.getRandomFn()),
-      durationFactor = lifeOptions.duration.sync ? identity : getRandom(this.#container.engine.getRandomFn());
+    const delayFactor = lifeOptions.delay.sync ? identity : this.#container.engine.getRandom(),
+      durationFactor = lifeOptions.duration.sync ? identity : this.#container.engine.getRandom();
 
     particle.life = {
       delay: container.retina.reduceFactor

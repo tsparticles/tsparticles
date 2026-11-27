@@ -11,6 +11,6 @@ export async function loadHexColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addColorManager("hex", new HexColorManager());
+    e.addColorManager("hex", new HexColorManager());
   });
 }

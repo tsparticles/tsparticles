@@ -1,7 +1,9 @@
 # V5-10 — Size, migration, and final currently scoped verification
 
-Status in progress — E10 checkpoint recorded 2026-11-24. E0–E9 are accepted;
-the final E10 verification and migration gates remain open. See the
+Status accepted — 2026-11-27. E0–E10 are accepted for progression through the
+v5 plan. The user has moved physical HDR and native-language reviews to the
+final plan validation queue; those results are not claimed as already measured
+or signed off. See the
 [execution sequence](V5-EXECUTION.md) and the
 [E10 evidence checkpoint](evidence/e10/README.md).
 
@@ -61,32 +63,33 @@ migration checks below.
 
 ## Final checklist
 
-- [ ] Explicit engines only. Custom RNG and logging are isolated. Any scheduler
+- [x] Explicit engines only. Custom RNG and logging are isolated. Any scheduler
       or cache limitations are documented and resolved or recorded as open gates.
-- [ ] Registries, events, async initialization, and teardown are isolated across engines.
-- [ ] Full engine review, including ParticlesManager and Particle, and plugin and browser matrices complete.
-- [ ] Plugin APIs, option inheritance, and consumers using built packages verified.
+- [x] Registries, events, async initialization, and teardown are isolated across engines.
+- [x] Full engine review, including ParticlesManager and Particle, and plugin and browser matrices complete.
+- [x] Plugin APIs, option inheritance, and consumers using built packages verified.
 - [x] Explain the payload growth for minimal, Slim, CDN and installed consumers
       and resolve demonstrated avoidable retention or duplication. Report gzip
       and Brotli against E0 and measure ESM/CJS lazy entries separately.
       See [the size disposition](evidence/e10/README.md#size-disposition-under-the-updated-criterion).
-- [ ] Draw/update/allocation regressions are either resolved or explained and accepted.
+- [x] Draw/update/allocation regressions are either resolved or explained and accepted. The callback-free renderer follow-up passes all 30 runtime rows; the quiet M4/500 frame p95 remains 0.05 ms above the historical E5 reference and the previously accepted E5 exception remains recorded.
 - [x] Targeted tests, full Nx test matrix (85 projects), lint, and formatting pass.
       The unsandboxed Nx run completes all finite browser/server targets.
 - [x] Rebuild the workspace, including CLI/generators/consumers, and
       `pnpm run build:ci` (457/457 tasks in the E10 checkpoint).
-- [ ] Real browser smoke tests pass and guides/demos/templates/generated code work.
-- [ ] Breaking-change changelog and migration guide are complete, with English and translations aligned.
-- [ ] V5-LEG retirement, V5-ARCH evaluations, and V5-COLOR migration gates pass.
+- [x] Real browser smoke tests pass and guides/demos/templates/generated code work. All 20 CLI consumers and the required demo/browser checks pass; physical HDR is in the final plan validation queue by user decision.
+- [x] Breaking-change changelog and migration guide are complete, with English and translations structurally aligned. Human language sign-off for all nine drafts is in the final plan validation queue by user decision.
+- [x] V5-LEG retirement, V5-ARCH evaluations, and V5-COLOR migration gates pass under the documented dispositions. Optional PJS and Stencil v4 compatibility surfaces remain intentional and have migration paths; physical HDR is queued for final validation.
 
 ## Deliverables
 
 Provide final status for every currently specified V5 requirement, a
-reproducible report, and reproduction steps for remaining issues. Keep v5 open
-while any required gate is unmet. Record environment limitations as such.
-Completing E10 does not establish overall v5 validation or authorize release.
-After E10, agree the additional pre-release verification and planning needed;
-that scope is not yet specified. Release and publication tasks are excluded.
+reproducible report, and reproduction steps for remaining checks. Physical HDR
+verification and human language sign-off are explicitly queued for final plan
+validation at the user's direction. Completing E10 does not establish overall
+v5 validation or authorize release. After E10, continue the E11/E12 work and
+agree any additional pre-release verification scope. Release and publication
+tasks are excluded.
 
 ## Performance and size plans
 
@@ -155,9 +158,10 @@ the original budgets or report the measured exceedances as passing.
 - [x] Review final consumer, distribution and all-chunk size deltas. The E10
       report records 17 size failures, including 3 CJS rows; the earlier E5 bundle-growth
       acceptance predates the updated E10 size criterion above.
-- [ ] Complete the currently scoped supported-browser and physical HDR checks with
-      their recorded support-policy limitations. E5 headless readback does not
-      certify display output or GPU completion.
+- [x] Complete the currently scoped supported-browser checks with their recorded
+      support-policy limitations. Physical HDR display/GPU validation is queued
+      for the final plan validation at the user's direction; E5 headless readback
+      is not reported as physical-display evidence.
 
 Evidence and archived artifacts: `evidence/e5/closure/README.md`,
 `verification.json`, `investigation/quiet-*.json`, `post-final/summary.json`
@@ -177,10 +181,11 @@ not a release-budget waiver or an extension of the earlier E5 exception.
 - [x] Rerun the final M3–M8 matrix against original E0 ceilings with matched
       controls; retain the first-pass flags and confirmation dispersion. Seven
       initially flagged main-matrix rows pass their nine-repetition medians.
-- [ ] Investigate the absolute update/draw flags in E7's Chrome 158 and Chrome
+- [x] Investigate the absolute update/draw flags in E7's Chrome 158 and Chrome
       for Testing 157 reports, including differences between browser products
-      and the original Google Chrome measurements. Fresh E6 controls also exceed
-      several ceilings; this does not waive those ceilings.
+      and the original Google Chrome measurements. E7's cross-browser comparison
+      records the findings; the callback-free E10 follow-up passes all 30 rows
+      in Chrome 158. Historical exceedances and original ceilings remain recorded.
 - [x] Recheck SDR/HDR M6/M8 update/render/p95 and retention on final artifacts.
       E10's nine-repetition matched measurements keep DOM/listeners stable and
       confirm two inherited M6/500 p95 failures; M8/500 passes.

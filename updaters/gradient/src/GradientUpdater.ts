@@ -12,7 +12,6 @@ import {
   doublePI,
   executeOnSingleOrMultiple,
   getOklchAnimationFromOklch,
-  getRandom,
   getRangeMax,
   getRangeMin,
   getRangeValue,
@@ -146,9 +145,7 @@ export class GradientUpdater implements IParticleUpdater {
 
     if (rotateDirection === RotateDirection.random) {
       rotateDirection =
-        getRandom(this.#container.engine.getRandomFn()) > half
-          ? RotateDirection.counterClockwise
-          : RotateDirection.clockwise;
+        this.#container.engine.getRandom() > half ? RotateDirection.counterClockwise : RotateDirection.clockwise;
     }
 
     switch (rotateDirection) {
@@ -177,6 +174,7 @@ export class GradientUpdater implements IParticleUpdater {
           grOklchColor,
           grColor.value.animation,
           container.retina.reduceFactor,
+          this.#container.engine.getRandomFn(),
         ),
         addColor = {
           stop: grColor.stop,
@@ -228,9 +226,7 @@ export class GradientUpdater implements IParticleUpdater {
           default:
             addOpacity.value = randomInRangeValue(addOpacity, this.#container.engine.getRandomFn());
             addOpacity.status =
-              getRandom(this.#container.engine.getRandomFn()) >= half
-                ? AnimationStatus.increasing
-                : AnimationStatus.decreasing;
+              this.#container.engine.getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
             break;
         }

@@ -243,9 +243,12 @@ describe("Particle", async () => {
     });
 
     it("should always return the position when specified", () => {
-      const position: ICoordinates = calcExactPositionOrRandomFromSize({
-          size: { width, height },
-        }),
+      const position: ICoordinates = calcExactPositionOrRandomFromSize(
+          {
+            size: { width, height },
+          },
+          container.engine.getRandomFn(),
+        ),
         particle = container.particles.addParticle(position);
 
       expect(particle).to.be.not.undefined;

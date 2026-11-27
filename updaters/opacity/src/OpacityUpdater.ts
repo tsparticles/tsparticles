@@ -3,7 +3,6 @@ import {
   type IDelta,
   type IParticleUpdater,
   type RecursivePartial,
-  getRandom,
   getRangeValue,
   loadOptionProperty,
   percentDenominator,
@@ -49,7 +48,7 @@ export class OpacityUpdater implements IParticleUpdater {
         this.#container.retina.reduceFactor;
 
       if (!opacityAnimation.sync) {
-        particle.opacity.velocity *= getRandom(this.#container.engine.getRandomFn());
+        particle.opacity.velocity *= this.#container.engine.getRandom();
       }
     }
   }

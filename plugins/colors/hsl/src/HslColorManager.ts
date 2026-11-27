@@ -61,7 +61,7 @@ function parseHslHue(input: string): number {
 export class HslColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

@@ -71,7 +71,7 @@ function parseOklchString(input: string): IOklcha | undefined {
 export class OklchColorManager implements IColorManager {
   readonly #random: () => number;
 
-  constructor(random: () => number = Math.random) {
+  constructor(random: () => number) {
     this.#random = random;
   }
 

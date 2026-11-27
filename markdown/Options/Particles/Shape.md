@@ -116,7 +116,9 @@ Set `replaceColor: true` for SVG images to tint them with the particle `color`.
 ### Custom registered shape
 
 ```javascript
-tsParticles.addShape("myShape", drawer);
+await engine.pluginManager.register(engine => {
+  engine.pluginManager.addShape(["myShape"], () => Promise.resolve(drawer));
+});
 ```
 
 ```json

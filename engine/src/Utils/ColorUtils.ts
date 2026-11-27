@@ -13,15 +13,7 @@ import type {
   ISpacedRgb,
   IValueColor,
 } from "../Core/Interfaces/Colors.js";
-import {
-  clamp,
-  getRandom,
-  getRandomInRange,
-  getRangeValue,
-  parseAlpha,
-  randomInRangeValue,
-  setRangeValue,
-} from "./MathUtils.js";
+import { clamp, getRandomInRange, getRangeValue, parseAlpha, randomInRangeValue, setRangeValue } from "./MathUtils.js";
 import {
   decayOffset,
   defaultAlpha,
@@ -75,6 +67,7 @@ import type { OklchAnimation } from "../Options/Classes/OklchAnimation.js";
 import type { Particle } from "../Core/Particles/Particle.js";
 import type { PluginManager } from "../Core/Engine/PluginManager.js";
 import type { RangeValue } from "../Types/RangeValue.js";
+import { getRandomValue } from "./RandomUtils.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
@@ -120,6 +113,14 @@ let hdrCacheMisses = 0,
         style: string;
       }
     | undefined;
+
+function requireRandom(random: (() => number) | undefined): () => number {
+  if (!random) {
+    throw new Error("A random provider is required for this color operation.");
+  }
+
+  return random;
+}
 
 /**
  * Generic cache function for color styles
@@ -365,7 +366,7 @@ export function colorToRgb(
     return value ? colorToRgb(pluginManager, { value }) : undefined;
   }
 
-  for (const manager of pluginManager.colorManagers.values()) {
+  for (const manager of pluginManager.engine.getColorManagers()) {
     const handled = manager.handleColorOklch(input),
       resolved = handled ? normalizeOklchaResult(handled) : undefined,
       mapped = resolved ? mapOklchToSrgb(resolved).rgb : undefined;
@@ -442,7 +443,7 @@ export function rangeColorToOklch(
   }
 
   if (isString(color)) {
-    for (const manager of pluginManager.colorManagers.values()) {
+    for (const manager of pluginManager.engine.getColorManagers()) {
       if (manager.accepts(color)) {
         const resolved = manager.parseStringOklch(color),
           normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
@@ -560,7 +561,7 @@ export function rangeColorToOklch(
       return;
     }
 
-    for (const manager of pluginManager.colorManagers.values()) {
+    for (const manager of pluginManager.engine.getColorManagers()) {
       const resolved = manager.handleRangeColorOklch(color),
         normalized = resolved ? normalizeOklchaResult(resolved) : undefined;
 
@@ -791,7 +792,7 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @param hdr - the HDR flag
  * @returns the random ({@link IRgb}) color
  */
-export function getRandomRgbColor(min?: number, hdr?: boolean, random?: () => number): IRgb {
+export function getRandomRgbColor(min: number | undefined, hdr: boolean | undefined, random: () => number): IRgb {
   const fixedMin = min ?? defaultRgbMin;
 
   if (hdr) {
@@ -1109,8 +1110,10 @@ function setColorAnimation(
     colorValue.delayTime = getRangeValue(colorAnimation.delay, random) * millisecondsToSeconds;
 
     if (!colorAnimation.sync) {
-      colorValue.velocity *= getRandom(random);
-      colorValue.value *= getRandom(random);
+      const randomProvider = requireRandom(random);
+
+      colorValue.velocity *= getRandomValue(randomProvider);
+      colorValue.value *= getRandomValue(randomProvider);
     }
 
     colorValue.initialValue = colorValue.value;
@@ -1158,7 +1161,7 @@ export function updateColorValue(
     return;
   }
 
-  const offset = data.offset ? randomInRangeValue(data.offset, random) : minOffset,
+  const offset = data.offset ? randomInRangeValue(data.offset, requireRandom(random)) : minOffset,
     velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
     decay = data.decay ?? identity,
     max = data.max,

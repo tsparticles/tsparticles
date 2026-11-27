@@ -8,7 +8,7 @@ import { loadSlim } from "@tsparticles/slim";
 import style from "./style.css?inline";
 
 const keys = Object.keys(configs);
-const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+const randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs;
 const options: ISourceOptions = {
   ...configs[randomKey],
   fullScreen: { enable: true, zIndex: -1 },

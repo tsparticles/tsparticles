@@ -9,7 +9,7 @@ import { loadSlim } from "@tsparticles/slim";
   await loadSlim(engine);
 
   const keys = Object.keys(configs);
-  const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+  const randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs;
 
   await $.particles(engine).init();
   $("#tsparticles")

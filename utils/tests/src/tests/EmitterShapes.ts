@@ -190,7 +190,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "square");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "square",
+      );
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -223,7 +226,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "circle");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "circle",
+      );
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -273,7 +279,10 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      assertFiniteWithinBounds(shape.randomPosition(), "polygon");
+      assertFiniteWithinBounds(
+        shape.randomPosition(() => 0.5),
+        "polygon",
+      );
     }, 30000);
 
     it("[exact] resize updates position, size and rebuilds the polygon", async () => {
@@ -322,7 +331,7 @@ describe("Emitter shapes", async () => {
       await shape.init();
       shape.checkContext.isPointInPath = () => false;
 
-      expect(shape.randomPosition()).to.be.null;
+      expect(shape.randomPosition(() => 0.5)).to.be.null;
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {
@@ -355,7 +364,7 @@ describe("Emitter shapes", async () => {
 
       await shape.init();
 
-      expect(shape.randomPosition()).to.be.null;
+      expect(shape.randomPosition(() => 0.5)).to.be.null;
     }, 30000);
 
     it("[exact] resize updates position and size", async () => {

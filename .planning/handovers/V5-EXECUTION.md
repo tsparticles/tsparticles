@@ -1,6 +1,6 @@
 # V5 — Dependency-driven implementation sequence
 
-Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 closed on 2026-11-24; see the [ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E9 closed on 2026-11-24; E10 remains open. This is the
+Replanned on 2026-11-13. E0–E7 are complete; see [E7 acceptance](evidence/e7/closure/README.md). The user accepts E7 with final absolute-budget checks in E10. E8 closed on 2026-11-24; see the [ecosystem audit closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24). E9 closed on 2026-11-24; E10 was accepted for progression on 2026-11-27. Physical HDR display verification and human-language review of the migration drafts are queued for final plan validation at the user's direction. This is the
 execution order; the existing handover numbers 01–10 identify areas of ownership,
 not chronological steps. Keep their filenames and links stable. Their detailed
 scope and acceptance checks still apply. This sequence replaces the earlier
@@ -34,11 +34,12 @@ Capture these rows in E0 and close them with their owning stage. Existing tests
 and optimizations cited in the review remain regression requirements.
 
 E0–E12 are the numbered execution gates; E13 is the final optional,
-measurement-led plugin improvement backlog. E0–E10 are the currently accepted
-sequence through the active E10 final gate. E11 (planned; target contract agreed)
-and E12 (planned) are the next follow-up gates and must remain visible in the
-roadmap. Additional pre-release verification still needs its own agreed scope
-after E10. No gate or backlog item implies release authorization.
+measurement-led plugin improvement backlog. E0–E11 are accepted for progression.
+E11 (complete) and E12 (planned) are the next follow-up gates and must remain
+visible in the roadmap. Physical HDR and translation
+reviews are queued for final plan validation. Additional pre-release verification
+still needs its own agreed scope. No gate or backlog item implies release
+authorization.
 
 ## Stages and exit gates
 
@@ -46,22 +47,22 @@ Follow E0–E12 in order; E13 is optional. Within each stage, use the subdivisio
 below. A gate is complete only with its evidence and the shared checks in the
 [index](README.md).
 
-| Stage | Deliverable                                                 | Difficulty  | Impact                                     | Technical handovers                         | Exit gate                                                                                                                                        |
-| ----- | ----------------------------------------------------------- | ----------- | ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| E0    | Baseline, inventories, supported-consumer scope             | Medium      | Workspace-wide planning                    | 01, 03, 08, 09; IMP-01                      | Reproducible baseline, numeric budgets, owner matrices, retirement list and browser policy recorded                                              |
-| E1    | Explicit engines and migration of supported consumers       | High        | Workspace-wide API and distribution        | 01; early 08/09                             | No implicit engine; working package/CDN consumers; independent registries and resource ownership                                                 |
-| E2    | Engine-owned services and mutable-state isolation           | High        | Utilities, plugins, async paths            | 02; ongoing 08                              | Independent RNG/loggers; scheduler/cache disposition and deterministic multi-engine checks                                                       |
-| E3    | Shared contracts and domain boundaries                      | High        | Public types, options, extensions, imports | 03; ARCH-01–04; C0                          | Recorded decisions, representative typed consumers, acyclic boundaries and color contract                                                        |
-| E4    | Container lifecycle and extension integration               | High        | Init, refresh, events, cleanup             | 04; ARCH-03/04; lifecycle part of IMP-06    | Stable hook order, cancellation, ownership and refresh/reset behavior                                                                            |
-| E5    | Particle/options model and complete OKLCH migration         | Very high   | Particle, all color consumers, canvas/HDR  | 07 + color portions of 05/08; C1–C4; IMP-05 | One canonical color model; all affected consumers migrated; numerical, animation and browser evidence                                            |
-| E6    | Collections, pooling, update phases and spatial index       | High        | Simulation and interaction families        | 06; IMP-03/04                               | Preserved order/reset/query semantics and measured improvements on the final particle model                                                      |
-| E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects                                               |
-| E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                                                            |
-| E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified                                                        |
-| E10   | Final currently scoped verification and migration gate      | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All E0–E10 checks closed; E11/E12 follow-ups and additional pre-release scope remain; no release authorization                                     |
-| E11   | Engine-owned utilities and configuration                   | High        | Runtime services, color managers, plugins  | Follow-up to 02; service ownership          | Engine owns random/logger/color-manager configuration and lookup; no ambient service fallbacks or legacy color-manager adapter                    |
-| E12   | Engine-independent extension boundary                      | Very high   | All extension packages and Nx graph       | Follow-up to 03/08; shared contracts        | `@tsparticles/core` owns extension contracts/utilities; extension packages have no direct engine dependency; affected builds are measured            |
-| E13   | Optional plugin improvements                                | Optional    | Existing plugin performance candidates    | Optional follow-up after E10 baseline       | Implement only measured wins; retain the backlog as unselected until separately scheduled                                                        |
+| Stage | Deliverable                                                 | Difficulty  | Impact                                     | Technical handovers                         | Exit gate                                                                                                                                 |
+| ----- | ----------------------------------------------------------- | ----------- | ------------------------------------------ | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| E0    | Baseline, inventories, supported-consumer scope             | Medium      | Workspace-wide planning                    | 01, 03, 08, 09; IMP-01                      | Reproducible baseline, numeric budgets, owner matrices, retirement list and browser policy recorded                                       |
+| E1    | Explicit engines and migration of supported consumers       | High        | Workspace-wide API and distribution        | 01; early 08/09                             | No implicit engine; working package/CDN consumers; independent registries and resource ownership                                          |
+| E2    | Engine-owned services and mutable-state isolation           | High        | Utilities, plugins, async paths            | 02; ongoing 08                              | Independent RNG/loggers; scheduler/cache disposition and deterministic multi-engine checks                                                |
+| E3    | Shared contracts and domain boundaries                      | High        | Public types, options, extensions, imports | 03; ARCH-01–04; C0                          | Recorded decisions, representative typed consumers, acyclic boundaries and color contract                                                 |
+| E4    | Container lifecycle and extension integration               | High        | Init, refresh, events, cleanup             | 04; ARCH-03/04; lifecycle part of IMP-06    | Stable hook order, cancellation, ownership and refresh/reset behavior                                                                     |
+| E5    | Particle/options model and complete OKLCH migration         | Very high   | Particle, all color consumers, canvas/HDR  | 07 + color portions of 05/08; C1–C4; IMP-05 | One canonical color model; all affected consumers migrated; numerical, animation and browser evidence                                     |
+| E6    | Collections, pooling, update phases and spatial index       | High        | Simulation and interaction families        | 06; IMP-03/04                               | Preserved order/reset/query semantics and measured improvements on the final particle model                                               |
+| E7    | Rendering and remaining canvas optimizations                | High        | Draw pipeline, layers, capabilities        | Remaining 05; rendering part of IMP-06      | Complete canvas review; verified visual parity, resource cleanup and measured runtime/size effects                                        |
+| E8    | Complete ecosystem compatibility audit                      | Medium–high | Every extension and integration            | 08                                          | Per-package outcomes; external custom consumers and multi-engine integration verified                                                     |
+| E9    | Final package composition, distribution and support cleanup | High        | Package exports, bundles, CDN, tooling     | 09; ARCH-02; IMP-02; C5 distribution        | Built/installed consumers, bundler matrix, total payloads and retirement closure verified                                                 |
+| E10   | Final currently scoped verification and migration gate      | Medium–high | Current v5 candidate                       | 10; IMP-01; C5 closure                      | All E0–E10 checks closed; E11/E12 follow-ups and additional pre-release scope remain; no release authorization                            |
+| E11   | Engine-owned utilities and configuration                    | High        | Runtime services, color managers, plugins  | Follow-up to 02; service ownership          | Engine owns random/logger/color-manager configuration and lookup; no ambient service fallbacks or legacy color-manager adapter            |
+| E12   | Engine-independent extension boundary                       | Very high   | All extension packages and Nx graph        | Follow-up to 03/08; shared contracts        | `@tsparticles/core` owns extension contracts/utilities; extension packages have no direct engine dependency; affected builds are measured |
+| E13   | Optional plugin improvements                                | Optional    | Existing plugin performance candidates     | Optional follow-up after E10 baseline       | Implement only measured wins; retain the backlog as unselected until separately scheduled                                                 |
 
 ### E0 — Prepare evidence without changing the runtime
 
@@ -193,16 +194,16 @@ guide. E0 size ceilings remain diagnostic references. E10 requires explaining
 payload growth and resolving demonstrated waste, while the existing performance
 criteria and other mandatory checks keep their acceptance requirements. See
 [E10 acceptance criteria](V5-10-SIZE-MIGRATION-RELEASE.md#e10-acceptance-criteria-update--2026-11-24).
-E10 is not release readiness or authorization. E11 and E12 are planned gates
-after E10; additional pre-release verification still needs its own agreed scope
+E10 is not release readiness or authorization. E11 is complete and E12 is a
+planned gate after E10; additional pre-release verification still needs its own agreed scope
 before any release is considered.
 
 ### E11 — Engine-owned utilities and configuration
 
-Status: **planned; target contract agreed**. Close the residual E2 ownership
-work: random, logger, and color-manager configuration and lookup belong to each
-engine; remove ambient fallbacks and the legacy color-manager adapter; classify
-remaining shared mutable state. See the [E11 plan](V5-11-ENGINE-OWNED-UTILITIES.md).
+Status: **complete**. Random, logger, and color-manager configuration and
+lookup belong to each engine; ambient fallbacks and the legacy color-manager
+adapter are removed, and remaining shared mutable state is classified. See the
+[E11 plan](V5-11-ENGINE-OWNED-UTILITIES.md).
 
 ### E12 — Engine-independent extensions
 
@@ -248,13 +249,14 @@ consumer benefit. Coordinate timing with separately planned pre-release checks.
 - [x] E8 — Ecosystem audit closure — 349 package manifests reconciled; owner-isolation regressions and 959-test primary suite pass; see [E8 closure](V5-PLUGIN-AUDIT.md#e8-closure--2026-11-24)
 - [x] E9 — Distribution and support closure — built/installed consumers, local HTTP browser candidates, bundler matrix and retirement evidence; the pre-existing public 4.6.0 CDN artifact is recorded as context ([E9 evidence](evidence/e9/README.md))
 - [ ] E10 — Final currently scoped verification and migration gate
-- [ ] E11 — Engine-owned utilities and configuration
+- [x] E11 — Engine-owned utilities and configuration — 2026-11-27
 - [ ] E12 — Engine-independent extensions through `@tsparticles/core`
 - [ ] E13 — Optional plugin improvements, only if selected
 
-Next action: **E10 final currently scoped verification**. After E10, separately
-scope additional pre-release checks, then schedule the E11 and E12 follow-ups;
-E13 remains optional. E8 closed its package/family audit
+Next action: **E12 — Engine-independent extensions**. Physical HDR and
+translation sign-off remain queued for final plan validation; additional
+pre-release verification must be scoped separately. E13 remains optional.
+E8 closed its package/family audit
 with the G1–G7 findings, build outcomes, test-defined custom extension scenario
 and final primary suite recorded in [V5-PLUGIN-AUDIT.md](V5-PLUGIN-AUDIT.md).
 E6 is complete:

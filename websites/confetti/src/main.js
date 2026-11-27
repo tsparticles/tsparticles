@@ -275,7 +275,7 @@ const modes = [
     ],
     fn: function () {
       function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
+        return engine.getRandom() * (max - min) + min;
       }
 
       confetti({
@@ -607,7 +607,7 @@ const modes = [
         defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
       function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
+        return engine.getRandom() * (max - min) + min;
       }
 
       const interval = setInterval(function () {
@@ -622,13 +622,19 @@ const modes = [
         confetti(
           Object.assign({}, defaults, {
             count: particleCount,
-            position: toPercentPosition({ x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }),
+            position: toPercentPosition({
+              x: randomInRange(0.1, 0.3),
+              y: engine.getRandom() - 0.2,
+            }),
           })
         );
         confetti(
           Object.assign({}, defaults, {
             count: particleCount,
-            position: toPercentPosition({ x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }),
+            position: toPercentPosition({
+              x: randomInRange(0.7, 0.9),
+              y: engine.getRandom() - 0.2,
+            }),
           })
         );
       }, 250);
@@ -653,7 +659,7 @@ const modes = [
       let skew = 1;
 
       function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
+        return engine.getRandom() * (max - min) + min;
       }
 
       (function frame() {
@@ -667,8 +673,8 @@ const modes = [
           startVelocity: 0,
           ticks: ticks,
           position: toPercentPosition({
-            x: Math.random(),
-            y: Math.random() * skew - 0.2,
+            x: engine.getRandom(),
+            y: engine.getRandom() * skew - 0.2,
           }),
           colors: ['#ffffff'],
           shapes: ['circle'],
@@ -832,7 +838,7 @@ const modes = [
             count: 8,
             angle: 90,
             spread: 70,
-            position: toPercentPosition({ x: Math.random(), y: 0 }),
+            position: toPercentPosition({ x: engine.getRandom(), y: 0 }),
             gravity: 1.2,
             ticks: 0,
             colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],

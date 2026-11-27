@@ -129,6 +129,7 @@ Before C1 implementation, add independent reference vectors for conversion,
 neutral hue, alpha, gamut edges, and extended linear values. Before C2/C3, add
 characterization tests for input precedence, range/random call counts, and
 existing HSL animation inputs. C0 is a contract decision, not color rollout
-acceptance; C1–C4 are recorded as accepted in the E5 closure. C5 remains open
-pending its final performance/distribution and broader browser gates; the E10
-Chrome pixel results are summarized in [V5-COLOR-REPORT.md](V5-COLOR-REPORT.md).
+acceptance; C1–C4 are recorded as accepted in the E5 closure. C5's current code,
+performance and distribution evidence is accepted for E10 progression; the user
+queues physical HDR display validation for the final plan check. The E10 Chrome
+pixel results are summarized in [V5-COLOR-REPORT.md](V5-COLOR-REPORT.md).

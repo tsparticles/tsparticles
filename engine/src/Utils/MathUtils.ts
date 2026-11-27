@@ -16,6 +16,7 @@ import {
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Particles/Vectors.js";
+import { getRandomValue } from "./RandomUtils.js";
 import { isNumber } from "./TypeUtils.js";
 
 const piDeg = 180,
@@ -26,12 +27,12 @@ const piDeg = 180,
  * @returns a random number between 0 and 1
  * @param random - A random function returning a finite value; non-finite results map to 0.
  */
-export function getRandom(random: () => number = Math.random): number {
-  const min = 0,
-    max = 1,
-    value = random();
+function requireRandom(random: (() => number) | undefined): () => number {
+  if (!random) {
+    throw new Error("A random provider is required for this math operation.");
+  }
 
-  return Number.isFinite(value) ? clamp(value, min, max - Number.EPSILON) : min;
+  return random;
 }
 
 /**
@@ -40,8 +41,8 @@ export function getRandom(random: () => number = Math.random): number {
  * @param max - The maximum value of the range.
  * @returns a random number between the given range
  */
-export function getRandomInRange(min: number, max: number, random?: () => number): number {
-  return getRandom(random) * (max - min) + min;
+export function getRandomInRange(min: number, max: number, random: () => number): number {
+  return getRandomValue(random) * (max - min) + min;
 }
 
 /**
@@ -70,7 +71,7 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @param r - The red component
  * @returns the random value in the given range
  */
-export function randomInRangeValue(r: RangeValue, random?: () => number): number {
+export function randomInRangeValue(r: RangeValue, random: () => number): number {
   const max = getRangeMax(r),
     minOffset = 0;
 
@@ -88,7 +89,7 @@ export function randomInRangeValue(r: RangeValue, random?: () => number): number
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue, random?: () => number): number {
-  return isNumber(value) ? value : randomInRangeValue(value, random);
+  return isNumber(value) ? value : randomInRangeValue(value, requireRandom(random));
 }
 
 /**
@@ -232,7 +233,7 @@ export function getParticleDirectionAngle(
     case MoveDirection.outside:
       return Math.atan2(position.y - center.y, position.x - center.x);
     default:
-      return getRandom(random) * doublePI;
+      return getRandomValue(requireRandom(random)) * doublePI;
   }
 }
 
@@ -282,8 +283,12 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams, random?: () => number): ICoordinates {
   return {
-    x: ((data.position?.x ?? getRandom(random) * percentDenominator) * data.size.width) / percentDenominator,
-    y: ((data.position?.y ?? getRandom(random) * percentDenominator) * data.size.height) / percentDenominator,
+    x:
+      ((data.position?.x ?? getRandomValue(requireRandom(random)) * percentDenominator) * data.size.width) /
+      percentDenominator,
+    y:
+      ((data.position?.y ?? getRandomValue(requireRandom(random)) * percentDenominator) * data.size.height) /
+      percentDenominator,
   };
 }
 
@@ -313,8 +318,8 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams,
   const { position, size } = data;
 
   return {
-    x: position?.x ?? getRandom(random) * size.width,
-    y: position?.y ?? getRandom(random) * size.height,
+    x: position?.x ?? getRandomValue(requireRandom(random)) * size.width,
+    y: position?.y ?? getRandomValue(requireRandom(random)) * size.height,
   };
 }
 

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const keys = Object.keys(configs);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+    const randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs;
     this.options = {
       ...(configs[randomKey] as ISourceOptions),
       fullScreen: { enable: true, zIndex: -1 },

@@ -87,6 +87,26 @@ Verification: the engine build passed for browser/CJS/ESM/types, lint and circul
 
 The sounds plugin's `muted` latch intentionally tracks the first user activation in its JavaScript realm. Engines in the same window share that browser event; separate windows have separate realms, and duplicate bundle copies each observe the activation event. This is browser-owned state, not engine configuration or a mutable engine registry. No E2 acceptance item remains open.
 
+E11 re-audits the E2 service contract without reopening this acceptance gate.
+The explicit-provider and engine-owned service APIs remain the contract; E11
+records the additional fallback removals and current shared-state dispositions
+in [its handover](V5-11-ENGINE-OWNED-UTILITIES.md).
+
+### E11 API map
+
+| Previous usage                                             | Current v5 usage                                                                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `getRandom()` or a helper that silently used `Math.random` | `engine.getRandom()` for engine-owned work, or pass `engine.getRandomFn()` to a randomized helper                        |
+| `PluginManager` color-manager map or direct map iteration  | `engine.addColorManager(name, manager)`, `engine.getColorManager(name)`, and `engine.getColorManagers()` for enumeration |
+| `createLogger(...)`                                        | Configure per instance with `engine.setLogger(partialLogger)`; defaults and wrapping are constructed by `Engine`         |
+| Legacy sRGB color-manager adapter                          | Implement the native `IColorManager` contract and register it on the owning engine                                       |
+
+Randomized pure helpers now require a provider at the call site. Deterministic
+branches, such as selecting an item by explicit index, remain usable without
+one. The `MathUtils.getRandom()` helper has been removed from public exports;
+`Engine.getRandom()` is the public random service. See the
+[migration guide](V5-MIGRATION.md) for examples.
+
 ### Downstream build follow-up — 2026-11-15
 
 The first Nx run exposed remaining framework-wrapper references to the retired

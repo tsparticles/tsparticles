@@ -69,7 +69,6 @@ export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/ColorUtils.js";
 export * from "./Utils/OklchUtils.js";
-export * from "./Utils/LegacyColorManagerAdapter.js";
 export * from "./Utils/ErrorCodes.js";
 export * from "./Utils/ErrorUtils.js";
 export type { ILogger } from "./Utils/LogUtils.js";

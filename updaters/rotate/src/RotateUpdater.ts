@@ -13,7 +13,6 @@ import {
   degToRad,
   double,
   doublePI,
-  getRandom,
   getRangeValue,
   identity,
   loadOptionProperty,
@@ -86,7 +85,7 @@ export class RotateUpdater implements IParticleUpdater {
     let rotateDirection = rotateOptions.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      const index = Math.floor(getRandom(this.#container.engine.getRandomFn()) * double);
+      const index = Math.floor(this.#container.engine.getRandom() * double);
 
       rotateDirection = index > minIndex ? RotateDirection.counterClockwise : RotateDirection.clockwise;
     }
@@ -113,7 +112,7 @@ export class RotateUpdater implements IParticleUpdater {
         this.#container.retina.reduceFactor;
 
       if (!rotateAnimation.sync) {
-        particle.rotate.velocity *= getRandom(this.#container.engine.getRandomFn());
+        particle.rotate.velocity *= this.#container.engine.getRandom();
       }
     }
 

@@ -1,7 +1,4 @@
-import type {
-  InteractivityContainer,
-  InteractivityParticle,
-} from "../types.js";
+import type { InteractivityContainer, InteractivityParticle } from "../types.js";
 import type { IDelta } from "@tsparticles/engine";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
 import type { IInteractivityData } from "../Interfaces/IInteractivityData.js";
@@ -68,8 +65,5 @@ export abstract class ExternalInteractorBase<
    * @param particle - the particle to check, if null, checks the container
    * @returns true or false, checking if the options enable this interaction manager
    */
-  abstract isEnabled(
-    interactivityData: IInteractivityData,
-    particle?: TParticle,
-  ): boolean;
+  abstract isEnabled(interactivityData: IInteractivityData, particle?: TParticle): boolean;
 }

@@ -1,6 +1,6 @@
 # V5 migration guide — E10 working draft
 
-Status: E10 in progress (2026-11-25). E9 installed-package and browser checks
+Status: E10 accepted for progression (2026-11-27). E9 installed-package and browser checks
 passed for the current candidate. This guide describes implemented v5 engine,
 wrapper, bundle, and color contracts. The E0 size ceilings remain visible as
 diagnostic references under the updated E10 size criterion; they are not
@@ -12,9 +12,10 @@ The vanilla TypeScript MCP-generated example and all twenty CLI scaffold
 templates pass isolated consumer checks against rebuilt candidate packages,
 including production builds and Chrome initialization. All nine packed
 template families contain zero retired Vue 2, Nuxt 2, or Nuxt 3 variants.
-Native-language review of all nine first-pass translation drafts, broader
-consumer review, and the HDR/browser hardware gate remain open. Drafts and
-locale status are tracked in
+Native-language review of all nine first-pass translation drafts and physical
+HDR verification are queued for final plan validation at the user's direction.
+The consumer README and core Markdown audit is recorded in the E10 evidence.
+Drafts and locale status are tracked in
 [`migration-drafts/`](evidence/e10/migration-drafts/README.md). Keep these as
 internal drafts; they are not completed release migration guides.
 
@@ -187,6 +188,15 @@ have been removed. Migrate those calls to `engine.setRandom`,
 `container.engine` or `container.pluginManager.engine`. Runtime helpers accept
 an explicit random provider; use the owning engine's stable `getRandomFn()`
 provider so later source changes take effect without affecting other engines.
+Helpers that draw randomness have no `Math.random` fallback. For example, use
+`getRandomInRange(10, 20, engine.getRandomFn())`. Deterministic branches that
+need no random draw may omit a provider; a randomized branch without one throws.
+The `MathUtils.getRandom()` helper is no longer exported; use
+`engine.getRandom()` for a value or pass `engine.getRandomFn()` to helpers that
+accept a provider.
+Register and read color managers through `engine.addColorManager(name, manager)`,
+`engine.getColorManager(name)`, and `engine.getColorManagers()`. Do not use the
+plugin manager as a writable color-manager registry.
 Animation scheduling is also per engine; existing container frames are
 cancelled by the scheduler that created them.
 

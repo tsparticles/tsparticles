@@ -1,8 +1,8 @@
 # v5 迁移指南 — E10 工作草稿
 
-状态：E10 进行中（2026-11-25）。当前候选版本已通过 E9 已安装包和浏览器检查。本指南介绍 engine、wrapper、bundle 和颜色方面已实现的 v5 契约。根据更新后的 E10 大小标准，E0 大小上限仍作为诊断参考保留，并不表示已通过。runtime、分配和保留标准仍未完成：强制 HDR 下 M6/500 帧的 p95 仍高于固定的 E0 上限。
+状态：E10 工作草稿，更新于 2026-11-27。当前候选版本的 E9 安装包与浏览器检查已通过。本指南说明 engine、wrapper、bundle 和 color 已实现的 v5 契约。按照更新后的 E10 大小标准，E0 大小上限仍作为诊断参考值列出，不代表已通过。无 callback renderer 的后续验证通过全部 30 项 E0 runtime 检查，包括强制 HDR 项。M4/500 的 update 和 render 符合 E0 上限；帧 p95 为 7.20 ms，比历史 E5 参考值高 0.05 ms。实体设备 HDR 检查和所需的文档审查仍未完成。
 
-MCP 生成的 TypeScript 示例和 CLI Vanilla scaffold 使用重新构建的候选包通过了类型检查和 Chrome 初始化；CLI scaffold 也通过了生产构建。九类已打包模板均不含已移除的 Vue 2、Nuxt 2 或 Nuxt 3 变体。Vanilla、React、Vue 3、Solid 和 Lit 之外的生成组合、意大利语/西班牙语/法语/德语首稿之外的翻译、更广泛的 consumer review，以及硬件上的 HDR/browser 检查仍待完成。草稿和语言状态记录在 [`migration-drafts/`](README.md)。这些是内部草稿，不能作为最终发布指南。
+MCP 生成的 TypeScript 示例和全部 20 个 CLI scaffold（Vanilla 和 19 个 framework）均通过类型检查、生产构建和 Chrome 启动，且没有页面或 console 错误。九个打包模板系列均不包含已移除的 Vue 2、Nuxt 2 或 Nuxt 3 变体。九份草稿的语言审查，以及实体设备 HDR/browser 检查仍待完成。这是内部草稿，并非可发布的最终迁移指南。
 
 当前网站的默认和本地化 Vanilla 指南逐字节相同，并引用已发布的 v4 CDN 包。v5 迁移页准备好发布前，这些 singleton 示例仍属于 v4 文档，不计入 v5 consumer 检查。
 

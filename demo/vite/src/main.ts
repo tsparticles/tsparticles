@@ -1,4 +1,4 @@
-import { type Engine, getRandom } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import "./style.css";
 import configs from "@tsparticles/configs";
 import { engine } from "../particlesEngine";
@@ -12,7 +12,7 @@ import { loadConfettiPalette } from "@tsparticles/palette-confetti";
   await loadConfettiPalette(engine);
 
   const keys = Object.keys(configs),
-    randomKey = keys[Math.floor(getRandom() * keys.length)] as keyof typeof configs,
+    randomKey = keys[Math.floor(engine.getRandom() * keys.length)] as keyof typeof configs,
     options = configs[randomKey];
 
   await engine.load({

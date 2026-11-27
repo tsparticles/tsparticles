@@ -104,10 +104,8 @@ white and absolute luminance before conversion.
 
 Native `IColorManager` implementations resolve directly to `IOklcha` through
 `handleColorOklch`, `handleRangeColorOklch` and `parseStringOklch`. RGB hooks are
-not required. For an existing sRGB manager, wrap it explicitly with
-`adaptLegacyColorManager`; this converts its RGB result to OKLCH and keeps the
-legacy manager's precision and gamut limitations. Direct parsers must preserve
-alpha.
+not required. Migrate existing sRGB managers to these hooks so color resolution
+does not quantize through 8-bit RGB. Direct parsers must preserve alpha.
 
 ```ts
 const nativeManager: IColorManager = {
@@ -117,14 +115,9 @@ const nativeManager: IColorManager = {
   parseStringOklch: (input) => parseBrandString(input),
 };
 
-engine.pluginManager.addColorManager("brand", nativeManager);
-
-const compatibleManager = adaptLegacyColorManager(existingSrgbManager);
-
-engine.pluginManager.addColorManager("legacy-brand", compatibleManager);
+engine.addColorManager("brand", nativeManager);
 ```
 
 `resolveBrandColor`, `resolveBrandRange` and `parseBrandString` stand for the
 format-specific parsers. They return `{ l, c, h, a }` directly; native managers
-should not quantize through 8-bit RGB. Existing managers can implement
-`ILegacyColorManager` and use the adapter while they are migrated.
+should not quantize through 8-bit RGB.

@@ -19,7 +19,7 @@ import { engine } from "../particlesEngine";
 const confetti = createConfetti(engine);
 
     function randomInRange(min, max) {
-      return Math.random() * (max - min) + min
+      return engine.getRandom() * (max - min) + min
     }
 
     export default {
@@ -111,4 +111,5 @@ const confetti = createConfetti(engine);
       cursor: pointer;
     }
   </style>
+
 </app>

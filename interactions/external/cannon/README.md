@@ -70,7 +70,8 @@ $ yarn add @tsparticles/interaction-external-cannon
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalCannonInteraction } = require("@tsparticles/interaction-external-cannon");
 

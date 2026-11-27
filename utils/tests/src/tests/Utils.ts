@@ -9,7 +9,6 @@ import {
   createEngine,
   getDistance,
   getParticleBaseVelocity,
-  getRandom,
   isInArray,
   isPointInside,
   itemFromArray,
@@ -119,7 +118,7 @@ describe("Utils", () => {
       size = 10;
 
     it("should return the average when weights are identical", () => {
-      const weight1 = Math.floor(getRandom() * (size - 1) + 1),
+      const weight1 = Math.floor(tsParticles.getRandom() * (size - 1) + 1),
         weight2 = weight1,
         mean = Math.floor((comp1 + comp2) / 2);
 
@@ -127,7 +126,7 @@ describe("Utils", () => {
     });
 
     it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
-      const weight1 = Math.floor(getRandom() * (size - 1) + 1),
+      const weight1 = Math.floor(tsParticles.getRandom() * (size - 1) + 1),
         weight2 = 0;
 
       expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1.toString()}`).to.be.equal(Math.floor(comp1));
@@ -135,7 +134,7 @@ describe("Utils", () => {
 
     it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
       const weight1 = 0,
-        weight2 = Math.floor(getRandom() * (size - 1) + 1);
+        weight2 = Math.floor(tsParticles.getRandom() * (size - 1) + 1);
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
     });
@@ -165,7 +164,7 @@ describe("Utils", () => {
       objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
     it("should always return a random item from a numeric array", () => {
-      const randomItem = itemFromArray(numericArray);
+      const randomItem = itemFromArray(numericArray, undefined, true, tsParticles.getRandomFn());
 
       expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
     });
@@ -177,7 +176,7 @@ describe("Utils", () => {
     });
 
     it("should always return a random item from a string array", () => {
-      const randomItem = itemFromArray(stringArray);
+      const randomItem = itemFromArray(stringArray, undefined, true, tsParticles.getRandomFn());
 
       expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
     });
@@ -189,7 +188,7 @@ describe("Utils", () => {
     });
 
     it("should always return a random object from an array of objects", () => {
-      const randomObject = itemFromArray(objectArray);
+      const randomObject = itemFromArray(objectArray, undefined, true, tsParticles.getRandomFn());
 
       expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(randomObject);
     });
@@ -205,7 +204,7 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range in positive reals", () => {
       const min = 1,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max));
+        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -213,7 +212,7 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range in negative reals", () => {
       const min = -10,
         max = -1,
-        randomNumber = randomInRangeValue(setRangeValue(min, max));
+        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -221,7 +220,7 @@ describe("Utils", () => {
     it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
       const min = -10,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max));
+        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
 
       expect(randomNumber).to.be.within(min, max);
     });
@@ -229,7 +228,7 @@ describe("Utils", () => {
     it("should set min as 0 when max equals to min", () => {
       const min = 10,
         max = 10,
-        randomNumber = randomInRangeValue(setRangeValue(min, max));
+        randomNumber = randomInRangeValue(setRangeValue(min, max), tsParticles.getRandomFn());
 
       expect(randomNumber).to.be.within(0, max);
     });
@@ -527,7 +526,7 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on top boundary of screen with non-zero radius", () => {
-      expect(isPointInside(topPoint, dimension, Vector.origin, getRandom())).to.be.true;
+      expect(isPointInside(topPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
     });
 
     it("should return false when point lies on bottom boundary of screen with no radius", () => {
@@ -535,7 +534,7 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on bottom boundary of screen with non-zero radius", () => {
-      expect(isPointInside(bottomPoint, dimension, Vector.origin, getRandom())).to.be.true;
+      expect(isPointInside(bottomPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
     });
 
     it("should return false when point lies on left boundary of screen with no radius", () => {
@@ -543,7 +542,7 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on left boundary of screen with non-zero radius", () => {
-      expect(isPointInside(leftPoint, dimension, Vector.origin, getRandom())).to.be.true;
+      expect(isPointInside(leftPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
     });
 
     it("should return false when point lies on right boundary of screen with no radius", () => {
@@ -551,7 +550,7 @@ describe("Utils", () => {
     });
 
     it("should return true when point lies on right boundary of screen with non-zero radius", () => {
-      expect(isPointInside(rightPoint, dimension, Vector.origin, getRandom())).to.be.true;
+      expect(isPointInside(rightPoint, dimension, Vector.origin, tsParticles.getRandom())).to.be.true;
     });
   });
 

@@ -58,7 +58,8 @@ $ yarn add @tsparticles/plugin-export-json
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("@tsparticles/engine");
+const { createEngine } = require("@tsparticles/engine");
+const tsParticles = createEngine();
 const { loadExportJSONPlugin } = require("@tsparticles/plugin-export-json");
 
 (async () => {

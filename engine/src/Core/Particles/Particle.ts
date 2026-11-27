@@ -9,7 +9,6 @@ import {
   degToRad,
   getParticleBaseVelocity,
   getParticleDirectionAngle,
-  getRandom,
   getRangeValue,
   randomInRangeValue,
   setRangeValue,
@@ -57,6 +56,7 @@ import { ParticleOutType } from "../../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
 import type { PluginManager } from "../Engine/PluginManager.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { getRandomValue } from "../../Utils/RandomUtils.js";
 import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
 
 /**
@@ -260,13 +260,13 @@ function resolveParticleOptions(
   if (particle.effect === randomColorValue) {
     const availableEffects = [...container.effectDrawers.keys()];
 
-    particle.effect = availableEffects[Math.floor(getRandom(container.engine.getRandomFn()) * availableEffects.length)];
+    particle.effect = availableEffects[Math.floor(container.engine.getRandom() * availableEffects.length)];
   }
 
   if (particle.shape === randomColorValue) {
     const availableShapes = [...container.shapeDrawers.keys()];
 
-    particle.shape = availableShapes[Math.floor(getRandom(container.engine.getRandomFn()) * availableShapes.length)];
+    particle.shape = availableShapes[Math.floor(container.engine.getRandom() * availableShapes.length)];
   }
 
   particle.effectData = particle.effect
@@ -1032,7 +1032,7 @@ export class Particle {
     }
 
     if (moveOptions.random && typeof moveOptions.speed === "number") {
-      res.length *= getRandom(random);
+      res.length *= getRandomValue(random);
     }
 
     return res;

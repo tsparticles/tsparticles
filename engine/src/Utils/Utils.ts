@@ -10,7 +10,7 @@ import {
   minRadius,
   percentDenominator,
 } from "../Core/Utils/Constants.js";
-import { collisionVelocity, getRandom, getRangeValue } from "./MathUtils.js";
+import { collisionVelocity, getRangeValue } from "./MathUtils.js";
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import type { Container } from "../Core/Container/Container.js";
 import type { DataFromUrlParams } from "../Core/Interfaces/DataFromUrlParams.js";
@@ -23,6 +23,7 @@ import type { Particle } from "../Core/Particles/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { Vector } from "../Core/Particles/Vectors.js";
+import { getRandomValue } from "./RandomUtils.js";
 
 /**
  * Checks whether a key should be rejected during object traversal.
@@ -91,7 +92,15 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
  * @returns the item found
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true, random?: () => number): T | undefined {
-  return array[index !== undefined && useIndex ? index % array.length : Math.floor(getRandom(random) * array.length)];
+  if (index !== undefined && useIndex) {
+    return array[index % array.length];
+  }
+
+  if (!random) {
+    throw new Error("A random provider is required to select an array item without an index.");
+  }
+
+  return array[Math.floor(getRandomValue(random) * array.length)];
 }
 
 /**

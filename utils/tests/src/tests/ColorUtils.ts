@@ -5,13 +5,11 @@ import {
   type IColorManager,
   type IHsl,
   type IHsla,
-  type ILegacyColorManager,
   type IOklcha,
   type IParticleOklchAnimation,
   type IRgb,
   OklchAnimation,
   type Particle,
-  adaptLegacyColorManager,
   colorToRgb,
   createEngine,
   displayP3ToOklch,
@@ -1055,7 +1053,7 @@ describe("ColorUtils", async () => {
         },
         directEngine = createEngine();
 
-      directEngine.pluginManager.addColorManager("direct", directManager);
+      directEngine.addColorManager("direct", directManager);
 
       expect(rangeColorToOklch(directEngine.pluginManager, "direct(color)")).to.deep.equal({ ...direct, h: 225 });
       expect(
@@ -1082,7 +1080,7 @@ describe("ColorUtils", async () => {
           }),
         };
 
-      customEngine.pluginManager.addColorManager("custom", customManager);
+      customEngine.addColorManager("custom", customManager);
 
       expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
       expect(
@@ -1101,7 +1099,7 @@ describe("ColorUtils", async () => {
           parseStringOklch: () => ({ a: 0.35, c: 0.2, h: 30, l: 101 }),
         };
 
-      customEngine.pluginManager.addColorManager("custom", customManager);
+      customEngine.addColorManager("custom", customManager);
 
       expect(rangeColorToOklch(customEngine.pluginManager, "custom(color)")).to.be.undefined;
       expect(
@@ -1109,32 +1107,6 @@ describe("ColorUtils", async () => {
           value: { custom: true },
         }),
       ).to.be.undefined;
-    });
-
-    it("adapts custom managers that only implement the legacy RGB contract", () => {
-      const customEngine = createEngine(),
-        customRgb = { r: 12.5, g: 87.25, b: 194.75 },
-        legacyManager: ILegacyColorManager = {
-          accepts: input => input.startsWith("custom("),
-          handleColor: () => customRgb,
-          handleRangeColor: () => customRgb,
-          parseString: () => ({ ...customRgb, a: 0.35 }),
-        },
-        customManager = adaptLegacyColorManager(legacyManager);
-
-      customEngine.pluginManager.addColorManager("custom", customManager);
-
-      const parsed = rangeColorToOklch(customEngine.pluginManager, "custom(color)");
-
-      expect(parsed).to.deep.equal({ ...rgbToOklch(customRgb), a: 0.35 });
-      expect(
-        rangeColorToOklch(customEngine.pluginManager, {
-          value: { custom: true },
-        }),
-      ).to.deep.equal({
-        ...rgbToOklch(customRgb),
-        a: 1,
-      });
     });
 
     it("selects an indexed color-array entry before canonical parsing", () => {
@@ -1571,14 +1543,15 @@ describe("ColorUtils", async () => {
         checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
 
     it("totally random color", () => {
-      expect(getRandomRgbColor()).to.satisfy((rgb: IRgb) => checkColor(rgb)).and.not.be.undefined.and.not.be.null;
+      expect(getRandomRgbColor(undefined, undefined, () => 0.5)).to.satisfy((rgb: IRgb) => checkColor(rgb)).and.not.be
+        .undefined.and.not.be.null;
     });
 
     it("random color with min seed", () => {
       const min = 200;
 
-      expect(getRandomRgbColor(min)).to.satisfy((rgb: IRgb) => checkColor(rgb, min)).and.not.be.undefined.and.not.be
-        .null;
+      expect(getRandomRgbColor(min, undefined, () => 0.5)).to.satisfy((rgb: IRgb) => checkColor(rgb, min)).and.not.be
+        .undefined.and.not.be.null;
     });
   });
 });

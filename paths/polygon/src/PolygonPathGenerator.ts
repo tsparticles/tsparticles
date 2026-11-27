@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type Container, type ICoordinates, Vector, deepExtend, getRandom } from "@tsparticles/engine";
+import { type Container, type ICoordinates, Vector, deepExtend } from "@tsparticles/engine";
 import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
 import type { PolygonPathParticle } from "./PolygonPathParticle.js";
@@ -44,15 +44,13 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     p.hexStep ??= 0;
     p.hexDirection ??=
       sides === 6
-        ? ((getRandom(this.#container.engine.getRandomFn()) * 3) | 0) * 2
-        : (getRandom(this.#container.engine.getRandomFn()) * sides) | 0;
+        ? ((this.#container.engine.getRandom() * 3) | 0) * 2
+        : (this.#container.engine.getRandom() * sides) | 0;
     p.hexSpeed ??= p.velocity.length;
 
     if (p.hexStep % turnSteps === 0) {
       p.hexDirection =
-        getRandom(this.#container.engine.getRandomFn()) > 0.5
-          ? (p.hexDirection + 1) % sides
-          : (p.hexDirection + sides - 1) % sides;
+        this.#container.engine.getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
     }
 
     p.velocity.x = 0;
