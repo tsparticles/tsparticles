@@ -31,7 +31,7 @@ export class NoneOutMode implements IOutModeManager {
 
     if (
       (particle.options.move.distance.horizontal &&
-        (direction === OutModeDirection.left || direction === OutModeDirection.right)) ??
+        (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
       (particle.options.move.distance.vertical &&
         (direction === OutModeDirection.top || direction === OutModeDirection.bottom))
     ) {
