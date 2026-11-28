@@ -1,0 +1,130 @@
+import type { IColorTransitionStopState } from "./Types.js";
+import type { IHsl } from "@tsparticles/engine";
+
+const minProgress = 0,
+  maxProgress = 1,
+  firstIndex = 0,
+  fullHue = 360,
+  halfHue = 180;
+
+/**
+ * Linear interpolation between two values
+ * @param a - The start value
+ * @param b - The end value
+ * @param t - The interpolation factor, between 0 and 1
+ * @returns The interpolated value
+ */
+function lerp(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
+}
+
+/**
+ * Interpolates two hues along the shortest path on the color wheel
+ * @param a - The start hue
+ * @param b - The end hue
+ * @param t - The interpolation factor, between 0 and 1
+ * @returns The interpolated hue, normalized to the 0-360 range
+ */
+function lerpHue(a: number, b: number, t: number): number {
+  const delta = ((b - a + halfHue + fullHue) % fullHue) - halfHue;
+
+  return (a + delta * t + fullHue) % fullHue;
+}
+
+/**
+ * Interpolates the transition color for the given progress
+ * @param stops - The transition stops, sorted by offset
+ * @param progress - The transition progress, between 0 and 1
+ * @param out - Optional reusable output object, avoiding per-frame allocations
+ * @returns The interpolated color, or undefined when there are no stops
+ */
+export function interpolateStops(stops: IColorTransitionStopState[], progress: number, out?: IHsl): IHsl | undefined {
+  const first = stops[firstIndex],
+    last = stops[stops.length - 1];
+
+  if (!first || !last) {
+    return undefined;
+  }
+
+  if (stops.length === 1 || progress <= first.offset) {
+    return first.color;
+  }
+
+  if (progress >= last.offset) {
+    return last.color;
+  }
+
+  for (let i = 0; i < stops.length - 1; i++) {
+    const a = stops[i],
+      b = stops[i + 1];
+
+    if (!a || !b || progress > b.offset) {
+      continue;
+    }
+
+    const span = b.offset - a.offset,
+      t = span > 0 ? (progress - a.offset) / span : 0,
+      h = lerpHue(a.color.h, b.color.h, t),
+      l = lerp(a.color.l, b.color.l, t),
+      s = lerp(a.color.s, b.color.s, t);
+
+    if (out) {
+      out.h = h;
+      out.l = l;
+      out.s = s;
+
+      return out;
+    }
+
+    return { h, l, s };
+  }
+
+  return last.color;
+}
+
+/**
+ * Reads the life progress of a particle
+ * @param life - The particle life state, when the life updater created one, in milliseconds
+ * @param duration - Optional custom transition duration in milliseconds, overriding the life duration
+ * @returns The life progress between 0 and 1, or undefined when the particle has no finite advancing life clock
+ */
+export function getLifeProgress(life?: { duration: number; time: number }, duration?: number): number | undefined {
+  // An infinite (-1) or otherwise non-positive life duration never advances the life
+  // clock (the life updater returns before incrementing its time), so no transition
+  // can be driven from it, not even with a custom transition duration.
+  if (!life || life.duration <= 0 || !isFinite(life.duration)) {
+    return undefined;
+  }
+
+  const effectiveDuration = duration ?? life.duration;
+
+  if (effectiveDuration <= 0 || !isFinite(effectiveDuration)) {
+    return undefined;
+  }
+
+  return getElapsedProgress(life.time, effectiveDuration);
+}
+
+/**
+ * Combines the life progress with the per-particle offset
+ * @param progress - The life progress
+ * @param offset - The per-particle progress offset
+ * @returns The transition progress, wrapped in the 0-1 range
+ */
+export function applyProgressOffset(progress: number, offset: number): number {
+  return offset === minProgress ? progress : (progress + offset) % maxProgress;
+}
+
+/**
+ * Reads clamped transition progress from elapsed milliseconds
+ * @param time - Elapsed time in milliseconds
+ * @param duration - Transition duration in milliseconds
+ * @returns Clamped progress, or undefined for an invalid duration
+ */
+export function getElapsedProgress(time: number, duration: number): number | undefined {
+  if (duration <= 0 || !isFinite(duration)) {
+    return undefined;
+  }
+
+  return Math.min(maxProgress, Math.max(minProgress, time / duration));
+}
